@@ -264,20 +264,6 @@ public class Module implements Comparable<Module> {
                 exportInterfaceNames.add(exportClassName);
             }
         }
-
-        List<Element> componentElements = XMLUtils.getElementsByTagName(rootElement, "component");
-        if (componentElements != null) {
-            for (Element element : componentElements) {
-                try {
-                    ComponentMeta meta = new ComponentMeta(this, element);
-                    //register componentMeta
-                    componentMetas.put(meta.getComponentId(),meta);
-                }
-                catch (ComponentResolvedFailedException e) {
-                    throw new ModuleResolvedFailedException("Resolve Component failed.",e);
-                }
-            }
-        }
 */
 
     }
