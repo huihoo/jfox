@@ -1,0 +1,114 @@
+package net.sourceforge.jfox.framework.component;
+
+import java.net.URL;
+import java.util.Arrays;
+
+import net.sourceforge.jfox.framework.ClassLoaderRepository;
+
+/**
+ * Module ClassLoader 用来加载整个 Module 的类和资源
+ * Module ClassLoader 初始化的时候，会使用ASM读取所有的Class，并记录Class的Annotation，
+ * 这样可以不需要 XML 配置文件，而直接根据 Annotation 发现 Component
+ *
+ * @author <a href="mailto:yy.young@gmail.com">Yang Yong</a>
+ */
+public class ModuleClassLoader extends ASMClassLoader {
+
+    /**
+     * 该 ModuleClass 负责的模块
+     */
+    private Module module;
+
+    /**
+     * global Class ClassLoaderRepository
+     */
+    private ClassLoaderRepository repo;
+
+    /**
+     * the jars in the urls can be load by Repository
+     *
+     * @param module module
+     */
+    public ModuleClassLoader(Module module) {
+        super(module.getClasspathURLs(), module.getFramework().getClassLoaderRepository());
+        this.module = module;
+        this.repo = module.getFramework().getClassLoaderRepository();
+    }
+
+    protected URL[] getASMClasspathURLs() {
+        return super.getURLs();
+    }
+
+    public Module getModule() {
+        return module;
+    }
+
+    public ClassLoaderRepository getClassLoaderRepository() {
+        return repo;
+    }
+
+    /**
+     * 必须首先得找 export 列表,否则会出现重新装载,造成 ClassCastException
+     *
+     * @param className class className
+     * @return class
+     * @throws ClassNotFoundException
+     */
+    public Class<?> loadClass(String className) throws ClassNotFoundException {
+        // 如果是本模块的类，将在 findLoadedClass 中直接返回，不需要经过 ClassLoaderRepository
+        Class clz = super.loadClass(className);
+        if (clz.getClassLoader() instanceof ModuleClassLoader) {
+            ModuleClassLoader mcl = (ModuleClassLoader)clz.getClassLoader();
+            // 只有自己export 或者 ref-moudles 中 export 的class，才能返回
+            if ((mcl == getModule().getModuleClassLoader()) || Arrays.asList(module.getRefModules()).contains(mcl.getModule().getName())) {
+                return clz;
+            }
+            else {
+                String errorMsg = "Class: " + className + " 's export Module [" + mcl.getModule().getName() + "] is not in Module [" + getModule().getName() + "] 's ref-modules list.";
+                logger.info(errorMsg);
+                throw new ClassNotFoundException(errorMsg);
+            }
+        }
+        else {
+            return clz;
+        }
+    }
+
+    /**
+     * export class 只从本地 Module load
+     *
+     * @param name className
+     * @return class
+     * @throws ClassNotFoundException if class not foud
+     */
+    Class<?> loadExportClass(String name) throws ClassNotFoundException {
+        logger.debug("Load export class: " + name + ", module: " + getModule().getName());
+        // First, check if the class has already been loaded
+        Class c = findLoadedClass(name);
+        if (c == null) {
+            // If still not found, then invoke findClass in order
+            // to find the class.
+            c = findClass(name);
+        }
+        return c;
+    }
+
+    protected Class<?> findClass(final String name) throws ClassNotFoundException {
+        logger.trace("Loading class: " + name + ", Module: " + getModule().getName());
+        return super.findClass(name);
+    }
+
+    /**
+     * 仅从本Module findResource
+     *
+     * @param name resource name
+     */
+    public URL getResource(String name) {
+        return findResource(name);
+    }
+
+    public String toString() {
+        return super.toString() + Arrays.toString(getURLs());
+    }
+
+}

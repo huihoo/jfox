@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+
+    <display-name>ejb3</display-name>
+
+    <context-param>
+		<param-name>MODULES</param-name>
+		<param-value>/WEB-INF/MODULES/petstore</param-value>
+	</context-param>
+
+    <context-param>
+		<param-name>VIEW_DIR</param-name>
+		<param-value>views</param-value>
+	</context-param>
+
+    <context-param>
+		<param-name>ACTION_SUFFIX</param-name>
+		<param-value>.do</param-value>
+	</context-param>
+
+    <listener>
+        <listener-class>net.sourceforge.jfox.mvc.WebContextLoader</listener-class>
+    </listener>
+
+	<servlet>
+		<servlet-name>controller_servlet</servlet-name>
+		<servlet-class>net.sourceforge.jfox.mvc.servlet.ControllerServlet</servlet-class>
+        <init-param>
+            <param-name>MAX_UPLOAD_FILE_SIZE</param-name>
+            <param-value>5000000</param-value> <!-- 5m -->
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+		<servlet-name>controller_servlet</servlet-name>
+		<url-pattern>/modules/*</url-pattern>
+	</servlet-mapping>
+
+    <servlet>
+        <servlet-name>template_servlet</servlet-name>
+        <servlet-class>net.sourceforge.jfox.mvc.servlet.TemplateServlet</servlet-class>
+        <init-param>
+            <description>velocity render</description>
+            <param-name>net.sourceforge.jfox.mvc.velocity.VelocityRender</param-name>
+            <param-value>*.vm,*.tmpl,*.vhtm,*.vhtml</param-value>
+        </init-param>
+        <!--
+        <init-param>
+            <param-name>pdf_render</param-name>
+            <param-value>*.pdf</param-value>
+        </init-param>
+        <init-param>
+            <param-name>excel_render</param-name>
+            <param-value>*.xls</param-value>
+        </init-param>
+        -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+		<servlet-name>template_servlet</servlet-name>
+		<url-pattern>*.vm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+		<servlet-name>template_servlet</servlet-name>
+		<url-pattern>*.tmpl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+		<servlet-name>template_servlet</servlet-name>
+        <url-pattern>*.vhtm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+		<servlet-name>template_servlet</servlet-name>
+		<url-pattern>*.vhtml</url-pattern>
+    </servlet-mapping>
+
+</web-app>

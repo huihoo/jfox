@@ -1,0 +1,45 @@
+<persistence>
+
+    <persistence-unit name="default">
+        <jta-data-source>java:/DefaultMySqlDS</jta-data-source>
+        <properties>
+            <property name="driver" value="com.mysql.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+            <property name="username" value="root"/>
+            <property name="password" value="root"/>
+            <property name="minSize" value="5"/> <!-- min pool size -->
+            <property name="maxSize" value="200"/> <!-- max pool size -->
+            <property name="lifeTime" value="1800000"/> <!-- 2h, connection max idle time -->
+            <property name="sleepTime" value="600000"/> <!-- PoolKeeper sleep time -->
+            <property name="deadLockRetryWait" value="2000"/> <!-- retry time if no free connection -->
+            <property name="deadLockMaxWait" value="60000"/> <!-- max wait time if no free connection -->
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="JPetstoreMysqlDS">
+        <jta-data-source>java:/JPetstoreMysqlDS</jta-data-source>
+        <properties>
+            <property name="driver" value="com.mysql.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql://localhost:3306/jpetstore"/>
+            <property name="username" value="root"/>
+            <property name="password" value="root"/>
+            <property name="minSize" value="5"/> <!-- min pool size -->
+            <property name="maxSize" value="200"/> <!-- max pool size -->
+            <property name="lifeTime" value="1800000"/> <!-- 2h, connection max idle time -->
+            <property name="sleepTime" value="600000"/> <!-- PoolKeeper sleep time -->
+            <property name="deadLockRetryWait" value="2000"/> <!-- retry time if no free connection -->
+            <property name="deadLockMaxWait" value="60000"/> <!-- max wait time if no free connection -->
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="DefaultHsqlDS">
+        <jta-data-source>java:/DefaultHsqlDS</jta-data-source>
+        <properties>
+            <property name="driver" value="com.mysql.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+            <property name="username" value="root"/>
+            <property name="password" value="root"/>
+        </properties>
+    </persistence-unit>
+    
+</persistence>

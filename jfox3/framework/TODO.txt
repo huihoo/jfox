@@ -1,0 +1,201 @@
+﻿2006-10-25
+    1.增强ClassLoader能力，支持热部署，整个Module Hot deploy
+    2.增加ComponentListener，可以监听Component的变化
+    3.增加 ObservableComponent，可以被监听
+    4.增加PropertyChangeEvent Component,可以监听属性变化
+    5.改成 export-package(已考虑为 export-classes)
+    6.增强 Module 的概念
+    7.PBean , Pure Java Bean,  POJO ejb without Distribute, 采用EJB 的 Transaction 描述
+    8.强制基于接口编程的组件编程模型
+    9.基于容器的概念来设计，所有请求走容器
+    10.提供Stateless/Statful 支持
+    11.提供两种ObjectPool
+
+2006-10-31
+    1.都采用 Dynamic Proxy，执行时动态获取引用，使得可以热部署，使用独立Invoker实现拦截
+    2.ComponentListener, ModuleListener, ComponentEvent, ModuleEvent, ComponentReference, ComponentRegistration, ComponentContext
+    3.是否需要 export-interface，即使重新部署，也不 reload export-interface，以便其它引用模块可以继续使用
+
+2006-11-01
+    1.不直接提供 Registry 的引用，使用 ComponentContext.getComponent 来获得其它 Component
+    2.InitializableComponent是否可以不要，使用 ComponentRegistration 进行初始化???
+
+2006-11-06
+    1.定义 Service 接口，一个Module对外提供的服务，必须Service暴露出来，才能被其它模块访问，Component只能内部访问
+    2.增加 ListenerManager，管理 Event 分发
+
+2006-11-07
+    1.如果有 share 的POJO，该如何处理；(无论如何，热部署很难)
+        1可以放在一个public module中，
+        2使用export-class export出来
+        3也面向接口，export 接口
+        4使用xml传输
+    2.PO的动态代理，将方法名转成 setColumnValue(method_name, value)，提供通用的Map.toPO动态代理生成器
+    3.考虑SQLTemplate，输入 SQLT + Object, 输出 SQL
+
+2006-11-15
+    1.DAO层使用DB语义，insert update delete select
+    2.BO层使用逻辑语义，create update delete get
+    3.DAO 总是返回 Map，BO按需要把Map构造成 DO
+    4.!!!!Component 可以没有特定接口，Service必须有接口，只能按接口调用(经过考虑,Component也必须有接口，但是没有export)
+    5.采用 Velocity 作为 SQL Template模板
+    6.不需要 Deploy 线程提供部署服务，采用Registry主动装载
+    7.PK表采用内存生成，见 PKgen
+    8.ActionSupport DAOSupport DataObject BOSupport
+    9.流程展示 CreateAccountAction(参数、权限、环境、日志）-〉AccountBO（逻辑、事务）-〉AccountDAO/AccountDO（数据库访问、OR映射）-〉DB（存储）
+
+2006-11-16
+    1.提出ControllerObject，可以在一个CO中提供多个 do***Action 方法，ControllerObject 实现权限、日志、输入校验 (ActionSupport 已经具备该功能)
+    2.采用 webfx DHTML Component，Buffalo Ajax Framework
+    3.模块化部署是实现模块隔离的前提
+
+2006-11-17
+    1.考虑提供FactoryComponent，用来生成Component实例
+    2.参考Spring Transaction 实现方式
+
+2006-11-19
+    1.整合并改造 Velocity-Tools
+    2.Role 关联的 Action 用 , 分隔
+    3.是否考虑用粗粒度的 DAO，比如：一个模块只有一个DAO
+    4.采用 XPath 来解析 XML
+
+2006-11-20
+    1.对于依赖关系管理来说，哪些组件依赖于该组件更重要
+    2.@ActiveComponent 改成Annotation更合适
+    3.模块由 src Resource config View 等组成
+    4.Tomcat 使用 DefaultServlet来显示静态内容，ResourceCache应该好好看一下
+    5.OSGi是以Bundle(Module)为关注中心，我们仍以Component为关注中心
+
+2006-11-22
+    1.对于权限，应该在角色关联Action的时候，带上附加条件，该条件可以用 Velocity 描述，来解决业务范围的控制
+    2.采用Velocity支持XML配置占位符 ${jdbc.driver}
+    3.需要提供 Validator接口，以及Errors返回错误信息，参考 Spring
+    4.参考easyJWeb的上传实现
+
+2006-11-23
+    1.参考Spring AbstractView，统一支持Velocity Static PDF views
+
+2006-12-01
+    1.只能 export interface
+    2.ModuleClassLoader如果load的Class是本模块的，会直接从 findLoadedClass 返回
+    3.ComponentRegistration接口看起来无法工作，因为Reigster时，Component还没有实例化，也不会有 ComponentContext，即使ComponentContext存在，ComponentRegistration本身也还没有实例化
+
+2006-12-02
+    1.取消了ComponentRegistration接口，因为此时Component还没有实力，无法传入ComponentContext，增加了ComponentInitialization来传入ComponentContext
+    2.定义了扩展点，扩展点关联与传统 Property 关联是有区别的，Property是通过setter来关联其它的Component，ExtentionPoint是设计一个点，以便以后的Component来关联；另外ExtentionPoint纯粹采用XML来描述，只有在需要的时候，才实例化Extention Component，完全是懒加载
+
+2006-12-04
+    1.为了让ComponentContext在热部署之后仍然能够使用，应该让ComponentContex只引用不变的东西，比如：Framework ComponentId，ComponentMeta、Module在热部署发生之后，是会变化的
+
+2006-12-05
+    1.有没有必要使用ComponentUUID，如果只是无状态Component，是没有什么必要的
+    2.如果不是Singlton，怎么处理每次 ComponentMeta.getConcreteComponent，每次都取得新对象吗？
+    3.增加对象池，不管Singleon/Non-Singleton，对采用统一对象池，缓存Component实例，调研 common-cache & cache4j
+
+2006-12-10
+    1.使用ClassFinder来发现 annotation 标准的Component，这样Component就不再需要 XML 部署描述了
+
+2006-12-11
+    1.使用Placeholder将Property配置的参数传递到Component中
+    2.采用 @Component来描述组件仍然觉得不太好，因为没有继承，而且没有强制性约束，一个Abstract类也可以描述为@Component，不如采用Component接口，加Annotation描述要好，只为简化部署
+
+2006-12-13
+    1.只采用 Field Injection，所有的Annotation都描述在Field上
+
+2006-12-16
+    1.采用 Declaration Element Relation Dictionary Attribute Condition Rule 建立一个统一应用基础平台!!!
+
+2006-12-17
+    1.采用在 Deployment 中可以指定 interface[] 之后，ComponentId发生了变化，如何处理ComponentId是个问题？
+
+2006-12-20
+    1.使用 echo 制作管理控制台，增加实现 loadComponent unloadComponent reloadComponent
+    2.可以参考 JPA 的 namedQuery 方式，来注册sql语句
+    3.不再考虑实现有状态 Component，没有特别的必要
+
+2006-12-21
+    1.@Enjection 在Field上，不能实现 Adder，只能在单一引用一方调用引用方的 add
+    2.singlton 意义改为该Component只能部署一次(采用 annotation 部署时，本来就只能部署一次，是不是不要了???)
+    3.可以实现只支持 Local/Stateless EJB 的 EJB3容器！！！
+    4.可以封装 Framework.lookup 为 JNDI 接口访问
+    5.有了 @Export 之后，Service接口就没有必要了，把 @Export 改成了 @Service，需要把 ComponentId 已经 ComponentContext 与 Service相关的方法进行调整
+
+2006-12-25
+    1.考虑集成 EasyJWeb 和 SpringSide
+    2.集成 Web Service 方案
+
+2006-12-26
+    1.支持 Local MDB，采用 Async Listener & Thread
+    2.ejb3不作为独立模块，作为 framework 一部份，EJBContainer 部署在 SystemModule
+
+2007-01-04
+    1.framework本身不再支持 Transaction, 如果要支持Transaction, 请使用 EJB3 :-)
+
+2007-01-07
+    1.增加了 Repository 类，用来存储所有的 ComponentMeta, 所有的 ComponentMeta用一个 Map 保存，便于全局搜索，同时每个Module都有自己的CompoentRepo对象，便于按 Module 隔离
+    2.EJB智能访问本 Module 内部的 EJB, 为了让 EJB 能够跨 Module 访问，需要通过 Component 调用，这样是为了避免直接引用EJB接口，从而可能造成热部署失败
+
+2007-01-17
+    1.使用 easybeans 的 EJB 测试用例进行测试
+
+2007-01-18
+    1.使用 JPA API 改造 DAO，只支持 NamedQuery 即可
+    2.DAOSupport 设计成使用，而不是继承???
+
+2007-01-21
+    1.采用接口实现的 Entity 能够更好的支持联表查询，因为接口可以多继承，Class不可以
+    2.Entity中，@MappedColumn 只能描述 getter 方法，我们不支持 setAddress(Address)，而改用 setAddressId(Address.getId());
+
+2007-01-22
+    1.发现 JForum.net 是最好集成的 BBS，它采用的 velocity 技术，而且没有采用 spring
+
+2007-01-25
+    1.可能通过Filter来实现 web Module 吗？？？
+    2. 采用 Dispather 或者 ServletContext.getResourceAsStream 来访问 WEB-INF 的资源
+
+2007-01-26
+    1. Tomcat 启动 webapp 时由 Log4j 抛 NullPointerException 的问题，是由于 Tomcat 自带的 commons-logging-api.jar 版本过低导致，用新的版本替换即可解决
+    2. Tomcat 设置了 JNDI 环境，需要想办法屏蔽 - (让 tomcat jndi 存在没有问题，只要在 new InitialContext 的时候指定了正确的 jndi properties 即可)
+
+2007-01-26
+    1.不需要 MODULE_ROOT_DIR了，因为每一个模块都有自己的VelocityEngine，都有自己的 MODULE_DIR，只要指定 views 目录就可以了
+
+2007-01-29    
+    1.ActionSupport中，是否应该使用 componentContext.getMyselfComponent 注册到 ControllerServlet中
+
+2007-01-31
+    1.@EJB(name="xxx") 注入的 java:comp/env，是否应该保存在 EJBBucket 中，对于 Class level 的，保存没有问题，但是对于 Field level的，如果保存，特别是对于有状态session bean，将引用的是同一个 bean，可能会造成问题
+    3.@EJB对于有状态和无状态的注入以及 Class Level 和 Field Level 的行为会不一样
+
+2007-02-02
+    1. @Column 对应的实际上不是 Table column，而是 select 语句的 column
+    2. Entity 总是容器外的，用过使用 Statless 包装，使其生存在容器内
+
+2007-02-03
+    1. 是否应该在 @Column 中添加 defaultValue，在没有 set 值时，给出默认值
+    2. 容器外的事务测试没有通过??? 见 AccountDAOTest.createAccount
+
+2007-02-04
+    1. Component 中可以直接注入 @EJB @Resource，那么应该在 start Module 之前让 EJBContainer 装载 EJB
+
+2007-02-06
+    1. 根据返回值类型来决定方法是应该放在哪一个BO中，比如 jpetstore中， searchProduct 返回 Product，所以应该放在 ProductBO；而 getItemsByProduct 因为返回的是 Item，所以放在 ItemBO 中
+    2. EntityObject 实现 EJBObject
+    3. 可以通过 @Resource SessionContext ctx; 注入 SessionContext
+    4. 使用jdk5 ScheduleThreadPool 来实现 Timer
+
+2007-02-07
+    1. JTATransactionManager & ContextImpl 不作为组件，只让 SimpleEJB3Container成为组件
+
+2007-02-09
+    1. Velocity 报ERROR, ResourceManager : unable to find resource 'VM_global_library.vm' in any resource loader.
+    2. 不支持 Default Interceptors
+    3. Entity 在规范中就是不能分布的
+    4. 改由 setParameter 设置 Query 的参数
+
+2007-02-14
+    1. Velocity 不支持 Array.length, 所有 Array 最好转换成 List
+    2. 考虑在 @Validator 中加入 validatorClass 来指定 ValidatorClass, 而不是 class 上的 @ValidatorClass
+
+2007-02-21
+    1. successView 支持 velocity

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <name>Test2</name>
+    <description>Test2 Module</description>
+    <priority>1</priority>
+    <ref-modules>Test,Module_1,Module_2,Module_3,Module_4</ref-modules>
+</module>

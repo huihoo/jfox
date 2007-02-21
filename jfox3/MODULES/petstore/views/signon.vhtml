@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>jpetstore demo</title>
+</head>
+<body>
+#parse("IncludeTop.tmpl")
+
+<form action="account.signon.do" method="POST">
+
+    <input type="hidden" name="forwardAction" value="$!signonForwardAction"/>
+
+    <table align="center" border="0">
+        <tr>
+            <td colspan="2" align="center">
+                Please enter your username and password.
+                <center><b><font color="RED">$!errorMessage &nbsp;</font></b></center>
+            </td>
+        </tr>
+        <tr>
+            <td>Username:</td>
+            <td><input type="text" name="username" value="j2ee"/> <font color="RED">$!username_validate_exception.getMessage()</font></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="password" value="j2ee"/> <font color="RED">$!password_validate_exception.getMessage()</font></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="image" border="0" src="images/button_submit.gif" name="update"/></td>
+        </tr>
+    </table>
+
+</form>
+
+<center>
+    <a href="account.NewAccount.do">
+        <img border="0" src="images/button_register_now.gif"/>
+    </a>
+</center>
+
+#include ("IncludeBottom.tmpl")
+</body>
+</html>

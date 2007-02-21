@@ -1,0 +1,242 @@
+package net.sourceforge.jfox.mvc.servlet;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Collections;
+import java.util.concurrent.ConcurrentHashMap;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import net.sourceforge.jfox.mvc.Action;
+import net.sourceforge.jfox.mvc.ActionSupport;
+import net.sourceforge.jfox.mvc.FileUploaded;
+import net.sourceforge.jfox.mvc.InvocationContext;
+import net.sourceforge.jfox.mvc.SessionContext;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.RequestContext;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.servlet.ServletRequestContext;
+
+/**
+ * 控制器Servlet，所有的Servlet请求，均由该Servlet负责分发
+ * <p/>
+ * ControllerServlet缓存有所有Action，会根据 URL 规则交给正确的 Action 执行， Action则为一个纯粹的Java类，不依赖于Web容器
+ * <p/>
+ * ControllerServlet 使用 forward("/WEB-INF/xxx.html") 将请求发送到 /WEB-INF 中
+ *
+ * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ */
+public class ControllerServlet extends HttpServlet {
+
+    public static final String PAGE_CONTEXT = "__PAGE_CONTEXT__";
+    public static final String INVOCATION_CONTEXT = "__INVOCATION_CONTEXT__";
+    public static final String SESSION_KEY = "__SESSION_KEY__";
+    public static final String MAX_UPLOAD_FILE_SIZE_KEY = "MAX_UPLOAD_FILE_SIZE";
+    public static final String VIEW_DIR_KEY = "VIEW_DIR";
+    public static final String ACTION_SUFFIX_KEY = "ACTION_SUFFIX";
+
+    public static final String MULTIPART = "multipart/";
+
+    /**
+     * Module Dir Name => Module Path
+     */
+    private static Map<String, String> moduleDirName2PathMap = new HashMap<String, String>();
+
+    /**
+     * 缓存所有的 Action
+     * module dir name => {Actoin deploy id => action}
+     */
+    private static Map<String, Map<String, ActionSupport>> module2ActionsMap = new ConcurrentHashMap<String, Map<String, ActionSupport>>();
+
+    /**
+     * module relative path => module real dir File
+     */
+    private static Map<String, File> modulePath2File = new HashMap<String, File>();
+
+    static String ACTION_SUFFIX = ".do";
+    public static String VIEW_DIR = "views";
+    static int MAX_UPLOAD_FILE_SIZE = 5 * 1000 * 1000;
+
+    /**
+     * 注册模块目录名到 模块路径的映射
+     *
+     * @param moduleDirPath module path
+     * @param moduleDir module real dir
+     */
+    public static void registerModulePath(String moduleDirPath, File moduleDir) {
+        modulePath2File.put(moduleDirPath,moduleDir);
+
+        String moduleDirName = moduleDirPath.substring(moduleDirPath.lastIndexOf("/") + 1);
+        moduleDirName2PathMap.put(moduleDirName, moduleDirPath);
+    }
+
+    public static Map<String, File> getModulePath2FileMap() {
+        return Collections.unmodifiableMap(modulePath2File);
+    }
+    
+    public static void registerAction(String moduleDirName, ActionSupport action) {
+        if (!module2ActionsMap.containsKey(moduleDirName)) {
+            module2ActionsMap.put(moduleDirName, new HashMap<String, ActionSupport>());
+        }
+        Map<String, ActionSupport> actionMap = module2ActionsMap.get(moduleDirName);
+        actionMap.put(action.getName(), action);
+    }
+
+    public static Action removeAction(Action action) {
+        //不是 ModuleName，而是 Module Dir name
+        String module = ((ActionSupport)action).getModuleDirName();
+        if (module2ActionsMap.containsKey(module)) {
+            return module2ActionsMap.get(module).remove(((ActionSupport)action).getName());
+        }
+        return null;
+    }
+
+    public void init(ServletConfig servletConfig) throws ServletException {
+        super.init(servletConfig);
+        String actionSuffix = servletConfig.getInitParameter(ACTION_SUFFIX_KEY);
+        if (actionSuffix != null && actionSuffix.trim().length() != 0) {
+            ACTION_SUFFIX = actionSuffix;
+        }
+
+        String viewDir = servletConfig.getInitParameter(VIEW_DIR_KEY);
+        if (viewDir != null && viewDir.trim().length() != 0) {
+            VIEW_DIR = viewDir;
+        }
+        String maxUploadFileSize = servletConfig.getServletContext().getInitParameter(MAX_UPLOAD_FILE_SIZE_KEY);
+        if(maxUploadFileSize != null && maxUploadFileSize.trim().length() != 0) {
+            MAX_UPLOAD_FILE_SIZE = Integer.parseInt(maxUploadFileSize);
+        }
+    }
+
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String pathInfo = request.getPathInfo();
+        if (pathInfo.endsWith(ACTION_SUFFIX)) {
+            // action
+            forwardAction(request, response);
+        }
+        else {
+            // static page or template
+            forwardView(request, response);
+        }
+    }
+
+    protected void forwardView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String pathInfo = request.getPathInfo();
+        int slashIndex = pathInfo.indexOf("/", 2);
+        String moduleDirName = pathInfo.substring(1, slashIndex);
+        String filePath = pathInfo.substring(slashIndex);
+        String realPath = moduleDirName2PathMap.get(moduleDirName) + "/" + VIEW_DIR + filePath;
+        request.getRequestDispatcher(realPath).forward(request, response);
+    }
+
+    protected void forwardAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String pathInfo = request.getPathInfo();
+        int slashIndex = pathInfo.indexOf("/", 2);
+        String moduleDirName = pathInfo.substring(1, slashIndex);
+        if (!moduleDirName.contains(moduleDirName)) {
+            throw new ServletException("Module " + moduleDirName + " is not exists!");
+        }
+
+        int dotDoIndex = pathInfo.lastIndexOf(ACTION_SUFFIX);
+        int lastSlashIndex = pathInfo.lastIndexOf("/");
+        int actionMethodDotIndex = pathInfo.indexOf(".", lastSlashIndex);
+        String actionName = pathInfo.substring(lastSlashIndex + 1, actionMethodDotIndex);
+        String actionMethodName = pathInfo.substring(actionMethodDotIndex + 1, dotDoIndex);
+
+        InvocationContext invocationContext = new InvocationContext(actionMethodName);
+        invocationContext.setPostMethod(request.getMethod().toUpperCase().equals("POST"));
+
+        // 会导致取出的值为数组问题，所以只能使用下面的循环
+        if (!isMultipartContent(request)) {
+            for (Enumeration enu = request.getParameterNames(); enu.hasMoreElements();) {
+                String key = (String)enu.nextElement();
+                String[] values = request.getParameterValues(key);
+                invocationContext.addParameter(key, values);
+            }
+        }
+        else { // 有文件上传
+            //  从 HTTP servlet 获取 fileupload 组件需要的内容
+            RequestContext requestContext = new ServletRequestContext(request);
+            //  判断是否包含 multipart 内容
+            if (ServletFileUpload.isMultipartContent(requestContext)) {
+                //  创建基于磁盘的文件工厂
+                DiskFileItemFactory factory = new DiskFileItemFactory();
+                //  设置直接存储文件的极限大小，一旦超过则写入临时文件以节约内存。默认为 1024 字节
+                factory.setSizeThreshold(MAX_UPLOAD_FILE_SIZE);
+                //  创建上传处理器，可以处理从单个 HTML 上传的多个上传文件。
+                ServletFileUpload upload = new ServletFileUpload(factory);
+                //  最大允许上传的文件大小 5M
+                upload.setSizeMax(MAX_UPLOAD_FILE_SIZE);
+                try {
+                    //  处理上传
+                    List items = upload.parseRequest(requestContext);
+                    //  由于提交了表单字段信息，需要进行循环区分。
+                    for (Object item : items) {
+                        FileItem fileItem = (FileItem)item;
+                        if (fileItem.isFormField()) {
+                            // 表单内容
+                            invocationContext.addParameter(fileItem.getFieldName(), new String[]{fileItem.getString()});
+                        }
+                        else {
+                            //  如果不是表单内容，取出 multipart。
+                            //  上传文件路径和文件、扩展名。
+                            String sourcePath = fileItem.getName();
+                            //  获取真实文件名
+                            String fileName = new File(sourcePath).getName();
+                            // 读到内存成 FileUpload 对象
+                            FileUploaded fileUploaded = new FileUploaded(fileName, fileItem.get());
+                            invocationContext.addFileUploaded(fileItem.getFieldName(), fileUploaded);
+                        }
+                    }
+                }
+                catch (FileUploadException e) {
+                    throw new ServletException("File upload failed!", e);
+                }
+            }
+        }
+
+        SessionContext sessionContext = (SessionContext)request.getSession().getAttribute(SESSION_KEY);
+        if (sessionContext == null) {
+            sessionContext = new SessionContext();
+            request.getSession().setAttribute(SESSION_KEY, sessionContext);
+        }
+        invocationContext.setSessionContext(sessionContext);
+
+        Action action = module2ActionsMap.get(moduleDirName).get(actionName);
+        try {
+            action.execute(invocationContext);
+
+//            request.setAttribute(PAGE_CONTEXT, pageContext);
+            request.setAttribute(INVOCATION_CONTEXT, invocationContext);
+            request.getRequestDispatcher(invocationContext.getPageContext().getTargeView()).forward(request, response);
+        }
+        catch (ServletException e) {
+            throw e;
+        }
+        catch (Exception e) {
+            throw new ServletException(e);
+        }
+    }
+
+    public static boolean isMultipartContent(HttpServletRequest req) {
+        if (!"POST".equals(req.getMethod().toUpperCase())) {
+            return false;
+        }
+        String contentType = req.getContentType();
+        if (contentType != null && contentType.toLowerCase().startsWith(MULTIPART)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}

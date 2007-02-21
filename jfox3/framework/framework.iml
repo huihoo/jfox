@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4" relativePaths="true" type="J2EE_WEB_MODULE">
+  <component name="AppServerSpecificValidatorsManager" />
+  <component name="ModuleRootManager" />
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/WEB-INF/classes" />
+    <exclude-output />
+    <exploded url="file://$MODULE_DIR$/dist" />
+    <exclude-exploded />
+    <output-test url="file://$MODULE_DIR$/WEB-INF/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/conf" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test-src" isTestSource="true" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="jfoxng-lib" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../IDEA/lib/servlet-api.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="jfoxng-common" level="project" />
+    <orderEntryProperties />
+  </component>
+  <component name="WebModuleBuildComponent">
+    <setting name="EXPLODED_URL" value="file://$MODULE_DIR$/dist" />
+    <setting name="EXPLODED_ENABLED" value="false" />
+    <setting name="JAR_URL" value="file://$MODULE_DIR$/framework.war" />
+    <setting name="JAR_ENABLED" value="true" />
+    <setting name="SYNC_EXPLODED_DIR" value="true" />
+    <setting name="BUILD_MODULE_ON_FRAME_DEACTIVATION" value="false" />
+    <setting name="BUILD_EXTERNAL_DEPENDENCIES" value="false" />
+    <setting name="RUN_JASPER_VALIDATION" value="true" />
+  </component>
+  <component name="WebModuleProperties">
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="&lt;N/A&gt;" />
+      <url>jar://$MODULE_DIR$/../../../IDEA/lib/servlet-api.jar!/</url>
+    </containerElement>
+    <containerElement type="library" name="jfoxng-common" level="project">
+      <attribute name="method" value="1" />
+      <attribute name="URI" value="/WEB-INF/lib" />
+    </containerElement>
+    <containerElement type="library" name="jfoxng-lib" level="project">
+      <attribute name="method" value="1" />
+      <attribute name="URI" value="/WEB-INF/lib" />
+    </containerElement>
+    <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/WEB-INF/web.xml" optional="false" version="2.4" />
+    <webroots>
+      <root url="file://$MODULE_DIR$/WEB-INF" relative="/WEB-INF" />
+      <root url="file://$MODULE_DIR$/www" relative="/" />
+    </webroots>
+  </component>
+  <component name="WeblogicWebModuleProperties" />
+</module>
+

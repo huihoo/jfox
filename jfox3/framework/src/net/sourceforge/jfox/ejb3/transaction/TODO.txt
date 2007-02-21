@@ -1,0 +1,4 @@
+采用 jotm，参考 Spring JTAManager
+
+2007-01-11
+    1. 如果 tx.setRollbackOnly，那么在 commit 的时候会抛出 RollbackException，需要捕获该异常，并调用 rollback
