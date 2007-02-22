@@ -1,4 +1,4 @@
-package jfox.test.example;
+package net.sourceforge.jfox.framework.example;
 
 import java.sql.SQLException;
 import java.util.List;

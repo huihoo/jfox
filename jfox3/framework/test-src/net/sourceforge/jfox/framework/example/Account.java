@@ -1,4 +1,4 @@
-package jfox.test.example;
+package net.sourceforge.jfox.framework.example;
 
 import javax.persistence.Entity;
 import javax.persistence.Column;

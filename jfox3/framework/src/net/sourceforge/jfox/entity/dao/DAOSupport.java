@@ -28,7 +28,7 @@ public abstract class DAOSupport implements DataAccessObject {
 
 
     /**
-     * 返回 EntityManager，默认注入的是 default
+     * 返回 EntityManager，由子类使用 @PersistenceContext 注入
      */
     protected abstract EntityManagerExt getEntityManager();
 

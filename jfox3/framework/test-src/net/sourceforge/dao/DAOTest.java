@@ -6,9 +6,9 @@ import javax.persistence.Persistence;
 
 import net.sourceforge.jfox.entity.EntityManagerExt;
 import net.sourceforge.jfox.entity.EntityObject;
-import jfox.test.example.Account;
-import jfox.test.example.AccountDAOImpl;
-import jfox.test.example.AccountDAO;
+import net.sourceforge.jfox.framework.example.Account;
+import net.sourceforge.jfox.framework.example.AccountDAOImpl;
+import net.sourceforge.jfox.framework.example.AccountDAO;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
