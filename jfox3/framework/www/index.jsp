@@ -97,13 +97,12 @@
 <td valign="top">
     <table width="100%" border="1" cellspacing="0" cellpadding="3">
         <tr>
-            <th>Administration</th>
+            <th>Demo Modules</th>
         </tr>
         <tr>
             <td class="menu">
-                <a href="manager/status">Status</a><br/>
-                <a href="admin">Tomcat&nbsp;Administration</a><br/>
-                <a href="manager/html">Tomcat&nbsp;Manager</a><br/>
+                <a href="modules/manager" title="Manager & jsp/action/ejb3 examples">Manager</a><br/>
+                <a href="modules/petstore/page.index.do" title="A full petstore application module adopt from iBatis jpetstore">Petstore</a><br/>
                 &nbsp;
             </td>
         </tr>
