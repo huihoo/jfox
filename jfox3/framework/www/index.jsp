@@ -12,7 +12,7 @@
             color: #000000;
             background-color: #FFFFFF;
             font-family: Arial, "Times New Roman", Times, serif;
-            margin: 10px 0px;
+            margin: 10px 0;
         }
 
         img {
@@ -78,7 +78,7 @@
     <tr>
         <td align="left" style="width:130px">
             <a href="http://tomcat.apache.org">
-                <img src="../../MODULES/manager/views/images/tomcat.gif" height="92" width="130" alt="The Mighty Tomcat - MEOW!"/>
+                <img src="images/tomcat.gif" height="92" width="130" alt="The Mighty Tomcat - MEOW!"/>
             </a>
         </td>
         <td align="left" valign="top"><b><%= application.getServerInfo() %>, <br>JFox3 Embedded!</b></td>
