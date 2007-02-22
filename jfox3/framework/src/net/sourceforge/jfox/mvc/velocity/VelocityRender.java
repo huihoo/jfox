@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.sourceforge.jfox.mvc.InvocationContext;
 import net.sourceforge.jfox.mvc.PageContext;
 import net.sourceforge.jfox.mvc.Render;
+import net.sourceforge.jfox.mvc.WebContextLoader;
 import net.sourceforge.jfox.mvc.servlet.ControllerServlet;
 import net.sourceforge.jfox.mvc.validate.ValidateException;
 import org.apache.velocity.Template;
@@ -97,7 +98,7 @@ public class VelocityRender implements Render {
     }
 
     protected void initVelocity(ServletConfig servletConfig) throws ServletException {
-        Map<String, File> modulePath2File = ControllerServlet.getModulePath2FileMap();
+        Map<String, File> modulePath2File = WebContextLoader.getModulePath2FileMap();
 
         try {
             for (Map.Entry<String, File> entry : modulePath2File.entrySet()) {

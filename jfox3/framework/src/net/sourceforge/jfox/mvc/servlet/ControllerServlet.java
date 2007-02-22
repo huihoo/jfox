@@ -3,11 +3,7 @@ package net.sourceforge.jfox.mvc.servlet;
 import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Collections;
-import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sourceforge.jfox.mvc.Action;
-import net.sourceforge.jfox.mvc.ActionSupport;
 import net.sourceforge.jfox.mvc.FileUploaded;
 import net.sourceforge.jfox.mvc.InvocationContext;
 import net.sourceforge.jfox.mvc.SessionContext;
+import net.sourceforge.jfox.mvc.WebContextLoader;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.RequestContext;
@@ -46,59 +42,11 @@ public class ControllerServlet extends HttpServlet {
 
     public static final String MULTIPART = "multipart/";
 
-    /**
-     * Module Dir Name => Module Path
-     */
-    private static Map<String, String> moduleDirName2PathMap = new HashMap<String, String>();
-
-    /**
-     * 缓存所有的 Action
-     * module dir name => {Actoin deploy id => action}
-     */
-    private static Map<String, Map<String, ActionSupport>> module2ActionsMap = new ConcurrentHashMap<String, Map<String, ActionSupport>>();
-
-    /**
-     * module relative path => module real dir File
-     */
-    private static Map<String, File> modulePath2File = new HashMap<String, File>();
 
     static String ACTION_SUFFIX = ".do";
     public static String VIEW_DIR = "views";
     static int MAX_UPLOAD_FILE_SIZE = 5 * 1000 * 1000;
 
-    /**
-     * 注册模块目录名到 模块路径的映射
-     *
-     * @param moduleDirPath module path
-     * @param moduleDir module real dir
-     */
-    public static void registerModulePath(String moduleDirPath, File moduleDir) {
-        modulePath2File.put(moduleDirPath,moduleDir);
-
-        String moduleDirName = moduleDirPath.substring(moduleDirPath.lastIndexOf("/") + 1);
-        moduleDirName2PathMap.put(moduleDirName, moduleDirPath);
-    }
-
-    public static Map<String, File> getModulePath2FileMap() {
-        return Collections.unmodifiableMap(modulePath2File);
-    }
-    
-    public static void registerAction(String moduleDirName, ActionSupport action) {
-        if (!module2ActionsMap.containsKey(moduleDirName)) {
-            module2ActionsMap.put(moduleDirName, new HashMap<String, ActionSupport>());
-        }
-        Map<String, ActionSupport> actionMap = module2ActionsMap.get(moduleDirName);
-        actionMap.put(action.getName(), action);
-    }
-
-    public static Action removeAction(Action action) {
-        //不是 ModuleName，而是 Module Dir name
-        String module = ((ActionSupport)action).getModuleDirName();
-        if (module2ActionsMap.containsKey(module)) {
-            return module2ActionsMap.get(module).remove(((ActionSupport)action).getName());
-        }
-        return null;
-    }
 
     public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
@@ -112,7 +60,7 @@ public class ControllerServlet extends HttpServlet {
             VIEW_DIR = viewDir;
         }
         String maxUploadFileSize = servletConfig.getServletContext().getInitParameter(MAX_UPLOAD_FILE_SIZE_KEY);
-        if(maxUploadFileSize != null && maxUploadFileSize.trim().length() != 0) {
+        if (maxUploadFileSize != null && maxUploadFileSize.trim().length() != 0) {
             MAX_UPLOAD_FILE_SIZE = Integer.parseInt(maxUploadFileSize);
         }
     }
@@ -134,7 +82,7 @@ public class ControllerServlet extends HttpServlet {
         int slashIndex = pathInfo.indexOf("/", 2);
         String moduleDirName = pathInfo.substring(1, slashIndex);
         String filePath = pathInfo.substring(slashIndex);
-        String realPath = moduleDirName2PathMap.get(moduleDirName) + "/" + VIEW_DIR + filePath;
+        String realPath = WebContextLoader.getModulePathByModuleDirName(moduleDirName) + "/" + VIEW_DIR + filePath;
         request.getRequestDispatcher(realPath).forward(request, response);
     }
 
@@ -211,7 +159,7 @@ public class ControllerServlet extends HttpServlet {
         }
         invocationContext.setSessionContext(sessionContext);
 
-        Action action = module2ActionsMap.get(moduleDirName).get(actionName);
+        Action action = WebContextLoader.getAction(moduleDirName, actionName);
         try {
             action.execute(invocationContext);
 

@@ -17,7 +17,6 @@ import net.sourceforge.jfox.framework.component.ComponentUnregistration;
 import net.sourceforge.jfox.framework.component.InstantiatedComponent;
 import net.sourceforge.jfox.framework.component.SingletonComponent;
 import net.sourceforge.jfox.mvc.annotation.ActionMethod;
-import net.sourceforge.jfox.mvc.servlet.ControllerServlet;
 import net.sourceforge.jfox.mvc.validate.ValidateException;
 import net.sourceforge.jfox.mvc.validate.Validators;
 import net.sourceforge.jfox.util.AnnotationUtils;
@@ -74,14 +73,14 @@ public abstract class ActionSupport implements Action, InstantiatedComponent, Co
         // register this to ControllerServlet
         String path = context.getModuleDir().getPath();
         moduleDirName = path.substring(path.lastIndexOf(File.separator) + 1);
-        ControllerServlet.registerAction(moduleDirName, this);
+        WebContextLoader.registerAction(moduleDirName, this);
     }
 
     public void preUnregister(ComponentContext context) {
     }
 
     public void postUnregister() {
-        ControllerServlet.removeAction(this);
+        WebContextLoader.removeAction(this);
     }
 
     public String getModuleName() {
