@@ -28,7 +28,7 @@
             font-size: 110%;
             font-weight: normal;
             font-style: italic;
-            background: #D2A41C;
+            background: Silver;
             text-align: left;
         }
 
@@ -38,7 +38,7 @@
         }
 
         td.menu {
-            background: #FFDC75;
+            background: #EAEAEA;
         }
 
         .center {
@@ -81,7 +81,7 @@
                 <img src="images/tomcat.gif" height="92" width="130" alt="The Mighty Tomcat - MEOW!"/>
             </a>
         </td>
-        <td align="left" valign="top"><b><%= application.getServerInfo() %>, <br>JFox3 Embedded!</b></td>
+        <td align="right" valign="top"><b><%= application.getServerInfo() %>, <br>JFox3 Embedded!</b></td>
         <td align="right">
             <a href="http://code.google.com/p/jfox">
                 <img src="images/jfox.jpg" alt="JFox Java EE Application Server!"/>
@@ -131,9 +131,9 @@
         </tr>
         <tr>
             <td class="menu">
-                <a href="modules/manager/demoJSP.html">JSP&nbsp;Examples</a><br/>
-                <a href="servlets-examples/">Servlet&nbsp;Examples</a><br/>
-                <a href="webdav/">WebDAV&nbsp;capabilities</a><br/>
+                <a href="modules/manager/demoJSP.html">JSP Examples</a><br/>
+                <a href="modules/manager/demoAction.html">Servlet Action Examples</a><br/>
+                <a href="modules/manager/demoEJB.html">EJB Examples</a><br/>
                 &nbsp;
             </td>
         </tr>
