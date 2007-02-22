@@ -116,8 +116,8 @@
         </tr>
         <tr>
             <td class="menu">
-                <a href="RELEASE-NOTES.txt">Release&nbsp;Notes</a><br/>
-                <a href="tomcat-docs/changelog.html">Change&nbsp;Log</a><br/>
+                <a href="RELEASE-NOTES.txt">Release Notes</a><br/>
+                <a href="tomcat-docs/changelog.html">Change Log</a><br/>
                 <a href="javadoc/">JFox3 api documentation</a><br/> &nbsp;
                 &nbsp;
             </td>
@@ -190,7 +190,7 @@
         Thanks for using JFox3, any suggestion is welcomed!
     </p>
     <ul>
-        <li><b><a href="mailto:jfox.peter@gmail.com">jfox.peter@gmail.com</a></b> for project management,collaboration, comercial corporation!</li>
+        <li><b><a href="mailto:jfox.peter@gmail.com">jfox.peter@gmail.com</a></b> for project management,collaboration!</li>
         <li><b><a href="mailto:jfox.young@gmail.com">jfox.young@gmail.com</a></b> for technology, architecture!</li>
     </ul>
 
