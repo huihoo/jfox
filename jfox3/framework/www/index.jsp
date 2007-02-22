@@ -172,7 +172,7 @@
     <p>
         Also, if you have deploied jfox petstore module, its default url is: <a href="modules/petstore/page.index.do">jfox petstore</a> <br/>
         <b>NOTE:</b> if you want to run throughout petstore, you need do some configure, trust me, it's very simple! <br/>
-        <a href="modules/petstore/installation.html">jfox petstore installlation document here!</a>
+        <a href="modules/petstore/docs/installation.html">jfox petstore installlation document here!</a>
     </p>
 
     <p>
