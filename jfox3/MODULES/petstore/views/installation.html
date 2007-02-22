@@ -1,6 +1,6 @@
 <HTML>
 <HEAD><TITLE>JPetStore Demo</TITLE>
-    <META content="text/html; charset=windows-1252" http-equiv=Content-Type>
+    <META content="text/html; charset=utf-8" http-equiv=Content-Type>
 </HEAD>
 
 <BODY bgColor=white>
@@ -9,20 +9,6 @@
         <TR>
             <TD>
                 <A href="page.index.do"><IMG border=0 src="images/logo-topbar.gif"></A>
-            </TD>
-            <TD align=right>
-                <A href="cart.view.do"><IMG border=0 name=img_cart src="images/cart.gif"></A>
-                <IMG border=0 src="images/separator.gif">
-
-                <A href="account.signon.do"> <IMG border=0 name=img_signin src="images/sign-in.gif"></A>
-                <IMG border=0 src="images/separator.gif">
-                <A href="help.html"><IMG border=0 name=img_help src="images/help.gif"></A>
-            </TD>
-            <TD align=left valign=bottom>
-                <FORM action="product.search.do" method="post">
-                    <INPUT name=keyword size=14>
-                    <INPUT border=0 src="images/search.gif" type=image>
-                </FORM>
             </TD>
         </TR>
     </TBODY>
@@ -33,43 +19,26 @@
 <TR>
 <TD vAlign=top>
 <CENTER>
-    <H1>JFox PetStore demo module Installation Guide</H1>
+    <H1>JFox Petstore 安装指南</H1>
 
     <H3>By <a href="mailto:jfox.young@gmail.com">jfox.young</a></H3>
 
 </CENTER>
-The JPetStore Demo
-is an online pet store. Like most e-stores, you can browse and search the
-product catalog, choose items to add to a shopping cart, amend the
-shopping cart, and order the items in the shopping cart. You can perform
-many of these actions without registering with or logging into the
-application. However, before you can order items you must log in (sign in)
-to the application. In order to sign in, you must have an account with the
-application, which is created when you register (sign up) with the
-application.
-<P><A
-        href="#SigningUp">Signing
-    Up</A> <BR><A
-        href="#SigningIn">Signing
-    In</A> <BR><A
-        href="#Catalog">Working
-    with the Product Catalog</A> <BR>&nbsp;&nbsp;&nbsp; <A
-        href="#CatalogBrowsing">Browsing
-    the Catalog</A> <BR>&nbsp;&nbsp;&nbsp; <A
-        href="#CatalogSearching">Searching
-    the Catalog</A> <BR><A
-        href="#ShoppingCart">Working
-    with the Shopping Cart</A> <BR>&nbsp;&nbsp;&nbsp; <A
-        href="#ShoppingCartAdd">Adding
-    and Removing Items</A> <BR>&nbsp;&nbsp;&nbsp; <A
-        href="#ShoppingCartUpdate">Updating
-    the Quantity of an Item</A> <BR>&nbsp;&nbsp;&nbsp; <A
-        href="#Ordering">Ordering
-    Items</A> <BR><A
-        href="#OrderReview">Reviewing
-    an Order</A> <BR><A
-        href="#Issues">Known
-    Issues</A>
+JPetstore是一个在线宠物商店，用来演示J2EE Web应用。JFox petstore基于iBatis JPetstore，采用JFox的EJB3、JPA以及JFox MVC进行了重写。
+该安装指南介绍如何在JFox正确的安装和配置JFox petstore，如果你想了解JPetstore的使用，请参考<a href="help.html">JPetstore help</a>。
+
+    <P>
+        <A href="#SigningUp">Signing Up</A> <BR>
+        <A href="#SigningIn">Signing In</A> <BR>
+        <A href="#Catalog">Working with the Product Catalog</A> <BR>
+        &nbsp;&nbsp;&nbsp; <A href="#CatalogBrowsing">Browsing the Catalog</A> <BR>
+        &nbsp;&nbsp;&nbsp; <A href="#CatalogSearching">Searching the Catalog</A> <BR>
+        <A href="#ShoppingCart">Working with the Shopping Cart</A> <BR>
+        &nbsp;&nbsp;&nbsp; <A href="#ShoppingCartAdd">Adding and Removing Items</A> <BR>
+        &nbsp;&nbsp;&nbsp; <A href="#ShoppingCartUpdate">Updating the Quantity of an Item</A> <BR>&nbsp;&nbsp;&nbsp;
+        <A href="#Ordering">Ordering Items</A> <BR>
+        <A href="#OrderReview">Reviewing an Order</A> <BR>
+        <A href="#Issues">Known Issues</A>
 
 <H2><A name=SigningUp></A>Signing Up</H2>To sign up, click the Sign-in
 link at the right end of the banner. Next, click the New User link in the
