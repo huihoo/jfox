@@ -10,7 +10,6 @@ import javax.persistence.NamedNativeQuery;
 import net.sourceforge.jfox.entity.EntityManagerExt;
 import net.sourceforge.jfox.entity.EntityObject;
 import net.sourceforge.jfox.entity.QueryExt;
-import net.sourceforge.jfox.entity.dao.example.Address;
 
 /**
  * DAOSupport，封装了 DAO 的基本操作
@@ -84,10 +83,4 @@ public abstract class DAOSupport implements DataAccessObject {
         return MapperEntity.newEntityObject(dataObjectInterfClass, dataMap);
     }
 
-    public static void main(String[] args) {
-        Address address = newEntityObject(Address.class);
-        address.setId(1234L);
-        address.setCity("Beijing");
-        System.out.println(((Address.Helper)address.helper()).getIdNamePair(address));
-    }
 }

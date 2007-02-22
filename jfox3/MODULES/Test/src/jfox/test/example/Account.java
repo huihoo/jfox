@@ -1,4 +1,4 @@
-package net.sourceforge.jfox.entity.dao.example;
+package jfox.test.example;
 
 import javax.persistence.Entity;
 import javax.persistence.Column;

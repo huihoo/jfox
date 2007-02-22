@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.Assert;
 import net.sourceforge.jfox.ejb3.EJBContainer;
-import net.sourceforge.jfox.ejb3.example.AccountBO;
+import jfox.test.example.AccountBO;
 import net.sourceforge.jfox.framework.component.Module;
 
 /**

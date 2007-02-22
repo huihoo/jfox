@@ -161,40 +161,44 @@
 
 <!-- Body -->
 <td align="left" valign="top">
-    <p id="congrats">If you're seeing this page via a web browser, it means you've setup Tomcat successfully. Congratulations!</p>
-
-    <p>As you may have guessed by now, this is the default Tomcat home page. It can be found on the local filesystem at:</p>
-
-    <p class="code">$CATALINA_HOME/webapps/ROOT/index.jsp</p>
-
-    <p>where "$CATALINA_HOME" is the root of the Tomcat installation directory. If you're seeing this page, and you don't think you should be, then either you're either a user who has arrived at new installation of Tomcat, or you're an administrator who hasn't got his/her setup quite right. Providing the latter is the case, please refer to the <a href="tomcat-docs">Tomcat Documentation</a> for more detailed setup and administration information than is found in the INSTALL file.</p>
-
-    <p><b>NOTE:</b> This page is precompiled. If you change it, this page will not change since
-        it was compiled into a servlet at build time.
-        (See <tt>$CATALINA_HOME/webapps/ROOT/WEB-INF/web.xml</tt> as to how it was mapped.)
+    <p id="congrats">
+        If you're seeing this page via a web browser, it means you've embedded JFox3 into Tomcat successfully. Congratulations!
     </p>
 
-    <p><b>NOTE: For security reasons, using the administration webapp
-        is restricted to users with role "admin". The manager webapp
-        is restricted to users with role "manager".</b>
-        Users are defined in <code>$CATALINA_HOME/conf/tomcat-users.xml</code>.</p>
+    <p>
+        If you want to test whether jfox default module worked, you need to visit <a href="modules/manager/index.jsp">jfox manager module</a>!
+    </p>
 
-    <p>Included with this release are a host of sample Servlets and JSPs (with associated source code), extensive documentation (including the Servlet 2.4 and JSP 2.0 API JavaDoc), and an introductory guide to developing web applications.</p>
+    <p>
+        Also, if you have deploied jfox petstore module, its default url is: <a href="modules/petstore/page.index.do">jfox petstore</a> <br/>
+        <b>NOTE:</b> if you want to run throughout petstore, you need do some configure, trust me, it's very simple! <br/>
+        <a href="modules/petstore/installation.html">jfox petstore installlation document here!</a>
+    </p>
 
-    <p>Tomcat mailing lists are available at the Tomcat project web site:</p>
+    <p>
+        JFox3 is designed to be a lightweight but robust Java EE Application Server support EJB3 & JPA, to ensure application based on Java EE/EJB can be developed rapidly and simply!<br/>
+    </p>
+    <p>
+        JFox3 can be embedded in any Web Server to enable EJB3 component support, and JFox3 is a full application platform by providing MVC Framework!</br>
+    </p>
 
+    <p>
+        You can visit jfox3 poject at google code, <a href="http://code.google.com/p/jfox">http://code.google.com/p/jfox</a>, <br/>
+        and huihoo.org: <a href="http://www.huihoo.org/jfox">http://www.huihoo.org/jfox</a>.
+    </p>
+    <p>
+        Thanks for using JFox3, any suggestion is welcomed!
+    </p>
     <ul>
-        <li><b><a href="mailto:users@tomcat.apache.org">users@tomcat.apache.org</a></b> for general questions related to configuring and using Tomcat</li>
-        <li><b><a href="mailto:dev@tomcat.apache.org">dev@tomcat.apache.org</a></b> for developers working on Tomcat</li>
+        <li><b><a href="mailto:jfox.peter@gmail.com">jfox.peter@gmail.com</a></b> for project management,collaboration, comercial corporation!</li>
+        <li><b><a href="mailto:jfox.young@gmail.com">jfox.young@gmail.com</a></b> for technology, architecture!</li>
     </ul>
 
-    <p>Thanks for using Tomcat!</p>
-
-    <p id="footer"><img src="tomcat-power.gif" width="77" height="80" alt="Powered by Tomcat"/><br/>
+    <p id="footer">
         &nbsp;
-
-        Copyright &copy; 1999-2005 Apache Software Foundation<br/>
-        All Rights Reserved
+        Powered by JFox3!<br/>
+        Copyright &copy; 2002-2007 JFox Open Source Java EE Project!<br/>
+        All Rights Reserved, licensed under GNU LGPL!
     </p>
 </td>
 

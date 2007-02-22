@@ -1,8 +1,8 @@
-package net.sourceforge.jfox.ejb3.example;
+package jfox.test.example;
 
 import javax.ejb.EJB;
 
-import net.sourceforge.jfox.entity.dao.example.AddressDAO;
+import jfox.test.example.AddressDAO;
 
 /**
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
