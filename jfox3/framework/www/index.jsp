@@ -4,7 +4,7 @@
 <%@ page session="false" %>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <title><%= application.getServerInfo() %>
+    <title><%= application.getServerInfo()%> with JFox3 embedded!
     </title>
     <style type="text/css">
         /*<![CDATA[*/
@@ -172,7 +172,7 @@
     <p>
         Also, if you have deploied jfox petstore module, its default url is: <a href="modules/petstore/page.index.do">jfox petstore</a> <br/>
         <b>NOTE:</b> if you want to run throughout petstore, you need do some configure, trust me, it's very simple! <br/>
-        <a href="modules/petstore/docs/installation.html">jfox petstore installlation document here!</a>
+        <a href="modules/petstore/installation.html">jfox petstore installlation document here!</a>
     </p>
 
     <p>
