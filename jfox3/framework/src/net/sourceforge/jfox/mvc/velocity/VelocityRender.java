@@ -28,7 +28,6 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.io.VelocityWriter;
-import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.RuntimeSingleton;
 import org.apache.velocity.util.SimplePool;
 
@@ -42,7 +41,8 @@ import org.apache.velocity.util.SimplePool;
 public class VelocityRender implements Render {
 
     public final static String VELOCITY_PROPERTIES = "velocity.properties";
-    private String defaultInputEncoding = "UTF-8";
+    private String inputEncoding = "UTF-8";
+    private String outputEncoding = "UTF-8";
 
     /**
      * 每个 Module 对应的 VelocityEngine
@@ -111,7 +111,8 @@ public class VelocityRender implements Render {
                 // override velocity default avalog log system
                 p.setProperty(Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, Log4jLogSystem.class.getName());
 
-                defaultInputEncoding = p.getProperty(Velocity.INPUT_ENCODING);
+                inputEncoding = p.getProperty(Velocity.INPUT_ENCODING);
+                outputEncoding = p.getProperty(Velocity.OUTPUT_ENCODING);
 
                 VelocityEngine ve = new VelocityEngine();
                 ve.init(p);
@@ -203,7 +204,7 @@ public class VelocityRender implements Render {
      */
     protected Template createTemplate(HttpServletRequest request, HttpServletResponse response, Context velocityContext) throws Exception {
         String servletPath = request.getServletPath();
-        return getTemplate(servletPath, defaultInputEncoding);
+        return getTemplate(servletPath, inputEncoding);
     }
 
 
@@ -289,9 +290,7 @@ public class VelocityRender implements Render {
 
     /**
      * Sets the content type of the response, defaulting to {@link
-     * #defaultContentType} if not overriden.  Delegates to {@link
-     * #chooseCharacterEncoding(HttpServletRequest)} to select the
-     * appropriate character encoding.
+     * #defaultContentType} if not overriden.
      *
      * @param request  The servlet request from the client.
      * @param response The servlet reponse to the client.
@@ -302,7 +301,7 @@ public class VelocityRender implements Render {
         if (index <= 0 || (index < contentType.length() &&
                 contentType.indexOf("charset", index) == -1)) {
             // Append the character encoding which we'd like to use.
-            String encoding = chooseCharacterEncoding(request);
+            String encoding = outputEncoding;
             //System.out.println("Chose output encoding of '" +
             //                   encoding + '\'');
             if (!DEFAULT_OUTPUT_ENCODING.equalsIgnoreCase(encoding)) {
@@ -313,22 +312,6 @@ public class VelocityRender implements Render {
         //System.out.println("Response Content-Type set to '" +
         //                   contentType + '\'');
     }
-
-    /**
-     * Chooses the output character encoding to be used as the value
-     * for the "charset=" portion of the HTTP Content-Type header (and
-     * thus returned by <code>response.getCharacterEncoding()</code>).
-     * Called by {@link #setContentType(HttpServletRequest,
-     *HttpServletResponse)} if an encoding isn't already specified by
-     * Content-Type.  By default, chooses the value of
-     * RuntimeSingleton's <code>output.encoding</code> property.
-     *
-     * @param request The servlet request from the client.
-     */
-    protected String chooseCharacterEncoding(HttpServletRequest request) {
-        return RuntimeSingleton.getString(RuntimeConstants.OUTPUT_ENCODING, DEFAULT_OUTPUT_ENCODING);
-    }
-
 
     /**
      * Invoked when there is an error thrown in any part of doRequest() processing.

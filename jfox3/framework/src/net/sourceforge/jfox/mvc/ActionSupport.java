@@ -239,8 +239,8 @@ public abstract class ActionSupport implements Action, InstantiatedComponent, Co
                     for (int i = 0; i < params.length; i++) {
                         if (validatorAnnotations.length > 0) {
                             for (Annotation validation : validatorAnnotations) {
-                                // validate field input
                                 try {
+                                    // valiate field input and construct
                                     params[i] = Validators.validate(field, values[i], validation);
                                 }
                                 catch (ValidateException e) {
@@ -252,7 +252,8 @@ public abstract class ActionSupport implements Action, InstantiatedComponent, Co
                             }
                         }
                         else {
-                            params[i] = ClassUtils.newObject(fieldType, values[i]);
+                            //no validator, try to use ClassUtils construct object
+                            params[i] = ClassUtils.newObject(arrayType, values[i]);
                         }
                     }
                     field.set(invocation, params);
