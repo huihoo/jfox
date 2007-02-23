@@ -165,7 +165,11 @@ public class Framework {
      *
      * @throws Exception any exception
      */
-    public void start() throws Exception {
+    public synchronized void start() throws Exception {
+        if(started) {
+            logger.warn("Framework has been started, if you want restart, please stop first!");
+            return;
+        }
         try {
             getListenerManager().fireModuleEvent(new ModuleLoadingEvent(systemModule));
             systemModule.start();
