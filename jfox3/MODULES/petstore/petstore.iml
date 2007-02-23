@@ -50,6 +50,7 @@
       <root url="file://$MODULE_DIR$/db" relative="/db" />
       <root url="file://$MODULE_DIR$/views" relative="/views" />
       <root url="file://$MODULE_DIR$/lib" relative="/WEB-INF/lib" />
+      <root url="file://$MODULE_DIR$/src" relative="/src" />
     </webroots>
   </component>
   <component name="WeblogicWebModuleProperties" />

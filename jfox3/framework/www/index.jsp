@@ -116,8 +116,10 @@
         <tr>
             <td class="menu">
                 <a href="RELEASE-NOTES.txt">Release Notes</a><br/>
-                <a href="tomcat-docs/changelog.html">Change Log</a><br/>
-                <a href="javadoc/">JFox3 api documentation</a><br/> &nbsp;
+                <a href="docs/changelog.html">Change Log</a><br/>
+                <a href="docs/installation.html">Installation Guide</a><br/>
+                <a href="docs/userguide.html">User Guide</a><br/>
+                <a href="javadoc/">Api Documentation</a><br/> &nbsp;
                 &nbsp;
             </td>
         </tr>
@@ -170,8 +172,7 @@
 
     <p>
         Also, if you have deploied jfox petstore module, its default url is: <a href="modules/petstore/page.index.do">jfox petstore</a> <br/>
-        <b>NOTE:</b> if you want to run throughout petstore, you need do some configure, trust me, it's very simple! <br/>
-        <a href="modules/petstore/installation.html">jfox petstore installlation document here!</a>
+        <b>NOTE:</b> if you want to run throughout petstore, you need do some configure, you can find jfox petstore installation help in document <a href="docs/installation.html">jfox installation guide</a>!
     </p>
 
     <p>

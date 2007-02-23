@@ -20,6 +20,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="framework" />
     <orderEntryProperties />
   </component>
   <component name="WebModuleBuildComponent">
@@ -33,10 +34,27 @@
     <setting name="RUN_JASPER_VALIDATION" value="true" />
   </component>
   <component name="WebModuleProperties">
+    <containerElement type="module" name="framework">
+      <attribute name="method" value="4" />
+      <attribute name="URI" value="&lt;N/A&gt;" />
+    </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="0" />
       <attribute name="URI" value="&lt;N/A&gt;" />
       <url>jar://$MODULE_DIR$/../../../../IDEA/lib/j2ee.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="&lt;N/A&gt;" />
+      <url>jar://$MODULE_DIR$/../../../../IDEA/lib/servlet-api.jar!/</url>
+    </containerElement>
+    <containerElement type="library" name="jfoxng-common" level="project">
+      <attribute name="method" value="1" />
+      <attribute name="URI" value="/WEB-INF/lib" />
+    </containerElement>
+    <containerElement type="library" name="jfoxng-lib" level="project">
+      <attribute name="method" value="1" />
+      <attribute name="URI" value="/WEB-INF/lib" />
     </containerElement>
     <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/WEB-INF/web.xml" optional="false" version="2.4" />
     <webroots>
