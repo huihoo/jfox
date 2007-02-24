@@ -9,9 +9,10 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import net.sourceforge.jfox.framework.Framework;
-import net.sourceforge.jfox.framework.component.Module;
 
 /**
+ * Web Context Loader，initialize framework when jfox3 web application loaded
+ *
  * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
  */
 public class WebContextLoader implements ServletContextListener {
@@ -42,8 +43,9 @@ public class WebContextLoader implements ServletContextListener {
             String toDeployModules = servletContextEvent.getServletContext().getInitParameter(MODULES);
             String[] modulePaths = toDeployModules.split(",");
             for(String modulePath : modulePaths){
+                modulePath = modulePath.trim();
                 File moduleDir = new File(servletContextEvent.getServletContext().getRealPath("/"), modulePath);
-                Module module = framework.loadModule(moduleDir);
+                framework.loadModule(moduleDir);
                 // register module path
                 registerModulePath(modulePath, moduleDir);
             }
@@ -52,7 +54,6 @@ public class WebContextLoader implements ServletContextListener {
         catch(Exception e) {
             servletContextEvent.getServletContext().log("Start framework failed!", e);
         }
-
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
