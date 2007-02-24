@@ -49,11 +49,13 @@
         </init-param>
         <!--
         <init-param>
-            <param-name>pdf_render</param-name>
+            <description>pdf_render</description>
+            <param-name>net.sourceforge.jfox.mvc.pdf.PDFRender</param-name>
             <param-value>*.pdf</param-value>
         </init-param>
         <init-param>
-            <param-name>excel_render</param-name>
+            <description>excel_render</description>
+            <param-name>net.sourceforge.jfox.mvc.excel.ExcelRender</param-name>
             <param-value>*.xls</param-value>
         </init-param>
         -->
