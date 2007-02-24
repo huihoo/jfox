@@ -283,19 +283,19 @@ public abstract class ActionSupport implements Action, InstantiatedComponent, Co
             }
             catch (NoSuchFieldException e) {
                 //仅仅发出一个信息
-                String msg = "Set invocation + " + invocationClass.getName() + "'s field " + key + " with value " + Arrays.toString(values) + " failed, No such filed!";
+                String msg = "Set invocation " + invocationClass.getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed, No such filed!";
                 logger.info(msg);
 //                    throw new InvocationException(msg, e);
             }
             catch (Throwable t) {
-                String msg = "Set invocation + " + invocationClass.getName() + "'s field " + key + " with value " + Arrays.toString(values) + " failed!";
+                String msg = "Set invocation + " + invocationClass.getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed!";
                 logger.warn(msg, t);
                 throw new InvocationException(msg, t);
             }
         }
 
         if (validateException != null) {
-            String msg = "Set invocation + " + invocationClass.getName() + "'s field " + validateException.getInputField() + " with value " + validateException.getInputValue() + " failed, " + validateException.getMessage();
+            String msg = "Set invocation + " + invocationClass.getName() + "'s field \"" + validateException.getInputField() + "\" with value \"" + validateException.getInputValue() + "\" failed, " + validateException.getMessage();
             logger.warn(msg);
             throw validateException; // throw exception to execute()
         }
