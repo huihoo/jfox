@@ -94,14 +94,14 @@
 <tr>
 
 <!-- Table of Contents -->
-<td valign="top">
+<td valign="top" width ="200">
     <table width="100%" border="1" cellspacing="0" cellpadding="3">
         <tr>
-            <th>Demo Modules</th>
+            <th>Modules</th>
         </tr>
         <tr>
             <td class="menu">
-                <a href="modules/manager/index.html" title="Manager & jsp/action/ejb3 examples">Manager</a><br/>
+                <a href="modules/manager/index.jsp" title="Manager & jsp/action/ejb3 examples">Manager</a><br/>
                 <a href="modules/petstore/page.index.do" title="A full petstore application module adopt from iBatis jpetstore">Petstore</a><br/>
                 &nbsp;
             </td>

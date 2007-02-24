@@ -16,14 +16,21 @@
     <option name="USER" value="" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" name="Default" comment="" />
+    <list default="true" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/www/index.jsp" afterPath="$PROJECT_DIR$/framework/www/index.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/manager/views/images" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/manager/views/index.jsp" afterPath="$PROJECT_DIR$/MODULES/manager/views/index.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/manager/views/demoEJB.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/manager/views/images/jfox.jpg" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\MODULES\manager\views\index.html" afterPath="" />
+    </list>
   </component>
   <component name="ChangeListSynchronizer" />
   <component name="ChangesViewManager" flattened_view="true" />
   <component name="CheckinPanelState" />
   <component name="Commander">
-    <leftPanel />
-    <rightPanel url="file://$PROJECT_DIR$/framework/test-src/net/sourceforge/jfox/framework/transaction" />
+    <leftPanel url="file://$PROJECT_DIR$/framework/test-src/net/sourceforge/jfox/framework" />
+    <rightPanel url="file://$PROJECT_DIR$/MODULES/Test/src/jfox/test" />
     <splitter proportion="0.5" />
   </component>
   <component name="CompilerWorkspaceConfiguration">
@@ -86,34 +93,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/ActionSupport.java" line="59" class="net.sourceforge.jfox.mvc.ActionSupport" package="net.sourceforge.jfox.mvc">
-        <option name="ENABLED" value="true" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/framework/Framework.java" line="178" class="net.sourceforge.jfox.framework.Framework" package="net.sourceforge.jfox.framework">
-        <option name="ENABLED" value="true" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -185,19 +164,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JTATransactionManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/ejb3/transaction/JTATransactionManager.java">
+      <file leaf-file-name="demoAction.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/manager/views/demoAction.html">
+          <provider editor-type-id="HtmlPreview">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="5" selection-start="3214" selection-end="3214" vertical-scroll-proportion="0.516696">
+            <state line="21" column="7" selection-start="531" selection-end="531" vertical-scroll-proportion="0.52593917">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="module.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/petstore/conf/module.xml">
+      <file leaf-file-name="DemoUploadAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/manager/src/net/sourceforge/jfox/manager/DemoUploadAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="7" selection-start="236" selection-end="236" vertical-scroll-proportion="0.16752137">
+            <state line="20" column="0" selection-start="707" selection-end="707" vertical-scroll-proportion="0.11433447">
               <folding />
             </state>
           </provider>
@@ -206,34 +188,37 @@
       <file leaf-file-name="web.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="25" selection-start="2134" selection-end="2134" vertical-scroll-proportion="1.5500879">
+            <state line="58" column="0" selection-start="2096" selection-end="2096" vertical-scroll-proportion="0.3771331">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccountAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/net/sourceforge/jfox/petstore/action/AccountAction.java">
+      <file leaf-file-name="demoEJB.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/manager/views/demoEJB.html">
+          <provider editor-type-id="HtmlPreview">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="40" selection-start="1038" selection-end="1038" vertical-scroll-proportion="0.18453427">
+            <state line="9" column="0" selection-start="185" selection-end="185" vertical-scroll-proportion="0.2254025">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActionSupport.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/ActionSupport.java">
+      <file leaf-file-name="index.jsp" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MODULES/manager/views/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="7" selection-start="1554" selection-end="1554" vertical-scroll-proportion="0.28295255">
+            <state line="78" column="23" selection-start="1705" selection-end="1705" vertical-scroll-proportion="0.023890786">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Module.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/framework/component/Module.java">
+      <file leaf-file-name="index.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/www/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="254" column="42" selection-start="7991" selection-end="7991" vertical-scroll-proportion="0.3602812">
+            <state line="99" column="16" selection-start="2435" selection-end="2435" vertical-scroll-proportion="0.023890786">
               <folding />
             </state>
           </provider>
@@ -242,52 +227,49 @@
       <file leaf-file-name="WebContextLoader.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/WebContextLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="25" selection-start="1148" selection-end="1148" vertical-scroll-proportion="0.2864675">
+            <state line="13" column="1" selection-start="324" selection-end="324" vertical-scroll-proportion="0.023890786">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Framework.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/framework/Framework.java">
+      <file leaf-file-name="CheckboxAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/manager/src/net/sourceforge/jfox/manager/CheckboxAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="128" column="24" selection-start="3735" selection-end="3735" vertical-scroll-proportion="0.38488576">
+            <state line="13" column="13" selection-start="449" selection-end="449" vertical-scroll-proportion="0.16211604">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModuleClassLoader.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/framework/component/ModuleClassLoader.java">
+      <file leaf-file-name="carts.vhtml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/manager/views/template/carts.vhtml">
+          <provider editor-type-id="HtmlPreview">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="0" selection-start="891" selection-end="891" vertical-scroll-proportion="-1.115993">
+            <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ASMClassLoader.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/framework/component/ASMClassLoader.java">
+      <file leaf-file-name="checkbox.vhtml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/manager/views/template/checkbox.vhtml">
+          <provider editor-type-id="HtmlPreview">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="0" selection-start="1366" selection-end="1366" vertical-scroll-proportion="0.11247803">
+            <state line="36" column="7" selection-start="674" selection-end="674" vertical-scroll-proportion="0.87652177">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CategoryAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/net/sourceforge/jfox/petstore/action/CategoryAction.java">
+      <file leaf-file-name="ActionSupport.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/ActionSupport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="16" selection-start="1056" selection-end="1056" vertical-scroll-proportion="0.18453427">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ControllerServlet.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/servlet/ControllerServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="205" column="0" selection-start="8986" selection-end="8986" vertical-scroll-proportion="0.19859402">
+            <state line="303" column="0" selection-start="12237" selection-end="12237" vertical-scroll-proportion="0.023890786">
               <folding />
             </state>
           </provider>
@@ -318,7 +300,9 @@
     <option name="myCurrentProfileName" value="Default" />
   </component>
   <component name="J2EEProjectPane" />
-  <component name="JspContextManager" />
+  <component name="JspContextManager">
+    <jsp-to-context jsp-file="file://$PROJECT_DIR$/MODULES/manager/views/jsp/hello.jsp" context-file="file://$PROJECT_DIR$/MODULES/manager/views/jsp/date.jsp" />
+  </component>
   <component name="ModuleEditorState">
     <option name="LAST_EDITED_MODULE_NAME" />
     <option name="LAST_EDITED_TAB_NAME" />
@@ -330,6 +314,30 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="jfox3.ipr" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3.ipr" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="manager" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewLibrariesNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3.ipr" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="manager" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
         </PATH_ELEMENT>
       </PATH>
     </subPane>
@@ -381,100 +389,6 @@
           <option name="myItemId" value="jfox3.ipr" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Test2" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Test2" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\Test2" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Test2" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\Test2" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\Test2\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\Test2\src\jfox" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\Test2\src\jfox\test" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Test" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Test" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\Test" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Test" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\Test" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\Test\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\Test\src\jfox" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\Test\src\jfox\test" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
       </PATH>
       <PATH>
         <PATH_ELEMENT>
@@ -496,7 +410,7 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\petstore" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -506,31 +420,21 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="petstore" />
+          <option name="myItemId" value="manager" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3.ipr" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="manager" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore\src\net" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore\src\net\sourceforge" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore\src\net\sourceforge\jfox" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore\src\net\sourceforge\jfox\petstore" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -540,35 +444,15 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="petstore" />
+          <option name="myItemId" value="manager" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore\src\net" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore\src\net\sourceforge" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore\src\net\sourceforge\jfox" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore\src\net\sourceforge\jfox\petstore" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore\src\net\sourceforge\jfox\petstore\action" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager\views" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -578,37 +462,31 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="petstore" />
+          <option name="myItemId" value="manager" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore\db" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager\src" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore\db\mysql" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="petstore" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager\src\net" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\petstore\conf" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager\src\net\sourceforge" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager\src\net\sourceforge\jfox" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager\src\net\sourceforge\jfox\manager" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -632,7 +510,7 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\framework" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -646,65 +524,11 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\framework" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\framework\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\framework\src\net" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\framework\src\net\sourceforge" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\framework\src\net\sourceforge\jfox" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\framework\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="forum" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="forum" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3-google\MODULES\forum" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework\www" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -721,7 +545,7 @@
       <showLibraryContents />
       <hideEmptyPackages ProjectPane="false" />
       <abbreviatePackageNames />
-      <showStructure Favorites="false" PackagesPane="false" Scope="false" ProjectPane="false" />
+      <showStructure Scope="false" ProjectPane="false" PackagesPane="false" Favorites="false" />
       <autoscrollToSource />
       <autoscrollFromSource ProjectPane="false" />
       <sortByType ProjectPane="true" />
@@ -753,6 +577,7 @@
     <property name="cvs_file_history_treeWidth3" value="240" />
     <property name="cvs_file_history_treeOrder2" value="2" />
     <property name="EJB Module Deployment Descriptor Default Version" value="3.0" />
+    <property name="TEMP_MODULE_EXPLODED_DIR_FOR_manager" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir43248tmp" />
     <property name="cvs_file_history_flatWidth0" value="240" />
     <property name="cvs_file_history_flatWidth3" value="240" />
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_framework" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir58149tmp" />
@@ -763,18 +588,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="net.sourceforge.jfox.manager" />
       <recent name="net.sourceforge.javaee5.mvc.validate" />
       <recent name="net.sourceforge.javaee5.framework.component" />
       <recent name="net.sourceforge.easyjf.petstore.action" />
       <recent name="net.sourceforge.javaee5.ejb3.naming" />
-      <recent name="sysnet.pharos.ejb3.dependence" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="net.sourceforge.jfox.framework" />
       <recent name="jfox.test" />
       <recent name="net.sourceforge.easyjf.petstore.bo" />
       <recent name="net.sourceforge.javaee5.mvc" />
       <recent name="net.sourceforge.easyjf" />
-      <recent name="net.sourceforge.javaee5.entity" />
     </key>
   </component>
   <component name="RestoreUpdateTree" />
@@ -817,9 +642,21 @@
         <option name="MODULE_NAME" value="petstore" />
         <option name="DEPLOY" value="false" />
       </J2EE_MODULE>
+      <J2EE_MODULE DEPLOYMENT_SOURCE_NAME="exploded">
+        <option name="CONTEXT_PATH" value="/" />
+        <option name="MODULE_NAME" value="manager" />
+        <option name="DEPLOY" value="false" />
+      </J2EE_MODULE>
       <option name="DEPLOY_TOMCAT_MANAGER" value="false" />
       <option name="BASE_DIRECTORY_NAME" value="" />
       <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
@@ -832,13 +669,6 @@
       <option name="VM_PARAMETERS" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <module name="" />
@@ -1062,6 +892,28 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
+    <configuration default="false" name="AccountDAOTest" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
+      <pattern value="net.sourceforge.easyjf.petstore.dao.test.*" />
+      <module name="petstore" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="net.sourceforge.jfox.petstore.dao.test" />
+      <option name="MAIN_CLASS_NAME" value="net.sourceforge.jfox.petstore.dao.test.AccountDAOTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ADDITIONAL_CLASS_PATH" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
     <configuration default="false" name="Tomcat 5" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 5">
       <option name="WORKING_DIRECTORY" />
       <option name="HOST" value="localhost" />
@@ -1071,11 +923,11 @@
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/framework/" />
       <option name="COMMON_VM_ARGUMENTS" value="" />
       <J2EE_MODULE DEPLOYMENT_SOURCE_NAME="jar">
-        <option name="CONTEXT_PATH" value="/framework" />
+        <option name="CONTEXT_PATH" value="/jfox3" />
         <option name="MODULE_NAME" value="framework" />
         <option name="DEPLOY" value="true" />
       </J2EE_MODULE>
-      <J2EE_MODULE DEPLOYMENT_SOURCE_NAME="exploded">
+      <J2EE_MODULE>
         <option name="CONTEXT_PATH" value="/" />
         <option name="MODULE_NAME" value="forum" />
         <option name="DEPLOY" value="false" />
@@ -1083,6 +935,11 @@
       <J2EE_MODULE DEPLOYMENT_SOURCE_NAME="exploded">
         <option name="CONTEXT_PATH" value="/" />
         <option name="MODULE_NAME" value="petstore" />
+        <option name="DEPLOY" value="false" />
+      </J2EE_MODULE>
+      <J2EE_MODULE DEPLOYMENT_SOURCE_NAME="exploded">
+        <option name="CONTEXT_PATH" value="/" />
+        <option name="MODULE_NAME" value="manager" />
         <option name="DEPLOY" value="false" />
       </J2EE_MODULE>
       <option name="DEPLOY_TOMCAT_MANAGER" value="false" />
@@ -1124,28 +981,6 @@
           <option name="PROGRAM_PARAMETERS" value=" stop" />
         </SHUTDOWN>
       </ConfigurationWrapper>
-      <method>
-        <option name="Make" value="true" />
-      </method>
-    </configuration>
-    <configuration default="false" name="AccountDAOTest" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
-      <pattern value="net.sourceforge.easyjf.petstore.dao.test.*" />
-      <module name="petstore" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="net.sourceforge.jfox.petstore.dao.test" />
-      <option name="MAIN_CLASS_NAME" value="net.sourceforge.jfox.petstore.dao.test.AccountDAOTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ADDITIONAL_CLASS_PATH" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
       <method>
         <option name="Make" value="true" />
       </method>
@@ -1240,21 +1075,21 @@
       <window_info id="CVS" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="1" />
       <window_info id="IDEtalk" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="22" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5538462" order="10" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.303" order="0" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4969231" order="4" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.317" order="0" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42307693" order="4" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.244" order="1" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3276923" order="2" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30923077" order="2" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42827442" order="9" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="0" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7905138" order="16" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="4" />
       <window_info id="Ant Build" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24871135" order="4" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3276923" order="20" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37692308" order="5" x="100" y="162" width="634" height="300" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37151703" order="5" x="100" y="162" width="634" height="300" />
       <window_info id="Hierarchy" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.308" order="5" />
       <window_info id="File View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="1" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4323077" order="7" x="16" y="176" width="776" height="371" />
-      <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="3" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35538462" order="7" x="16" y="176" width="776" height="371" />
+      <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.731" order="3" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="21" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.51692307" order="0" />
       <window_info id="SVN Repositories" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32923076" order="23" />
@@ -1271,8 +1106,8 @@
       <window_info id="App Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="11" />
       <window_info id="EJB" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="6" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="8" />
-      <window_info id="Code Logic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72783506" order="14" x="22" y="39" width="776" height="476" />
       <window_info id="WebLogic Deployment View" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32608697" order="18" />
+      <window_info id="Code Logic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72783506" order="14" x="22" y="39" width="776" height="476" />
       <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45322245" order="13" />
     </layout>
   </component>
@@ -1290,7 +1125,7 @@
     <option name="PERFORM_COMMIT_IN_BACKGROUND" value="false" />
     <option name="PUT_FOCUS_INTO_COMMENT" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="JPetstore worked!" />
+    <option name="LAST_COMMIT_MESSAGE" value="index changed!" />
     <option name="SAVE_LAST_COMMIT_MESSAGE" value="true" />
     <option name="CHECKIN_DIALOG_SPLITTER_PROPORTION" value="0.8" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -1298,21 +1133,21 @@
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
     <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
     <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
-    <option name="ERROR_OCCURED" value="false" />
-    <option name="ACTIVE_VCS_NAME" value="" />
+    <option name="ERROR_OCCURED" value="true" />
+    <option name="ACTIVE_VCS_NAME" value="svn" />
     <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="修改完成 ParameterMap" />
-    <MESSAGE value="修改 petstore AccountDAOImpl" />
-    <MESSAGE value="修改 registerModule 只在 ControllerServlet 中" />
-    <MESSAGE value="增强 SQLTemplate，对于动态 sql template，每一个 Query 都会构造 native sql" />
-    <MESSAGE value="优化了 SQLTemplate，支持动态 template，并有 SQLTemplate 构造 expression 和 ExpressionResultMap" />
-    <MESSAGE value="将 SQLTemplate buildNativeSQL 功能移到了 SQLQuery" />
-    <MESSAGE value="Validator improved, changed to validatorClass() method!&#10;JPetstore order flow finished!" />
-    <MESSAGE value="petstore improved! insert order successfully!" />
     <MESSAGE value="petstore improved!" />
     <MESSAGE value="JPetstore worked!" />
+    <MESSAGE value="所有与 Module 相关的设置，都放到了 WebContextLoader 中" />
+    <MESSAGE value="add manager module" />
+    <MESSAGE value="jfox3 index.jsp" />
+    <MESSAGE value="move framework example to Test module!" />
+    <MESSAGE value="add petstore installation.html" />
+    <MESSAGE value="upload ok!" />
+    <MESSAGE value="WebContextLoader improved!" />
+    <MESSAGE value="index changed!" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -1359,194 +1194,201 @@
   <component name="com.intellij.ide.util.scopeChooser.ScopeChooserConfigurable" proportions="" version="1">
     <option name="myLastEditedConfigurable" />
   </component>
-  <component name="com.intellij.openapi.roots.ui.configuration.projectRoot.ProjectRootMasterDetailsConfigurable" proportions="0.24676724,0.5" version="1">
+  <component name="com.intellij.openapi.roots.ui.configuration.projectRoot.ProjectRootMasterDetailsConfigurable" proportions="0.24676724" version="1">
     <option name="myPlainMode" value="false" />
-    <option name="myLastEditedConfigurable" value="petstore" />
+    <option name="myLastEditedConfigurable" value="jfoxng-lib" />
   </component>
   <component name="com.intellij.profile.ui.ErrorOptionsConfigurable" proportions="" version="1">
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/framework/lib/jotm/jta-spec1_0_1.jar!/javax/transaction/TransactionManager.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="9" selection-start="1140" selection-end="1140" vertical-scroll-proportion="0.48360655">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/ejb3/invocation/TransactionEJBInvocationHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="0" selection-start="5735" selection-end="5735" vertical-scroll-proportion="0.16382253">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/petstore/views/ViewOrder.vhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="213" column="78" selection-start="4726" selection-end="4726" vertical-scroll-proportion="0.48708487">
-          <folding />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/template/numberguess.vhtml">
       <provider editor-type-id="HtmlPreview">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/net/sourceforge/jfox/petstore/entity/LineItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="0" selection-start="1234" selection-end="1234" vertical-scroll-proportion="0.68365556">
+        <state line="7" column="0" selection-start="161" selection-end="161" vertical-scroll-proportion="0.32885906">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/entity/SQLQuery.java">
+    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/util/ClassUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="347" column="0" selection-start="12367" selection-end="12367" vertical-scroll-proportion="0.04761905">
+        <state line="136" column="13" selection-start="4761" selection-end="4761" vertical-scroll-proportion="0.7605178">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/net/sourceforge/jfox/petstore/action/OrderAction.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/src/net/sourceforge/jfox/manager/CartsAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="197" column="0" selection-start="8881" selection-end="8881" vertical-scroll-proportion="0.04416404">
+        <state line="11" column="13" selection-start="357" selection-end="357" vertical-scroll-proportion="0.3106796">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/src/net/sourceforge/jfox/manager/NumberGuessAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="13" selection-start="528" selection-end="528" vertical-scroll-proportion="0.29126215">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/net/sourceforge/jfox/petstore/bo/OrderBOImpl.java">
+    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/FileUploaded.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="751" selection-end="751" vertical-scroll-proportion="0.6696697">
+        <state line="31" column="0" selection-start="603" selection-end="603" vertical-scroll-proportion="1.245614">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/ejb3/SimpleEJB3Container.java">
+    <entry file="jar://$PROJECT_DIR$/framework/lib/commons-fileupload-1.1.1.jar!/org/apache/commons/fileupload/FileUploadBase.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="5" selection-start="4769" selection-end="4769" vertical-scroll-proportion="0.04416404">
+        <state line="43" column="26" selection-start="1953" selection-end="1953" vertical-scroll-proportion="0.30029154">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/petstore/views/ConfirmOrder.vhtml">
+    <entry file="jar://$PROJECT_DIR$/framework/lib/commons-fileupload-1.1.1.jar!/org/apache/commons/fileupload/disk/DiskFileItemFactory.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="8" selection-start="360" selection-end="360" vertical-scroll-proportion="0.03943662">
+        <state line="23" column="0" selection-start="984" selection-end="984" vertical-scroll-proportion="0.8979592">
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/demoJSP.html">
       <provider editor-type-id="HtmlPreview">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/petstore/views/SearchProducts.vhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="37" selection-start="1031" selection-end="1031" vertical-scroll-proportion="0.6253521">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/net/sourceforge/jfox/petstore/action/ProductAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="46" selection-start="2943" selection-end="2943" vertical-scroll-proportion="0.036649216">
+        <state line="14" column="4" selection-start="415" selection-end="415" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/conf/global.properties">
+    <entry file="file://$PROJECT_DIR$/framework/conf/velocity.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="140" selection-end="140" vertical-scroll-proportion="0.21105528">
+        <state line="62" column="22" selection-start="3037" selection-end="3037" vertical-scroll-proportion="0.023890786">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/net/sourceforge/jfox/petstore/dao/OrderDAOImpl.java">
+    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/velocity/VelocityRender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="185" column="0" selection-start="7839" selection-end="7839" vertical-scroll-proportion="0.7251309">
+        <state line="142" column="0" selection-start="5006" selection-end="5006" vertical-scroll-proportion="0.036939315">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/ejb3/transaction/JTATransactionManager.java">
+    <entry file="jar://$PROJECT_DIR$/framework/lib/source/velocity-1.4-src.jar!/org/apache/velocity/runtime/RuntimeConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="5" selection-start="3214" selection-end="3214" vertical-scroll-proportion="0.516696">
+        <state line="322" column="31" selection-start="10180" selection-end="10180" vertical-scroll-proportion="0.035443038">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/servlet/ControllerServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="205" column="0" selection-start="8986" selection-end="8986" vertical-scroll-proportion="0.19859402">
+        <state line="130" column="0" selection-start="5911" selection-end="5911" vertical-scroll-proportion="0.036939315">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/petstore/conf/module.xml">
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/template/upload.vhtml">
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="7" selection-start="236" selection-end="236" vertical-scroll-proportion="0.16752137">
+        <state line="22" column="22" selection-start="412" selection-end="412" vertical-scroll-proportion="0.8369565">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/demoAction.html">
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="7" selection-start="531" selection-end="531" vertical-scroll-proportion="0.52593917">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/src/net/sourceforge/jfox/manager/DemoUploadAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="707" selection-end="707" vertical-scroll-proportion="0.11433447">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="25" selection-start="2134" selection-end="2134" vertical-scroll-proportion="1.5500879">
+        <state line="58" column="0" selection-start="2096" selection-end="2096" vertical-scroll-proportion="0.3771331">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/net/sourceforge/jfox/petstore/action/AccountAction.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/demoEJB.html">
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="40" selection-start="1038" selection-end="1038" vertical-scroll-proportion="0.18453427">
+        <state line="9" column="0" selection-start="185" selection-end="185" vertical-scroll-proportion="0.2254025">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/net/sourceforge/jfox/petstore/action/CategoryAction.java">
+    <entry file="file://$PROJECT_DIR$/framework/www/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="16" selection-start="1056" selection-end="1056" vertical-scroll-proportion="0.18453427">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/ActionSupport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="7" selection-start="1554" selection-end="1554" vertical-scroll-proportion="0.28295255">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/framework/component/ModuleClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="891" selection-end="891" vertical-scroll-proportion="-1.115993">
+        <state line="99" column="16" selection-start="2435" selection-end="2435" vertical-scroll-proportion="0.023890786">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/WebContextLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="25" selection-start="1148" selection-end="1148" vertical-scroll-proportion="0.2864675">
+        <state line="13" column="1" selection-start="324" selection-end="324" vertical-scroll-proportion="0.023890786">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/framework/component/ASMClassLoader.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/src/net/sourceforge/jfox/manager/CheckboxAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="0" selection-start="1366" selection-end="1366" vertical-scroll-proportion="0.11247803">
+        <state line="13" column="13" selection-start="449" selection-end="449" vertical-scroll-proportion="0.16211604">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/framework/Framework.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/template/carts.vhtml">
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="24" selection-start="3735" selection-end="3735" vertical-scroll-proportion="0.38488576">
+        <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/framework/component/Module.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/template/checkbox.vhtml">
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="254" column="42" selection-start="7991" selection-end="7991" vertical-scroll-proportion="0.3602812">
+        <state line="36" column="7" selection-start="674" selection-end="674" vertical-scroll-proportion="0.87652177">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/ActionSupport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="303" column="0" selection-start="12237" selection-end="12237" vertical-scroll-proportion="0.023890786">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="78" column="23" selection-start="1705" selection-end="1705" vertical-scroll-proportion="0.023890786">
           <folding />
         </state>
       </provider>
