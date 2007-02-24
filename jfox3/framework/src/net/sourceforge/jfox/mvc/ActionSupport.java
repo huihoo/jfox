@@ -103,7 +103,7 @@ public abstract class ActionSupport implements Action, InstantiatedComponent, Co
 
         Method actionMethod = getActionMethod(invocationContext);
         if (actionMethod == null) {
-            throw new ServletException("No such action: " + getName() + "." + invocationContext.getActionName());
+            throw new ServletException("No ActionMethod in Action Class: " + getClass().getName() + " responsable for " + (invocationContext.isPostMethod() ? "POST" : "GET") + " action: " + getName() + "." + invocationContext.getActionName() + " !");
         }
         invocationContext.setActionMethod(actionMethod);
         Class<?> invocationClass = actionMethod.getAnnotation(ActionMethod.class).invocationClass();
