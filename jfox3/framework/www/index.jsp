@@ -102,7 +102,7 @@
         <tr>
             <td class="menu">
                 <a href="modules/manager/index.jsp" title="Manager & jsp/action/ejb3 examples">Manager</a><br/>
-                <a href="modules/petstore/page.index.do" title="A full petstore application module adopt from iBatis jpetstore">Petstore</a><br/>
+                <a href="modules/petstore/welcome.html" title="A full petstore application module adopt from iBatis jpetstore">Petstore</a><br/>
                 &nbsp;
             </td>
         </tr>
@@ -117,7 +117,7 @@
             <td class="menu">
                 <a href="RELEASE-NOTES.txt">Release Notes</a><br/>
                 <a href="docs/changelog.html">Change Log</a><br/>
-                <a href="docs/installation.html">Installation Guide</a><br/>
+                <a href="docs/installation.html">Installation Guide(Chinese)</a><br/>
                 <a href="docs/userguide.html">User Guide</a><br/>
                 <a href="javadoc/">Api Documentation</a><br/> &nbsp;
                 &nbsp;
