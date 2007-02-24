@@ -39,9 +39,11 @@ public class ControllerServlet extends HttpServlet {
     public static final String MAX_UPLOAD_FILE_SIZE_KEY = "MAX_UPLOAD_FILE_SIZE";
     public static final String VIEW_DIR_KEY = "VIEW_DIR";
     public static final String ACTION_SUFFIX_KEY = "ACTION_SUFFIX";
+    public static final String DEFAULT_ENCODING_KEY = "DEFAULT_ENCODING";
 
     public static final String MULTIPART = "multipart/";
 
+    public static String DEFAULT_ENCODING = "UTF-8";
 
     static String ACTION_SUFFIX = ".do";
     public static String VIEW_DIR = "views";
@@ -54,15 +56,24 @@ public class ControllerServlet extends HttpServlet {
         if (actionSuffix != null && actionSuffix.trim().length() != 0) {
             ACTION_SUFFIX = actionSuffix;
         }
+        //default encoding
+        String defaultEncoding = servletConfig.getInitParameter(DEFAULT_ENCODING_KEY);
+        if (defaultEncoding != null && defaultEncoding.trim().length() != 0) {
+            DEFAULT_ENCODING = defaultEncoding;
+        }
 
+        //view dir
         String viewDir = servletConfig.getInitParameter(VIEW_DIR_KEY);
         if (viewDir != null && viewDir.trim().length() != 0) {
             VIEW_DIR = viewDir;
         }
+
+        // max upload limit
         String maxUploadFileSize = servletConfig.getServletContext().getInitParameter(MAX_UPLOAD_FILE_SIZE_KEY);
         if (maxUploadFileSize != null && maxUploadFileSize.trim().length() != 0) {
             MAX_UPLOAD_FILE_SIZE = Integer.parseInt(maxUploadFileSize);
         }
+
     }
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -124,6 +135,7 @@ public class ControllerServlet extends HttpServlet {
                 ServletFileUpload upload = new ServletFileUpload(factory);
                 //  最大允许上传的文件大小 5M
                 upload.setSizeMax(MAX_UPLOAD_FILE_SIZE);
+                upload.setHeaderEncoding(DEFAULT_ENCODING);
                 try {
                     //  处理上传
                     List items = upload.parseRequest(requestContext);
@@ -132,7 +144,7 @@ public class ControllerServlet extends HttpServlet {
                         FileItem fileItem = (FileItem)item;
                         if (fileItem.isFormField()) {
                             // 表单内容
-                            invocationContext.addParameter(fileItem.getFieldName(), new String[]{fileItem.getString()});
+                            invocationContext.addParameter(fileItem.getFieldName(), new String[]{fileItem.getString(DEFAULT_ENCODING)});
                         }
                         else {
                             //  如果不是表单内容，取出 multipart。

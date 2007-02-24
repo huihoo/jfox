@@ -108,9 +108,12 @@ public class VelocityRender implements Render {
                 Properties p = loadConfiguration(servletConfig);
                 // use loader path by module
                 p.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, templateBaseDir);
-                // override velocity default avalog log system
+                // overwrite velocity default avalog log system
                 p.setProperty(Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, Log4jLogSystem.class.getName());
 
+                //overwrite encoding by ControllerServet
+                p.setProperty(Velocity.INPUT_ENCODING, ControllerServlet.DEFAULT_ENCODING);
+                p.setProperty(Velocity.OUTPUT_ENCODING, ControllerServlet.DEFAULT_ENCODING);
                 inputEncoding = p.getProperty(Velocity.INPUT_ENCODING);
                 outputEncoding = p.getProperty(Velocity.OUTPUT_ENCODING);
 
