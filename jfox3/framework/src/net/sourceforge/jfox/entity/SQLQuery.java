@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
+import java.sql.Clob;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -348,35 +350,35 @@ public class SQLQuery extends QueryExt {
         return dataObject;
     }
 
-    protected Object getCorrectResult(ResultSet rs, Class columnClass, int columnIndex) throws SQLException {
+    protected Object getCorrectResult(ResultSet rset, Class columnClass, int columnIndex) throws SQLException {
         Object value = null;
         if (Boolean.class == columnClass || boolean.class == columnClass) {
-            value = rs.getBoolean(columnIndex);
+            value = rset.getBoolean(columnIndex);
         }
         else if (Byte.class == columnClass || byte.class == columnClass) {
-            value = rs.getByte(columnIndex);
+            value = rset.getByte(columnIndex);
         }
         else if (Short.class == columnClass || short.class == columnClass) {
-            value = rs.getShort(columnIndex);
+            value = rset.getShort(columnIndex);
         }
         else if (Integer.class == columnClass || int.class == columnClass) {
-            value = rs.getInt(columnIndex);
+            value = rset.getInt(columnIndex);
         }
         else if (Long.class == columnClass || long.class == columnClass) {
-            value = rs.getLong(columnIndex);
+            value = rset.getLong(columnIndex);
         }
         else if (Float.class == columnClass || float.class == columnClass) {
-            value = rs.getFloat(columnIndex);
+            value = rset.getFloat(columnIndex);
         }
         else if (Double.class == columnClass || double.class == columnClass) {
-            value = rs.getDouble(columnIndex);
+            value = rset.getDouble(columnIndex);
         }
         else if (BigDecimal.class == columnClass) {
-            value = rs.getBigDecimal(columnIndex);
+            value = rset.getBigDecimal(columnIndex);
         }
         else if (byte[].class == columnClass) {
             try {
-                InputStream in = rs.getBinaryStream(columnIndex);
+                InputStream in = rset.getBinaryStream(columnIndex);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 int ch;
                 while ((ch = in.read()) != -1) {
@@ -386,37 +388,45 @@ public class SQLQuery extends QueryExt {
                 in.close();
             }
             catch (Exception e) {
-                value = rs.getBytes(columnIndex);
+                value = rset.getBytes(columnIndex);
             }
         }
         else if (java.lang.String.class == columnClass) {
-            //TODO: deal with CLOB
+            //deal with CLOB
+            if(rset.getMetaData().getColumnType(columnIndex) == Types.CLOB) {
+                Clob clob = rset.getClob(columnIndex);
+                if (clob != null) {
+                    value = clob.getSubString(1, (int)clob.length());
+                }
+            }
+            else {
+                value = rset.getString(columnIndex);
+            }
             /*
             if (map != null && "CLOB".equals(map.getType(propertyName))) {
-                Clob clob = rs.getClob(columnIndex);
+                Clob clob = rset.getClob(columnIndex);
                 if (clob != null) {
                     value = clob.getSubString(1, (int)clob.length());
                 }
             }else {
-                value = rs.getString(columnIndex);
+                value = rset.getString(columnIndex);
             }
             */
-            value = rs.getString(columnIndex);
         }
         else if (Date.class == columnClass) {
-            java.sql.Date sqldate = rs.getDate(columnIndex);
+            java.sql.Date sqldate = rset.getDate(columnIndex);
             if (sqldate != null) {
                 value = new Date(sqldate.getTime());
             }
         }
         else if (java.sql.Date.class == columnClass) {
-            value = rs.getDate(columnIndex);
+            value = rset.getDate(columnIndex);
         }
         else if (Timestamp.class == columnClass) {
-            value = rs.getTimestamp(columnIndex);
+            value = rset.getTimestamp(columnIndex);
         }
         else if (java.lang.Object.class == columnClass) {
-            value = rs.getObject(columnIndex);
+            value = rset.getObject(columnIndex);
         }
         return value;
     }
