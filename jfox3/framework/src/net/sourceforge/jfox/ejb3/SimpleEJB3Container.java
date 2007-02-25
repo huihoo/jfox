@@ -51,7 +51,7 @@ import org.apache.log4j.Logger;
  * 只支持 Local/Stateless Session Bean, Local MDB
  * 同时，该 Container 也承担了 NamingContainer 的能力
  *
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id = "EJB3Container", singleton = true, active = true, priority = -8)
 public class SimpleEJB3Container implements EJBContainer, Component, InstantiatedComponent, InterceptableComponent, ModuleListener, ActiveComponent, ComponentUnregistration {

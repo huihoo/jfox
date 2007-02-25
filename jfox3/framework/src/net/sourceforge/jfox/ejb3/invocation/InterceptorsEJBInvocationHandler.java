@@ -13,7 +13,7 @@ import net.sourceforge.jfox.ejb3.EJBInvocationHandler;
  * 有 AroundInvoke method 和 bean method 构成 interceptor chain
  * 最后一个 interceptor method 即可 bean method
  *
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class InterceptorsEJBInvocationHandler extends EJBInvocationHandler {
 

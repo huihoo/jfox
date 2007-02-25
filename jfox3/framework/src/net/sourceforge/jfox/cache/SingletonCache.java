@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * //TODO: 只缓存一个对象实例，以实现Singleton
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class SingletonCache implements Cache {
 

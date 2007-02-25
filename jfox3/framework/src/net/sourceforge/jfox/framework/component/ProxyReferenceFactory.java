@@ -17,7 +17,7 @@ import net.sourceforge.jfox.framework.invoker.ComponentInvoker;
 /**
  * 为 Component 生成基于动态代理的弱引用
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 class ProxyReferenceFactory {
 

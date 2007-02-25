@@ -7,7 +7,7 @@ import net.sourceforge.jfox.framework.component.ComponentContext;
 import net.sourceforge.jfox.framework.component.InstantiatedComponent;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Yang Yong</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 @Service(
         id = "User1")

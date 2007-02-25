@@ -10,7 +10,7 @@ import net.sourceforge.jfox.framework.ClassLoaderRepository;
  * Module ClassLoader 初始化的时候，会使用ASM读取所有的Class，并记录Class的Annotation，
  * 这样可以不需要 XML 配置文件，而直接根据 Annotation 发现 Component
  *
- * @author <a href="mailto:yy.young@gmail.com">Yang Yong</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 public class ModuleClassLoader extends ASMClassLoader {
 

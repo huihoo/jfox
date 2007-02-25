@@ -8,7 +8,7 @@ import java.lang.annotation.ElementType;
 /**
  * 描述在 Component 上以便将该 Component 作为 Service 发布
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})

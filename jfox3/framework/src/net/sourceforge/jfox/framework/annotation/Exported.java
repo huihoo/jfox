@@ -12,7 +12,7 @@ import java.lang.annotation.ElementType;
  *
  * exposed描述在Class上，没有意义
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})

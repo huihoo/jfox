@@ -4,7 +4,7 @@ import java.lang.annotation.Annotation;
 import java.util.Date;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Yang Yong</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 public class DateValidator implements Validator<Date>{
 

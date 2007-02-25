@@ -68,7 +68,7 @@ import org.apache.log4j.Logger;
 /**
  * Container of Statless EJB，store all Meta data, and as EJB Factory
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @SuppressWarnings({"deprecation"})
 public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {

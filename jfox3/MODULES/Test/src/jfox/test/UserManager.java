@@ -13,7 +13,7 @@ import net.sourceforge.jfox.framework.event.ComponentEvent;
 import net.sourceforge.jfox.framework.component.ComponentListener;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service
 public class UserManager implements IUserManager, InstantiatedComponent, ModuleListener, ComponentListener {

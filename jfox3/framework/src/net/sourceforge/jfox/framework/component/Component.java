@@ -4,7 +4,7 @@ package net.sourceforge.jfox.framework.component;
  * Component 接口，只有实现该接口的组件才能部署到 Framework 中
  * 普通的Component不具备跨模块调用能力，要想被其它模块调用，必须实现Service接口
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public interface Component {
 

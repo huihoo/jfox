@@ -40,7 +40,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id = "EntityManagerFactoryBuilder", active = true, singleton = true, priority = -5)
 public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuilder, Component, InstantiatedComponent, ComponentUnregistration, ModuleListener, ActiveComponent {

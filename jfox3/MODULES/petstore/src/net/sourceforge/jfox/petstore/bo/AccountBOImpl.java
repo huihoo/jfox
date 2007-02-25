@@ -11,7 +11,7 @@ import net.sourceforge.jfox.petstore.entity.Account;
 import net.sourceforge.jfox.petstore.dao.AccountDAO;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Stateless
 @Local

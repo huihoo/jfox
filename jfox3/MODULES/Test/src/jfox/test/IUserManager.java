@@ -4,7 +4,7 @@ import net.sourceforge.jfox.framework.component.Component;
 import net.sourceforge.jfox.framework.annotation.Exported;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Exported
 public interface IUserManager extends Component {

@@ -24,7 +24,7 @@ import java.util.List;
  * IO 操作帮助类，来自 jakarta commons-io
  * 仅删除了两个需要用到 LineIterator 的方法
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 
 public class IOUtils {

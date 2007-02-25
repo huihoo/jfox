@@ -9,7 +9,7 @@ import net.sourceforge.jfox.petstore.dao.CategoryDAO;
 import net.sourceforge.jfox.petstore.entity.Category;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Stateless
 public class CategoryBOImpl implements CategoryBO{

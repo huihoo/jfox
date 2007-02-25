@@ -5,7 +5,7 @@ package net.sourceforge.jfox.framework;
  * Component之间相互引用的时候，均是通过 ComponentId 引用
  * 这样的弱引用使得 Module 动态部署以及引用的切换成为可能
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class ComponentId {
     /**

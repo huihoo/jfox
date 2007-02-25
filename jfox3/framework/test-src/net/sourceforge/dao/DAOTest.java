@@ -14,7 +14,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class DAOTest {
     
@@ -66,7 +66,7 @@ public class DAOTest {
 
     @Test
     public void testCreateAccount() throws Exception {
-        Account account = accountDAO.createAccount("Yang","Yong","yy.young@gmail.com");
+        Account account = accountDAO.createAccount("Yang","Yong","jfox.young@gmail.com");
         Assert.assertEquals(account.getFirstName(), "Yang");
     }
 

@@ -5,7 +5,7 @@ import net.sourceforge.jfox.framework.BaseException;
 /**
  * throw invocation exception when failed to build Invocation.
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class InvocationException extends BaseException {
 

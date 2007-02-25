@@ -6,7 +6,7 @@ import org.apache.velocity.runtime.RuntimeServices;
 import org.apache.velocity.app.VelocityEngine;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class Log4jLogSystem implements LogSystem {
     /**

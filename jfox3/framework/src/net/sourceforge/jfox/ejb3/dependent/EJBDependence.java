@@ -11,7 +11,7 @@ import net.sourceforge.jfox.framework.dependent.Dependence;
 /**
  * Class Level EJB Dependence
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class EJBDependence implements Dependence {
 

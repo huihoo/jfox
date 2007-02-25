@@ -13,7 +13,7 @@ import net.sourceforge.jfox.petstore.entity.Order;
 import net.sourceforge.jfox.petstore.dao.ItemDAO;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Stateless
 @Local

@@ -13,7 +13,7 @@ import net.sourceforge.jfox.mvc.Invocation;
  * 1.只有一个参数 Invotation
  * 2.返回 PageContext 类型
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})

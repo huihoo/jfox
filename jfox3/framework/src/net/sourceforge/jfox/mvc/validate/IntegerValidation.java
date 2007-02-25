@@ -6,7 +6,7 @@ import java.lang.annotation.Target;
 import java.lang.annotation.ElementType;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Yang Yong</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

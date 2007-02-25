@@ -7,7 +7,7 @@ import javax.naming.Name;
 import javax.naming.spi.ObjectFactory;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class javaURLContextFactory implements ObjectFactory {
 

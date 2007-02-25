@@ -9,7 +9,7 @@ import net.sourceforge.jfox.framework.component.Component;
  * Action 会注册到 Framework，Action 注册的时候，
  * 会将Action添加到 ControllerServlet 的Action列表中
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Exported
 public interface Action extends Component {

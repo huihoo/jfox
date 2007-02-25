@@ -11,7 +11,7 @@ import net.sourceforge.jfox.mvc.annotation.ActionMethod;
 import net.sourceforge.jfox.framework.annotation.Service;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id = "numberguess")
 public class NumberGuessAction extends ActionSupport {

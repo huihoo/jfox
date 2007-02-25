@@ -14,7 +14,7 @@ import net.sourceforge.jfox.framework.ComponentId;
  * 同时每个Module都有自己的CompoentRepo对象，便于按 Module 隔离
  * 
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class Repository {
 

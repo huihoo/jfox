@@ -5,7 +5,7 @@ package net.sourceforge.jfox.framework.component;
  * instantiated方法是唯一可以传入ComponentContext的回调方法，
  * 如果Component需要使用ComponentContex，就必须实现该接口
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public interface InstantiatedComponent extends Component{
 

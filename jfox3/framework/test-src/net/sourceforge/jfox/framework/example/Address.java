@@ -6,7 +6,7 @@ import net.sourceforge.jfox.entity.annotation.EntityHelper;
 import net.sourceforge.jfox.entity.EntityObject;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @EntityHelper(Address.Helper.class)
 public interface Address extends EntityObject {

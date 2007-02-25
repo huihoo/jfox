@@ -5,7 +5,7 @@ package net.sourceforge.jfox.framework.component;
  *
  * 使用 @Annotation 因为不能继承，所以无法强制约束子类型是 Active
  *
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public interface ActiveComponent extends Component {
 

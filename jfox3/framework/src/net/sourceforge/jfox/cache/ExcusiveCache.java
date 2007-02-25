@@ -3,7 +3,7 @@ package net.sourceforge.jfox.cache;
 /**
  * //TODO: 独占式 Cache，在一个Cache对象被使用时，不允许其它线程使用
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class ExcusiveCache extends SimpleCache {
 

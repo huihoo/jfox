@@ -7,7 +7,7 @@ import net.sourceforge.jfox.framework.dependent.InjectionException;
 import net.sourceforge.jfox.framework.dependent.Dependence;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class ResourceDependence implements Dependence {
 

@@ -15,7 +15,7 @@ import net.sourceforge.jfox.mvc.Render;
 /**
  * 每个模块都拥有独立的 VelocityEngine，便于使用相对路径 #parse
  *
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class TemplateServlet extends HttpServlet {
 

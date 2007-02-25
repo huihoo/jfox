@@ -8,7 +8,7 @@ import java.lang.annotation.ElementType;
 /**
  * 注入一个常量，可以使用 placeholder，placeholder由 global.properties 导入
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})

@@ -12,7 +12,7 @@ import net.sourceforge.jfox.framework.event.FrameworkEvent;
 /**
  * 事件管理器。注册/分发所有的事件
  * 
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class ListenerManager {
 

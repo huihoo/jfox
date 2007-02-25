@@ -13,7 +13,7 @@ import net.sourceforge.jfox.framework.component.Component;
  * 这样可以保证不同Module之间的Component，在无法load implementation 的情况仍然可以引用并调用，
  * 而且实现Module可以改变Component的implementation，而引用模块多该Component引用不必改变
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public interface ComponentInvoker {
 

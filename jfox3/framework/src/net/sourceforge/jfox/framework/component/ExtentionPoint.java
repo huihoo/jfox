@@ -17,7 +17,7 @@ import net.sourceforge.jfox.framework.ComponentId;
  *      <extention-property name="class" description="the class of parser"/>
  * </extention>
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public interface ExtentionPoint {
 

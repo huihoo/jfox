@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
  * <br>
  * <b>注意：</b>该功能通过Java动态代理技术实现
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public interface InterceptableComponent extends Component{
     /**

@@ -2,7 +2,7 @@ package net.sourceforge.jfox.framework.component;
 
 /**
  * 工厂类型的Component，用来创建其它对象
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public interface FactoryComponent extends Component {
 

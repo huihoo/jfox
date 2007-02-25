@@ -10,7 +10,7 @@ import net.sourceforge.jfox.mvc.validate.ValidateException;
 /**
  * Page Context 存储了用来填充 template的 数据
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class PageContext {
 

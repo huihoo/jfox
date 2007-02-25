@@ -1,17 +1,16 @@
 package jfox.test;
 
 import net.sourceforge.jfox.framework.annotation.Constant;
-import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.annotation.Inject;
+import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.ComponentContext;
 import net.sourceforge.jfox.framework.component.ComponentUnregistration;
 import net.sourceforge.jfox.framework.component.ModuleListener;
 import net.sourceforge.jfox.framework.event.ModuleEvent;
-import jfox.test.IUserManager;
 
 /**
  *
- * @author <a href="mailto:yy.young@gmail.com">Yang Yong</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 @Service(id="User2")
 public class User2 implements IUser2, ComponentUnregistration, ModuleListener {

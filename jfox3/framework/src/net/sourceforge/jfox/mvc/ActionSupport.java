@@ -29,7 +29,7 @@ import org.apache.log4j.Logger;
  * 子类实现 doGetXXX doPostXXX 方法，如 public void doGetIndex(InvocationContext invocationContext) throws Exception
  * XXX 是不区分大小写，所以不能有同名的 XXX 方法
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public abstract class ActionSupport implements Action, InstantiatedComponent, ComponentUnregistration, ActiveComponent, SingletonComponent {
 

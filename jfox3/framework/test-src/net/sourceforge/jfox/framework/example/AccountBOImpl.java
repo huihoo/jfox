@@ -8,7 +8,7 @@ import javax.ejb.TransactionAttributeType;
 import net.sourceforge.jfox.framework.example.AccountDAO;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Stateless
 public class AccountBOImpl implements AccountBO {

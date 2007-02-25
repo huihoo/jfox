@@ -8,7 +8,7 @@ import javax.naming.NamingException;
 import net.sourceforge.jfox.ejb3.naming.url.javaURLContextFactory;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class JNDIContextHelper {
 

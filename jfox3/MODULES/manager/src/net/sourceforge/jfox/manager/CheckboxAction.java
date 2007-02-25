@@ -8,7 +8,7 @@ import net.sourceforge.jfox.mvc.PageContext;
 import net.sourceforge.jfox.mvc.annotation.ActionMethod;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id="checkbox")
 public class CheckboxAction extends ActionSupport {

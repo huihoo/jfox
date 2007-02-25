@@ -13,7 +13,7 @@ import net.sourceforge.jfox.entity.EntityManagerExt;
 import net.sourceforge.jfox.entity.dao.DAOSupport;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @NamedNativeQueries(
         {

@@ -5,7 +5,7 @@ import net.sourceforge.jfox.framework.component.InstantiatedComponent;
 import net.sourceforge.jfox.framework.annotation.Exported;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Yang Yong</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 @Exported
 public interface IUser extends Component, InstantiatedComponent {

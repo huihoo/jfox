@@ -9,7 +9,7 @@ import java.io.Serializable;
  * get方法需要用 @Column 描述
  * 没有用 @Column 描述的字段，仍然可以使用，但是却不会存到数据库中
  *
- * @author <a href="mailto:yy.young@gmail.com">Yang Yong</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 public interface EntityObject extends Serializable, Cloneable {
     

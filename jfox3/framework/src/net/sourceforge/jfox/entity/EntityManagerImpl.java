@@ -17,7 +17,7 @@ import net.sourceforge.jfox.entity.SQLTemplate;
 /**
  * Persistence Manager, 创建和管理 datasource, query template
  *
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class EntityManagerImpl implements EntityManagerExt {
 

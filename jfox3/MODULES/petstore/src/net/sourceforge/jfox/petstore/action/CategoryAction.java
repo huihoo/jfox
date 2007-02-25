@@ -18,7 +18,7 @@ import net.sourceforge.jfox.mvc.SessionContext;
 import net.sourceforge.jfox.mvc.annotation.ActionMethod;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id = "category")
 public class CategoryAction extends ActionSupport {

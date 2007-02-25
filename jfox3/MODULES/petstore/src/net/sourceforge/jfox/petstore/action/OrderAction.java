@@ -23,7 +23,7 @@ import net.sourceforge.jfox.mvc.validate.LongValidation;
 import net.sourceforge.jfox.mvc.annotation.ActionMethod;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id = "order")
 public class OrderAction extends ActionSupport {

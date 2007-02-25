@@ -3,7 +3,8 @@ SQLyog Community Edition- MySQL GUI v5.22a
 Host - 5.0.27-community-nt : Database - jpetstore
 *********************************************************************
 Server version : 5.0.27-community-nt
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -38,7 +39,7 @@ CREATE TABLE `account` (
 
 /*Data for the table `account` */
 
-insert  into `account`(`userid`,`email`,`firstname`,`lastname`,`status`,`addr1`,`addr2`,`city`,`state`,`zip`,`country`,`phone`) values ('ACID','acid@yourdomain.com','ABC','XYX','OK','901 San Antonio Road','MS UCUP02-206','Palo Alto','CA','94303','USA','555-555-5555'),('j2ee','yourname@yourdomain.com','ABC','XYX','OK','901 San Antonio Road','MS UCUP02-206','Palo Alto','CA','94303','USA','555-555-5555'),('yangyong','yy.young@gmail.com','Yang','Yong','OK','HaiDian','DongWangzhuang','Beijing','BJ','100085','China','13521515868');
+insert  into `account`(`userid`,`email`,`firstname`,`lastname`,`status`,`addr1`,`addr2`,`city`,`state`,`zip`,`country`,`phone`) values ('ACID','acid@yourdomain.com','ABC','XYX','OK','901 San Antonio Road','MS UCUP02-206','Palo Alto','CA','94303','USA','555-555-5555'),('j2ee','yourname@yourdomain.com','ABC','XYX','OK','901 San Antonio Road','MS UCUP02-206','Palo Alto','CA','94303','USA','555-555-5555'),('yangyong','jfox.young@gmail.com','Yang','Yong','OK','HaiDian','DongWangzhuang','Beijing','BJ','100085','China','13521515868');
 
 /*Table structure for table `bannerdata` */
 
@@ -233,7 +234,7 @@ CREATE TABLE `signon` (
   `username` varchar(25) NOT NULL,
   `password` varchar(25) NOT NULL,
   PRIMARY KEY  (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 MAX_ROWS=1000 COMMENT='cadastro de usuários';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 MAX_ROWS=1000 COMMENT='cadastro de usuï¿½rios';
 
 /*Data for the table `signon` */
 

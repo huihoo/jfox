@@ -9,7 +9,7 @@ import net.sourceforge.jfox.entity.annotation.ParameterMap;
 
 /**
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Entity
 @EntityHelper(Account.Helper.class)

@@ -5,7 +5,7 @@ import java.util.EventObject;
 import net.sourceforge.jfox.framework.ComponentId;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class ComponentEvent extends EventObject {
 

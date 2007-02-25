@@ -30,7 +30,7 @@ import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
 /**
  * 负责根据根据 SQLTemplate 构造 PreparedStatement，并执行，返回 ResultClass
  *
- * @author <a href="mailto:yy.young@gmail.com">Yang Yong</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 public class SQLQuery extends QueryExt {
     protected static Logger logger = Logger.getLogger(SQLQuery.class);

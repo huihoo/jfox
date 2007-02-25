@@ -16,7 +16,7 @@ import net.sourceforge.jfox.framework.Framework;
  * ComponentContex 和 ComponentMeta 不一定是一对一的关系
  * 对于Non Singleton Component，一个 ComponentMeta可能对应多个Component，也就对应多个ComponentContex
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class ComponentContext {
 

@@ -1,7 +1,7 @@
 package net.sourceforge.jfox.mvc.validate;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Yang Yong</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 public class ValidateErrors {
 

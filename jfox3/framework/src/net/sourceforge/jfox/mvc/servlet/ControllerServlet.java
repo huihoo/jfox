@@ -29,7 +29,7 @@ import org.apache.commons.fileupload.servlet.ServletRequestContext;
  * <p/>
  * ControllerServlet 使用 forward("/WEB-INF/xxx.html") 将请求发送到 /WEB-INF 中
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class ControllerServlet extends HttpServlet {
 

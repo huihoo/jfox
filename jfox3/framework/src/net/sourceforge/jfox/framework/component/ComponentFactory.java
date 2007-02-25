@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
 /**
  * ComponentFactory 负责实例化 Component，并完成 Constructor/Properties 依赖注射
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class ComponentFactory {
 

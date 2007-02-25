@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
  * 通过 ThreadLocal 关联 Transaction，以及 Transaction 使用的 Connection，
  * 以便在 Transaction 结束的时候，释放connection，使得 connection 可以被 pool 回收
  *
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class TxConnectionsThreadLocal {
 

@@ -22,7 +22,7 @@ import java.util.jar.JarFile;
 import java.util.jar.JarEntry;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 
 public class FileUtils {

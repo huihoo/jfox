@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
 /**
  * ComponentMeta 是组件的元数据对象，保留了组件所有的信息
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class ComponentMeta implements Comparable<ComponentMeta>{
     private final static Logger logger = Logger.getLogger(ComponentMeta.class);

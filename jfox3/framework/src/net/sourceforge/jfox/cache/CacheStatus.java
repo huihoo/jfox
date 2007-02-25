@@ -2,7 +2,7 @@ package net.sourceforge.jfox.cache;
 
 /**
  * 描述Cache当前的状态信息
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public interface CacheStatus {
 

@@ -5,7 +5,7 @@ import java.util.List;
 import net.sourceforge.jfox.petstore.entity.Category;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 
 public interface CategoryBO {

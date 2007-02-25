@@ -4,7 +4,7 @@ import net.sourceforge.jfox.mvc.validate.IntegerValidation;
 import net.sourceforge.jfox.mvc.validate.StringValidation;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class UserManagementAction extends ActionSupport {
 

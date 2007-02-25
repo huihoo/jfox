@@ -11,7 +11,7 @@ import net.sourceforge.jfox.framework.ComponentId;
  *      <extention-property name="class" value="java.lang.Object"/>
  * </extention>
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public interface Extention {
 

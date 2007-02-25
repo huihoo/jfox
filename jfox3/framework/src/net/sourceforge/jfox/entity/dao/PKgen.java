@@ -17,7 +17,7 @@ import java.util.HashMap;
  *
  * 该 PK 生成器不依赖于数据库，相比依赖数据表的PK生成器，速度快，而且值可读
  *
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class PKgen {
     /**

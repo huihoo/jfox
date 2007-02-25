@@ -19,7 +19,7 @@ import org.objectweb.jotm.Jotm;
 /**
  * 使用 JOTM 构造的 JTA TransactionManager
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class JTATransactionManager implements TransactionManager {
 

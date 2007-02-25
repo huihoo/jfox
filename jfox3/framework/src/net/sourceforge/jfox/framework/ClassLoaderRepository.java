@@ -17,7 +17,7 @@ import net.sourceforge.jfox.util.FileUtils;
  * <p/>
  * 负责管理所有Module Export 的 Class
  *
- * @author <a href="mailto:yy.young@gmail.com">Yang Yong</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 public class ClassLoaderRepository extends URLClassLoader {
 

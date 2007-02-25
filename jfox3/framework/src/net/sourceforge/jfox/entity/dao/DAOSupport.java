@@ -20,7 +20,7 @@ import net.sourceforge.jfox.entity.QueryExt;
  *
  * DAOSupport已经发布成了 Statless EJB，所以如果简单的DAO操作，可以直接使用DAOSupport，而不用提供 DAO 子类
  *
- * @author <a href="mailto:yy.young@gmail.com">Yang Yong</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 @Stateless
 @Local

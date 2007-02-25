@@ -1,9 +1,7 @@
 package jfox.test;
 
-import jfox.test.IUser;
-
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public interface IUser2 extends IUser {
 

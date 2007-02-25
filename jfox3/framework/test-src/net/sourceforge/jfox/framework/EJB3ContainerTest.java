@@ -15,7 +15,7 @@ import net.sourceforge.jfox.framework.example.AccountBO;
 import net.sourceforge.jfox.framework.component.Module;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class EJB3ContainerTest {
     static Framework framework;

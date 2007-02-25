@@ -10,7 +10,7 @@ import net.sourceforge.jfox.framework.component.ComponentInvocationException;
 /**
  * 在同一个JVM中，直接通过反射调用 Component
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class ReflectComponentInvoker implements ComponentInvoker {
 

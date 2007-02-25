@@ -3,7 +3,7 @@ package net.sourceforge.jfox.framework.component;
 import net.sourceforge.jfox.framework.annotation.Service;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id="TestComponent")
 public class TestComponentImpl implements TestComponent {

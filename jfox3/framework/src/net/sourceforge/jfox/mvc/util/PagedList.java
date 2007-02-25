@@ -11,7 +11,7 @@ import java.util.Arrays;
 /**
  * 支持分页的List
  *
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class PagedList<T> extends ArrayList<T>{
 
