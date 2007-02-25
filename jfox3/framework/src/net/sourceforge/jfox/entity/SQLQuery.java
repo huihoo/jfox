@@ -393,6 +393,7 @@ public class SQLQuery extends QueryExt {
         }
         else if (java.lang.String.class == columnClass) {
             //deal with CLOB
+            //TODO: 是否可以使用 rset.getCharactorStream 统一处理
             if(rset.getMetaData().getColumnType(columnIndex) == Types.CLOB) {
                 Clob clob = rset.getClob(columnIndex);
                 if (clob != null) {
