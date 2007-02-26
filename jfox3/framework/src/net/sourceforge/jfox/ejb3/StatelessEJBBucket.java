@@ -148,6 +148,11 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
      */
     private Map<String, Object> envMap = new HashMap<String, Object>();
 
+    /**
+     * Web Service 发布接口
+     */
+    private Class webServiceEndpointInterface = null;
+
     public StatelessEJBBucket(EJBContainer container, Class<?> beanClass, Module module) {
         this.container = container;
         this.module = module;
@@ -502,6 +507,11 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
 
     public boolean isRemote() {
         return !getBeanClass().isAnnotationPresent(Local.class);
+    }
+
+    public Class getWebServiceEndpointInterface(){
+        //TOOD: 获取 webServiceEndpointInterface
+        return webServiceEndpointInterface;
     }
 
     /**
