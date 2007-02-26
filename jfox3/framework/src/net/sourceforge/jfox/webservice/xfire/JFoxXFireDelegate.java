@@ -4,20 +4,18 @@ import java.lang.reflect.Method;
 
 import net.sourceforge.jfox.ejb3.EJBContainer;
 import net.sourceforge.jfox.ejb3.StatelessEJBBucket;
-import net.sourceforge.jfox.ejb3.EJBBucket;
 import net.sourceforge.jfox.framework.annotation.Inject;
 import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.ActiveComponent;
-import net.sourceforge.jfox.framework.component.InstantiatedComponent;
 import net.sourceforge.jfox.framework.component.ComponentContext;
-import net.sourceforge.jfox.framework.BaseRuntimeException;
+import net.sourceforge.jfox.framework.component.InstantiatedComponent;
 import org.codehaus.xfire.MessageContext;
 import org.codehaus.xfire.XFire;
 import org.codehaus.xfire.XFireFactory;
 import org.codehaus.xfire.fault.XFireFault;
-import org.codehaus.xfire.service.invoker.Invoker;
 import org.codehaus.xfire.service.ServiceFactory;
 import org.codehaus.xfire.service.binding.ObjectServiceFactory;
+import org.codehaus.xfire.service.invoker.Invoker;
 
 /**
  * 
@@ -43,7 +41,7 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
 
     public static XFire getXFireInstance(){
         if(xFireDelegate == null) {
-            throw new BaseRuntimeException("XFire is not initialized!");
+            throw new NullPointerException("XFire is not initialized!");
         }
         return xFireDelegate.xfire;
     }
@@ -70,6 +68,7 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
 
     /**
      * 通过 EJBContainer 完成对 EJB 的调用
+     * 
      * @param method 要调用的方法
      * @param params 参数
      * @param messageContext soap message context
@@ -77,13 +76,18 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
      * @throws XFireFault
      */
     public Object invoke(Method method, Object[] params, MessageContext messageContext) throws XFireFault {
-//        return ejbContainer.invokeEJB("ejb-name",method, params);
-        return null;
+        String ejbName = getEJBNameByWebServiceEndpointInterface(messageContext.getService().getServiceInfo().getServiceClass());
+        try {
+            return ejbContainer.invokeEJB(ejbName, method, params);
+        }
+        catch(Exception e) {
+            return new XFireFault(e);
+        }
     }
 
-    public EJBBucket getStatelessEJBBucketByWebServiceEndpointInterface(Class endpointInterface){
-        //TODO: getStatelessEJBBucketByWebServiceEndpointInterface
-        //TODO: 有必要在 EJBContainer 中建立 EndpointInterface=>EJBBucket的对应关系
+    public String getEJBNameByWebServiceEndpointInterface(Class endpointInterface){
+        //TODO: getEJBNameByWebServiceEndpointInterface
+        //TODO: 有必要在 EJBContainer 中建立 EndpointInterface=>ejb-name的对应关系
         return null;
     }
 
