@@ -11,8 +11,8 @@ import org.codehaus.xfire.XFire;
 public class JFoxXFireServlet extends XFireServlet {
 
     public XFire createXFire() throws ServletException {
-        //TODO: get XFire from XFireJFoxService
-        return super.createXFire();
+        // get XFire from XFireJFoxService
+        return JFoxXFireDelegate.getXFireInstance();
     }
 
     public static void main(String[] args) {

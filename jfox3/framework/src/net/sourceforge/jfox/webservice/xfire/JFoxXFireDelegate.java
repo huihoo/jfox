@@ -10,6 +10,7 @@ import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.ActiveComponent;
 import net.sourceforge.jfox.framework.component.InstantiatedComponent;
 import net.sourceforge.jfox.framework.component.ComponentContext;
+import net.sourceforge.jfox.framework.BaseRuntimeException;
 import org.codehaus.xfire.MessageContext;
 import org.codehaus.xfire.XFire;
 import org.codehaus.xfire.XFireFactory;
@@ -38,21 +39,23 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
      */
     private ServiceFactory factory;
 
+    public static JFoxXFireDelegate xFireDelegate = null;
+
+    public static XFire getXFireInstance(){
+        if(xFireDelegate == null) {
+            throw new BaseRuntimeException("XFire is not initialized!");
+        }
+        return xFireDelegate.xfire;
+    }
+
     public void instantiated(ComponentContext componentContext) {
         xfire = XFireFactory.newInstance().getXFire();
         factory = new ObjectServiceFactory(xfire.getTransportManager(), null);
+        xFireDelegate = this;
     }
 
     public void postPropertiesSet() {
         
-    }
-
-    public XFire getXFireInstance(){
-        return xfire;
-    }
-
-    public ServiceFactory getServiceFactory(){
-        return factory;
     }
 
     /**
