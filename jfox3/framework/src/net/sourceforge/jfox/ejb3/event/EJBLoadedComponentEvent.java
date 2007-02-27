@@ -1,4 +1,4 @@
-package net.sourceforge.jfox.ejb3;
+package net.sourceforge.jfox.ejb3.event;
 
 import net.sourceforge.jfox.framework.event.ComponentEvent;
 import net.sourceforge.jfox.framework.ComponentId;
@@ -6,9 +6,9 @@ import net.sourceforge.jfox.framework.ComponentId;
 /**
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
-public class EJBUnloadedComponentEvent extends ComponentEvent {
+public class EJBLoadedComponentEvent extends ComponentEvent {
 
-    public EJBUnloadedComponentEvent(ComponentId id) {
+    public EJBLoadedComponentEvent(ComponentId id) {
         super(id);
     }
 
