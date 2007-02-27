@@ -9,6 +9,8 @@ import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.ActiveComponent;
 import net.sourceforge.jfox.framework.component.ComponentContext;
 import net.sourceforge.jfox.framework.component.InstantiatedComponent;
+import net.sourceforge.jfox.framework.component.ComponentListener;
+import net.sourceforge.jfox.framework.event.ComponentEvent;
 import org.codehaus.xfire.MessageContext;
 import org.codehaus.xfire.XFire;
 import org.codehaus.xfire.XFireFactory;
@@ -22,7 +24,7 @@ import org.codehaus.xfire.service.invoker.Invoker;
  * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
  */
 @Service
-public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, ActiveComponent {
+public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, ActiveComponent, ComponentListener {
 
     @Inject
     EJBContainer ejbContainer;
@@ -54,6 +56,10 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
 
     public void postPropertiesSet() {
         
+    }
+
+    public void componentChanged(ComponentEvent componentEvent) {
+        //TODO: componentChanged
     }
 
     /**
