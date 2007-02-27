@@ -92,4 +92,9 @@ public interface EJBBucket {
      * EJB env context, java:comp/env 
      */
     Context getENContext();
+
+    /**
+     * 销毁 EJBBucket
+     */
+    void destroy();
 }

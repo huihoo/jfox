@@ -199,9 +199,11 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
     protected void unloadEJB(Module module) {
         Iterator<Map.Entry<String, EJBBucket>> it = bucketMap.entrySet().iterator();
         while (it.hasNext()) {
-            EJBBucket bucket = ((Map.Entry<String, EJBBucket>)it.next()).getValue();
+            EJBBucket bucket = it.next().getValue();
             if (bucket.getModule() == module) {
                 it.remove();
+                // destroy ejb bucket
+                bucket.destroy();
                 try {
                     this.getNamingContext().unbind(bucket.getMappedName());
                 }
