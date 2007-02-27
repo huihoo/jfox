@@ -74,7 +74,11 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
             if(ejbBucket instanceof StatelessEJBBucket){
                 Class wsEndpointInterface = ((StatelessEJBBucket)ejbBucket).getWebServiceEndpointInterface();
                 if(wsEndpointInterface != null){
+                    // 把 EJB 发布成 WebService
                     endpointInterface2EJBNameMap.put(wsEndpointInterface.getName(), ejbBucket.getName());
+                    org.codehaus.xfire.service.Service service = factory.create(wsEndpointInterface);
+                    service.setInvoker(this);
+                    xfire.getServiceRegistry().register(service);
                 }
             }
         }
@@ -88,16 +92,6 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
             }
         }
 
-    }
-
-    /**
-     * 把 EJB 发布成 WebService
-     * @param ejbBucket Statless EJB Bucket
-     */
-    public void exportEJBEndpoint(StatelessEJBBucket ejbBucket){
-        org.codehaus.xfire.service.Service service = factory.create(ejbBucket.getBeanInterfaces()[0]);
-        service.setInvoker(this);
-        xfire.getServiceRegistry().register(service);
     }
 
     /**

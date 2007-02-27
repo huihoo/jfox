@@ -31,8 +31,17 @@
     <listener>
         <listener-class>net.sourceforge.jfox.mvc.WebContextLoader</listener-class>
     </listener>
+    	<servlet>
+		<servlet-name>xfire_servlet</servlet-name>
+		<servlet-class>net.sourceforge.jfox.webservice.xfire.JFoxXFireServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+		<servlet-name>xfire_servlet</servlet-name>
+		<url-pattern>/webservice/*</url-pattern>
+	</servlet-mapping>
 
-	<servlet>
+    <servlet>
 		<servlet-name>controller_servlet</servlet-name>
 		<servlet-class>net.sourceforge.jfox.mvc.servlet.ControllerServlet</servlet-class>
         <init-param>

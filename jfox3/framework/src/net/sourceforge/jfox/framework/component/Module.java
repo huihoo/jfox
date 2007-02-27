@@ -16,6 +16,7 @@ import net.sourceforge.jfox.framework.Constants;
 import net.sourceforge.jfox.framework.Framework;
 import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.event.ComponentUnloadedEvent;
+import net.sourceforge.jfox.framework.event.ComponentLoadedEvent;
 import net.sourceforge.jfox.util.FileFilterUtils;
 import net.sourceforge.jfox.util.FileUtils;
 import net.sourceforge.jfox.util.PlaceholderUtils;
@@ -84,7 +85,7 @@ public class Module implements Comparable<Module> {
     public ComponentMeta loadComponent(Class<? extends Component> implementataionClass) throws ComponentResolvedFailedException {
         ComponentMeta meta = new ComponentMeta(this, implementataionClass);
         registerComponent(meta);
-        getFramework().getListenerManager().fireComponentEvent(new ComponentUnloadedEvent(meta.getComponentId()));
+        getFramework().getListenerManager().fireComponentEvent(new ComponentLoadedEvent(meta.getComponentId()));
         return meta;
     }
 

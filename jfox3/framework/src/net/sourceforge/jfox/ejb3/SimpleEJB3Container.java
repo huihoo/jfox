@@ -32,6 +32,8 @@ import net.sourceforge.jfox.ejb3.naming.ContextAdapter;
 import net.sourceforge.jfox.ejb3.naming.InitialContextFactoryImpl;
 import net.sourceforge.jfox.ejb3.timer.EJBTimer;
 import net.sourceforge.jfox.ejb3.transaction.JTATransactionManager;
+import net.sourceforge.jfox.ejb3.event.EJBLoadedComponentEvent;
+import net.sourceforge.jfox.ejb3.event.EJBUnloadedComponentEvent;
 import net.sourceforge.jfox.framework.annotation.Constant;
 import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.ActiveComponent;
@@ -170,6 +172,8 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
         for (Class beanClass : statelessBeans) {
             EJBBucket bucket = loadStatelessEJB(beanClass, module);
             buckets.add(bucket);
+            //fireEvent, 以便XFire可以 register Endpoint
+            componentContext.fireComponentEvent(new EJBLoadedComponentEvent(componentContext.getComponentId(),bucket));
             // bind to jndi
             try {
                 this.getNamingContext().bind(bucket.getMappedName(), bucket.getProxyStub());
@@ -203,8 +207,8 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
             EJBBucket bucket = it.next().getValue();
             if (bucket.getModule() == module) {
                 it.remove();
-                //TODO: fireEvent, 以便XFire可以 unregister Endpoint
-                //TODO: componentContext.fireComponentEvent(new ComponentEvent());
+                //fireEvent, 以便XFire可以 unregister Endpoint
+                componentContext.fireComponentEvent(new EJBUnloadedComponentEvent(componentContext.getComponentId(),bucket));
                 // destroy ejb bucket
                 bucket.destroy();
                 try {
