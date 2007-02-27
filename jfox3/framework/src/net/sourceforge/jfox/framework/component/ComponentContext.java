@@ -9,6 +9,7 @@ import net.sourceforge.jfox.framework.BaseException;
 import net.sourceforge.jfox.framework.BaseRuntimeException;
 import net.sourceforge.jfox.framework.ComponentId;
 import net.sourceforge.jfox.framework.Framework;
+import net.sourceforge.jfox.framework.event.ComponentEvent;
 
 /**
  * Component 上下文
@@ -118,6 +119,9 @@ public class ComponentContext {
         return getModule().findComponentByInterface(interfaceClass, moduleName);
     }
 
+    public void fireComponentEvent(ComponentEvent componentEvent){
+        getModule().getFramework().getListenerManager().fireComponentEvent(componentEvent);
+    }
 
     public static void main(String[] args) {
 
