@@ -199,3 +199,6 @@
 
 2007-02-21
     1. successView 支持 velocity
+
+2007-02-27
+    1. EJBContainer 通过 fireComponentEvent来通知 XFire unregister Endpoint
