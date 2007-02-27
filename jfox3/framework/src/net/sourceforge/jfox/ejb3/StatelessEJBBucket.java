@@ -1,52 +1,52 @@
 package net.sourceforge.jfox.ejb3;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Proxy;
+import java.security.Identity;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.Properties;
-import java.util.Date;
-import java.util.Collection;
-import java.security.Principal;
-import java.security.Identity;
-import java.io.Serializable;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.annotation.Resources;
 import javax.ejb.EJB;
+import javax.ejb.EJBContext;
 import javax.ejb.EJBException;
+import javax.ejb.EJBHome;
+import javax.ejb.EJBLocalHome;
 import javax.ejb.EJBObject;
 import javax.ejb.EJBs;
 import javax.ejb.Local;
+import javax.ejb.Remote;
 import javax.ejb.Remove;
 import javax.ejb.Stateless;
-import javax.ejb.Remote;
-import javax.ejb.EJBContext;
-import javax.ejb.EJBHome;
-import javax.ejb.EJBLocalHome;
-import javax.ejb.TimerService;
 import javax.ejb.Timer;
+import javax.ejb.TimerService;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptors;
 import javax.interceptor.InvocationContext;
+import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
 import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
-import javax.naming.Context;
-import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
-import javax.transaction.UserTransaction;
-import javax.transaction.SystemException;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Status;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 
 import net.sourceforge.jfox.ejb3.dependent.EJBDependence;
 import net.sourceforge.jfox.ejb3.dependent.FieldEJBDependence;
@@ -54,17 +54,16 @@ import net.sourceforge.jfox.ejb3.dependent.FieldResourceDependence;
 import net.sourceforge.jfox.ejb3.dependent.ResourceDependence;
 import net.sourceforge.jfox.ejb3.naming.ContextAdapter;
 import net.sourceforge.jfox.ejb3.timer.EJBTimer;
+import net.sourceforge.jfox.entity.dependent.FieldPersistenceContextDependence;
 import net.sourceforge.jfox.framework.component.Module;
 import net.sourceforge.jfox.framework.component.ModuleClassLoader;
 import net.sourceforge.jfox.framework.dependent.InjectionException;
 import net.sourceforge.jfox.util.AnnotationUtils;
 import net.sourceforge.jfox.util.ClassUtils;
 import net.sourceforge.jfox.util.MethodUtils;
-import net.sourceforge.jfox.entity.dependent.FieldPersistenceContextDependence;
 import org.apache.commons.pool.PoolableObjectFactory;
 import org.apache.commons.pool.impl.GenericObjectPool;
 import org.apache.log4j.Logger;
-import org.codehaus.xfire.service.Service;
 
 /**
  * Container of Statless EJB，store all Meta data, and as EJB Factory
@@ -153,7 +152,6 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
      * Web Service 发布接口
      */
     private Class webServiceEndpointInterface = null;
-    private Service webServiceEndpoint = null;
 
     public StatelessEJBBucket(EJBContainer container, Class<?> beanClass, Module module) {
         this.container = container;
@@ -206,7 +204,6 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
 
         injectClassDependents();
     }
-
 
     protected void injectClassDependents() {
         //解析类级依赖
@@ -514,6 +511,10 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
     public Class getWebServiceEndpointInterface(){
         //TOOD: 获取 webServiceEndpointInterface
         return webServiceEndpointInterface;
+    }
+
+    public void destroy() {
+        //TODO: destroy
     }
 
     /**

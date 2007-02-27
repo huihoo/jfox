@@ -1,9 +1,14 @@
 package net.sourceforge.jfox.webservice.xfire;
 
 import java.lang.reflect.Method;
+import java.util.Map;
+import java.util.HashMap;
 
 import net.sourceforge.jfox.ejb3.EJBContainer;
 import net.sourceforge.jfox.ejb3.StatelessEJBBucket;
+import net.sourceforge.jfox.ejb3.EJBBucket;
+import net.sourceforge.jfox.ejb3.event.EJBLoadedComponentEvent;
+import net.sourceforge.jfox.ejb3.event.EJBUnloadedComponentEvent;
 import net.sourceforge.jfox.framework.annotation.Inject;
 import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.ActiveComponent;
@@ -41,6 +46,11 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
 
     public static JFoxXFireDelegate xFireDelegate = null;
 
+    /**
+     * EJB Endpoint interface => ejb name
+     */
+    private Map<String, String> endpointInterface2EJBNameMap = new HashMap<String, String>();
+
     public static XFire getXFireInstance(){
         if(xFireDelegate == null) {
             throw new NullPointerException("XFire is not initialized!");
@@ -59,7 +69,25 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
     }
 
     public void componentChanged(ComponentEvent componentEvent) {
-        //TODO: componentChanged
+        if(componentEvent instanceof EJBLoadedComponentEvent) {
+            EJBBucket ejbBucket = ((EJBLoadedComponentEvent)componentEvent).getEJBBucket();
+            if(ejbBucket instanceof StatelessEJBBucket){
+                Class wsEndpointInterface = ((StatelessEJBBucket)ejbBucket).getWebServiceEndpointInterface();
+                if(wsEndpointInterface != null){
+                    endpointInterface2EJBNameMap.put(wsEndpointInterface.getName(), ejbBucket.getName());
+                }
+            }
+        }
+        if(componentEvent instanceof EJBUnloadedComponentEvent) {
+            EJBBucket ejbBucket = ((EJBUnloadedComponentEvent)componentEvent).getEJBBucket();
+            if(ejbBucket instanceof StatelessEJBBucket){
+                Class wsEndpointInterface = ((StatelessEJBBucket)ejbBucket).getWebServiceEndpointInterface();
+                if(wsEndpointInterface != null){
+                    endpointInterface2EJBNameMap.remove(wsEndpointInterface.getName());
+                }
+            }
+        }
+
     }
 
     /**
@@ -91,10 +119,8 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
         }
     }
 
-    public String getEJBNameByWebServiceEndpointInterface(Class endpointInterface){
-        //TODO: getEJBNameByWebServiceEndpointInterface
-        //TODO: 有必要在 EJBContainer 中建立 EndpointInterface=>ejb-name的对应关系
-        return null;
+    private String getEJBNameByWebServiceEndpointInterface(Class endpointInterface){
+        return endpointInterface2EJBNameMap.get(endpointInterface.getName());
     }
 
 }
