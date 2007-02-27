@@ -64,6 +64,7 @@ import net.sourceforge.jfox.entity.dependent.FieldPersistenceContextDependence;
 import org.apache.commons.pool.PoolableObjectFactory;
 import org.apache.commons.pool.impl.GenericObjectPool;
 import org.apache.log4j.Logger;
+import org.codehaus.xfire.service.Service;
 
 /**
  * Container of Statless EJB，store all Meta data, and as EJB Factory
@@ -152,6 +153,7 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
      * Web Service 发布接口
      */
     private Class webServiceEndpointInterface = null;
+    private Service webServiceEndpoint = null;
 
     public StatelessEJBBucket(EJBContainer container, Class<?> beanClass, Module module) {
         this.container = container;
