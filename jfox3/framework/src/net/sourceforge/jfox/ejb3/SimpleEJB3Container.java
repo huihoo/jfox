@@ -160,7 +160,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
                 bucketMap.put(bucket.getName(), bucket);
             }
         }
-        if (moduleEvent instanceof ModuleUnloadedEvent) {
+        else if (moduleEvent instanceof ModuleUnloadedEvent) {
             Module module = moduleEvent.getModule();
             unloadEJB(module);
         }

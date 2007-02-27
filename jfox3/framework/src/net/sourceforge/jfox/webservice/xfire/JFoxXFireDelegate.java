@@ -82,7 +82,7 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
                 }
             }
         }
-        if(componentEvent instanceof EJBUnloadedComponentEvent) {
+        else if(componentEvent instanceof EJBUnloadedComponentEvent) {
             EJBBucket ejbBucket = ((EJBUnloadedComponentEvent)componentEvent).getEJBBucket();
             if(ejbBucket instanceof StatelessEJBBucket){
                 Class wsEndpointInterface = ((StatelessEJBBucket)ejbBucket).getWebServiceEndpointInterface();
