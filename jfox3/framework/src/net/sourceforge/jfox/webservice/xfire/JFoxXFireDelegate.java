@@ -65,7 +65,7 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
     }
 
     public void postPropertiesSet() {
-        
+        // need do nothing
     }
 
     public void componentChanged(ComponentEvent componentEvent) {
