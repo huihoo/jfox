@@ -22,8 +22,8 @@ import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
 import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
-import javax.transaction.TransactionManager;
 import javax.transaction.SystemException;
+import javax.transaction.TransactionManager;
 
 import net.sourceforge.jfox.ejb3.invocation.InterceptorsEJBInvocationHandler;
 import net.sourceforge.jfox.ejb3.invocation.ThreadContextEJBInvocationHandler;
@@ -32,8 +32,8 @@ import net.sourceforge.jfox.ejb3.naming.ContextAdapter;
 import net.sourceforge.jfox.ejb3.naming.InitialContextFactoryImpl;
 import net.sourceforge.jfox.ejb3.timer.EJBTimer;
 import net.sourceforge.jfox.ejb3.transaction.JTATransactionManager;
-import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.annotation.Constant;
+import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.ActiveComponent;
 import net.sourceforge.jfox.framework.component.Component;
 import net.sourceforge.jfox.framework.component.ComponentContext;
@@ -85,6 +85,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
      */
     private final Map<String, Object> jndiMap = new ConcurrentHashMap<String, Object>();
 
+    private ComponentContext componentContext;
 
     public SimpleEJB3Container() {
         invocationChain.add(new ThreadContextEJBInvocationHandler());
@@ -93,7 +94,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
     }
 
     public void instantiated(ComponentContext componentContext) {
-
+        this.componentContext = componentContext;
     }
 
     public void postPropertiesSet() {
@@ -202,6 +203,8 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
             EJBBucket bucket = it.next().getValue();
             if (bucket.getModule() == module) {
                 it.remove();
+                //TODO: fireEvent, 以便XFire可以 unregister Endpoint
+                //TODO: componentContext.fireComponentEvent(new ComponentEvent());
                 // destroy ejb bucket
                 bucket.destroy();
                 try {
