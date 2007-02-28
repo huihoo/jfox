@@ -20,8 +20,8 @@ import org.codehaus.xfire.MessageContext;
 import org.codehaus.xfire.XFire;
 import org.codehaus.xfire.XFireFactory;
 import org.codehaus.xfire.fault.XFireFault;
-import org.codehaus.xfire.jaxws.JAXWSServiceFactory;
 import org.codehaus.xfire.service.ServiceFactory;
+import org.codehaus.xfire.service.binding.ObjectServiceFactory;
 import org.codehaus.xfire.service.invoker.Invoker;
 
 /**
@@ -60,8 +60,8 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
 
     public void instantiated(ComponentContext componentContext) {
         xfire = XFireFactory.newInstance().getXFire();
-        //TODO: 需要建立新的 ServiceFactory，使用已经 load 的 endpointInterface
-        factory = new JAXWSServiceFactory(xfire.getTransportManager());
+        //是否可以考虑直接使用 XFire 的 JAXAWSServiceFactory
+        factory = new ObjectServiceFactory(xfire.getTransportManager());
         xFireDelegate = this;
     }
 
