@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.net.URL;
+import java.io.IOException;
 
 import javax.xml.namespace.QName;
 import javax.jws.WebService;
@@ -23,7 +24,11 @@ import net.sourceforge.jfox.framework.event.ComponentEvent;
 import org.codehaus.xfire.MessageContext;
 import org.codehaus.xfire.XFire;
 import org.codehaus.xfire.XFireFactory;
+import org.codehaus.xfire.transport.TransportManager;
+import org.codehaus.xfire.wsdl.ResourceWSDL;
+import org.codehaus.xfire.util.NamespaceHelper;
 import org.codehaus.xfire.annotations.AnnotationServiceFactory;
+import org.codehaus.xfire.annotations.AnnotationException;
 import org.codehaus.xfire.fault.XFireFault;
 import org.codehaus.xfire.service.ServiceFactory;
 import org.codehaus.xfire.service.binding.ObjectServiceFactory;
@@ -33,7 +38,7 @@ import org.codehaus.xfire.service.invoker.Invoker;
  * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
  */
 @Service
-public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, ActiveComponent, ComponentListener {
+public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, ActiveComponent, ComponentListener {
 
     @Inject
     EJBContainer ejbContainer;
@@ -65,7 +70,7 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
     public void instantiated(ComponentContext componentContext) {
         xfire = XFireFactory.newInstance().getXFire();
         //是否可以考虑直接使用 XFire 的 JAXAWSServiceFactory
-        factory = new ObjectServiceFactory(xfire.getTransportManager());
+        factory = new EJBServiceFactory(xfire.getTransportManager());
         xFireDelegate = this;
     }
 
@@ -123,19 +128,52 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
     }
 
 
-    class JFoxXFireServiceFactory extends ObjectServiceFactory {
+    /**
+     * EJB Service Factory
+     */
+    class EJBServiceFactory extends ObjectServiceFactory {
 
-        public org.codehaus.xfire.service.Service create(StatelessEJBBucket ejbBucket) {
-            WebService wsAnnotation = ejbBucket.getWebServiceAnnotation();
-            Class endpointInterface = ejbBucket.getWebServiceEndpointInterface();
-            
-
-            return null;
+        public EJBServiceFactory(TransportManager transportManager) {
+            super(transportManager);
         }
 
-        //TODO: 参考 AnnotationsServiceFactory
-        public org.codehaus.xfire.service.Service create(Class clazz, String name, String namespace, Map properties) {
-            return super.create(clazz, name, namespace, properties);
+        public org.codehaus.xfire.service.Service create(StatelessEJBBucket ejbBucket) {
+            Map properties = new HashMap();
+            WebService wsAnnotation = ejbBucket.getWebServiceAnnotation();
+            Class endpointInterface = ejbBucket.getWebServiceEndpointInterface();
+
+            String serviceName = wsAnnotation.serviceName();
+            if (serviceName == null || serviceName.trim().length() == 0) {
+                serviceName = makeServiceNameFromClassName(endpointInterface);
+            }
+
+            String serviceNameSpace = wsAnnotation.targetNamespace();
+            if (serviceNameSpace == null || serviceNameSpace.trim().length() == 0) {
+                serviceNameSpace = NamespaceHelper.makeNamespaceFromClassName(ejbBucket.getBeanClass().getName(), "http");
+            }
+
+            String portType = wsAnnotation.name();
+            if (portType == null || portType.trim().length() == 0) {
+                portType = serviceName + "PortType";
+            }
+
+            properties.put(PORT_TYPE, new QName(serviceNameSpace, portType));
+            String pname = wsAnnotation.portName();
+            if (pname != null && pname.length() > 0) {
+                properties.put(PORT_NAME, new QName(serviceNameSpace, pname));
+            }
+
+            org.codehaus.xfire.service.Service service = create(endpointInterface, serviceName, serviceNameSpace, properties);
+            String wsdl = wsAnnotation.wsdlLocation();
+            if (wsdl != null && wsdl.length() > 0) {
+                try {
+                    service.setWSDLWriter(new ResourceWSDL(wsdl));
+                }
+                catch (IOException e) {
+                    throw new AnnotationException("Couldn't load wsdl from " + wsdl, e);
+                }
+            }
+            return service;
         }
 
         public org.codehaus.xfire.service.Service create(Class clazz, QName name, URL wsdlUrl, Map properties) {
