@@ -195,11 +195,22 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
 
         setDescription(stateless.description());
 
-        //TODO: WebService
+        //parse @WebService, simple parse @WebService
         if(beanClass.isAnnotationPresent(WebService.class)){
             WebService wsAnnotation = beanClass.getAnnotation(WebService.class);
             String endpointInterfaceName = wsAnnotation.endpointInterface();
-            Class endpointInterface = this.getClass().getClassLoader().loadClass(endpointInterfaceName);
+            try {
+                Class endpointInterface = this.getClass().getClassLoader().loadClass(endpointInterfaceName);
+                if(!endpointInterface.isInterface() || !Modifier.isPublic(endpointInterface.getModifiers())) {
+                    logger.warn("Invalid endpoint interface: " + endpointInterface + " annotated in EJB bean class: " + getBeanClass().getName());
+                }
+                else {
+                    this.webServiceEndpointInterface = endpointInterface;
+                }
+            }
+            catch(Exception e) {
+                logger.warn("Can not load endpoint interface: " + endpointInterfaceName + " annotated in EJB bean class: " + getBeanClass().getName());
+            }
         }
 
         pool.setFactory(this);
@@ -522,8 +533,11 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
         return webServiceEndpointInterface;
     }
 
+    /**
+     * destroy bucket, invoke when container unload ejb
+     */
     public void destroy() {
-        //TODO: destroy
+        // do nothing
     }
 
     /**
