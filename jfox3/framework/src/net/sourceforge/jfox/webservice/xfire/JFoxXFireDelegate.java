@@ -6,6 +6,7 @@ import java.util.Map;
 import java.net.URL;
 
 import javax.xml.namespace.QName;
+import javax.jws.WebService;
 
 import net.sourceforge.jfox.ejb3.EJBBucket;
 import net.sourceforge.jfox.ejb3.EJBContainer;
@@ -123,6 +124,14 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
 
 
     class JFoxXFireServiceFactory extends ObjectServiceFactory {
+
+        public org.codehaus.xfire.service.Service create(StatelessEJBBucket ejbBucket) {
+            WebService wsAnnotation = ejbBucket.getWebServiceAnnotation();
+            Class endpointInterface = ejbBucket.getWebServiceEndpointInterface();
+            
+
+            return null;
+        }
 
         //TODO: 参考 AnnotationsServiceFactory
         public org.codehaus.xfire.service.Service create(Class clazz, String name, String namespace, Map properties) {

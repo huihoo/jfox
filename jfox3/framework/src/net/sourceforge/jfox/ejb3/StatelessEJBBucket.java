@@ -153,6 +153,7 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
      * Web Service 发布接口
      */
     private Class webServiceEndpointInterface = null;
+    private WebService wsAnnotation = null;
 
     public StatelessEJBBucket(EJBContainer container, Class<?> beanClass, Module module) {
         this.container = container;
@@ -197,7 +198,7 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
 
         //parse @WebService, simple parse @WebService
         if(beanClass.isAnnotationPresent(WebService.class)){
-            WebService wsAnnotation = beanClass.getAnnotation(WebService.class);
+            wsAnnotation = beanClass.getAnnotation(WebService.class);
             String endpointInterfaceName = wsAnnotation.endpointInterface();
             try {
                 Class endpointInterface = this.getClass().getClassLoader().loadClass(endpointInterfaceName);
@@ -531,6 +532,11 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
     public Class getWebServiceEndpointInterface(){
         //TOOD: 获取 webServiceEndpointInterface
         return webServiceEndpointInterface;
+    }
+
+
+    public WebService getWebServiceAnnotation() {
+        return wsAnnotation;
     }
 
     /**
