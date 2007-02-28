@@ -47,6 +47,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Status;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
+import javax.jws.WebService;
 
 import net.sourceforge.jfox.ejb3.dependent.EJBDependence;
 import net.sourceforge.jfox.ejb3.dependent.FieldEJBDependence;
@@ -193,6 +194,12 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
         setMappedName(mappedName);
 
         setDescription(stateless.description());
+
+        //TODO: WebService
+        if(beanClass.isAnnotationPresent(WebService.class)){
+
+        }
+
         pool.setFactory(this);
 
         introspectMethods();
