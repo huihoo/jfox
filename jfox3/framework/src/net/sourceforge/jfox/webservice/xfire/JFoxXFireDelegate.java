@@ -1,13 +1,12 @@
 package net.sourceforge.jfox.webservice.xfire;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.net.URL;
-import java.io.IOException;
-
-import javax.xml.namespace.QName;
 import javax.jws.WebService;
+import javax.xml.namespace.QName;
 
 import net.sourceforge.jfox.ejb3.EJBBucket;
 import net.sourceforge.jfox.ejb3.EJBContainer;
@@ -24,15 +23,14 @@ import net.sourceforge.jfox.framework.event.ComponentEvent;
 import org.codehaus.xfire.MessageContext;
 import org.codehaus.xfire.XFire;
 import org.codehaus.xfire.XFireFactory;
-import org.codehaus.xfire.transport.TransportManager;
-import org.codehaus.xfire.wsdl.ResourceWSDL;
-import org.codehaus.xfire.util.NamespaceHelper;
-import org.codehaus.xfire.annotations.AnnotationServiceFactory;
 import org.codehaus.xfire.annotations.AnnotationException;
+import org.codehaus.xfire.annotations.AnnotationServiceFactory;
 import org.codehaus.xfire.fault.XFireFault;
-import org.codehaus.xfire.service.ServiceFactory;
 import org.codehaus.xfire.service.binding.ObjectServiceFactory;
 import org.codehaus.xfire.service.invoker.Invoker;
+import org.codehaus.xfire.transport.TransportManager;
+import org.codehaus.xfire.util.NamespaceHelper;
+import org.codehaus.xfire.wsdl.ResourceWSDL;
 
 /**
  * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
@@ -51,7 +49,7 @@ public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, Activ
     /**
      * XFire Service Factory
      */
-    private ServiceFactory factory;
+    private EJBServiceFactory factory;
 
     public static JFoxXFireDelegate xFireDelegate = null;
 
@@ -86,7 +84,7 @@ public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, Activ
                 if (wsEndpointInterface != null) {
                     // 把 EJB 发布成 WebService
                     endpointInterface2EJBNameMap.put(wsEndpointInterface.getName(), ejbBucket.getName());
-                    org.codehaus.xfire.service.Service service = factory.create(wsEndpointInterface);
+                    org.codehaus.xfire.service.Service service = factory.create((StatelessEJBBucket)ejbBucket);
                     service.setInvoker(this);
                     xfire.getServiceRegistry().register(service);
                 }
