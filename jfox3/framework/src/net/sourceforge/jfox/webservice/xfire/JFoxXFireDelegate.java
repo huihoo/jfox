@@ -1,27 +1,27 @@
 package net.sourceforge.jfox.webservice.xfire;
 
 import java.lang.reflect.Method;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
+import net.sourceforge.jfox.ejb3.EJBBucket;
 import net.sourceforge.jfox.ejb3.EJBContainer;
 import net.sourceforge.jfox.ejb3.StatelessEJBBucket;
-import net.sourceforge.jfox.ejb3.EJBBucket;
 import net.sourceforge.jfox.ejb3.event.EJBLoadedComponentEvent;
 import net.sourceforge.jfox.ejb3.event.EJBUnloadedComponentEvent;
 import net.sourceforge.jfox.framework.annotation.Inject;
 import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.ActiveComponent;
 import net.sourceforge.jfox.framework.component.ComponentContext;
-import net.sourceforge.jfox.framework.component.InstantiatedComponent;
 import net.sourceforge.jfox.framework.component.ComponentListener;
+import net.sourceforge.jfox.framework.component.InstantiatedComponent;
 import net.sourceforge.jfox.framework.event.ComponentEvent;
 import org.codehaus.xfire.MessageContext;
 import org.codehaus.xfire.XFire;
 import org.codehaus.xfire.XFireFactory;
 import org.codehaus.xfire.fault.XFireFault;
+import org.codehaus.xfire.jaxws.JAXWSServiceFactory;
 import org.codehaus.xfire.service.ServiceFactory;
-import org.codehaus.xfire.service.binding.ObjectServiceFactory;
 import org.codehaus.xfire.service.invoker.Invoker;
 
 /**
@@ -60,7 +60,8 @@ public class JFoxXFireDelegate implements Invoker, InstantiatedComponent, Active
 
     public void instantiated(ComponentContext componentContext) {
         xfire = XFireFactory.newInstance().getXFire();
-        factory = new ObjectServiceFactory(xfire.getTransportManager(), null);
+        //TODO: 需要建立新的 ServiceFactory，使用已经 load 的 endpointInterface
+        factory = new JAXWSServiceFactory(xfire.getTransportManager());
         xFireDelegate = this;
     }
 

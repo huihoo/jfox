@@ -197,7 +197,9 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
 
         //TODO: WebService
         if(beanClass.isAnnotationPresent(WebService.class)){
-
+            WebService wsAnnotation = beanClass.getAnnotation(WebService.class);
+            String endpointInterfaceName = wsAnnotation.endpointInterface();
+            Class endpointInterface = this.getClass().getClassLoader().loadClass(endpointInterfaceName);
         }
 
         pool.setFactory(this);
