@@ -72,7 +72,6 @@ import org.apache.log4j.Logger;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@SuppressWarnings({"deprecation"})
 public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
 
     private static final Logger logger = Logger.getLogger(StatelessEJBBucket.class);
@@ -363,7 +362,7 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
             return true;
         }
         else {
-            logger.warn("Invalid @" + lifecyleAnnotation.getSimpleName() + " method: " + lifecycleMethod);
+            logger.warn("Invalid @" + lifecyleAnnotation.getSimpleName() + " method: " + lifecycleMethod + " in class: " + interceptorClass);
             return false;
         }
     }
@@ -484,7 +483,7 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
     /**
      * 将实例返回给 pool
      *
-     * @param beanInstance
+     * @param beanInstance ejb bean instance
      * @throws Exception exception
      */
     public void reuseEJBInstance(Object beanInstance) throws Exception {
