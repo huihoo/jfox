@@ -47,7 +47,7 @@ public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, Activ
     private XFire xfire;
 
     /**
-     * XFire Service Factory
+     * EJB XFire Service Factory
      */
     private EJBServiceFactory factory;
 
@@ -84,6 +84,7 @@ public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, Activ
                 if (wsEndpointInterface != null) {
                     // 把 EJB 发布成 WebService
                     endpointInterface2EJBNameMap.put(wsEndpointInterface.getName(), ejbBucket.getName());
+                    // create xfire service by stateless bucket
                     org.codehaus.xfire.service.Service service = factory.create((StatelessEJBBucket)ejbBucket);
                     service.setInvoker(this);
                     xfire.getServiceRegistry().register(service);
@@ -135,8 +136,8 @@ public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, Activ
             super(transportManager);
         }
 
-        public org.codehaus.xfire.service.Service create(StatelessEJBBucket ejbBucket) {
-            Map properties = new HashMap();
+        org.codehaus.xfire.service.Service create(StatelessEJBBucket ejbBucket) {
+            Map<String,Object> properties = new HashMap<String,Object>();
             WebService wsAnnotation = ejbBucket.getWebServiceAnnotation();
             Class endpointInterface = ejbBucket.getWebServiceEndpointInterface();
 
@@ -174,6 +175,7 @@ public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, Activ
             return service;
         }
 
+        @SuppressWarnings("unchecked")
         public org.codehaus.xfire.service.Service create(Class clazz, QName name, URL wsdlUrl, Map properties) {
             if (properties == null) {
                 properties = new HashMap();
