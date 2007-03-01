@@ -737,6 +737,7 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
         }
 
         public UserTransaction getUserTransaction() throws IllegalStateException {
+            // CMT 不返回 UserTransaction
             return null;
         }
 
