@@ -33,6 +33,8 @@ import org.codehaus.xfire.util.NamespaceHelper;
 import org.codehaus.xfire.wsdl.ResourceWSDL;
 
 /**
+ * 使用 XFire 实现 Web Service
+ *
  * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
  */
 @Service

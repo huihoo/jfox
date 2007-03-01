@@ -6,6 +6,8 @@ import org.codehaus.xfire.transport.http.XFireServlet;
 import org.codehaus.xfire.XFire;
 
 /**
+ * 用来接受 WebService 请求的 Servlet
+ *
  * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
  */
 public class JFoxXFireServlet extends XFireServlet {
