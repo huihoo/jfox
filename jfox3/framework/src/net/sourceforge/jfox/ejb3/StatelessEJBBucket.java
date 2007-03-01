@@ -285,7 +285,7 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
                 preDestroyMethods.add(preDestroyMethod);
             }
             else {
-                logger.warn("Invalid @Remove method: " + preDestroyMethod);
+                logger.warn("Invalid @preDestroy method: " + preDestroyMethod);
             }
         }
     }
@@ -333,7 +333,7 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
                         }
                     }
                 }
-                //TODO:检查 Interceptors 中的 PostConstruct Remove
+                //TODO:检查 Interceptors 中的 PostConstruct PreDestroy
             }
             //如果是 Bean Class 本身，则还需要发现方法级的 interceptor
             if (clazz.equals(getBeanClass())) {
