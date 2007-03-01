@@ -1,7 +1,7 @@
 package net.sourceforge.jfox.ejb3;
 
 import java.lang.reflect.Method;
-import java.util.List;
+import java.util.Collection;
 import javax.ejb.EJBContext;
 import javax.ejb.EJBObject;
 import javax.naming.Context;
@@ -71,9 +71,9 @@ public interface EJBBucket {
     /**
      * 所有类级别的拦截方法
      */
-    List<Method> getClassInterceptorMethods();
+    Collection<Method> getClassInterceptorMethods();
 
-    List<Method> getMethodInterceptorMethods(Method method);
+    Collection<Method> getMethodInterceptorMethods(Method method);
     
     /**
      * 是否是 @Remote EJB

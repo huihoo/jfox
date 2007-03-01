@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Collection;
 import javax.transaction.TransactionManager;
 
 /**
@@ -48,7 +49,7 @@ public class EJBInvocation {
         this.tm = tm;
     }
 
-    public List<Method> getInterceptorMethods() {
+    public Collection<Method> getInterceptorMethods() {
         final List<Method> interceptorMethods = new ArrayList<Method>();
         // class level interceptor
         interceptorMethods.addAll(getBucket().getClassInterceptorMethods());

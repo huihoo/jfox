@@ -202,3 +202,6 @@
 
 2007-02-27
     1. EJBContainer 通过 fireComponentEvent来通知 XFire unregister Endpoint
+
+2007-03-02
+    1. 只取 Bean Class 的 @Interceptors

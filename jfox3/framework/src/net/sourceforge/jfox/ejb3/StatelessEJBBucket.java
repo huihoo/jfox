@@ -201,19 +201,19 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
         setDescription(stateless.description());
 
         //parse @WebService, simple parse @WebService
-        if(beanClass.isAnnotationPresent(WebService.class)){
+        if (beanClass.isAnnotationPresent(WebService.class)) {
             wsAnnotation = beanClass.getAnnotation(WebService.class);
             String endpointInterfaceName = wsAnnotation.endpointInterface();
             try {
                 Class endpointInterface = this.getClass().getClassLoader().loadClass(endpointInterfaceName);
-                if(!endpointInterface.isInterface() || !Modifier.isPublic(endpointInterface.getModifiers())) {
+                if (!endpointInterface.isInterface() || !Modifier.isPublic(endpointInterface.getModifiers())) {
                     logger.warn("Invalid endpoint interface: " + endpointInterface + " annotated in EJB bean class: " + getBeanClass().getName());
                 }
                 else {
                     this.webServiceEndpointInterface = endpointInterface;
                 }
             }
-            catch(Exception e) {
+            catch (Exception e) {
                 logger.warn("Can not load endpoint interface: " + endpointInterfaceName + " annotated in EJB bean class: " + getBeanClass().getName());
             }
         }
@@ -237,7 +237,7 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
                 ejbDependence.inject(null);
             }
             catch (InjectionException e) {
-                throw new EJBException("@EJB inject failed.",e);
+                throw new EJBException("@EJB inject failed.", e);
             }
         }
 
@@ -246,7 +246,7 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
                 resourceDependence.inject(null);
             }
             catch (InjectionException e) {
-                throw new EJBException("@Resource inject failed.",e);
+                throw new EJBException("@Resource inject failed.", e);
             }
         }
     }
@@ -297,43 +297,19 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
         // beanClass is in superClass array
         Class<?>[] superClasses = ClassUtils.getAllSuperclasses(getBeanClass());
         // 找出所有 Interceptors 类
-        if (superClasses.length == 0) {
-            return;
-        }
-        for (int i = superClasses.length - 1; i >= 0; i--) {
+        for (int i = 0; i < superClasses.length; i++) {
             Class<?> clazz = superClasses[i];
-            if (clazz.isAnnotationPresent(Interceptors.class)) {
-                Interceptors interceptors = clazz.getAnnotation(Interceptors.class);
-                Class[] interceptorClasses = interceptors.value();
-
-                // 取出 @AroundInvoke 方法
-                for (Class<?> interceptorClass : interceptorClasses) {
-                    Method[] aroundInvokeMethods = AnnotationUtils.getAnnotatedMethods(interceptorClass, AroundInvoke.class);
-                    for (Method aroundInvokeMethod : aroundInvokeMethods) {
-                        if (checkInterceptorMethod(interceptorClass, aroundInvokeMethod)) {
-                            // 还没有在classInterceptorMethods中，子类如果覆盖了父类的方法，父类的方法将不再执行
-                            if (!classInterceptorMethods.contains(aroundInvokeMethod)) {
-                                aroundInvokeMethod.setAccessible(true);
-                                classInterceptorMethods.add(aroundInvokeMethod);
-                            }
+            Method[] aroundInvokeMethods = AnnotationUtils.getAnnotatedDeclaredMethods(clazz, AroundInvoke.class);
+            if (aroundInvokeMethods.length > 0) {
+                for (Method aroundInvokeMethod : aroundInvokeMethods) {
+                    if (checkInterceptorMethod(clazz, aroundInvokeMethod)) {
+                        // 还没有在classInterceptorMethods中，子类如果覆盖了父类的方法，父类的方法将不再执行
+                        if (!classInterceptorMethods.contains(aroundInvokeMethod)) {
+                            aroundInvokeMethod.setAccessible(true);
+                            classInterceptorMethods.add(0,aroundInvokeMethod);
                         }
                     }
                 }
-            }
-            else {
-                Method[] aroundInvokeMethods = AnnotationUtils.getAnnotatedDeclaredMethods(clazz, AroundInvoke.class);
-                if (aroundInvokeMethods.length > 0) {
-                    for (Method aroundInvokeMethod : aroundInvokeMethods) {
-                        if (checkInterceptorMethod(clazz, aroundInvokeMethod)) {
-                            // 还没有在classInterceptorMethods中，子类如果覆盖了父类的方法，父类的方法将不再执行
-                            if (!classInterceptorMethods.contains(aroundInvokeMethod)) {
-                                aroundInvokeMethod.setAccessible(true);
-                                classInterceptorMethods.add(aroundInvokeMethod);
-                            }
-                        }
-                    }
-                }
-                //TODO:检查 Interceptors 中的 PostConstruct PreDestroy
             }
             //如果是 Bean Class 本身，则还需要发现方法级的 interceptor
             if (clazz.equals(getBeanClass())) {
@@ -343,16 +319,35 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
                     Class[] interceptorClasses = interceptors.value();
                     // 取出 @AroundInvoke 方法
                     for (Class<?> interceptorClass : interceptorClasses) {
-                        Method[] aroundInvokeMethods = AnnotationUtils.getAnnotatedMethods(interceptorClass, AroundInvoke.class);
+                        Method[] interceptorsAroundInvokeMethods = AnnotationUtils.getAnnotatedMethods(interceptorClass, AroundInvoke.class);
                         List<Method> validAroundInvokeMethods = new ArrayList<Method>();
-                        for (Method aroundInvokeMethod : aroundInvokeMethods) {
+                        for (Method aroundInvokeMethod : interceptorsAroundInvokeMethods) {
                             if (checkInterceptorMethod(clazz, aroundInvokeMethod)) {
-                                validAroundInvokeMethods.add(aroundInvokeMethod);
+                                validAroundInvokeMethods.add(0, aroundInvokeMethod);
                             }
                         }
                         methodInterceptorMethods.put(interceptedBeanMethod, validAroundInvokeMethods);
                     }
                 }
+                if (clazz.isAnnotationPresent(Interceptors.class)) {
+                    Interceptors interceptors = clazz.getAnnotation(Interceptors.class);
+                    Class[] interceptorClasses = interceptors.value();
+
+                    // 取出 @AroundInvoke 方法
+                    for (Class<?> interceptorClass : interceptorClasses) {
+                        Method[] interceptorsAroundInvokeMethods = AnnotationUtils.getAnnotatedMethods(interceptorClass, AroundInvoke.class);
+                        for (Method aroundInvokeMethod : interceptorsAroundInvokeMethods) {
+                            if (checkInterceptorMethod(interceptorClass, aroundInvokeMethod)) {
+                                // 还没有在classInterceptorMethods中，子类如果覆盖了父类的方法，父类的方法将不再执行
+                                if (!classInterceptorMethods.contains(aroundInvokeMethod)) {
+                                    aroundInvokeMethod.setAccessible(true);
+                                    classInterceptorMethods.add(0, aroundInvokeMethod);
+                                }
+                            }
+                        }
+                    }
+                }
+                //TODO:检查 Interceptors 中的 PostConstruct PreDestroy
             }
         }
     }
@@ -516,12 +511,12 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
         return container;
     }
 
-    public List<Method> getClassInterceptorMethods() {
-        return Collections.unmodifiableList(classInterceptorMethods);
+    public Collection<Method> getClassInterceptorMethods() {
+        return Collections.unmodifiableCollection(classInterceptorMethods);
     }
 
-    public List<Method> getMethodInterceptorMethods(Method method) {
-        if(methodInterceptorMethods.containsKey(method)){
+    public Collection<Method> getMethodInterceptorMethods(Method method) {
+        if (methodInterceptorMethods.containsKey(method)) {
             return Collections.unmodifiableList(methodInterceptorMethods.get(method));
         }
         else {
@@ -533,7 +528,7 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
         return !getBeanClass().isAnnotationPresent(Local.class);
     }
 
-    public Class getWebServiceEndpointInterface(){
+    public Class getWebServiceEndpointInterface() {
         //TOOD: 获取 webServiceEndpointInterface
         return webServiceEndpointInterface;
     }
