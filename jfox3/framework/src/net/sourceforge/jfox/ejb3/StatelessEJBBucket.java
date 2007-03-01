@@ -346,8 +346,8 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
                             }
                         }
                     }
+                    //TODO: 检查 Interceptors 中的 PostConstruct PreDestroy
                 }
-                //TODO:检查 Interceptors 中的 PostConstruct PreDestroy
             }
         }
     }
