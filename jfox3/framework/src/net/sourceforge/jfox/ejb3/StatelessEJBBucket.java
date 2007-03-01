@@ -333,10 +333,10 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
                         }
                     }
                 }
+                //TODO:检查 Interceptors 中的 PostConstructor PreDestory
             }
             //如果是 Bean Class 本身，则还需要发现方法级的 interceptor
             if (clazz.equals(getBeanClass())) {
-
                 Method[] interceptedBeanMethods = AnnotationUtils.getAnnotatedMethods(clazz, Interceptors.class);
                 for (Method interceptedBeanMethod : interceptedBeanMethods) {
                     Interceptors interceptors = interceptedBeanMethod.getAnnotation(Interceptors.class);
