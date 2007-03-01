@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import javax.annotation.Resources;
 import javax.ejb.EJB;
@@ -31,13 +32,13 @@ import javax.ejb.EJBObject;
 import javax.ejb.EJBs;
 import javax.ejb.Local;
 import javax.ejb.Remote;
-import javax.ejb.Remove;
 import javax.ejb.Stateless;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptors;
 import javax.interceptor.InvocationContext;
+import javax.jws.WebService;
 import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
 import javax.naming.NameNotFoundException;
@@ -47,7 +48,6 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Status;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
-import javax.jws.WebService;
 
 import net.sourceforge.jfox.ejb3.dependent.EJBDependence;
 import net.sourceforge.jfox.ejb3.dependent.FieldEJBDependence;
@@ -121,10 +121,10 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
     private Map<Method, List<Method>> methodInterceptorMethods = new HashMap<Method, List<Method>>();
 
     /**
-     * stateless session bean 只有 PostConstruct & Remove 有效
+     * stateless session bean 只有 PostConstruct & PreDestroy 有效
      */
     private List<Method> postConstructMethods = new ArrayList<Method>();
-    private List<Method> removeMethods = new ArrayList<Method>();
+    private List<Method> preDestroyMethods = new ArrayList<Method>();
 
     /**
      * 类级别的依赖，描述在 Class 上
@@ -277,15 +277,15 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
             }
         }
 
-        Method[] _removeMethods = AnnotationUtils.getAnnotatedDeclaredMethods(this.getBeanClass(), Remove.class);
-        for (Method removeMethod : _removeMethods) {
-            if (!Modifier.isAbstract(removeMethod.getModifiers())
-                    && !Modifier.isStatic(removeMethod.getModifiers())
-                    && removeMethod.getParameterTypes().length == 0) {
-                removeMethods.add(removeMethod);
+        Method[] _preDestroyMethods = AnnotationUtils.getAnnotatedDeclaredMethods(this.getBeanClass(), PreDestroy.class);
+        for (Method preDestroyMethod : _preDestroyMethods) {
+            if (!Modifier.isAbstract(preDestroyMethod.getModifiers())
+                    && !Modifier.isStatic(preDestroyMethod.getModifiers())
+                    && preDestroyMethod.getParameterTypes().length == 0) {
+                preDestroyMethods.add(preDestroyMethod);
             }
             else {
-                logger.warn("Invalid @Remove method: " + removeMethod);
+                logger.warn("Invalid @Remove method: " + preDestroyMethod);
             }
         }
     }
@@ -669,8 +669,8 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
     }
 
     public void destroyObject(Object obj) throws Exception {
-        for (Method removeMethod : removeMethods) {
-            removeMethod.invoke(obj);
+        for (Method preDestroyMethod : preDestroyMethods) {
+            preDestroyMethod.invoke(obj);
         }
     }
 
