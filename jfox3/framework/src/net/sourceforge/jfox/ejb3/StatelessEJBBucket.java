@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Proxy;
+import java.lang.annotation.Annotation;
 import java.security.Identity;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -221,8 +222,7 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
         pool.setFactory(this);
 
         introspectMethods();
-        introspectClassInterceptors();
-        introspectLifecycle();
+        introspectLifecycleAndInterceptors();
 
         introspectClassDependents();
         introspectFieldDependents();
@@ -264,55 +264,59 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
         methodMap.put(methodHash, method);
     }
 
-    protected void introspectLifecycle() {
-        Method[] _postConstructMethods = AnnotationUtils.getAnnotatedDeclaredMethods(this.getBeanClass(), PostConstruct.class);
-        for (Method postConstructMethod : _postConstructMethods) {
-            if (!Modifier.isAbstract(postConstructMethod.getModifiers())
-                    && !Modifier.isStatic(postConstructMethod.getModifiers())
-                    && postConstructMethod.getParameterTypes().length == 0) {
-                postConstructMethods.add(postConstructMethod);
-            }
-            else {
-                logger.warn("Invalid @PostConstruct method: " + postConstructMethod);
-            }
-        }
-
-        Method[] _preDestroyMethods = AnnotationUtils.getAnnotatedDeclaredMethods(this.getBeanClass(), PreDestroy.class);
-        for (Method preDestroyMethod : _preDestroyMethods) {
-            if (!Modifier.isAbstract(preDestroyMethod.getModifiers())
-                    && !Modifier.isStatic(preDestroyMethod.getModifiers())
-                    && preDestroyMethod.getParameterTypes().length == 0) {
-                preDestroyMethods.add(preDestroyMethod);
-            }
-            else {
-                logger.warn("Invalid @preDestroy method: " + preDestroyMethod);
-            }
-        }
-    }
 
     /**
      * 找到所有类级别的拦截方法
      */
-    protected void introspectClassInterceptors() {
+    protected void introspectLifecycleAndInterceptors() {
         // beanClass is in superClass array
         Class<?>[] superClasses = ClassUtils.getAllSuperclasses(getBeanClass());
         // 找出所有 Interceptors 类
-        for (Class<?> clazz : superClasses) {
-            Method[] aroundInvokeMethods = AnnotationUtils.getAnnotatedDeclaredMethods(clazz, AroundInvoke.class);
+        for (Class<?> superClass : superClasses) {
+            // PostConstruct
+            Method[] _postConstructMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, PostConstruct.class);
+            for (Method postConstructMethod : _postConstructMethods) {
+                if (checkLifecycleMethod(superClass, postConstructMethod, PostConstruct.class)) {
+                    if(!postConstructMethods.contains(postConstructMethod)) {
+                        postConstructMethod.setAccessible(true);
+                        postConstructMethods.add(0,postConstructMethod);
+                    }
+                }
+                else {
+                    logger.warn("Invalid @PostConstruct method: " + postConstructMethod);
+                }
+            }
+
+            // PreDestroy
+            Method[] _preDestroyMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, PreDestroy.class);
+            for (Method preDestroyMethod : _preDestroyMethods) {
+                if (checkLifecycleMethod(superClass, preDestroyMethod, PreDestroy.class)) {
+                    if(!preDestroyMethods.contains(preDestroyMethod)) {
+                        preDestroyMethod.setAccessible(true);
+                        preDestroyMethods.add(0, preDestroyMethod);
+                    }
+                }
+                else {
+                    logger.warn("Invalid @preDestroy method: " + preDestroyMethod);
+                }
+            }
+
+            // inteceptors
+            Method[] aroundInvokeMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, AroundInvoke.class);
             if (aroundInvokeMethods.length > 0) {
                 for (Method aroundInvokeMethod : aroundInvokeMethods) {
-                    if (checkInterceptorMethod(clazz, aroundInvokeMethod)) {
+                    if (checkInterceptorMethod(superClass, aroundInvokeMethod)) {
                         // 还没有在classInterceptorMethods中，子类如果覆盖了父类的方法，父类的方法将不再执行
                         if (!classInterceptorMethods.contains(aroundInvokeMethod)) {
                             aroundInvokeMethod.setAccessible(true);
-                            classInterceptorMethods.add(0,aroundInvokeMethod);
+                            classInterceptorMethods.add(0, aroundInvokeMethod);
                         }
                     }
                 }
             }
             //如果是 Bean Class 本身，则还需要发现方法级的 interceptor
-            if (clazz.equals(getBeanClass())) {
-                Method[] interceptedBeanMethods = AnnotationUtils.getAnnotatedMethods(clazz, Interceptors.class);
+            if (superClass.equals(getBeanClass())) {
+                Method[] interceptedBeanMethods = AnnotationUtils.getAnnotatedMethods(superClass, Interceptors.class);
                 for (Method interceptedBeanMethod : interceptedBeanMethods) {
                     Interceptors interceptors = interceptedBeanMethod.getAnnotation(Interceptors.class);
                     Class[] interceptorClasses = interceptors.value();
@@ -321,7 +325,7 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
                         Method[] interceptorsAroundInvokeMethods = AnnotationUtils.getAnnotatedMethods(interceptorClass, AroundInvoke.class);
                         List<Method> validAroundInvokeMethods = new ArrayList<Method>();
                         for (Method aroundInvokeMethod : interceptorsAroundInvokeMethods) {
-                            if (checkInterceptorMethod(clazz, aroundInvokeMethod)) {
+                            if (checkInterceptorMethod(superClass, aroundInvokeMethod)) {
                                 validAroundInvokeMethods.add(0, aroundInvokeMethod);
                             }
                         }
@@ -329,8 +333,8 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
                     }
                 }
                 //为了简化， 只分析 Bean Class 的 class Interceptors
-                if (clazz.isAnnotationPresent(Interceptors.class)) {
-                    Interceptors interceptors = clazz.getAnnotation(Interceptors.class);
+                if (superClass.isAnnotationPresent(Interceptors.class)) {
+                    Interceptors interceptors = superClass.getAnnotation(Interceptors.class);
                     Class[] interceptorClasses = interceptors.value();
 
                     // 取出 @AroundInvoke 方法
@@ -349,6 +353,18 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
                     //TODO: 检查 Interceptors 中的 PostConstruct PreDestroy
                 }
             }
+        }
+    }
+
+    private boolean checkLifecycleMethod(Class<?> interceptorClass, Method lifecycleMethod, Class<? extends Annotation> lifecyleAnnotation) {
+        if (!Modifier.isAbstract(lifecycleMethod.getModifiers())
+                        && !Modifier.isStatic(lifecycleMethod.getModifiers())
+                        && lifecycleMethod.getParameterTypes().length == 0) {
+            return true;
+        }
+        else {
+            logger.warn("Invalid @" + lifecyleAnnotation.getSimpleName() + " method: " + lifecycleMethod);
+            return false;
         }
     }
 
