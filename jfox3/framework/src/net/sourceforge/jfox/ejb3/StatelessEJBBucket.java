@@ -153,6 +153,10 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
      * Web Service 发布接口
      */
     private Class webServiceEndpointInterface = null;
+
+    /**
+     * \@WebService Annotation
+     */
     private WebService wsAnnotation = null;
 
     public StatelessEJBBucket(EJBContainer container, Class<?> beanClass, Module module) {
