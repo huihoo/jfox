@@ -297,8 +297,7 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
         // beanClass is in superClass array
         Class<?>[] superClasses = ClassUtils.getAllSuperclasses(getBeanClass());
         // 找出所有 Interceptors 类
-        for (int i = 0; i < superClasses.length; i++) {
-            Class<?> clazz = superClasses[i];
+        for (Class<?> clazz : superClasses) {
             Method[] aroundInvokeMethods = AnnotationUtils.getAnnotatedDeclaredMethods(clazz, AroundInvoke.class);
             if (aroundInvokeMethods.length > 0) {
                 for (Method aroundInvokeMethod : aroundInvokeMethods) {
@@ -313,6 +312,7 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
             }
             //如果是 Bean Class 本身，则还需要发现方法级的 interceptor
             if (clazz.equals(getBeanClass())) {
+                //为了简化， 只分析 Bean Class 的 class Interceptors
                 Method[] interceptedBeanMethods = AnnotationUtils.getAnnotatedMethods(clazz, Interceptors.class);
                 for (Method interceptedBeanMethod : interceptedBeanMethods) {
                     Interceptors interceptors = interceptedBeanMethod.getAnnotation(Interceptors.class);
