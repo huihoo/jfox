@@ -204,17 +204,27 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
         if (beanClass.isAnnotationPresent(WebService.class)) {
             wsAnnotation = beanClass.getAnnotation(WebService.class);
             String endpointInterfaceName = wsAnnotation.endpointInterface();
-            try {
-                Class endpointInterface = this.getClass().getClassLoader().loadClass(endpointInterfaceName);
-                if (!endpointInterface.isInterface() || !Modifier.isPublic(endpointInterface.getModifiers())) {
-                    logger.warn("Invalid endpoint interface: " + endpointInterface + " annotated in EJB bean class: " + getBeanClass().getName());
+            if (endpointInterfaceName == null || endpointInterfaceName.trim().length() == 0) {
+                Class<?>[] beanInterfaces = this.getBeanInterfaces();
+                if(beanInterfaces.length > 1){
+                    logger.warn("Use first Bean Interface " + beanInterfaces[0].getName() + " as endpoint interface.");
+
                 }
-                else {
-                    this.webServiceEndpointInterface = endpointInterface;
-                }
+                this.webServiceEndpointInterface = beanInterfaces[0];
             }
-            catch (Exception e) {
-                logger.warn("Can not load endpoint interface: " + endpointInterfaceName + " annotated in EJB bean class: " + getBeanClass().getName());
+            else {
+                try {
+                    Class endpointInterface = this.getClass().getClassLoader().loadClass(endpointInterfaceName);
+                    if (!endpointInterface.isInterface() || !Modifier.isPublic(endpointInterface.getModifiers())) {
+                        logger.warn("Invalid endpoint interface: " + endpointInterface + " annotated in EJB bean class: " + getBeanClass().getName());
+                    }
+                    else {
+                        this.webServiceEndpointInterface = endpointInterface;
+                    }
+                }
+                catch (Exception e) {
+                    logger.warn("Can not load endpoint interface: " + endpointInterfaceName + " annotated in EJB bean class: " + getBeanClass().getName(), e);
+                }
             }
         }
 
@@ -276,9 +286,9 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
             Method[] _postConstructMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, PostConstruct.class);
             for (Method postConstructMethod : _postConstructMethods) {
                 if (checkLifecycleMethod(superClass, postConstructMethod, PostConstruct.class)) {
-                    if(!postConstructMethods.contains(postConstructMethod)) {
+                    if (!postConstructMethods.contains(postConstructMethod)) {
                         postConstructMethod.setAccessible(true);
-                        postConstructMethods.add(0,postConstructMethod);
+                        postConstructMethods.add(0, postConstructMethod);
                     }
                 }
                 else {
@@ -290,7 +300,7 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
             Method[] _preDestroyMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, PreDestroy.class);
             for (Method preDestroyMethod : _preDestroyMethods) {
                 if (checkLifecycleMethod(superClass, preDestroyMethod, PreDestroy.class)) {
-                    if(!preDestroyMethods.contains(preDestroyMethod)) {
+                    if (!preDestroyMethods.contains(preDestroyMethod)) {
                         preDestroyMethod.setAccessible(true);
                         preDestroyMethods.add(0, preDestroyMethod);
                     }
@@ -357,8 +367,8 @@ public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
 
     private boolean checkLifecycleMethod(Class<?> interceptorClass, Method lifecycleMethod, Class<? extends Annotation> lifecyleAnnotation) {
         if (!Modifier.isAbstract(lifecycleMethod.getModifiers())
-                        && !Modifier.isStatic(lifecycleMethod.getModifiers())
-                        && lifecycleMethod.getParameterTypes().length == 0) {
+                && !Modifier.isStatic(lifecycleMethod.getModifiers())
+                && lifecycleMethod.getParameterTypes().length == 0) {
             return true;
         }
         else {
