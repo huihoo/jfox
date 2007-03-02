@@ -341,7 +341,6 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
                     EJBBucket bucket = getEJBBucket(currentEJBname);
                     return bucket.getENContext().lookup(name.substring(JAVA_COMP_ENV.length() + 1));
                 }
-
             }
 
             if (!jndiMap.containsKey(name)) {
