@@ -815,7 +815,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             return null;
         }
 
-        // EJBObject
+        // EJBObject & EJBLocalObject
 
         public Handle getHandle() throws RemoteException {
             return new EJBHandleImpl(getEJBObjectId());
@@ -834,7 +834,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         }
 
         public boolean isIdentical(EJBLocalObject obj) throws EJBException {
-            return false;
+            return obj.getPrimaryKey().equals(getPrimaryKey());
         }
 
         // Object method
