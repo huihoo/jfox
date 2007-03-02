@@ -203,10 +203,10 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
 
         String mappedName = stateless.mappedName();
         if (mappedName.equals("")) {
-            if(isRemote()) {
+            if (isRemote()) {
                 addMappedName(name + "/remote");
             }
-            if(isLocal()) {
+            if (isLocal()) {
                 addMappedName(name + "/local");
             }
         }
@@ -222,7 +222,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             String endpointInterfaceName = wsAnnotation.endpointInterface();
             if (endpointInterfaceName == null || endpointInterfaceName.trim().length() == 0) {
                 Class<?>[] beanInterfaces = this.getBeanInterfaces();
-                if(beanInterfaces.length > 1){
+                if (beanInterfaces.length > 1) {
                     logger.warn("Use first Bean Interface " + beanInterfaces[0].getName() + " as endpoint interface.");
 
                 }
@@ -494,23 +494,24 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     /**
      * 从 Pool 中得到一个新的 Bean 实例
      *
-     * @throws Exception exception
      * @param ejbId
+     * @throws Exception exception
      */
     public Object newEJBInstance(String ejbId) throws Exception {
-        return pool.borrowObject();
+        Object ejbInstance = pool.borrowObject();
+        createEJBContext(ejbInstance);
+        return ejbInstance;
     }
 
     /**
      * 将实例返回给 pool
      *
      * @param ejbId
-     *@param beanInstance ejb bean instance @throws Exception exception
+     * @param beanInstance ejb bean instance @throws Exception exception
      */
     public void reuseEJBInstance(String ejbId, Object beanInstance) throws Exception {
         pool.returnObject(beanInstance);
     }
-
 
     public EJBContext createEJBContext(Object instance) {
         if (ejbContext == null) {
@@ -608,18 +609,31 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                     new InvocationHandler() {
                         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                             //需要判断是否是 EJBObject 的方法
-                            if (method.getDeclaringClass().equals(EJBObject.class)
-                                    || method.getDeclaringClass().equals(EJBLocalObject.class)
-                                    || method.getDeclaringClass().equals(Object.class)) { // 拦截 EJBObject 方法
-                                return method.invoke(getENContext(), args);
+                            if (method.getDeclaringClass().equals(EJBObject.class) || method.getDeclaringClass().equals(EJBLocalObject.class)) { // 拦截 EJBObject 方法
+                                return method.invoke(ejbContext, args);
                             }
-                            else { // 其它业务方法
+                            //TODO: 优化处理 Object 方法
+                            else if (method.getName().equals("toString") && (args == null || args.length == 0)) {
+                                return ejbContext.toString();
+                            }
+                            else if (method.getName().equals("equals") && args != null && args.length == 1) {
+                                return ejbContext.equals(args[0]);
+                            }
+                            else if (method.getName().equals("hashCode") && (args == null || args.length == 0)) {
+                                return ejbContext.hashCode();
+                            }
+                            else if (method.getName().equals("clone") && (args == null || args.length == 0)) {
+                                return ejbContext.clone();
+                            }
+                            else {
+                                // 其它业务方法
                                 return container.invokeEJB(ejbObjectId, getConcreteMethod(method), args);
                             }
                         }
                     }
             );
         }
+
         return proxyStub;
     }
 
@@ -645,7 +659,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     //--- jakarta commons-pool PoolableObjectFactory ---
     public Object makeObject() throws Exception {
         Object obj = beanClass.newInstance();
-        // post construct
+// post construct
         for (Method postConstructMethod : postConstructMethods) {
             postConstructMethod.invoke(obj);
         }
@@ -800,14 +814,15 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         }
 
         public EJBLocalObject getEJBLocalObject() throws IllegalStateException {
-            return null;
+            return this;
         }
 
         public EJBObject getEJBObject() throws IllegalStateException {
-            return getEJBObject();
+            return this;
         }
 
         public Class getInvokedBusinessInterface() throws IllegalStateException {
+//            EJBInvocation.current().getMethod();
             return null;
         }
 
@@ -843,14 +858,14 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         }
 
         public boolean equals(Object obj) {
-            if(obj == null || !(obj instanceof EJBObjectId)) {
+            if (obj == null || !(obj instanceof EJBObjectId)) {
                 return false;
             }
             else {
                 try {
                     return isIdentical((EJBObject)obj);
                 }
-                catch(Exception e) {
+                catch (Exception e) {
                     return false;
                 }
             }
