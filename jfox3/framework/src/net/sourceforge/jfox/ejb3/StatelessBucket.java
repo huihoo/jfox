@@ -506,7 +506,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     /**
      * 将实例返回给 pool
      *
-     * @param ejbId
+     * @param ejbId ejb id
      * @param beanInstance ejb bean instance @throws Exception exception
      */
     public void reuseEJBInstance(String ejbId, Object beanInstance) throws Exception {
@@ -765,7 +765,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         }
 
         public UserTransaction getUserTransaction() throws IllegalStateException {
-            // CMT 不返回 UserTransaction
+            //只支持 CMT, 不返回 UserTransaction
             return null;
         }
 
