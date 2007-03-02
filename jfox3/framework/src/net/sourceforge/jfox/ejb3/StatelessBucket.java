@@ -39,6 +39,8 @@ import javax.ejb.Timer;
 import javax.ejb.TimerService;
 import javax.ejb.Handle;
 import javax.ejb.RemoveException;
+import javax.ejb.SessionContext;
+import javax.ejb.EJBLocalObject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptors;
 import javax.interceptor.InvocationContext;
@@ -52,6 +54,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Status;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
+import javax.xml.rpc.handler.MessageContext;
 
 import net.sourceforge.jfox.ejb3.dependent.EJBDependence;
 import net.sourceforge.jfox.ejb3.dependent.FieldEJBDependence;
@@ -715,7 +718,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
 
     // EJBContext Implementation
     @SuppressWarnings({"deprecation"})
-    public class EJBContextImpl implements EJBContext, EJBObject {
+    public class EJBContextImpl implements SessionContext, EJBObject {
 
         public Principal getCallerPrincipal() {
             return null;
@@ -786,6 +789,27 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         @Deprecated
         public boolean isCallerInRole(final Identity role) {
             return false;
+        }
+
+        // TODO: 完成 SessionContext 方法
+        public <T> T getBusinessObject(Class<T> businessInterface) throws IllegalStateException {
+            return null;
+        }
+
+        public EJBLocalObject getEJBLocalObject() throws IllegalStateException {
+            return null;
+        }
+
+        public EJBObject getEJBObject() throws IllegalStateException {
+            return null;
+        }
+
+        public Class getInvokedBusinessInterface() throws IllegalStateException {
+            return null;
+        }
+
+        public MessageContext getMessageContext() throws IllegalStateException {
+            return null;
         }
 
         // EJBObject
