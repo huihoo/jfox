@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.rmi.RemoteException;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
@@ -36,6 +37,8 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
+import javax.ejb.Handle;
+import javax.ejb.RemoveException;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptors;
 import javax.interceptor.InvocationContext;
@@ -591,43 +594,8 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                     new InvocationHandler() {
                         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                             //需要判断是否是 EJBObject 的方法
-                            if (method.getDeclaringClass().equals(EJBObject.class)) { // 拦截 EJBObject 方法
-                                if (method.getName().equals("remove")) {
-                                    return null;
-                                }
-                                else if (method.getName().equals("getEJBHome")) {
-                                    // not support
-                                    return null;
-                                }
-                                else if (method.getName().equals("getPrimaryKey")) {
-                                    return getEJBObjectId();
-                                }
-                                else if (method.getName().equals("getHandle")) {
-                                    return new EJBHandleImpl(getName());
-                                }
-                                else if (method.getName().equals("isIdentical")) {
-                                    // 直接比较 toString
-                                    return proxy.toString().equals(args[0].toString());
-                                }
-                                else {
-                                    throw new EJBException(new NoSuchMethodException(method.getName()));
-                                }
-                            }
-                            else if (method.getDeclaringClass().equals(Object.class)) { // 拦截 Object 方法
-                                if (method.getName().equals("toString") && (args == null || args.length == 0)) {
-                                    return "$proxy_ejb_stub{name=" + getName() + ",interface=" + Arrays.toString(getBeanInterfaces()) + "}";
-                                }
-                                else if (method.getName().equals("equals") && args != null && args.length == 1) {
-                                    // 直接比较 toString
-                                    return proxy.toString().equals(args[0].toString());
-                                }
-                                else if (method.getName().equals("hashCode") && (args == null || args.length == 0)) {
-                                    return proxy.toString().hashCode();
-                                }
-                                else {
-                                    // not support
-                                    return null;
-                                }
+                            if (method.getDeclaringClass().equals(EJBObject.class) || method.getDeclaringClass().equals(Object.class)) { // 拦截 EJBObject 方法
+                                return method.invoke(getENContext(), args);
                             }
                             else { // 其它业务方法
                                 return container.invokeEJB(ejbObjectId, getConcreteMethod(method), args);
@@ -736,7 +704,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
 
     // EJBContext Implementation
     @SuppressWarnings({"deprecation"})
-    public class EJBContextImpl implements EJBContext {
+    public class EJBContextImpl implements EJBContext, EJBObject {
 
         public Principal getCallerPrincipal() {
             return null;
@@ -807,6 +775,51 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         @Deprecated
         public boolean isCallerInRole(final Identity role) {
             return false;
+        }
+
+        // EJBObject
+
+        public Handle getHandle() throws RemoteException {
+            return new EJBHandleImpl(getEJBObjectId());
+        }
+
+        public Object getPrimaryKey() throws RemoteException {
+            return getEJBObjectId();
+        }
+
+        public boolean isIdentical(EJBObject obj) throws RemoteException {
+            return obj.getPrimaryKey().equals(getPrimaryKey());
+        }
+
+        public void remove() throws RemoteException, RemoveException {
+
+        }
+
+        // Object method
+        public String toString() {
+            return "ejb_stub{name=" + getName() + ",interface=" + Arrays.toString(getBeanInterfaces()) + "}";
+        }
+
+        public boolean equals(Object obj) {
+            if(obj == null || !(obj instanceof EJBObjectId)) {
+                return false;
+            }
+            else {
+                try {
+                    return isIdentical((EJBObject)obj);
+                }
+                catch(Exception e) {
+                    return false;
+                }
+            }
+        }
+
+        public int hashCode() {
+            return super.hashCode();
+        }
+
+        protected Object clone() throws CloneNotSupportedException {
+            throw new CloneNotSupportedException(getEJBObjectId().toString());
         }
     }
 

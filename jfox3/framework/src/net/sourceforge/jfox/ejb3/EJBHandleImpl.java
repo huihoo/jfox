@@ -13,16 +13,16 @@ public class EJBHandleImpl implements Handle, Serializable {
     /**
      * ejb name
      */
-    private String name;
+    private EJBObjectId ejbObjectId;
 
-    public EJBHandleImpl(String name) {
-        this.name = name;
+    public EJBHandleImpl(EJBObjectId ejbObjectId) {
+        this.ejbObjectId = ejbObjectId;
     }
 
     public EJBObject getEJBObject() throws RemoteException {
         try {
             InitialContext initContext = new InitialContext();
-            return (EJBObject)initContext.lookup(name);
+            return (EJBObject)initContext.lookup(ejbObjectId.getEJBName());
         }
         catch(Exception e) {
             throw new RemoteException("EJBHandleImpl.getEJBObject failed!",e);
