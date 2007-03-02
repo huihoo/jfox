@@ -265,7 +265,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
         finally {
             // reuse ejb instance
             if (ejbInstance != null) {
-                bucket.reuseEJBInstance(null, ejbInstance);
+                bucket.reuseEJBInstance(ejbObjectId.getEJBId(), ejbInstance);
             }
         }
     }

@@ -11,6 +11,7 @@ import javax.xml.namespace.QName;
 import net.sourceforge.jfox.ejb3.EJBBucket;
 import net.sourceforge.jfox.ejb3.EJBContainer;
 import net.sourceforge.jfox.ejb3.StatelessBucket;
+import net.sourceforge.jfox.ejb3.EJBObjectId;
 import net.sourceforge.jfox.ejb3.event.EJBLoadedComponentEvent;
 import net.sourceforge.jfox.ejb3.event.EJBUnloadedComponentEvent;
 import net.sourceforge.jfox.framework.annotation.Inject;
@@ -117,7 +118,8 @@ public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, Activ
     public Object invoke(Method method, Object[] params, MessageContext messageContext) throws XFireFault {
         String ejbName = getEJBNameByWebServiceEndpointInterface(messageContext.getService().getServiceInfo().getServiceClass());
         try {
-            return ejbContainer.invokeEJB(ejbName, method, params);
+            // stateless, 直接用 ejb name 做 ejb id
+            return ejbContainer.invokeEJB(new EJBObjectId(ejbName), method, params);
         }
         catch (Exception e) {
             return new XFireFault(e);

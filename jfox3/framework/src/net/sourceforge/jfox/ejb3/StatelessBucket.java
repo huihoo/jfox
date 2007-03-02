@@ -79,6 +79,8 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     private Class beanClass;
     private Class[] beanInterfaces = null;
     private String name;
+    private EJBObjectId ejbObjectId;
+
     private String mappedName;
     private String description;
 
@@ -191,6 +193,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             name = beanClass.getSimpleName();
         }
         setName(name);
+        setEJBObjectId(new EJBObjectId(getName()));
 
         String mappedName = stateless.mappedName();
         if (mappedName.equals("")) {
@@ -517,6 +520,14 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         this.name = name;
     }
 
+    public EJBObjectId getEJBObjectId() {
+        return ejbObjectId;
+    }
+
+    protected void setEJBObjectId(EJBObjectId ejbObjectId) {
+        this.ejbObjectId = ejbObjectId;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -584,7 +595,6 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             proxyStub = (EJBObject)Proxy.newProxyInstance(this.getModule().getModuleClassLoader(),
                     interfaces.toArray(new Class[interfaces.size()]),
                     new InvocationHandler() {
-                        final EJBObjectId ejbObjectId = new EJBObjectId(getName());
                         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                             //需要判断是否是 EJBObject 的方法
                             if (method.getDeclaringClass().equals(EJBObject.class)) { // 拦截 EJBObject 方法
@@ -596,7 +606,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                                     return null;
                                 }
                                 else if (method.getName().equals("getPrimaryKey")) {
-                                    return ejbObjectId;
+                                    return getEJBObjectId();
                                 }
                                 else if (method.getName().equals("getHandle")) {
                                     return new EJBHandleImpl(getName());
@@ -809,36 +819,33 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     // EJB TimerService，only stateless, MDB, Entity can register TimerService
     public class EJBTimerService implements TimerService {
 
-        EJBObjectId ejbObjectId = new EJBObjectId(getName());
-
         public Timer createTimer(final long duration, final Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimer timer = (EJBTimer)getEJBContainer().getTimerService().createTimer(duration, info);
-            timer.setEjbObjectId(ejbObjectId);
+            timer.setEjbObjectId(getEJBObjectId());
             return timer;
         }
 
         public Timer createTimer(Date expiration, Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimer timer = (EJBTimer)getEJBContainer().getTimerService().createTimer(expiration, info);
-            timer.setEjbObjectId(ejbObjectId);
+            timer.setEjbObjectId(getEJBObjectId());
             return timer;
         }
 
         public Timer createTimer(final long initialDuration, final long intervalDuration, final Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimer timer = (EJBTimer)getEJBContainer().getTimerService().createTimer(initialDuration, intervalDuration, info);
-            timer.setEjbObjectId(ejbObjectId);
+            timer.setEjbObjectId(getEJBObjectId());
             return timer;
         }
 
         public Timer createTimer(Date initialExpiration, long intervalDuration, Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimer timer = (EJBTimer)getEJBContainer().getTimerService().createTimer(initialExpiration, intervalDuration, info);
-            timer.setEjbObjectId(ejbObjectId);
+            timer.setEjbObjectId(getEJBObjectId());
             return timer;
         }
 
         public Collection getTimers() throws IllegalStateException, EJBException {
             return getEJBContainer().getTimerService().getTimers();
         }
-
     }
 
     public static void main(String[] args) {
