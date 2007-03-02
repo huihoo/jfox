@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 
 import net.sourceforge.jfox.ejb3.EJBBucket;
 import net.sourceforge.jfox.ejb3.EJBContainer;
-import net.sourceforge.jfox.ejb3.StatelessEJBBucket;
+import net.sourceforge.jfox.ejb3.StatelessBucket;
 import net.sourceforge.jfox.ejb3.event.EJBLoadedComponentEvent;
 import net.sourceforge.jfox.ejb3.event.EJBUnloadedComponentEvent;
 import net.sourceforge.jfox.framework.annotation.Inject;
@@ -81,13 +81,13 @@ public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, Activ
     public void componentChanged(ComponentEvent componentEvent) {
         if (componentEvent instanceof EJBLoadedComponentEvent) {
             EJBBucket ejbBucket = ((EJBLoadedComponentEvent)componentEvent).getEJBBucket();
-            if (ejbBucket instanceof StatelessEJBBucket) {
-                Class wsEndpointInterface = ((StatelessEJBBucket)ejbBucket).getWebServiceEndpointInterface();
+            if (ejbBucket instanceof StatelessBucket) {
+                Class wsEndpointInterface = ((StatelessBucket)ejbBucket).getWebServiceEndpointInterface();
                 if (wsEndpointInterface != null) {
                     // 把 EJB 发布成 WebService
                     endpointInterface2EJBNameMap.put(wsEndpointInterface.getName(), ejbBucket.getName());
                     // create xfire service by stateless bucket
-                    org.codehaus.xfire.service.Service service = factory.create((StatelessEJBBucket)ejbBucket);
+                    org.codehaus.xfire.service.Service service = factory.create((StatelessBucket)ejbBucket);
                     service.setInvoker(this);
                     xfire.getServiceRegistry().register(service);
                 }
@@ -95,8 +95,8 @@ public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, Activ
         }
         else if (componentEvent instanceof EJBUnloadedComponentEvent) {
             EJBBucket ejbBucket = ((EJBUnloadedComponentEvent)componentEvent).getEJBBucket();
-            if (ejbBucket instanceof StatelessEJBBucket) {
-                Class wsEndpointInterface = ((StatelessEJBBucket)ejbBucket).getWebServiceEndpointInterface();
+            if (ejbBucket instanceof StatelessBucket) {
+                Class wsEndpointInterface = ((StatelessBucket)ejbBucket).getWebServiceEndpointInterface();
                 if (wsEndpointInterface != null) {
                     endpointInterface2EJBNameMap.remove(wsEndpointInterface.getName());
                 }
@@ -138,7 +138,7 @@ public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, Activ
             super(transportManager);
         }
 
-        org.codehaus.xfire.service.Service create(StatelessEJBBucket ejbBucket) {
+        org.codehaus.xfire.service.Service create(StatelessBucket ejbBucket) {
             Map<String,Object> properties = new HashMap<String,Object>();
             WebService wsAnnotation = ejbBucket.getWebServiceAnnotation();
             Class endpointInterface = ejbBucket.getWebServiceEndpointInterface();

@@ -72,9 +72,9 @@ import org.apache.log4j.Logger;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class StatelessEJBBucket extends SessionBucket implements PoolableObjectFactory {
+public class StatelessBucket extends SessionBucket implements PoolableObjectFactory {
 
-    private static final Logger logger = Logger.getLogger(StatelessEJBBucket.class);
+    private static final Logger logger = Logger.getLogger(StatelessBucket.class);
 
     private Class beanClass;
     private Class[] beanInterfaces = null;
@@ -159,7 +159,7 @@ public class StatelessEJBBucket extends SessionBucket implements PoolableObjectF
      */
     private WebService wsAnnotation = null;
 
-    public StatelessEJBBucket(EJBContainer container, Class<?> beanClass, Module module) {
+    public StatelessBucket(EJBContainer container, Class<?> beanClass, Module module) {
         this.container = container;
         this.module = module;
         this.beanClass = beanClass;

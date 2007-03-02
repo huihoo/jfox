@@ -195,7 +195,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
      */
     protected EJBBucket loadStatelessEJB(Class<?> beanClass, Module module) {
         if (beanClass.isAnnotationPresent(Stateless.class)) {
-            StatelessEJBBucket bucket = new StatelessEJBBucket(this, beanClass, module);
+            StatelessBucket bucket = new StatelessBucket(this, beanClass, module);
             return bucket;
         }
         return null;
