@@ -19,7 +19,6 @@ import javax.transaction.TransactionManager;
 
 import net.sourceforge.jfox.ejb3.naming.JNDIContextHelper;
 import net.sourceforge.jfox.ejb3.transaction.JTATransactionManager;
-import net.sourceforge.jfox.entity.NamedSQLTemplate;
 import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.ASMClassLoader;
 import net.sourceforge.jfox.framework.component.ActiveComponent;
@@ -42,7 +41,7 @@ import org.w3c.dom.Element;
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(id = "EntityManagerFactoryBuilder", active = true, singleton = true, priority = -5)
+@Service(id = "EntityManagerFactoryBuilder", active = true, singleton = true, priority = Integer.MIN_VALUE)
 public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuilder, Component, InstantiatedComponent, ComponentUnregistration, ModuleListener, ActiveComponent {
 
     protected static Logger logger = Logger.getLogger(EntityManagerFactoryBuilderImpl.class);

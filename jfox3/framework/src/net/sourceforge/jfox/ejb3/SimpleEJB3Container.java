@@ -55,7 +55,7 @@ import org.apache.log4j.Logger;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(id = "EJB3Container", singleton = true, active = true, priority = -8)
+@Service(id = "EJB3Container", singleton = true, active = true, priority = Integer.MIN_VALUE)
 public class SimpleEJB3Container implements EJBContainer, Component, InstantiatedComponent, InterceptableComponent, ModuleListener, ActiveComponent, ComponentUnregistration {
 
     protected Logger logger = Logger.getLogger(SimpleEJB3Container.class);
