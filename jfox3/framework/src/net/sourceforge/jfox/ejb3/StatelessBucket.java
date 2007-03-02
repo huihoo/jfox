@@ -608,7 +608,9 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                     new InvocationHandler() {
                         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                             //需要判断是否是 EJBObject 的方法
-                            if (method.getDeclaringClass().equals(EJBObject.class) || method.getDeclaringClass().equals(Object.class)) { // 拦截 EJBObject 方法
+                            if (method.getDeclaringClass().equals(EJBObject.class)
+                                    || method.getDeclaringClass().equals(EJBLocalObject.class)
+                                    || method.getDeclaringClass().equals(Object.class)) { // 拦截 EJBObject 方法
                                 return method.invoke(getENContext(), args);
                             }
                             else { // 其它业务方法
@@ -718,7 +720,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
 
     // EJBContext Implementation
     @SuppressWarnings({"deprecation"})
-    public class EJBContextImpl implements SessionContext, EJBObject {
+    public class EJBContextImpl implements SessionContext, EJBObject, EJBLocalObject {
 
         public Principal getCallerPrincipal() {
             return null;
@@ -791,6 +793,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             return false;
         }
 
+
         // TODO: 完成 SessionContext 方法
         public <T> T getBusinessObject(Class<T> businessInterface) throws IllegalStateException {
             return null;
@@ -801,7 +804,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         }
 
         public EJBObject getEJBObject() throws IllegalStateException {
-            return null;
+            return getEJBObject();
         }
 
         public Class getInvokedBusinessInterface() throws IllegalStateException {
@@ -818,7 +821,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             return new EJBHandleImpl(getEJBObjectId());
         }
 
-        public Object getPrimaryKey() throws RemoteException {
+        public Object getPrimaryKey() {
             return getEJBObjectId();
         }
 
@@ -826,8 +829,12 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             return obj.getPrimaryKey().equals(getPrimaryKey());
         }
 
-        public void remove() throws RemoteException, RemoveException {
+        public void remove() throws RemoveException {
 
+        }
+
+        public boolean isIdentical(EJBLocalObject obj) throws EJBException {
+            return false;
         }
 
         // Object method
