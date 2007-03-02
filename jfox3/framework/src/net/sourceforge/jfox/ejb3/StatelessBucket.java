@@ -494,7 +494,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     /**
      * 从 Pool 中得到一个新的 Bean 实例
      *
-     * @param ejbId
+     * @param ejbId ejb id
      * @throws Exception exception
      */
     public Object newEJBInstance(String ejbId) throws Exception {
@@ -807,9 +807,9 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             return false;
         }
 
-        // TODO: 完成 SessionContext 方法
+        // SessionContext
         public <T> T getBusinessObject(Class<T> businessInterface) throws IllegalStateException {
-            return null;
+            return (T)proxyStub;
         }
 
         public EJBLocalObject getEJBLocalObject() throws IllegalStateException {

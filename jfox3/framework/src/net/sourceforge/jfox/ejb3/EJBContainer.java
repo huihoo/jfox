@@ -54,9 +54,10 @@ public interface EJBContainer extends Component {
      * 调用EJB方法，通过方法拦截提供事务支持
      * 构造 ejb invocation，并且获得 chain，然后发起调用
      * 
-     * @param ejbObjectId
-     *@param method 要执行的方法
+     * @param ejbObjectId ejb object id
+     * @param method 要执行的方法
      * @param params 参数 @throws NoSuchEJBException if no such ejb
+     * @throws Exception exception
      * @return method result
      */
     Object invokeEJB(EJBObjectId ejbObjectId, Method method, Object[] params) throws Exception;
