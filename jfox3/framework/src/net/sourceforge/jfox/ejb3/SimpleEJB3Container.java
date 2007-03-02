@@ -176,10 +176,12 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
             componentContext.fireComponentEvent(new EJBLoadedComponentEvent(componentContext.getComponentId(),bucket));
             // bind to jndi
             try {
-                this.getNamingContext().bind(bucket.getMappedName(), bucket.getProxyStub());
+                for(String mappedName : bucket.getMappedNames()){
+                    this.getNamingContext().bind(mappedName, bucket.getProxyStub());
+                }
             }
             catch (NamingException e) {
-                throw new EJBException("bind " + bucket.getMappedName() + " failed!", e);
+                throw new EJBException("bind " + bucket.getMappedNames() + " failed!", e);
             }
             logger.info("EJB loaded, bean class: " + beanClass.getName());
         }
@@ -212,10 +214,13 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
                 // destroy ejb bucket
                 bucket.destroy();
                 try {
-                    this.getNamingContext().unbind(bucket.getMappedName());
+                    for(String mappedName : bucket.getMappedNames()){
+                        this.getNamingContext().unbind(mappedName);
+                    }
+
                 }
                 catch (NamingException e) {
-                    throw new EJBException("unbind ejb: " + bucket.getMappedName() + " failed!", e);
+                    throw new EJBException("unbind ejb: " + bucket.getMappedNames() + " failed!", e);
                 }
             }
         }
@@ -339,9 +344,6 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
                 }
             }
 
-            if (bucketMap.containsKey(name)) {// 是 EJB，而且使用的是 name
-                name = bucketMap.get(name).getMappedName();
-            }
             if (!jndiMap.containsKey(name)) {
                 throw new NameNotFoundException(name);
             }

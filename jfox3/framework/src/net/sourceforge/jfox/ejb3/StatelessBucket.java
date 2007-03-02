@@ -84,7 +84,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     private String name;
     private EJBObjectId ejbObjectId;
 
-    private String mappedName;
+    private List<String> mappedNames = new ArrayList<String>(2);
     private String description;
 
     private EJBContainer container = null;
@@ -200,9 +200,16 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
 
         String mappedName = stateless.mappedName();
         if (mappedName.equals("")) {
-            mappedName = name + "/" + (isRemote() ? "remote" : "local");
+            if(isRemote()) {
+                addMappedName(name + "/remote");
+            }
+            if(isLocal()) {
+                addMappedName(name + "/local");
+            }
         }
-        setMappedName(mappedName);
+        else {
+            addMappedName(mappedName);
+        }
 
         setDescription(stateless.description());
 
@@ -533,12 +540,12 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         this.description = description;
     }
 
-    public String getMappedName() {
-        return mappedName;
+    public String[] getMappedNames() {
+        return mappedNames.toArray(new String[mappedNames.size()]);
     }
 
-    protected void setMappedName(String mappedName) {
-        this.mappedName = mappedName;
+    protected void addMappedName(String mappedName) {
+        mappedNames.add(mappedName);
     }
 
     public EJBContainer getEJBContainer() {
@@ -559,7 +566,11 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     }
 
     public boolean isRemote() {
-        return !getBeanClass().isAnnotationPresent(Local.class);
+        return getBeanClass().isAnnotationPresent(Remote.class);
+    }
+
+    public boolean isLocal() {
+        return getBeanClass().isAnnotationPresent(Local.class);
     }
 
     public Class getWebServiceEndpointInterface() {

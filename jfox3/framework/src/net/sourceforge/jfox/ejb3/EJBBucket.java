@@ -26,7 +26,7 @@ public interface EJBBucket {
     /**
      * JNDI name
      */
-    String getMappedName();
+    String[] getMappedNames();
 
     /**
      * Bean Class
@@ -80,6 +80,11 @@ public interface EJBBucket {
      * 是否是 @Remote EJB
      */
     boolean isRemote();
+
+    /**
+     * 是否是 @Local EJB
+     */
+    boolean isLocal();
 
     /**
      * 是否以该接口发布
