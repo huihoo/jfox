@@ -63,7 +63,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
     // Transaction Manager
     private JTATransactionManager tm = null;
 
-    @Constant(type=Integer.class, value = "$jta_transaction_timeout")
+    @Constant(type = Integer.class, value = "$jta_transaction_timeout")
     private int transactionTimeout = 30; // default transaction timeout 30 seconds
 
     // TimerServer
@@ -117,7 +117,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
             logger.fatal("Bind TransactionManager error.", e);
             System.exit(1);
         }
-        catch(SystemException e) {
+        catch (SystemException e) {
             logger.fatal("Failed to setTransactionTimeout!", e);
             System.exit(1);
         }
@@ -173,10 +173,10 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
             EJBBucket bucket = loadStatelessEJB(beanClass, module);
             buckets.add(bucket);
             //fireEvent, 以便XFire可以 register Endpoint
-            componentContext.fireComponentEvent(new EJBLoadedComponentEvent(componentContext.getComponentId(),bucket));
+            componentContext.fireComponentEvent(new EJBLoadedComponentEvent(componentContext.getComponentId(), bucket));
             // bind to jndi
             try {
-                for(String mappedName : bucket.getMappedNames()){
+                for (String mappedName : bucket.getMappedNames()) {
                     this.getNamingContext().bind(mappedName, bucket.getProxyStub());
                 }
             }
@@ -210,11 +210,11 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
             if (bucket.getModule() == module) {
                 it.remove();
                 //fireEvent, 以便XFire可以 unregister Endpoint
-                componentContext.fireComponentEvent(new EJBUnloadedComponentEvent(componentContext.getComponentId(),bucket));
+                componentContext.fireComponentEvent(new EJBUnloadedComponentEvent(componentContext.getComponentId(), bucket));
                 // destroy ejb bucket
                 bucket.destroy();
                 try {
-                    for(String mappedName : bucket.getMappedNames()){
+                    for (String mappedName : bucket.getMappedNames()) {
                         this.getNamingContext().unbind(mappedName);
                     }
 
@@ -253,8 +253,8 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
      * 构造 ejb invocation，并且获得 chain，然后发起调用
      *
      * @param ejbObjectId
-     *@param method ejb method, 已经解析成实体方法
-     * @param params parameters @throws Exception exception
+     * @param method      ejb method, 已经解析成实体方法
+     * @param params      parameters @throws Exception exception
      */
     public Object invokeEJB(EJBObjectId ejbObjectId, Method method, Object[] params) throws Exception {
         EJBBucket bucket = getEJBBucket(ejbObjectId.getEJBName());
@@ -331,17 +331,17 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
                     // 不在 EJB 调用上下文中
                     throw new NameNotFoundException(JAVA_COMP_ENV);
                 }
-                else {
-                    String currentEJBname = currentEJBInvocation.getEJBname();
-                    if (name.equals(JAVA_COMP_ENV)) {
-                        // EJBBucket extends Context
-                        return getEJBBucket(currentEJBname).getENContext();
-                    }
-                    else {
-                        EJBBucket bucket = getEJBBucket(currentEJBname);
-                        return bucket.getENContext().lookup(name.substring(JAVA_COMP_ENV.length() + 1));
-                    }
+
+                String currentEJBname = currentEJBInvocation.getEJBname();
+                if (name.equals(JAVA_COMP_ENV)) { // lookup java:comp/env
+                    // EJBBucket extends Context
+                    return getEJBBucket(currentEJBname).getENContext();
                 }
+                else { // lookup java:comp/env/abc
+                    EJBBucket bucket = getEJBBucket(currentEJBname);
+                    return bucket.getENContext().lookup(name.substring(JAVA_COMP_ENV.length() + 1));
+                }
+
             }
 
             if (!jndiMap.containsKey(name)) {
