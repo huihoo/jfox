@@ -294,9 +294,6 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                         postConstructMethods.add(0, postConstructMethod);
                     }
                 }
-                else {
-                    logger.warn("Invalid @PostConstruct method: " + postConstructMethod);
-                }
             }
 
             // PreDestroy
@@ -307,9 +304,6 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                         preDestroyMethod.setAccessible(true);
                         preDestroyMethods.add(0, preDestroyMethod);
                     }
-                }
-                else {
-                    logger.warn("Invalid @preDestroy method: " + preDestroyMethod);
                 }
             }
 
