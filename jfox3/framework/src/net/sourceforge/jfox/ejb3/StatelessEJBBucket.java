@@ -72,7 +72,7 @@ import org.apache.log4j.Logger;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class StatelessEJBBucket implements EJBBucket, PoolableObjectFactory {
+public class StatelessEJBBucket extends SessionBucket implements PoolableObjectFactory {
 
     private static final Logger logger = Logger.getLogger(StatelessEJBBucket.class);
 
