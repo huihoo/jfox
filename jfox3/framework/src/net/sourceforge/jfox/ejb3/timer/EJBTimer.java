@@ -12,6 +12,7 @@ import javax.ejb.TimerHandle;
 import javax.ejb.TimedObject;
 
 import net.sourceforge.jfox.ejb3.SimpleEJB3Container;
+import net.sourceforge.jfox.ejb3.EJBObjectId;
 
 /**
  * @author <a href="mailto:yangyong@ufsoft.com.cn">Young Yang</a>
@@ -29,7 +30,7 @@ public class EJBTimer implements Timer, TimerHandle, Runnable {
         }
     }
 
-    private String ejbName;
+    private EJBObjectId ejbObjectId;
 
     private Serializable info;
 
@@ -44,12 +45,12 @@ public class EJBTimer implements Timer, TimerHandle, Runnable {
         this.info = info;
     }
 
-    public void setEJBName(String ejbName) {
-        this.ejbName = ejbName;
+    public EJBObjectId getEjbObjectId() {
+        return ejbObjectId;
     }
 
-    public String getEJBName(){
-        return this.ejbName;
+    public void setEjbObjectId(EJBObjectId ejbObjectId) {
+        this.ejbObjectId = ejbObjectId;
     }
 
     public void setFuture(ScheduledFuture future) {

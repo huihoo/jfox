@@ -485,18 +485,19 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
      * 从 Pool 中得到一个新的 Bean 实例
      *
      * @throws Exception exception
+     * @param ejbId
      */
-    public Object newEJBInstance() throws Exception {
+    public Object newEJBInstance(String ejbId) throws Exception {
         return pool.borrowObject();
     }
 
     /**
      * 将实例返回给 pool
      *
-     * @param beanInstance ejb bean instance
-     * @throws Exception exception
+     * @param ejbId
+     *@param beanInstance ejb bean instance @throws Exception exception
      */
-    public void reuseEJBInstance(Object beanInstance) throws Exception {
+    public void reuseEJBInstance(String ejbId, Object beanInstance) throws Exception {
         pool.returnObject(beanInstance);
     }
 
@@ -583,6 +584,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             proxyStub = (EJBObject)Proxy.newProxyInstance(this.getModule().getModuleClassLoader(),
                     interfaces.toArray(new Class[interfaces.size()]),
                     new InvocationHandler() {
+                        final EJBObjectId ejbObjectId = new EJBObjectId(getName());
                         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                             //需要判断是否是 EJBObject 的方法
                             if (method.getDeclaringClass().equals(EJBObject.class)) { // 拦截 EJBObject 方法
@@ -594,10 +596,10 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                                     return null;
                                 }
                                 else if (method.getName().equals("getPrimaryKey")) {
-                                    return -1L;
+                                    return ejbObjectId;
                                 }
                                 else if (method.getName().equals("getHandle")) {
-                                    return new EJBHandleImpl(name);
+                                    return new EJBHandleImpl(getName());
                                 }
                                 else if (method.getName().equals("isIdentical")) {
                                     // 直接比较 toString
@@ -609,7 +611,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                             }
                             else if (method.getDeclaringClass().equals(Object.class)) { // 拦截 Object 方法
                                 if (method.getName().equals("toString") && (args == null || args.length == 0)) {
-                                    return "$proxy_ejb_stub{name=" + name + ",interface=" + Arrays.toString(getBeanInterfaces()) + "}";
+                                    return "$proxy_ejb_stub{name=" + getName() + ",interface=" + Arrays.toString(getBeanInterfaces()) + "}";
                                 }
                                 else if (method.getName().equals("equals") && args != null && args.length == 1) {
                                     // 直接比较 toString
@@ -624,7 +626,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                                 }
                             }
                             else { // 其它业务方法
-                                return container.invokeEJB(name, getConcreteMethod(method), args);
+                                return container.invokeEJB(ejbObjectId, getConcreteMethod(method), args);
                             }
                         }
                     }
@@ -804,30 +806,32 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         }
     }
 
-    // EJB TimerService
+    // EJB TimerService，only stateless, MDB, Entity can register TimerService
     public class EJBTimerService implements TimerService {
+
+        EJBObjectId ejbObjectId = new EJBObjectId(getName());
 
         public Timer createTimer(final long duration, final Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimer timer = (EJBTimer)getEJBContainer().getTimerService().createTimer(duration, info);
-            timer.setEJBName(getName());
+            timer.setEjbObjectId(ejbObjectId);
             return timer;
         }
 
         public Timer createTimer(Date expiration, Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimer timer = (EJBTimer)getEJBContainer().getTimerService().createTimer(expiration, info);
-            timer.setEJBName(getName());
+            timer.setEjbObjectId(ejbObjectId);
             return timer;
         }
 
         public Timer createTimer(final long initialDuration, final long intervalDuration, final Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimer timer = (EJBTimer)getEJBContainer().getTimerService().createTimer(initialDuration, intervalDuration, info);
-            timer.setEJBName(getName());
+            timer.setEjbObjectId(ejbObjectId);
             return timer;
         }
 
         public Timer createTimer(Date initialExpiration, long intervalDuration, Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimer timer = (EJBTimer)getEJBContainer().getTimerService().createTimer(initialExpiration, intervalDuration, info);
-            timer.setEJBName(getName());
+            timer.setEjbObjectId(ejbObjectId);
             return timer;
         }
 

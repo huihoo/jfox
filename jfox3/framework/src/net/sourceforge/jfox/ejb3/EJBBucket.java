@@ -42,16 +42,17 @@ public interface EJBBucket {
      * new EJB instance, return bean instance, not EJBObject
      * 
      * @throws Exception exception
+     * @param ejbId
      */
-    Object newEJBInstance() throws Exception;
+    Object newEJBInstance(String ejbId) throws Exception;
 
     /**
      * 重用 ejb instance
      *
-     * @param beanInstance bean instance created by new EJBInstance
-     * @throws Exception exception
+     * @param ejbId
+     *@param beanInstance bean instance created by new EJBInstance @throws Exception exception
      */
-    void reuseEJBInstance(Object beanInstance) throws Exception;
+    void reuseEJBInstance(String ejbId, Object beanInstance) throws Exception;
 
     /**
      * EJB 所在的 Module

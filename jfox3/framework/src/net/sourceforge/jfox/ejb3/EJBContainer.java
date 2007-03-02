@@ -1,10 +1,9 @@
 package net.sourceforge.jfox.ejb3;
 
 import java.lang.reflect.Method;
-import javax.ejb.NoSuchEJBException;
 import javax.ejb.TimerService;
-import javax.transaction.TransactionManager;
 import javax.naming.Context;
+import javax.transaction.TransactionManager;
 
 import net.sourceforge.jfox.framework.annotation.Exported;
 import net.sourceforge.jfox.framework.component.Component;
@@ -55,13 +54,12 @@ public interface EJBContainer extends Component {
      * 调用EJB方法，通过方法拦截提供事务支持
      * 构造 ejb invocation，并且获得 chain，然后发起调用
      * 
-     * @param name ejb name
-     * @param method 要执行的方法
-     * @param params 参数
-     * @throws NoSuchEJBException if no such ejb
+     * @param ejbObjectId
+     *@param method 要执行的方法
+     * @param params 参数 @throws NoSuchEJBException if no such ejb
      * @return method result
      */
-    Object invokeEJB(String name, Method method, Object[] params) throws Exception;
+    Object invokeEJB(EJBObjectId ejbObjectId, Method method, Object[] params) throws Exception;
 
     /**
      * 通过该方法来完成事务的发起

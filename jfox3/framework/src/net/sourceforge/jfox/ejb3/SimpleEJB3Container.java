@@ -247,17 +247,16 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
     /**
      * 构造 ejb invocation，并且获得 chain，然后发起调用
      *
-     * @param name   ejb name
-     * @param method ejb method, 已经解析成实体方法
-     * @param params parameters
-     * @throws Exception exception
+     * @param ejbObjectId
+     *@param method ejb method, 已经解析成实体方法
+     * @param params parameters @throws Exception exception
      */
-    public Object invokeEJB(String name, Method method, Object[] params) throws Exception {
-        EJBBucket bucket = getEJBBucket(name);
+    public Object invokeEJB(EJBObjectId ejbObjectId, Method method, Object[] params) throws Exception {
+        EJBBucket bucket = getEJBBucket(ejbObjectId.getEJBName());
         // get instance from bucket's pool
         Object ejbInstance = null;
         try {
-            ejbInstance = bucket.newEJBInstance();
+            ejbInstance = bucket.newEJBInstance(ejbObjectId.getEJBId());
             EJBInvocation invocation = new EJBInvocation(bucket, ejbInstance, method, params);
             invocation.setTransactionManager(getTransactionManager());
             Iterator<EJBInvocationHandler> chain = invocationChain.iterator();
@@ -266,7 +265,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
         finally {
             // reuse ejb instance
             if (ejbInstance != null) {
-                bucket.reuseEJBInstance(ejbInstance);
+                bucket.reuseEJBInstance(null, ejbInstance);
             }
         }
     }
@@ -394,7 +393,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
             try {
                 for (Method timeoutMethod : timer.getTimeoutMethods()) {
 
-                    invokeEJB(timer.getEJBName(), timeoutMethod, new Object[]{timer});
+                    invokeEJB(timer.getEjbObjectId(), timeoutMethod, new Object[]{timer});
                 }
             }
             catch (Exception e) {
