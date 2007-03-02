@@ -46,7 +46,7 @@ public class TransactionEJBInvocationHandler extends EJBInvocationHandler {
         }
 */
         //得到的已经是实体方法
-        Method method = invocation.getMethod();
+        Method method = invocation.getConcreteMethod();
         TransactionAttributeType type = TransactionAttributeType.REQUIRED;
         if(method.isAnnotationPresent(TransactionAttribute.class)) {
             type = method.getAnnotation(TransactionAttribute.class).value();

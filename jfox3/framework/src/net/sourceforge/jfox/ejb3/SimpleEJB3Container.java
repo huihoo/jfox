@@ -242,7 +242,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
     public EJBBucket[] getEJBBucketByBeanInterface(Class interfaceClass) {
         List<EJBBucket> buckets = new ArrayList<EJBBucket>();
         for (EJBBucket bucket : bucketMap.values()) {
-            if (bucket.matchInterface(interfaceClass)) {
+            if (bucket.isBusinessInterface(interfaceClass)) {
                 buckets.add(bucket);
             }
         }
@@ -262,7 +262,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
         Object ejbInstance = null;
         try {
             ejbInstance = bucket.newEJBInstance(ejbObjectId.getEJBId());
-            EJBInvocation invocation = new EJBInvocation(bucket, ejbInstance, method, params);
+            EJBInvocation invocation = new EJBInvocation(bucket, ejbInstance, method, bucket.getConcreteMethod(method), params);
             invocation.setTransactionManager(getTransactionManager());
             Iterator<EJBInvocationHandler> chain = invocationChain.iterator();
             return chain.next().invoke(invocation, chain);

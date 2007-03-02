@@ -88,9 +88,11 @@ public interface EJBBucket {
 
     /**
      * 是否以该接口发布
-     * @param beanInterface 是否在 Remote/Local 中制定该 Bean interface
+     * @param beanInterface 是否在 Remote/Local 中指定该 Bean interface
      */
-    boolean matchInterface(Class beanInterface);
+    boolean isBusinessInterface(Class beanInterface);
+
+    Method getConcreteMethod(Method interfaceMethod);
 
     EJBContext createEJBContext(Object instance);
 

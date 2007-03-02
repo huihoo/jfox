@@ -41,7 +41,7 @@ public class InterceptorsEJBInvocationHandler extends EJBInvocationHandler {
             }
 
             public Method getMethod() {
-                return invocation.getMethod();
+                return invocation.getConcreteMethod();
             }
 
             public Object[] getParameters() {

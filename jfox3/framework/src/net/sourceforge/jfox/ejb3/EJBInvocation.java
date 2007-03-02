@@ -1,10 +1,10 @@
 package net.sourceforge.jfox.ejb3;
 
 import java.lang.reflect.Method;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
 import javax.transaction.TransactionManager;
 
 /**
@@ -17,7 +17,8 @@ public class EJBInvocation {
     private EJBBucket bucket;
 
     private Object target = null;
-    private Method method;
+    private Method interfaceMethod;
+    private Method concreteMethod;
     private Object[] params;
 
     private TransactionManager tm;
@@ -34,10 +35,11 @@ public class EJBInvocation {
         currentThreadEJBInvocation.remove();
     }
 
-    public EJBInvocation(EJBBucket bucket, Object target, Method method, Object[] params) {
+    public EJBInvocation(EJBBucket bucket, Object target, Method interfaceMethod, Method concreteMethod, Object[] params) {
         this.bucket = bucket;
         this.target = target;
-        this.method = method;
+        this.interfaceMethod = interfaceMethod;
+        this.concreteMethod = concreteMethod;
         this.params = params;
     }
 
@@ -54,10 +56,10 @@ public class EJBInvocation {
         // class level interceptor
         interceptorMethods.addAll(getBucket().getClassInterceptorMethods());
         // method level interceptor
-        interceptorMethods.addAll(getBucket().getMethodInterceptorMethods(getMethod()));
+        interceptorMethods.addAll(getBucket().getMethodInterceptorMethods(getConcreteMethod()));
 
         // method itself
-        interceptorMethods.add(getMethod());
+        interceptorMethods.add(getConcreteMethod());
         return Collections.unmodifiableList(interceptorMethods);
     }
 
@@ -77,12 +79,16 @@ public class EJBInvocation {
         return target;
     }
 
+    public Method getInterfaceMethod(){
+        return interfaceMethod;
+    }
+
     /**
      * 反射调用的方法，这是接口的方法，无法得到 annotation
      * 要得到 annotation，必须使用 getInvocationMethod
      */
-    public Method getMethod() {
-        return method;
+    public Method getConcreteMethod() {
+        return concreteMethod;
     }
 
     /**

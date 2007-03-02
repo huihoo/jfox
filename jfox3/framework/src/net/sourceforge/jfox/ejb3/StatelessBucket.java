@@ -80,7 +80,7 @@ import org.apache.log4j.Logger;
  */
 public class StatelessBucket extends SessionBucket implements PoolableObjectFactory {
 
-    private static final Logger logger = Logger.getLogger(StatelessBucket.class);
+    protected final Logger logger = Logger.getLogger(this.getClass());
 
     private Class beanClass;
     private Class[] beanInterfaces = null;
@@ -627,7 +627,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                             }
                             else {
                                 // 其它业务方法
-                                return container.invokeEJB(ejbObjectId, getConcreteMethod(method), args);
+                                return container.invokeEJB(ejbObjectId, method, args);
                             }
                         }
                     }
@@ -640,14 +640,14 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     /**
      * 通过动态代理过来的接口方法，取得 Bean 实体方法，以便可以获得 Annotation
      *
-     * @param method method
+     * @param interfaceMethod interfaceMethod
      */
-    protected Method getConcreteMethod(Method method) {
-        long methodHash = MethodUtils.getMethodHash(method);
+    public Method getConcreteMethod(Method interfaceMethod) {
+        long methodHash = MethodUtils.getMethodHash(interfaceMethod);
         return methodMap.get(methodHash);
     }
 
-    public boolean matchInterface(Class beanInterface) {
+    public boolean isBusinessInterface(Class beanInterface) {
         for (Class bi : this.getBeanInterfaces()) {
             if (bi.equals(beanInterface)) {
                 return true;
@@ -807,7 +807,6 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             return false;
         }
 
-
         // TODO: 完成 SessionContext 方法
         public <T> T getBusinessObject(Class<T> businessInterface) throws IllegalStateException {
             return null;
@@ -822,8 +821,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         }
 
         public Class getInvokedBusinessInterface() throws IllegalStateException {
-//            EJBInvocation.current().getMethod();
-            return null;
+            return EJBInvocation.current().getInterfaceMethod().getDeclaringClass();
         }
 
         public MessageContext getMessageContext() throws IllegalStateException {
