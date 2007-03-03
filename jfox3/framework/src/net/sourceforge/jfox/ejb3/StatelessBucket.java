@@ -63,8 +63,8 @@ import net.sourceforge.jfox.ejb3.dependent.ResourceDependence;
 import net.sourceforge.jfox.ejb3.naming.ContextAdapter;
 import net.sourceforge.jfox.ejb3.timer.EJBTimer;
 import net.sourceforge.jfox.ejb3.interceptor.InterceptorMethod;
-import net.sourceforge.jfox.ejb3.interceptor.EmbeddedInterceptorMethod;
-import net.sourceforge.jfox.ejb3.interceptor.SeperatedInterceptorMethod;
+import net.sourceforge.jfox.ejb3.interceptor.InternalInterceptorMethod;
+import net.sourceforge.jfox.ejb3.interceptor.ExternalInterceptorMethod;
 import net.sourceforge.jfox.entity.dependent.FieldPersistenceContextDependence;
 import net.sourceforge.jfox.framework.component.Module;
 import net.sourceforge.jfox.framework.component.ModuleClassLoader;
@@ -344,7 +344,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                         long methodHash = MethodUtils.getMethodHash(aroundInvokeMethod);
                         if (!aroundInvokeMethodHashes.contains(methodHash)) {
                             aroundInvokeMethod.setAccessible(true);
-                            classInterceptorMethods.add(0, new EmbeddedInterceptorMethod(aroundInvokeMethod));
+                            classInterceptorMethods.add(0, new InternalInterceptorMethod(aroundInvokeMethod));
                             aroundInvokeMethodHashes.add(methodHash);
                         }
                     }
@@ -363,7 +363,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                         List<InterceptorMethod> validAroundInvokeMethods = new ArrayList<InterceptorMethod>();
                         for (Method aroundInvokeMethod : interceptorsAroundInvokeMethods) {
                             if (checkInterceptorMethod(superClass, aroundInvokeMethod)) {
-                                validAroundInvokeMethods.add(0, new SeperatedInterceptorMethod(interceptorClass, aroundInvokeMethod));
+                                validAroundInvokeMethods.add(0, new ExternalInterceptorMethod(interceptorClass, aroundInvokeMethod));
                             }
                         }
                         methodInterceptorMethods.put(interceptedBeanMethod, validAroundInvokeMethods);
@@ -384,7 +384,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                         for (Method aroundInvokeMethod : interceptorsAroundInvokeMethods) {
                             if (checkInterceptorMethod(interceptorClass, aroundInvokeMethod)) {
                                 aroundInvokeMethod.setAccessible(true);
-                                classInterceptorMethods.add(0, new SeperatedInterceptorMethod(interceptorClass, aroundInvokeMethod));
+                                classInterceptorMethods.add(0, new ExternalInterceptorMethod(interceptorClass, aroundInvokeMethod));
                             }
                         }
                     }

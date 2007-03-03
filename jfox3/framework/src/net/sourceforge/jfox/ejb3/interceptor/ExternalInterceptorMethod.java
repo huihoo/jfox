@@ -5,15 +5,17 @@ import javax.interceptor.InvocationContext;
 import javax.ejb.EJBException;
 
 /**
+ * Interceptor Method anntated by @Interceptors on Class & Method
+ *
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
-public class SeperatedInterceptorMethod implements InterceptorMethod {
+public class ExternalInterceptorMethod implements InterceptorMethod {
 
     private Method interceptorMethod;
 
     private Object interceptorInstance;
 
-    public SeperatedInterceptorMethod(Class interceptorClass, Method interceptorMethod) {
+    public ExternalInterceptorMethod(Class interceptorClass, Method interceptorMethod) {
         this.interceptorMethod = interceptorMethod;
         try {
             interceptorInstance = interceptorClass.newInstance();

@@ -4,13 +4,15 @@ import java.lang.reflect.Method;
 import javax.interceptor.InvocationContext;
 
 /**
+ * Interceptor Method annotated by @AroundInvoke
+ *
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
-public class EmbeddedInterceptorMethod implements InterceptorMethod {
+public class InternalInterceptorMethod implements InterceptorMethod {
 
     private Method interceptorMethod;
 
-    public EmbeddedInterceptorMethod(Method interceptorMethod) {
+    public InternalInterceptorMethod(Method interceptorMethod) {
         this.interceptorMethod = interceptorMethod;
     }
 
