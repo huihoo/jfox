@@ -347,22 +347,6 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             }
             //如果是 Bean Class 本身，则还需要发现描述在方法上的 @Interceptors
             if (superClass.equals(getBeanClass())) {
-                Method[] interceptedBeanMethods = AnnotationUtils.getAnnotatedMethods(superClass, Interceptors.class);
-                for (Method interceptedBeanMethod : interceptedBeanMethods) {
-                    Interceptors interceptors = interceptedBeanMethod.getAnnotation(Interceptors.class);
-                    Class[] interceptorClasses = interceptors.value();
-                    // 取出 @AroundInvoke 方法
-                    for (Class<?> interceptorClass : interceptorClasses) {
-                        Method[] interceptorsAroundInvokeMethods = AnnotationUtils.getAnnotatedMethods(interceptorClass, AroundInvoke.class);
-                        List<InterceptorMethod> validAroundInvokeMethods = new ArrayList<InterceptorMethod>();
-                        for (Method aroundInvokeMethod : interceptorsAroundInvokeMethods) {
-                            if (checkInterceptorMethod(superClass, aroundInvokeMethod)) {
-                                validAroundInvokeMethods.add(0, new SeperatedInterceptorMethod(interceptorClass, aroundInvokeMethod));
-                            }
-                        }
-                        methodInterceptorMethods.put(interceptedBeanMethod, validAroundInvokeMethods);
-                    }
-                }
                 //为了简化， 只分析 Bean Class 的 class Interceptors
                 if (superClass.isAnnotationPresent(Interceptors.class)) {
                     Interceptors interceptors = superClass.getAnnotation(Interceptors.class);
@@ -379,6 +363,23 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                         }
                     }
                     //TODO: 检查 Interceptors 中的 PostConstruct PreDestroy
+                }
+
+                Method[] interceptedBeanMethods = AnnotationUtils.getAnnotatedMethods(superClass, Interceptors.class);
+                for (Method interceptedBeanMethod : interceptedBeanMethods) {
+                    Interceptors interceptors = interceptedBeanMethod.getAnnotation(Interceptors.class);
+                    Class[] interceptorClasses = interceptors.value();
+                    // 取出 @AroundInvoke 方法
+                    for (Class<?> interceptorClass : interceptorClasses) {
+                        Method[] interceptorsAroundInvokeMethods = AnnotationUtils.getAnnotatedMethods(interceptorClass, AroundInvoke.class);
+                        List<InterceptorMethod> validAroundInvokeMethods = new ArrayList<InterceptorMethod>();
+                        for (Method aroundInvokeMethod : interceptorsAroundInvokeMethods) {
+                            if (checkInterceptorMethod(superClass, aroundInvokeMethod)) {
+                                validAroundInvokeMethods.add(0, new SeperatedInterceptorMethod(interceptorClass, aroundInvokeMethod));
+                            }
+                        }
+                        methodInterceptorMethods.put(interceptedBeanMethod, validAroundInvokeMethods);
+                    }
                 }
             }
         }
