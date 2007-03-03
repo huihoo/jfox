@@ -296,7 +296,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     protected void introspectLifecycleAndInterceptors() {
         // beanClass is in superClass array
         Class<?>[] superClasses = ClassUtils.getAllSuperclasses(getBeanClass());
-        // 找出所有 Interceptors 类
+        List<Long> preDestoryMethodHashes = new ArrayList<Long>();
         for (Class<?> superClass : superClasses) {
             // PostConstruct
             Method[] _postConstructMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, PostConstruct.class);
@@ -313,9 +313,11 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             Method[] _preDestroyMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, PreDestroy.class);
             for (Method preDestroyMethod : _preDestroyMethods) {
                 if (checkLifecycleMethod(superClass, preDestroyMethod, PreDestroy.class)) {
-                    if (!preDestroyMethods.contains(preDestroyMethod)) {
+                    long methodHash = MethodUtils.getMethodHash(preDestroyMethod);
+                    if (!preDestoryMethodHashes.contains(methodHash)) {
                         preDestroyMethod.setAccessible(true);
                         preDestroyMethods.add(0, preDestroyMethod);
+                        preDestoryMethodHashes.add(methodHash);
                     }
                 }
             }
@@ -661,6 +663,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         Object obj = beanClass.newInstance();
 // post construct
         for (Method postConstructMethod : postConstructMethods) {
+            logger.debug("PostConstruct method for ejb: " + getName() + ", method: " + postConstructMethod);
             postConstructMethod.invoke(obj);
         }
 
@@ -694,6 +697,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
 
     public void destroyObject(Object obj) throws Exception {
         for (Method preDestroyMethod : preDestroyMethods) {
+            logger.debug("PreDestory method for ejb: " + getName() + ", method: " + preDestroyMethod);
             preDestroyMethod.invoke(obj);
         }
     }
