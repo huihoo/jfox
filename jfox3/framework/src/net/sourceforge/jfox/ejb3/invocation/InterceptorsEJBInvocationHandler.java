@@ -41,7 +41,7 @@ public class InterceptorsEJBInvocationHandler extends EJBInvocationHandler {
             }
 
             public Method getMethod() {
-                return invocation.getConcreteMethod();
+                return invocation.getInterfaceMethod();
             }
 
             public Object[] getParameters() {
@@ -53,7 +53,13 @@ public class InterceptorsEJBInvocationHandler extends EJBInvocationHandler {
             }
 
             public Object proceed() throws Exception {
-                return it.next().invoke(getTarget(), getParameters());
+                Method method = it.next();
+                if(it.hasNext()) { // is a AroundInvoke interceptor method
+                    return method.invoke(getTarget(), this);
+                }
+                else { // is business method
+                    return method.invoke(getTarget(), getParameters());
+                }
             }
         };
         // 这是最后一个 EJBInvocation，不再需要往后传递
