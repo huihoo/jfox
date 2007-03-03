@@ -296,15 +296,20 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     protected void introspectLifecycleAndInterceptors() {
         // beanClass is in superClass array
         Class<?>[] superClasses = ClassUtils.getAllSuperclasses(getBeanClass());
+
+        List<Long> postConstructMethodHashes = new ArrayList<Long>();
         List<Long> preDestoryMethodHashes = new ArrayList<Long>();
+        List<Long> aroundInvokeMethodHashes = new ArrayList<Long>();
         for (Class<?> superClass : superClasses) {
             // PostConstruct
             Method[] _postConstructMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, PostConstruct.class);
             for (Method postConstructMethod : _postConstructMethods) {
+                long methodHash = MethodUtils.getMethodHash(postConstructMethod);
                 if (checkLifecycleMethod(superClass, postConstructMethod, PostConstruct.class)) {
-                    if (!postConstructMethods.contains(postConstructMethod)) {
+                    if (!postConstructMethodHashes.contains(methodHash)) {
                         postConstructMethod.setAccessible(true);
                         postConstructMethods.add(0, postConstructMethod);
+                        postConstructMethodHashes.add(methodHash);
                     }
                 }
             }
@@ -328,14 +333,16 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                 for (Method aroundInvokeMethod : aroundInvokeMethods) {
                     if (checkInterceptorMethod(superClass, aroundInvokeMethod)) {
                         // 还没有在classInterceptorMethods中，子类如果覆盖了父类的方法，父类的方法将不再执行
-                        if (!classInterceptorMethods.contains(aroundInvokeMethod)) {
+                        long methodHash = MethodUtils.getMethodHash(aroundInvokeMethod);
+                        if (!aroundInvokeMethodHashes.contains(methodHash)) {
                             aroundInvokeMethod.setAccessible(true);
                             classInterceptorMethods.add(0, aroundInvokeMethod);
+                            aroundInvokeMethodHashes.add(methodHash);
                         }
                     }
                 }
             }
-            //如果是 Bean Class 本身，则还需要发现方法级的 interceptor
+            //如果是 Bean Class 本身，则还需要发现描述在方法上的 @Interceptors
             if (superClass.equals(getBeanClass())) {
                 Method[] interceptedBeanMethods = AnnotationUtils.getAnnotatedMethods(superClass, Interceptors.class);
                 for (Method interceptedBeanMethod : interceptedBeanMethods) {
@@ -363,11 +370,8 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                         Method[] interceptorsAroundInvokeMethods = AnnotationUtils.getAnnotatedMethods(interceptorClass, AroundInvoke.class);
                         for (Method aroundInvokeMethod : interceptorsAroundInvokeMethods) {
                             if (checkInterceptorMethod(interceptorClass, aroundInvokeMethod)) {
-                                // 还没有在classInterceptorMethods中，子类如果覆盖了父类的方法，父类的方法将不再执行
-                                if (!classInterceptorMethods.contains(aroundInvokeMethod)) {
-                                    aroundInvokeMethod.setAccessible(true);
-                                    classInterceptorMethods.add(0, aroundInvokeMethod);
-                                }
+                                aroundInvokeMethod.setAccessible(true);
+                                classInterceptorMethods.add(0, aroundInvokeMethod);
                             }
                         }
                     }
@@ -508,7 +512,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     /**
      * 将实例返回给 pool
      *
-     * @param ejbId ejb id
+     * @param ejbId        ejb id
      * @param beanInstance ejb bean instance @throws Exception exception
      */
     public void reuseEJBInstance(String ejbId, Object beanInstance) throws Exception {
@@ -861,7 +865,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             try {
                 destroyObject(getEJBInstance());
             }
-            catch(Exception e) {
+            catch (Exception e) {
                 String msg = "Remove EJB instance failed!";
                 logger.warn(msg, e);
                 throw new RemoveException(msg);
