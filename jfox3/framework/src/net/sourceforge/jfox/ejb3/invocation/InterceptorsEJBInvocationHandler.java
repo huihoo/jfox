@@ -8,6 +8,7 @@ import javax.interceptor.InvocationContext;
 
 import net.sourceforge.jfox.ejb3.EJBInvocation;
 import net.sourceforge.jfox.ejb3.EJBInvocationHandler;
+import net.sourceforge.jfox.ejb3.interceptor.InterceptorMethod;
 
 /**
  * 有 AroundInvoke method 和 bean method 构成 interceptor chain
@@ -18,7 +19,7 @@ import net.sourceforge.jfox.ejb3.EJBInvocationHandler;
 public class InterceptorsEJBInvocationHandler extends EJBInvocationHandler {
 
     public Object invoke(final EJBInvocation invocation, final Iterator<EJBInvocationHandler> chain) throws Exception {
-        final Iterator<Method> it = invocation.getInterceptorMethods().iterator();
+        final Iterator<InterceptorMethod> interceptorMethods = invocation.getInterceptorMethods().iterator();
         final InvocationContext invocationContext = new InvocationContext() {
             
             /**
@@ -53,15 +54,7 @@ public class InterceptorsEJBInvocationHandler extends EJBInvocationHandler {
             }
 
             public Object proceed() throws Exception {
-                Method method = it.next();
-                if(it.hasNext()) { // is a AroundInvoke interceptor method
-                    //TODO: 多于外部 Interceptors，不能用 getTarget 来执行？？？
-                    logger.info("Method: " + method);
-                    return method.invoke(getTarget(), this);
-                }
-                else { // last method is business method
-                    return method.invoke(getTarget(), getParameters());
-                }
+                return interceptorMethods.next().invoke(this);
             }
         };
         // 开始执行Invocation Method chain

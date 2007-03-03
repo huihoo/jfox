@@ -62,6 +62,9 @@ import net.sourceforge.jfox.ejb3.dependent.FieldResourceDependence;
 import net.sourceforge.jfox.ejb3.dependent.ResourceDependence;
 import net.sourceforge.jfox.ejb3.naming.ContextAdapter;
 import net.sourceforge.jfox.ejb3.timer.EJBTimer;
+import net.sourceforge.jfox.ejb3.interceptor.InterceptorMethod;
+import net.sourceforge.jfox.ejb3.interceptor.EmbeddedInterceptorMethod;
+import net.sourceforge.jfox.ejb3.interceptor.SeperatedInterceptorMethod;
 import net.sourceforge.jfox.entity.dependent.FieldPersistenceContextDependence;
 import net.sourceforge.jfox.framework.component.Module;
 import net.sourceforge.jfox.framework.component.ModuleClassLoader;
@@ -121,12 +124,12 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     /**
      * class level AroundInvoke interceptor methods
      */
-    private List<Method> classInterceptorMethods = new ArrayList<Method>();
+    private List<InterceptorMethod> classInterceptorMethods = new ArrayList<InterceptorMethod>();
     /**
      * Method level interceptors
      * ejb method  => interceptor methods
      */
-    private Map<Method, List<Method>> methodInterceptorMethods = new HashMap<Method, List<Method>>();
+    private Map<Method, List<InterceptorMethod>> methodInterceptorMethods = new HashMap<Method, List<InterceptorMethod>>();
 
     /**
      * stateless session bean 只有 PostConstruct & PreDestroy 有效
@@ -336,7 +339,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                         long methodHash = MethodUtils.getMethodHash(aroundInvokeMethod);
                         if (!aroundInvokeMethodHashes.contains(methodHash)) {
                             aroundInvokeMethod.setAccessible(true);
-                            classInterceptorMethods.add(0, aroundInvokeMethod);
+                            classInterceptorMethods.add(0, new EmbeddedInterceptorMethod(aroundInvokeMethod));
                             aroundInvokeMethodHashes.add(methodHash);
                         }
                     }
@@ -351,10 +354,10 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                     // 取出 @AroundInvoke 方法
                     for (Class<?> interceptorClass : interceptorClasses) {
                         Method[] interceptorsAroundInvokeMethods = AnnotationUtils.getAnnotatedMethods(interceptorClass, AroundInvoke.class);
-                        List<Method> validAroundInvokeMethods = new ArrayList<Method>();
+                        List<InterceptorMethod> validAroundInvokeMethods = new ArrayList<InterceptorMethod>();
                         for (Method aroundInvokeMethod : interceptorsAroundInvokeMethods) {
                             if (checkInterceptorMethod(superClass, aroundInvokeMethod)) {
-                                validAroundInvokeMethods.add(0, aroundInvokeMethod);
+                                validAroundInvokeMethods.add(0, new SeperatedInterceptorMethod(interceptorClass, aroundInvokeMethod));
                             }
                         }
                         methodInterceptorMethods.put(interceptedBeanMethod, validAroundInvokeMethods);
@@ -371,7 +374,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                         for (Method aroundInvokeMethod : interceptorsAroundInvokeMethods) {
                             if (checkInterceptorMethod(interceptorClass, aroundInvokeMethod)) {
                                 aroundInvokeMethod.setAccessible(true);
-                                classInterceptorMethods.add(0, aroundInvokeMethod);
+                                classInterceptorMethods.add(0, new SeperatedInterceptorMethod(interceptorClass, aroundInvokeMethod));
                             }
                         }
                     }
@@ -562,11 +565,11 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         return container;
     }
 
-    public Collection<Method> getClassInterceptorMethods() {
+    public Collection<InterceptorMethod> getClassInterceptorMethods() {
         return Collections.unmodifiableCollection(classInterceptorMethods);
     }
 
-    public Collection<Method> getMethodInterceptorMethods(Method method) {
+    public Collection<InterceptorMethod> getMethodInterceptorMethods(Method method) {
         if (methodInterceptorMethods.containsKey(method)) {
             return Collections.unmodifiableList(methodInterceptorMethods.get(method));
         }

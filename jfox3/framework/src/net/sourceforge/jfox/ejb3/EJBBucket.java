@@ -7,6 +7,7 @@ import javax.ejb.EJBObject;
 import javax.naming.Context;
 
 import net.sourceforge.jfox.framework.component.Module;
+import net.sourceforge.jfox.ejb3.interceptor.InterceptorMethod;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -72,9 +73,9 @@ public interface EJBBucket {
     /**
      * 所有类级别的拦截方法
      */
-    Collection<Method> getClassInterceptorMethods();
+    Collection<InterceptorMethod> getClassInterceptorMethods();
 
-    Collection<Method> getMethodInterceptorMethods(Method method);
+    Collection<InterceptorMethod> getMethodInterceptorMethods(Method method);
     
     /**
      * 是否是 @Remote EJB

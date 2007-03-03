@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Collections;
 import javax.transaction.TransactionManager;
 
+import net.sourceforge.jfox.ejb3.interceptor.InterceptorMethod;
+import net.sourceforge.jfox.ejb3.interceptor.BusinessInterceptorMethod;
+
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
@@ -51,8 +54,8 @@ public class EJBInvocation {
         this.tm = tm;
     }
 
-    public Collection<Method> getInterceptorMethods() {
-        final List<Method> interceptorMethods = new ArrayList<Method>();
+    public Collection<InterceptorMethod> getInterceptorMethods() {
+        final List<InterceptorMethod> interceptorMethods = new ArrayList<InterceptorMethod>();
         // class level interceptor
         interceptorMethods.addAll(getBucket().getClassInterceptorMethods());
         // method level interceptor
@@ -60,7 +63,7 @@ public class EJBInvocation {
         interceptorMethods.addAll(getBucket().getMethodInterceptorMethods(getConcreteMethod()));
 
         // method itself
-        interceptorMethods.add(getConcreteMethod());
+        interceptorMethods.add(new BusinessInterceptorMethod(getConcreteMethod()));
         return Collections.unmodifiableList(interceptorMethods);
     }
 
