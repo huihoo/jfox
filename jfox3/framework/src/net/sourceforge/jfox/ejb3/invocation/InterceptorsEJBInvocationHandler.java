@@ -55,6 +55,8 @@ public class InterceptorsEJBInvocationHandler extends EJBInvocationHandler {
             public Object proceed() throws Exception {
                 Method method = it.next();
                 if(it.hasNext()) { // is a AroundInvoke interceptor method
+                    //TODO: 多于外部 Interceptors，不能用 getTarget 来执行？？？
+                    logger.info("Method: " + method);
                     return method.invoke(getTarget(), this);
                 }
                 else { // last method is business method
