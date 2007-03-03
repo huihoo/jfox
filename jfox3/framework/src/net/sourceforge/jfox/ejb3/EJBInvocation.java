@@ -56,6 +56,7 @@ public class EJBInvocation {
         // class level interceptor
         interceptorMethods.addAll(getBucket().getClassInterceptorMethods());
         // method level interceptor
+        //TODO: 是用 getConcreteMethod 还是 getInterfaceMethod
         interceptorMethods.addAll(getBucket().getMethodInterceptorMethods(getConcreteMethod()));
 
         // method itself
