@@ -62,7 +62,7 @@ public class InterceptorsEJBInvocationHandler extends EJBInvocationHandler {
                 }
             }
         };
-        // 这是最后一个 EJBInvocation，不再需要往后传递
+        // 开始执行Invocation Method chain
         return invocationContext.proceed();
     }
 
