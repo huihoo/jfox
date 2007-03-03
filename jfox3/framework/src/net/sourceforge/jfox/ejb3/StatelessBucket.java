@@ -127,7 +127,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     private List<InterceptorMethod> classInterceptorMethods = new ArrayList<InterceptorMethod>();
     /**
      * Method level interceptors
-     * ejb method  => interceptor methods
+     * ejb concrete method  => interceptor methods
      */
     private Map<Method, List<InterceptorMethod>> methodInterceptorMethods = new HashMap<Method, List<InterceptorMethod>>();
 

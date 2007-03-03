@@ -58,11 +58,10 @@ public class EJBInvocation {
         final List<InterceptorMethod> interceptorMethods = new ArrayList<InterceptorMethod>();
         // class level interceptor
         interceptorMethods.addAll(getBucket().getClassInterceptorMethods());
-        // method level interceptor
-        //TODO: 是用 getConcreteMethod 还是 getInterfaceMethod
+        // method level interceptor, 用 getConcreteMethod 做key
         interceptorMethods.addAll(getBucket().getMethodInterceptorMethods(getConcreteMethod()));
 
-        // method itself
+        // create BusinessInterceptorMethod for invoke method
         interceptorMethods.add(new BusinessInterceptorMethod(getConcreteMethod()));
         return Collections.unmodifiableList(interceptorMethods);
     }
