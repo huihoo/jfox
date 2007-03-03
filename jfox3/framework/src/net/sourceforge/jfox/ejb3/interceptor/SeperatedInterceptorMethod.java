@@ -24,7 +24,7 @@ public class SeperatedInterceptorMethod implements InterceptorMethod {
     }
 
     public Object invoke(InvocationContext invocationContext) throws Exception {
-        return interceptorMethod.invoke(interceptorInstance,invocationContext.getParameters());
+        return interceptorMethod.invoke(interceptorInstance,invocationContext);
     }
 
     public static void main(String[] args) {

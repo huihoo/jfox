@@ -15,7 +15,7 @@ public class EmbeddedInterceptorMethod implements InterceptorMethod {
     }
 
     public Object invoke(InvocationContext invocationContext) throws Exception {
-        return interceptorMethod.invoke(invocationContext.getTarget(), invocationContext.getParameters());
+        return interceptorMethod.invoke(invocationContext.getTarget(), invocationContext);
     }
 
     public static void main(String[] args) {
