@@ -187,7 +187,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             }
         }
         if (annotatedBeanInterfaces.isEmpty()) {
-            this.beanInterfaces = beanClass.getInterfaces();
+            this.beanInterfaces = ClassUtils.getAllInterfaces(getBeanClass());
         }
         else {
             this.beanInterfaces = annotatedBeanInterfaces.toArray(new Class[annotatedBeanInterfaces.size()]);
@@ -515,7 +515,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
 
     public EJBContext createEJBContext(Object instance) {
         if (ejbContext == null) {
-            ejbContext = new EJBContextImpl();
+            ejbContext = new EJBContextImpl(instance);
         }
         return ejbContext;
     }
@@ -722,6 +722,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             if (!envMap.containsKey(name)) {
                 throw new NameNotFoundException(name);
             }
+            envMap.remove(name);
         }
 
         public Object lookup(String name) throws NamingException {
@@ -735,6 +736,16 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     // EJBContext Implementation
     @SuppressWarnings({"deprecation"})
     public class EJBContextImpl implements SessionContext, EJBObject, EJBLocalObject {
+
+        private Object ejbInstance;
+
+        public EJBContextImpl(Object ejbInstance) {
+            this.ejbInstance = ejbInstance;
+        }
+
+        private Object getEJBInstance() {
+            return ejbInstance;
+        }
 
         public Principal getCallerPrincipal() {
             return null;
@@ -843,7 +854,14 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         }
 
         public void remove() throws RemoveException {
-
+            try {
+                destroyObject(getEJBInstance());
+            }
+            catch(Exception e) {
+                String msg = "Remove EJB instance failed!";
+                logger.warn(msg, e);
+                throw new RemoveException(msg);
+            }
         }
 
         public boolean isIdentical(EJBLocalObject obj) throws EJBException {
