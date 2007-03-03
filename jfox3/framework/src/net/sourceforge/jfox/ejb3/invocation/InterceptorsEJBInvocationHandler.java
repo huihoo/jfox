@@ -57,7 +57,7 @@ public class InterceptorsEJBInvocationHandler extends EJBInvocationHandler {
                 if(it.hasNext()) { // is a AroundInvoke interceptor method
                     return method.invoke(getTarget(), this);
                 }
-                else { // is business method
+                else { // last method is business method
                     return method.invoke(getTarget(), getParameters());
                 }
             }
