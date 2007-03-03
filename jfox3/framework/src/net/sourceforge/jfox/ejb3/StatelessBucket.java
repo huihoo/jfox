@@ -109,7 +109,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
      * cached method is concrete method
      * hash => Method
      */
-    private final Map<Long, Method> methodMap = new HashMap<Long, Method>();
+    private final Map<Long, Method> concreteMethodMap = new HashMap<Long, Method>();
 
     /**
      * cache EJB instances
@@ -281,17 +281,22 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
 
     protected void introspectMethods() {
         // 缓存 EJB 方法，以便反射的时候，提升执行速度
-        Method[] methods = beanClass.getMethods();
-        for (Method method : methods) {
-            cacheMethod(method);
+        Set<Long> interfaceMethodHashes = new HashSet<Long>();
+        for (Class<?> interfaceClass : getBeanInterfaces()) {
+            for (Method method : interfaceClass.getMethods()) {
+                long methodHash = MethodUtils.getMethodHash(method);
+                interfaceMethodHashes.add(methodHash);
+            }
+        }
+
+        Method[] concreteMethods = beanClass.getMethods();
+        for (Method method : concreteMethods) {
+            long methodHash = MethodUtils.getMethodHash(method);
+            if (interfaceMethodHashes.contains(methodHash)) {
+                concreteMethodMap.put(methodHash, method);
+            }
         }
     }
-
-    protected void cacheMethod(Method method) {
-        long methodHash = MethodUtils.getMethodHash(method);
-        methodMap.put(methodHash, method);
-    }
-
 
     /**
      * 找到所有类级别的拦截方法
@@ -330,7 +335,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                 }
             }
 
-            // inteceptors
+            // @AroundInvoke
             Method[] aroundInvokeMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, AroundInvoke.class);
             if (aroundInvokeMethods.length > 0) {
                 for (Method aroundInvokeMethod : aroundInvokeMethods) {
@@ -345,7 +350,28 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                     }
                 }
             }
-            //如果是 Bean Class 本身，则还需要发现描述在方法上的 @Interceptors
+
+            // @Interceptors
+            Method[] interceptedBeanMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, Interceptors.class);
+            for (Method interceptedBeanMethod : interceptedBeanMethods) {
+                if (isBusinessMethod(interceptedBeanMethod)) { // 是业务方法
+                    Interceptors interceptors = interceptedBeanMethod.getAnnotation(Interceptors.class);
+                    Class[] interceptorClasses = interceptors.value();
+                    // 取出 @AroundInvoke 方法
+                    for (Class<?> interceptorClass : interceptorClasses) {
+                        Method[] interceptorsAroundInvokeMethods = AnnotationUtils.getAnnotatedMethods(interceptorClass, AroundInvoke.class);
+                        List<InterceptorMethod> validAroundInvokeMethods = new ArrayList<InterceptorMethod>();
+                        for (Method aroundInvokeMethod : interceptorsAroundInvokeMethods) {
+                            if (checkInterceptorMethod(superClass, aroundInvokeMethod)) {
+                                validAroundInvokeMethods.add(0, new SeperatedInterceptorMethod(interceptorClass, aroundInvokeMethod));
+                            }
+                        }
+                        methodInterceptorMethods.put(interceptedBeanMethod, validAroundInvokeMethods);
+                    }
+                }
+            }
+
+            //如果是 Bean Class 本身，检查类级 @Interceptors
             if (superClass.equals(getBeanClass())) {
                 //为了简化， 只分析 Bean Class 的 class Interceptors
                 if (superClass.isAnnotationPresent(Interceptors.class)) {
@@ -364,25 +390,12 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                     }
                     //TODO: 检查 Interceptors 中的 PostConstruct PreDestroy
                 }
-
-                Method[] interceptedBeanMethods = AnnotationUtils.getAnnotatedMethods(superClass, Interceptors.class);
-                for (Method interceptedBeanMethod : interceptedBeanMethods) {
-                    Interceptors interceptors = interceptedBeanMethod.getAnnotation(Interceptors.class);
-                    Class[] interceptorClasses = interceptors.value();
-                    // 取出 @AroundInvoke 方法
-                    for (Class<?> interceptorClass : interceptorClasses) {
-                        Method[] interceptorsAroundInvokeMethods = AnnotationUtils.getAnnotatedMethods(interceptorClass, AroundInvoke.class);
-                        List<InterceptorMethod> validAroundInvokeMethods = new ArrayList<InterceptorMethod>();
-                        for (Method aroundInvokeMethod : interceptorsAroundInvokeMethods) {
-                            if (checkInterceptorMethod(superClass, aroundInvokeMethod)) {
-                                validAroundInvokeMethods.add(0, new SeperatedInterceptorMethod(interceptorClass, aroundInvokeMethod));
-                            }
-                        }
-                        methodInterceptorMethods.put(interceptedBeanMethod, validAroundInvokeMethods);
-                    }
-                }
             }
         }
+    }
+
+    protected boolean isBusinessMethod(Method method) {
+        return concreteMethodMap.containsKey(MethodUtils.getMethodHash(method));
     }
 
     private boolean checkLifecycleMethod(Class<?> interceptorClass, Method lifecycleMethod, Class<? extends Annotation> lifecyleAnnotation) {
@@ -654,7 +667,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
      */
     public Method getConcreteMethod(Method interfaceMethod) {
         long methodHash = MethodUtils.getMethodHash(interfaceMethod);
-        return methodMap.get(methodHash);
+        return concreteMethodMap.get(methodHash);
     }
 
     public boolean isBusinessInterface(Class beanInterface) {
