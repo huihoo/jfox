@@ -89,7 +89,7 @@ public class EJBTimerTask implements Timer, TimerHandle, Runnable {
 
     public void run() {
         // 执行 @Timeout 方法
-        timerService.timeout(this);
+        timerService.invokeTimeout(this);
     }
 
     public static void main(String[] args) {

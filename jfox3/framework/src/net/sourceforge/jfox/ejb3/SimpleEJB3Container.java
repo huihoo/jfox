@@ -411,14 +411,21 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
             return Collections.unmodifiableCollection(timerTasks.keySet());
         }
 
-        public void timeout(final EJBTimerTask timer) throws EJBException {
+        /**
+         * 执行 Timeout 方法，有 ScheduleService 调用 EJBTimerTask.run，EJBTimerTask回调该方法，
+         * 通过容器来调用，以提供事务和执行 lifecycle 回调
+         *
+         * @param ejbTimerTask ejb TimerTask
+         * @throws EJBException ejb exception when error
+         */
+        public void invokeTimeout(final EJBTimerTask ejbTimerTask) throws EJBException {
             Method timeMethod = null;
             try {
-                for (Method _timeoutMethod : timer.getTimeoutMethods()) {
+                for (Method _timeoutMethod : ejbTimerTask.getTimeoutMethods()) {
                     timeMethod = _timeoutMethod;
                     logger.info("Call Timeout method: " + _timeoutMethod);
                     // 这样会启动事务
-                    invokeEJB(timer.getEjbObjectId(), _timeoutMethod, new Object[]{timer});
+                    invokeEJB(ejbTimerTask.getEjbObjectId(), _timeoutMethod, new Object[]{ejbTimerTask});
                 }
             }
             catch (Exception e) {
