@@ -400,11 +400,20 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
         }
 
         public Timer createTimer(final long initialDuration, final long intervalDuration, final Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
-            return null;
+            EJBTimerTask timer = new EJBTimerTask(this,info);
+            ScheduledFuture future = scheduleService.scheduleWithFixedDelay(timer, initialDuration, intervalDuration, TimeUnit.MILLISECONDS);
+            timer.setFuture(future);
+            timerTasks.put(timer, System.currentTimeMillis() + "");
+            return timer;
         }
 
         public Timer createTimer(Date initialExpiration, long intervalDuration, Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
-            return null;
+            EJBTimerTask timer = new EJBTimerTask(this,info);
+            ScheduledFuture future = scheduleService.scheduleWithFixedDelay(timer, initialExpiration.getTime()-System.currentTimeMillis(), intervalDuration, TimeUnit.MILLISECONDS);
+            timer.setFuture(future);
+            timerTasks.put(timer, System.currentTimeMillis() + "");
+            return timer;
+
         }
 
         public Collection getTimers() throws IllegalStateException, EJBException {
