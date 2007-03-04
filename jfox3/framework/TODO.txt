@@ -135,6 +135,10 @@
     1.增加了 Repository 类，用来存储所有的 ComponentMeta, 所有的 ComponentMeta用一个 Map 保存，便于全局搜索，同时每个Module都有自己的CompoentRepo对象，便于按 Module 隔离
     2.EJB智能访问本 Module 内部的 EJB, 为了让 EJB 能够跨 Module 访问，需要通过 Component 调用，这样是为了避免直接引用EJB接口，从而可能造成热部署失败
 
+2007-01-11
+    1. 采用 jotm，参考 Spring JTAManager
+    2. 如果 tx.setRollbackOnly，那么在 commit 的时候会抛出 RollbackException，需要捕获该异常，并调用 rollback
+
 2007-01-17
     1.使用 easybeans 的 EJB 测试用例进行测试
 
