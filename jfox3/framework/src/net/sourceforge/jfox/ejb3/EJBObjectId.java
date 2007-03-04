@@ -7,9 +7,16 @@ import java.io.Serializable;
  */
 public class EJBObjectId implements Serializable {
 
+    /**
+     * ejb name
+     */
     private String ejbName;
-    private String ejbId = "";
 
+    /**
+     * ejb instance id number
+     * empty if stateless ebj
+     */
+    private String ejbId = "";
 
     public EJBObjectId(String ejbName) {
         this.ejbName = ejbName;
