@@ -426,9 +426,9 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
             try {
                 for (Method _timeoutMethod : ejbTimerTask.getTimeoutMethods()) {
                     timeMethod = _timeoutMethod;
-                    logger.info("Call Timeout method: " + _timeoutMethod);
+                    logger.info("Call Timeout method: " + _timeoutMethod + " of EJB: " + ejbTimerTask.getEJBObjectId());
                     // 这样会启动事务
-                    invokeEJB(ejbTimerTask.getEjbObjectId(), _timeoutMethod, new Object[]{ejbTimerTask});
+                    invokeEJB(ejbTimerTask.getEJBObjectId(), _timeoutMethod, new Object[]{ejbTimerTask});
                 }
             }
             catch (Exception e) {

@@ -40,11 +40,11 @@ public class EJBTimerTask implements Timer, TimerHandle, Runnable {
         this.info = info;
     }
 
-    public EJBObjectId getEjbObjectId() {
+    public EJBObjectId getEJBObjectId() {
         return ejbObjectId;
     }
 
-    public void setEjbObjectId(EJBObjectId ejbObjectId) {
+    public void setEJBObjectId(EJBObjectId ejbObjectId) {
         this.ejbObjectId = ejbObjectId;
     }
 

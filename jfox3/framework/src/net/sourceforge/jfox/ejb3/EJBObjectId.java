@@ -20,7 +20,6 @@ public class EJBObjectId implements Serializable {
         this.ejbId = ejbId;
     }
 
-
     public String getEJBName() {
         return ejbName;
     }
@@ -31,5 +30,13 @@ public class EJBObjectId implements Serializable {
 
     public String toString() {
         return getEJBName() + (getEJBId().trim().length() == 0 ? "" : "@" + getEJBId());
+    }
+
+
+    public boolean equals(Object obj) {
+        if(obj == null || !(obj instanceof EJBObjectId)) {
+            return false;
+        }
+        return ((EJBObjectId)obj).ejbId.equals(ejbId) && ((EJBObjectId)obj).ejbName.equals(ejbName); 
     }
 }

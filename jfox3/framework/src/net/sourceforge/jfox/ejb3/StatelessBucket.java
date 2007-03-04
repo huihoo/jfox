@@ -987,28 +987,28 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
 
         public Timer createTimer(final long duration, final Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(duration, info);
-            timer.setEjbObjectId(getEJBObjectId());
+            timer.setEJBObjectId(getEJBObjectId());
             timer.addTimeoutMethod(getTimeoutMethods());
             return timer;
         }
 
         public Timer createTimer(Date expiration, Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(expiration, info);
-            timer.setEjbObjectId(getEJBObjectId());
+            timer.setEJBObjectId(getEJBObjectId());
             timer.addTimeoutMethod(getTimeoutMethods());
             return timer;
         }
 
         public Timer createTimer(final long initialDuration, final long intervalDuration, final Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(initialDuration, intervalDuration, info);
-            timer.setEjbObjectId(getEJBObjectId());
+            timer.setEJBObjectId(getEJBObjectId());
             timer.addTimeoutMethod(getTimeoutMethods());
             return timer;
         }
 
         public Timer createTimer(Date initialExpiration, long intervalDuration, Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(initialExpiration, intervalDuration, info);
-            timer.setEjbObjectId(getEJBObjectId());
+            timer.setEJBObjectId(getEJBObjectId());
             timer.addTimeoutMethod(getTimeoutMethods());
             return timer;
         }
@@ -1016,7 +1016,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         public Collection getTimers() throws IllegalStateException, EJBException {
             List<EJBTimerTask> beanTimers = new ArrayList<EJBTimerTask>();
             for(EJBTimerTask timerTask :  (Collection<EJBTimerTask>)getEJBContainer().getTimerService().getTimers()){
-                if(timerTask.getEjbObjectId().equals(getEJBObjectId())) {
+                if(timerTask.getEJBObjectId().equals(getEJBObjectId())) {
                     beanTimers.add(timerTask);
                 }
             }
