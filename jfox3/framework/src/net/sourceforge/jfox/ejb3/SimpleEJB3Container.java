@@ -306,7 +306,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
         return result;
     }
 
-    // ------------ NamingContainer ------
+    // ------------ JNDI Context ------
 
     public class ContainerNamingContext extends ContextAdapter {
 
@@ -413,7 +413,6 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
             timer.setFuture(future);
             timerTasks.put(timer, System.currentTimeMillis() + "");
             return timer;
-
         }
 
         public Collection getTimers() throws IllegalStateException, EJBException {
