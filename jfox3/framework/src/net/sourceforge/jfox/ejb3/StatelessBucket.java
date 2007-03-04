@@ -666,6 +666,10 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         return wsAnnotation;
     }
 
+    protected Method[] getTimeoutMethods(){
+        return timeoutMethods.toArray(new Method[timeoutMethods.size()]);
+    }
+
     /**
      * destroy bucket, invoke when container unload ejb
      */
@@ -978,38 +982,45 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     }
 
     // EJB TimerService，only stateless, MDB, Entity can register TimerService
+    @SuppressWarnings("unchecked")
     public class EJBTimerService implements TimerService {
 
         public Timer createTimer(final long duration, final Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(duration, info);
             timer.setEjbObjectId(getEJBObjectId());
+            timer.addTimeoutMethod(getTimeoutMethods());
             return timer;
         }
 
         public Timer createTimer(Date expiration, Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(expiration, info);
-            logger.info("EJBTimer: " + timer);
             timer.setEjbObjectId(getEJBObjectId());
-            timer.addTimeoutMethod(timeoutMethods.toArray(new Method[timeoutMethods.size()]));
-            //TODO: set Timeout Method to EJBTimer
+            timer.addTimeoutMethod(getTimeoutMethods());
             return timer;
         }
 
         public Timer createTimer(final long initialDuration, final long intervalDuration, final Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(initialDuration, intervalDuration, info);
             timer.setEjbObjectId(getEJBObjectId());
+            timer.addTimeoutMethod(getTimeoutMethods());
             return timer;
         }
 
         public Timer createTimer(Date initialExpiration, long intervalDuration, Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(initialExpiration, intervalDuration, info);
             timer.setEjbObjectId(getEJBObjectId());
-            timer.addTimeoutMethod(timeoutMethods.toArray(new Method[timeoutMethods.size()]));
+            timer.addTimeoutMethod(getTimeoutMethods());
             return timer;
         }
 
         public Collection getTimers() throws IllegalStateException, EJBException {
-            return getEJBContainer().getTimerService().getTimers();
+            List<EJBTimerTask> beanTimers = new ArrayList<EJBTimerTask>();
+            for(EJBTimerTask timerTask :  (Collection<EJBTimerTask>)getEJBContainer().getTimerService().getTimers()){
+                if(timerTask.getEjbObjectId().equals(getEJBObjectId())) {
+                    beanTimers.add(timerTask);
+                }
+            }
+            return Collections.unmodifiableCollection(beanTimers);
         }
     }
 

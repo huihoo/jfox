@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
+import java.util.Collections;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -407,7 +408,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
         }
 
         public Collection getTimers() throws IllegalStateException, EJBException {
-            return timerTasks.keySet();
+            return Collections.unmodifiableCollection(timerTasks.keySet());
         }
 
         public void timeout(final EJBTimerTask timer) throws EJBException {
