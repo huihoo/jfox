@@ -4,21 +4,22 @@ import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
-import java.util.Collections;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
+import javax.ejb.Timeout;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
-import javax.ejb.Timeout;
 import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
 import javax.naming.NameNotFoundException;
@@ -371,13 +372,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
          */
         private Map<EJBTimerTask, String> timerTasks = new WeakHashMap<EJBTimerTask, String>();
 
-        private ScheduledThreadPoolExecutor scheduleService = new ScheduledThreadPoolExecutor(2){
-            protected void afterExecute(Runnable r, Throwable t) {
-                if(t != null) {
-                    logger.warn("TimerService execute timeout method failed!",t );
-                }
-            }
-        };
+        private ScheduledExecutorService scheduleService = Executors.newScheduledThreadPool(5);
 
         public EJBContainerTimerService() {
 
