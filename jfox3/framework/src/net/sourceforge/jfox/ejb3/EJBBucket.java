@@ -71,11 +71,20 @@ public interface EJBBucket {
     EJBObject getProxyStub();
 
     /**
-     * 所有类级别的拦截方法
+     * \@Interceptors on class
      */
     Collection<InterceptorMethod> getClassInterceptorMethods();
 
-    Collection<InterceptorMethod> getMethodInterceptorMethods(Method method);
+    /**
+     * \@Interceptors on concreteMethod
+     * @param concreteMethod concrete Method
+     */
+    Collection<InterceptorMethod> getMethodInterceptorMethods(Method concreteMethod);
+
+    /**
+     * \@AroundInvoke in bean class
+     */
+    Collection<InterceptorMethod> getBeanInterceptorMethods();
     
     /**
      * 是否是 @Remote EJB

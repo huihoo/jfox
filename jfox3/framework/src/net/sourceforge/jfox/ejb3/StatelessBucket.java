@@ -122,7 +122,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     private EJBObject proxyStub = null;
 
     /**
-     * class level AroundInvoke interceptor methods
+     * class level @interceptor methods
      */
     private List<InterceptorMethod> classInterceptorMethods = new ArrayList<InterceptorMethod>();
     /**
@@ -130,6 +130,11 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
      * ejb concrete method  => interceptor methods
      */
     private Map<Method, List<InterceptorMethod>> methodInterceptorMethods = new HashMap<Method, List<InterceptorMethod>>();
+
+    /**
+     * 在 Bean 实现类中的 @AroundInvoke
+     */
+    private List<InterceptorMethod> beanInterceptorMethods = new ArrayList<InterceptorMethod>();
 
     /**
      * stateless session bean 只有 PostConstruct & PreDestroy 有效
@@ -344,36 +349,35 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                         long methodHash = MethodUtils.getMethodHash(aroundInvokeMethod);
                         if (!aroundInvokeMethodHashes.contains(methodHash)) {
                             aroundInvokeMethod.setAccessible(true);
-                            classInterceptorMethods.add(0, new InternalInterceptorMethod(aroundInvokeMethod));
+                            beanInterceptorMethods.add(0, new InternalInterceptorMethod(aroundInvokeMethod));
                             aroundInvokeMethodHashes.add(methodHash);
                         }
                     }
                 }
             }
 
-            // @Interceptors
-            Method[] interceptedBeanMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, Interceptors.class);
-            for (Method interceptedBeanMethod : interceptedBeanMethods) {
-                if (isBusinessMethod(interceptedBeanMethod)) { // 是业务方法
-                    Interceptors interceptors = interceptedBeanMethod.getAnnotation(Interceptors.class);
-                    Class[] interceptorClasses = interceptors.value();
-                    // 取出 @AroundInvoke 方法
-                    for (Class<?> interceptorClass : interceptorClasses) {
-                        Method[] interceptorsAroundInvokeMethods = AnnotationUtils.getAnnotatedMethods(interceptorClass, AroundInvoke.class);
-                        List<InterceptorMethod> validAroundInvokeMethods = new ArrayList<InterceptorMethod>();
-                        for (Method aroundInvokeMethod : interceptorsAroundInvokeMethods) {
-                            if (checkInterceptorMethod(superClass, aroundInvokeMethod)) {
-                                validAroundInvokeMethods.add(0, new ExternalInterceptorMethod(interceptorClass, aroundInvokeMethod));
-                            }
-                        }
-                        methodInterceptorMethods.put(interceptedBeanMethod, validAroundInvokeMethods);
-                    }
-                }
-            }
-
             //如果是 Bean Class 本身，检查类级 @Interceptors
             if (superClass.equals(getBeanClass())) {
-                //为了简化， 只分析 Bean Class 的 class Interceptors
+                // @Interceptors Method，取出所有可访问的 标准 @Interceptor 的方法
+                Method[] interceptedBeanMethods = AnnotationUtils.getAnnotatedMethods(superClass, Interceptors.class);
+                for (Method interceptedBeanMethod : interceptedBeanMethods) {
+                    if (isBusinessMethod(interceptedBeanMethod)) { // 是业务方法
+                        Interceptors interceptors = interceptedBeanMethod.getAnnotation(Interceptors.class);
+                        Class[] interceptorClasses = interceptors.value();
+                        // 取出 @AroundInvoke 方法
+                        for (Class<?> interceptorClass : interceptorClasses) {
+                            Method[] interceptorsAroundInvokeMethods = AnnotationUtils.getAnnotatedMethods(interceptorClass, AroundInvoke.class);
+                            List<InterceptorMethod> validAroundInvokeMethods = new ArrayList<InterceptorMethod>();
+                            for (Method aroundInvokeMethod : interceptorsAroundInvokeMethods) {
+                                if (checkInterceptorMethod(superClass, aroundInvokeMethod)) {
+                                    validAroundInvokeMethods.add(0, new ExternalInterceptorMethod(interceptorClass, aroundInvokeMethod));
+                                }
+                            }
+                            methodInterceptorMethods.put(interceptedBeanMethod, validAroundInvokeMethods);
+                        }
+                    }
+                }
+                // @Interceptors Class， 为了简化， 只分析 Bean Class 上的Annotation
                 if (superClass.isAnnotationPresent(Interceptors.class)) {
                     Interceptors interceptors = superClass.getAnnotation(Interceptors.class);
                     Class[] interceptorClasses = interceptors.value();
@@ -590,6 +594,10 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         else {
             return Collections.emptyList();
         }
+    }
+
+    public Collection<InterceptorMethod> getBeanInterceptorMethods(){
+        return Collections.unmodifiableCollection(beanInterceptorMethods);
     }
 
     public boolean isRemote() {

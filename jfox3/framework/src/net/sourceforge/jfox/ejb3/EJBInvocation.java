@@ -60,7 +60,8 @@ public class EJBInvocation {
         interceptorMethods.addAll(getBucket().getClassInterceptorMethods());
         // method level interceptor, 用 getConcreteMethod 做key
         interceptorMethods.addAll(getBucket().getMethodInterceptorMethods(getConcreteMethod()));
-
+        // @AroundInvoke in Bean class
+        interceptorMethods.addAll(getBucket().getBeanInterceptorMethods());
         // create BusinessInterceptorMethod for invoke method
         interceptorMethods.add(new BusinessInterceptorMethod(getConcreteMethod()));
         return Collections.unmodifiableList(interceptorMethods);
