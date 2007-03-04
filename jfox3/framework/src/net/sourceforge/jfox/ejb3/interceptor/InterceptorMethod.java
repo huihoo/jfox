@@ -3,7 +3,7 @@ package net.sourceforge.jfox.ejb3.interceptor;
 import javax.interceptor.InvocationContext;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public interface InterceptorMethod {
 

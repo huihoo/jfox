@@ -6,7 +6,7 @@ import javax.interceptor.InvocationContext;
 /**
  * Business Method to invoke
  *
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class BusinessInterceptorMethod implements InterceptorMethod {
 
