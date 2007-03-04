@@ -41,6 +41,8 @@ import javax.ejb.Handle;
 import javax.ejb.RemoveException;
 import javax.ejb.SessionContext;
 import javax.ejb.EJBLocalObject;
+import javax.ejb.TimedObject;
+import javax.ejb.Timeout;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptors;
 import javax.interceptor.InvocationContext;
@@ -61,7 +63,7 @@ import net.sourceforge.jfox.ejb3.dependent.FieldEJBDependence;
 import net.sourceforge.jfox.ejb3.dependent.FieldResourceDependence;
 import net.sourceforge.jfox.ejb3.dependent.ResourceDependence;
 import net.sourceforge.jfox.ejb3.naming.ContextAdapter;
-import net.sourceforge.jfox.ejb3.timer.EJBTimer;
+import net.sourceforge.jfox.ejb3.timer.EJBTimerTask;
 import net.sourceforge.jfox.ejb3.interceptor.InterceptorMethod;
 import net.sourceforge.jfox.ejb3.interceptor.InternalInterceptorMethod;
 import net.sourceforge.jfox.ejb3.interceptor.ExternalInterceptorMethod;
@@ -84,6 +86,17 @@ import org.apache.log4j.Logger;
 public class StatelessBucket extends SessionBucket implements PoolableObjectFactory {
 
     protected final Logger logger = Logger.getLogger(this.getClass());
+
+    public static final Method TimeOut;
+    static {
+        try {
+            TimeOut = TimedObject.class.getMethod("ejbTimeout", new Class[]{Timer.class});
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            throw new EJBException(e);
+        }
+    }
 
     private Class beanClass;
     private Class[] beanInterfaces = null;
@@ -109,7 +122,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
      * cached method is concrete method
      * hash => Method
      */
-    private final Map<Long, Method> concreteMethodMap = new HashMap<Long, Method>();
+    private final Map<Long, Method> concreteMethods = new HashMap<Long, Method>();
 
     /**
      * cache EJB instances
@@ -120,6 +133,8 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
      * cache EJB proxy stub, stateless EJB have only one stub
      */
     private EJBObject proxyStub = null;
+
+    private List<Method> timeoutMethods = new ArrayList<Method>();
 
     /**
      * class level @interceptor methods
@@ -298,8 +313,14 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         for (Method method : concreteMethods) {
             long methodHash = MethodUtils.getMethodHash(method);
             if (interfaceMethodHashes.contains(methodHash)) {
-                concreteMethodMap.put(methodHash, method);
+                this.concreteMethods.put(methodHash, method);
             }
+
+        }
+
+        // timeout method
+        if(TimedObject.class.isAssignableFrom(beanClass)){
+            timeoutMethods.add(TimeOut);
         }
     }
 
@@ -310,15 +331,29 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         // beanClass is in superClass array
         Class<?>[] superClasses = ClassUtils.getAllSuperclasses(getBeanClass());
 
+        List<Long> timeoutMethodHashes = new ArrayList<Long>();
         List<Long> postConstructMethodHashes = new ArrayList<Long>();
         List<Long> preDestoryMethodHashes = new ArrayList<Long>();
         List<Long> aroundInvokeMethodHashes = new ArrayList<Long>();
         for (Class<?> superClass : superClasses) {
+
+            Method[] annotatedTimeoutMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, Timeout.class);
+            for (Method timeoutMethod : annotatedTimeoutMethods) {
+                long methodHash = MethodUtils.getMethodHash(timeoutMethod);
+                if (checkTimeoutMethod(superClass, timeoutMethod, Timeout.class)) {
+                    if (!timeoutMethodHashes.contains(methodHash)) {
+                        timeoutMethod.setAccessible(true);
+                        timeoutMethods.add(0, timeoutMethod);
+                        timeoutMethodHashes.add(methodHash);
+                    }
+                }
+            }
+
             // PostConstruct
             Method[] _postConstructMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, PostConstruct.class);
             for (Method postConstructMethod : _postConstructMethods) {
                 long methodHash = MethodUtils.getMethodHash(postConstructMethod);
-                if (checkLifecycleMethod(superClass, postConstructMethod, PostConstruct.class)) {
+                if (checkCallbackMethod(superClass, postConstructMethod, PostConstruct.class)) {
                     if (!postConstructMethodHashes.contains(methodHash)) {
                         postConstructMethod.setAccessible(true);
                         postConstructMethods.add(0, postConstructMethod);
@@ -330,7 +365,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             // PreDestroy
             Method[] _preDestroyMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, PreDestroy.class);
             for (Method preDestroyMethod : _preDestroyMethods) {
-                if (checkLifecycleMethod(superClass, preDestroyMethod, PreDestroy.class)) {
+                if (checkCallbackMethod(superClass, preDestroyMethod, PreDestroy.class)) {
                     long methodHash = MethodUtils.getMethodHash(preDestroyMethod);
                     if (!preDestoryMethodHashes.contains(methodHash)) {
                         preDestroyMethod.setAccessible(true);
@@ -399,17 +434,30 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     }
 
     protected boolean isBusinessMethod(Method method) {
-        return concreteMethodMap.containsKey(MethodUtils.getMethodHash(method));
+        return concreteMethods.containsKey(MethodUtils.getMethodHash(method));
     }
 
-    private boolean checkLifecycleMethod(Class<?> interceptorClass, Method lifecycleMethod, Class<? extends Annotation> lifecyleAnnotation) {
-        if (!Modifier.isAbstract(lifecycleMethod.getModifiers())
-                && !Modifier.isStatic(lifecycleMethod.getModifiers())
-                && lifecycleMethod.getParameterTypes().length == 0) {
+    private boolean checkTimeoutMethod(Class<?> interceptorClass, Method timeoutMethod, Class<? extends Annotation> timeoutAnnotation) {
+        if (!Modifier.isAbstract(timeoutMethod.getModifiers())
+                && !Modifier.isStatic(timeoutMethod.getModifiers())
+                && timeoutMethod.getParameterTypes().length == 1
+                && timeoutMethod.getParameterTypes()[0].equals(Timer.class)) {
             return true;
         }
         else {
-            logger.warn("Invalid @" + lifecyleAnnotation.getSimpleName() + " method: " + lifecycleMethod + " in class: " + interceptorClass);
+            logger.warn("Invalid @" + timeoutAnnotation.getSimpleName() + " method: " + timeoutMethod + " in class: " + interceptorClass);
+            return false;
+        }
+    }
+    
+    private boolean checkCallbackMethod(Class<?> interceptorClass, Method callbackMethod, Class<? extends Annotation> lifecyleAnnotation) {
+        if (!Modifier.isAbstract(callbackMethod.getModifiers())
+                && !Modifier.isStatic(callbackMethod.getModifiers())
+                && callbackMethod.getParameterTypes().length == 0) {
+            return true;
+        }
+        else {
+            logger.warn("Invalid @" + lifecyleAnnotation.getSimpleName() + " method: " + callbackMethod + " in class: " + interceptorClass);
             return false;
         }
     }
@@ -675,7 +723,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
      */
     public Method getConcreteMethod(Method interfaceMethod) {
         long methodHash = MethodUtils.getMethodHash(interfaceMethod);
-        return concreteMethodMap.get(methodHash);
+        return concreteMethods.get(methodHash);
     }
 
     public boolean isBusinessInterface(Class beanInterface) {
@@ -933,26 +981,30 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     public class EJBTimerService implements TimerService {
 
         public Timer createTimer(final long duration, final Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
-            EJBTimer timer = (EJBTimer)getEJBContainer().getTimerService().createTimer(duration, info);
+            EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(duration, info);
             timer.setEjbObjectId(getEJBObjectId());
             return timer;
         }
 
         public Timer createTimer(Date expiration, Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
-            EJBTimer timer = (EJBTimer)getEJBContainer().getTimerService().createTimer(expiration, info);
+            EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(expiration, info);
+            logger.info("EJBTimer: " + timer);
             timer.setEjbObjectId(getEJBObjectId());
+            timer.addTimeoutMethod(timeoutMethods.toArray(new Method[timeoutMethods.size()]));
+            //TODO: set Timeout Method to EJBTimer
             return timer;
         }
 
         public Timer createTimer(final long initialDuration, final long intervalDuration, final Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
-            EJBTimer timer = (EJBTimer)getEJBContainer().getTimerService().createTimer(initialDuration, intervalDuration, info);
+            EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(initialDuration, intervalDuration, info);
             timer.setEjbObjectId(getEJBObjectId());
             return timer;
         }
 
         public Timer createTimer(Date initialExpiration, long intervalDuration, Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
-            EJBTimer timer = (EJBTimer)getEJBContainer().getTimerService().createTimer(initialExpiration, intervalDuration, info);
+            EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(initialExpiration, intervalDuration, info);
             timer.setEjbObjectId(getEJBObjectId());
+            timer.addTimeoutMethod(timeoutMethods.toArray(new Method[timeoutMethods.size()]));
             return timer;
         }
 

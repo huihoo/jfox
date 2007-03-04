@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
+import javax.ejb.Timeout;
 import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
 import javax.naming.NameNotFoundException;
@@ -25,15 +25,15 @@ import javax.naming.NamingException;
 import javax.transaction.SystemException;
 import javax.transaction.TransactionManager;
 
+import net.sourceforge.jfox.ejb3.event.EJBLoadedComponentEvent;
+import net.sourceforge.jfox.ejb3.event.EJBUnloadedComponentEvent;
 import net.sourceforge.jfox.ejb3.invocation.InterceptorsEJBInvocationHandler;
 import net.sourceforge.jfox.ejb3.invocation.ThreadContextEJBInvocationHandler;
 import net.sourceforge.jfox.ejb3.invocation.TransactionEJBInvocationHandler;
 import net.sourceforge.jfox.ejb3.naming.ContextAdapter;
 import net.sourceforge.jfox.ejb3.naming.InitialContextFactoryImpl;
-import net.sourceforge.jfox.ejb3.timer.EJBTimer;
+import net.sourceforge.jfox.ejb3.timer.EJBTimerTask;
 import net.sourceforge.jfox.ejb3.transaction.JTATransactionManager;
-import net.sourceforge.jfox.ejb3.event.EJBLoadedComponentEvent;
-import net.sourceforge.jfox.ejb3.event.EJBUnloadedComponentEvent;
 import net.sourceforge.jfox.framework.annotation.Constant;
 import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.ActiveComponent;
@@ -252,17 +252,27 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
     /**
      * 构造 ejb invocation，并且获得 chain，然后发起调用
      *
-     * @param ejbObjectId
-     * @param method      ejb method, 已经解析成实体方法
+     * @param ejbObjectId ejb object id
+     * @param interfaceMethod      ejb interfaceMethod, 已经解析成实体方法
      * @param params      parameters @throws Exception exception
      */
-    public Object invokeEJB(EJBObjectId ejbObjectId, Method method, Object[] params) throws Exception {
+    public Object invokeEJB(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params) throws Exception {
         EJBBucket bucket = getEJBBucket(ejbObjectId.getEJBName());
         // get instance from bucket's pool
         Object ejbInstance = null;
         try {
             ejbInstance = bucket.newEJBInstance(ejbObjectId.getEJBId());
-            EJBInvocation invocation = new EJBInvocation(bucket, ejbInstance, method, bucket.getConcreteMethod(method), params);
+            Method concreteMethod = bucket.getConcreteMethod(interfaceMethod);
+            if(concreteMethod == null) {
+                // if @Timeout
+                if(interfaceMethod.isAnnotationPresent(Timeout.class)) {
+                    concreteMethod = interfaceMethod;
+                }
+                else {
+                    throw new NoSuchMethodException("Could not found Concrete Business Method for interface method: " + interfaceMethod.getName());
+                }
+            }
+            EJBInvocation invocation = new EJBInvocation(bucket, ejbInstance, interfaceMethod, concreteMethod, params);
             invocation.setTransactionManager(getTransactionManager());
             Iterator<EJBInvocationHandler> chain = invocationChain.iterator();
             return chain.next().invoke(invocation, chain);
@@ -358,16 +368,22 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
          * it will be automatic removed by GC
          * EJBTimerTask => timer hashCode
          */
-        private Map<EJBTimer, String> timerTasks = new WeakHashMap<EJBTimer, String>();
+        private Map<EJBTimerTask, String> timerTasks = new WeakHashMap<EJBTimerTask, String>();
 
-        private ScheduledExecutorService scheduleService = Executors.newScheduledThreadPool(2);
+        private ScheduledThreadPoolExecutor scheduleService = new ScheduledThreadPoolExecutor(2){
+            protected void afterExecute(Runnable r, Throwable t) {
+                if(t != null) {
+                    logger.warn("TimerService execute timeout method failed!",t );
+                }
+            }
+        };
 
         public EJBContainerTimerService() {
 
         }
 
         public Timer createTimer(final long duration, final Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
-            EJBTimer timer = new EJBTimer(info);
+            EJBTimerTask timer = new EJBTimerTask(this, info);
             ScheduledFuture future = scheduleService.schedule(timer, duration, TimeUnit.MILLISECONDS);
             timer.setFuture(future);
             timerTasks.put(timer, System.currentTimeMillis() + "");
@@ -375,7 +391,11 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
         }
 
         public Timer createTimer(Date expiration, Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
-            return null;
+            EJBTimerTask timer = new EJBTimerTask(this,info);
+            ScheduledFuture future = scheduleService.schedule(timer, expiration.getTime()-System.currentTimeMillis(), TimeUnit.MILLISECONDS);
+            timer.setFuture(future);
+            timerTasks.put(timer, System.currentTimeMillis() + "");
+            return timer;
         }
 
         public Timer createTimer(final long initialDuration, final long intervalDuration, final Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
@@ -390,14 +410,18 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
             return timerTasks.keySet();
         }
 
-        public void timeout(final EJBTimer timer) throws EJBException {
+        public void timeout(final EJBTimerTask timer) throws EJBException {
+            Method timeMethod = null;
             try {
-                for (Method timeoutMethod : timer.getTimeoutMethods()) {
-
-                    invokeEJB(timer.getEjbObjectId(), timeoutMethod, new Object[]{timer});
+                for (Method _timeoutMethod : timer.getTimeoutMethods()) {
+                    timeMethod = _timeoutMethod;
+                    logger.info("Call Timeout method: " + _timeoutMethod);
+                    // 这样会启动事务
+                    invokeEJB(timer.getEjbObjectId(), _timeoutMethod, new Object[]{timer});
                 }
             }
             catch (Exception e) {
+                logger.error("Call Timeout method " + timeMethod + " throw exception.", e);
                 throw new EJBException("TimedObject callback exception.", e);
             }
         }

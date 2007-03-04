@@ -1,36 +1,30 @@
 package net.sourceforge.jfox.ejb3.timer;
 
 import java.io.Serializable;
+import java.lang.reflect.Method;
 import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-import java.lang.reflect.Method;
 import javax.ejb.EJBException;
 import javax.ejb.NoSuchObjectLocalException;
 import javax.ejb.Timer;
 import javax.ejb.TimerHandle;
-import javax.ejb.TimedObject;
 
-import net.sourceforge.jfox.ejb3.SimpleEJB3Container;
 import net.sourceforge.jfox.ejb3.EJBObjectId;
+import net.sourceforge.jfox.ejb3.SimpleEJB3Container;
 
 /**
  * @author <a href="mailto:yangyong@ufsoft.com.cn">Young Yang</a>
  */
 
-public class EJBTimer implements Timer, TimerHandle, Runnable {
-    public static final Method TimeOut;
-    static {
-        try {
-            TimeOut = TimedObject.class.getMethod("ejbTimeout", new Class[]{Timer.class});
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-            throw new EJBException(e);
-        }
-    }
+public class EJBTimerTask implements Timer, TimerHandle, Runnable {
 
     private EJBObjectId ejbObjectId;
+
+    private final List<Method> timeoutMethods = new ArrayList<Method>();
 
     private Serializable info;
 
@@ -41,7 +35,8 @@ public class EJBTimer implements Timer, TimerHandle, Runnable {
      */
     private ScheduledFuture future;
 
-    public EJBTimer(Serializable info) {
+    public EJBTimerTask(SimpleEJB3Container.EJBContainerTimerService timerService, Serializable info) {
+        this.timerService = timerService;
         this.info = info;
     }
 
@@ -84,12 +79,16 @@ public class EJBTimer implements Timer, TimerHandle, Runnable {
         future.cancel(false);
     }
 
+    public void addTimeoutMethod(Method[] timeoutMethods){
+        this.timeoutMethods.addAll(Arrays.asList(timeoutMethods));
+    }
+
     public Method[] getTimeoutMethods(){
-        return null;
+        return timeoutMethods.toArray(new Method[timeoutMethods.size()]);
     }
 
     public void run() {
-        // 找到 @Timeout 方法
+        // 执行 @Timeout 方法
         timerService.timeout(this);
     }
 
