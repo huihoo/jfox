@@ -28,14 +28,14 @@ public class EJBTimerTask implements Timer, TimerHandle, Runnable {
 
     private Serializable info;
 
-    private SimpleEJB3Container.EJBContainerTimerService timerService;
+    private SimpleEJB3Container.ContainerTimerService timerService;
 
     /**
      * Scheduled future
      */
     private ScheduledFuture future;
 
-    public EJBTimerTask(SimpleEJB3Container.EJBContainerTimerService timerService, Serializable info) {
+    public EJBTimerTask(SimpleEJB3Container.ContainerTimerService timerService, Serializable info) {
         this.timerService = timerService;
         this.info = info;
     }

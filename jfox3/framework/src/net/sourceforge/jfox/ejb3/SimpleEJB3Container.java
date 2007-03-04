@@ -69,7 +69,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
     private int transactionTimeout = 30; // default transaction timeout 30 seconds
 
     // TimerServer
-    private EJBContainerTimerService timerService = null;
+    private ContainerTimerService timerService = null;
 
     // container naming context, also is initialcontext for IntialContextFactoryImpl
     private Context namingContext = null;
@@ -107,7 +107,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
         InitialContextFactoryImpl.setInitialContext(namingContext);
 
         tm = JTATransactionManager.getIntsance();
-        timerService = new EJBContainerTimerService();
+        timerService = new ContainerTimerService();
 
         // 将 TransactionManager 注册 java:/TransactionManager
         try {
@@ -363,7 +363,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
     }
 
     // Container Timer Service
-    public class EJBContainerTimerService implements TimerService {
+    public class ContainerTimerService implements TimerService {
 
         /**
          * EJBTimerTasks, use WeakHashMap, when EJBTimerTask un contained by java.util.Timer,
@@ -374,7 +374,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
 
         private ScheduledExecutorService scheduleService = Executors.newScheduledThreadPool(5);
 
-        public EJBContainerTimerService() {
+        public ContainerTimerService() {
 
         }
 
