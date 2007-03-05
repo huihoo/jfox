@@ -1,7 +1,10 @@
 package net.sourceforge.jfox.entity;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
+import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +12,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.sql.Types;
-import java.sql.Clob;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -61,7 +62,7 @@ public class SQLQuery extends QueryExt {
     }
 
     public Query setParameter(String name, Object value) {
-        parameterMap.put(name,value);
+        parameterMap.put(name, value);
         return this;
     }
 
@@ -184,7 +185,7 @@ public class SQLQuery extends QueryExt {
 
             // 不能都是用 setString/setobject, 需要使用正确类型,但是该类型无法判断
             Object parameterResult = expressionResults.get(i);
-            if(parameterResult == null) {
+            if (parameterResult == null) {
                 throw new PersistenceException("Failed to build PreparedStatement, because expression " + expressions.get(i) + "'s value is not set!");
             }
             setPreparedStatementParameter(pst, i + 1, expressionResults.get(i));
@@ -278,7 +279,7 @@ public class SQLQuery extends QueryExt {
             else {
                 Class columnClass = sqlTemplate.getColumnClass(columnName);
                 // 如果 columnClass == null，说明 Entity中没有该 @Column，那么无需设置到 resultMap
-                if(columnClass == null) {
+                if (columnClass == null) {
                     logger.warn("No column named \"" + columnName + "\" in result class " + resultClass.getName() + " when execute sql query: " + nativeSQL);
                 }
                 else {
@@ -329,7 +330,7 @@ public class SQLQuery extends QueryExt {
             if (valuedMap.containsKey("valued") && valuedMap.get("valued")) {
                 mapped = true;
                 QueryExt mappedColumnQuery = em.createNamedQuery(mcEntry.namedQuery);
-                for(int i=0; i< params.length; i++) {
+                for (int i = 0; i < params.length; i++) {
                     mappedColumnQuery.setParameter(params[i].name(), parameterResult.get(i));
                 }
 
@@ -387,14 +388,30 @@ public class SQLQuery extends QueryExt {
                 value = baos.toByteArray();
                 in.close();
             }
-            catch (Exception e) {
+            catch (IOException e) {
                 value = rset.getBytes(columnIndex);
             }
         }
         else if (java.lang.String.class == columnClass) {
-            //deal with CLOB
-            //TODO: 是否可以使用 rset.getCharactorStream 统一处理
-            if(rset.getMetaData().getColumnType(columnIndex) == Types.CLOB) {
+            //deal with CLOB, 使用 rset.getCharactorStream 统一处理
+            try {
+                Reader reader = rset.getCharacterStream(columnIndex);
+                StringWriter sw = new StringWriter();
+
+                char[] buffer = new char[1024];
+                int count = 0;
+                int n = 0;
+                while (-1 != (n = reader.read(buffer))) {
+                    sw.write(buffer, 0, n);
+                    count += n;
+                }
+                value = sw.toString();
+            }
+            catch(IOException e) {
+                value = rset.getString(columnIndex);
+            }
+/*
+            if (rset.getMetaData().getColumnType(columnIndex) == Types.CLOB) {
                 Clob clob = rset.getClob(columnIndex);
                 if (clob != null) {
                     value = clob.getSubString(1, (int)clob.length());
@@ -403,16 +420,7 @@ public class SQLQuery extends QueryExt {
             else {
                 value = rset.getString(columnIndex);
             }
-            /*
-            if (map != null && "CLOB".equals(map.getType(propertyName))) {
-                Clob clob = rset.getClob(columnIndex);
-                if (clob != null) {
-                    value = clob.getSubString(1, (int)clob.length());
-                }
-            }else {
-                value = rset.getString(columnIndex);
-            }
-            */
+*/
         }
         else if (Date.class == columnClass) {
             java.sql.Date sqldate = rset.getDate(columnIndex);
