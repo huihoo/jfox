@@ -150,9 +150,6 @@ public class Module implements Comparable<Module> {
         if (descriptorURL == null) {
             descriptorURL = getModuleClassLoader().getResource(Constants.MODULE_CONFIG_FILENAME);
         }
-        if (descriptorURL == null) {
-            logger.error("Can not get module descriptor url.");
-        }
         return descriptorURL;
     }
 
@@ -236,6 +233,11 @@ public class Module implements Comparable<Module> {
      */
     protected void resolve() throws ModuleResolvedFailedException {
         URL descriptorURL = getDescriptorURL();
+        if(descriptorURL == null) {
+            //TODO: default config
+            logger.warn("Could not find module XML configuration, will use default config.");
+        }
+        logger.info("Resolving XML descriptor: " + descriptorURL);
         Document doc;
         try {
             // 替换占位符
@@ -258,18 +260,6 @@ public class Module implements Comparable<Module> {
         else {
             this.refModules = new String[0];
         }
-
-/*
-        Node exportClassesElements = XMLUtils.getChildNodeOf(rootElement, "export-interfaces");
-        if (exportClassesElements != null) {
-            List<Element> exportClassElements = XMLUtils.getElementsByTagName((Element)exportClassesElements, "interface");
-            for (Element exportClassElement : exportClassElements) {
-                String exportClassName = XMLUtils.getValueOf(exportClassElement);
-                exportInterfaceNames.add(exportClassName);
-            }
-        }
-*/
-
     }
 
     /**

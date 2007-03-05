@@ -50,6 +50,8 @@ public class Framework {
 
     private boolean started = false;
 
+    public static final String MODULE_ARCHIVE_SUFFIX = ".mzip";
+
     public Framework() {
         Thread.currentThread().setContextClassLoader(clRepo);
         logger.debug("Set thread context classloader to Framework ClassLoaderRepository.");
@@ -120,9 +122,9 @@ public class Framework {
         logger.info("Starting to load module from " + dir.getAbsolutePath());
         try {
              //.mzip 是 module 的压缩文件后缀
-            if (dir.isFile() && dir.getName().endsWith(".mzip")) {
+            if (dir.isFile() && dir.getName().endsWith(MODULE_ARCHIVE_SUFFIX)) {
                 dir = dir.getAbsoluteFile(); // 因为 getParentFile 是通过计算 path 来推断的
-                File toDir = new File(dir.getParentFile(), dir.getName().substring(0, dir.getName().length() - 4));
+                File toDir = new File(dir.getParentFile(), dir.getName().substring(0, dir.getName().length() - MODULE_ARCHIVE_SUFFIX.length()));
                 FileUtils.extractJar(dir, toDir);
                 dir = toDir;
             }

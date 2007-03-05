@@ -70,7 +70,7 @@ public class PlaceholderUtils {
      * @return 替换之后的内容
      */
     public String evaluate(String template) {
-        return VelocityUtils.evaluate(template,(Map)globalProperties);
+        return VelocityUtils.evaluate(template, (Map)globalProperties);
     }
 
     /**
@@ -81,8 +81,14 @@ public class PlaceholderUtils {
      * @throws IOException if failed to load file
      */
     public String evaluate(URL url) throws IOException {
-        String content = IOUtils.toString(url.openStream());
-        return evaluate(content);
+        InputStream in = url.openStream();
+        if (in != null) {
+            String content = IOUtils.toString(url.openStream());
+            return evaluate(content);
+        }
+        else {
+            return "";
+        }
     }
 
     public static void main(String[] args) throws Exception {
