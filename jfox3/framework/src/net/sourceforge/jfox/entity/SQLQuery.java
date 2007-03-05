@@ -381,9 +381,10 @@ public class SQLQuery extends QueryExt {
             try {
                 InputStream in = rset.getBinaryStream(columnIndex);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                int ch;
-                while ((ch = in.read()) != -1) {
-                    baos.write(ch);
+                int n;
+                byte[] buffer = new byte[1024];
+                while ((n = in.read(buffer)) != -1) {
+                    baos.write(buffer, 0, n);
                 }
                 value = baos.toByteArray();
                 in.close();
@@ -398,8 +399,8 @@ public class SQLQuery extends QueryExt {
                 Reader reader = rset.getCharacterStream(columnIndex);
                 StringWriter sw = new StringWriter();
 
-                char[] buffer = new char[1024];
                 int n;
+                char[] buffer = new char[1024];
                 while (-1 != (n = reader.read(buffer))) {
                     sw.write(buffer, 0, n);
                 }
