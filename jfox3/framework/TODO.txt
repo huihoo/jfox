@@ -213,3 +213,4 @@
 3007-03-05
     1. 支持以 jam 压缩文件加载模块
     2. 如果有 module.xml 文件，也可以按默认配置加载
+    3. 把 Container 的执行方法分为：invokeEJB invokeTimeout invokeWebService
