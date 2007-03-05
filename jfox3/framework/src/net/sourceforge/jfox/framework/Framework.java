@@ -132,10 +132,12 @@ public class Framework {
             modules.put(module.getName(), module);
             logger.info("Module: " + module.getName() + " loaded, from " + dir.getAbsolutePath());
 
-            // start 的时候再发出事件
-            //getListenerManager().fireModuleEvent(new ModuleLoadedEvent(module));
+
             if (isStarted()) {// 如果 Framework 已经启动，则后续装载的 Module 立即启动
+                // 发出事件
+                getListenerManager().fireModuleEvent(new ModuleLoadingEvent(module));
                 module.start();
+                getListenerManager().fireModuleEvent(new ModuleLoadedEvent(module));
             }
             return module;
         }
