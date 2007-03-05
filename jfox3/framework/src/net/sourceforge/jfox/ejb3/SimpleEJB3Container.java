@@ -17,7 +17,6 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
-import javax.ejb.Timeout;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
 import javax.naming.Context;
@@ -256,7 +255,8 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
      *
      * @param ejbObjectId ejb object id
      * @param interfaceMethod      ejb interfaceMethod, 已经解析成实体方法
-     * @param params      parameters @throws Exception exception
+     * @param params      parameters
+     * @throws Exception exception
      */
     public Object invokeEJB(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params) throws Exception {
         EJBBucket bucket = getEJBBucket(ejbObjectId.getEJBName());
@@ -266,13 +266,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
             ejbInstance = bucket.newEJBInstance(ejbObjectId.getEJBId());
             Method concreteMethod = bucket.getConcreteMethod(interfaceMethod);
             if(concreteMethod == null) {
-                // if @Timeout
-                if(interfaceMethod.isAnnotationPresent(Timeout.class)) {
-                    concreteMethod = interfaceMethod;
-                }
-                else {
-                    throw new NoSuchMethodException("Could not found Concrete Business Method for interface method: " + interfaceMethod.getName());
-                }
+                throw new NoSuchMethodException("Could not found Concrete Business Method for interface method: " + interfaceMethod.getName());
             }
             EJBInvocation invocation = new EJBInvocation(bucket, ejbInstance, interfaceMethod, concreteMethod, params);
             invocation.setTransactionManager(getTransactionManager());
@@ -286,6 +280,35 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
             }
         }
     }
+
+    /**
+     * invoke timeout method
+     *
+     * @param ejbObjectId ejb object id
+     * @param interfaceMethod      timeout interfaceMethod，可能是实体方法，也可能是 TimedObject 接口方法
+     * @param params      parameters
+     * @throws Exception exception
+          */
+    protected Object invokeTimeout(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params) throws Exception {
+        EJBBucket bucket = getEJBBucket(ejbObjectId.getEJBName());
+        // get instance from bucket's pool
+        Object ejbInstance = null;
+        try {
+            ejbInstance = bucket.newEJBInstance(ejbObjectId.getEJBId());
+            EJBInvocation invocation = new EJBInvocation(bucket, ejbInstance, interfaceMethod, interfaceMethod, params);
+            invocation.setTransactionManager(getTransactionManager());
+            Iterator<EJBInvocationHandler> chain = invocationChain.iterator();
+            return chain.next().invoke(invocation, chain);
+        }
+        finally {
+            // reuse ejb instance
+            if (ejbInstance != null) {
+                bucket.reuseEJBInstance(ejbObjectId.getEJBId(), ejbInstance);
+            }
+        }
+    }
+
+
 
     public TransactionManager getTransactionManager() {
         return tm;
@@ -421,14 +444,14 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
          * @param ejbTimerTask ejb TimerTask
          * @throws EJBException ejb exception when error
          */
-        public void invokeTimeout(final EJBTimerTask ejbTimerTask) throws EJBException {
+        public void timeout(final EJBTimerTask ejbTimerTask) throws EJBException {
             Method timeMethod = null;
             try {
                 for (Method _timeoutMethod : ejbTimerTask.getTimeoutMethods()) {
                     timeMethod = _timeoutMethod;
                     logger.info("Call Timeout method: " + _timeoutMethod + " of EJB: " + ejbTimerTask.getEJBObjectId());
                     // 这样会启动事务
-                    invokeEJB(ejbTimerTask.getEJBObjectId(), _timeoutMethod, new Object[]{ejbTimerTask});
+                    invokeTimeout(ejbTimerTask.getEJBObjectId(), _timeoutMethod, new Object[]{ejbTimerTask});
                 }
             }
             catch (Exception e) {
