@@ -9,15 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import net.sourceforge.jfox.framework.component.Module;
 import net.sourceforge.jfox.framework.component.ModuleResolvedFailedException;
 import net.sourceforge.jfox.framework.component.SystemModule;
-import net.sourceforge.jfox.framework.event.ModuleUnloadedEvent;
-import net.sourceforge.jfox.framework.event.ModuleLoadedEvent;
-import net.sourceforge.jfox.framework.event.ModuleLoadingEvent;
-import net.sourceforge.jfox.util.PlaceholderUtils;
+import net.sourceforge.jfox.framework.event.FrameworkStartedEvent;
+import net.sourceforge.jfox.framework.event.FrameworkStoppedEvent;
 import net.sourceforge.jfox.util.FileUtils;
+import net.sourceforge.jfox.util.PlaceholderUtils;
+import org.apache.log4j.Logger;
 
 /**
  * JFoxNG framework.
@@ -133,10 +132,7 @@ public class Framework {
             logger.info("Module: " + module.getName() + " loaded, from " + dir.getAbsolutePath());
 
             if (isStarted()) {// 如果 Framework 已经启动，则后续装载的 Module 立即启动
-                // 发出事件
-                getListenerManager().fireModuleEvent(new ModuleLoadingEvent(module));
                 module.start();
-                getListenerManager().fireModuleEvent(new ModuleLoadedEvent(module));
             }
             return module;
         }
@@ -155,7 +151,6 @@ public class Framework {
         Module module = modules.remove(name);
         if (module != null) {
             module.unload();
-            getListenerManager().fireModuleEvent(new ModuleUnloadedEvent(module));
         }
     }
 
@@ -186,9 +181,7 @@ public class Framework {
             return;
         }
         try {
-            getListenerManager().fireModuleEvent(new ModuleLoadingEvent(systemModule));
             systemModule.start();
-            getListenerManager().fireModuleEvent(new ModuleLoadedEvent(systemModule));
         }
         catch (Exception e) {
             logger.fatal("Failed to start SystemModule!", e);
@@ -198,11 +191,10 @@ public class Framework {
         List<Module> allModules = new ArrayList<Module>(modules.values());
         Collections.sort(allModules);
         for (Module module : allModules) {
-            getListenerManager().fireModuleEvent(new ModuleLoadingEvent(module));
             module.start();
-            getListenerManager().fireModuleEvent(new ModuleLoadedEvent(module));
         }
         started = true;
+        getListenerManager().fireFrameworkEvent(new FrameworkStartedEvent(this));
         logger.info("Framework started!");
     }
 
@@ -215,6 +207,7 @@ public class Framework {
         }
         systemModule.unload();
         started = false;
+        getListenerManager().fireFrameworkEvent(new FrameworkStoppedEvent(this));
         logger.info("Framework stopped!");
     }
 

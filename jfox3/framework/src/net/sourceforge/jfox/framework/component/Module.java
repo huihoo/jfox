@@ -17,6 +17,9 @@ import net.sourceforge.jfox.framework.Framework;
 import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.event.ComponentUnloadedEvent;
 import net.sourceforge.jfox.framework.event.ComponentLoadedEvent;
+import net.sourceforge.jfox.framework.event.ModuleLoadingEvent;
+import net.sourceforge.jfox.framework.event.ModuleLoadedEvent;
+import net.sourceforge.jfox.framework.event.ModuleUnloadedEvent;
 import net.sourceforge.jfox.util.FileFilterUtils;
 import net.sourceforge.jfox.util.FileUtils;
 import net.sourceforge.jfox.util.PlaceholderUtils;
@@ -276,6 +279,7 @@ public class Module implements Comparable<Module> {
      */
     public void start() throws Exception {
         logger.info("Starting module: " + getName());
+        getFramework().getListenerManager().fireModuleEvent(new ModuleLoadingEvent(this));
         Class[] deployComponents = getModuleClassLoader().findClassAnnotatedWith(Service.class);
         for (Class<?> componentClass : deployComponents) {
             if (componentClass.isInterface()
@@ -293,7 +297,7 @@ public class Module implements Comparable<Module> {
         }
         // 实例化 not lazy components
         instantiateActiveComponent();
-
+        getFramework().getListenerManager().fireModuleEvent(new ModuleLoadedEvent(this));
     }
 
     protected void instantiateActiveComponent() throws ComponentInstantiateException {
@@ -330,6 +334,7 @@ public class Module implements Comparable<Module> {
                 logger.warn("Unload component: " + meta.getComponentId() + " failed.", e);
             }
         }
+        getFramework().getListenerManager().fireModuleEvent(new ModuleUnloadedEvent(this));
     }
 
     /**
