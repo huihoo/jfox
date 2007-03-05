@@ -17,7 +17,7 @@ public interface EJBBucket {
     /**
      * ejb name
      */
-    String getName();
+    String getEJBName();
 
     /**
      * description infomation
@@ -42,10 +42,9 @@ public interface EJBBucket {
     /**
      * new EJB instance, return bean instance, not EJBObject
      * 
-     * @throws Exception exception
-     * @param ejbId
+     * @throws Exception exception @param ejbObjectId
      */
-    Object newEJBInstance(String ejbId) throws Exception;
+    Object newEJBInstance(EJBObjectId ejbObjectId) throws Exception;
 
     /**
      * 重用 ejb instance
@@ -104,12 +103,13 @@ public interface EJBBucket {
 
     Method getConcreteMethod(Method interfaceMethod);
 
-    EJBContext createEJBContext(Object instance);
+    EJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance);
 
     /**
-     * EJB env context, java:comp/env 
+     * EJB env context, java:comp/env
+     * @param ejbInstance ejb instance
      */
-    Context getENContext();
+    Context getENContext(Object ejbInstance);
 
     /**
      * 销毁 EJBBucket

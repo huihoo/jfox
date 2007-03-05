@@ -35,7 +35,7 @@ public class FieldEJBDependence extends EJBDependence {
         }
         if (name.length() != 0) {
             try {
-                Object obj = getBucket().getENContext().lookup(name);
+                Object obj = getBucket().getENContext(null).lookup(name);
                 if (!(obj instanceof EJBObject)) {
                     throw new InjectionException("Failed to inject field " + field.getName() + ", name " + name + " is not a ejb, but " + obj.toString() + "!");
                 }
@@ -101,7 +101,7 @@ public class FieldEJBDependence extends EJBDependence {
             field.set(instance, targetEJBObject);
         }
         catch (Exception e) {
-            throw new InjectionException("Failed to inject field " + field.getName() + " of EJB " + bucket.getName(), e);
+            throw new InjectionException("Failed to inject field " + field.getName() + " of EJB " + bucket.getEJBName(), e);
         }
     }
 

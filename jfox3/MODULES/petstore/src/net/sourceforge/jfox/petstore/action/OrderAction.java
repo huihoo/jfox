@@ -43,8 +43,16 @@ public class OrderAction extends ActionSupport {
     public void doGetNew(InvocationContext invocationContext) throws Exception {
         SessionContext sessionContext = invocationContext.getSessionContext();
         Cart cart = (Cart)sessionContext.getAttribute(CartAction.CART_SESSION_KEY);
-        Account account = (Account)sessionContext.getAttribute(AccountAction.ACCOUNT_SESSION_KEY);
 
+        PageContext pageContext = invocationContext.getPageContext();
+
+        if(!sessionContext.containsAttribute(AccountAction.ACCOUNT_SESSION_KEY)) {
+            // not login
+            pageContext.setTargetView("signon.vhtml");
+            return;
+        }
+
+        Account account = (Account)sessionContext.getAttribute(AccountAction.ACCOUNT_SESSION_KEY);
 
         Order order = MapperEntity.newEntityObject(Order.class);
         order.setOrderId(PKgen.getInstance().nextPK());
@@ -96,7 +104,6 @@ public class OrderAction extends ActionSupport {
 
         sessionContext.setAttribute(ORDER_SESSION_KEY, order);
 
-        PageContext pageContext = invocationContext.getPageContext();
         pageContext.setAttribute("creditCardTypes", creditCardTypes);
         pageContext.setAttribute("order", order);
     }

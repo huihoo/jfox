@@ -41,7 +41,7 @@ public class FieldPersistenceUnittDependence implements Dependence {
             field.set(instance, em);
         }
         catch (Exception e) {
-            throw new InjectionException("Failed to inject field " + field.getName() + " of @PersistenceContext " + bucket.getName(), e);
+            throw new InjectionException("Failed to inject field " + field.getName() + " of @PersistenceContext " + bucket.getEJBName(), e);
         }
     }
 

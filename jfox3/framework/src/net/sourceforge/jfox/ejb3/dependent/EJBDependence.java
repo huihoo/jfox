@@ -87,7 +87,7 @@ public class EJBDependence implements Dependence {
                 if(name.startsWith("/")) {
                     name = name.substring(1);
                 }
-                bucket.getENContext().bind(name, targetEJBObject);
+                bucket.getENContext(null).bind(name, targetEJBObject);
             }
             catch(NamingException e) {
                 throw new InjectionException("Failed to injection bind java:comp/env/"+ name, e);

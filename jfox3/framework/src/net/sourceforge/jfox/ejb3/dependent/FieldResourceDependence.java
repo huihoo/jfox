@@ -41,10 +41,10 @@ public class FieldResourceDependence extends ResourceDependence {
         if (field.getType().equals(EJBContext.class) ||
                 field.getType().equals(SessionContext.class) ||
                 field.getType().equals(MessageDrivenContext.class)) {
-            targetObject = getBucket().createEJBContext(instance);
+            targetObject = getBucket().createEJBContext(null, instance);
         }
         else if (field.getType().equals(TimerService.class)) {
-            targetObject = getBucket().createEJBContext(instance).getTimerService();
+            targetObject = getBucket().createEJBContext(null, instance).getTimerService();
         }
         else if (field.getType().equals(DataSource.class)) {
             // 无需通过 InitialContext

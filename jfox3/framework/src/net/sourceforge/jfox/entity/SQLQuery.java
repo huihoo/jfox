@@ -3,15 +3,15 @@ package net.sourceforge.jfox.entity;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Reader;
-import java.io.StringWriter;
 import java.math.BigDecimal;
+import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -395,6 +395,7 @@ public class SQLQuery extends QueryExt {
         }
         else if (java.lang.String.class == columnClass) {
             //deal with CLOB, 使用 rset.getCharactorStream 统一处理
+/*
             try {
                 Reader reader = rset.getCharacterStream(columnIndex);
                 StringWriter sw = new StringWriter();
@@ -409,7 +410,8 @@ public class SQLQuery extends QueryExt {
             catch(IOException e) {
                 value = rset.getString(columnIndex);
             }
-/*
+*/
+
             if (rset.getMetaData().getColumnType(columnIndex) == Types.CLOB) {
                 Clob clob = rset.getClob(columnIndex);
                 if (clob != null) {
@@ -419,7 +421,7 @@ public class SQLQuery extends QueryExt {
             else {
                 value = rset.getString(columnIndex);
             }
-*/
+
         }
         else if (Date.class == columnClass) {
             java.sql.Date sqldate = rset.getDate(columnIndex);

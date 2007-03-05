@@ -68,7 +68,7 @@ public class EJBInvocation {
     }
 
     public String getEJBname(){
-        return bucket.getName();
+        return bucket.getEJBName();
     }
 
     private EJBBucket getBucket(){

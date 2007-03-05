@@ -86,7 +86,7 @@ public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, Activ
                 Class wsEndpointInterface = ((StatelessBucket)ejbBucket).getWebServiceEndpointInterface();
                 if (wsEndpointInterface != null) {
                     // 把 EJB 发布成 WebService
-                    endpointInterface2EJBNameMap.put(wsEndpointInterface.getName(), ejbBucket.getName());
+                    endpointInterface2EJBNameMap.put(wsEndpointInterface.getName(), ejbBucket.getEJBName());
                     // create xfire service by stateless bucket
                     org.codehaus.xfire.service.Service service = factory.create((StatelessBucket)ejbBucket);
                     service.setInvoker(this);
