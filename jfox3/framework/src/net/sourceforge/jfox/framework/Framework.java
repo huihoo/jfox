@@ -114,10 +114,15 @@ public class Framework {
      * @return 返回生成的 Module 实例
      */
     public Module loadModule(File dir) {
+        if(!dir.exists()) {
+            logger.error("Load module failed, not exists module file: " + dir);
+            return null;
+        }
         logger.info("Starting to load module from " + dir.getAbsolutePath());
         try {
              //.mzip 是 module 的压缩文件后缀
             if (dir.isFile() && dir.getName().endsWith(".mzip")) {
+                dir = dir.getAbsoluteFile(); // 因为 getParentFile 是通过计算 path 来推断的
                 File toDir = new File(dir.getParentFile(), dir.getName().substring(0, dir.getName().length() - 4));
                 FileUtils.extractJar(dir, toDir);
                 dir = toDir;
