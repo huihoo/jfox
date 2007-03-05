@@ -649,7 +649,8 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     }
 
     public boolean isRemote() {
-        return getBeanClass().isAnnotationPresent(Remote.class);
+        // no @Local is Remote
+        return getBeanClass().isAnnotationPresent(Remote.class) || !getBeanClass().isAnnotationPresent(Local.class);
     }
 
     public boolean isLocal() {
