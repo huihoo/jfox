@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.PersistenceContext;
+import javax.persistence.EntityManager;
 
 import net.sourceforge.jfox.petstore.entity.Item;
 import net.sourceforge.jfox.petstore.entity.Order;
@@ -48,7 +49,7 @@ public class ItemDAOImpl extends DAOSupport implements ItemDAO {
     @PersistenceContext(unitName = "JPetstoreMysqlDS")
     EntityManagerExt em;
 
-    protected EntityManagerExt getEntityManager() {
+    protected EntityManager getEntityManager() {
         return em;
     }
 

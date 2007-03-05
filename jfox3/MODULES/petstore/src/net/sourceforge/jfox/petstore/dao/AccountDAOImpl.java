@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedNativeQueries;
+import javax.persistence.EntityManager;
 
 import net.sourceforge.jfox.petstore.entity.Account;
 import net.sourceforge.jfox.entity.EntityManagerExt;
@@ -185,7 +186,7 @@ public class AccountDAOImpl extends DAOSupport implements AccountDAO {
     /**
      * 返回 EntityManager，默认注入的是 default
      */
-    protected EntityManagerExt getEntityManager() {
+    protected EntityManager getEntityManager() {
         return em;
     }
 

@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 
-import net.sourceforge.jfox.entity.EntityManagerExt;
 import net.sourceforge.jfox.entity.EntityObject;
 import net.sourceforge.jfox.entity.QueryExt;
 
@@ -30,7 +30,7 @@ public abstract class DAOSupport implements DataAccessObject {
     /**
      * 返回 EntityManager，由子类使用 @PersistenceContext 注入
      */
-    protected abstract EntityManagerExt getEntityManager();
+    protected abstract EntityManager getEntityManager();
 
     public final QueryExt createNamedNativeQuery(String queryName) {
         return (QueryExt)getEntityManager().createNamedQuery(queryName);

@@ -27,7 +27,7 @@ public class AccountDAOTest {
         final EntityManager em = Persistence.createEntityManagerFactory("JPetstoreMysqlDS").createEntityManager();
 
         accountDAO = new AccountDAOImpl(){
-            public EntityManagerExt getEntityManager() {
+            public EntityManager getEntityManager() {
                 return (EntityManagerExt)em;
             }
         };

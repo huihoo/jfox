@@ -43,7 +43,7 @@ public class AccountDAOImpl extends DAOSupport implements AccountDAO {
     @PersistenceContext(unitName = "JPetstoreMysqlDS")
     EntityManager em;
 
-    protected EntityManagerExt getEntityManager() {
+    protected EntityManager getEntityManager() {
         return (EntityManagerExt)em;
     }
 

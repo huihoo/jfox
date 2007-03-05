@@ -40,7 +40,7 @@ public class CategoryDAOImpl extends DAOSupport implements CategoryDAO{
     @PersistenceContext(unitName = "JPetstoreMysqlDS")
     EntityManager em;
 
-    protected EntityManagerExt getEntityManager() {
+    protected EntityManager getEntityManager() {
         return (EntityManagerExt)em;
     }
 

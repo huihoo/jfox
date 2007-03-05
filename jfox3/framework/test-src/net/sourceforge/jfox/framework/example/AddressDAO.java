@@ -33,7 +33,7 @@ public class AddressDAO extends DAOSupport {
     @PersistenceContext(unitName = "JPetstoreMysqlDS")
     EntityManager em;
 
-    protected EntityManagerExt getEntityManager() {
+    protected EntityManager getEntityManager() {
         return (EntityManagerExt)em;
     }
     public static void main(String[] args) {

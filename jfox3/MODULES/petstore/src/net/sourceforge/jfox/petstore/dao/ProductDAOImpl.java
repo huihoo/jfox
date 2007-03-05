@@ -60,7 +60,7 @@ public class ProductDAOImpl extends DAOSupport implements ProductDAO {
     @PersistenceContext(unitName = "JPetstoreMysqlDS")
     EntityManager em;
 
-    protected EntityManagerExt getEntityManager() {
+    protected EntityManager getEntityManager() {
         return (EntityManagerExt)em;
     }
 

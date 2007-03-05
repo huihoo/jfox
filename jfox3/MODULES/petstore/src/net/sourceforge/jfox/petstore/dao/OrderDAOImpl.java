@@ -174,7 +174,7 @@ public class OrderDAOImpl extends DAOSupport implements OrderDAO {
     EntityManager em;
 
 
-    protected EntityManagerExt getEntityManager() {
+    protected EntityManager getEntityManager() {
         return (EntityManagerExt)em;
     }
 
