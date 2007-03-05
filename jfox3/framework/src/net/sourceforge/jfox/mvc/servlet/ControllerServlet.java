@@ -177,6 +177,7 @@ public class ControllerServlet extends HttpServlet {
 
 //            request.setAttribute(PAGE_CONTEXT, pageContext);
             request.setAttribute(INVOCATION_CONTEXT, invocationContext);
+            //TODO: 根据 PageContext.getTargetMethod 要决定 forward 还是 redirect
             request.getRequestDispatcher(invocationContext.getPageContext().getTargeView()).forward(request, response);
         }
         catch (ServletException e) {

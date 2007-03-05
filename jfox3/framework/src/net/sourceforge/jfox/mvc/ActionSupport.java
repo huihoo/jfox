@@ -111,6 +111,7 @@ public abstract class ActionSupport implements Action, InstantiatedComponent, Co
         ActionMethod actionMethodAnnotation = actionMethod.getAnnotation(ActionMethod.class);
         String successView = actionMethodAnnotation.successView();
         String errorView = actionMethodAnnotation.errorView();
+        invocationContext.getPageContext().setTargetMethod(actionMethodAnnotation.targetMethod());
         invocationContext.getPageContext().setTargetView(successView);
 
         if (!Invocation.class.isAssignableFrom(invocationClass)) {

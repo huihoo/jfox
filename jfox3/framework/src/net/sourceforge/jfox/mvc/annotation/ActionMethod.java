@@ -19,6 +19,10 @@ import net.sourceforge.jfox.mvc.Invocation;
 @Target({ElementType.METHOD})
 public @interface ActionMethod {
 
+    public static enum TargetMethod {
+        FORWARD, REDIRECT
+    }
+
     /**
      * 调用成功时，跳转的页面 
      */
@@ -28,6 +32,11 @@ public @interface ActionMethod {
      * 发生错误时，跳转的页面
      */
     String errorView() default "";
+
+    /**
+     * 跳转的方式，默认为 forward
+     */
+    TargetMethod targetMethod() default TargetMethod.FORWARD;
 
     /**
      * 用来装载Http Request参数的类，name 为 input name

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.sourceforge.jfox.mvc.validate.ValidateException;
+import net.sourceforge.jfox.mvc.annotation.ActionMethod;
 
 /**
  * Page Context 存储了用来填充 template的 数据
@@ -13,6 +14,9 @@ import net.sourceforge.jfox.mvc.validate.ValidateException;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class PageContext {
+
+    //TODO: 实现可以 redirect 跳转
+    private ActionMethod.TargetMethod targetMethod;
 
     // success or error view
     private String targetView;
@@ -26,6 +30,14 @@ public class PageContext {
 
     PageContext() {
 
+    }
+
+    public void setTargetMethod(ActionMethod.TargetMethod targetMethod) {
+        this.targetMethod = targetMethod;
+    }
+
+    public ActionMethod.TargetMethod getTargetMethod() {
+        return targetMethod;
     }
 
     public Map<String,Object> getResultMap(){
