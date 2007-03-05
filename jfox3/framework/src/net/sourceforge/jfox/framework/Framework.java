@@ -17,6 +17,7 @@ import net.sourceforge.jfox.framework.event.ModuleUnloadedEvent;
 import net.sourceforge.jfox.framework.event.ModuleLoadedEvent;
 import net.sourceforge.jfox.framework.event.ModuleLoadingEvent;
 import net.sourceforge.jfox.util.PlaceholderUtils;
+import net.sourceforge.jfox.util.FileUtils;
 
 /**
  * JFoxNG framework.
@@ -77,7 +78,7 @@ public class Framework {
         }
     }
 
-    public boolean isStarted(){
+    public boolean isStarted() {
         return started;
     }
 
@@ -107,20 +108,28 @@ public class Framework {
 
     /**
      * 装载一个Module
-     * //TODO: 以 jam 压缩文件加载模块
+     *
+     *
      * @param dir Moudle所在的目录
      * @return 返回生成的 Module 实例
      */
     public Module loadModule(File dir) {
-        logger.debug("Starting to load module from " + dir.getAbsolutePath());
+        logger.info("Starting to load module from " + dir.getAbsolutePath());
         try {
+             //.mzip 是 module 的压缩文件后缀
+            if (dir.isFile() && dir.getName().endsWith(".mzip")) {
+                File toDir = new File(dir.getParentFile(), dir.getName().substring(0, dir.getName().length() - 4));
+                FileUtils.extractJar(dir, toDir);
+                dir = toDir;
+            }
+
             Module module = new Module(this, dir);
             modules.put(module.getName(), module);
             logger.info("Module: " + module.getName() + " loaded, from " + dir.getAbsolutePath());
 
             // start 的时候再发出事件
             //getListenerManager().fireModuleEvent(new ModuleLoadedEvent(module));
-            if(isStarted()) {// 如果 Framework 已经启动，则后续装载的 Module 立即启动
+            if (isStarted()) {// 如果 Framework 已经启动，则后续装载的 Module 立即启动
                 module.start();
             }
             return module;
@@ -166,7 +175,7 @@ public class Framework {
      * @throws Exception any exception
      */
     public synchronized void start() throws Exception {
-        if(started) {
+        if (started) {
             logger.warn("Framework has been started, if you want restart, please stop first!");
             return;
         }
@@ -191,7 +200,7 @@ public class Framework {
         logger.info("Framework started!");
     }
 
-    public void stop(){
+    public void stop() {
         List<Module> allModules = new ArrayList<Module>(modules.values());
         Collections.sort(allModules);
         Collections.reverse(allModules);
