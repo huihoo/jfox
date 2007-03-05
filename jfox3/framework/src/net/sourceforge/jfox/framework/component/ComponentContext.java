@@ -120,7 +120,7 @@ public class ComponentContext {
     }
 
     public void fireComponentEvent(ComponentEvent componentEvent){
-        getModule().getFramework().getListenerManager().fireComponentEvent(componentEvent);
+        getModule().getFramework().getEventManager().fireComponentEvent(componentEvent);
     }
 
     public static void main(String[] args) {

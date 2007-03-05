@@ -14,7 +14,7 @@ import net.sourceforge.jfox.framework.event.FrameworkEvent;
  * 
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class ListenerManager {
+public class EventManager {
 
     private Set<FrameworkListener> frameworkListeners = new HashSet<FrameworkListener>();
 
@@ -22,7 +22,7 @@ public class ListenerManager {
 
     private Set<ComponentListener> componentListeners = new HashSet<ComponentListener>();
 
-    public ListenerManager() {
+    public EventManager() {
 
     }
 

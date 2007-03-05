@@ -88,7 +88,7 @@ public class Module implements Comparable<Module> {
     public ComponentMeta loadComponent(Class<? extends Component> implementataionClass) throws ComponentResolvedFailedException {
         ComponentMeta meta = new ComponentMeta(this, implementataionClass);
         registerComponent(meta);
-        getFramework().getListenerManager().fireComponentEvent(new ComponentLoadedEvent(meta.getComponentId()));
+        getFramework().getEventManager().fireComponentEvent(new ComponentLoadedEvent(meta.getComponentId()));
         return meta;
     }
 
@@ -105,7 +105,7 @@ public class Module implements Comparable<Module> {
                 ComponentMeta meta = repo.getComponentMeta(id);
                 // 会从 Module 中删除，并回调 preUnregister postUnregister
                 meta.unload();
-                getFramework().getListenerManager().fireComponentEvent(new ComponentUnloadedEvent(id));
+                getFramework().getEventManager().fireComponentEvent(new ComponentUnloadedEvent(id));
             }
             catch (ComponentNotExportedException e) {
                 throw new ComponentNotFoundException("Failed to unload other module's component.", e);
@@ -279,7 +279,7 @@ public class Module implements Comparable<Module> {
      */
     public void start() throws Exception {
         logger.info("Starting module: " + getName());
-        getFramework().getListenerManager().fireModuleEvent(new ModuleLoadingEvent(this));
+        getFramework().getEventManager().fireModuleEvent(new ModuleLoadingEvent(this));
         Class[] deployComponents = getModuleClassLoader().findClassAnnotatedWith(Service.class);
         for (Class<?> componentClass : deployComponents) {
             if (componentClass.isInterface()
@@ -297,7 +297,7 @@ public class Module implements Comparable<Module> {
         }
         // 实例化 not lazy components
         instantiateActiveComponent();
-        getFramework().getListenerManager().fireModuleEvent(new ModuleLoadedEvent(this));
+        getFramework().getEventManager().fireModuleEvent(new ModuleLoadedEvent(this));
     }
 
     protected void instantiateActiveComponent() throws ComponentInstantiateException {
@@ -334,7 +334,7 @@ public class Module implements Comparable<Module> {
                 logger.warn("Unload component: " + meta.getComponentId() + " failed.", e);
             }
         }
-        getFramework().getListenerManager().fireModuleEvent(new ModuleUnloadedEvent(this));
+        getFramework().getEventManager().fireModuleEvent(new ModuleUnloadedEvent(this));
     }
 
     /**

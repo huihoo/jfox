@@ -36,7 +36,7 @@ public class Framework {
     /**
      * 事件监听器
      */
-    private ListenerManager listenerManager = new ListenerManager();
+    private EventManager listenerManager = new EventManager();
 
     /**
      * 系统 Module，用来加载 Framework 内注册的 Component
@@ -85,7 +85,7 @@ public class Framework {
         return clRepo;
     }
 
-    public ListenerManager getListenerManager() {
+    public EventManager getEventManager() {
         return listenerManager;
     }
 
@@ -194,7 +194,7 @@ public class Framework {
             module.start();
         }
         started = true;
-        getListenerManager().fireFrameworkEvent(new FrameworkStartedEvent(this));
+        getEventManager().fireFrameworkEvent(new FrameworkStartedEvent(this));
         logger.info("Framework started!");
     }
 
@@ -207,7 +207,7 @@ public class Framework {
         }
         systemModule.unload();
         started = false;
-        getListenerManager().fireFrameworkEvent(new FrameworkStoppedEvent(this));
+        getEventManager().fireFrameworkEvent(new FrameworkStoppedEvent(this));
         logger.info("Framework stopped!");
     }
 

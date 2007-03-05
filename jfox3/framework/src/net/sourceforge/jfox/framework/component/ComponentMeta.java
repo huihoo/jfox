@@ -337,13 +337,13 @@ public class ComponentMeta implements Comparable<ComponentMeta>{
 
     private void registerListeners(Component theComponent) {
         if(theComponent instanceof FrameworkListener) {
-            getModule().getFramework().getListenerManager().registerFrameworkListener((FrameworkListener)theComponent);
+            getModule().getFramework().getEventManager().registerFrameworkListener((FrameworkListener)theComponent);
         }
         if(theComponent instanceof ModuleListener) {
-            getModule().getFramework().getListenerManager().registerModuleListener((ModuleListener)theComponent);
+            getModule().getFramework().getEventManager().registerModuleListener((ModuleListener)theComponent);
         }
         if(theComponent instanceof ComponentListener) {
-            getModule().getFramework().getListenerManager().registerComponentListener((ComponentListener)theComponent);
+            getModule().getFramework().getEventManager().registerComponentListener((ComponentListener)theComponent);
         }
 
     }
@@ -355,13 +355,13 @@ public class ComponentMeta implements Comparable<ComponentMeta>{
         if(instance == null) return;
 
         if(instance instanceof FrameworkListener) {
-            getModule().getFramework().getListenerManager().unregisterFrameworkListener((FrameworkListener)instance);
+            getModule().getFramework().getEventManager().unregisterFrameworkListener((FrameworkListener)instance);
         }
         if(instance instanceof ModuleListener) {
-            getModule().getFramework().getListenerManager().unregisterModuleListener((ModuleListener)instance);
+            getModule().getFramework().getEventManager().unregisterModuleListener((ModuleListener)instance);
         }
         if(instance instanceof ComponentListener) {
-            getModule().getFramework().getListenerManager().unregisterComponentListener((ComponentListener)instance);
+            getModule().getFramework().getEventManager().unregisterComponentListener((ComponentListener)instance);
         }
 
     }
