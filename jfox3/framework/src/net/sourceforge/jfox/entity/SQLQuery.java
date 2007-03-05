@@ -399,11 +399,9 @@ public class SQLQuery extends QueryExt {
                 StringWriter sw = new StringWriter();
 
                 char[] buffer = new char[1024];
-                int count = 0;
-                int n = 0;
+                int n;
                 while (-1 != (n = reader.read(buffer))) {
                     sw.write(buffer, 0, n);
-                    count += n;
                 }
                 value = sw.toString();
             }
