@@ -269,9 +269,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
                 throw new NoSuchMethodException("Could not found Concrete Business Method for interface method: " + interfaceMethod.getName());
             }
             EJBInvocation invocation = new EJBInvocation(bucket, ejbInstance, interfaceMethod, concreteMethod, params);
-            invocation.setTransactionManager(getTransactionManager());
-            Iterator<EJBInvocationHandler> chain = invocationChain.iterator();
-            return chain.next().invoke(invocation, chain);
+            return invokeEJBInvocation(invocation);
         }
         finally {
             // reuse ejb instance
@@ -296,9 +294,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
         try {
             ejbInstance = bucket.newEJBInstance(ejbObjectId.getEJBId());
             EJBInvocation invocation = new EJBInvocation(bucket, ejbInstance, interfaceMethod, interfaceMethod, params);
-            invocation.setTransactionManager(getTransactionManager());
-            Iterator<EJBInvocationHandler> chain = invocationChain.iterator();
-            return chain.next().invoke(invocation, chain);
+            return invokeEJBInvocation(invocation);
         }
         finally {
             // reuse ejb instance
@@ -308,7 +304,11 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
         }
     }
 
-
+    protected Object invokeEJBInvocation(EJBInvocation invocation) throws Exception {
+        invocation.setTransactionManager(getTransactionManager());
+        Iterator<EJBInvocationHandler> chain = invocationChain.iterator();
+        return chain.next().invoke(invocation, chain);
+    }
 
     public TransactionManager getTransactionManager() {
         return tm;
