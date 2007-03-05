@@ -107,7 +107,7 @@ public class Framework {
 
     /**
      * 装载一个Module
-     *
+     * //TODO: 以 jam 压缩文件加载模块
      * @param dir Moudle所在的目录
      * @return 返回生成的 Module 实例
      */
