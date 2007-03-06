@@ -1,7 +1,7 @@
 package net.sourceforge.jfox.ejb3;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 import javax.naming.Context;
 
 /**

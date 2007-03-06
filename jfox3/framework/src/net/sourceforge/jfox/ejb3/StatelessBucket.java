@@ -13,16 +13,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.rmi.RemoteException;
 import javax.ejb.EJBContext;
 import javax.ejb.EJBException;
 import javax.ejb.EJBLocalObject;
 import javax.ejb.EJBObject;
+import javax.ejb.RemoveException;
 import javax.ejb.TimedObject;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
-import javax.ejb.Handle;
-import javax.ejb.RemoveException;
 import javax.jws.WebService;
 import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
@@ -327,20 +325,8 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         public <T> T getBusinessObject(Class<T> businessInterface) throws IllegalStateException {
             return (T)proxyStub;
         }
+
         // EJBObject & EJBLocalObject
-
-        public Handle getHandle() throws RemoteException {
-            return new EJBHandleImpl(getEJBObjectId());
-        }
-
-        public Object getPrimaryKey() {
-            return getEJBObjectId();
-        }
-
-        public boolean isIdentical(EJBObject obj) throws RemoteException {
-            return obj.getPrimaryKey().equals(getPrimaryKey());
-        }
-
         public void remove() throws RemoveException {
             try {
                 destroyObject(getEJBInstance());
