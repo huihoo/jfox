@@ -367,15 +367,12 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
                     throw new NameNotFoundException(JAVA_COMP_ENV);
                 }
 
-                String currentEJBname = currentEJBInvocation.getEJBObjectId().getEJBName();
                 if (name.equals(JAVA_COMP_ENV)) { // lookup java:comp/env
                     // EJBBucket extends Context
-                    //TODO: null param
-                    return getEJBBucket(currentEJBname).getENContext(currentEJBInvocation.getEJBObjectId());
+                    return getEJBBucket(currentEJBInvocation.getEJBObjectId().getEJBName()).getENContext(currentEJBInvocation.getEJBObjectId());
                 }
                 else { // lookup java:comp/env/abc
-                    EJBBucket bucket = getEJBBucket(currentEJBname);
-                    //TODO: null param
+                    EJBBucket bucket = getEJBBucket(currentEJBInvocation.getEJBObjectId().getEJBName());
                     return bucket.getENContext(currentEJBInvocation.getEJBObjectId()).lookup(name.substring(JAVA_COMP_ENV.length() + 1));
                 }
             }
