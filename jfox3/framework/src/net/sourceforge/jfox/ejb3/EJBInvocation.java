@@ -17,6 +17,8 @@ public class EJBInvocation {
 
     static ThreadLocal<EJBInvocation> currentThreadEJBInvocation = new ThreadLocal<EJBInvocation>();
 
+    private EJBObjectId ejbObjectId;
+
     private EJBBucket bucket;
 
     private Object target = null;
@@ -38,7 +40,8 @@ public class EJBInvocation {
         currentThreadEJBInvocation.remove();
     }
 
-    public EJBInvocation(EJBBucket bucket, Object target, Method interfaceMethod, Method concreteMethod, Object[] params) {
+    public EJBInvocation(EJBObjectId ejbObjectId, EJBBucket bucket, Object target, Method interfaceMethod, Method concreteMethod, Object[] params) {
+        this.ejbObjectId = ejbObjectId;
         this.bucket = bucket;
         this.target = target;
         this.interfaceMethod = interfaceMethod;
@@ -67,8 +70,8 @@ public class EJBInvocation {
         return Collections.unmodifiableList(interceptorMethods);
     }
 
-    public String getEJBname(){
-        return bucket.getEJBName();
+    public EJBObjectId getEJBObjectId(){
+        return ejbObjectId;
     }
 
     private EJBBucket getBucket(){

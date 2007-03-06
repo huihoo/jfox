@@ -82,7 +82,6 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
 
     public StatelessBucket(EJBContainer container, Class<?> beanClass, Module module) {
         super(container,beanClass,module);
-        setEJBObjectId(new EJBObjectId(getEJBName()));
 
         //parse @WebService, simple parse @WebService
         if (beanClass.isAnnotationPresent(WebService.class)) {
@@ -153,12 +152,11 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         return statelessEJBContext;
     }
 
-    public EJBObjectId getEJBObjectId() {
+    public synchronized EJBObjectId createEJBObjectId() {
+        if(ejbObjectId == null) {
+            ejbObjectId = new EJBObjectId(getEJBName());
+        }
         return ejbObjectId;
-    }
-
-    protected void setEJBObjectId(EJBObjectId ejbObjectId) {
-        this.ejbObjectId = ejbObjectId;
     }
 
     public Class getWebServiceEndpointInterface() {
@@ -210,7 +208,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                             }
                             else {
                                 // 其它业务方法
-                                return getEJBContainer().invokeEJB(ejbObjectId, method, args);
+                                return getEJBContainer().invokeEJB(createEJBObjectId(), method, args);
                             }
                         }
                     }
@@ -265,11 +263,44 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         }
     }
 
-    public Context getENContext(Object ejbInstance) {
+    public Context getENContext(EJBObjectId ejbObjectId) {
         if (envContext == null) {
             envContext = new ENContext();
         }
         return envContext;
+    }
+
+    // EJBContext Implementation
+    @SuppressWarnings({"deprecation"})
+    public class StatelessEJBContextImpl extends EJBContextImpl{
+
+        public StatelessEJBContextImpl(EJBObjectId ejbObjectId, Object ejbInstance) {
+            super(ejbObjectId, ejbInstance);
+        }
+
+        public TimerService getTimerService() throws IllegalStateException {
+            if (ejbTimerService == null) {
+                ejbTimerService = new EJBTimerService();
+            }
+            return ejbTimerService;
+        }
+
+        // SessionContext
+        public <T> T getBusinessObject(Class<T> businessInterface) throws IllegalStateException {
+            return (T)proxyStub;
+        }
+
+        // EJBObject & EJBLocalObject
+        public void remove() throws RemoveException {
+            try {
+                destroyObject(getEJBInstance());
+            }
+            catch (Exception e) {
+                String msg = "Remove EJB instance failed!";
+                logger.warn(msg, e);
+                throw new RemoveException(msg);
+            }
+        }
     }
 
     public class ENContext extends ContextAdapter {
@@ -306,67 +337,34 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         }
     }
 
-    // EJBContext Implementation
-    @SuppressWarnings({"deprecation"})
-    public class StatelessEJBContextImpl extends EJBContextImpl{
-
-        public StatelessEJBContextImpl(EJBObjectId ejbObjectId, Object ejbInstance) {
-            super(ejbObjectId, ejbInstance);
-        }
-
-        public TimerService getTimerService() throws IllegalStateException {
-            if (ejbTimerService == null) {
-                ejbTimerService = new EJBTimerService();
-            }
-            return ejbTimerService;
-        }
-
-        // SessionContext
-        public <T> T getBusinessObject(Class<T> businessInterface) throws IllegalStateException {
-            return (T)proxyStub;
-        }
-
-        // EJBObject & EJBLocalObject
-        public void remove() throws RemoveException {
-            try {
-                destroyObject(getEJBInstance());
-            }
-            catch (Exception e) {
-                String msg = "Remove EJB instance failed!";
-                logger.warn(msg, e);
-                throw new RemoveException(msg);
-            }
-        }
-    }
-
     // EJB TimerService，only stateless, MDB, Entity can register TimerService
     @SuppressWarnings("unchecked")
     public class EJBTimerService implements TimerService {
 
         public Timer createTimer(final long duration, final Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(duration, info);
-            timer.setEJBObjectId(getEJBObjectId());
+            timer.setEJBObjectId(createEJBObjectId());
             timer.addTimeoutMethod(getTimeoutMethods());
             return timer;
         }
 
         public Timer createTimer(Date expiration, Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(expiration, info);
-            timer.setEJBObjectId(getEJBObjectId());
+            timer.setEJBObjectId(createEJBObjectId());
             timer.addTimeoutMethod(getTimeoutMethods());
             return timer;
         }
 
         public Timer createTimer(final long initialDuration, final long intervalDuration, final Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(initialDuration, intervalDuration, info);
-            timer.setEJBObjectId(getEJBObjectId());
+            timer.setEJBObjectId(createEJBObjectId());
             timer.addTimeoutMethod(getTimeoutMethods());
             return timer;
         }
 
         public Timer createTimer(Date initialExpiration, long intervalDuration, Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
             EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(initialExpiration, intervalDuration, info);
-            timer.setEJBObjectId(getEJBObjectId());
+            timer.setEJBObjectId(createEJBObjectId());
             timer.addTimeoutMethod(getTimeoutMethods());
             return timer;
         }
@@ -374,7 +372,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         public Collection getTimers() throws IllegalStateException, EJBException {
             List<EJBTimerTask> beanTimers = new ArrayList<EJBTimerTask>();
             for(EJBTimerTask timerTask :  (Collection<EJBTimerTask>)getEJBContainer().getTimerService().getTimers()){
-                if(timerTask.getEJBObjectId().equals(getEJBObjectId())) {
+                if(timerTask.getEJBObjectId().equals(createEJBObjectId())) {
                     beanTimers.add(timerTask);
                 }
             }

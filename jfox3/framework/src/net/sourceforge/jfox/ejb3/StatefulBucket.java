@@ -14,6 +14,8 @@ public abstract class StatefulBucket implements EJBBucket{
      */
     private Map<EJBObjectId, Context> envContexts = new HashMap<EJBObjectId, Context>();
 
+    private Map<EJBObjectId, SessionBucket.EJBContextImpl> contextMap = new HashMap<EJBObjectId, SessionBucket.EJBContextImpl>();
+
     public static void main(String[] args) {
 
     }

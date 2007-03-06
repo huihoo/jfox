@@ -701,7 +701,7 @@ public abstract class SessionBucket implements EJBBucket {
 
         public Object lookup(final String name) {
             try {
-                return getENContext(ejbInstance).lookup(name);
+                return getENContext(getEJBObjectId()).lookup(name);
             }
             catch (NamingException e) {
                 logger.warn("EJBContext.lookup " + name + " failed.", e);

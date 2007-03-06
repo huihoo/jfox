@@ -39,6 +39,8 @@ public interface EJBBucket {
      */
     Class<?>[] getBeanInterfaces();
 
+    EJBObjectId createEJBObjectId();
+    
     /**
      * new EJB instance, return bean instance, not EJBObject
      * 
@@ -107,9 +109,9 @@ public interface EJBBucket {
 
     /**
      * EJB env context, java:comp/env
-     * @param ejbInstance ejb instance
+     * @param ejbObjectId
      */
-    Context getENContext(Object ejbInstance);
+    Context getENContext(EJBObjectId ejbObjectId);
 
     /**
      * 销毁 EJBBucket

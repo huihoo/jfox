@@ -268,7 +268,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
             if(concreteMethod == null) {
                 throw new NoSuchMethodException("Could not found Concrete Business Method for interface method: " + interfaceMethod.getName());
             }
-            EJBInvocation invocation = new EJBInvocation(bucket, ejbInstance, interfaceMethod, concreteMethod, params);
+            EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbInstance, interfaceMethod, concreteMethod, params);
             return invokeEJBInvocation(invocation);
         }
         finally {
@@ -293,7 +293,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
         Object ejbInstance = null;
         try {
             ejbInstance = bucket.newEJBInstance(ejbObjectId);
-            EJBInvocation invocation = new EJBInvocation(bucket, ejbInstance, interfaceMethod, interfaceMethod, params);
+            EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbInstance, interfaceMethod, interfaceMethod, params);
             return invokeEJBInvocation(invocation);
         }
         finally {
@@ -367,14 +367,16 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
                     throw new NameNotFoundException(JAVA_COMP_ENV);
                 }
 
-                String currentEJBname = currentEJBInvocation.getEJBname();
+                String currentEJBname = currentEJBInvocation.getEJBObjectId().getEJBName();
                 if (name.equals(JAVA_COMP_ENV)) { // lookup java:comp/env
                     // EJBBucket extends Context
-                    return getEJBBucket(currentEJBname).getENContext(null);
+                    //TODO: null param
+                    return getEJBBucket(currentEJBname).getENContext(currentEJBInvocation.getEJBObjectId());
                 }
                 else { // lookup java:comp/env/abc
                     EJBBucket bucket = getEJBBucket(currentEJBname);
-                    return bucket.getENContext(null).lookup(name.substring(JAVA_COMP_ENV.length() + 1));
+                    //TODO: null param
+                    return bucket.getENContext(currentEJBInvocation.getEJBObjectId()).lookup(name.substring(JAVA_COMP_ENV.length() + 1));
                 }
             }
 
