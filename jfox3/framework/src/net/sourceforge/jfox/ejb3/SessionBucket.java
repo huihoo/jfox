@@ -1,72 +1,58 @@
 package net.sourceforge.jfox.ejb3;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Field;
-import java.lang.annotation.Annotation;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Properties;
-import java.security.Principal;
-import java.security.Identity;
-import java.rmi.RemoteException;
-import javax.ejb.Timer;
-import javax.ejb.EJBException;
-import javax.ejb.EJBObject;
-import javax.ejb.Remote;
-import javax.ejb.Local;
-import javax.ejb.Stateless;
-import javax.ejb.Timeout;
-import javax.ejb.EJBs;
-import javax.ejb.EJB;
-import javax.ejb.EJBContext;
-import javax.ejb.EJBLocalObject;
-import javax.ejb.SessionContext;
-import javax.ejb.EJBHome;
-import javax.ejb.EJBLocalHome;
-import javax.ejb.TimerService;
-import javax.ejb.Handle;
-import javax.ejb.RemoveException;
-import javax.naming.NamingException;
-import javax.naming.NameAlreadyBoundException;
-import javax.naming.NameNotFoundException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.annotation.Resources;
 import javax.annotation.Resource;
+import javax.annotation.Resources;
+import javax.ejb.EJB;
+import javax.ejb.EJBContext;
+import javax.ejb.EJBException;
+import javax.ejb.EJBs;
+import javax.ejb.Local;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.ejb.Timeout;
+import javax.ejb.Timer;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptors;
 import javax.interceptor.InvocationContext;
-import javax.persistence.PersistenceContext;
+import javax.naming.NameAlreadyBoundException;
+import javax.naming.NameNotFoundException;
+import javax.naming.NamingException;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Status;
 import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
-import javax.xml.rpc.handler.MessageContext;
 
-import org.apache.log4j.Logger;
+import net.sourceforge.jfox.ejb3.dependent.EJBDependence;
+import net.sourceforge.jfox.ejb3.dependent.FieldEJBDependence;
+import net.sourceforge.jfox.ejb3.dependent.FieldResourceDependence;
+import net.sourceforge.jfox.ejb3.dependent.ResourceDependence;
+import net.sourceforge.jfox.ejb3.interceptor.ExternalInterceptorMethod;
+import net.sourceforge.jfox.ejb3.interceptor.InterceptorMethod;
+import net.sourceforge.jfox.ejb3.interceptor.InternalInterceptorMethod;
+import net.sourceforge.jfox.ejb3.naming.ContextAdapter;
+import net.sourceforge.jfox.entity.dependent.FieldPersistenceContextDependence;
 import net.sourceforge.jfox.framework.component.Module;
 import net.sourceforge.jfox.framework.component.ModuleClassLoader;
 import net.sourceforge.jfox.framework.dependent.InjectionException;
-import net.sourceforge.jfox.ejb3.interceptor.InterceptorMethod;
-import net.sourceforge.jfox.ejb3.interceptor.InternalInterceptorMethod;
-import net.sourceforge.jfox.ejb3.interceptor.ExternalInterceptorMethod;
-import net.sourceforge.jfox.ejb3.dependent.EJBDependence;
-import net.sourceforge.jfox.ejb3.dependent.ResourceDependence;
-import net.sourceforge.jfox.ejb3.dependent.FieldEJBDependence;
-import net.sourceforge.jfox.ejb3.dependent.FieldResourceDependence;
-import net.sourceforge.jfox.ejb3.naming.ContextAdapter;
-import net.sourceforge.jfox.entity.dependent.FieldPersistenceContextDependence;
+import net.sourceforge.jfox.util.AnnotationUtils;
 import net.sourceforge.jfox.util.ClassUtils;
 import net.sourceforge.jfox.util.MethodUtils;
-import net.sourceforge.jfox.util.AnnotationUtils;
+import org.apache.log4j.Logger;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -542,15 +528,14 @@ public abstract class SessionBucket implements EJBBucket {
      * @param ejbObjectId ejb object id
      * @throws Exception exception
      */
-    public abstract Object newEJBInstance(EJBObjectId ejbObjectId) throws Exception;
+    public abstract AbstractEJBContext newEJBContext(EJBObjectId ejbObjectId) throws Exception;
 
     /**
      * 将实例返回给 pool
      *
-     * @param ejbId        ejb id
-     * @param beanInstance ejb bean instance @throws Exception exception
+     * @param ejbContext
      */
-    public abstract void reuseEJBInstance(String ejbId, Object beanInstance) throws Exception;
+    public abstract void reuseEJBContext(AbstractEJBContext ejbContext) throws Exception;
 
     public EJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
         if (ejbContext == null) {
@@ -650,35 +635,10 @@ public abstract class SessionBucket implements EJBBucket {
     }
 
     // EJBContext Implementation
-    @SuppressWarnings({"deprecation"})
-    public class EJBContextImpl implements SessionContext, EJBObject, EJBLocalObject {
-
-        private EJBObjectId ejbObjectId;
-        private Object ejbInstance;
+    public class EJBContextImpl extends AbstractEJBContext {
 
         public EJBContextImpl(EJBObjectId ejbObjectId, Object ejbInstance) {
-            this.ejbObjectId = ejbObjectId;
-            this.ejbInstance = ejbInstance;
-        }
-
-        protected EJBObjectId getEJBObjectId() {
-            return ejbObjectId;
-        }
-
-        protected Object getEJBInstance() {
-            return ejbInstance;
-        }
-
-        public Principal getCallerPrincipal() {
-            return null;
-        }
-
-        public EJBHome getEJBHome() {
-            return null;
-        }
-
-        public EJBLocalHome getEJBLocalHome() {
-            return null;
+            super(ejbObjectId, ejbInstance);
         }
 
         public boolean getRollbackOnly() throws IllegalStateException {
@@ -688,15 +648,6 @@ public abstract class SessionBucket implements EJBBucket {
             catch (SystemException e) {
                 throw new EJBException(e);
             }
-        }
-
-        public UserTransaction getUserTransaction() throws IllegalStateException {
-            //只支持 CMT, 不返回 UserTransaction
-            return null;
-        }
-
-        public boolean isCallerInRole(final String roleName) {
-            return false;
         }
 
         public Object lookup(final String name) {
@@ -718,94 +669,11 @@ public abstract class SessionBucket implements EJBBucket {
             }
         }
 
-        @Deprecated
-        public Identity getCallerIdentity() {
-            return null;
-        }
-
-        @Deprecated
-        public Properties getEnvironment() {
-            return null;
-        }
-
-        @Deprecated
-        public boolean isCallerInRole(final Identity role) {
-            return false;
-        }
-
-        // SessionContext
-        public <T> T getBusinessObject(Class<T> businessInterface) throws IllegalStateException {
-            throw new IllegalStateException("Can not invoke getBusinessObject!"); 
-        }
-
-        public EJBLocalObject getEJBLocalObject() throws IllegalStateException {
-            return this;
-        }
-
-        public EJBObject getEJBObject() throws IllegalStateException {
-            return this;
-        }
-
-        public Class getInvokedBusinessInterface() throws IllegalStateException {
-            return EJBInvocation.current().getInterfaceMethod().getDeclaringClass();
-        }
-
-        public MessageContext getMessageContext() throws IllegalStateException {
-            return null;
-        }
-
-        public TimerService getTimerService() throws IllegalStateException {
-            throw new IllegalStateException("Can not call getTimerService!");
-        }
-
-        // EJBObject & EJBLocalObject
-
-        public Handle getHandle() throws RemoteException {
-            return new EJBHandleImpl(getEJBObjectId());
-        }
-
-        public Object getPrimaryKey() {
-            return getEJBObjectId();
-        }
-
-        public boolean isIdentical(EJBObject obj) throws RemoteException {
-            return obj.getPrimaryKey().equals(getPrimaryKey());
-        }
-
-        public void remove() throws RemoveException {
-            throw new RemoveException("Can not invoke remove()!");
-        }
-
-        public boolean isIdentical(EJBLocalObject obj) throws EJBException {
-            return obj.getPrimaryKey().equals(getPrimaryKey());
-        }
-
         // Object method
         public String toString() {
             return "ejb_stub{name=" + getEJBName() + ",interface=" + Arrays.toString(getBeanInterfaces()) + "}";
         }
 
-        public boolean equals(Object obj) {
-            if (obj == null || !(obj instanceof EJBObjectId)) {
-                return false;
-            }
-            else {
-                try {
-                    return isIdentical((EJBObject)obj);
-                }
-                catch (Exception e) {
-                    return false;
-                }
-            }
-        }
-
-        public int hashCode() {
-            return super.hashCode();
-        }
-
-        protected Object clone() throws CloneNotSupportedException {
-            throw new CloneNotSupportedException(getEJBObjectId().toString());
-        }
     }
 
 }

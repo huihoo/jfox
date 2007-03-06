@@ -46,15 +46,14 @@ public interface EJBBucket {
      * 
      * @throws Exception exception @param ejbObjectId
      */
-    Object newEJBInstance(EJBObjectId ejbObjectId) throws Exception;
+    AbstractEJBContext newEJBContext(EJBObjectId ejbObjectId) throws Exception;
 
     /**
      * 重用 ejb instance
      *
-     * @param ejbId
-     *@param beanInstance bean instance created by new EJBInstance @throws Exception exception
+     * @param ejbContext
      */
-    void reuseEJBInstance(String ejbId, Object beanInstance) throws Exception;
+    void reuseEJBContext(AbstractEJBContext ejbContext) throws Exception;
 
     /**
      * EJB 所在的 Module

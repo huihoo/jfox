@@ -261,20 +261,20 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
     public Object invokeEJB(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params) throws Exception {
         EJBBucket bucket = getEJBBucket(ejbObjectId.getEJBName());
         // get instance from bucket's pool
-        Object ejbInstance = null;
+        AbstractEJBContext ejbContext = null;
         try {
-            ejbInstance = bucket.newEJBInstance(ejbObjectId);
+            ejbContext = bucket.newEJBContext(ejbObjectId);
             Method concreteMethod = bucket.getConcreteMethod(interfaceMethod);
             if(concreteMethod == null) {
                 throw new NoSuchMethodException("Could not found Concrete Business Method for interface method: " + interfaceMethod.getName());
             }
-            EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbInstance, interfaceMethod, concreteMethod, params);
+            EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbContext.getEJBInstance(), interfaceMethod, concreteMethod, params);
             return invokeEJBInvocation(invocation);
         }
         finally {
             // reuse ejb instance
-            if (ejbInstance != null) {
-                bucket.reuseEJBInstance(ejbObjectId.getEJBId(), ejbInstance);
+            if (ejbContext != null) {
+                bucket.reuseEJBContext(ejbContext);
             }
         }
     }
@@ -290,16 +290,16 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
     protected Object invokeTimeout(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params) throws Exception {
         EJBBucket bucket = getEJBBucket(ejbObjectId.getEJBName());
         // get instance from bucket's pool
-        Object ejbInstance = null;
+        AbstractEJBContext ejbContext = null;
         try {
-            ejbInstance = bucket.newEJBInstance(ejbObjectId);
-            EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbInstance, interfaceMethod, interfaceMethod, params);
+            ejbContext = bucket.newEJBContext(ejbObjectId);
+            EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbContext.getEJBInstance(), interfaceMethod, interfaceMethod, params);
             return invokeEJBInvocation(invocation);
         }
         finally {
             // reuse ejb instance
-            if (ejbInstance != null) {
-                bucket.reuseEJBInstance(ejbObjectId.getEJBId(), ejbInstance);
+            if (ejbContext != null) {
+                bucket.reuseEJBContext(ejbContext);
             }
         }
     }

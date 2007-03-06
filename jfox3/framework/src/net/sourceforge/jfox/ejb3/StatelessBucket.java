@@ -129,20 +129,22 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
      * @param ejbObjectId ejb object id
      * @throws Exception exception
      */
-    public Object newEJBInstance(EJBObjectId ejbObjectId) throws Exception {
-        Object ejbInstance = pool.borrowObject();
-        createEJBContext(ejbObjectId, ejbInstance);
-        return ejbInstance;
+    public AbstractEJBContext newEJBContext(EJBObjectId ejbObjectId) throws Exception {
+//        Object ejbInstance = pool.borrowObject();
+//        createEJBContext(ejbObjectId, ejbInstance);
+//        return ejbInstance;
+        //TODO: 有问题，
+        EJBContextImpl ejbContext = (EJBContextImpl)pool.borrowObject();
+        return ejbContext;
     }
 
     /**
      * 将实例返回给 pool
      *
-     * @param ejbId        ejb id
-     * @param beanInstance ejb bean instance @throws Exception exception
+     * @param ejbContext
      */
-    public void reuseEJBInstance(String ejbId, Object beanInstance) throws Exception {
-        pool.returnObject(beanInstance);
+    public void reuseEJBContext(AbstractEJBContext ejbContext) throws Exception {
+        pool.returnObject(ejbContext);
     }
 
     public EJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
@@ -187,37 +189,48 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             // 生成 EJB 的动态代理对象
             proxyStub = (EJBObject)Proxy.newProxyInstance(this.getModule().getModuleClassLoader(),
                     interfaces.toArray(new Class[interfaces.size()]),
-                    new InvocationHandler() {
-                        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                            //需要判断是否是 EJBObject 的方法
-                            if (method.getDeclaringClass().equals(EJBObject.class) || method.getDeclaringClass().equals(EJBLocalObject.class)) { // 拦截 EJBObject 方法
-                                return method.invoke(statelessEJBContext, args);
-                            }
-                            //TODO: 优化处理 Object 方法
-                            else if (method.getName().equals("toString") && (args == null || args.length == 0)) {
-                                return statelessEJBContext.toString();
-                            }
-                            else if (method.getName().equals("equals") && args != null && args.length == 1) {
-                                return statelessEJBContext.equals(args[0]);
-                            }
-                            else if (method.getName().equals("hashCode") && (args == null || args.length == 0)) {
-                                return statelessEJBContext.hashCode();
-                            }
-                            else if (method.getName().equals("clone") && (args == null || args.length == 0)) {
-                                return statelessEJBContext.clone();
-                            }
-                            else {
-                                // 其它业务方法
-                                return getEJBContainer().invokeEJB(createEJBObjectId(), method, args);
-                            }
-                        }
-                    }
+                    new ProxyStubInvocationHandler()
             );
         }
-
         return proxyStub;
     }
 
+    class ProxyStubInvocationHandler implements InvocationHandler {
+        EJBObjectId ejbObjectId = createEJBObjectId();
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            //需要判断是否是 EJBObject 的方法
+            if (method.getDeclaringClass().equals(EJBObject.class) || method.getDeclaringClass().equals(EJBLocalObject.class)) { // 拦截 EJBObject 方法
+                return method.invoke(statelessEJBContext, args);
+            }
+            //TODO: 优化处理 Object 方法
+            else if (method.getName().equals("toString") && (args == null || args.length == 0)) {
+                return "$proxy_ejb_stub{id=" + ejbObjectId + ",interface=" + Arrays.toString(getBeanInterfaces()) + "}";
+            }
+            else if (method.getName().equals("equals") && args != null && args.length == 1) {
+                if(args[0] == null || !(args[0] instanceof ProxyStubInvocationHandler)) {
+                    return false;
+                }
+                else {
+                    return getEJBObjectId().equals(((ProxyStubInvocationHandler)args[0]).getEJBObjectId());
+                }
+            }
+            else if (method.getName().equals("hashCode") && (args == null || args.length == 0)) {
+                return getEJBObjectId().hashCode();
+            }
+            else if (method.getName().equals("clone") && (args == null || args.length == 0)) {
+                throw new CloneNotSupportedException(getEJBObjectId().toString());
+            }
+            else {
+                // 其它业务方法
+                return getEJBContainer().invokeEJB(getEJBObjectId(), method, args);
+            }
+        }
+
+        EJBObjectId getEJBObjectId(){
+            return ejbObjectId;
+        }
+
+    }
 
     //--- jakarta commons-pool PoolableObjectFactory ---
     public Object makeObject() throws Exception {
@@ -243,7 +256,8 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             fieldPersistenceContextDependence.inject(obj);
         }
 
-        return obj;
+        //TODO: 有问题， 返回 EJBContext
+        return createEJBContext(createEJBObjectId(), obj);
     }
 
     public boolean validateObject(Object obj) {
