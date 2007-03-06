@@ -98,8 +98,6 @@ public abstract class SessionBucket implements EJBBucket {
      */
     private final Map<Long, Method> concreteMethods = new HashMap<Long, Method>();
 
-    private List<Method> timeoutMethods = new ArrayList<Method>();
-
     /**
      * class level @interceptor methods
      */
@@ -114,6 +112,11 @@ public abstract class SessionBucket implements EJBBucket {
      * 在 Bean 实现类中的 @AroundInvoke
      */
     private List<InterceptorMethod> beanInterceptorMethods = new ArrayList<InterceptorMethod>();
+
+    /**
+     * Timeout Methods, invalid for stateful session bean
+     */
+    protected List<Method> timeoutMethods = new ArrayList<Method>();
 
     /**
      * stateless session bean 只有 PostConstruct & PreDestroy 有效

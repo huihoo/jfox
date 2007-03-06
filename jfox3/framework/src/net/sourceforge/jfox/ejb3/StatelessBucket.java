@@ -72,8 +72,6 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
      */
     private final GenericObjectPool pool = new GenericObjectPool();
 
-    private List<Method> timeoutMethods = new ArrayList<Method>();
-
     /**
      * Web Service 发布接口
      */
