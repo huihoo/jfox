@@ -67,6 +67,7 @@ public class SQLQuery extends QueryExt {
     }
 
     public int executeUpdate() {
+        //TODO: flash cache
         try {
             PreparedStatement pst = buildPreparedStatement();
             int rows = pst.executeUpdate();
@@ -81,7 +82,7 @@ public class SQLQuery extends QueryExt {
     }
 
     public List<?> getResultList() {
-
+        //TODO: flash cache
         PreparedStatement pst = null;
         ResultSet rset = null;
         final List<Object> results = new ArrayList<Object>();
@@ -119,6 +120,7 @@ public class SQLQuery extends QueryExt {
     }
 
     public Object getSingleResult() {
+        //TODO: flash cache
         PreparedStatement pst = null;
         ResultSet rset = null;
         try {
