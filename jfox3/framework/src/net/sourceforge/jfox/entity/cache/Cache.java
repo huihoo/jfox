@@ -1,27 +1,30 @@
-package net.sourceforge.jfox.cache;
+package net.sourceforge.jfox.entity.cache;
 
 import java.io.Serializable;
 
 /**
- * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
 public interface Cache {
 
     /**
      * cache对象
+     *
      * @param key id
      * @param obj 需要 cache 的对象
      */
-    public void store(Serializable key, Serializable obj) ;
+    public void put(Serializable key, Serializable obj);
 
     /**
      * 获得cache对象
+     *
      * @param key id
      */
-    public Serializable retrieve(Serializable key);
+    public Serializable get(Serializable key);
 
     /**
      * 删除一个cache的对象
+     *
      * @param key id
      * @return Serializable object removed
      */
@@ -29,6 +32,7 @@ public interface Cache {
 
     /**
      * 判断对象是否在cache中
+     *
      * @param key id
      * @return true/false
      */
@@ -47,7 +51,7 @@ public interface Cache {
     /**
      * 获得 Cache 的状态
      */
-    public CacheStatus getStatus();
+    public CacheStat getStatus();
 
     /**
      * 获得 Cache 的Config

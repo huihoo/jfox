@@ -1,11 +1,11 @@
-package net.sourceforge.jfox.cache;
+package net.sourceforge.jfox.entity.cache;
 
 import java.io.Serializable;
 
 /**
  * //TODO: 只缓存一个对象实例，以实现Singleton
  *
- * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
 public class SingletonCache implements Cache {
 
@@ -21,14 +21,14 @@ public class SingletonCache implements Cache {
         return config;
     }
 
-    public CacheStatus getStatus() {
+    public CacheStat getStatus() {
         return null;
     }
 
-    public void store(Serializable key, Serializable obj) {
+    public void put(Serializable key, Serializable obj) {
     }
 
-    public Serializable retrieve(Serializable key) {
+    public Serializable get(Serializable key) {
         return storage.getCachedObject();
     }
 

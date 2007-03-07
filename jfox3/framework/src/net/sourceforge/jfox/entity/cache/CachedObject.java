@@ -1,13 +1,16 @@
-package net.sourceforge.jfox.cache;
+package net.sourceforge.jfox.entity.cache;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
  * 封装一个Cache Object
  *
- * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
-public class CachedObject implements Serializable{
+public class CachedObject implements Serializable {
     /**
      * cache 的 key
      */
@@ -22,7 +25,7 @@ public class CachedObject implements Serializable{
 
     private long expireTime = -1;
 
-    private long createTime;
+    private long createTime = System.currentTimeMillis();
 
     private long lastAccessTime;
 
@@ -30,9 +33,17 @@ public class CachedObject implements Serializable{
 
     private boolean inUse = false;
 
-    public CachedObject(Serializable _key, Serializable _object) {
-        this.key = _key;
-        this.instance = _object;
+    public CachedObject(Serializable key, Serializable object) {
+        this.key = key;
+        this.instance = object;
+
+        try {
+            size = sizeOf(object);
+        }
+        catch (IOException e) {
+            throw new IllegalArgumentException("Object not serializable! " + object);
+        }
+
     }
 
     public Serializable getKey() {
@@ -81,6 +92,29 @@ public class CachedObject implements Serializable{
 
     public void setLastAccessTime(long lastAccessTime) {
         this.lastAccessTime = lastAccessTime;
+    }
+
+    void reset() {
+        instance = null;
+        size = 0;
+        createTime = System.currentTimeMillis();
+        accessCount = 1;
+        lastAccessTime = createTime;
+    }
+
+    void updateStatistics() {
+        accessCount++;
+        lastAccessTime = System.currentTimeMillis();
+    }
+
+    private static long sizeOf(final Object obj) throws IOException {
+        assert obj != null;
+        ByteArrayOutputStream buf = new ByteArrayOutputStream(4096);
+        ObjectOutputStream out = new ObjectOutputStream(buf);
+        out.writeObject(obj);
+        out.flush();
+        buf.close();
+        return buf.size();
     }
 
     public static void main(String[] args) {
