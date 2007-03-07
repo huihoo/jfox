@@ -11,6 +11,7 @@ import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
+import javax.persistence.QueryHint;
 
 import net.sourceforge.jfox.petstore.entity.Product;
 import net.sourceforge.jfox.entity.dao.DAOSupport;
@@ -43,7 +44,11 @@ import net.sourceforge.jfox.util.VelocityUtils;
                         " OR lower(descn) like $word " +
                         "#end" +
                         "#end", // $p1 is keyword array
-                resultClass = Product.class
+                resultClass = Product.class,
+                hints = {
+                @QueryHint(name = "cache.config", value = "default"),
+                @QueryHint(name = "cache.partition", value = "product")
+                        }
         )
 
                 }
@@ -85,17 +90,17 @@ public class ProductDAOImpl extends DAOSupport implements ProductDAO {
     }
 
     public static void main(String[] args) {
-                String query = "select productid, name, descn, category from product " +
-                        "#if(!$keywords.isEmpty())" +
-                        "where 0!=0 " +
-                        "#foreach($word in $keywords)" +
-                        " OR lower(name) like \"%$word%\" " +
-                        " OR lower(category) like \"%$word%\" " +
-                        " OR lower(descn) like \"%$word%\"" +
-                        "#end" +
-                        "#end"; // $p1 is keyword array
-        Map<String,Object> parameterMap = new HashMap<String, Object>();
-        parameterMap.put("keywords",new String[]{"a","b"});
+        String query = "select productid, name, descn, category from product " +
+                "#if(!$keywords.isEmpty())" +
+                "where 0!=0 " +
+                "#foreach($word in $keywords)" +
+                " OR lower(name) like \"%$word%\" " +
+                " OR lower(category) like \"%$word%\" " +
+                " OR lower(descn) like \"%$word%\"" +
+                "#end" +
+                "#end"; // $p1 is keyword array
+        Map<String, Object> parameterMap = new HashMap<String, Object>();
+        parameterMap.put("keywords", new String[]{"a", "b"});
         String result = VelocityUtils.evaluate(query, parameterMap);
         System.out.println(result);
     }

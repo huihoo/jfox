@@ -3,6 +3,7 @@ package net.sourceforge.jfox.entity;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Clob;
 import java.sql.Connection;
@@ -24,6 +25,8 @@ import javax.persistence.Query;
 import net.sourceforge.jfox.entity.annotation.ParameterMap;
 import net.sourceforge.jfox.entity.dao.DAOSupport;
 import net.sourceforge.jfox.entity.dao.MapperEntity;
+import net.sourceforge.jfox.entity.cache.CacheConfig;
+import net.sourceforge.jfox.entity.cache.Cache;
 import net.sourceforge.jfox.util.ClassUtils;
 import net.sourceforge.jfox.util.VelocityUtils;
 import org.apache.log4j.Logger;
@@ -46,11 +49,21 @@ public class SQLQuery extends QueryExt {
 
     private String nativeSQL;
 
+    private boolean isNamedQuery = false;
+
+    private CacheKey cacheKey = null;
+
     public SQLQuery(EntityManagerImpl em, SQLTemplate sqlTemplate) {
         this.em = em;
         this.sqlTemplate = sqlTemplate;
+        if(sqlTemplate instanceof NamedSQLTemplate) {
+            isNamedQuery = true;
+        }
     }
 
+    public boolean isNamedQuery() {
+        return isNamedQuery;
+    }
 
     public String getName() {
         if (sqlTemplate instanceof NamedSQLTemplate) {
@@ -61,18 +74,29 @@ public class SQLQuery extends QueryExt {
         }
     }
 
+    private SQLTemplate getSQLTemplate(){
+        return sqlTemplate;
+    }
+
     public Query setParameter(String name, Object value) {
         parameterMap.put(name, value);
         return this;
     }
 
+    private synchronized CacheKey getCacheKey(){
+        if(cacheKey == null) {
+            cacheKey = new CacheKey(getName(), parameterMap);
+        }
+        return cacheKey;
+    }
+
     public int executeUpdate() {
-        //TODO: flash cache
         try {
             PreparedStatement pst = buildPreparedStatement();
             int rows = pst.executeUpdate();
             // close PreparedStatement
             pst.close();
+            tryFlushCache(); // update successfully, clear cache
             return rows;
         }
         catch (SQLException e) {
@@ -82,7 +106,12 @@ public class SQLQuery extends QueryExt {
     }
 
     public List<?> getResultList() {
-        //TODO: flash cache
+
+        Object cachedResult = tryRetrieveCache();
+        if(cachedResult != null) {
+            return (List<?>)cachedResult;
+        }
+        
         PreparedStatement pst = null;
         ResultSet rset = null;
         final List<Object> results = new ArrayList<Object>();
@@ -93,6 +122,9 @@ public class SQLQuery extends QueryExt {
             while (rset.next()) {
                 results.add(buildResultObject(rset));
             }
+
+            tryStoreCache(results);
+
             return results;
         }
         catch (SQLException e) {
@@ -120,7 +152,11 @@ public class SQLQuery extends QueryExt {
     }
 
     public Object getSingleResult() {
-        //TODO: flash cache
+        Object cachedObject = tryRetrieveCache();
+        if(cachedObject != null) {
+            return cachedObject;
+        }
+        
         PreparedStatement pst = null;
         ResultSet rset = null;
         try {
@@ -128,7 +164,9 @@ public class SQLQuery extends QueryExt {
             rset = pst.executeQuery();
 
             if (rset.next()) {
-                return buildResultObject(rset);
+                Object result = buildResultObject(rset);
+                tryStoreCache(result);
+                return result;
             }
             else {
                 return null;
@@ -443,4 +481,79 @@ public class SQLQuery extends QueryExt {
         return value;
     }
 
+    Object tryRetrieveCache(){
+        if(isNamedQuery()){
+            String cacheConfigName = ((NamedSQLTemplate)getSQLTemplate()).getCacheConfigName();
+            String cachePartition = ((NamedSQLTemplate)getSQLTemplate()).getCachePartition();
+            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(cacheConfigName);
+            if(cacheConfig != null) {
+                Cache cache = cacheConfig.buildCache(cachePartition);
+                CacheKey key = getCacheKey();
+                return cache.get(key);
+            }
+        }
+        return null;
+    }
+
+    void tryStoreCache(Object result){
+        if(result == null) {
+            return;
+        }
+        if(!(result instanceof Serializable)){
+            logger.warn("Store cache failed, result is not Serializable! " + result);
+            return;
+        }
+        if(isNamedQuery()){
+            String cacheConfigName = ((NamedSQLTemplate)getSQLTemplate()).getCacheConfigName();
+            String cachePartition = ((NamedSQLTemplate)getSQLTemplate()).getCachePartition();
+            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(cacheConfigName);
+            if(cacheConfig != null) {
+                Cache cache = cacheConfig.buildCache(cachePartition);
+                CacheKey key = getCacheKey();
+                cache.put(key, (Serializable)result);
+            }
+        }
+    }
+
+    void tryFlushCache(){
+        if(isNamedQuery()){
+            String cacheConfigName = ((NamedSQLTemplate)getSQLTemplate()).getCacheConfigName();
+            String cachePartition = ((NamedSQLTemplate)getSQLTemplate()).getCachePartition();
+            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(cacheConfigName);
+            if(cacheConfig != null) {
+                Cache cache = cacheConfig.buildCache(cachePartition);
+                cache.clear();
+            }
+        }
+    }
+
+    //TODO: 实现完整的 equals and hashCode
+    class CacheKey implements Serializable {
+        private String sqlTemplateName;
+        private Map<String, Object> parameterMap = new HashMap<String, Object>();
+
+        public CacheKey(String sqlTemplateName, Map<String, Object> parameterMap) {
+            this.sqlTemplateName = sqlTemplateName;
+            this.parameterMap.putAll(parameterMap);
+        }
+
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            CacheKey cacheKey = (CacheKey)o;
+
+            if (!parameterMap.equals(cacheKey.parameterMap)) return false;
+            if (!sqlTemplateName.equals(cacheKey.sqlTemplateName)) return false;
+
+            return true;
+        }
+
+        public int hashCode() {
+            int result;
+            result = sqlTemplateName.hashCode();
+            result = 31 * result + parameterMap.hashCode();
+            return result;
+        }
+    }
 }

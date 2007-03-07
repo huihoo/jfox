@@ -75,10 +75,12 @@ public class CacheStat {
         misses = 0;
         puts = 0;
         removes = 0;
+        size = 0;
+        memorySize = 0;
     }
 
     public String toString() {
-        return "hit:" + getHits() + " miss:" + getMisses() + " memorySize:" + getMemorySize();
+        return "hits:" + getHits() + " misses:" + getMisses() + " size: " + getSize() + " memorySize:" + getMemorySize();
         //return "hit:"+_hit+" miss:"+_miss+" memorySize:"+_memorySize+" size:"+_map.size()+" tsize:"+_tmap.size();
     }
 }

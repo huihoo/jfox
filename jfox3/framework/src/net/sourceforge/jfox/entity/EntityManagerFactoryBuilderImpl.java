@@ -32,6 +32,7 @@ import net.sourceforge.jfox.framework.event.ModuleEvent;
 import net.sourceforge.jfox.framework.event.ModuleLoadingEvent;
 import net.sourceforge.jfox.framework.event.ModuleUnloadedEvent;
 import net.sourceforge.jfox.util.XMLUtils;
+import net.sourceforge.jfox.entity.cache.CacheConfig;
 import org.apache.log4j.Logger;
 import org.enhydra.jdbc.pool.StandardXAPoolDataSource;
 import org.enhydra.jdbc.standard.StandardXADataSource;
@@ -62,6 +63,11 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
      */
     private static Map<String, NamedSQLTemplate> queryMap = new HashMap<String, NamedSQLTemplate>();
 
+    /**
+     * cache config map
+     */
+    private static Map<String, CacheConfig> cacheConfigMap = new HashMap<String, CacheConfig>();
+
     private Document xmlDocument = null;
 
     private static boolean inited = false;
@@ -70,6 +76,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
     private EntityTransaction entityTransaction = null;
 
     public static final String DEFAULT_UNITNAME = "default";
+    public static final String CAHCE_PREFIX = "cache.";
 
     public EntityManagerFactoryBuilderImpl() {
 
@@ -128,6 +135,10 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
 
     private static void registerEntityManagerFactory(String name, EntityManagerFactory emFactory){
         emFactoryMap.put(name,emFactory);
+    }
+
+    public static CacheConfig getCacheConfig(String name) {
+        return cacheConfigMap.get(name);
     }
 
     public void instantiated(ComponentContext componentContext) {
@@ -283,6 +294,14 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
             }
             else if (name.equalsIgnoreCase("deadLockMaxWait")) {
                 sxpds.setDeadLockMaxWait(Integer.parseInt(value));
+            }
+            else if(name.startsWith(CAHCE_PREFIX) && name.lastIndexOf(".")>CAHCE_PREFIX.length()){
+                // construct cache config
+                String cacheConfigName = name.substring(CAHCE_PREFIX.length(), name.lastIndexOf("."));
+                if(!cacheConfigMap.containsKey(cacheConfigName)){
+                    CacheConfig cacheConfig = new CacheConfig();
+                    cacheConfigMap.put(cacheConfigName, cacheConfig);
+                }
             }
             else {
                 logger.warn("Illegal property name: " + name);

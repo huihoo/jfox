@@ -13,10 +13,8 @@
             <property name="sleepTime" value="600000"/> <!-- PoolKeeper sleep time -->
             <property name="deadLockRetryWait" value="2000"/> <!-- retry time if no free connection -->
             <property name="deadLockMaxWait" value="60000"/> <!-- max wait time if no free connection -->
-            <!-- example for cache config 
-            <property name="cache.default.ttl" value="1000"/>
-            <property name="cache.default.maxidletime" value="1000000"/>
-            -->
+            <property name="cache.default.ttl" value="1000"/> <!-- JPA default Cache ttl-->
+            <property name="cache.default.maxidletime" value="1000000"/> <!-- JPA default Cache maxidletime-->
         </properties>
     </persistence-unit>
 

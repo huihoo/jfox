@@ -48,6 +48,10 @@ public class CacheConfig {
 
     private Map<String, Cache> caches = new HashMap<String, Cache>();
 
+    public CacheConfig(){
+        this(Algorithm.LRU, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
+    }
+
     public CacheConfig(Algorithm algorithm, int maxSize, long maxMemorySize, long maxIdleTime, long ttl) {
         this.algorithm = algorithm;
         this.maxSize = maxSize;
