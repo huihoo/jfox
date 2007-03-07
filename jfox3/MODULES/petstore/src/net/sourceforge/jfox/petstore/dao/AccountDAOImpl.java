@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.EntityManager;
+import javax.persistence.QueryHint;
 
 import net.sourceforge.jfox.petstore.entity.Account;
 import net.sourceforge.jfox.entity.EntityManagerExt;
@@ -44,7 +45,11 @@ import net.sourceforge.jfox.entity.dao.DAOSupport;
                         " and signon.username = account.userid" +
                         " and profile.userid = account.userid" +
                         " and profile.favcategory = bannerdata.favcategory",
-                resultClass = Account.class
+                resultClass = Account.class,
+                hints = {
+                        @QueryHint(name = "cache.default.partition", value = "account"),
+                        @QueryHint(name = "cache.default.flush", value = "false")
+                        }
         ),
 
         @NamedNativeQuery(
