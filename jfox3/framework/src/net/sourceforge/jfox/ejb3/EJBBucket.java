@@ -43,15 +43,17 @@ public interface EJBBucket {
     
     /**
      * new EJB instance, return bean instance, not EJBObject
-     * 
-     * @throws Exception exception @param ejbObjectId
+     *
+     * @param ejbObjectId ejb object id
+     * @throws Exception exception
      */
     AbstractEJBContext newEJBContext(EJBObjectId ejbObjectId) throws Exception;
 
     /**
      * 重用 ejb instance
      *
-     * @param ejbContext
+     * @param ejbContext ejb context
+     * @throws Exception exception
      */
     void reuseEJBContext(AbstractEJBContext ejbContext) throws Exception;
 
@@ -108,7 +110,7 @@ public interface EJBBucket {
 
     /**
      * EJB env context, java:comp/env
-     * @param ejbObjectId
+     * @param ejbObjectId ejb object id
      */
     Context getENContext(EJBObjectId ejbObjectId);
 
