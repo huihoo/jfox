@@ -257,7 +257,8 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
 
         StandardXADataSource sxds = new StandardXADataSource();
         StandardXAPoolDataSource sxpds = new StandardXAPoolDataSource();
-
+        sxpds.setJdbcTestStmt("select 1");
+        sxpds.setCheckLevelObject(4);
         sxpds.setDataSourceName(jndiName);
 
         for (Map.Entry<String, String> entry : properties.entrySet()) {
@@ -278,7 +279,6 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
                 sxpds.setPassword(value);
             }
             else if(name.equals("checkLevelObject")){
-                sxpds.setJdbcTestStmt("select 1");
                 sxpds.setCheckLevelObject(Integer.parseInt(value));
             }
             else if (name.equalsIgnoreCase("minSize")) {
