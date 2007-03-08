@@ -535,9 +535,9 @@ public abstract class SessionBucket implements EJBBucket {
     public abstract AbstractEJBContext newEJBContext(EJBObjectId ejbObjectId) throws Exception;
 
     /**
-     * 将实例返回给 pool
+     * 将EJBContext返回给 pool, ejb context 中包含ejb instance
      *
-     * @param ejbContext
+     * @param ejbContext ejb context
      */
     public abstract void reuseEJBContext(AbstractEJBContext ejbContext) throws Exception;
 
