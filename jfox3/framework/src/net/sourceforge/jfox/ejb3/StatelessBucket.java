@@ -68,7 +68,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     /**
      * cache EJB instances
      */
-    private final GenericObjectPool pool = new GenericObjectPool();
+    private final GenericObjectPool pool = new GenericObjectPool(this);
 
     /**
      * Web Service 发布接口
@@ -110,8 +110,6 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                 }
             }
         }
-
-        pool.setFactory(this);
     }
 
     protected void introspectMethods() {
