@@ -259,6 +259,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         StandardXADataSource sxds = new StandardXADataSource();
         StandardXAPoolDataSource sxpds = new StandardXAPoolDataSource();
         sxpds.setJdbcTestStmt("select 1");
+        // check connection when checkOut from xapool, if closed, expire it
         sxpds.setCheckLevelObject(4);
         sxpds.setDataSourceName(jndiName);
 
