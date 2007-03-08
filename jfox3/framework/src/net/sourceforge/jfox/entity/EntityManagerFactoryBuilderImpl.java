@@ -289,16 +289,16 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
                 sxpds.setMaxSize(Integer.parseInt(value));
             }
             else if (name.equalsIgnoreCase("lifeTime")) {
-                sxpds.setLifeTime(Integer.parseInt(value));
+                sxpds.setLifeTime(Long.parseLong(value) * 1000);
             }
             else if (name.equalsIgnoreCase("sleepTime")) {
-                sxpds.setSleepTime(Integer.parseInt(value));
+                sxpds.setSleepTime(Long.parseLong(value) * 1000);
             }
             else if (name.equalsIgnoreCase("deadLockRetryWait")) {
-                sxpds.setDeadLockRetryWait(Integer.parseInt(value));
+                sxpds.setDeadLockRetryWait(Long.parseLong(value) * 1000);
             }
             else if (name.equalsIgnoreCase("deadLockMaxWait")) {
-                sxpds.setDeadLockMaxWait(Integer.parseInt(value));
+                sxpds.setDeadLockMaxWait(Long.parseLong(value) * 1000);
             }
             else if(name.startsWith(CAHCE_PREFIX) && name.lastIndexOf(".")>CAHCE_PREFIX.length()){
                 // construct cache config
