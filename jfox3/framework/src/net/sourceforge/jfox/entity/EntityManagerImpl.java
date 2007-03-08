@@ -9,10 +9,6 @@ import javax.persistence.Query;
 import javax.sql.DataSource;
 
 import net.sourceforge.jfox.ejb3.transaction.TxConnectionsThreadLocal;
-import net.sourceforge.jfox.entity.NamedSQLTemplate;
-import net.sourceforge.jfox.entity.QueryExt;
-import net.sourceforge.jfox.entity.SQLQuery;
-import net.sourceforge.jfox.entity.SQLTemplate;
 
 /**
  * Persistence Manager, 创建和管理 datasource, query template
