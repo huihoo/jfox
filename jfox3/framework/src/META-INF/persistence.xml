@@ -7,13 +7,13 @@
             <property name="url" value="jdbc:mysql://localhost:3306/test"/>
             <property name="username" value="root"/>
             <property name="password" value="root"/>
-            <property name="minSize" value="5"/> <!-- min pool size -->
+            <property name="minSize" value="1"/> <!-- min pool size -->
             <property name="maxSize" value="200"/> <!-- max pool size -->
             <property name="lifeTime" value="1800000"/> <!-- 2h, connection max idle time -->
-            <property name="sleepTime" value="600000"/> <!-- PoolKeeper sleep time -->
+            <property name="sleepTime" value="600000"/>  <!--PoolKeeper sleep time -->
             <property name="deadLockRetryWait" value="2000"/> <!-- retry time if no free connection -->
             <property name="deadLockMaxWait" value="60000"/> <!-- max wait time if no free connection -->
-            <property name="jdbcTestStmt" value="select 1"/>
+            <property name="checkLevelObject" value="4"/> <!-- check connection closed -->
             <property name="cache.default.ttl" value="1000"/> <!-- JPA default Cache ttl-->
             <property name="cache.default.maxidletime" value="1000000"/> <!-- JPA default Cache maxidletime-->
         </properties>
@@ -32,6 +32,9 @@
             <property name="sleepTime" value="600000"/> <!-- PoolKeeper sleep time -->
             <property name="deadLockRetryWait" value="2000"/> <!-- retry time if no free connection -->
             <property name="deadLockMaxWait" value="60000"/> <!-- max wait time if no free connection -->
+            <property name="checkLevelObject" value="4"/>
+            <property name="cache.default.ttl" value="1000"/> <!-- JPA default Cache ttl-->
+            <property name="cache.default.maxidletime" value="1000000"/> <!-- JPA default Cache maxidletime-->
         </properties>
     </persistence-unit>
 

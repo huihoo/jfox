@@ -277,9 +277,9 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
                 sxds.setPassword(value);
                 sxpds.setPassword(value);
             }
-            else if(name.equals("jdbcTestStmt")){
-                sxpds.setJdbcTestStmt(value);
-                sxpds.setCheckLevelObject(4);
+            else if(name.equals("checkLevelObject")){
+                sxpds.setJdbcTestStmt("select 1");
+                sxpds.setCheckLevelObject(Integer.parseInt(value));
             }
             else if (name.equalsIgnoreCase("minSize")) {
                 sxpds.setMinSize(Integer.parseInt(value));
