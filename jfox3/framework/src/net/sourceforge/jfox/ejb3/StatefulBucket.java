@@ -2,9 +2,7 @@ package net.sourceforge.jfox.ejb3;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.naming.Context;
-import javax.ejb.EJBObject;
 
 import net.sourceforge.jfox.framework.component.Module;
 import org.apache.commons.pool.KeyedPoolableObjectFactory;
@@ -36,16 +34,14 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
         return null;
     }
 
-    public EJBObject createProxyStub() {
-        return null;
-    }
-
     public AbstractEJBContext newEJBContext(EJBObjectId ejbObjectId) throws Exception {
         return null;
     }
 
     public void reuseEJBContext(AbstractEJBContext ejbContext) throws Exception {
-    }//---- KeyedPoolableObjectFactory --------
+    }
+
+    //---- KeyedPoolableObjectFactory --------
     public void activateObject(Object key, Object obj) throws Exception {
     }
 
