@@ -19,6 +19,7 @@ import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
+import javax.ejb.Stateful;
 import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
 import javax.naming.NameNotFoundException;
@@ -168,8 +169,9 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
     }
 
     protected EJBBucket[] loadEJB(Module module) {
-        Class[] statelessBeans = module.getModuleClassLoader().findClassAnnotatedWith(Stateless.class);
         List<EJBBucket> buckets = new ArrayList<EJBBucket>();
+
+        Class[] statelessBeans = module.getModuleClassLoader().findClassAnnotatedWith(Stateless.class);
         for (Class beanClass : statelessBeans) {
             EJBBucket bucket = loadStatelessEJB(beanClass, module);
             buckets.add(bucket);
@@ -186,6 +188,22 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
             }
             logger.info("EJB loaded, bean class: " + beanClass.getName());
         }
+        Class[] statefulBeans = module.getModuleClassLoader().findClassAnnotatedWith(Stateful.class);
+        for (Class beanClass : statefulBeans) {
+            EJBBucket bucket = loadStatefulEJB(beanClass, module);
+            buckets.add(bucket);
+            // bind to jndi
+            try {
+                for (String mappedName : bucket.getMappedNames()) {
+                    this.getNamingContext().bind(mappedName, bucket.createProxyStub());
+                }
+            }
+            catch (NamingException e) {
+                throw new EJBException("bind " + bucket.getMappedNames() + " failed!", e);
+            }
+            logger.info("EJB loaded, bean class: " + beanClass.getName());
+        }
+
         return buckets.toArray(new EJBBucket[buckets.size()]);
     }
 
@@ -199,6 +217,14 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
     protected EJBBucket loadStatelessEJB(Class<?> beanClass, Module module) {
         if (beanClass.isAnnotationPresent(Stateless.class)) {
             StatelessBucket bucket = new StatelessBucket(this, beanClass, module);
+            return bucket;
+        }
+        return null;
+    }
+
+    protected EJBBucket loadStatefulEJB(Class<?> beanClass, Module module) {
+        if (beanClass.isAnnotationPresent(Stateful.class)) {
+            StatefulBucket bucket = new StatefulBucket(this, beanClass, module);
             return bucket;
         }
         return null;

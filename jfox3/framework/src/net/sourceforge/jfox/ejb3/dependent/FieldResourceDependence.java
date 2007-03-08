@@ -37,6 +37,7 @@ public class FieldResourceDependence extends ResourceDependence {
      * @throws InjectionException
      */
     public void inject(Object instance) throws InjectionException {
+        //TODO: 需要完善 Stateful 的注入
         Object targetObject = null;
         if (field.getType().equals(EJBContext.class) ||
                 field.getType().equals(SessionContext.class) ||

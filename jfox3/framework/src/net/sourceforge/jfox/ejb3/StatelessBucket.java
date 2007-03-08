@@ -15,6 +15,7 @@ import javax.ejb.RemoveException;
 import javax.ejb.TimedObject;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
+import javax.ejb.Stateless;
 import javax.jws.WebService;
 import javax.naming.Context;
 
@@ -101,6 +102,30 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                 }
             }
         }
+    }
+
+    protected void introspectBean(){
+        Stateless stateless = getBeanClass().getAnnotation(Stateless.class);
+        String name = stateless.name();
+        if (name.equals("")) {
+            name = getBeanClass().getSimpleName();
+        }
+        setEJBName(name);
+
+        String mappedName = stateless.mappedName();
+        if (mappedName.equals("")) {
+            if (isRemote()) {
+                addMappedName(name + "/remote");
+            }
+            if (isLocal()) {
+                addMappedName(name + "/local");
+            }
+        }
+        else {
+            addMappedName(mappedName);
+        }
+
+        setDescription(stateless.description());
     }
 
     protected void introspectMethods() {

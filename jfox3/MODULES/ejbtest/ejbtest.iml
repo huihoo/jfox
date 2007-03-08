@@ -12,20 +12,37 @@
     <setting name="RUN_EJB_VALIDATION" value="true" />
   </component>
   <component name="EjbModuleProperties">
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/servlet-api.jar" />
+      <url>jar://$MODULE_DIR$/../../../../IDEA/lib/servlet-api.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="2" />
+      <attribute name="URI" value="/org.mortbay.jetty-5.1.3.jar" />
+      <url>jar://E:/Java/xfire/xfire-1.2.4/lib/org.mortbay.jetty-5.1.3.jar!/</url>
+    </containerElement>
+    <containerElement type="library" name="jfoxng-common" level="project">
+      <attribute name="method" value="2" />
+      <attribute name="URI" value="/" />
+    </containerElement>
     <containerElement type="library" name="jfoxng-lib" level="project">
       <attribute name="method" value="0" />
       <attribute name="URI" value="&lt;N/A&gt;" />
     </containerElement>
   </component>
   <component name="ModuleRootManager" />
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/classes" />
     <exclude-output />
+    <output-test url="file://$MODULE_DIR$/classes" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jfoxng-lib" level="project" />
+    <orderEntry type="module" module-name="framework" />
     <orderEntryProperties />
   </component>
   <component name="WLEjbModuleProperties" />

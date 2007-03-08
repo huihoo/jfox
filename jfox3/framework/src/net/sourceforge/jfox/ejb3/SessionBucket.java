@@ -2,10 +2,10 @@ package net.sourceforge.jfox.ejb3;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Proxy;
-import java.lang.reflect.InvocationHandler;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,21 +22,20 @@ import javax.annotation.Resources;
 import javax.ejb.EJB;
 import javax.ejb.EJBContext;
 import javax.ejb.EJBException;
+import javax.ejb.EJBLocalObject;
+import javax.ejb.EJBObject;
 import javax.ejb.EJBs;
 import javax.ejb.Local;
 import javax.ejb.Remote;
-import javax.ejb.Stateless;
 import javax.ejb.Timeout;
 import javax.ejb.Timer;
-import javax.ejb.EJBObject;
-import javax.ejb.EJBLocalObject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptors;
 import javax.interceptor.InvocationContext;
+import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
 import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
-import javax.naming.Context;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Status;
@@ -66,7 +65,7 @@ public abstract class SessionBucket implements EJBBucket {
 
     protected final Logger logger = Logger.getLogger(this.getClass());
 
-    private Class beanClass;
+    private Class<?> beanClass;
     private Class[] beanInterfaces = null;
     private String ejbName;
 
@@ -74,8 +73,6 @@ public abstract class SessionBucket implements EJBBucket {
     private String description;
 
     private EJBContainer container = null;
-
-    private EJBContextImpl ejbContext;
 
     /**
      * Module of EJB
@@ -158,27 +155,7 @@ public abstract class SessionBucket implements EJBBucket {
             this.beanInterfaces = annotatedBeanInterfaces.toArray(new Class[annotatedBeanInterfaces.size()]);
         }
 
-        Stateless stateless = beanClass.getAnnotation(Stateless.class);
-        String name = stateless.name();
-        if (name.equals("")) {
-            name = beanClass.getSimpleName();
-        }
-        setEJBName(name);
-
-        String mappedName = stateless.mappedName();
-        if (mappedName.equals("")) {
-            if (isRemote()) {
-                addMappedName(name + "/remote");
-            }
-            if (isLocal()) {
-                addMappedName(name + "/local");
-            }
-        }
-        else {
-            addMappedName(mappedName);
-        }
-
-        setDescription(stateless.description());
+        introspectBean();
 
         introspectMethods();
         introspectLifecycleAndInterceptors();
@@ -187,6 +164,10 @@ public abstract class SessionBucket implements EJBBucket {
         introspectFieldDependents();
 
         injectClassDependents();
+    }
+
+    protected void introspectBean(){
+
     }
 
     protected void introspectMethods() {
@@ -546,12 +527,7 @@ public abstract class SessionBucket implements EJBBucket {
      */
     public abstract void reuseEJBContext(AbstractEJBContext ejbContext) throws Exception;
 
-    public EJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
-        if (ejbContext == null) {
-            ejbContext = new EJBContextImpl(ejbObjectId, instance);
-        }
-        return ejbContext;
-    }
+    public abstract EJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance);
 
     public Collection<InterceptorMethod> getClassInterceptorMethods() {
         return Collections.unmodifiableCollection(classInterceptorMethods);

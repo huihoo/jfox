@@ -4,6 +4,8 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import javax.ejb.EJBException;
+import javax.ejb.Stateful;
+import javax.ejb.EJBContext;
 
 import net.sourceforge.jfox.ejb3.dependent.FieldEJBDependence;
 import net.sourceforge.jfox.ejb3.dependent.FieldResourceDependence;
@@ -30,18 +32,47 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
         super(container, beanClass, module);
     }
 
+    protected void introspectBean() {
+        Stateful stateful = getBeanClass().getAnnotation(Stateful.class);
+        String name = stateful.name();
+        if (name.equals("")) {
+            name = getBeanClass().getSimpleName();
+        }
+        setEJBName(name);
+
+        String mappedName = stateful.mappedName();
+        if (mappedName.equals("")) {
+            if (isRemote()) {
+                addMappedName(name + "/remote");
+            }
+            if (isLocal()) {
+                addMappedName(name + "/local");
+            }
+        }
+        else {
+            addMappedName(mappedName);
+        }
+
+        setDescription(stateful.description());
+    }
+
+
     public EJBObjectId createEJBObjectId() {
         return new EJBObjectId(getEJBName(), "" + id++);
     }
 
     public AbstractEJBContext newEJBContext(EJBObjectId ejbObjectId) throws EJBException {
         try {
-            StatefulEJBContextImpl ejbContext = (StatefulEJBContextImpl)makeObject(ejbObjectId);
+            StatefulEJBContextImpl ejbContext = (StatefulEJBContextImpl)pool.borrowObject(ejbObjectId);
             return ejbContext;
         }
         catch (Exception e) {
             throw new EJBException("Create EJBContext failed, EJBObjectId=" + ejbObjectId, e);
         }
+    }
+
+    public EJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
+        return new StatefulEJBContextImpl(ejbObjectId, instance);
     }
 
     public void reuseEJBContext(AbstractEJBContext ejbContext) throws Exception {

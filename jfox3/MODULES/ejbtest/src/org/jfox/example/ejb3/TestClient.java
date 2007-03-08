@@ -32,7 +32,7 @@ public class TestClient {
     public static void setUp() throws Exception {
 //        PlaceholderUtils.loadGlobalProperty(Constants.GLOBAL_PROPERTIES);
         framework = new Framework();
-        framework.loadModule(new File("."));
+        framework.loadModule(new File("MODULES/ejbtest"));
         framework.start();
     }
 
@@ -190,6 +190,16 @@ public class TestClient {
 
         Lobber getLobber = lobberDAO.getLobber(1);
         Assert.assertTrue(Arrays.equals(getLobber.getBlobby(), lobber.getBlobby()));
+    }
+
+    @Test
+    public void invokeStateful() throws Exception{
+        Context context = JNDIContextHelper.getInitalContext();
+        org.jfox.example.ejb3.stateful.ShoppingCart calculator = (org.jfox.example.ejb3.stateful.ShoppingCart)context.lookup("stateful.ShoppingCartBean/remote");
+        calculator.buy("apple",1);
+        calculator.buy("banana",2);
+        Assert.assertEquals(calculator.getCartContents().size(),2);
+        
     }
 
 }

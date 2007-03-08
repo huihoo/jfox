@@ -58,7 +58,4 @@ public class OrderDAOImpl extends DAOSupport implements OrderDAO {
         return (Order)createNamedNativeQuery(GET_ORDER_BY_ID).setParameter("id",id).getSingleResult();
     }
 
-    public static void main(String[] args) {
-
-    }
 }
