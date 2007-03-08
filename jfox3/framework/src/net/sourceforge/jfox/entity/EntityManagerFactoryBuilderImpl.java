@@ -335,7 +335,6 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
                 else {
                     logger.warn("Illegal JPA cache property name: " + name);
                 }
-
             }
             else {
                 logger.warn("Illegal JPA persistence.xml property name: " + name);
