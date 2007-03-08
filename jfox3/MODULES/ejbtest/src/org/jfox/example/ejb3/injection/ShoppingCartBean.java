@@ -4,13 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.Remote;
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 
 
-@Stateless(name="injection.ShoppingCartBean")
+@Stateful(name="injection.ShoppingCartBean")
 @Remote(ShoppingCart.class)
 public class ShoppingCartBean implements ShoppingCart, java.io.Serializable {
-    private static final HashMap<String, Integer> cart = new HashMap<String, Integer>();
+    private final HashMap<String, Integer> cart = new HashMap<String, Integer>();
 
     @EJB(beanName = "injection.CalculatorBean")
     private Calculator calculator;
