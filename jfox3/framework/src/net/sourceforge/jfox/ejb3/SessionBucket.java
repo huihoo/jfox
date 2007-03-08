@@ -36,6 +36,7 @@ import javax.interceptor.InvocationContext;
 import javax.naming.NameAlreadyBoundException;
 import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
+import javax.naming.Context;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Status;
@@ -505,6 +506,10 @@ public abstract class SessionBucket implements EJBBucket {
         return container;
     }
 
+    public Context getENContext(EJBObjectId ejbObjectId) {
+        return newEJBContext(ejbObjectId).getENContext();
+    }
+    
     protected void injectClassDependents() {
         //解析类级依赖
         for (EJBDependence ejbDependence : classEJBDependents) {
@@ -532,7 +537,7 @@ public abstract class SessionBucket implements EJBBucket {
      * @param ejbObjectId ejb object id
      * @throws Exception exception
      */
-    public abstract AbstractEJBContext newEJBContext(EJBObjectId ejbObjectId) throws Exception;
+    public abstract AbstractEJBContext newEJBContext(EJBObjectId ejbObjectId) throws EJBException;
 
     /**
      * 将EJBContext返回给 pool, ejb context 中包含ejb instance
@@ -709,7 +714,7 @@ public abstract class SessionBucket implements EJBBucket {
 
         public Object lookup(final String name) {
             try {
-                return getENContext(getEJBObjectId()).lookup(name);
+                return getENContext().lookup(name);
             }
             catch (NamingException e) {
                 logger.warn("EJBContext.lookup " + name + " failed.", e);

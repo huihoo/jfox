@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.ejb.EJBContext;
 import javax.ejb.EJBException;
 import javax.ejb.EJBObject;
@@ -19,13 +17,9 @@ import javax.ejb.Timer;
 import javax.ejb.TimerService;
 import javax.jws.WebService;
 import javax.naming.Context;
-import javax.naming.NameAlreadyBoundException;
-import javax.naming.NameNotFoundException;
-import javax.naming.NamingException;
 
 import net.sourceforge.jfox.ejb3.dependent.FieldEJBDependence;
 import net.sourceforge.jfox.ejb3.dependent.FieldResourceDependence;
-import net.sourceforge.jfox.ejb3.naming.ContextAdapter;
 import net.sourceforge.jfox.ejb3.timer.EJBTimerTask;
 import net.sourceforge.jfox.entity.dependent.FieldPersistenceContextDependence;
 import net.sourceforge.jfox.framework.component.Module;
@@ -40,11 +34,12 @@ import org.apache.commons.pool.impl.GenericObjectPool;
 public class StatelessBucket extends SessionBucket implements PoolableObjectFactory {
 
     public static final Method TimeOut;
+
     static {
         try {
             TimeOut = TimedObject.class.getMethod("ejbTimeout", new Class[]{Timer.class});
         }
-        catch(Exception e) {
+        catch (Exception e) {
             e.printStackTrace();
             throw new EJBException(e);
         }
@@ -77,7 +72,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     private WebService wsAnnotation = null;
 
     public StatelessBucket(EJBContainer container, Class<?> beanClass, Module module) {
-        super(container,beanClass,module);
+        super(container, beanClass, module);
 
         //parse @WebService, simple parse @WebService
         if (beanClass.isAnnotationPresent(WebService.class)) {
@@ -112,7 +107,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         super.introspectMethods();
 
         // timeout method
-        if(TimedObject.class.isAssignableFrom(getBeanClass())){
+        if (TimedObject.class.isAssignableFrom(getBeanClass())) {
             timeoutMethods.add(TimeOut);
         }
     }
@@ -121,15 +116,16 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
      * 从 Pool 中得到一个新的 Bean 实例
      *
      * @param ejbObjectId ejb object id
-     * @throws Exception exception
+     * @throws EJBException exception
      */
-    public AbstractEJBContext newEJBContext(EJBObjectId ejbObjectId) throws Exception {
-//        Object ejbInstance = pool.borrowObject();
-//        createEJBContext(ejbObjectId, ejbInstance);
-//        return ejbInstance;
-        //TODO: 有问题，
-        EJBContextImpl ejbContext = (EJBContextImpl)pool.borrowObject();
-        return ejbContext;
+    public AbstractEJBContext newEJBContext(EJBObjectId ejbObjectId) throws EJBException {
+        try {
+            EJBContextImpl ejbContext = (EJBContextImpl)pool.borrowObject();
+            return ejbContext;
+        }
+        catch (Exception e) {
+            throw new EJBException("Create EJBContext failed.",e );
+        }
     }
 
     /**
@@ -149,7 +145,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     }
 
     public synchronized EJBObjectId createEJBObjectId() {
-        if(ejbObjectId == null) {
+        if (ejbObjectId == null) {
             ejbObjectId = new EJBObjectId(getEJBName());
         }
         return ejbObjectId;
@@ -205,7 +201,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             fieldPersistenceContextDependence.inject(obj);
         }
 
-        //TODO: 有问题， 返回 EJBContext
+        //返回 EJBContext
         return createEJBContext(createEJBObjectId(), obj);
     }
 
@@ -226,16 +222,9 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         }
     }
 
-    public Context getENContext(EJBObjectId ejbObjectId) {
-        if (envContext == null) {
-            envContext = new ENContext();
-        }
-        return envContext;
-    }
-
     // EJBContext Implementation
     @SuppressWarnings({"deprecation"})
-    public class StatelessEJBContextImpl extends EJBContextImpl{
+    public class StatelessEJBContextImpl extends EJBContextImpl {
 
         public StatelessEJBContextImpl(EJBObjectId ejbObjectId, Object ejbInstance) {
             super(ejbObjectId, ejbInstance);
@@ -266,39 +255,6 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         }
     }
 
-    public class ENContext extends ContextAdapter {
-        /**
-         * Component env Map, 保存 java:comp/env 对象，只保存 Class level 的注入
-         * Field Level 不做 env 保存
-         */
-        private Map<String, Object> envMap = new HashMap<String, Object>();
-
-        //--- java:comp/env naming container
-        public void bind(String name, Object obj) throws NamingException {
-            if (envMap.containsKey(name)) {
-                throw new NameAlreadyBoundException(name);
-            }
-            envMap.put(name, obj);
-        }
-
-        public void rebind(String name, Object obj) throws NamingException {
-            envMap.put(name, obj);
-        }
-
-        public void unbind(String name) throws NamingException {
-            if (!envMap.containsKey(name)) {
-                throw new NameNotFoundException(name);
-            }
-            envMap.remove(name);
-        }
-
-        public Object lookup(String name) throws NamingException {
-            if (!envMap.containsKey(name)) {
-                throw new NameNotFoundException(name);
-            }
-            return envMap.get(name);
-        }
-    }
 
     // EJB TimerService，only stateless, MDB, Entity can register TimerService
     @SuppressWarnings("unchecked")
@@ -334,8 +290,8 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
 
         public Collection getTimers() throws IllegalStateException, EJBException {
             List<EJBTimerTask> beanTimers = new ArrayList<EJBTimerTask>();
-            for(EJBTimerTask timerTask :  (Collection<EJBTimerTask>)getEJBContainer().getTimerService().getTimers()){
-                if(timerTask.getEJBObjectId().equals(createEJBObjectId())) {
+            for (EJBTimerTask timerTask : (Collection<EJBTimerTask>)getEJBContainer().getTimerService().getTimers()) {
+                if (timerTask.getEJBObjectId().equals(createEJBObjectId())) {
                     beanTimers.add(timerTask);
                 }
             }
