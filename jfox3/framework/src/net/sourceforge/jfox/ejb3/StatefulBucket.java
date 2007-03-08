@@ -56,7 +56,7 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
     }
 
     public boolean validateObject(Object key, Object obj) {
-        return false;
+        return true;
     }
 
     class StatefulEJBContextImpl extends EJBContextImpl {
