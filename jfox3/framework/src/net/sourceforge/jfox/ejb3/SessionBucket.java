@@ -4,6 +4,8 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Proxy;
+import java.lang.reflect.InvocationHandler;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -26,6 +28,8 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.Timeout;
 import javax.ejb.Timer;
+import javax.ejb.EJBObject;
+import javax.ejb.EJBLocalObject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptors;
 import javax.interceptor.InvocationContext;
@@ -598,6 +602,59 @@ public abstract class SessionBucket implements EJBBucket {
             }
         }
         return false;
+    }
+
+    /**
+     * 生成基于动态代理的 Stub
+     */
+    public synchronized EJBObject getProxyStub() {
+        List<Class<?>> interfaces = new ArrayList<Class<?>>();
+        interfaces.add(EJBObject.class);
+        interfaces.addAll(Arrays.asList(this.getBeanInterfaces()));
+
+        // 生成 EJB 的动态代理对象
+        return (EJBObject)Proxy.newProxyInstance(this.getModule().getModuleClassLoader(),
+                interfaces.toArray(new Class[interfaces.size()]),
+                new ProxyStubInvocationHandler()
+        );
+    }
+
+    class ProxyStubInvocationHandler implements InvocationHandler {
+        EJBObjectId ejbObjectId = createEJBObjectId();
+
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            //需要判断是否是 EJBObject 的方法
+            if (method.getDeclaringClass().equals(EJBObject.class) || method.getDeclaringClass().equals(EJBLocalObject.class)) { // 拦截 EJBObject 方法
+                return method.invoke(newEJBContext(getEJBObjectId()), args);
+            }
+            //TODO: 优化处理 Object 方法
+            else if (method.getName().equals("toString") && (args == null || args.length == 0)) {
+                return "$proxy_ejb_stub{id=" + ejbObjectId + ",interface=" + Arrays.toString(getBeanInterfaces()) + "}";
+            }
+            else if (method.getName().equals("equals") && args != null && args.length == 1) {
+                if (args[0] == null || !(args[0] instanceof ProxyStubInvocationHandler)) {
+                    return false;
+                }
+                else {
+                    return getEJBObjectId().equals(((ProxyStubInvocationHandler)args[0]).getEJBObjectId());
+                }
+            }
+            else if (method.getName().equals("hashCode") && (args == null || args.length == 0)) {
+                return getEJBObjectId().hashCode();
+            }
+            else if (method.getName().equals("clone") && (args == null || args.length == 0)) {
+                throw new CloneNotSupportedException(getEJBObjectId().toString());
+            }
+            else {
+                // 其它业务方法
+                return getEJBContainer().invokeEJB(getEJBObjectId(), method, args);
+            }
+        }
+
+        EJBObjectId getEJBObjectId() {
+            return ejbObjectId;
+        }
+
     }
 
     public class ENContext extends ContextAdapter {

@@ -1,12 +1,9 @@
 package net.sourceforge.jfox.ejb3;
 
 import java.io.Serializable;
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Proxy;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -15,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 import javax.ejb.EJBContext;
 import javax.ejb.EJBException;
-import javax.ejb.EJBLocalObject;
 import javax.ejb.EJBObject;
 import javax.ejb.RemoveException;
 import javax.ejb.TimedObject;
@@ -180,54 +176,9 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
      */
     public synchronized EJBObject getProxyStub() {
         if (proxyStub == null) {
-            List<Class<?>> interfaces = new ArrayList<Class<?>>();
-            interfaces.add(EJBObject.class);
-            interfaces.addAll(Arrays.asList(this.getBeanInterfaces()));
-
-            // 生成 EJB 的动态代理对象
-            proxyStub = (EJBObject)Proxy.newProxyInstance(this.getModule().getModuleClassLoader(),
-                    interfaces.toArray(new Class[interfaces.size()]),
-                    new ProxyStubInvocationHandler()
-            );
+            proxyStub = super.getProxyStub();
         }
         return proxyStub;
-    }
-
-    class ProxyStubInvocationHandler implements InvocationHandler {
-        EJBObjectId ejbObjectId = createEJBObjectId();
-        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            //需要判断是否是 EJBObject 的方法
-            if (method.getDeclaringClass().equals(EJBObject.class) || method.getDeclaringClass().equals(EJBLocalObject.class)) { // 拦截 EJBObject 方法
-                return method.invoke(statelessEJBContext, args);
-            }
-            //TODO: 优化处理 Object 方法
-            else if (method.getName().equals("toString") && (args == null || args.length == 0)) {
-                return "$proxy_ejb_stub{id=" + ejbObjectId + ",interface=" + Arrays.toString(getBeanInterfaces()) + "}";
-            }
-            else if (method.getName().equals("equals") && args != null && args.length == 1) {
-                if(args[0] == null || !(args[0] instanceof ProxyStubInvocationHandler)) {
-                    return false;
-                }
-                else {
-                    return getEJBObjectId().equals(((ProxyStubInvocationHandler)args[0]).getEJBObjectId());
-                }
-            }
-            else if (method.getName().equals("hashCode") && (args == null || args.length == 0)) {
-                return getEJBObjectId().hashCode();
-            }
-            else if (method.getName().equals("clone") && (args == null || args.length == 0)) {
-                throw new CloneNotSupportedException(getEJBObjectId().toString());
-            }
-            else {
-                // 其它业务方法
-                return getEJBContainer().invokeEJB(getEJBObjectId(), method, args);
-            }
-        }
-
-        EJBObjectId getEJBObjectId(){
-            return ejbObjectId;
-        }
-
     }
 
     //--- jakarta commons-pool PoolableObjectFactory ---
