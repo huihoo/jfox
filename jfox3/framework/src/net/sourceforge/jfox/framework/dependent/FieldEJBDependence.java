@@ -51,7 +51,7 @@ public class FieldEJBDependence implements Dependence {
                 throw new InjectionException("Could not find ejb with bean name: " + beanName);
             }
             else {
-                targetEJBObject = bucket.getProxyStub();
+                targetEJBObject = bucket.createProxyStub();
             }
         }
         else if (mappedName.length() != 0) {
@@ -80,7 +80,7 @@ public class FieldEJBDependence implements Dependence {
                 throw new InjectionException("");
             }
             else {
-                targetEJBObject = bucket[0].getProxyStub();
+                targetEJBObject = bucket[0].createProxyStub();
             }
         }
 

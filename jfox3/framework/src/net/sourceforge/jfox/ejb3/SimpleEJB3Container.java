@@ -178,7 +178,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
             // bind to jndi
             try {
                 for (String mappedName : bucket.getMappedNames()) {
-                    this.getNamingContext().bind(mappedName, bucket.getProxyStub());
+                    this.getNamingContext().bind(mappedName, bucket.createProxyStub());
                 }
             }
             catch (NamingException e) {

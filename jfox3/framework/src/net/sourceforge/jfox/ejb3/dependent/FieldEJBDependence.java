@@ -55,7 +55,7 @@ public class FieldEJBDependence extends EJBDependence {
                     throw new InjectionException("Could not find ejb with bean name: " + beanName);
                 }
                 else {
-                    targetEJBObject = bucket.getProxyStub();
+                    targetEJBObject = bucket.createProxyStub();
                 }
             }
             else if (mappedName.length() != 0) {
@@ -84,7 +84,7 @@ public class FieldEJBDependence extends EJBDependence {
                     throw new InjectionException("Found more than on EJB bye interface " + beanInterface.getName());
                 }
                 else {
-                    targetEJBObject = bucket[0].getProxyStub();
+                    targetEJBObject = bucket[0].createProxyStub();
                 }
             }
 

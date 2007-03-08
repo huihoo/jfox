@@ -68,7 +68,7 @@ public interface EJBBucket {
     /**
      * 获得 EJB 存根，作为对EJB的引用，用来 bind 到 jndi，以及 inject
      */
-    EJBObject getProxyStub();
+    EJBObject createProxyStub();
 
     /**
      * \@Interceptors on class

@@ -174,9 +174,9 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     /**
      * 生成基于动态代理的 Stub
      */
-    public synchronized EJBObject getProxyStub() {
+    public synchronized EJBObject createProxyStub() {
         if (proxyStub == null) {
-            proxyStub = super.getProxyStub();
+            proxyStub = super.createProxyStub();
         }
         return proxyStub;
     }

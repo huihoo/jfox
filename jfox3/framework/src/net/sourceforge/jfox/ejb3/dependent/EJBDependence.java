@@ -52,7 +52,7 @@ public class EJBDependence implements Dependence {
                 throw new InjectionException("Could not find ejb with bean name: " + beanName);
             }
             else {
-                    targetEJBObject = bucket.getProxyStub();
+                    targetEJBObject = bucket.createProxyStub();
             }
         }
         else if(!beanInterface.equals(Object.class)) { // 解析 beanInterface
@@ -64,7 +64,7 @@ public class EJBDependence implements Dependence {
                 throw new InjectionException("");
             }
             else {
-                targetEJBObject = bucket[0].getProxyStub();
+                targetEJBObject = bucket[0].createProxyStub();
             }
         }
         else if(mappedName.length() != 0){

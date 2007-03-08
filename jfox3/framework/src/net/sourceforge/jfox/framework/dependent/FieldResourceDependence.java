@@ -53,7 +53,7 @@ public class FieldResourceDependence implements Dependence {
                 throw new InjectionException("");
             }
             else {
-                targetResourceObject = bucket[0].getProxyStub();
+                targetResourceObject = bucket[0].createProxyStub();
             }
         }
         else if (mappedName.length() != 0) {

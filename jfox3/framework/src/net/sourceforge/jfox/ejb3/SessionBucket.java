@@ -607,7 +607,7 @@ public abstract class SessionBucket implements EJBBucket {
     /**
      * 生成基于动态代理的 Stub
      */
-    public synchronized EJBObject getProxyStub() {
+    public synchronized EJBObject createProxyStub() {
         List<Class<?>> interfaces = new ArrayList<Class<?>>();
         interfaces.add(EJBObject.class);
         interfaces.addAll(Arrays.asList(this.getBeanInterfaces()));

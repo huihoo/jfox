@@ -36,7 +36,7 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
         return null;
     }
 
-    public EJBObject getProxyStub() {
+    public EJBObject createProxyStub() {
         return null;
     }
 
