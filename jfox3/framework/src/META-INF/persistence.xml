@@ -14,8 +14,11 @@
             <property name="deadLockRetryWait" value="2000"/> <!-- retry time if no free connection -->
             <property name="deadLockMaxWait" value="60000"/> <!-- max wait time if no free connection -->
             <property name="checkLevelObject" value="4"/> <!-- check connection closed -->
-            <property name="cache.default.ttl" value="1000"/> <!-- JPA default Cache ttl-->
-            <property name="cache.default.maxidletime" value="1000000"/> <!-- JPA default Cache maxidletime-->
+            <property name="cache.default.algorithm" value="LRU"/> <!-- JPA default Cache max size, LRU, LFU, FIFO-->
+            <property name="cache.default.ttl" value="1000"/> <!-- JPA default Cache ttl, in seconds-->
+            <property name="cache.default.maxIdleTime" value="1000000"/> <!-- JPA default Cache maxidletime, in seconds-->
+            <property name="cache.default.maxSize" value="1000000"/> <!-- JPA default Cache max size-->
+            <property name="cache.default.maxMemorySize" value="1000000"/> <!-- JPA default Cache max memory size, in bytes-->
         </properties>
     </persistence-unit>
 

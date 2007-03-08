@@ -137,6 +137,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         emFactoryMap.put(name,emFactory);
     }
 
+    //TODO: by unit & name
     public static CacheConfig getCacheConfig(String name) {
         return cacheConfigMap.get(name);
     }
