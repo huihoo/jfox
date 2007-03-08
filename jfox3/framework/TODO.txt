@@ -224,3 +224,6 @@
     2. cache 的配置放在 persistence.xml 中，而每个 query 的描述，使用 QueryHint 描述在
     3. Stateful 暂不支持 passivate activate，而直接从内存删除
     4. 实现 JPA 分页功能
+
+2007-03-08
+    1. 要解决 XAPool 在数据库重启下的重连问题
