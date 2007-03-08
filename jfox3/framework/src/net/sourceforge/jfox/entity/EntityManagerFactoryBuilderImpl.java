@@ -307,9 +307,38 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
                     CacheConfig cacheConfig = new CacheConfig();
                     cacheConfigMap.put(cacheConfigName, cacheConfig);
                 }
+                CacheConfig cacheConfig = cacheConfigMap.get(cacheConfigName);
+                String property = name.substring(name.lastIndexOf(".") + 1);
+                if(property.equalsIgnoreCase("TTL")) {
+                    cacheConfig.setTTL(Long.parseLong(value));
+                }
+                else if(property.equalsIgnoreCase("algorithm")){
+                    if(value.equalsIgnoreCase("LFU")) {
+                        cacheConfig.setAlgorithm(CacheConfig.Algorithm.LFU);
+                    }
+                    else if(value.equalsIgnoreCase("FIFO")){
+                        cacheConfig.setAlgorithm(CacheConfig.Algorithm.FIFO);
+                    }
+                    else {
+                        cacheConfig.setAlgorithm(CacheConfig.Algorithm.LRU);
+                    }
+                }
+                else if(property.equalsIgnoreCase("maxIdleTime")){
+                    cacheConfig.setMaxIdleTime(Long.parseLong(value));
+                }
+                else if(property.equalsIgnoreCase("maxSize")){
+                    cacheConfig.setMaxSize(Integer.parseInt(value));
+                }
+                else if(property.equalsIgnoreCase("maxMemorySize")){
+                    cacheConfig.setMaxMemorySize(Long.parseLong(value));
+                }
+                else {
+                    logger.warn("Illegal JPA cache property name: " + name);
+                }
+
             }
             else {
-                logger.warn("Illegal property name: " + name);
+                logger.warn("Illegal JPA persistence.xml property name: " + name);
             }
         }
         sxpds.setTransactionManager(transactionManager);

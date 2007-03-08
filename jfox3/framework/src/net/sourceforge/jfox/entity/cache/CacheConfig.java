@@ -65,6 +65,10 @@ public class CacheConfig {
         return algorithm;
     }
 
+    public void setAlgorithm(Algorithm algorithm) {
+        this.algorithm = algorithm;
+    }
+
     public Comparator<CachedObject> getAlgorithmComparator() {
         switch (getAlgorithm()) {
             case LFU:
@@ -76,16 +80,32 @@ public class CacheConfig {
         }
     }
 
+    public void setMaxIdleTime(long maxIdleTime) {
+        this.maxIdleTime = maxIdleTime;
+    }
+
     public long getMaxIdleTime() {
         return maxIdleTime;
+    }
+
+    public void setMaxMemorySize(long maxMemorySize) {
+        this.maxMemorySize = maxMemorySize;
     }
 
     public long getMaxMemorySize() {
         return maxMemorySize;
     }
 
+    public void setMaxSize(int maxSize) {
+        this.maxSize = maxSize;
+    }
+
     public int getMaxSize() {
         return maxSize;
+    }
+
+    public void setTTL(long ttl) {
+        this.ttl = ttl;
     }
 
     public long getTTL() {
