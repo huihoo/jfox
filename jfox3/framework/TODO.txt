@@ -228,3 +228,6 @@
 2007-03-08
     1. 要解决 XAPool 在数据库重启下的重连问题
     2. Dependency 接口意义的改变，如果是往 EJB 中注入，instance 为 EJBContext
+
+2007-03-09
+    1. 修改 web.xml 配置，只需要指定 MODULES_DIR 即可
