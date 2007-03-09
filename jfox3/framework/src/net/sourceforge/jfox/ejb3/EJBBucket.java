@@ -2,12 +2,11 @@ package net.sourceforge.jfox.ejb3;
 
 import java.lang.reflect.Method;
 import java.util.Collection;
-import javax.ejb.EJBContext;
 import javax.ejb.EJBObject;
 import javax.naming.Context;
 
-import net.sourceforge.jfox.framework.component.Module;
 import net.sourceforge.jfox.ejb3.interceptor.InterceptorMethod;
+import net.sourceforge.jfox.framework.component.Module;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -39,23 +38,19 @@ public interface EJBBucket {
      */
     Class<?>[] getBeanInterfaces();
 
-    EJBObjectId createEJBObjectId();
-    
     /**
      * new EJB instance, return bean instance, not EJBObject
      *
      * @param ejbObjectId ejb object id
-     * @throws Exception exception
      */
-    AbstractEJBContext newEJBContext(EJBObjectId ejbObjectId) throws Exception;
+    AbstractEJBContext getEJBContext(EJBObjectId ejbObjectId);
 
     /**
      * 重用 ejb instance
      *
      * @param ejbContext ejb context
-     * @throws Exception exception
      */
-    void reuseEJBContext(AbstractEJBContext ejbContext) throws Exception;
+    void reuseEJBContext(AbstractEJBContext ejbContext);
 
     /**
      * EJB 所在的 Module
@@ -105,8 +100,6 @@ public interface EJBBucket {
     boolean isBusinessInterface(Class beanInterface);
 
     Method getConcreteMethod(Method interfaceMethod);
-
-    AbstractEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance);
 
     /**
      * EJB env context, java:comp/env

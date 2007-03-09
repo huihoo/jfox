@@ -446,7 +446,7 @@ public abstract class SessionBucket implements EJBBucket {
     }
 
     public Context getENContext(EJBObjectId ejbObjectId) {
-        return newEJBContext(ejbObjectId).getENContext();
+        return getEJBContext(ejbObjectId).getENContext();
     }
     
     protected void injectClassDependents() {
@@ -471,21 +471,35 @@ public abstract class SessionBucket implements EJBBucket {
     }
 
     /**
-     * 从 Pool 中得到一个新的 Bean 实例
+     * craete new EJBObjectId
+     *
+     * Stateless: only one EJBObjectId
+     * Stateful: create new EJBObjectId very time to create new EJBContext
+     *
+     */
+    protected abstract EJBObjectId createEJBObjectId();
+
+    /**
+     * create a new EJBContext according ejbObjectId & instance
+     * @param ejbObjectId ejb object id
+     * @param instance ejb bean instance
+     */
+    protected abstract AbstractEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance);
+
+    /**
+     * get EJBContext according ejb object id
      *
      * @param ejbObjectId ejb object id
-     * @throws Exception exception
+     * @throws EJBException exception
      */
-    public abstract AbstractEJBContext newEJBContext(EJBObjectId ejbObjectId) throws EJBException;
+    public abstract AbstractEJBContext getEJBContext(EJBObjectId ejbObjectId);
 
     /**
      * 将EJBContext返回给 pool, ejb context 中包含ejb instance
      *
      * @param ejbContext ejb context
      */
-    public abstract void reuseEJBContext(AbstractEJBContext ejbContext) throws Exception;
-
-    public abstract AbstractEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance);
+    public abstract void reuseEJBContext(AbstractEJBContext ejbContext);
 
     public Collection<InterceptorMethod> getClassInterceptorMethods() {
         return Collections.unmodifiableCollection(classInterceptorMethods);
@@ -561,7 +575,7 @@ public abstract class SessionBucket implements EJBBucket {
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             //需要判断是否是 EJBObject 的方法
             if (method.getDeclaringClass().equals(EJBObject.class) || method.getDeclaringClass().equals(EJBLocalObject.class)) { // 拦截 EJBObject 方法
-                return method.invoke(newEJBContext(getEJBObjectId()), args);
+                return method.invoke(getEJBContext(getEJBObjectId()), args);
             }
             //TODO: 优化处理 Object 方法
             else if (method.getName().equals("toString") && (args == null || args.length == 0)) {

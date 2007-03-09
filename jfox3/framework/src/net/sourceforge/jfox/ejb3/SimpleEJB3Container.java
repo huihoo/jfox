@@ -289,7 +289,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
         // get instance from bucket's pool
         AbstractEJBContext ejbContext = null;
         try {
-            ejbContext = bucket.newEJBContext(ejbObjectId);
+            ejbContext = bucket.getEJBContext(ejbObjectId);
             Method concreteMethod = bucket.getConcreteMethod(interfaceMethod);
             if(concreteMethod == null) {
                 throw new NoSuchMethodException("Could not found Concrete Business Method for interface method: " + interfaceMethod.getName());
@@ -318,7 +318,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
         // get instance from bucket's pool
         AbstractEJBContext ejbContext = null;
         try {
-            ejbContext = bucket.newEJBContext(ejbObjectId);
+            ejbContext = bucket.getEJBContext(ejbObjectId);
             EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbContext.getEJBInstance(), interfaceMethod, interfaceMethod, params);
             return invokeEJBInvocation(invocation);
         }

@@ -192,7 +192,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
      * @param ejbObjectId ejb object id
      * @throws EJBException exception
      */
-    public AbstractEJBContext newEJBContext(EJBObjectId ejbObjectId) throws EJBException {
+    public AbstractEJBContext getEJBContext(EJBObjectId ejbObjectId) throws EJBException {
         try {
             EJBContextImpl ejbContext = (EJBContextImpl)pool.borrowObject();
             return ejbContext;
@@ -209,10 +209,15 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     /**
      * 将实例返回给 pool
      *
-     * @param ejbContext
+     * @param ejbContext ejb context
      */
-    public void reuseEJBContext(AbstractEJBContext ejbContext) throws Exception {
-        pool.returnObject(ejbContext);
+    public void reuseEJBContext(AbstractEJBContext ejbContext) {
+        try {
+            pool.returnObject(ejbContext);
+        }
+        catch(Exception e){
+            throw new EJBException("Return EJBContext to pool failed!", e);
+        }
     }
 
     public AbstractEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
@@ -259,7 +264,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     public Object makeObject() throws Exception {
         Object obj = getBeanClass().newInstance();
         AbstractEJBContext ejbContext = createEJBContext(createEJBObjectId(), obj);
-// post construct
+        // post construct
         for (Method postConstructMethod : getPostConstructMethods()) {
             logger.debug("PostConstruct method for ejb: " + getEJBName() + ", method: " + postConstructMethod);
             postConstructMethod.invoke(ejbContext.getEJBInstance());

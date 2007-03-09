@@ -117,7 +117,11 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
         return new EJBObjectId(getEJBName(), "" + id++);
     }
 
-    public AbstractEJBContext newEJBContext(EJBObjectId ejbObjectId) throws EJBException {
+    public AbstractEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
+        return new StatefulEJBContextImpl(ejbObjectId, instance);
+    }
+
+    public AbstractEJBContext getEJBContext(EJBObjectId ejbObjectId) {
         try {
             StatefulEJBContextImpl ejbContext = (StatefulEJBContextImpl)pool.borrowObject(ejbObjectId);
             return ejbContext;
@@ -127,19 +131,28 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
         }
     }
 
-    public AbstractEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
-        return new StatefulEJBContextImpl(ejbObjectId, instance);
-    }
-
-    public void reuseEJBContext(AbstractEJBContext ejbContext) throws Exception {
-        pool.returnObject(ejbContext.getEJBObjectId(), ejbContext);
+    public void reuseEJBContext(AbstractEJBContext ejbContext) {
+        try {
+            pool.returnObject(ejbContext.getEJBObjectId(), ejbContext);
+        }
+        catch(Exception e) {
+            throw new EJBException("Return EJBContext to pool failed!", e);
+        }
     }
 
     //---- KeyedPoolableObjectFactory --------
     public void activateObject(Object key, Object obj) throws Exception {
     }
 
+    public void passivateObject(Object key, Object obj) throws Exception {
+    }
+
+    public boolean validateObject(Object key, Object obj) {
+        return true;
+    }
+
     public void destroyObject(Object key, Object obj) throws Exception {
+        //TODO: doPrePassivate when pool destory EJBContext
         for (Method preDestroyMethod : getPreDestroyMethods()) {
             logger.debug("PreDestory method for ejb: " + getEJBName() + ", method: " + preDestroyMethod);
             preDestroyMethod.invoke(((AbstractEJBContext)obj).getEJBInstance());
@@ -172,13 +185,6 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
 
         //返回 EJBContext
         return ejbContext;
-    }
-
-    public void passivateObject(Object key, Object obj) throws Exception {
-    }
-
-    public boolean validateObject(Object key, Object obj) {
-        return true;
     }
 
     class StatefulEJBContextImpl extends EJBContextImpl {
