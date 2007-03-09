@@ -9,6 +9,8 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import net.sourceforge.jfox.framework.Framework;
+import net.sourceforge.jfox.util.FileFilterUtils;
+import org.apache.log4j.Logger;
 
 /**
  * Web Context Loader，initialize framework when jfox3 web application loaded
@@ -17,7 +19,9 @@ import net.sourceforge.jfox.framework.Framework;
  */
 public class WebContextLoader implements ServletContextListener {
 
-    public static final String MODULES = "MODULES";
+    public static final String MODULES = "MODULES_DIR";
+
+    private static Logger logger = Logger.getLogger(WebContextLoader.class);
 
     private Framework framework = null;
 
@@ -39,22 +43,39 @@ public class WebContextLoader implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         //TODO: 加入启动消耗时间
+        long now = System.currentTimeMillis();
         framework = new Framework();
         try {
-            String toDeployModules = servletContextEvent.getServletContext().getInitParameter(MODULES);
-            String[] modulePaths = toDeployModules.split(",");
-            for(String modulePath : modulePaths){
-                modulePath = modulePath.trim();
-                File moduleDir = new File(servletContextEvent.getServletContext().getRealPath("/"), modulePath);
+            String _modulesDir = servletContextEvent.getServletContext().getInitParameter(MODULES);
+
+            if(!_modulesDir.startsWith("/")) {
+                // forward url必须以 / 开头 
+                _modulesDir = "/" + _modulesDir;
+            }
+
+            if(_modulesDir == null) {
+                logger.warn("No modules dir configed to deploy!");
+                return;
+            }
+
+            File modulesDir = new File(servletContextEvent.getServletContext().getRealPath("/"), _modulesDir);
+            if(!modulesDir.exists()){
+                logger.warn("Modules dir configed not exists, " + modulesDir.toString());
+                return;
+            }
+
+            File[] moduleDirs = modulesDir.listFiles(FileFilterUtils.directoryFileFilter());
+            for(File moduleDir : moduleDirs){
                 framework.loadModule(moduleDir);
                 // register module path
-                registerModulePath(modulePath, moduleDir);
+                registerModulePath(_modulesDir + "/" + moduleDir.getName(), moduleDir);
             }
             framework.start();
         }
         catch(Exception e) {
-            servletContextEvent.getServletContext().log("Start framework failed!", e);
+            logger.error("Start framework failed!", e);
         }
+        logger.info("JFox started in " + ((System.currentTimeMillis()-now)/1000) + " seconds!");
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
