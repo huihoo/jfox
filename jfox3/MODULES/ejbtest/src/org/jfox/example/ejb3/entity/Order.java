@@ -8,7 +8,7 @@ import net.sourceforge.jfox.entity.annotation.MappedColumn;
 import net.sourceforge.jfox.entity.annotation.ParameterMap;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Entity
 public interface Order {

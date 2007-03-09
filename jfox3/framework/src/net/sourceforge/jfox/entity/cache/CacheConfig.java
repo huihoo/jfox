@@ -8,7 +8,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class CacheConfig {
 

@@ -5,7 +5,7 @@ import java.util.List;
 import net.sourceforge.jfox.entity.dao.DataAccessObject;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public interface OrderDAO extends DataAccessObject {
 

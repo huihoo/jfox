@@ -3,7 +3,7 @@ package net.sourceforge.jfox.entity.cache;
 /**
  * 描述Cache当前的状态信息
  *
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class CacheStat {
 
