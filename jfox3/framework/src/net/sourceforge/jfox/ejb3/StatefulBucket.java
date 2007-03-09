@@ -1,15 +1,20 @@
 package net.sourceforge.jfox.ejb3;
 
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJBException;
+import javax.ejb.PostActivate;
+import javax.ejb.PrePassivate;
 import javax.ejb.Stateful;
 
 import net.sourceforge.jfox.ejb3.dependent.FieldEJBDependence;
 import net.sourceforge.jfox.ejb3.dependent.FieldResourceDependence;
 import net.sourceforge.jfox.entity.dependent.FieldPersistenceContextDependence;
 import net.sourceforge.jfox.framework.component.Module;
+import net.sourceforge.jfox.util.AnnotationUtils;
+import net.sourceforge.jfox.util.ClassUtils;
+import net.sourceforge.jfox.util.MethodUtils;
 import org.apache.commons.pool.KeyedPoolableObjectFactory;
 import org.apache.commons.pool.impl.GenericKeyedObjectPool;
 
@@ -18,12 +23,13 @@ import org.apache.commons.pool.impl.GenericKeyedObjectPool;
  */
 public class StatefulBucket extends SessionBucket implements KeyedPoolableObjectFactory {
 
+    /**
+     * 保存的是StatefulEJBContext, key 为 EJBObjectId
+     */
     private GenericKeyedObjectPool pool = new GenericKeyedObjectPool(this);
 
-    /**
-     * Stateful's contexts need a Map，不需要，已经存在与 pool 中
-     */
-    private Map<EJBObjectId, StatefulEJBContextImpl> contextMap = new HashMap<EJBObjectId, StatefulEJBContextImpl>();
+    protected List<Method> postActivateMethods = new ArrayList<Method>();
+    protected List<Method> prePassivateMethods = new ArrayList<Method>();
 
     private volatile static long id = 0;
 
@@ -57,8 +63,55 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
         }
 
         setDescription(stateful.description());
+
+        // beanClass is in superClass array
+        Class<?>[] superClasses = ClassUtils.getAllSuperclasses(getBeanClass());
+
+        List<Long> postActivateMethodHashes = new ArrayList<Long>();
+        List<Long> prePassivateMethodHashes = new ArrayList<Long>();
+        for (Class<?> superClass : superClasses) {
+
+            // PostConstruct
+            for (Method postActivateMethod : introspectPostActivateMethod(superClass)) {
+                long methodHash = MethodUtils.getMethodHash(postActivateMethod);
+                if (!postActivateMethodHashes.contains(methodHash)) {
+                    postActivateMethods.add(0, postActivateMethod);
+                    postActivateMethodHashes.add(methodHash);
+                }
+            }
+
+            // PreDestroy
+            for (Method prePassivateMethod : introspectPrePassivateMethod(superClass)) {
+                long methodHash = MethodUtils.getMethodHash(prePassivateMethod);
+                if (!prePassivateMethodHashes.contains(methodHash)) {
+                    prePassivateMethods.add(0, prePassivateMethod);
+                    prePassivateMethodHashes.add(methodHash);
+                }
+            }
+        }
     }
 
+    protected List<Method> introspectPostActivateMethod(Class superClass) {
+        List<Method> postConstructMethods = new ArrayList<Method>();
+        // PostActivate
+        Method[] _postConstructMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, PostActivate.class);
+        for (Method postConstructMethod : _postConstructMethods) {
+            postConstructMethod.setAccessible(true);
+            postConstructMethods.add(0, postConstructMethod);
+        }
+        return postConstructMethods;
+    }
+
+    protected List<Method> introspectPrePassivateMethod(Class superClass) {
+        List<Method> postConstructMethods = new ArrayList<Method>();
+        // PrePassivate
+        Method[] _postConstructMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, PrePassivate.class);
+        for (Method postConstructMethod : _postConstructMethods) {
+            postConstructMethod.setAccessible(true);
+            postConstructMethods.add(0, postConstructMethod);
+        }
+        return postConstructMethods;
+    }
 
     public EJBObjectId createEJBObjectId() {
         return new EJBObjectId(getEJBName(), "" + id++);
@@ -87,13 +140,17 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
     }
 
     public void destroyObject(Object key, Object obj) throws Exception {
+        for (Method preDestroyMethod : getPreDestroyMethods()) {
+            logger.debug("PreDestory method for ejb: " + getEJBName() + ", method: " + preDestroyMethod);
+            preDestroyMethod.invoke(((AbstractEJBContext)obj).getEJBInstance());
+        }
     }
 
     public Object makeObject(Object key) throws Exception {
         Object obj = getBeanClass().newInstance();
         AbstractEJBContext ejbContext = createEJBContext((EJBObjectId)key, obj);
 // post construct
-        for (Method postConstructMethod : postConstructMethods) {
+        for (Method postConstructMethod : getPostConstructMethods()) {
             logger.debug("PostConstruct method for ejb: " + getEJBName() + ", method: " + postConstructMethod);
             postConstructMethod.invoke(ejbContext.getEJBInstance());
         }

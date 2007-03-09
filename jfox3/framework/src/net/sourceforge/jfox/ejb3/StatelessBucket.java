@@ -260,7 +260,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         Object obj = getBeanClass().newInstance();
         AbstractEJBContext ejbContext = createEJBContext(createEJBObjectId(), obj);
 // post construct
-        for (Method postConstructMethod : postConstructMethods) {
+        for (Method postConstructMethod : getPostConstructMethods()) {
             logger.debug("PostConstruct method for ejb: " + getEJBName() + ", method: " + postConstructMethod);
             postConstructMethod.invoke(ejbContext.getEJBInstance());
         }
@@ -295,9 +295,9 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     }
 
     public void destroyObject(Object obj) throws Exception {
-        for (Method preDestroyMethod : preDestroyMethods) {
+        for (Method preDestroyMethod : getPreDestroyMethods()) {
             logger.debug("PreDestory method for ejb: " + getEJBName() + ", method: " + preDestroyMethod);
-            preDestroyMethod.invoke(obj);
+            preDestroyMethod.invoke(((AbstractEJBContext)obj).getEJBInstance());
         }
     }
 

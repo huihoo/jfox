@@ -101,8 +101,8 @@ public abstract class SessionBucket implements EJBBucket {
     /**
      * stateless session bean 只有 PostConstruct & PreDestroy 有效
      */
-    protected List<Method> postConstructMethods = new ArrayList<Method>();
-    protected List<Method> preDestroyMethods = new ArrayList<Method>();
+    private List<Method> postConstructMethods = new ArrayList<Method>();
+    private List<Method> preDestroyMethods = new ArrayList<Method>();
 
     /**
      * 类级别的依赖，描述在 Class 上
@@ -291,6 +291,14 @@ public abstract class SessionBucket implements EJBBucket {
             }
         }
         return aroundInvokeMethods;
+    }
+
+    protected Collection<Method> getPostConstructMethods(){
+        return Collections.unmodifiableCollection(postConstructMethods);
+    }
+
+    protected Collection<Method> getPreDestroyMethods(){
+        return Collections.unmodifiableCollection(preDestroyMethods);
     }
 
     protected boolean isBusinessMethod(Method method) {
