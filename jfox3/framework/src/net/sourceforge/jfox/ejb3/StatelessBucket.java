@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import javax.ejb.EJBContext;
 import javax.ejb.EJBException;
 import javax.ejb.EJBObject;
 import javax.ejb.RemoveException;
@@ -162,7 +161,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         pool.returnObject(ejbContext);
     }
 
-    public EJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
+    public AbstractEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
         if (statelessEJBContext == null) {
             statelessEJBContext = new StatelessEJBContextImpl(ejbObjectId, instance);
         }
@@ -205,29 +204,30 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     //--- jakarta commons-pool PoolableObjectFactory ---
     public Object makeObject() throws Exception {
         Object obj = getBeanClass().newInstance();
+        AbstractEJBContext ejbContext = createEJBContext(createEJBObjectId(), obj);
 // post construct
         for (Method postConstructMethod : postConstructMethods) {
             logger.debug("PostConstruct method for ejb: " + getEJBName() + ", method: " + postConstructMethod);
-            postConstructMethod.invoke(obj);
+            postConstructMethod.invoke(ejbContext.getEJBInstance());
         }
 
         // 注入 @EJB
         for (FieldEJBDependence fieldEJBDependence : fieldEJBdependents) {
-            fieldEJBDependence.inject(obj);
+            fieldEJBDependence.inject(ejbContext);
         }
 
         // 注入 @EJB
         for (FieldResourceDependence fieldResourceDependence : fieldResourcedependents) {
-            fieldResourceDependence.inject(obj);
+            fieldResourceDependence.inject(ejbContext);
         }
 
         // 注入 @PersistenceContext
         for (FieldPersistenceContextDependence fieldPersistenceContextDependence : fieldPersistenceContextDependences) {
-            fieldPersistenceContextDependence.inject(obj);
+            fieldPersistenceContextDependence.inject(ejbContext);
         }
 
         //返回 EJBContext
-        return createEJBContext(createEJBObjectId(), obj);
+        return ejbContext;
     }
 
     public boolean validateObject(Object obj) {

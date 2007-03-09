@@ -10,6 +10,7 @@ public interface Dependence {
      * 如果 instance 为 null, 则说明是 class level 的依赖
      * 对于EJB注入，instance 为 EJBContext
      * @param instance ejb context if EJB
+     * @throws InjectionException if inject failed
      */
     void inject(Object instance) throws InjectionException;
 

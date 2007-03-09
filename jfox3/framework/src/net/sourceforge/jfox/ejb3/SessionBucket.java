@@ -20,7 +20,6 @@ import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import javax.annotation.Resources;
 import javax.ejb.EJB;
-import javax.ejb.EJBContext;
 import javax.ejb.EJBException;
 import javax.ejb.EJBLocalObject;
 import javax.ejb.EJBObject;
@@ -527,7 +526,7 @@ public abstract class SessionBucket implements EJBBucket {
      */
     public abstract void reuseEJBContext(AbstractEJBContext ejbContext) throws Exception;
 
-    public abstract EJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance);
+    public abstract AbstractEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance);
 
     public Collection<InterceptorMethod> getClassInterceptorMethods() {
         return Collections.unmodifiableCollection(classInterceptorMethods);

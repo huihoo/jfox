@@ -46,5 +46,10 @@
     <orderEntryProperties />
   </component>
   <component name="WLEjbModuleProperties" />
+  <component name="copyright">
+    <Base>
+      <setting name="state" value="2" />
+    </Base>
+  </component>
 </module>
 

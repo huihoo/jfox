@@ -6,6 +6,7 @@ import javax.ejb.EJBObject;
 import javax.naming.NamingException;
 
 import net.sourceforge.jfox.ejb3.EJBBucket;
+import net.sourceforge.jfox.ejb3.AbstractEJBContext;
 import net.sourceforge.jfox.framework.dependent.InjectionException;
 
 /**
@@ -22,7 +23,13 @@ public class FieldEJBDependence extends EJBDependence {
         this.field = field;
     }
 
-    public void inject(Object instance) throws InjectionException {
+    /**
+     * 通过 Field 往 EJB 中注入 EJB
+     *
+     * @param ejbContext ejb context
+     * @throws InjectionException injection exception
+     */
+    public void inject(Object ejbContext) throws InjectionException {
         String name = ejb.name().trim();
         String beanName = ejb.beanName().trim();
         String mappedName = ejb.mappedName().trim();
@@ -98,7 +105,7 @@ public class FieldEJBDependence extends EJBDependence {
         // 使用 field 反射注入
         try {
             field.setAccessible(true);
-            field.set(instance, targetEJBObject);
+            field.set(((AbstractEJBContext)ejbContext).getEJBInstance(), targetEJBObject);
         }
         catch (Exception e) {
             throw new InjectionException("Failed to inject field " + field.getName() + " of EJB " + bucket.getEJBName(), e);

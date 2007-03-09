@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 import javax.transaction.UserTransaction;
 
 import net.sourceforge.jfox.ejb3.EJBBucket;
+import net.sourceforge.jfox.ejb3.AbstractEJBContext;
 import net.sourceforge.jfox.framework.dependent.InjectionException;
 import net.sourceforge.jfox.entity.EntityManagerFactoryBuilderImpl;
 
@@ -33,20 +34,18 @@ public class FieldResourceDependence extends ResourceDependence {
      * \@Resource javax.ejb.TimerService timer;
      * \@Resource javax.ejb.UserTransaction ut;
      *
-     * @param instance ejb bean instance
+     * @param ejbContext ejb bean ejbContext
      * @throws InjectionException
      */
-    public void inject(Object instance) throws InjectionException {
+    public void inject(Object ejbContext) throws InjectionException {
         Object targetObject = null;
         if (field.getType().equals(EJBContext.class) ||
                 field.getType().equals(SessionContext.class) ||
                 field.getType().equals(MessageDrivenContext.class)) {
-            //TODO: 需要完善 Stateful 的注入
-            targetObject = getBucket().createEJBContext(null, instance);
+            targetObject = (AbstractEJBContext)ejbContext;
         }
         else if (field.getType().equals(TimerService.class)) {
-            //TODO: 需要完善 Stateful 的注入
-            targetObject = getBucket().createEJBContext(null, instance).getTimerService();
+            targetObject = ((AbstractEJBContext)ejbContext).getTimerService();
         }
         else if (field.getType().equals(DataSource.class)) {
             // 无需通过 InitialContext
@@ -76,7 +75,7 @@ public class FieldResourceDependence extends ResourceDependence {
         }
         try {
             field.setAccessible(true);
-            field.set(instance, targetObject);
+            field.set(((AbstractEJBContext)ejbContext).getEJBInstance(), targetObject);
         }
         catch (IllegalAccessException e) {
             throw new InjectionException("Inject EJBContext ");

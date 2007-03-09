@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.ejb.EJBException;
 import javax.ejb.Stateful;
-import javax.ejb.EJBContext;
 
 import net.sourceforge.jfox.ejb3.dependent.FieldEJBDependence;
 import net.sourceforge.jfox.ejb3.dependent.FieldResourceDependence;
@@ -71,7 +70,7 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
         }
     }
 
-    public EJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
+    public AbstractEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
         return new StatefulEJBContextImpl(ejbObjectId, instance);
     }
 
@@ -88,29 +87,30 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
 
     public Object makeObject(Object key) throws Exception {
         Object obj = getBeanClass().newInstance();
+        AbstractEJBContext ejbContext = createEJBContext((EJBObjectId)key, obj);
 // post construct
         for (Method postConstructMethod : postConstructMethods) {
             logger.debug("PostConstruct method for ejb: " + getEJBName() + ", method: " + postConstructMethod);
-            postConstructMethod.invoke(obj);
+            postConstructMethod.invoke(ejbContext.getEJBInstance());
         }
 
         // 注入 @EJB
         for (FieldEJBDependence fieldEJBDependence : fieldEJBdependents) {
-            fieldEJBDependence.inject(obj);
+            fieldEJBDependence.inject(ejbContext);
         }
 
         // 注入 @EJB
         for (FieldResourceDependence fieldResourceDependence : fieldResourcedependents) {
-            fieldResourceDependence.inject(obj);
+            fieldResourceDependence.inject(ejbContext);
         }
 
         // 注入 @PersistenceContext
         for (FieldPersistenceContextDependence fieldPersistenceContextDependence : fieldPersistenceContextDependences) {
-            fieldPersistenceContextDependence.inject(obj);
+            fieldPersistenceContextDependence.inject(ejbContext);
         }
 
         //返回 EJBContext
-        return createEJBContext((EJBObjectId)key, obj);
+        return ejbContext;
     }
 
     public void passivateObject(Object key, Object obj) throws Exception {

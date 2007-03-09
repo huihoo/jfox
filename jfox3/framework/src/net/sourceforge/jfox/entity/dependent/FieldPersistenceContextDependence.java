@@ -8,6 +8,7 @@ import net.sourceforge.jfox.entity.EntityManagerFactoryBuilderImpl;
 import net.sourceforge.jfox.framework.dependent.Dependence;
 import net.sourceforge.jfox.framework.dependent.InjectionException;
 import net.sourceforge.jfox.ejb3.EJBBucket;
+import net.sourceforge.jfox.ejb3.AbstractEJBContext;
 
 /**
  * 注入 @PersistenceContext
@@ -26,7 +27,13 @@ public class FieldPersistenceContextDependence implements Dependence {
         this.pc = pc;
     }
 
-    public void inject(Object instance) throws InjectionException {
+    /**
+     * 注入 PersistenceContext
+     * 
+     * @param ejbContext ejb context
+     * @throws InjectionException injection exception
+     */
+    public void inject(Object ejbContext) throws InjectionException {
         EntityManagerExt em;
         String unitName = pc.unitName();
         if (unitName.trim().length() == 0) {
@@ -38,7 +45,7 @@ public class FieldPersistenceContextDependence implements Dependence {
         // 使用 field 反射注入
         try {
             field.setAccessible(true);
-            field.set(instance, em);
+            field.set(((AbstractEJBContext)ejbContext).getEJBInstance(), em);
         }
         catch (Exception e) {
             throw new InjectionException("Failed to inject field " + field.getName() + " of @PersistenceContext " + bucket.getEJBName(), e);

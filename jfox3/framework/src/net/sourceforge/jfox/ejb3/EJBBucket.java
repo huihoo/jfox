@@ -106,7 +106,7 @@ public interface EJBBucket {
 
     Method getConcreteMethod(Method interfaceMethod);
 
-    EJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance);
+    AbstractEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance);
 
     /**
      * EJB env context, java:comp/env

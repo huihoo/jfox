@@ -54,7 +54,7 @@ public abstract class AbstractEJBContext implements SessionContext, EJBObject, E
         return ejbObjectId;
     }
 
-    protected Object getEJBInstance() {
+    public Object getEJBInstance() {
         return ejbInstance;
     }
 
