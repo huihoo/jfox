@@ -38,6 +38,7 @@ public class WebContextLoader implements ServletContextListener {
     private static Map<String, File> modulePath2File = new HashMap<String, File>();
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
+        //TODO: 加入启动消耗时间
         framework = new Framework();
         try {
             String toDeployModules = servletContextEvent.getServletContext().getInitParameter(MODULES);
