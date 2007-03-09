@@ -26,8 +26,6 @@ import javax.ejb.EJBObject;
 import javax.ejb.EJBs;
 import javax.ejb.Local;
 import javax.ejb.Remote;
-import javax.ejb.Timeout;
-import javax.ejb.Timer;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptors;
 import javax.interceptor.InvocationContext;
@@ -101,11 +99,6 @@ public abstract class SessionBucket implements EJBBucket {
     private List<InterceptorMethod> beanInterceptorMethods = new ArrayList<InterceptorMethod>();
 
     /**
-     * Timeout Methods, invalid for stateful session bean
-     */
-    protected List<Method> timeoutMethods = new ArrayList<Method>();
-
-    /**
      * stateless session bean 只有 PostConstruct & PreDestroy 有效
      */
     protected List<Method> postConstructMethods = new ArrayList<Method>();
@@ -154,19 +147,11 @@ public abstract class SessionBucket implements EJBBucket {
             this.beanInterfaces = annotatedBeanInterfaces.toArray(new Class[annotatedBeanInterfaces.size()]);
         }
 
-        introspectBean();
-
         introspectMethods();
         introspectLifecycleAndInterceptors();
 
         introspectClassDependents();
         introspectFieldDependents();
-
-        injectClassDependents();
-    }
-
-    protected void introspectBean(){
-
     }
 
     protected void introspectMethods() {
@@ -196,19 +181,10 @@ public abstract class SessionBucket implements EJBBucket {
         // beanClass is in superClass array
         Class<?>[] superClasses = ClassUtils.getAllSuperclasses(getBeanClass());
 
-        List<Long> timeoutMethodHashes = new ArrayList<Long>();
         List<Long> postConstructMethodHashes = new ArrayList<Long>();
         List<Long> preDestoryMethodHashes = new ArrayList<Long>();
         List<Long> aroundInvokeMethodHashes = new ArrayList<Long>();
         for (Class<?> superClass : superClasses) {
-
-            for (Method timeoutMethod : introspectTimeoutMethod(superClass)) {
-                long methodHash = MethodUtils.getMethodHash(timeoutMethod);
-                if (!timeoutMethodHashes.contains(methodHash)) {
-                    timeoutMethods.add(0, timeoutMethod);
-                    timeoutMethodHashes.add(methodHash);
-                }
-            }
 
             // PostConstruct
             for (Method postConstructMethod : introspectPostContstructMethod(superClass)) {
@@ -280,18 +256,6 @@ public abstract class SessionBucket implements EJBBucket {
         }
     }
 
-    protected List<Method> introspectTimeoutMethod(Class superClass) {
-        List<Method> timeoutMethods = new ArrayList<Method>();
-        Method[] annotatedTimeoutMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, Timeout.class);
-        for (Method timeoutMethod : annotatedTimeoutMethods) {
-            if (checkTimeoutMethod(superClass, timeoutMethod, Timeout.class)) {
-                timeoutMethod.setAccessible(true);
-                timeoutMethods.add(0, timeoutMethod);
-            }
-        }
-        return timeoutMethods;
-    }
-
     protected List<Method> introspectPostContstructMethod(Class superClass) {
         List<Method> postConstructMethods = new ArrayList<Method>();
         // PostConstruct
@@ -331,19 +295,6 @@ public abstract class SessionBucket implements EJBBucket {
 
     protected boolean isBusinessMethod(Method method) {
         return concreteMethods.containsKey(MethodUtils.getMethodHash(method));
-    }
-
-    protected boolean checkTimeoutMethod(Class<?> interceptorClass, Method timeoutMethod, Class<? extends Annotation> timeoutAnnotation) {
-        if (!Modifier.isAbstract(timeoutMethod.getModifiers())
-                && !Modifier.isStatic(timeoutMethod.getModifiers())
-                && timeoutMethod.getParameterTypes().length == 1
-                && timeoutMethod.getParameterTypes()[0].equals(Timer.class)) {
-            return true;
-        }
-        else {
-            logger.warn("Invalid @" + timeoutAnnotation.getSimpleName() + " method: " + timeoutMethod + " in class: " + interceptorClass);
-            return false;
-        }
     }
 
     protected boolean checkCallbackMethod(Class<?> interceptorClass, Method callbackMethod, Class<? extends Annotation> lifecyleAnnotation) {
@@ -554,9 +505,6 @@ public abstract class SessionBucket implements EJBBucket {
         return getBeanClass().isAnnotationPresent(Local.class);
     }
 
-    protected Method[] getTimeoutMethods() {
-        return timeoutMethods.toArray(new Method[timeoutMethods.size()]);
-    }
 
     /**
      * destroy bucket, invoke when container unload ejb

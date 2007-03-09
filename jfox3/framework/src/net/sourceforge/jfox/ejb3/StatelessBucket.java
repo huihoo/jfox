@@ -3,6 +3,7 @@ package net.sourceforge.jfox.ejb3;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -11,18 +12,21 @@ import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.EJBObject;
 import javax.ejb.RemoveException;
+import javax.ejb.Stateless;
 import javax.ejb.TimedObject;
+import javax.ejb.Timeout;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
-import javax.ejb.Stateless;
 import javax.jws.WebService;
-import javax.naming.Context;
 
 import net.sourceforge.jfox.ejb3.dependent.FieldEJBDependence;
 import net.sourceforge.jfox.ejb3.dependent.FieldResourceDependence;
 import net.sourceforge.jfox.ejb3.timer.EJBTimerTask;
 import net.sourceforge.jfox.entity.dependent.FieldPersistenceContextDependence;
 import net.sourceforge.jfox.framework.component.Module;
+import net.sourceforge.jfox.util.AnnotationUtils;
+import net.sourceforge.jfox.util.ClassUtils;
+import net.sourceforge.jfox.util.MethodUtils;
 import org.apache.commons.pool.PoolableObjectFactory;
 import org.apache.commons.pool.impl.GenericObjectPool;
 
@@ -49,7 +53,11 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
 
     private StatelessEJBContextImpl statelessEJBContext;
     private EJBTimerService ejbTimerService;
-    private Context envContext;
+
+    /**
+     * Timeout Methods, invalid for stateful session bean
+     */
+    protected List<Method> timeoutMethods = new ArrayList<Method>();
 
     /**
      * cache EJB proxy stub, stateless EJB have only one stub
@@ -74,9 +82,39 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     public StatelessBucket(EJBContainer container, Class<?> beanClass, Module module) {
         super(container, beanClass, module);
 
+        // Stateless/Stateful 不同的Annotation
+        introspectStateless();
+
+        injectClassDependents();
+    }
+
+    protected void introspectStateless() {
+        Stateless stateless = getBeanClass().getAnnotation(Stateless.class);
+        String name = stateless.name();
+        if (name.equals("")) {
+            name = getBeanClass().getSimpleName();
+        }
+        setEJBName(name);
+
+        String mappedName = stateless.mappedName();
+        if (mappedName.equals("")) {
+            if (isRemote()) {
+                addMappedName(name + "/remote");
+            }
+            if (isLocal()) {
+                addMappedName(name + "/local");
+            }
+        }
+        else {
+            addMappedName(mappedName);
+        }
+
+        setDescription(stateless.description());
+
+
         //parse @WebService, simple parse @WebService
-        if (beanClass.isAnnotationPresent(WebService.class)) {
-            wsAnnotation = beanClass.getAnnotation(WebService.class);
+        if (getBeanClass().isAnnotationPresent(WebService.class)) {
+            wsAnnotation = getBeanClass().getAnnotation(WebService.class);
             String endpointInterfaceName = wsAnnotation.endpointInterface();
             if (endpointInterfaceName == null || endpointInterfaceName.trim().length() == 0) {
                 Class<?>[] beanInterfaces = this.getBeanInterfaces();
@@ -101,38 +139,50 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
                 }
             }
         }
-    }
 
-    protected void introspectBean(){
-        Stateless stateless = getBeanClass().getAnnotation(Stateless.class);
-        String name = stateless.name();
-        if (name.equals("")) {
-            name = getBeanClass().getSimpleName();
-        }
-        setEJBName(name);
+        // beanClass is in superClass array
+        Class<?>[] superClasses = ClassUtils.getAllSuperclasses(getBeanClass());
 
-        String mappedName = stateless.mappedName();
-        if (mappedName.equals("")) {
-            if (isRemote()) {
-                addMappedName(name + "/remote");
-            }
-            if (isLocal()) {
-                addMappedName(name + "/local");
+        List<Long> timeoutMethodHashes = new ArrayList<Long>();
+        for (Class<?> superClass : superClasses) {
+
+            for (Method timeoutMethod : introspectTimeoutMethod(superClass)) {
+                long methodHash = MethodUtils.getMethodHash(timeoutMethod);
+                if (!timeoutMethodHashes.contains(methodHash)) {
+                    timeoutMethods.add(0, timeoutMethod);
+                    timeoutMethodHashes.add(methodHash);
+                }
             }
         }
-        else {
-            addMappedName(mappedName);
-        }
-
-        setDescription(stateless.description());
-    }
-
-    protected void introspectMethods() {
-        super.introspectMethods();
-
         // timeout method
         if (TimedObject.class.isAssignableFrom(getBeanClass())) {
             timeoutMethods.add(TimeOut);
+        }
+    }
+
+
+    protected List<Method> introspectTimeoutMethod(Class superClass) {
+        List<Method> timeoutMethods = new ArrayList<Method>();
+        Method[] annotatedTimeoutMethods = AnnotationUtils.getAnnotatedDeclaredMethods(superClass, Timeout.class);
+        for (Method timeoutMethod : annotatedTimeoutMethods) {
+            if (checkTimeoutMethod(superClass, timeoutMethod, Timeout.class)) {
+                timeoutMethod.setAccessible(true);
+                timeoutMethods.add(0, timeoutMethod);
+            }
+        }
+        return timeoutMethods;
+    }
+    
+    protected boolean checkTimeoutMethod(Class<?> interceptorClass, Method timeoutMethod, Class<? extends Annotation> timeoutAnnotation) {
+        if (!Modifier.isAbstract(timeoutMethod.getModifiers())
+                && !Modifier.isStatic(timeoutMethod.getModifiers())
+                && timeoutMethod.getParameterTypes().length == 1
+                && timeoutMethod.getParameterTypes()[0].equals(Timer.class)) {
+            return true;
+        }
+        else {
+            logger.warn("Invalid @" + timeoutAnnotation.getSimpleName() + " method: " + timeoutMethod + " in class: " + interceptorClass);
+            return false;
         }
     }
 
@@ -148,8 +198,12 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             return ejbContext;
         }
         catch (Exception e) {
-            throw new EJBException("Create EJBContext failed.",e );
+            throw new EJBException("Create EJBContext failed.", e);
         }
+    }
+
+    protected Method[] getTimeoutMethods() {
+        return timeoutMethods.toArray(new Method[timeoutMethods.size()]);
     }
 
     /**

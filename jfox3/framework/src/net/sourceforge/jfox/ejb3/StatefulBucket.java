@@ -29,9 +29,13 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
 
     protected StatefulBucket(EJBContainer container, Class<?> beanClass, Module module) {
         super(container, beanClass, module);
+        // Stateless/Stateful 不同的Annotation
+        introspectStateful();
+
+        injectClassDependents();
     }
 
-    protected void introspectBean() {
+    protected void introspectStateful() {
         Stateful stateful = getBeanClass().getAnnotation(Stateful.class);
         String name = stateful.name();
         if (name.equals("")) {
