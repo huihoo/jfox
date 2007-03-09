@@ -57,16 +57,11 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
      * Entity Manager Factory Map
      * unit name => EntityManagerFactoryImpl
      */
-    private static Map<String, EntityManagerFactory> emFactoryMap = new HashMap<String, EntityManagerFactory>();
+    private static Map<String, EntityManagerFactoryImpl> emFactoryMap = new HashMap<String, EntityManagerFactoryImpl>();
     /**
      * query name => query template
      */
     private static Map<String, NamedSQLTemplate> queryMap = new HashMap<String, NamedSQLTemplate>();
-
-    /**
-     * cache config map
-     */
-    private static Map<String, CacheConfig> cacheConfigMap = new HashMap<String, CacheConfig>();
 
     private Document xmlDocument = null;
 
@@ -87,7 +82,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
      * 需要初始化 EntityManagerFactoryBuilderImpl，注册所有 NamedQuery
      * @param name unit name
      */
-    public static EntityManagerFactory getEntityManagerFactoryByName(String name){
+    public static EntityManagerFactoryImpl getEntityManagerFactoryByName(String name){
         if(!inited) { // 没有初始化，是容器外调用，如果是容器内调用，应该已经初始化
             EntityManagerFactoryBuilderImpl entityManagerFactoryBuilder = new EntityManagerFactoryBuilderImpl();
             entityManagerFactoryBuilder.containerManaged = false;
@@ -114,7 +109,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
     }
 
     public static DataSource getDataSourceByUnitName(String unitName) {
-        EntityManagerFactoryImpl emf = (EntityManagerFactoryImpl)emFactoryMap.get(unitName);
+        EntityManagerFactoryImpl emf = emFactoryMap.get(unitName);
         if(emf == null) {
             throw new PersistenceException("Can not find DataSource with unitName: " + unitName);
         }
@@ -133,13 +128,19 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         throw new PersistenceException("Can not find DataSource with mappedName: " + mappedName);
     }
 
-    private static void registerEntityManagerFactory(String name, EntityManagerFactory emFactory){
+    private static void registerEntityManagerFactory(String name, EntityManagerFactoryImpl emFactory){
         emFactoryMap.put(name,emFactory);
     }
 
-    //TODO: by unit & name
-    public static CacheConfig getCacheConfig(String name) {
-        return cacheConfigMap.get(name);
+    //get CacheConfig by unit & cacheConfigName
+    public static CacheConfig getCacheConfig(String unitName, String cacheConfigName) {
+        EntityManagerFactoryImpl emf = getEntityManagerFactoryByName(unitName);
+        if(emf != null) {
+            return emf.getCacheConfig(cacheConfigName);
+        }
+        else {
+            return null;
+        }
     }
 
     public void instantiated(ComponentContext componentContext) {
@@ -263,6 +264,10 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         sxpds.setCheckLevelObject(4);
         sxpds.setDataSourceName(jndiName);
 
+        /**
+         * cache config map
+         */
+        Map<String, CacheConfig> cacheConfigMap = new HashMap<String, CacheConfig>();
         for (Map.Entry<String, String> entry : properties.entrySet()) {
             String name = entry.getKey();
             String value = entry.getValue();
@@ -345,7 +350,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         sxpds.setDataSource(sxds);
 
         // create EntityManagerFactory
-        return new EntityManagerFactoryImpl(unitName,this,sxpds);
+        return new EntityManagerFactoryImpl(unitName,this,sxpds, cacheConfigMap);
     }
 
     private void registerNamedQueriesByClasses(Class[] classes){

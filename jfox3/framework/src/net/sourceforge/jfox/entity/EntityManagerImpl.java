@@ -29,6 +29,10 @@ public class EntityManagerImpl implements EntityManagerExt {
         return emFactory.getDataSource();
     }
 
+    public String getUnitName(){
+        return emFactory.getUnitName();
+    }
+
     public Connection getConnection() throws SQLException {
         //事务 commit 时 XAPool 不会自动 close 连接，
         //建立维护机制（TX Synchronization），在事务 commit 之后立即调用 connection.close，是 connection 回收到 Connection Pool

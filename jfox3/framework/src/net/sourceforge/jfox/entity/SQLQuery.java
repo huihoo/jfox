@@ -485,7 +485,7 @@ public class SQLQuery extends QueryExt {
         if(isNamedQuery()){
             String cacheConfigName = ((NamedSQLTemplate)getSQLTemplate()).getCacheConfigName();
             String cachePartition = ((NamedSQLTemplate)getSQLTemplate()).getCachePartition();
-            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(cacheConfigName);
+            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(em.getUnitName(), cacheConfigName);
             if(cacheConfig != null) {
                 Cache cache = cacheConfig.buildCache(cachePartition);
                 CacheKey key = getCacheKey();
@@ -506,7 +506,7 @@ public class SQLQuery extends QueryExt {
         if(isNamedQuery()){
             String cacheConfigName = ((NamedSQLTemplate)getSQLTemplate()).getCacheConfigName();
             String cachePartition = ((NamedSQLTemplate)getSQLTemplate()).getCachePartition();
-            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(cacheConfigName);
+            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(em.getUnitName(), cacheConfigName);
             if(cacheConfig != null) {
                 Cache cache = cacheConfig.buildCache(cachePartition);
                 CacheKey key = getCacheKey();
@@ -519,7 +519,7 @@ public class SQLQuery extends QueryExt {
         if(isNamedQuery()){
             String cacheConfigName = ((NamedSQLTemplate)getSQLTemplate()).getCacheConfigName();
             String cachePartition = ((NamedSQLTemplate)getSQLTemplate()).getCachePartition();
-            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(cacheConfigName);
+            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(em.getUnitName(),cacheConfigName);
             if(cacheConfig != null) {
                 Cache cache = cacheConfig.buildCache(cachePartition);
                 cache.clear();
