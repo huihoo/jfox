@@ -48,7 +48,7 @@ public class Module implements Comparable<Module> {
 
     private String description;
 
-    private int priority = 0;
+    private int priority = 50;
     /**
      * 该模块需要引用的模块
      */
@@ -233,32 +233,35 @@ public class Module implements Comparable<Module> {
      */
     protected void resolve() throws ModuleResolvedFailedException {
         URL descriptorURL = getDescriptorURL();
-        if(descriptorURL == null) {
-            //TODO: default config
-            logger.warn("Could not find module XML configuration, will use default config.");
-        }
-        logger.info("Resolving XML descriptor: " + descriptorURL);
-        Document doc;
-        try {
-            // 替换占位符
-            String xmlContent = PlaceholderUtils.getInstance().evaluate(descriptorURL);
-            doc = XMLUtils.loadDocument(xmlContent);
-        }
-        catch (Exception e) {
-            logger.error("Error to get XML Document of Module descriptor.", e);
-            throw new ModuleResolvedFailedException("Error to get XML Document of Module descriptor.", e);
-        }
-
-        Element rootElement = doc.getDocumentElement();
-        setName(XMLUtils.getChildElementValueByTagName(rootElement, "name"));
-        setDescription(XMLUtils.getChildElementValueByTagName(rootElement, "description"));
-        setPriority(Integer.parseInt(XMLUtils.getChildElementValueByTagName(rootElement, "priority")));
-        String _refModules = XMLUtils.getChildElementValueByTagName(rootElement, "ref-modules");
-        if (_refModules != null) {
-            this.refModules = _refModules.split(",");
+        if (descriptorURL == null) {
+            logger.warn("Could not find module XML configuration for Module " + getModuleDir().toString() + ", will use default config.");
+            setName(getModuleDir().getName());
+            setDescription(getModuleDir().toString());
         }
         else {
-            this.refModules = new String[0];
+            logger.info("Resolving XML descriptor: " + descriptorURL);
+            Document doc;
+            try {
+                // 替换占位符
+                String xmlContent = PlaceholderUtils.getInstance().evaluate(descriptorURL);
+                doc = XMLUtils.loadDocument(xmlContent);
+            }
+            catch (Exception e) {
+                logger.error("Error to get XML Document of Module descriptor.", e);
+                throw new ModuleResolvedFailedException("Error to get XML Document of Module descriptor.", e);
+            }
+
+            Element rootElement = doc.getDocumentElement();
+            setName(XMLUtils.getChildElementValueByTagName(rootElement, "name"));
+            setDescription(XMLUtils.getChildElementValueByTagName(rootElement, "description"));
+            setPriority(Integer.parseInt(XMLUtils.getChildElementValueByTagName(rootElement, "priority")));
+            String _refModules = XMLUtils.getChildElementValueByTagName(rootElement, "ref-modules");
+            if (_refModules != null) {
+                this.refModules = _refModules.split(",");
+            }
+            else {
+                this.refModules = new String[0];
+            }
         }
     }
 
