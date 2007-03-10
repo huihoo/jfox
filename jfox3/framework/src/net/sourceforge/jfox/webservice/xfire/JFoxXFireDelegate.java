@@ -20,6 +20,7 @@ import net.sourceforge.jfox.framework.component.ActiveComponent;
 import net.sourceforge.jfox.framework.component.ComponentContext;
 import net.sourceforge.jfox.framework.component.ComponentListener;
 import net.sourceforge.jfox.framework.component.InstantiatedComponent;
+import net.sourceforge.jfox.framework.component.ComponentUnregistration;
 import net.sourceforge.jfox.framework.event.ComponentEvent;
 import org.codehaus.xfire.MessageContext;
 import org.codehaus.xfire.XFire;
@@ -32,6 +33,7 @@ import org.codehaus.xfire.service.invoker.Invoker;
 import org.codehaus.xfire.transport.TransportManager;
 import org.codehaus.xfire.util.NamespaceHelper;
 import org.codehaus.xfire.wsdl.ResourceWSDL;
+import org.apache.log4j.Logger;
 
 /**
  * 使用 XFire 实现 Web Service
@@ -39,7 +41,9 @@ import org.codehaus.xfire.wsdl.ResourceWSDL;
  * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
  */
 @Service
-public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, ActiveComponent, ComponentListener {
+public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, ActiveComponent, ComponentUnregistration, ComponentListener {
+
+    private static final Logger logger = Logger.getLogger(JFoxXFireDelegate.class);
 
     @Inject
     EJBContainer ejbContainer;
@@ -58,6 +62,7 @@ public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, Activ
 
     /**
      * EJB Endpoint interface => ejb name
+     * 以便 webservice 调用 ejb 的时候，能够根据 interface 找到 ejb
      */
     private Map<String, String> endpointInterface2EJBNameMap = new HashMap<String, String>();
 
@@ -79,6 +84,15 @@ public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, Activ
         // need do nothing
     }
 
+
+    public void preUnregister(ComponentContext context) {
+
+    }
+
+    public void postUnregister() {
+        
+    }
+
     public void componentChanged(ComponentEvent componentEvent) {
         if (componentEvent instanceof EJBLoadedComponentEvent) {
             EJBBucket ejbBucket = ((EJBLoadedComponentEvent)componentEvent).getEJBBucket();
@@ -90,7 +104,12 @@ public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, Activ
                     // create xfire service by stateless bucket
                     org.codehaus.xfire.service.Service service = factory.create((StatelessBucket)ejbBucket);
                     service.setInvoker(this);
+                    if(xfire.getServiceRegistry().hasService(service.getSimpleName()) || xfire.getServiceRegistry().hasService(service.getName())) {
+                        logger.warn("Web Service with QName " + service.getName() + " has already beean registered!");
+                        return;
+                    }
                     xfire.getServiceRegistry().register(service);
+                    logger.info("Web Service with QName " + service.getName() + "  registered successfully!");
                 }
             }
         }
@@ -99,7 +118,9 @@ public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, Activ
             if (ejbBucket instanceof StatelessBucket) {
                 Class wsEndpointInterface = ((StatelessBucket)ejbBucket).getWebServiceEndpointInterface();
                 if (wsEndpointInterface != null) {
+//                    xfire.getServiceRegistry().unregister();
                     endpointInterface2EJBNameMap.remove(wsEndpointInterface.getName());
+                    logger.info("Web Service with endpoint interface " + wsEndpointInterface.getName() + "  unregistered!");
                 }
             }
         }

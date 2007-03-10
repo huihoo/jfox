@@ -121,7 +121,7 @@ public class TestClient {
     public void invokeEntity() throws Exception {
         Context context = JNDIContextHelper.getInitalContext();
         org.jfox.example.ejb3.entity.OrderDAO orderDAO = (org.jfox.example.ejb3.entity.OrderDAO)context.lookup("entity.OrderDAO/remote");
-        for(Order order : orderDAO.getOrders()){
+        for (Order order : orderDAO.getOrders()) {
             System.out.println(order);
         }
     }
@@ -133,54 +133,54 @@ public class TestClient {
         Lobber lobber = MapperEntity.newEntityObject(Lobber.class);
         lobber.setId(1);
         String clobby = "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
-        "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work";
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
+                "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work";
         lobber.setClobby(clobby);
         lobber.setBlobby(clobby.getBytes());
         lobberDAO.insertLobber(lobber);
@@ -193,13 +193,13 @@ public class TestClient {
     }
 
     @Test
-    public void invokeStateful() throws Exception{
+    public void invokeStateful() throws Exception {
         Context context = JNDIContextHelper.getInitalContext();
         org.jfox.example.ejb3.stateful.ShoppingCart calculator = (org.jfox.example.ejb3.stateful.ShoppingCart)context.lookup("stateful.ShoppingCartBean/remote");
-        calculator.buy("apple",1);
-        calculator.buy("banana",2);
-        Assert.assertEquals(calculator.getCartContents().size(),2);
-        
+        calculator.buy("apple", 1);
+        calculator.buy("banana", 2);
+        Assert.assertEquals(calculator.getCartContents().size(), 2);
+
     }
 
 }

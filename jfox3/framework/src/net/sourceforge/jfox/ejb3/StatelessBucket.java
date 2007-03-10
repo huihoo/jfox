@@ -126,7 +126,8 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             }
             else {
                 try {
-                    Class endpointInterface = this.getClass().getClassLoader().loadClass(endpointInterfaceName);
+                    // 使用 ModuleClassLoader
+                    Class endpointInterface = getModule().getModuleClassLoader().loadClass(endpointInterfaceName);
                     if (!endpointInterface.isInterface() || !Modifier.isPublic(endpointInterface.getModifiers())) {
                         logger.warn("Invalid endpoint interface: " + endpointInterface + " annotated in EJB bean class: " + getBeanClass().getName());
                     }
