@@ -231,3 +231,6 @@
 
 2007-03-09
     1. 修改 web.xml 配置，只需要指定 MODULES_DIR 即可
+
+2007-03-11
+    2. 测试将 jfox3 作为 lib 开发 web application
