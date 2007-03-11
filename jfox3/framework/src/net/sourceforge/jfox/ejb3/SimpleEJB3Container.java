@@ -43,7 +43,7 @@ import net.sourceforge.jfox.framework.component.ActiveComponent;
 import net.sourceforge.jfox.framework.component.Component;
 import net.sourceforge.jfox.framework.component.ComponentContext;
 import net.sourceforge.jfox.framework.component.ComponentUnregistration;
-import net.sourceforge.jfox.framework.component.InstantiatedComponent;
+import net.sourceforge.jfox.framework.component.ComponentInstantiation;
 import net.sourceforge.jfox.framework.component.InterceptableComponent;
 import net.sourceforge.jfox.framework.component.Module;
 import net.sourceforge.jfox.framework.component.ModuleListener;
@@ -59,7 +59,7 @@ import org.apache.log4j.Logger;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id = "EJB3Container", singleton = true, active = true, priority = Integer.MIN_VALUE)
-public class SimpleEJB3Container implements EJBContainer, Component, InstantiatedComponent, InterceptableComponent, ModuleListener, ActiveComponent, ComponentUnregistration {
+public class SimpleEJB3Container implements EJBContainer, Component, ComponentInstantiation, InterceptableComponent, ModuleListener, ActiveComponent, ComponentUnregistration {
 
     protected Logger logger = Logger.getLogger(SimpleEJB3Container.class);
 
@@ -98,7 +98,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, Instantiate
         invocationChain.add(new InterceptorsEJBInvocationHandler());
     }
 
-    public void instantiated(ComponentContext componentContext) {
+    public void postContruct(ComponentContext componentContext) {
         this.componentContext = componentContext;
     }
 

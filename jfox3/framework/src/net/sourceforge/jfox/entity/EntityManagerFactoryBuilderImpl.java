@@ -25,7 +25,7 @@ import net.sourceforge.jfox.framework.component.ActiveComponent;
 import net.sourceforge.jfox.framework.component.Component;
 import net.sourceforge.jfox.framework.component.ComponentContext;
 import net.sourceforge.jfox.framework.component.ComponentUnregistration;
-import net.sourceforge.jfox.framework.component.InstantiatedComponent;
+import net.sourceforge.jfox.framework.component.ComponentInstantiation;
 import net.sourceforge.jfox.framework.component.Module;
 import net.sourceforge.jfox.framework.component.ModuleListener;
 import net.sourceforge.jfox.framework.event.ModuleEvent;
@@ -43,7 +43,7 @@ import org.w3c.dom.Element;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id = "EntityManagerFactoryBuilder", active = true, singleton = true, priority = Integer.MIN_VALUE)
-public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuilder, Component, InstantiatedComponent, ComponentUnregistration, ModuleListener, ActiveComponent {
+public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuilder, Component, ComponentInstantiation, ComponentUnregistration, ModuleListener, ActiveComponent {
 
     protected static Logger logger = Logger.getLogger(EntityManagerFactoryBuilderImpl.class);
 
@@ -143,7 +143,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         }
     }
 
-    public void instantiated(ComponentContext componentContext) {
+    public void postContruct(ComponentContext componentContext) {
         inited = true;
     }
 

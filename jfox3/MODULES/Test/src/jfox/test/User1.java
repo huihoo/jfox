@@ -4,14 +4,14 @@ import net.sourceforge.jfox.framework.annotation.Constant;
 import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.annotation.Inject;
 import net.sourceforge.jfox.framework.component.ComponentContext;
-import net.sourceforge.jfox.framework.component.InstantiatedComponent;
+import net.sourceforge.jfox.framework.component.ComponentInstantiation;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 @Service(
         id = "User1")
-public class User1 implements IUser, InstantiatedComponent {
+public class User1 implements IUser, ComponentInstantiation {
 
     @Inject(id = "UserManager")
     IUserManager userMgr;
@@ -29,7 +29,7 @@ public class User1 implements IUser, InstantiatedComponent {
      *
      * @param componentContext Component context
      */
-    public void instantiated(ComponentContext componentContext) {
+    public void postContruct(ComponentContext componentContext) {
     }
 
     /**

@@ -19,7 +19,7 @@ import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.ActiveComponent;
 import net.sourceforge.jfox.framework.component.ComponentContext;
 import net.sourceforge.jfox.framework.component.ComponentListener;
-import net.sourceforge.jfox.framework.component.InstantiatedComponent;
+import net.sourceforge.jfox.framework.component.ComponentInstantiation;
 import net.sourceforge.jfox.framework.component.ComponentUnregistration;
 import net.sourceforge.jfox.framework.event.ComponentEvent;
 import org.codehaus.xfire.MessageContext;
@@ -41,7 +41,7 @@ import org.apache.log4j.Logger;
  * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
  */
 @Service
-public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, ActiveComponent, ComponentUnregistration, ComponentListener {
+public class JFoxXFireDelegate  implements Invoker, ComponentInstantiation, ActiveComponent, ComponentUnregistration, ComponentListener {
 
     private static final Logger logger = Logger.getLogger(JFoxXFireDelegate.class);
 
@@ -73,7 +73,7 @@ public class JFoxXFireDelegate  implements Invoker, InstantiatedComponent, Activ
         return xFireDelegate.xfire;
     }
 
-    public void instantiated(ComponentContext componentContext) {
+    public void postContruct(ComponentContext componentContext) {
         xfire = XFireFactory.newInstance().getXFire();
         //是否可以考虑直接使用 XFire 的 JAXAWSServiceFactory
         factory = new EJBServiceFactory(xfire.getTransportManager());

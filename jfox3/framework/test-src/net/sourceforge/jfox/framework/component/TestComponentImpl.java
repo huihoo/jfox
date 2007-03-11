@@ -12,7 +12,7 @@ public class TestComponentImpl implements TestComponent {
         log("Hello,World, :)!");
     }
 
-    public void instantiated(ComponentContext componentContext) {
+    public void postContruct(ComponentContext componentContext) {
         log("postInstantiated!");
     }
 

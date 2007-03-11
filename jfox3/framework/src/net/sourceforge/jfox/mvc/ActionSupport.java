@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 import net.sourceforge.jfox.framework.component.ActiveComponent;
 import net.sourceforge.jfox.framework.component.ComponentContext;
 import net.sourceforge.jfox.framework.component.ComponentUnregistration;
-import net.sourceforge.jfox.framework.component.InstantiatedComponent;
+import net.sourceforge.jfox.framework.component.ComponentInstantiation;
 import net.sourceforge.jfox.framework.component.SingletonComponent;
 import net.sourceforge.jfox.mvc.annotation.ActionMethod;
 import net.sourceforge.jfox.mvc.validate.ValidateException;
@@ -31,7 +31,7 @@ import org.apache.log4j.Logger;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public abstract class ActionSupport implements Action, InstantiatedComponent, ComponentUnregistration, ActiveComponent, SingletonComponent {
+public abstract class ActionSupport implements Action, ComponentInstantiation, ComponentUnregistration, ActiveComponent, SingletonComponent {
 
     /**
      * post action prefix, invoked method will be "DOPOST + %ACTION_NAME%"
@@ -51,7 +51,7 @@ public abstract class ActionSupport implements Action, InstantiatedComponent, Co
 
     protected Logger logger = Logger.getLogger(this.getClass());
 
-    public void instantiated(ComponentContext componentContext) {
+    public void postContruct(ComponentContext componentContext) {
         this.context = componentContext;
     }
 

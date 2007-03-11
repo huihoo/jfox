@@ -32,7 +32,7 @@ public class User2 implements IUser2, ComponentUnregistration, ModuleListener {
      *
      * @param componentContext Component context
      */
-    public void instantiated(ComponentContext componentContext) {
+    public void postContruct(ComponentContext componentContext) {
         System.out.println("instantiated");
     }
 

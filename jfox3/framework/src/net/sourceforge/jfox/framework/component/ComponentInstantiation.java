@@ -7,14 +7,14 @@ package net.sourceforge.jfox.framework.component;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public interface InstantiatedComponent extends Component{
+public interface ComponentInstantiation extends Component{
 
     /**
      * Component 实例化之后的回调方法
      * 可以做实例化之后，set Property 之前的准备工作
      * @param componentContext Component context
      */
-    public void instantiated(ComponentContext componentContext);
+    public void postContruct(ComponentContext componentContext);
 
     /**
      * Component 属性设置完毕之后的回调方法
