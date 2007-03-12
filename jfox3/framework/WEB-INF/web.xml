@@ -8,6 +8,11 @@
 
     <display-name>ejb3</display-name>
 
+    <listener>
+        <listener-class>net.sourceforge.jfox.mvc.WebContextLoader</listener-class>
+    </listener>
+
+    <!-- if you don't want to use JFox MVC, comment below content -->
     <context-param>
         <!--encoding used by request & velocity -->
         <param-name>DEFAULT_ENCODING</param-name>
@@ -32,9 +37,6 @@
         <param-value>.do</param-value>
     </context-param>
 
-    <listener>
-        <listener-class>net.sourceforge.jfox.mvc.WebContextLoader</listener-class>
-    </listener>
     <servlet>
         <servlet-name>xfire_servlet</servlet-name>
         <servlet-class>net.sourceforge.jfox.webservice.xfire.JFoxXFireServlet</servlet-class>
