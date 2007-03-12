@@ -240,3 +240,5 @@
 2007-03-12
     1. 修改VelocityRender 以支持 framework webapp??? 经考虑，jfox webapp 不支持，只有 module 才支持 
     2. 将 jfox classes 打成 jar 包
+    3. 如果 SYSTEM_MODULE 中有 EJB并打包成独立的 jar,无法注入
+    4. SYSTEM_MODULE的Action无法注入EJB，因为 SYSTEM_MODULE 是在 ModuleLoadedEvent 中 load EJB，此时 Aciton 已经实例化，因为 Action 是 ActiveComponent

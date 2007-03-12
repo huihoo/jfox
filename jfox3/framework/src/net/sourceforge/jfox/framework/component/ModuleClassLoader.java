@@ -33,10 +33,11 @@ public class ModuleClassLoader extends ASMClassLoader {
         super(module.getClasspathURLs(), module.getFramework().getClassLoaderRepository());
         this.module = module;
         this.repo = module.getFramework().getClassLoaderRepository();
+        initASM();
     }
 
     protected URL[] getASMClasspathURLs() {
-        return super.getURLs();
+        return module.getClasspathURLs();
     }
 
     public Module getModule() {

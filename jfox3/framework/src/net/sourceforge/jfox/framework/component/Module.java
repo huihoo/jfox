@@ -30,7 +30,7 @@ import net.sourceforge.jfox.util.XMLUtils;
  */
 public class Module implements Comparable<Module> {
 
-    private static final Logger logger = Logger.getLogger(Module.class);
+    protected final Logger logger = Logger.getLogger(this.getClass());
 
     protected Framework framework;
 

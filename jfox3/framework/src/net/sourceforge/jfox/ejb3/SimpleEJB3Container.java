@@ -3,6 +3,7 @@ package net.sourceforge.jfox.ejb3;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -10,17 +11,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
-import java.util.Arrays;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import javax.ejb.EJBException;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
-import javax.ejb.Stateful;
 import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
 import javax.naming.NameNotFoundException;
@@ -42,8 +42,8 @@ import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.ActiveComponent;
 import net.sourceforge.jfox.framework.component.Component;
 import net.sourceforge.jfox.framework.component.ComponentContext;
-import net.sourceforge.jfox.framework.component.ComponentUnregistration;
 import net.sourceforge.jfox.framework.component.ComponentInstantiation;
+import net.sourceforge.jfox.framework.component.ComponentUnregistration;
 import net.sourceforge.jfox.framework.component.InterceptableComponent;
 import net.sourceforge.jfox.framework.component.Module;
 import net.sourceforge.jfox.framework.component.ModuleListener;
@@ -55,6 +55,8 @@ import org.apache.log4j.Logger;
 /**
  * 只支持 Local/Stateless Session Bean, Local MDB
  * 同时，该 Container 也承担了 NamingContainer 的能力
+ * <p/>
+ * 必须保证 SimpleEJB3Container 第一个加载，否则，无法监听到 ModuleEvent，而无法 load ejb
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
@@ -156,15 +158,16 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
      * @param moduleEvent module event
      */
     public void moduleChanged(ModuleEvent moduleEvent) {
+        Module module = moduleEvent.getModule();
         if (moduleEvent instanceof ModuleLoadingEvent) {
-            Module module = moduleEvent.getModule();
+            // 监听 ModuleLoadingEvent，以保证能够在Action之前完成 EJB 装载，从而在 Action 实例化的时候，注入
+            // 对于 SYSTEM_MODULE，见 SystemModule.start，做了特殊处理
             EJBBucket[] buckets = loadEJB(module);
             for (EJBBucket bucket : buckets) {
                 bucketMap.put(bucket.getEJBName(), bucket);
             }
         }
         else if (moduleEvent instanceof ModuleUnloadedEvent) {
-            Module module = moduleEvent.getModule();
             unloadEJB(module);
         }
     }
@@ -280,9 +283,9 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
     /**
      * 构造 ejb invocation，并且获得 chain，然后发起调用
      *
-     * @param ejbObjectId ejb object id
-     * @param interfaceMethod      ejb interfaceMethod, 已经解析成实体方法
-     * @param params      parameters
+     * @param ejbObjectId     ejb object id
+     * @param interfaceMethod ejb interfaceMethod, 已经解析成实体方法
+     * @param params          parameters
      * @throws Exception exception
      */
     public Object invokeEJB(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params) throws Exception {
@@ -292,7 +295,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         try {
             ejbContext = bucket.getEJBContext(ejbObjectId);
             Method concreteMethod = bucket.getConcreteMethod(interfaceMethod);
-            if(concreteMethod == null) {
+            if (concreteMethod == null) {
                 throw new NoSuchMethodException("Could not found Concrete Business Method for interface method: " + interfaceMethod.getName());
             }
             EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbContext.getEJBInstance(), interfaceMethod, concreteMethod, params);
@@ -309,11 +312,11 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
     /**
      * invoke timeout method
      *
-     * @param ejbObjectId ejb object id
-     * @param interfaceMethod      timeout interfaceMethod，可能是实体方法，也可能是 TimedObject 接口方法
-     * @param params      parameters
+     * @param ejbObjectId     ejb object id
+     * @param interfaceMethod timeout interfaceMethod，可能是实体方法，也可能是 TimedObject 接口方法
+     * @param params          parameters
      * @throws Exception exception
-          */
+     */
     protected Object invokeTimeout(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params) throws Exception {
         EJBBucket bucket = getEJBBucket(ejbObjectId.getEJBName());
         // get instance from bucket's pool
@@ -436,15 +439,15 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         }
 
         public Timer createTimer(Date expiration, Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
-            EJBTimerTask timer = new EJBTimerTask(this,info);
-            ScheduledFuture future = scheduleService.schedule(timer, expiration.getTime()-System.currentTimeMillis(), TimeUnit.MILLISECONDS);
+            EJBTimerTask timer = new EJBTimerTask(this, info);
+            ScheduledFuture future = scheduleService.schedule(timer, expiration.getTime() - System.currentTimeMillis(), TimeUnit.MILLISECONDS);
             timer.setFuture(future);
             timerTasks.put(timer, System.currentTimeMillis() + "");
             return timer;
         }
 
         public Timer createTimer(final long initialDuration, final long intervalDuration, final Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
-            EJBTimerTask timer = new EJBTimerTask(this,info);
+            EJBTimerTask timer = new EJBTimerTask(this, info);
             ScheduledFuture future = scheduleService.scheduleWithFixedDelay(timer, initialDuration, intervalDuration, TimeUnit.MILLISECONDS);
             timer.setFuture(future);
             timerTasks.put(timer, System.currentTimeMillis() + "");
@@ -452,8 +455,8 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         }
 
         public Timer createTimer(Date initialExpiration, long intervalDuration, Serializable info) throws IllegalArgumentException, IllegalStateException, EJBException {
-            EJBTimerTask timer = new EJBTimerTask(this,info);
-            ScheduledFuture future = scheduleService.scheduleWithFixedDelay(timer, initialExpiration.getTime()-System.currentTimeMillis(), intervalDuration, TimeUnit.MILLISECONDS);
+            EJBTimerTask timer = new EJBTimerTask(this, info);
+            ScheduledFuture future = scheduleService.scheduleWithFixedDelay(timer, initialExpiration.getTime() - System.currentTimeMillis(), intervalDuration, TimeUnit.MILLISECONDS);
             timer.setFuture(future);
             timerTasks.put(timer, System.currentTimeMillis() + "");
             return timer;

@@ -36,12 +36,12 @@ public class ASMClassLoader extends URLClassLoader {
 
 
     public ASMClassLoader(ClassLoader parent) {
-        this(new URL[0], parent);
+        super(new URL[0], parent);
+        initASM();
     }
 
     protected ASMClassLoader(URL[] urls, ClassLoader parent) {
         super(urls, parent);
-        initASM();
     }
 
     protected void initASM() {
