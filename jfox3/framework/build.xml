@@ -3,12 +3,14 @@
     <property name="appname" value="geronimo"/>
     <property name="src" value="${basedir}/src"/>
     <property name="conf" value="${basedir}/conf"/>
+    <property name="webxml" value="${basedir}/WEB-INF/web.xml"/>
     <property name="wwwroot" value="${basedir}/wwwroot"/>
     <property name="lib" value="${basedir}/lib"/>
     <property name="dist" value="${basedir}/dist"/>
     <property name="webapp-output" value="${dist}/${appname}"/>
-    <property name="webapp-classes" value="${webapp-output}/WEB-INF/classes"/>
-    <property name="webapp-lib" value="${webapp-output}/WEB-INF/lib"/>
+    <property name="webapp-webinfo" value="${dist}/${appname}/WEB-INF"/>
+    <property name="webapp-classes" value="${webapp-webinfo}/classes"/>
+    <property name="webapp-lib" value="${webapp-webinfo}/lib"/>
 
     <property name="jarname" value="${appname}-3.0.jar"/>
     <property name="warname" value="${appname}.war"/>
@@ -33,12 +35,15 @@
             <classpath refid="classpath"/>
             <patternset refid="ignored.files"/>
         </javac>
-        <copy todir="${webapp-classes}" description="config file">
+        <copy todir="${webapp-classes}" description="copy config file">
             <fileset dir="${conf}">
                 <patternset refid="ignored.files"/>
             </fileset>
         </copy>
-        <copy todir="${webapp-output}" description="www resource">
+        <copy todir="${webapp-webinfo}" description="copy web.xml">
+            <fileset file="${webxml}"/>
+        </copy>
+        <copy todir="${webapp-output}" description="copy web resource">
             <fileset dir="${wwwroot}">
                 <patternset refid="ignored.files"/>
             </fileset>
