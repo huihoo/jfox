@@ -42,7 +42,7 @@ public class WebContextLoader implements ServletContextListener {
     private static Map<String, File> modulePath2File = new HashMap<String, File>();
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        //TODO: 加入启动消耗时间
+        //记录启动消耗时间
         long now = System.currentTimeMillis();
         framework = new Framework();
         try {
