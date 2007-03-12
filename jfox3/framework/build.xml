@@ -46,6 +46,7 @@
         <copy todir="${web-lib}" flatten="true" description="copy libs">
             <fileset dir="${lib}">
                 <patternset refid="ignored.files"/>
+                <type type="file"/>
             </fileset>
         </copy>
     </target>
