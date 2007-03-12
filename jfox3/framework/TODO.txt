@@ -235,3 +235,4 @@
 2007-03-11
     1. 测试将 jfox3 作为 lib 开发 web application
     2. feature list, change log
+    3. views 改名成 viewroot ?
