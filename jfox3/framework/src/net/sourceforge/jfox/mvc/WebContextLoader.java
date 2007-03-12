@@ -52,7 +52,7 @@ public class WebContextLoader implements ServletContextListener {
             }
             else {
                 if (!_modulesDir.startsWith("/")) {
-                    // forward url必须以 / 开头
+                    // forward url必须以 / 开头，否则 ControllerServlet forward 出错
                     _modulesDir = "/" + _modulesDir;
                 }
 
