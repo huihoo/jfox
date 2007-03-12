@@ -236,3 +236,6 @@
     1. 测试将 jfox3 作为 lib 开发 web application
     2. feature list, change log
     3. views 改名成 viewroot ?
+
+2007-03-12
+    1. 修改VelocityRender 以支持 framework webapp
