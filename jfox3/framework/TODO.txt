@@ -239,3 +239,4 @@
 
 2007-03-12
     1. 修改VelocityRender 以支持 framework webapp
+    2. 将 jfox classes 打成 java 包
