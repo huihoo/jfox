@@ -6,9 +6,9 @@
     <property name="wwwroot" value="${basedir}/wwwroot"/>
     <property name="lib" value="${basedir}/lib"/>
     <property name="dist" value="${basedir}/dist"/>
-    <property name="wwwoutput" value="${dist}/${appname}"/>
-    <property name="web-classes" value="${wwwoutput}/WEB-INF/classes"/>
-    <property name="web-lib" value="${wwwoutput}/WEB-INF/lib"/>
+    <property name="webapp-output" value="${dist}/${appname}"/>
+    <property name="webapp-classes" value="${webapp-output}/WEB-INF/classes"/>
+    <property name="webapp-lib" value="${webapp-output}/WEB-INF/lib"/>
 
     <property name="jarname" value="${appname}-3.0.jar"/>
     <property name="warname" value="${appname}.war"/>
@@ -24,26 +24,26 @@
     </patternset>
 
     <target name="init" depends="clean">
-        <mkdir dir="${web-classes}"/>
+        <mkdir dir="${webapp-classes}"/>
     </target>
 
     <target name="compile" depends="init">
-        <javac encoding="UTF-8" source="1.5" target="1.5" destdir="${web-classes}" debug="on" deprecation="on" optimize="off">
+        <javac encoding="UTF-8" source="1.5" target="1.5" destdir="${webapp-classes}" debug="on" deprecation="on" optimize="off">
             <src path="${src}"/>
             <classpath refid="classpath"/>
             <patternset refid="ignored.files"/>
         </javac>
-        <copy todir="${web-classes}" description="config file">
+        <copy todir="${webapp-classes}" description="config file">
             <fileset dir="${conf}">
                 <patternset refid="ignored.files"/>
             </fileset>
         </copy>
-        <copy todir="${wwwoutput}" description="www resource">
+        <copy todir="${webapp-output}" description="www resource">
             <fileset dir="${wwwroot}">
                 <patternset refid="ignored.files"/>
             </fileset>
         </copy>
-        <copy todir="${web-lib}" flatten="true" description="copy libs">
+        <copy todir="${webapp-lib}" flatten="true" description="copy libs">
             <fileset dir="${lib}">
                 <patternset refid="ignored.files"/>
                 <exclude name="servlet-api.jar"/>
@@ -53,12 +53,12 @@
     </target>
 
     <target name="war" depends="compile">
-        <jar destfile="${web-lib}/${jarname}">
-            <fileset dir="${web-classes}"/>
+        <jar destfile="${webapp-lib}/${jarname}">
+            <fileset dir="${webapp-classes}"/>
         </jar>
-        <delete dir="${web-classes}"/>
+        <delete dir="${webapp-classes}"/>
         <jar destfile="${dist}/${warname}">
-            <fileset dir="${wwwoutput}"/>
+            <fileset dir="${webapp-output}"/>
         </jar>
     </target>
 
