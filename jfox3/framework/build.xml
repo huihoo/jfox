@@ -35,13 +35,13 @@
         </javac>
         <copy todir="${web-classes}" description="config file">
             <fileset dir="${conf}">
-				<patternset refid="ignored.files"/>
-			</fileset>
+                <patternset refid="ignored.files"/>
+            </fileset>
         </copy>
         <copy todir="${wwwoutput}" description="www resource">
             <fileset dir="${wwwroot}">
-				<patternset refid="ignored.files"/>
-			</fileset>
+                <patternset refid="ignored.files"/>
+            </fileset>
         </copy>
         <copy todir="${web-lib}" flatten="true" description="copy libs">
             <fileset dir="lib">
@@ -63,7 +63,7 @@
     <target name="all" depends="war">
 
     </target>
-    
+
     <target name="clean">
         <delete dir="${dist}"/>
     </target>
