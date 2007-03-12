@@ -30,7 +30,7 @@
     </target>
 
     <target name="compile" depends="init">
-        <javac encoding="UTF-8" source="1.5" target="1.5" destdir="${webapp-classes}" debug="on" deprecation="on" optimize="off">
+        <javac encoding="UTF-8" source="1.5" target="1.5" destdir="${webapp-classes}" debug="on" deprecation="off" optimize="off">
             <src path="${src}"/>
             <classpath refid="classpath"/>
             <patternset refid="ignored.files"/>
