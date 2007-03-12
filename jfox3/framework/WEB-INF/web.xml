@@ -6,7 +6,7 @@
 
     <distributable/>
 
-    <display-name>ejb3</display-name>
+    <display-name>ejb3 enabled webapp</display-name>
 
     <listener>
         <listener-class>net.sourceforge.jfox.mvc.WebContextLoader</listener-class>
