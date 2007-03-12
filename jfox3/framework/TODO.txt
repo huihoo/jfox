@@ -238,5 +238,5 @@
     3. views 改名成 viewroot ?
 
 2007-03-12
-    1. 修改VelocityRender 以支持 framework webapp
+    1. 修改VelocityRender 以支持 framework webapp??? 经考虑，jfox webapp 不支持，只有 module 才支持 
     2. 将 jfox classes 打成 jar 包
