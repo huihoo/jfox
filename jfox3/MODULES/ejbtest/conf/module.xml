@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<module>
-    <name>ejb3_example</name>
-    <description>jboss example module</description>
-    <priority>10</priority>
-</module>
