@@ -47,43 +47,43 @@ public class WebContextLoader implements ServletContextListener {
         framework = new Framework();
         try {
             String _modulesDir = servletContextEvent.getServletContext().getInitParameter(MODULES_DIR);
-            if(_modulesDir == null || _modulesDir.trim().length() == 0){
+            if (_modulesDir == null || _modulesDir.trim().length() == 0) {
                 logger.warn("MODULES_DIR not configured in web.xml!");
-                return;
             }
+            else {
+                if (!_modulesDir.startsWith("/")) {
+                    // forward url必须以 / 开头
+                    _modulesDir = "/" + _modulesDir;
+                }
 
-            if(!_modulesDir.startsWith("/")) {
-                // forward url必须以 / 开头 
-                _modulesDir = "/" + _modulesDir;
-            }
+                File modulesDir = new File(servletContextEvent.getServletContext().getRealPath("/"), _modulesDir);
+                if (!modulesDir.exists()) {
+                    logger.warn("Modules dir configured in web.xml not exists, " + modulesDir.toString());
+                    return;
+                }
 
-            File modulesDir = new File(servletContextEvent.getServletContext().getRealPath("/"), _modulesDir);
-            if(!modulesDir.exists()){
-                logger.warn("Modules dir configured in web.xml not exists, " + modulesDir.toString());
-                return;
-            }
-
-            File[] moduleDirs = modulesDir.listFiles(FileFilterUtils.directoryFileFilter());
-            for(File moduleDir : moduleDirs){
-                framework.loadModule(moduleDir);
-                // register module path
-                registerModulePath(_modulesDir + "/" + moduleDir.getName(), moduleDir);
+                File[] moduleDirs = modulesDir.listFiles(FileFilterUtils.directoryFileFilter());
+                for (File moduleDir : moduleDirs) {
+                    framework.loadModule(moduleDir);
+                    // register module path
+                    registerModulePath(_modulesDir + "/" + moduleDir.getName(), moduleDir);
+                }
             }
             framework.start();
         }
-        catch(Exception e) {
+        catch (Exception e) {
             logger.error("Start framework failed!", e);
         }
-        logger.info("JFox started in " + ((System.currentTimeMillis()-now)/1000) + " seconds!");
+        logger.info("JFox started in " + ((System.currentTimeMillis() - now) / 1000) + " seconds!");
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
         try {
-            if(framework != null) {
+            if (framework != null) {
                 framework.stop();
             }
         }
-        catch(Exception e) {
+        catch (Exception e) {
             servletContextEvent.getServletContext().log("Stop framework failed!", e);
         }
     }
@@ -92,10 +92,10 @@ public class WebContextLoader implements ServletContextListener {
      * 注册模块目录名到 模块路径的映射
      *
      * @param moduleDirPath module path
-     * @param moduleDir module real dir
+     * @param moduleDir     module real dir
      */
     public static void registerModulePath(String moduleDirPath, File moduleDir) {
-        modulePath2File.put(moduleDirPath,moduleDir);
+        modulePath2File.put(moduleDirPath, moduleDir);
 
         String moduleDirName = moduleDirPath.substring(moduleDirPath.lastIndexOf("/") + 1);
         moduleDirName2PathMap.put(moduleDirName, moduleDirPath);
@@ -122,11 +122,11 @@ public class WebContextLoader implements ServletContextListener {
         return null;
     }
 
-    public static String getModulePathByModuleDirName(String moduleDirName){
+    public static String getModulePathByModuleDirName(String moduleDirName) {
         return moduleDirName2PathMap.get(moduleDirName);
     }
 
-    public static Action getAction(String moduleDirName, String actionName){
+    public static Action getAction(String moduleDirName, String actionName) {
         return module2ActionsMap.get(moduleDirName).get(actionName);
     }
 
