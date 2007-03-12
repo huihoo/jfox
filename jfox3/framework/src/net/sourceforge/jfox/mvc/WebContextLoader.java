@@ -57,11 +57,6 @@ public class WebContextLoader implements ServletContextListener {
                 _modulesDir = "/" + _modulesDir;
             }
 
-            if(_modulesDir == null) {
-                logger.warn("No modules dir configed to deploy!");
-                return;
-            }
-
             File modulesDir = new File(servletContextEvent.getServletContext().getRealPath("/"), _modulesDir);
             if(!modulesDir.exists()){
                 logger.warn("Modules dir configured in web.xml not exists, " + modulesDir.toString());
