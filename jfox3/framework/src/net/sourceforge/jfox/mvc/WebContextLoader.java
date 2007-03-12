@@ -19,7 +19,7 @@ import org.apache.log4j.Logger;
  */
 public class WebContextLoader implements ServletContextListener {
 
-    public static final String MODULES = "MODULES_DIR";
+    public static final String MODULES_DIR = "MODULES_DIR";
 
     private static Logger logger = Logger.getLogger(WebContextLoader.class);
 
@@ -46,7 +46,11 @@ public class WebContextLoader implements ServletContextListener {
         long now = System.currentTimeMillis();
         framework = new Framework();
         try {
-            String _modulesDir = servletContextEvent.getServletContext().getInitParameter(MODULES);
+            String _modulesDir = servletContextEvent.getServletContext().getInitParameter(MODULES_DIR);
+            if(_modulesDir == null || _modulesDir.trim().length() == 0){
+                logger.warn("MODULES_DIR not configured in web.xml!");
+                return;
+            }
 
             if(!_modulesDir.startsWith("/")) {
                 // forward url必须以 / 开头 
@@ -60,7 +64,7 @@ public class WebContextLoader implements ServletContextListener {
 
             File modulesDir = new File(servletContextEvent.getServletContext().getRealPath("/"), _modulesDir);
             if(!modulesDir.exists()){
-                logger.warn("Modules dir configed not exists, " + modulesDir.toString());
+                logger.warn("Modules dir configured in web.xml not exists, " + modulesDir.toString());
                 return;
             }
 
