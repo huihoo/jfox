@@ -3,6 +3,7 @@
     <property name="appname" value="geronimo"/>
     <property name="src" value="${basedir}/src"/>
     <property name="conf" value="${basedir}/conf"/>
+    <property name="demo" value="${basedir}/demo"/>
     <property name="webxml" value="${basedir}/WEB-INF/web.xml"/>
     <property name="wwwroot" value="${basedir}/wwwroot"/>
     <property name="lib" value="${basedir}/lib"/>
@@ -32,6 +33,11 @@
     <target name="compile" depends="init">
         <javac encoding="UTF-8" source="1.5" target="1.5" destdir="${webapp-classes}" debug="on" deprecation="off" optimize="off">
             <src path="${src}"/>
+            <classpath refid="classpath"/>
+            <patternset refid="ignored.files"/>
+        </javac>
+        <javac encoding="UTF-8" source="1.5" target="1.5" destdir="${webapp-classes}" debug="on" deprecation="off" optimize="off">
+            <src path="${demo}"/>
             <classpath refid="classpath"/>
             <patternset refid="ignored.files"/>
         </javac>

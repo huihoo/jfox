@@ -223,33 +223,33 @@ public class ComponentMeta implements Comparable<ComponentMeta>{
      *          if failed to resolve Component Descriptor
      */
     private void resolve() throws ComponentResolvedFailedException {
-        Service deployment = implementationClass.getAnnotation(Service.class);
-        if (deployment == null) {
+        Service serviceAnnotation = implementationClass.getAnnotation(Service.class);
+        if (serviceAnnotation == null) {
             throw new ComponentResolvedFailedException("Component " + implementationClass.getName() + " not annotated with " + Service.class.getName());
         }
-        String id = deployment.id();
+        String id = serviceAnnotation.id();
         if (id != null && id.trim().length() > 0) {
-            setId(deployment.id());
+            setId(serviceAnnotation.id());
         }
         else {
             setId(implementationClass.getSimpleName());
         }
-        setActive(deployment.active());
+        setActive(serviceAnnotation.active());
         if(ActiveComponent.class.isAssignableFrom(implementationClass)) {
             setActive(true);
         }
-        setSingleton(deployment.singleton());
+        setSingleton(serviceAnnotation.singleton());
         if(SingletonComponent.class.isAssignableFrom(implementationClass)) {
             setSingleton(true);
         }
 
-        setDescription(deployment.description());
-        setPriority(deployment.priority());
+        setDescription(serviceAnnotation.description());
+        setPriority(serviceAnnotation.priority());
 
 
         // 设置服务接口
-        if (deployment.interfaces().length > 0) { // Deployment annotation 指定了接口
-            for (Class interfaceClass : deployment.interfaces()) {
+        if (serviceAnnotation.interfaces().length > 0) { // Deployment annotation 指定了接口
+            for (Class interfaceClass : serviceAnnotation.interfaces()) {
                 // check 指定的 interface 是否合法
                 if (!interfaceClass.isAssignableFrom(implementationClass)) {
                     throw new ComponentResolvedFailedException("Invalid interface class annotated to Component: " + implementationClass.getName());
