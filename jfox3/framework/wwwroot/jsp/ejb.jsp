@@ -2,7 +2,6 @@
 <HTML>
 <HEAD>
     <TITLE>JSP invoke ejb</TITLE>
-    <%@ page import="java.util.Date" %>
     <%@ page import="javax.naming.Context" %>
     <%@ page import="net.sourceforge.jfox.ejb3.naming.JNDIContextHelper" %>
     <%@ page import="org.jfox.example.ejb3.stateless.Calculator" %>
