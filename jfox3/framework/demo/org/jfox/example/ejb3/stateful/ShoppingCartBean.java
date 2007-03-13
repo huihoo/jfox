@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
+import javax.ejb.SessionContext;
+import javax.annotation.Resource;
 
 /**
  * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
@@ -13,6 +15,9 @@ import javax.ejb.Stateful;
 public class ShoppingCartBean implements ShoppingCart, Serializable {
 
     private Map<String, Integer> cart = new HashMap<String, Integer>();
+
+    @Resource
+    SessionContext sessionContext;
 
     public void buy(String product, int quantity) {
         if (cart.containsKey(product)) {

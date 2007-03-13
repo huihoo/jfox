@@ -74,7 +74,7 @@ public class TestClient {
             Assert.fail("memory not clear!");
         }
         catch (EJBException e) {
-
+            // expect ejbexception in calculator.takeout() 
         }
     }
 
