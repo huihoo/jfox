@@ -1,6 +1,6 @@
-<project basedir="." default="all" name="Geronimo">
+<project basedir="." default="all" name="jfox">
 
-    <property name="appname" value="geronimo"/>
+    <property name="appname" value="jfox"/>
     <property name="src" value="${basedir}/src"/>
     <property name="conf" value="${basedir}/conf"/>
     <property name="demo" value="${basedir}/demo"/>
