@@ -245,3 +245,4 @@
 
 2007-03-13
     1. 网站上增加捐献一栏
+    2. 增加 WebService JNDIContextHelper 支持
