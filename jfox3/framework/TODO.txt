@@ -242,3 +242,6 @@
     2. 将 jfox classes 打成 jar 包
     3. 如果 SYSTEM_MODULE 中有 EJB并打包成独立的 jar,无法注入
     4. SYSTEM_MODULE的Action无法注入EJB，因为 SYSTEM_MODULE 是在 ModuleLoadedEvent 中 load EJB，此时 Aciton 已经实例化，因为 Action 是 ActiveComponent
+
+2007-03-13
+    1. 网站上增加捐献一栏
