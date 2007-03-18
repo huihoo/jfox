@@ -11,9 +11,8 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.PersistenceException;
 
-import net.sourceforge.jfox.entity.annotation.EntityHelper;
-import net.sourceforge.jfox.entity.annotation.MappedColumn;
 import net.sourceforge.jfox.entity.EntityObject;
+import net.sourceforge.jfox.entity.annotation.MappedColumn;
 import net.sourceforge.jfox.framework.BaseRuntimeException;
 import net.sourceforge.jfox.util.AnnotationUtils;
 import net.sourceforge.jfox.util.MethodUtils;
@@ -98,26 +97,6 @@ public class MapperEntity implements EntityObject {
             throw new PersistenceException("Could not found column name for method: " + method + "!");
         }
         return columnMap.get(key);
-    }
-
-    /**
-     * 由 @Helper 指定
-     * 这里直接返回 null
-     */
-    public final Object helper() {
-        if (dataObjectInterfClass.isAnnotationPresent(EntityHelper.class)) {
-            EntityHelper helper = dataObjectInterfClass.getAnnotation(EntityHelper.class);
-            try {
-                return helper.value().newInstance();
-            }
-            catch (Exception e) {
-                throw new BaseRuntimeException("Instantiate Helper failed with exception.", e);
-            }
-        }
-        else {
-            return null;
-        }
-
     }
 
     public final Object getColumnValue(String colName) {

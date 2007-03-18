@@ -1,10 +1,9 @@
 package net.sourceforge.jfox.framework.example;
 
-import javax.persistence.Entity;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 
 import net.sourceforge.jfox.entity.annotation.MappedColumn;
-import net.sourceforge.jfox.entity.annotation.EntityHelper;
 import net.sourceforge.jfox.entity.annotation.ParameterMap;
 
 /**
@@ -12,7 +11,6 @@ import net.sourceforge.jfox.entity.annotation.ParameterMap;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Entity
-@EntityHelper(Account.Helper.class)
 public interface Account {
 
     @Column(name="ACC_ID")
@@ -39,10 +37,4 @@ public interface Account {
 
     @MappedColumn(namedQuery = AddressDAO.GET_ADDRESS_BY_ACCOUNT_ID, params = {@ParameterMap(name = "id",value="$this.getId()")})
     Address getAddress();
-
-    public static class Helper {
-        public String toString(Account account) {
-            return account.getId() + ":" + account.getFirstName() + ":" + account.getLastName() + ":" + account.getMail();
-        }
-    }
 }

@@ -1,19 +1,17 @@
 package net.sourceforge.jfox.petstore.entity;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 
 import net.sourceforge.jfox.entity.annotation.MappedColumn;
 import net.sourceforge.jfox.entity.annotation.ParameterMap;
-import net.sourceforge.jfox.entity.annotation.EntityHelper;
 import net.sourceforge.jfox.petstore.dao.ItemDAOImpl;
 
 /**
  * IineItem is a order line item.
  */
 @Entity
-@EntityHelper(LineItem.Helper.class)
 public interface LineItem extends Serializable {
 
     @Column(name = "orderid")
@@ -41,7 +39,7 @@ public interface LineItem extends Serializable {
     public void setItem(Item item);
 
     public static class Helper {
-        public double getTotalPrice(LineItem lineItem) {
+        public static double getTotalPrice(LineItem lineItem) {
             return lineItem.getUnitPrice() * lineItem.getQuantity();
         }
     }

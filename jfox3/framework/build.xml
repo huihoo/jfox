@@ -67,7 +67,8 @@
         <jar destfile="${webapp-lib}/${jarname}">
             <fileset dir="${webapp-classes}"/>
         </jar>
-        <delete dir="${webapp-classes}"/>
+        <delete dir="${webapp-classes}/org"/>
+        <delete dir="${webapp-classes}/net"/>
         <jar destfile="${dist}/${warname}">
             <fileset dir="${webapp-output}"/>
         </jar>

@@ -1,6 +1,6 @@
 <br>
 #if ($sessionContext.getAttribute("__ACCOUNT__"))
-	#if ($account.helper().isBannerOption($account))
+	#if ($account.getListOption() == 1)
 		<table align="center" background="images/bkg-topbar.gif" cellpadding="5" width="100%">
 		<tr><td>
 		<center>

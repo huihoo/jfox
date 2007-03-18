@@ -17,11 +17,5 @@ public interface EntityObject extends Serializable, Cloneable {
 
     void setColumnValue(String colName, Object colValue);
 
-    /**
-     * 得到 该 DO 的帮助类
-     * 没有实现方法，通过动态代理，获得 DO 的 @DOHelper指定的类
-     */
-    Object helper();
-
     Object clone() throws CloneNotSupportedException;
 }

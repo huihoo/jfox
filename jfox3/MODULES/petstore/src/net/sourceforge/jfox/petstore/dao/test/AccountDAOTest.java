@@ -1,16 +1,15 @@
 package net.sourceforge.jfox.petstore.dao.test;
 
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
+import net.sourceforge.jfox.entity.EntityManagerExt;
+import net.sourceforge.jfox.entity.dao.DAOSupport;
 import net.sourceforge.jfox.petstore.dao.AccountDAO;
 import net.sourceforge.jfox.petstore.dao.AccountDAOImpl;
 import net.sourceforge.jfox.petstore.entity.Account;
-import net.sourceforge.jfox.entity.EntityManagerExt;
-import net.sourceforge.jfox.entity.EntityObject;
-import net.sourceforge.jfox.entity.dao.DAOSupport;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -43,7 +42,7 @@ public class AccountDAOTest {
     public void testGetAccountByUsername() throws Exception {
         Account account = accountDAO.getAccount("j2ee");
         System.out.println("Account: " + account);
-        System.out.println("bannerOptions:  " + ((Account.AccountHelper)((EntityObject)account).helper()).isBannerOption(account));
+        System.out.println("bannerOptions:  " + Account.AccountHelper.isBannerOption(account));
     }
 
     @Test

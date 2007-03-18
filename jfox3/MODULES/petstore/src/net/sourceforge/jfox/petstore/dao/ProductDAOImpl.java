@@ -31,7 +31,11 @@ import net.sourceforge.jfox.util.VelocityUtils;
         @NamedNativeQuery(
                 name = ProductDAOImpl.GET_PRODUCT_LIST_BY_CATEGORY,
                 query = "select productid, name, descn, category from product where category = $categoryId",
-                resultClass = Product.class
+                resultClass = Product.class,
+                hints = {
+                @QueryHint(name = "cache.config", value = "default"),
+                @QueryHint(name = "cache.partition", value = "product")
+                        }
         ),
         @NamedNativeQuery(
                 name = ProductDAOImpl.SEARCH_PRODUCT,

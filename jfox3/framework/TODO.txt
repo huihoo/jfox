@@ -249,3 +249,7 @@
 
 2007-03-15
     1. petstore 支持 HypersonicSQL
+
+2007-03-17
+    1. 支持 FreeMarker
+    2. 去掉了 @Helper，需要修改 petstore

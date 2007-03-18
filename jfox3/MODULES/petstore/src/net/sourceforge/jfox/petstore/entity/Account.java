@@ -1,16 +1,13 @@
 package net.sourceforge.jfox.petstore.entity;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
 import javax.persistence.Column;
-
-import net.sourceforge.jfox.entity.annotation.EntityHelper;
+import javax.persistence.Entity;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Entity
-@EntityHelper(Account.AccountHelper.class)
 public interface Account extends Serializable {
 
     @Column(name="userid") // signon.username
@@ -86,11 +83,11 @@ public interface Account extends Serializable {
     void setBannerName(String bannerName);
 
     public static class AccountHelper {
-        public boolean isListOption(Account account) {
+        public static boolean isListOption(Account account) {
             return account.getListOption() == 1 ? true : false;
         }
 
-        public boolean isBannerOption(Account account) {
+        public static boolean isBannerOption(Account account) {
             return account.getBannerOption() == 1 ? true : false;
         }
     }

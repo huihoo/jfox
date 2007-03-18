@@ -35,7 +35,6 @@ public class DAOTest {
     @Test
     public void testGetAccount() throws Exception {
         Account account = accountDAO.getAccountById(1L);
-        System.out.println("Account: " + account + ", Helper toString: " + ((Account.Helper)((EntityObject)account).helper()).toString(account));
         System.out.println("Account Address: " + account.getAddress());
         Assert.assertEquals(account.getId(),1L);
     }
@@ -43,7 +42,6 @@ public class DAOTest {
     @Test
     public void testGetAccountBySQL() throws Exception {
         Account account = accountDAO.getAccountByIdSQL(1L);
-        System.out.println("Account: " + account + ", Helper toString: " + ((Account.Helper)((EntityObject)account).helper()).toString(account));
         System.out.println("Account Address: " + account.getAddress());
         Assert.assertEquals(account.getId(),1L);
     }
