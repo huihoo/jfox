@@ -18,11 +18,13 @@ import net.sourceforge.jfox.mvc.PageContext;
 import net.sourceforge.jfox.mvc.Render;
 import net.sourceforge.jfox.mvc.WebContextLoader;
 import net.sourceforge.jfox.mvc.servlet.ControllerServlet;
+import org.apache.log4j.Logger;
 
 /**
  * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
  */
 public class FreemarkerRender implements Render {
+    static Logger logger = Logger.getLogger(FreemarkerRender.class); 
     /**
      * Encoding for the output stream
      */
@@ -45,6 +47,7 @@ public class FreemarkerRender implements Render {
     }
 
     public void init(ServletConfig config) throws ServletException {
+        logger.info("Initializaing freemarker...");
         Map<String, File> modulePath2File = WebContextLoader.getModulePath2FileMap();
 
         try {

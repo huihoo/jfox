@@ -11,7 +11,7 @@ import net.sourceforge.jfox.framework.annotation.Service;
 @Service(id="carts")
 public class CartsAction extends ActionSupport {
 
-    @ActionMethod(successView = "template/carts.vhtml")
+    @ActionMethod(successView = "template/carts.fhtml")
     public void doGetView(InvocationContext invocationContext) throws Exception{
 
     }
