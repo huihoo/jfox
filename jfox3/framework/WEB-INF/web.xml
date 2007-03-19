@@ -52,7 +52,8 @@
         <servlet-class>net.sourceforge.jfox.mvc.servlet.ControllerServlet</servlet-class>
         <init-param>
             <param-name>MAX_UPLOAD_FILE_SIZE</param-name>
-            <param-value>5000000</param-value> <!-- 5Mbytes -->
+            <param-value>5000000</param-value>
+            <!-- 5Mbytes -->
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -68,6 +69,11 @@
             <description>velocity render</description>
             <param-name>net.sourceforge.jfox.mvc.velocity.VelocityRender</param-name>
             <param-value>*.vm,*.tmpl,*.vhtm,*.vhtml</param-value>
+        </init-param>
+        <init-param>
+            <description>freemarker render</description>
+            <param-name>net.sourceforge.jfox.mvc.freemarker.FreemarkerRender</param-name>
+            <param-value>*.ftl,*.fhtm,*.fhtml</param-value>
         </init-param>
         <!--
         <init-param>
@@ -98,6 +104,18 @@
     <servlet-mapping>
         <servlet-name>template_servlet</servlet-name>
         <url-pattern>*.vhtml</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>template_servlet</servlet-name>
+        <url-pattern>*.ftl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>template_servlet</servlet-name>
+        <url-pattern>*.fhtm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>template_servlet</servlet-name>
+        <url-pattern>*.fhtml</url-pattern>
     </servlet-mapping>
 
 </web-app>
