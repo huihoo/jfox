@@ -28,14 +28,11 @@ public class FreemarkerRender implements Render {
      */
     public static final String DEFAULT_OUTPUT_ENCODING = "ISO-8859-1";
 
-    private String outputEncoding = "UTF-8";
-
     /**
      * The default content type for the response
      */
     public static final String DEFAULT_CONTENT_TYPE = "text/html";
     private String defaultContentType = DEFAULT_CONTENT_TYPE;
-
 
     /**
      * 每个 Module 对应的 Configuration
@@ -56,8 +53,6 @@ public class FreemarkerRender implements Render {
                 File moduleDir = entry.getValue();
                 String templateBaseDir = moduleDir.getCanonicalFile().getAbsoluteFile().getPath() + "/" + ControllerServlet.VIEW_DIR;
 
-                outputEncoding = ControllerServlet.DEFAULT_ENCODING;
-
                 Configuration configuration = new Configuration();
                 configuration.setDefaultEncoding(ControllerServlet.DEFAULT_ENCODING);
                 configuration.setOutputEncoding(ControllerServlet.DEFAULT_ENCODING);
@@ -74,7 +69,6 @@ public class FreemarkerRender implements Render {
     }
 
     public void render(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        //TODO: detect ContentType
         response.setContentType(getContentType());
         Locale locale = request.getLocale();
         String servletPath = request.getServletPath();
@@ -126,7 +120,7 @@ public class FreemarkerRender implements Render {
             throw new IOException("Can not found velocity engine for servlet path: " + servletPath);
         }
 
-        return engine.getTemplate(templateName, locale, outputEncoding);
+        return engine.getTemplate(templateName, locale);
     }
 
     /**
@@ -140,8 +134,7 @@ public class FreemarkerRender implements Render {
      * @throws TemplateException if thrown by FreeMarker
      * @see freemarker.template.Template#process(Object,java.io.Writer)
      */
-    protected void processTemplate(Template template, Map model, HttpServletResponse response)
-            throws IOException, TemplateException {
+    protected void processTemplate(Template template, Map model, HttpServletResponse response) throws IOException, TemplateException {
         template.process(model, response.getWriter());
     }
 
@@ -158,7 +151,7 @@ public class FreemarkerRender implements Render {
         if (index <= 0 || (index < contentType.length() &&
                 contentType.indexOf("charset", index) == -1)) {
             // Append the character encoding which we'd like to use.
-            String encoding = outputEncoding;
+            String encoding = ControllerServlet.DEFAULT_ENCODING;
             //System.out.println("Chose output encoding of '" +
             //                   encoding + '\'');
             if (!DEFAULT_OUTPUT_ENCODING.equalsIgnoreCase(encoding)) {
@@ -166,8 +159,6 @@ public class FreemarkerRender implements Render {
             }
         }
         response.setContentType(contentType);
-        //System.out.println("Response Content-Type set to '" +
-        //                   contentType + '\'');
     }
 
     public static void main(String[] args) {
