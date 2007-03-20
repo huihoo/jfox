@@ -23,7 +23,7 @@ public class WebContextLoader implements ServletContextListener {
 
     private static Logger logger = Logger.getLogger(WebContextLoader.class);
 
-    private Framework framework = null;
+    private static Framework framework = null;
 
     /**
      * Module Dir Name => Module Path
@@ -75,6 +75,13 @@ public class WebContextLoader implements ServletContextListener {
             logger.error("Start framework failed!", e);
         }
         logger.info("JFox started in " + ((System.currentTimeMillis() - now) / 1000) + " seconds!");
+    }
+
+    /**
+     * 返回 framework, 供Web management console用
+     */
+    public static Framework getManagedFramework(){
+        return framework;
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
