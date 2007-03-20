@@ -28,7 +28,7 @@
             font-size: 110%;
             font-weight: normal;
             font-style: italic;
-            background: Silver;
+            background: #D2A41C;
             text-align: left;
         }
 
@@ -38,7 +38,7 @@
         }
 
         td.menu {
-            background: #EAEAEA;
+            background: #FFDC75;
         }
 
         .center {
