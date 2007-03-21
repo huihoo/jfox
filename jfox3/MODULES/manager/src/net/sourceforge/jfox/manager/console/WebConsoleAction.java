@@ -1,16 +1,14 @@
-package net.sourceforge.jfox.manager;
+package net.sourceforge.jfox.manager.console;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-import net.sourceforge.jfox.mvc.InvocationContext;
-import net.sourceforge.jfox.mvc.WebContextLoader;
-import net.sourceforge.jfox.mvc.PageContext;
-import net.sourceforge.jfox.mvc.annotation.ActionMethod;
 import net.sourceforge.jfox.framework.Framework;
 import net.sourceforge.jfox.framework.component.Module;
-import net.sourceforge.jfox.framework.component.Component;
-import net.sourceforge.jfox.ejb3.EJBContainer;
+import net.sourceforge.jfox.mvc.InvocationContext;
+import net.sourceforge.jfox.mvc.PageContext;
+import net.sourceforge.jfox.mvc.WebContextLoader;
+import net.sourceforge.jfox.mvc.annotation.ActionMethod;
 
 /**
  *
@@ -18,6 +16,11 @@ import net.sourceforge.jfox.ejb3.EJBContainer;
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
 public class WebConsoleAction {
+
+    @ActionMethod(successView = "console.vhtml")
+    public void doGetView(InvocationContext invocationContext) throws Exception {
+
+    }
 
     //DataSource, NamedNativeQuery, PersistenceUnit
     @ActionMethod(successView = "jpaview.vhtml")

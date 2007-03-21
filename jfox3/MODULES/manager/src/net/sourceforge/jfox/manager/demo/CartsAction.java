@@ -1,4 +1,4 @@
-package net.sourceforge.jfox.manager;
+package net.sourceforge.jfox.manager.demo;
 
 import java.util.ArrayList;
 
@@ -16,12 +16,12 @@ import net.sourceforge.jfox.mvc.annotation.ActionMethod;
 @Service(id="carts")
 public class CartsAction extends ActionSupport {
 
-    @ActionMethod(successView = "template/carts.fhtml")
+    @ActionMethod(successView = "demo/carts.fhtml")
     public void doGetView(InvocationContext invocationContext) throws Exception{
 
     }
 
-    @ActionMethod(successView = "template/carts.fhtml", invocationClass = CartInvocation.class)
+    @ActionMethod(successView = "demo/carts.fhtml", invocationClass = CartInvocation.class)
     public void doPostSubmit(InvocationContext invocationContext) throws Exception {
         CartInvocation invocation = (CartInvocation)invocationContext.getInvocation();
         SessionContext sessionContext = invocationContext.getSessionContext();

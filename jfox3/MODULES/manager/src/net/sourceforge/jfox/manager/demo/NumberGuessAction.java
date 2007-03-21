@@ -1,4 +1,4 @@
-package net.sourceforge.jfox.manager;
+package net.sourceforge.jfox.manager.demo;
 
 import java.util.Random;
 
@@ -16,7 +16,7 @@ import net.sourceforge.jfox.framework.annotation.Service;
 @Service(id = "numberguess")
 public class NumberGuessAction extends ActionSupport {
 
-    @ActionMethod(successView = "template/numberguess.vhtml", invocationClass = NumberGuessInvocation.class)
+    @ActionMethod(successView = "demo/numberguess.vhtml", invocationClass = NumberGuessInvocation.class)
     public void doGetView(InvocationContext invocationContext) throws Exception {
         NumberGuessInvocation invocation = (NumberGuessInvocation)invocationContext.getInvocation();
 
@@ -58,7 +58,7 @@ public class NumberGuessAction extends ActionSupport {
 
     }
 
-    @ActionMethod(successView = "template/numberguess.vhtml", invocationClass = NumberGuessInvocation.class)
+    @ActionMethod(successView = "demo/numberguess.vhtml", invocationClass = NumberGuessInvocation.class)
     public void doPostView(InvocationContext invocationContext) throws Exception {
         doGetView(invocationContext);
     }

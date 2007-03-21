@@ -1,4 +1,4 @@
-package net.sourceforge.jfox.manager;
+package net.sourceforge.jfox.manager.demo;
 
 import net.sourceforge.jfox.mvc.ActionSupport;
 import net.sourceforge.jfox.mvc.InvocationContext;
@@ -14,12 +14,12 @@ import net.sourceforge.jfox.framework.annotation.Service;
 @Service(id = "demoupload")
 public class DemoUploadAction extends ActionSupport {
 
-    @ActionMethod(successView = "template/upload.vhtml")
+    @ActionMethod(successView = "demo/upload.vhtml")
     public void doGetView(InvocationContext invocationContext) throws Exception {
         // donothing
     }
 
-    @ActionMethod(successView = "template/upload.vhtml", invocationClass = UploadInvocation.class)
+    @ActionMethod(successView = "demo/upload.vhtml", invocationClass = UploadInvocation.class)
     public void doPostUpload(InvocationContext invocationContext) throws Exception {
         UploadInvocation invocation = (UploadInvocation)invocationContext.getInvocation();
         FileUploaded uploadFile = invocation.getUploadFile();

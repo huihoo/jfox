@@ -1,4 +1,4 @@
-package net.sourceforge.jfox.manager;
+package net.sourceforge.jfox.manager.demo;
 
 import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.mvc.ActionSupport;
@@ -13,12 +13,12 @@ import net.sourceforge.jfox.mvc.annotation.ActionMethod;
 @Service(id="checkbox")
 public class CheckboxAction extends ActionSupport {
 
-    @ActionMethod(successView = "template/checkbox.vhtml")
+    @ActionMethod(successView = "demo/checkbox.vhtml")
     public void doGetView(InvocationContext invocationContext) throws Exception{
         // do nothing, just show template
     }
 
-    @ActionMethod(successView = "template/checkbox.vhtml", invocationClass = CheckboxInvocation.class)
+    @ActionMethod(successView = "demo/checkbox.vhtml", invocationClass = CheckboxInvocation.class)
     public void doPostSubmit(InvocationContext invocationContext) throws Exception{
         CheckboxInvocation invocation = (CheckboxInvocation)invocationContext.getInvocation();
         String[] fruits = invocation.getFruit();
