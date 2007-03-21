@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Collection;
 
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
@@ -387,34 +388,34 @@ public class Module implements Comparable<Module> {
         return repo.getModuleComponentMetas();
     }
 
-    public Component[] findComponentByInterface(Class<?> interfaceClass) {
-        List<Component> components = new ArrayList<Component>();
+    public <T extends Component> Collection<T> findComponentByInterface(Class<T> interfaceClass) {
+        List<T> components = new ArrayList<T>();
         for (ComponentMeta meta : repo.getModuleComponentMetas()) {
             if (meta.isImplemented(interfaceClass)) {
                 try {
-                    components.add(meta.getComponentInstance());
+                    components.add((T)meta.getComponentInstance());
                 }
                 catch (ComponentInstantiateException e) {
                     logger.warn("Component instantiate failed, id=" + meta.getComponentId(), e);
                 }
             }
         }
-        return components.toArray(new Component[components.size()]);
+        return Collections.unmodifiableCollection(components);
     }
 
-    public Component[] findComponentByInterface(Class<?> interfaceClass, String moduleName) {
-        List<Component> components = new ArrayList<Component>();
+    public <T extends Component> Collection<T> findComponentByInterface(Class<T> interfaceClass, String moduleName) {
+        List<T> components = new ArrayList<T>();
         for (ComponentMeta meta : repo.getModuleComponentMetas(moduleName)) {
             if (meta.isImplemented(interfaceClass)) {
                 try {
-                    components.add(meta.getComponentInstance());
+                    components.add((T)meta.getComponentInstance());
                 }
                 catch (ComponentInstantiateException e) {
                     logger.warn("Component instantiate failed, id=" + meta.getComponentId(), e);
                 }
             }
         }
-        return components.toArray(new Component[components.size()]);
+        return Collections.unmodifiableCollection(components);
     }
 
 

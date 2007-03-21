@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Collection;
 
 import net.sourceforge.jfox.framework.BaseException;
 import net.sourceforge.jfox.framework.BaseRuntimeException;
@@ -111,11 +112,11 @@ public class ComponentContext {
      * 
      * @param interfaceClass interface class
      */
-    public Component[] findComponentBySuper(Class interfaceClass) {
+    public <T extends Component> Collection<T> findComponentBySuper(Class<T> interfaceClass) {
         return getModule().findComponentByInterface(interfaceClass);
     }
 
-    public Component[] findComponentBySuper(Class interfaceClass, String moduleName) {
+    public <T extends Component> Collection<T> findComponentBySuper(Class<T> interfaceClass, String moduleName) {
         return getModule().findComponentByInterface(interfaceClass, moduleName);
     }
 

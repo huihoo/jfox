@@ -201,8 +201,7 @@ public class Framework {
     }
 
     public void stop() {
-        List<Module> allModules = new ArrayList<Module>(modules.values());
-        Collections.sort(allModules);
+        List<Module> allModules = getAllModules();
         Collections.reverse(allModules);
         for (Module module : allModules) {
             module.unload();
@@ -211,6 +210,13 @@ public class Framework {
         started = false;
         getEventManager().fireFrameworkEvent(new FrameworkStoppedEvent(this));
         logger.info("Framework stopped!");
+    }
+
+    public List<Module> getAllModules(){
+        List<Module> allModules = new ArrayList<Module>(modules.values());
+        Collections.sort(allModules);
+        Collections.reverse(allModules);
+        return Collections.unmodifiableList(allModules);
     }
 
     public static void main(String[] args) throws Exception {

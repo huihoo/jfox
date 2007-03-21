@@ -1,16 +1,16 @@
 package net.sourceforge.jfox.framework.dependent;
 
 import java.lang.reflect.Field;
+import java.util.Collection;
+import javax.annotation.Resource;
 import javax.ejb.EJBObject;
 import javax.naming.NamingException;
-import javax.annotation.Resource;
 
-import org.apache.log4j.Logger;
-import net.sourceforge.jfox.framework.component.ComponentContext;
-import net.sourceforge.jfox.framework.component.Component;
-import net.sourceforge.jfox.framework.component.SystemModule;
-import net.sourceforge.jfox.ejb3.EJBContainer;
 import net.sourceforge.jfox.ejb3.EJBBucket;
+import net.sourceforge.jfox.ejb3.EJBContainer;
+import net.sourceforge.jfox.framework.component.ComponentContext;
+import net.sourceforge.jfox.framework.component.SystemModule;
+import org.apache.log4j.Logger;
 
 /**
  * 注入 Field Level @EJB
@@ -36,14 +36,14 @@ public class FieldResourceDependence implements Dependence {
 
         EJBObject targetResourceObject = null; // resolve dependence
 
-        Component[] ejbContainers = componentContext.findComponentBySuper(EJBContainer.class, SystemModule.name);
+        Collection<EJBContainer> ejbContainers = componentContext.findComponentBySuper(EJBContainer.class, SystemModule.name);
 
-        if (ejbContainers.length == 0) {
+        if (ejbContainers.isEmpty()) {
             logger.warn("@Resource will not be injected, no EJBCotaner deployed! " + resource);
             return;
         }
 
-        EJBContainer ejbContainer = (EJBContainer)ejbContainers[0];
+        EJBContainer ejbContainer = (EJBContainer)ejbContainers.iterator().next();
         if (!beanInterface.equals(Object.class)) { // 解析 beanInterface
             EJBBucket[] bucket = ejbContainer.getEJBBucketByBeanInterface(beanInterface);
             if (bucket.length == 0) {

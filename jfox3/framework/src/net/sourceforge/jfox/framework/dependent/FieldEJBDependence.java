@@ -1,6 +1,7 @@
 package net.sourceforge.jfox.framework.dependent;
 
 import java.lang.reflect.Field;
+import java.util.Collection;
 import javax.ejb.EJB;
 import javax.ejb.EJBObject;
 import javax.naming.NamingException;
@@ -37,14 +38,14 @@ public class FieldEJBDependence implements Dependence {
         Class beanInterface = ejb.beanInterface();
 
         EJBObject targetEJBObject; // resolve dependence
-        Component[] ejbContainers = componentContext.findComponentBySuper(EJBContainer.class, SystemModule.name);
+        Collection<EJBContainer> ejbContainers = componentContext.findComponentBySuper(EJBContainer.class, SystemModule.name);
 
-        if (ejbContainers.length == 0) {
+        if (ejbContainers.isEmpty()) {
             logger.warn("@EJB will not be injected, no EJBCotaner deployed! " + ejb);
             return;
         }
 
-        EJBContainer ejbContainer = (EJBContainer)ejbContainers[0];
+        EJBContainer ejbContainer = (EJBContainer)ejbContainers.iterator().next();
         if (!beanName.equals("")) { // 分析 beanName
             EJBBucket bucket = ejbContainer.getEJBBucket(beanName);
             if (bucket == null) {

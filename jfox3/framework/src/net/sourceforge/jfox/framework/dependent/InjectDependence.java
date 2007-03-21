@@ -1,9 +1,8 @@
 package net.sourceforge.jfox.framework.dependent;
 
 import java.lang.reflect.Field;
+import java.util.Collection;
 
-import net.sourceforge.jfox.framework.dependent.Dependence;
-import net.sourceforge.jfox.framework.dependent.InjectionException;
 import net.sourceforge.jfox.framework.ComponentId;
 import net.sourceforge.jfox.framework.annotation.Inject;
 import net.sourceforge.jfox.framework.component.Component;
@@ -34,20 +33,24 @@ public class InjectDependence implements Dependence {
             // 默认 type
             fieldType = field.getType();
         }
+        if(Component.class.isAssignableFrom(fieldType)){
+            throw new InjectionException("Only Type implements Component interface can be injected.");
+        }
+
 
         Object target = null;
 
         String value = inject.id(); // value 优先，如果有 value 也有 ref，将使用 value
         if (value.trim().length() == 0) { // 自动发现
-            Component[] components = context.findComponentBySuper(fieldType);
-            if (components.length == 0) {
+            Collection<? extends Component> components = context.findComponentBySuper(fieldType.asSubclass(Component.class));
+            if (components.isEmpty()) {
                 logger.warn("Can not find component implement interface: " + fieldType.getName());
             }
             else {
-                if (components.length > 1) {
+                if (components.size() > 1) {
                     logger.warn("More than one component found implement interface: " + fieldType.getName() + ", use the first one!");
                 }
-                target = components[0];
+                target = components.iterator().next();
             }
         }
         else { // 根据 id 来查找
