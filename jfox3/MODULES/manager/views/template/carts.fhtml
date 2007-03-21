@@ -7,7 +7,7 @@
 <body bgcolor="white">
 <font size=5 color="#CC0000">
     <br> You have the following items in your cart:
-    <#if carts>
+    <#if carts?exists>
     <ol>
         <#list carts as cart>
         <li> ${cart}
