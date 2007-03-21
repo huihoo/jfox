@@ -33,7 +33,7 @@ public class InjectDependence implements Dependence {
             // 默认 type
             fieldType = field.getType();
         }
-        if(Component.class.isAssignableFrom(fieldType)){
+        if(!Component.class.isAssignableFrom(fieldType)){
             throw new InjectionException("Only Type implements Component interface can be injected.");
         }
 
