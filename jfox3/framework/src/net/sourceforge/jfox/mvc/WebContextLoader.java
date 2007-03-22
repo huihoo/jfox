@@ -90,6 +90,7 @@ public class WebContextLoader implements ServletContextListener {
         try {
             if (framework != null) {
                 framework.stop();
+                framework = null;
             }
         }
         catch (Exception e) {
