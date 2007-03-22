@@ -171,30 +171,8 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
     public void moduleChanged(ModuleEvent moduleEvent) {
         if(moduleEvent instanceof ModuleLoadingEvent) {
             Module module = moduleEvent.getModule();
-//            List<Class> namedQueriesClasses = new ArrayList<Class>();
             Class[] namedQueriesClasses = module.getModuleClassLoader().findClassAnnotatedWith(NamedNativeQueries.class);
-
-/*
-            for(ComponentMeta meta : module.getAllComponentMetas()) {
-                if(EJBContainer.class.isAssignableFrom(meta.getImplementationClass())){
-                    // ejb3 container component, find NamedQueries in DAO, DAO is deployed as SessionBean 
-                    try {
-                        EJBContainer ejb3Container = (EJBContainer)meta.getComponentInstance();
-                        EJBBucket[] buckets = ejb3Container.listBuckets();
-                        for(EJBBucket bucket : buckets){
-                            Class<?> beanClass = bucket.getBeanClass();
-                            namedQueriesClasses.add(beanClass);
-                        }
-                    }
-                    catch(ComponentInstantiateException e) {
-                        logger.warn("EJB3Container instantiate failed.",e);
-                    }
-
-                }
-            }
-*/
             registerNamedQueriesByClasses(namedQueriesClasses);
-//            registerNamedQueriesByClasses(namedQueriesClasses.toArray(new Class[namedQueriesClasses.size()]));
         }
 
         if(moduleEvent instanceof ModuleUnloadedEvent){
@@ -202,7 +180,9 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
             Iterator<Map.Entry<String, NamedSQLTemplate>> it =  queryMap.entrySet().iterator();
             while(it.hasNext()){
                 Map.Entry<String, NamedSQLTemplate> entry = it.next();
-                if(entry.getValue().getDefinedClass().getClassLoader() == module.getModuleClassLoader()) {
+                NamedSQLTemplate sqlTemplate = entry.getValue();
+                if(sqlTemplate.getDefinedClass().getClassLoader() == module.getModuleClassLoader()) {
+                    logger.info("Unregister Named Query: " + sqlTemplate.getTemplateSQL() + ", Defined Class: " + sqlTemplate.getDefinedClass().getName());
                     it.remove();
                 }
             }

@@ -243,8 +243,8 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
                 //fireEvent, 以便XFire可以 unregister Endpoint
                 componentContext.fireComponentEvent(new EJBUnloadedComponentEvent(componentContext.getComponentId(), bucket));
                 // destroy ejb bucket
+                logger.info("Unload EJB: " + bucket.getEJBName() + ", Module: " + bucket.getModule().getName());
                 bucket.destroy();
-                logger.info("Unload EJB: " + bucket);
                 try {
                     for (String mappedName : bucket.getMappedNames()) {
                         this.getNamingContext().unbind(mappedName);

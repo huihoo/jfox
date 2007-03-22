@@ -208,6 +208,7 @@ public class SQLQuery extends QueryExt {
         // expression's result
         final List<Object> expressionResults = new ArrayList<Object>();
 
+        // nativeSQL 不一定是固定的，比如有 if 判断的时候，所以每次都要生成
         nativeSQL = VelocityUtils.evaluate(sqlTemplate.getTemplateSQL(), parameterMap, new ReferenceInsertionEventHandler() {
             public Object referenceInsert(String reference, Object value) {
                 expressions.add(reference);

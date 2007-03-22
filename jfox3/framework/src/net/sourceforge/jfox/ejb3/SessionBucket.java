@@ -536,7 +536,7 @@ public abstract class SessionBucket implements EJBBucket {
     }
 
     public String toString() {
-        return "SessionBucket: " + getEJBName();
+        return "EJB: " + getEJBName();
     }
 
     /**

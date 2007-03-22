@@ -191,7 +191,7 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
      * destroy bucket, invoke when container unload ejb
      */
     public void destroy() {
-        // do nothing
+        logger.debug("Destroy EJB: " + getEJBName() + ", Module: " + getModule().getName());
         try {
             pool.clear();
             pool.close();
