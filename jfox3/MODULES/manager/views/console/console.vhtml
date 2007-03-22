@@ -52,6 +52,12 @@ H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;fon
     font-family:sans-serif,Tahoma,Arial;
     color: black;
   }
+  td.menu {
+    text-align: center;
+    vertical-align: top;
+    font-family:sans-serif,Tahoma,Arial;
+    color: black;
+  }
   TH {
     text-align: center;
     vertical-align: top;
@@ -66,38 +72,43 @@ H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;fon
     color: black;
   }
 </style>
-<title>/manager</title>
+<title>JFox Management Console</title>
 </head>
 <body bgcolor="#FFFFFF">
 <table cellspacing="4" width="100%" border="0">
   <tr>
-    <td><a href="http://www.apache.org/"><img border="0" alt="The Apache Software Foundation" align="left"
-         src="../images/asf-logo.gif"></a><a href="http://tomcat.apache.org/"> <img border="0" alt="The Tomcat Servlet/JSP Container"
-         align="right" src="../images/tomcat.gif"> </a> </td>
+    <td><a href="#"><img border="0" alt="JFox 3" align="left" src="images/jfox.jpg"></a>
+        <a href="http://tomcat.apache.org/"> <img border="0" alt="The Tomcat Servlet/JSP Container" align="right" src="images/tomcat.gif"> </a>
+    </td>
   </tr>
 </table>
 <hr size="1" noshade="noshade">
 <table cellspacing="4" cellpadding="4" width="100%" border="0">
-  <tr valign="top">
-    <td width="180" class="header-left" valign="top">
+  <tr>
+    <td width="180" class="menu">
+        <br>
+        <br>
       <table cellspacing="0" width="100%" border="0">
 	  	<tr>
-			<td class="row-center">Menu</td>
+			<td class="title"><big>Menu</big></td>
+		</tr>
+        <tr>
+            <td class="header-left"><small><a href="console.sysinfo.do">System Infomation</a></small> </td>
+        </tr>
+	  	<tr>
+			<td class="header-left"><small>JNDI View</small> </td>
 		</tr>
 	  	<tr>
-			<td class="row-left">JNDI View </td>
+			<td class="header-left"><small>EJB Container</small></td>
 		</tr>
 	  	<tr>
-			<td class="row-left">EJB Container </td>
+			<td class="header-left"><small>Persistence Unit</small> </td>
 		</tr>
 	  	<tr>
-			<td class="row-left">Persistence Unit </td>
+			<td class="header-left"><small>Transaction Manager</small></td>
 		</tr>
 	  	<tr>
-			<td class="row-left">Transaction Manager</td>
-		</tr>
-	  	<tr>
-			<td class="row-left">Modules</td>
+			<td class="header-left"><small>Modules</small></td>
 		</tr>
 	  </table>
     </td>

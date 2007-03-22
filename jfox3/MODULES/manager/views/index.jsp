@@ -28,7 +28,7 @@
             font-size: 110%;
             font-weight: normal;
             font-style: italic;
-            background: Silver;
+            background: #D2A41C;
             text-align: left;
         }
 
@@ -38,7 +38,7 @@
         }
 
         td.menu {
-            background: #EAEAEA;
+            background: #FFDC75;
         }
 
         .center {
@@ -76,7 +76,7 @@
 <!-- Header -->
 <table id="banner" width="100%">
     <tr>
-        <td align="right">
+        <td align="left">
             <a href="http://code.google.com/p/jfox">
                 <img src="images/jfox.jpg" alt="JFox Java EE Application Server!"/>
             </a>
