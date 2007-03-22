@@ -45,6 +45,7 @@ public class WebContextLoader implements ServletContextListener {
         //记录启动消耗时间
         long now = System.currentTimeMillis();
         framework = new Framework();
+
         try {
             String _modulesDir = servletContextEvent.getServletContext().getInitParameter(MODULES_DIR);
             if (_modulesDir == null || _modulesDir.trim().length() == 0) {
@@ -69,6 +70,7 @@ public class WebContextLoader implements ServletContextListener {
                     registerModulePath(_modulesDir + "/" + moduleDir.getName(), moduleDir);
                 }
             }
+
             framework.start();
         }
         catch (Exception e) {

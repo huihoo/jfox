@@ -201,7 +201,7 @@ public class Framework {
     }
 
     public void stop() {
-        List<Module> allModules = getAllModules();
+        List<Module> allModules = new ArrayList<Module>(getAllModules());
         Collections.reverse(allModules);
         for (Module module : allModules) {
             module.unload();

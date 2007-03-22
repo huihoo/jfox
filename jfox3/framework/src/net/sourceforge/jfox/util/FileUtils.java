@@ -14,12 +14,15 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
-import java.util.zip.ZipEntry;
+import java.util.Map;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
-import java.util.jar.JarFile;
-import java.util.jar.JarEntry;
+import java.util.zip.ZipEntry;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -50,10 +53,12 @@ public class FileUtils {
      * The separator character that is the opposite of the system separator.
      */
     private static final char OTHER_SEPARATOR;
+
     static {
         if (SYSTEM_SEPARATOR == WINDOWS_SEPARATOR) {
             OTHER_SEPARATOR = UNIX_SEPARATOR;
-        } else {
+        }
+        else {
             OTHER_SEPARATOR = WINDOWS_SEPARATOR;
         }
     }
@@ -415,52 +420,66 @@ public class FileUtils {
      * @param location url location
      * @throws IOException ioexception
      */
-    public static String[] getClassNames(URL location) throws IOException {
+    public static Map<String, byte[]> getClassMap(URL location) throws IOException {
         File file = toFile(location);
-        return getClassNames(file);
+        return getClassMap(file);
     }
 
     /**
      * 从文件或目录中搜索所有的 class 文件
-     * @param jar file
-     * @return 返回所有的类名
+     *
+     * @param file file
+     * @return classname=>class bytes
      * @throws IOException ioexception
      */
-    public static String[] getClassNames(File jar) throws IOException {
-        List<String> classNames = new ArrayList<String>();
-        if (jar.isDirectory()) {
-            List<File> files = listFiles(jar, FileFilterUtils.suffixFileFilter(".class"));
-            for (File file : files) {
-                String className = file.getPath().substring(jar.getPath().length() + 1);
+    public static Map<String, byte[]> getClassMap(File file) throws IOException {
+        Map<String, byte[]> contents = new HashMap<String, byte[]>();
+        if (file.isDirectory()) {
+            List<File> files = listFiles(file, FileFilterUtils.suffixFileFilter(".class"));
+            for (File _file : files) {
+                String className = _file.getPath().substring(file.getPath().length() + 1);
                 className = className.replaceFirst(".class$", "");
-                className = className.replace(File.separatorChar,'.');
-                classNames.add(className);
+                className = className.replace(File.separatorChar, '.');
+                byte[] content = IOUtils.toByteArray(new FileInputStream(_file));
+                contents.put(className,content);
             }
         }
         else {
-            FileInputStream in = new FileInputStream(jar);
+            JarFile jarFile = new JarFile(file);
+            Enumeration<JarEntry> enu = jarFile.entries();
             try {
-                JarInputStream jarStream = new JarInputStream(in);
-                JarEntry entry;
-                while ((entry = jarStream.getNextJarEntry()) != null) {
+                while (enu.hasMoreElements()) {
+                    JarEntry entry = enu.nextElement();
                     if (entry.isDirectory() || !entry.getName().endsWith(".class")) {
                         continue;
                     }
                     String className = entry.getName();
                     className = className.replaceFirst(".class$", "");
                     className = className.replace('/', '.');
-                    classNames.add(className);
+                    InputStream in = null;
+                    try {
+                        in = new BufferedInputStream(jarFile.getInputStream(entry));
+                        byte[] content = IOUtils.toByteArray(in);
+                        contents.put(className, content);
+                    }
+                    finally {
+                        if(in != null) {
+                            in.close();
+                        }
+                    }
                 }
             }
             finally {
-                in.close();
+                if(jarFile != null) {
+                    jarFile.close();
+                }
             }
         }
-        return classNames.toArray(new String[classNames.size()]);
+        return Collections.unmodifiableMap(contents);
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println(Arrays.toString(getClassNames(new File("framework/lib/log4j-1.2.14.jar").toURI().toURL())));
-        System.out.println(Arrays.toString(getClassNames(new File("framework/classes").toURI().toURL())));
+        System.out.println(getClassMap(new File("framework/lib/log4j-1.2.14.jar").toURI().toURL()));
+        System.out.println(getClassMap(new File("framework/classes").toURI().toURL()));
     }
 }
