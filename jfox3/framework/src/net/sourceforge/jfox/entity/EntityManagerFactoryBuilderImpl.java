@@ -182,7 +182,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
                 Map.Entry<String, NamedSQLTemplate> entry = it.next();
                 NamedSQLTemplate sqlTemplate = entry.getValue();
                 if(sqlTemplate.getDefinedClass().getClassLoader() == module.getModuleClassLoader()) {
-                    logger.info("Unregister Named Query: " + sqlTemplate.getTemplateSQL() + ", Defined Class: " + sqlTemplate.getDefinedClass().getName());
+                    logger.info("Unregister Named Query defined in class: " + sqlTemplate.getDefinedClass().getName() + ", template SQL: " + sqlTemplate.getTemplateSQL());
                     it.remove();
                 }
             }
