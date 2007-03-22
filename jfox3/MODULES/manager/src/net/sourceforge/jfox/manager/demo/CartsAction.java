@@ -2,6 +2,8 @@ package net.sourceforge.jfox.manager.demo;
 
 import java.util.ArrayList;
 
+import javax.ejb.EJB;
+
 import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.mvc.ActionSupport;
 import net.sourceforge.jfox.mvc.Invocation;
@@ -15,6 +17,9 @@ import net.sourceforge.jfox.mvc.annotation.ActionMethod;
  */
 @Service(id="carts")
 public class CartsAction extends ActionSupport {
+
+    @EJB
+    ICarts carts;
 
     @ActionMethod(successView = "demo/carts.fhtml")
     public void doGetView(InvocationContext invocationContext) throws Exception{
