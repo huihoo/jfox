@@ -82,15 +82,19 @@ public class WebContextLoader implements ServletContextListener {
     /**
      * 返回 framework, 供Web management console用
      */
-    public static Framework getManagedFramework(){
+    public static Framework getManagedFramework() {
         return framework;
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
+        //记录停止消耗时间
+        long now = System.currentTimeMillis();
         try {
             if (framework != null) {
                 framework.stop();
                 framework = null;
+                Thread.sleep(2000);
+                logger.info("JFox stopped in " + ((System.currentTimeMillis() - now) / 1000) + " seconds!");
             }
         }
         catch (Exception e) {

@@ -187,6 +187,20 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
         return ejbContext;
     }
 
+    /**
+     * destroy bucket, invoke when container unload ejb
+     */
+    public void destroy() {
+        // do nothing
+        try {
+            pool.clear();
+            pool.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     class StatefulEJBContextImpl extends EJBContextImpl {
 
         public StatefulEJBContextImpl(EJBObjectId ejbObjectId, Object ejbInstance) {

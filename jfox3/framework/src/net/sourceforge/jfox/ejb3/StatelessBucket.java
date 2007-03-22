@@ -249,6 +249,13 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
      */
     public void destroy() {
         // do nothing
+        try {
+            pool.clear();
+            pool.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**

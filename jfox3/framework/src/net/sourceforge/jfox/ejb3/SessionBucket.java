@@ -535,6 +535,10 @@ public abstract class SessionBucket implements EJBBucket {
         // do nothing
     }
 
+    public String toString() {
+        return "SessionBucket: " + getEJBName();
+    }
+
     /**
      * 通过动态代理过来的接口方法，取得 Bean 实体方法，以便可以获得 Annotation
      *

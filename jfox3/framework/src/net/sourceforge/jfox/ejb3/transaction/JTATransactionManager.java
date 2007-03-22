@@ -52,12 +52,6 @@ public class JTATransactionManager implements TransactionManager {
         logger.debug("postUnregister");
         // 需要调用 stop 方法，以停止 jotm 的线程，使程序能正常终止
         jotm.stop();
-        try {
-            Thread.sleep(2000);
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void begin() throws NotSupportedException, SystemException {
