@@ -54,7 +54,7 @@ public class ASMClassLoader extends URLClassLoader {
         for (URL url : urls) {
             try {
 //                classNames.addAll(Arrays.asList(FileUtils.getClassNames(url)));
-                classBytesArray.addAll(FileUtils.getClassMap(url).values());
+                classBytesArray.addAll(FileUtils.getClassBytesMap(url).values());
             }
             catch (IOException e) {
                 logger.warn("Failed to get Class names from url: " + url.toString());

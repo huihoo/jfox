@@ -420,9 +420,9 @@ public class FileUtils {
      * @param location url location
      * @throws IOException ioexception
      */
-    public static Map<String, byte[]> getClassMap(URL location) throws IOException {
+    public static Map<String, byte[]> getClassBytesMap(URL location) throws IOException {
         File file = toFile(location);
-        return getClassMap(file);
+        return getClassBytesMap(file);
     }
 
     /**
@@ -432,7 +432,7 @@ public class FileUtils {
      * @return classname=>class bytes
      * @throws IOException ioexception
      */
-    public static Map<String, byte[]> getClassMap(File file) throws IOException {
+    public static Map<String, byte[]> getClassBytesMap(File file) throws IOException {
         Map<String, byte[]> contents = new HashMap<String, byte[]>();
         if (file.isDirectory()) {
             List<File> files = listFiles(file, FileFilterUtils.suffixFileFilter(".class"));
@@ -479,7 +479,7 @@ public class FileUtils {
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println(getClassMap(new File("framework/lib/log4j-1.2.14.jar").toURI().toURL()));
-        System.out.println(getClassMap(new File("framework/classes").toURI().toURL()));
+        System.out.println(getClassBytesMap(new File("framework/lib/log4j-1.2.14.jar").toURI().toURL()));
+        System.out.println(getClassBytesMap(new File("framework/classes").toURI().toURL()));
     }
 }
