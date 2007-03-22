@@ -53,6 +53,7 @@ public class PlaceholderUtils {
             if (in != null) {
                 Properties prop = new Properties();
                 prop.load(in);
+                in.close();
                 instance.loadProperties(prop);
                 loadedProperties.add(filename);
             }
@@ -83,7 +84,8 @@ public class PlaceholderUtils {
     public String evaluate(URL url) throws IOException {
         InputStream in = url.openStream();
         if (in != null) {
-            String content = IOUtils.toString(url.openStream());
+            String content = IOUtils.toString(in);
+            in.close();
             return evaluate(content);
         }
         else {

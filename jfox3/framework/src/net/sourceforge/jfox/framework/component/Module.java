@@ -1,6 +1,7 @@
 package net.sourceforge.jfox.framework.component;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -149,7 +150,14 @@ public class Module implements Comparable<Module> {
      */
     public URL getDescriptorURL() {
         if (descriptorURL == null) {
-            descriptorURL = getModuleClassLoader().getResource(Constants.MODULE_CONFIG_FILENAME);
+            try {
+                descriptorURL = new File(getModuleDir(), Constants.MODULE_CONFIG_DIR + "/" + Constants.MODULE_CONFIG_FILENAME).toURI().toURL();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            // 不用 ClassLoader.getResource，会造成无法释放资源，而是 Web Application undeploy 失败
+//            descriptorURL = getModuleClassLoader().getResource(Constants.MODULE_CONFIG_FILENAME);
         }
         return descriptorURL;
     }
