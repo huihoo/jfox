@@ -139,6 +139,7 @@ public class VelocityRender implements Render {
         InputStream in = this.getClass().getClassLoader().getResourceAsStream(VELOCITY_PROPERTIES);
         Properties p = new Properties();
         p.load(in);
+        in.close();
         return p;
     }
 
