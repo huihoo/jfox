@@ -101,7 +101,7 @@ public class Module implements Comparable<Module> {
      * @throws ComponentNotFoundException not found component
      */
     public void unloadComponent(ComponentId id) throws ComponentNotFoundException {
-        logger.info("Unload component: " + id);
+        logger.info("Unload component: " + id + ", Module: " + getName());
         if (isComponentLoaded(id)) {
             try {
                 ComponentMeta meta = repo.getComponentMeta(id);

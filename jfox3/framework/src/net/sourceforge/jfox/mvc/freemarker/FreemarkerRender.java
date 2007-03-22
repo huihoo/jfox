@@ -47,7 +47,7 @@ public class FreemarkerRender implements Render {
     }
 
     public void init(ServletConfig config) throws ServletException {
-        logger.info("Initializaing freemarker...");
+        logger.info("Initializaing Freemarker...");
         Map<String, File> modulePath2File = WebContextLoader.getModulePath2FileMap();
 
         try {
@@ -64,11 +64,11 @@ public class FreemarkerRender implements Render {
                 // 注册相对 module template base dir，以便根据访问的 URL，来判断访问的Module，获得 VelocityEngine
                 baseDir2ConfigurationMap.put(modulePath + "/" + ControllerServlet.VIEW_DIR, configuration);
             }
+            logger.info("Freemarker engine initialized!");
         }
         catch (Exception e) {
             throw new ServletException("Error initializing Velocity: " + e, e);
         }
-
     }
 
     public void render(HttpServletRequest request, HttpServletResponse response) throws Exception {
