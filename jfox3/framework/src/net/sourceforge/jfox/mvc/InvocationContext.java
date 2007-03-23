@@ -3,6 +3,8 @@ package net.sourceforge.jfox.mvc;
 import java.util.Map;
 import java.util.HashMap;
 import java.lang.reflect.Method;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -28,11 +30,21 @@ public class InvocationContext {
     private SessionContext sessionContext;
     private Invocation invocation;
 
-    public InvocationContext(String name) {
+    private ServletConfig servletConfig;
+
+    public InvocationContext(ServletConfig servletConfig, String name) {
+        this.servletConfig = servletConfig;
         this.actionName = name;
         this.pageContext = new PageContext();
     }
 
+    public ServletConfig getServletConfig() {
+        return servletConfig;
+    }
+
+    public ServletContext getServletContext(){
+        return servletConfig.getServletContext();
+    }
 
     public Method getActionMethod() {
         return actionMethod;

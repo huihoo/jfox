@@ -9,6 +9,7 @@ import javax.naming.NamingEnumeration;
 
 import net.sourceforge.jfox.ejb3.EJBContainer;
 import net.sourceforge.jfox.framework.Framework;
+import net.sourceforge.jfox.framework.Constants;
 import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.Module;
 import net.sourceforge.jfox.mvc.ActionSupport;
@@ -16,6 +17,7 @@ import net.sourceforge.jfox.mvc.InvocationContext;
 import net.sourceforge.jfox.mvc.PageContext;
 import net.sourceforge.jfox.mvc.WebContextLoader;
 import net.sourceforge.jfox.mvc.annotation.ActionMethod;
+import net.sourceforge.jfox.util.SystemUtils;
 
 /**
  *
@@ -25,9 +27,16 @@ import net.sourceforge.jfox.mvc.annotation.ActionMethod;
 @Service(id = "console")
 public class WebConsoleAction extends ActionSupport {
 
-    @ActionMethod(successView = "console/console.vhtml")
-    public void doGetView(InvocationContext invocationContext) throws Exception {
-
+    @ActionMethod(successView = "console/sysinfo.vhtml")
+    public void doGetSysinfo(InvocationContext invocationContext) throws Exception {
+        PageContext pageContext = invocationContext.getPageContext();
+        pageContext.setAttribute("jfoxVersion", Constants.VERSION);
+        pageContext.setAttribute("webServerVersion", invocationContext.getServletContext().getServerInfo());
+        pageContext.setAttribute("jvmVersion", SystemUtils.JAVA_VERSION);
+        pageContext.setAttribute("jvmVendor", SystemUtils.JAVA_VENDOR);
+        pageContext.setAttribute("osName", SystemUtils.OS_NAME);
+        pageContext.setAttribute("osVersion", SystemUtils.OS_VERSION);
+        pageContext.setAttribute("osArch", SystemUtils.OS_ARCH);
     }
 
     @ActionMethod(successView = "persistence.vhtml")

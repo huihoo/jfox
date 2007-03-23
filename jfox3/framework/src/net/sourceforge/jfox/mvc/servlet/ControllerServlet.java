@@ -49,7 +49,6 @@ public class ControllerServlet extends HttpServlet {
     public static String VIEW_DIR = "views";
     static int MAX_UPLOAD_FILE_SIZE = 5 * 1000 * 1000;
 
-
     public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
         String actionSuffix = servletConfig.getInitParameter(ACTION_SUFFIX_KEY);
@@ -111,7 +110,7 @@ public class ControllerServlet extends HttpServlet {
         String actionName = pathInfo.substring(lastSlashIndex + 1, actionMethodDotIndex);
         String actionMethodName = pathInfo.substring(actionMethodDotIndex + 1, dotDoIndex);
 
-        InvocationContext invocationContext = new InvocationContext(actionMethodName);
+        InvocationContext invocationContext = new InvocationContext(getServletConfig(), actionMethodName);
         invocationContext.setPostMethod(request.getMethod().toUpperCase().equals("POST"));
 
         // 会导致取出的值为数组问题，所以只能使用下面的循环
