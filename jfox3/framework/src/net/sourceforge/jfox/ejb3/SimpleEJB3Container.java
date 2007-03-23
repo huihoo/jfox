@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
+import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -25,6 +26,9 @@ import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
 import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
+import javax.naming.NameClassPair;
+import javax.naming.NamingEnumeration;
+import javax.naming.Binding;
 import javax.transaction.SystemException;
 import javax.transaction.TransactionManager;
 
@@ -152,7 +156,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
 
     public void setTransactionTimeout(int transactionTimeout) {
         this.transactionTimeout = transactionTimeout;
-        if(tm != null) {
+        if (tm != null) {
             tm.setDefaultTransactionTimeout(transactionTimeout);
         }
     }
@@ -417,6 +421,69 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
                 throw new NameNotFoundException(name);
             }
             return jndiMap.get(name);
+        }
+
+        public NamingEnumeration<NameClassPair> list(String name) throws NamingException {
+            final NamingEnumeration<Binding> bindings = listBindings(name);
+            return new NamingEnumeration<NameClassPair>() {
+                public NameClassPair next() throws NamingException {
+                    return bindings.next();
+                }
+
+                public boolean hasMore() throws NamingException {
+                    return bindings.hasMore();
+                }
+
+                public void close() throws NamingException {
+                    bindings.close();
+                }
+
+                public boolean hasMoreElements() {
+                    return bindings.hasMoreElements();
+                }
+
+                public NameClassPair nextElement() {
+                    return bindings.nextElement();
+                }
+            };
+        }
+
+        public NamingEnumeration<Binding> listBindings(String name) throws NamingException {
+            final Map<String, Object> namingMap = new HashMap<String, Object>();
+            if (name == null || name.trim().length() == 0 || name.trim().equals("/")) { // all Bindings
+                namingMap.putAll(jndiMap);
+            }
+            else {
+                namingMap.put(name, jndiMap.get(name));
+            }
+            final Iterator<Map.Entry<String, Object>> iterator = namingMap.entrySet().iterator();
+            return new NamingEnumeration<Binding>() {
+                public boolean hasMore() throws NamingException {
+                    return iterator.hasNext();
+                }
+
+                public Binding next() throws NamingException {
+                    Map.Entry<String, Object> entry = iterator.next();
+                    return new Binding(entry.getKey(), entry.getValue());
+                }
+
+                public void close() throws NamingException {
+                    // do nothing
+                }
+
+                public boolean hasMoreElements() {
+                    return iterator.hasNext();
+                }
+
+                public Binding nextElement() {
+                    try {
+                        return next();
+                    }
+                    catch (NamingException nException) {
+                        throw new EJBException("NamingEnumeration.nextElement exception.", nException);
+                    }
+                }
+            };
         }
     }
 
