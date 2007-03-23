@@ -68,6 +68,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
     // Transaction Manager
     private JTATransactionManager tm = null;
 
+    // default Transaction timeout
     @Constant(type = Integer.class, value = "$jta_transaction_timeout")
     private int transactionTimeout = 30; // default transaction timeout 30 seconds
 
@@ -110,6 +111,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         InitialContextFactoryImpl.setInitialContext(namingContext);
 
         tm = JTATransactionManager.getIntsance();
+        tm.setDefaultTransactionTimeout(getTransactionTimeout());
         timerService = new ContainerTimerService();
 
         // 将 TransactionManager 注册 java:/TransactionManager
@@ -150,6 +152,9 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
 
     public void setTransactionTimeout(int transactionTimeout) {
         this.transactionTimeout = transactionTimeout;
+        if(tm != null) {
+            tm.setDefaultTransactionTimeout(transactionTimeout);
+        }
     }
 
     /**

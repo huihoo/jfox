@@ -27,6 +27,8 @@ public class JTATransactionManager implements TransactionManager {
 
     private Jotm jotm;
 
+    private int DefaultTransactionTimeout = 60; // default as JOTM
+
     public static JTATransactionManager getIntsance(){
         return Holder.jtaTransactionManager;
     }
@@ -54,8 +56,18 @@ public class JTATransactionManager implements TransactionManager {
         jotm.stop();
     }
 
+    public int getDefaultTransactionTimeout() {
+        return DefaultTransactionTimeout;
+    }
+
+    public void setDefaultTransactionTimeout(int defaultTransactionTimeout) {
+        DefaultTransactionTimeout = defaultTransactionTimeout;
+    }
+
     public void begin() throws NotSupportedException, SystemException {
-        jotm.getTransactionManager().begin();
+        TransactionManager transactionManager =jotm.getTransactionManager();
+        transactionManager.begin();
+        transactionManager.setTransactionTimeout(getDefaultTransactionTimeout());
         final Transaction tx = jotm.getTransactionManager().getTransaction();
         TxConnectionsThreadLocal.setTransaction(tx);
         try {

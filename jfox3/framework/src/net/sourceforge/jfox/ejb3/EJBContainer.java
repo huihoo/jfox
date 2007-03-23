@@ -49,7 +49,11 @@ public interface EJBContainer extends Component {
     TimerService getTimerService();
 
     Context getNamingContext();
-    
+
+    int getTransactionTimeout();
+
+    void setTransactionTimeout(int timeout);
+
     /**
      * 调用EJB方法，通过方法拦截提供事务支持
      * 构造 ejb invocation，并且获得 chain，然后发起调用
