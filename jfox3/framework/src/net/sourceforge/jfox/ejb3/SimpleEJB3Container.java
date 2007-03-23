@@ -70,7 +70,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
 
     // default Transaction timeout
     @Constant(type = Integer.class, value = "$jta_transaction_timeout")
-    private int transactionTimeout = 30; // default transaction timeout 30 seconds
+    private int transactionTimeout = 60; // default transaction timeout 60 seconds
 
     // TimerServer
     private ContainerTimerService timerService = null;
