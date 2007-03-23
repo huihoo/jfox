@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.naming.Binding;
+import javax.naming.NamingEnumeration;
+
 import net.sourceforge.jfox.ejb3.EJBContainer;
 import net.sourceforge.jfox.framework.Framework;
 import net.sourceforge.jfox.framework.annotation.Service;
@@ -27,10 +30,10 @@ public class WebConsoleAction extends ActionSupport {
 
     }
 
-    //DataSource, NamedNativeQuery, PersistenceUnit
-    @ActionMethod(successView = "jpaview.vhtml")
+    @ActionMethod(successView = "persistence.vhtml")
     public void doGetJPAAction(InvocationContext invocationContext) throws Exception{
-
+        //DataSource, NamedNativeQuery, PersistenceUnit
+        
     }
 
     @ActionMethod(successView = "modules.vhtml")
@@ -46,18 +49,23 @@ public class WebConsoleAction extends ActionSupport {
         pageContext.setAttribute("modules", modules);
     }
 
-    @ActionMethod(successView = "jpaview.vhtml")
+    @ActionMethod(successView = "namings.vhtml")
     public void doGetJNDIAction(InvocationContext invocationContext) throws Exception{
+        NamingEnumeration<Binding> bindings = getEJBContainer().getNamingContext().listBindings("");
         
     }
 
-    @ActionMethod(successView = "jpaview.vhtml")
+    @ActionMethod(successView = "container.vhtml")
     public void doGetEJBContainerAction(InvocationContext invocationContext) throws Exception{
-        Framework framework = WebContextLoader.getManagedFramework();
-        Collection<EJBContainer> containers = framework.getSystemModule().findComponentByInterface(EJBContainer.class);
-        EJBContainer container = containers.iterator().next();
+        EJBContainer container = getEJBContainer();
         int defaultTransactionTimeout = container.getTransactionTimeout();
 
+    }
+
+    private EJBContainer getEJBContainer(){
+        Framework framework = WebContextLoader.getManagedFramework();
+        Collection<EJBContainer> containers = framework.getSystemModule().findComponentByInterface(EJBContainer.class);
+        return containers.iterator().next();
     }
 
     public static void main(String[] args) {
