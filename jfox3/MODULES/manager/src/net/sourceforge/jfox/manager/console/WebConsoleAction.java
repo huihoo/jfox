@@ -47,20 +47,16 @@ public class WebConsoleAction extends ActionSupport {
     }
 
     @ActionMethod(successView = "jpaview.vhtml")
-    public void doGetJTAAction(InvocationContext invocationContext) throws Exception{
-        Framework framework = WebContextLoader.getManagedFramework();
-        Collection<EJBContainer> containers = framework.getSystemModule().findComponentByInterface(EJBContainer.class);
-        EJBContainer container = containers.iterator().next();
-//        containers[0].
-    }
-
-    @ActionMethod(successView = "jpaview.vhtml")
     public void doGetJNDIAction(InvocationContext invocationContext) throws Exception{
         
     }
 
     @ActionMethod(successView = "jpaview.vhtml")
     public void doGetEJBContainerAction(InvocationContext invocationContext) throws Exception{
+        Framework framework = WebContextLoader.getManagedFramework();
+        Collection<EJBContainer> containers = framework.getSystemModule().findComponentByInterface(EJBContainer.class);
+        EJBContainer container = containers.iterator().next();
+        int defaultTransactionTimeout = container.getTransactionTimeout();
 
     }
 
