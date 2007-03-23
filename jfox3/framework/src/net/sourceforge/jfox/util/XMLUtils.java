@@ -1,10 +1,8 @@
 package net.sourceforge.jfox.util;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -160,35 +158,21 @@ public class XMLUtils {
      *
      * @param url the xml descriptor url
      * @return XML document
-     * @throws IOException if failed to create XML document
+     * @throws IOException                  if failed to create XML document
      * @throws ParserConfigurationException e
-     * @throws SAXException e
+     * @throws SAXException                 e
      */
     public static Document loadDocument(URL url) throws IOException, ParserConfigurationException, SAXException {
-        InputStream is = null;
-        try {
-            is = new BufferedInputStream(url.openStream());
-            return dbf.newDocumentBuilder().parse(is);
-        }
-        finally {
-            if (is != null) {
-                try {
-                    is.close();
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        return dbf.newDocumentBuilder().parse(FileUtils.toFile(url));
     }
 
     /**
      * parse document from xml String
      *
      * @param xml xml string
-     * @throws IOException if failed to create XML document
+     * @throws IOException                  if failed to create XML document
      * @throws ParserConfigurationException e
-     * @throws SAXException e
+     * @throws SAXException                 e
      */
     public static Document loadDocument(String xml) throws IOException, ParserConfigurationException, SAXException {
         return dbf.newDocumentBuilder().parse(new InputSource(new StringReader(xml)));
@@ -222,9 +206,9 @@ public class XMLUtils {
      * 为 parent Node 增加一个 TextElement，可定义该Element 的属性。
      *
      * @param parent parent node
-     * @param name node name
-     * @param value node value
-     * @param attrs atrributs
+     * @param name   node name
+     * @param value  node value
+     * @param attrs  atrributs
      */
     public static Element addTextElement(Node parent, String name, String value, Attr[] attrs) {
         Element element;
@@ -252,8 +236,8 @@ public class XMLUtils {
      * Add a CDATA element.
      *
      * @param parent parent node
-     * @param name node name
-     * @param data node data
+     * @param name   node name
+     * @param data   node data
      */
     public static Element addCDATAElement(Node parent, String name, String data) {
         return addCDATAElement(parent, name, data, null);
@@ -266,9 +250,9 @@ public class XMLUtils {
      * a CDATA section. Serializing with the Xalan XMLSerializer works fine.
      *
      * @param parent parent node
-     * @param name node name
-     * @param data node data
-     * @param attrs attributes
+     * @param name   node name
+     * @param data   node data
+     * @param attrs  attributes
      */
     public static Element addCDATAElement(Node parent, String name, String data, Attr[] attrs) {
         Element element;
@@ -326,8 +310,8 @@ public class XMLUtils {
      * 创建 Attribute
      *
      * @param document xml document
-     * @param name node name
-     * @param value node value
+     * @param name     node name
+     * @param value    node value
      * @return Attr
      */
     public static Attr createAttribute(Document document, String name, String value) {
@@ -404,7 +388,7 @@ public class XMLUtils {
         node.setTextContent("Helo,World!");
         String xml = XMLUtils.toXMLString(doc);
         FileOutputStream out = new FileOutputStream("test-components.xml");
-        IOUtils.write(xml,out);
+        IOUtils.write(xml, out);
         out.close();
 
     }

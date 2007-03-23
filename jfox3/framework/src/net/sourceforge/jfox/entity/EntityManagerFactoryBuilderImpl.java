@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Iterator;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NamedNativeQueries;
@@ -19,20 +19,20 @@ import javax.transaction.TransactionManager;
 
 import net.sourceforge.jfox.ejb3.naming.JNDIContextHelper;
 import net.sourceforge.jfox.ejb3.transaction.JTATransactionManager;
+import net.sourceforge.jfox.entity.cache.CacheConfig;
 import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.ASMClassLoader;
 import net.sourceforge.jfox.framework.component.ActiveComponent;
 import net.sourceforge.jfox.framework.component.Component;
 import net.sourceforge.jfox.framework.component.ComponentContext;
-import net.sourceforge.jfox.framework.component.ComponentUnregistration;
 import net.sourceforge.jfox.framework.component.ComponentInstantiation;
-import net.sourceforge.jfox.framework.component.Module;
+import net.sourceforge.jfox.framework.component.ComponentUnregistration;
 import net.sourceforge.jfox.framework.component.ModuleListener;
+import net.sourceforge.jfox.framework.component.Module;
 import net.sourceforge.jfox.framework.event.ModuleEvent;
-import net.sourceforge.jfox.framework.event.ModuleLoadingEvent;
 import net.sourceforge.jfox.framework.event.ModuleUnloadedEvent;
+import net.sourceforge.jfox.framework.event.ModuleLoadingEvent;
 import net.sourceforge.jfox.util.XMLUtils;
-import net.sourceforge.jfox.entity.cache.CacheConfig;
 import org.apache.log4j.Logger;
 import org.enhydra.jdbc.pool.StandardXAPoolDataSource;
 import org.enhydra.jdbc.standard.StandardXADataSource;
@@ -158,6 +158,8 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
             // will close data source
             emFactory.close();
         }
+        emFactoryMap.clear();
+        queryMap.clear();
     }
 
     public void preUnregister(ComponentContext context) {
@@ -169,6 +171,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
     }
 
     public void moduleChanged(ModuleEvent moduleEvent) {
+
         if(moduleEvent instanceof ModuleLoadingEvent) {
             Module module = moduleEvent.getModule();
             Class[] namedQueriesClasses = module.getModuleClassLoader().findClassAnnotatedWith(NamedNativeQueries.class);
@@ -187,6 +190,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
                 }
             }
         }
+
     }
 
     private void initEntityManagerFactories() {
@@ -195,6 +199,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
             logger.warn("Can not found persistence config file: " + PERSISTENCE_CONFIG_FILE);
             return;
         }
+        logger.info("Initializing EntityManagers use: " + PERSISTENCE_CONFIG_FILE);
         transactionManager = JTATransactionManager.getIntsance();
         // 初始化 EntityTransaction
         entityTransaction = new EntityTransactionImpl(transactionManager);

@@ -92,7 +92,12 @@ public class WebContextLoader implements ServletContextListener {
         try {
             if (framework != null) {
                 framework.stop();
+                // 清除资源，以便能正常回收，否则webapp 目录可能无法被删除
+                moduleDirName2PathMap.clear();
+                module2ActionsMap.clear();
+                modulePath2File.clear();
                 framework = null;
+                System.gc();
                 Thread.sleep(2000);
                 logger.info("JFox stopped in " + ((System.currentTimeMillis() - now) / 1000) + " seconds!");
             }
