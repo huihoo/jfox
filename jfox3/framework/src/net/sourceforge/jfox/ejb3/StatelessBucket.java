@@ -117,7 +117,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             wsAnnotation = getBeanClass().getAnnotation(WebService.class);
             String endpointInterfaceName = wsAnnotation.endpointInterface();
             if (endpointInterfaceName == null || endpointInterfaceName.trim().length() == 0) {
-                Class<?>[] beanInterfaces = this.getBeanInterfaces();
+                Class<?>[] beanInterfaces = this.getBeanInterface();
                 if (beanInterfaces.length > 1) {
                     logger.warn("Use first Bean Interface " + beanInterfaces[0].getName() + " as endpoint interface.");
 
@@ -242,6 +242,14 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
 
     public WebService getWebServiceAnnotation() {
         return wsAnnotation;
+    }
+
+    public boolean isStateless(){
+        return true;
+    }
+
+    public boolean isWebService() {
+        return getWebServiceAnnotation() != null;
     }
 
     /**

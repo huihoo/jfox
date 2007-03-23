@@ -3,13 +3,16 @@ package net.sourceforge.jfox.manager.console;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.naming.Binding;
 import javax.naming.NamingEnumeration;
 
 import net.sourceforge.jfox.ejb3.EJBContainer;
-import net.sourceforge.jfox.framework.Framework;
+import net.sourceforge.jfox.ejb3.EJBBucket;
 import net.sourceforge.jfox.framework.Constants;
+import net.sourceforge.jfox.framework.Framework;
 import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.Module;
 import net.sourceforge.jfox.mvc.ActionSupport;
@@ -38,14 +41,51 @@ public class WebConsoleAction extends ActionSupport {
         pageContext.setAttribute("osVersion", SystemUtils.OS_VERSION);
         pageContext.setAttribute("osArch", SystemUtils.OS_ARCH);
     }
+    @ActionMethod(successView = "console/jndi.vhtml")
+    public void doGetJNDI(InvocationContext invocationContext) throws Exception{
+        NamingEnumeration<Binding> enu = getEJBContainer().getNamingContext().listBindings("");
+        PageContext pageContext = invocationContext.getPageContext();
+        List<Binding> bindings = new ArrayList<Binding>();
+        while(enu.hasMoreElements()){
+            bindings.add(enu.nextElement());
+        }
+        
+        Collections.sort(bindings, new Comparator<Binding>(){
+            public int compare(Binding o1, Binding o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
 
-    @ActionMethod(successView = "persistence.vhtml")
+        pageContext.setAttribute("bindings", bindings);
+    }
+
+    @ActionMethod(successView = "console/container.vhtml")
+    public void doGetContainer(InvocationContext invocationContext) throws Exception{
+        PageContext pageContext = invocationContext.getPageContext();
+        EJBContainer container = getEJBContainer();
+        int defaultTransactionTimeout = container.getTransactionTimeout();
+        List<EJBBucket> buckets = new ArrayList<EJBBucket>(container.listBuckets());
+        Collections.sort(buckets, new Comparator<EJBBucket>(){
+            public int compare(EJBBucket o1, EJBBucket o2) {
+                if(o1.getModule().getName().equals(o2.getModule().getName())) {
+                    return o1.getEJBName().compareTo(o2.getEJBName());
+                }
+                else {
+                    return o1.getModule().getName().compareTo(o2.getModule().getName());
+                }
+            }
+        });
+        pageContext.setAttribute("defaultTransactionTimeout", defaultTransactionTimeout);
+        pageContext.setAttribute("buckets", buckets);
+    }
+
+    @ActionMethod(successView = "console/persistence.vhtml")
     public void doGetJPAAction(InvocationContext invocationContext) throws Exception{
         //DataSource, NamedNativeQuery, PersistenceUnit
         
     }
 
-    @ActionMethod(successView = "modules.vhtml")
+    @ActionMethod(successView = "console/modules.vhtml")
     public void doGetModulesAction(InvocationContext invocationContext) throws Exception{
         Framework framework = WebContextLoader.getManagedFramework();
         Module systemModule = framework.getSystemModule();
@@ -56,19 +96,6 @@ public class WebConsoleAction extends ActionSupport {
         modules.addAll(allModules);
         PageContext pageContext = invocationContext.getPageContext();
         pageContext.setAttribute("modules", modules);
-    }
-
-    @ActionMethod(successView = "namings.vhtml")
-    public void doGetJNDIAction(InvocationContext invocationContext) throws Exception{
-        NamingEnumeration<Binding> bindings = getEJBContainer().getNamingContext().listBindings("");
-        
-    }
-
-    @ActionMethod(successView = "container.vhtml")
-    public void doGetEJBContainerAction(InvocationContext invocationContext) throws Exception{
-        EJBContainer container = getEJBContainer();
-        int defaultTransactionTimeout = container.getTransactionTimeout();
-
     }
 
     private EJBContainer getEJBContainer(){

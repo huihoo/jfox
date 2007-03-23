@@ -45,15 +45,15 @@ public class FieldResourceDependence implements Dependence {
 
         EJBContainer ejbContainer = (EJBContainer)ejbContainers.iterator().next();
         if (!beanInterface.equals(Object.class)) { // 解析 beanInterface
-            EJBBucket[] bucket = ejbContainer.getEJBBucketByBeanInterface(beanInterface);
-            if (bucket.length == 0) {
+            Collection<EJBBucket> buckets = ejbContainer.getEJBBucketByBeanInterface(beanInterface);
+            if (buckets.isEmpty()) {
                 throw new InjectionException("");
             }
-            else if (bucket.length != 1) {
+            else if (buckets.size() != 1) {
                 throw new InjectionException("");
             }
             else {
-                targetResourceObject = bucket[0].createProxyStub();
+                targetResourceObject = buckets.iterator().next().createProxyStub();
             }
         }
         else if (mappedName.length() != 0) {

@@ -28,27 +28,22 @@
                 </tr>
                 <tr>
                     <td class="header-left">
-                        <small>JNDI View</small>
+                        <small><a href="console.jndi.do">JNDI View</a></small>
                     </td>
                 </tr>
                 <tr>
                     <td class="header-left">
-                        <small>EJB Container</small>
+                        <small><a href="console.container.do">EJB Container</a></small>
                     </td>
                 </tr>
                 <tr>
                     <td class="header-left">
-                        <small>Persistence Unit</small>
+                        <small><a href="console.jpa.do">Persistence Unit</a></small>
                     </td>
                 </tr>
                 <tr>
                     <td class="header-left">
-                        <small>Transaction Manager</small>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="header-left">
-                        <small>Modules</small>
+                        <small><a href="console.modules.do">Modules</a></small>
                     </td>
                 </tr>
             </table>

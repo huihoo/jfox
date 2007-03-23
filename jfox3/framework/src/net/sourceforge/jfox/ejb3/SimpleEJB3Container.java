@@ -267,8 +267,8 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         }
     }
 
-    public EJBBucket[] listBuckets() {
-        return bucketMap.values().toArray(new EJBBucket[bucketMap.size()]);
+    public Collection<EJBBucket> listBuckets() {
+        return Collections.unmodifiableCollection(bucketMap.values());
     }
 
     public EJBBucket getEJBBucket(String name) {
@@ -280,14 +280,14 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
      *
      * @param interfaceClass bean interface
      */
-    public EJBBucket[] getEJBBucketByBeanInterface(Class interfaceClass) {
+    public Collection<EJBBucket> getEJBBucketByBeanInterface(Class interfaceClass) {
         List<EJBBucket> buckets = new ArrayList<EJBBucket>();
         for (EJBBucket bucket : bucketMap.values()) {
             if (bucket.isBusinessInterface(interfaceClass)) {
                 buckets.add(bucket);
             }
         }
-        return buckets.toArray(new EJBBucket[buckets.size()]);
+        return Collections.unmodifiableCollection(buckets);
     }
 
     /**

@@ -113,6 +113,14 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
         return postConstructMethods;
     }
 
+    public boolean isStateless(){
+        return false;
+    }
+
+    public boolean isWebService() {
+        return false;
+    }
+
     public EJBObjectId createEJBObjectId() {
         return new EJBObjectId(getEJBName(), "" + id++);
     }

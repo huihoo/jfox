@@ -36,7 +36,7 @@ public interface EJBBucket {
     /**
      * EJB 的接口，可以由 @Remote @Local指定，未指定则为Bean所有接口
      */
-    Class<?>[] getBeanInterfaces();
+    Class<?>[] getBeanInterface();
 
     /**
      * new EJB instance, return bean instance, not EJBObject
@@ -82,7 +82,14 @@ public interface EJBBucket {
      * \@AroundInvoke in bean class
      */
     Collection<InterceptorMethod> getBeanInterceptorMethods();
-    
+
+    /**
+     * 是否是 Session Bean
+     */
+    boolean isSession();
+
+    boolean isStateless();
+
     /**
      * 是否是 @Remote EJB
      */
@@ -92,6 +99,11 @@ public interface EJBBucket {
      * 是否是 @Local EJB
      */
     boolean isLocal();
+
+    /**
+     * 是否发布成 WebService, 只有 Stateless Session Bean 可以发布成 WebService
+     */
+    boolean isWebService();
 
     /**
      * 是否以该接口发布

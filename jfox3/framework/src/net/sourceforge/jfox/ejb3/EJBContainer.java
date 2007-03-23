@@ -1,6 +1,7 @@
 package net.sourceforge.jfox.ejb3;
 
 import java.lang.reflect.Method;
+import java.util.Collection;
 import javax.ejb.TimerService;
 import javax.naming.Context;
 import javax.transaction.TransactionManager;
@@ -24,7 +25,7 @@ public interface EJBContainer extends Component {
     /**
      * 列表所有 EJB Bucket
      */
-    EJBBucket[] listBuckets();
+    Collection<EJBBucket> listBuckets();
 
     /**
      * 返回 EJB Bucket
@@ -36,7 +37,7 @@ public interface EJBContainer extends Component {
      * 通过接口类取 EJBBucket，再解析 @EJB 注入的时候要用到
      * @param interfaceClass bean interface
      */
-    EJBBucket[] getEJBBucketByBeanInterface(Class interfaceClass);
+    Collection<EJBBucket> getEJBBucketByBeanInterface(Class interfaceClass);
 
     /**
      * 容器使用的事物处理器

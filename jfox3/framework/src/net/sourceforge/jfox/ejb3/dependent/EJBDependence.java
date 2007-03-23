@@ -1,5 +1,6 @@
 package net.sourceforge.jfox.ejb3.dependent;
 
+import java.util.Collection;
 import javax.ejb.EJB;
 import javax.ejb.EJBObject;
 import javax.naming.NamingException;
@@ -57,15 +58,15 @@ public class EJBDependence implements Dependence {
             }
         }
         else if (!beanInterface.equals(Object.class)) { // 解析 beanInterface
-            EJBBucket[] bucket = this.bucket.getEJBContainer().getEJBBucketByBeanInterface(beanInterface);
-            if (bucket.length == 0) {
+            Collection<EJBBucket> buckets = this.bucket.getEJBContainer().getEJBBucketByBeanInterface(beanInterface);
+            if (buckets.isEmpty()) {
                 throw new InjectionException("");
             }
-            else if (bucket.length != 1) {
+            else if (buckets.size() != 1) {
                 throw new InjectionException("");
             }
             else {
-                targetEJBObject = bucket[0].createProxyStub();
+                targetEJBObject = buckets.iterator().next().createProxyStub();
             }
         }
         else if (mappedName.length() != 0) {

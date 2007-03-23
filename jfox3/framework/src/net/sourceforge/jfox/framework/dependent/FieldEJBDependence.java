@@ -9,7 +9,6 @@ import javax.naming.NamingException;
 import net.sourceforge.jfox.ejb3.EJBBucket;
 import net.sourceforge.jfox.ejb3.EJBContainer;
 import net.sourceforge.jfox.framework.component.ComponentContext;
-import net.sourceforge.jfox.framework.component.Component;
 import net.sourceforge.jfox.framework.component.SystemModule;
 import org.apache.log4j.Logger;
 
@@ -73,15 +72,15 @@ public class FieldEJBDependence implements Dependence {
             if (beanInterface.equals(Object.class)) {
                 beanInterface = field.getType();
             }
-            EJBBucket[] bucket = ejbContainer.getEJBBucketByBeanInterface(beanInterface);
-            if (bucket.length == 0) {
+            Collection<EJBBucket> buckets = ejbContainer.getEJBBucketByBeanInterface(beanInterface);
+            if (buckets.isEmpty()) {
                 throw new InjectionException("");
             }
-            else if (bucket.length != 1) {
+            else if (buckets.size() != 1) {
                 throw new InjectionException("");
             }
             else {
-                targetEJBObject = bucket[0].createProxyStub();
+                targetEJBObject = buckets.iterator().next().createProxyStub();
             }
         }
 

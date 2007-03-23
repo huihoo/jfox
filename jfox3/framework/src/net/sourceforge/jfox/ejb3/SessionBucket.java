@@ -157,7 +157,7 @@ public abstract class SessionBucket implements EJBBucket {
     protected void introspectMethods() {
         // 缓存 EJB 方法，以便反射的时候，提升执行速度
         Set<Long> interfaceMethodHashes = new HashSet<Long>();
-        for (Class<?> interfaceClass : getBeanInterfaces()) {
+        for (Class<?> interfaceClass : getBeanInterface()) {
             for (Method method : interfaceClass.getMethods()) {
                 long methodHash = MethodUtils.getMethodHash(method);
                 interfaceMethodHashes.add(methodHash);
@@ -413,7 +413,7 @@ public abstract class SessionBucket implements EJBBucket {
         return beanClass;
     }
 
-    public Class<?>[] getBeanInterfaces() {
+    public Class<?>[] getBeanInterface() {
         return beanInterfaces;
     }
 
@@ -518,6 +518,10 @@ public abstract class SessionBucket implements EJBBucket {
         return Collections.unmodifiableCollection(beanInterceptorMethods);
     }
 
+    public boolean isSession(){
+        return true;
+    }
+
     public boolean isRemote() {
         // no @Local is Remote
         return getBeanClass().isAnnotationPresent(Remote.class) || !getBeanClass().isAnnotationPresent(Local.class);
@@ -550,7 +554,7 @@ public abstract class SessionBucket implements EJBBucket {
     }
 
     public boolean isBusinessInterface(Class beanInterface) {
-        for (Class bi : this.getBeanInterfaces()) {
+        for (Class bi : this.getBeanInterface()) {
             if (bi.equals(beanInterface)) {
                 return true;
             }
@@ -564,7 +568,7 @@ public abstract class SessionBucket implements EJBBucket {
     public synchronized EJBObject createProxyStub() {
         List<Class<?>> interfaces = new ArrayList<Class<?>>();
         interfaces.add(EJBObject.class);
-        interfaces.addAll(Arrays.asList(this.getBeanInterfaces()));
+        interfaces.addAll(Arrays.asList(this.getBeanInterface()));
 
         // 生成 EJB 的动态代理对象
         return (EJBObject)Proxy.newProxyInstance(this.getModule().getModuleClassLoader(),
@@ -583,7 +587,7 @@ public abstract class SessionBucket implements EJBBucket {
             }
             //TODO: 优化处理 Object 方法
             else if (method.getName().equals("toString") && (args == null || args.length == 0)) {
-                return "$proxy_ejb_stub{id=" + ejbObjectId + ",interface=" + Arrays.toString(getBeanInterfaces()) + "}";
+                return "$proxy_ejb_stub{id=" + ejbObjectId + ",interface=" + Arrays.toString(getBeanInterface()) + "}";
             }
             else if (method.getName().equals("equals") && args != null && args.length == 1) {
                 if (args[0] == null || !(args[0] instanceof ProxyStubInvocationHandler)) {
@@ -682,7 +686,7 @@ public abstract class SessionBucket implements EJBBucket {
 
         // Object method
         public String toString() {
-            return "ejb_stub{name=" + getEJBName() + ",interface=" + Arrays.toString(getBeanInterfaces()) + "}";
+            return "ejb_stub{name=" + getEJBName() + ",interface=" + Arrays.toString(getBeanInterface()) + "}";
         }
 
     }
