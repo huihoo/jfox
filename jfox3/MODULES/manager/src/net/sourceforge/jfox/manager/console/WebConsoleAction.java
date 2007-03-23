@@ -1,15 +1,17 @@
 package net.sourceforge.jfox.manager.console;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import net.sourceforge.jfox.ejb3.EJBContainer;
 import net.sourceforge.jfox.framework.Framework;
 import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.Module;
+import net.sourceforge.jfox.mvc.ActionSupport;
 import net.sourceforge.jfox.mvc.InvocationContext;
 import net.sourceforge.jfox.mvc.PageContext;
 import net.sourceforge.jfox.mvc.WebContextLoader;
-import net.sourceforge.jfox.mvc.ActionSupport;
 import net.sourceforge.jfox.mvc.annotation.ActionMethod;
 
 /**
@@ -47,13 +49,14 @@ public class WebConsoleAction extends ActionSupport {
     @ActionMethod(successView = "jpaview.vhtml")
     public void doGetJTAAction(InvocationContext invocationContext) throws Exception{
         Framework framework = WebContextLoader.getManagedFramework();
-//        Component[] containers = framework.getSystemModule().findComponentByInterface(EJBContainer.class);
+        Collection<EJBContainer> containers = framework.getSystemModule().findComponentByInterface(EJBContainer.class);
+        EJBContainer container = containers.iterator().next();
 //        containers[0].
     }
 
     @ActionMethod(successView = "jpaview.vhtml")
     public void doGetJNDIAction(InvocationContext invocationContext) throws Exception{
-
+        
     }
 
     @ActionMethod(successView = "jpaview.vhtml")
