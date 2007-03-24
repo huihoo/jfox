@@ -43,16 +43,16 @@
 <br>
 <table border="1" cellspacing="0" cellpadding="3">
     <tr>
-        <td colspan="5" class="title">Persistence Units</td>
+        <td colspan="6" class="title">Persistence Units</td>
     </tr>
     <tr>
         <td class="header-left">
             <small>Unit name</small>
         </td>
-        <td class="header-left">
+        <td class="header-center">
             <small>JTA Data Source</small>
         </td>
-        <td class="header-center">
+        <td class="header-left">
             <small>Driver<br>URL<br>Username</small>
         </td>
         <td class="header-center">
@@ -61,30 +61,65 @@
         <td class="header-center">
             <small>Cache Config</small>
         </td>
+        <td class="header-center">
+            <small>Command</small>
+        </td>
     </tr>
     #foreach($entityManagerFactory in $entityManagerFactories)
     <tr bgcolor="#if($velocityCount%2==0)#FFFFFF#else#C3F3C3#end">
-        <td class="row-left" bgcolor="#FFFFFF">
+        <td class="row-left">
             <small>$entityManagerFactory.getUnitName()</small>
         </td>
-        <td class="row-left" bgcolor="#FFFFFF">
+        <td class="row-center">
             <small>$entityManagerFactory.getJTADataSource()</small>
         </td>
-        <td class="row-center" bgcolor="#FFFFFF">
+        <td class="row-left">
             <small>
                 $entityManagerFactory.getDriver()<br>
                 $entityManagerFactory.getURL()<br>
                 $entityManagerFactory.getUser()
             </small>
         </td>
-        <td class="row-center" bgcolor="#FFFFFF">
-            <small><a href="/manager/html/sessions?path=/">0</a></small>
+        <td class="row-left">
+            <small>
+                <strong>minSize</strong>: $entityManagerFactory.getMinSize() <br>
+                <strong>mxnSize</strong>: $entityManagerFactory.getMaxSize() <br>
+                <strong>lifeTime</strong>: $entityManagerFactory.getLifeTime() ms<br>
+                <strong>sleepTime</strong>: $entityManagerFactory.getSleepTime() ms<br>
+                <strong>deadLockRetryWait</strong>: $entityManagerFactory.getDeadLockRetryWait() ms<br>
+                <strong>deadLockMaxWait</strong>: $entityManagerFactory.getDeadLockMaxWait() ms<br>
+                <strong title="reconnect if connection closed">checkLevelObject</strong>: $entityManagerFactory.getCheckLevelObject()<br>
+            </small>
         </td>
-        <td class="row-left" bgcolor="#FFFFFF">
-            <small> &nbsp;Start&nbsp;
-                &nbsp;<a href="/manager/html/stop?path=/" onClick="return(confirm('Are you sure?'))">Test Connection</a>&nbsp;
-                &nbsp;<a href="/manager/html/reload?path=/" onClick="return(confirm('Are you sure?'))">Reload</a>&nbsp;
-                &nbsp;<a href="/manager/html/undeploy?path=/" onClick="return(confirm('Are you sure?'))">Undeploy</a>&nbsp; </small>
+        <td class="row-left">
+            <small>
+            #foreach($cacheConfig in $entityManagerFactory.getCacheConfigs())
+                <strong>Name</strong>: $cacheConfig.getName() <br>
+                <strong>Algorithm</strong>: $cacheConfig.getAlgorithm() <br>
+                <strong>Max Size</strong>: $cacheConfig.getMaxSize() <br>
+                <strong>Max Memory Size</strong>: $cacheConfig.getMaxMemorySize() bytes<br>
+                <strong>TTL</strong>: $cacheConfig.getTTL() ms<br>
+                <strong>Max Idle Time</strong>: $cacheConfig.getMaxIdleTime() ms<br><br>
+            #end
+            </small>
+        </td>
+        <td class="row-left">
+            <small>
+                #set($tested="$entityManagerFactory.getUnitName()_testedconnection")
+                #if(${$tested})
+                <font color="red">OK</font>
+                #else
+                <a href="console.testconnection.do?unitName=$entityManagerFactory.getUnitName()" onClick="return(confirm('Are you sure?'))">Test&nbsp;Connection</a>
+                #end
+                <br>
+                #set($cleared="$entityManagerFactory.getUnitName()_clearedcache")
+                #if(${$$cleared})
+                <font color="red">Cleared</font>
+                #else
+                <a href="console.clearcache.do?unitName=$entityManagerFactory.getUnitName()" onClick="return(confirm('Are you sure?'))">Clear&nbsp;Cache</a>
+                #end
+                <br>
+            </small>
         </td>
     </tr>
     #end

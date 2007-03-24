@@ -3,6 +3,7 @@ package net.sourceforge.jfox.entity.cache;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -20,6 +21,8 @@ public class CacheConfig {
     public static enum Algorithm {
         LRU, LFU, FIFO
     }
+
+    private String name;
 
     /**
      * 最大生存时间 <=0 表示无限
@@ -49,10 +52,15 @@ public class CacheConfig {
     private Map<String, Cache> caches = new HashMap<String, Cache>();
 
     public CacheConfig(){
-        this(Algorithm.LRU, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
+        this(UUID.randomUUID().toString(), Algorithm.LRU, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
     }
 
-    public CacheConfig(Algorithm algorithm, int maxSize, long maxMemorySize, long maxIdleTime, long ttl) {
+    public CacheConfig(String name){
+        this(name, Algorithm.LRU, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
+    }
+
+    public CacheConfig(String name, Algorithm algorithm, int maxSize, long maxMemorySize, long maxIdleTime, long ttl) {
+        this.name = name;
         this.algorithm = algorithm;
         this.maxSize = maxSize;
         this.maxMemorySize = maxMemorySize;
@@ -60,6 +68,9 @@ public class CacheConfig {
         this.ttl = ttl;
     }
 
+    public String getName() {
+        return name;
+    }
 
     public Algorithm getAlgorithm() {
         return algorithm;
@@ -136,10 +147,14 @@ public class CacheConfig {
 
     public void close() {
         cleaner.shutdown();
+        for(Cache cache : caches.values()){
+            cache.clear();
+        }
+        caches.clear();
     }
 
     public static void main(String[] args) {
-        CacheConfig cacheConfig = new CacheConfig(CacheConfig.Algorithm.LRU, 2, 10 * 1024, 60 * 1000, 0);
+        CacheConfig cacheConfig = new CacheConfig(UUID.randomUUID().toString(), CacheConfig.Algorithm.LRU, 2, 10 * 1024, 60 * 1000, 0);
         Cache cache = cacheConfig.buildCache("DEFAULT");
         cache.put("a", "1");
         cache.put("b", "2");

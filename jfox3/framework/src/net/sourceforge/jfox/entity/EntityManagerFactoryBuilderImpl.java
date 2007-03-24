@@ -295,22 +295,22 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
                 sxpds.setMaxSize(Integer.parseInt(value));
             }
             else if (name.equalsIgnoreCase("lifeTime")) {
-                sxpds.setLifeTime(Long.parseLong(value) * 1000);
+                sxpds.setLifeTime(Long.parseLong(value));
             }
             else if (name.equalsIgnoreCase("sleepTime")) {
-                sxpds.setSleepTime(Long.parseLong(value) * 1000);
+                sxpds.setSleepTime(Long.parseLong(value));
             }
             else if (name.equalsIgnoreCase("deadLockRetryWait")) {
-                sxpds.setDeadLockRetryWait(Long.parseLong(value) * 1000);
+                sxpds.setDeadLockRetryWait(Long.parseLong(value));
             }
             else if (name.equalsIgnoreCase("deadLockMaxWait")) {
-                sxpds.setDeadLockMaxWait(Long.parseLong(value) * 1000);
+                sxpds.setDeadLockMaxWait(Long.parseLong(value));
             }
             else if(name.startsWith(CAHCE_PREFIX) && name.lastIndexOf(".")>CAHCE_PREFIX.length()){
                 // construct cache config
                 String cacheConfigName = name.substring(CAHCE_PREFIX.length(), name.lastIndexOf("."));
                 if(!cacheConfigMap.containsKey(cacheConfigName)){
-                    CacheConfig cacheConfig = new CacheConfig();
+                    CacheConfig cacheConfig = new CacheConfig(cacheConfigName);
                     cacheConfigMap.put(cacheConfigName, cacheConfig);
                 }
                 CacheConfig cacheConfig = cacheConfigMap.get(cacheConfigName);

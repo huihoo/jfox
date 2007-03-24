@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.io.StringWriter;
+import java.io.PrintWriter;
 
 import net.sourceforge.jfox.mvc.validate.ValidateException;
 import net.sourceforge.jfox.mvc.annotation.ActionMethod;
@@ -78,6 +80,18 @@ public class PageContext {
 
     public Exception getBusinessException(){
         return businessException;
+    }
+
+    public String getBusinessExceptionMessage(){
+        StringWriter sw = new StringWriter();
+        businessException.printStackTrace(new PrintWriter(sw));
+        try {
+            sw.close();
+        }
+        catch(Exception e) {
+            // ignore
+        }
+        return sw.getBuffer().toString();
     }
 
     public List<ValidateException> getValidateExceptions(){

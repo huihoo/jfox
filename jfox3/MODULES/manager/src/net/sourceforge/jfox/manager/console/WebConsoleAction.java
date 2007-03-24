@@ -19,6 +19,8 @@ import net.sourceforge.jfox.mvc.ActionSupport;
 import net.sourceforge.jfox.mvc.InvocationContext;
 import net.sourceforge.jfox.mvc.PageContext;
 import net.sourceforge.jfox.mvc.WebContextLoader;
+import net.sourceforge.jfox.mvc.Invocation;
+import net.sourceforge.jfox.mvc.validate.StringValidation;
 import net.sourceforge.jfox.mvc.annotation.ActionMethod;
 import net.sourceforge.jfox.util.SystemUtils;
 import net.sourceforge.jfox.entity.EntityManagerFactoryBuilder;
@@ -105,6 +107,15 @@ public class WebConsoleAction extends ActionSupport {
         pageContext.setAttribute("modules", modules);
     }
 
+    @ActionMethod(successView = "console/testconnectionresult.vhtml", errorView = "console/testconnectionresult.vhtml",invocationClass = TestConnectionInvocation.class)
+    public void doGetTestConnection(InvocationContext invocationContext) throws Exception {
+        TestConnectionInvocation invocation = (TestConnectionInvocation)invocationContext.getInvocation();
+        String unitName = invocation.getUnitName();
+        PageContext pageContext = invocationContext.getPageContext();
+        pageContext.setAttribute("unitName", unitName);
+        EntityManagerFactoryBuilderImpl.getEntityManagerFactoryByName(unitName).checkConnection();
+    }
+
     private EJBContainer getEJBContainer(){
         Framework framework = WebContextLoader.getManagedFramework();
         Collection<EJBContainer> containers = framework.getSystemModule().findComponentByInterface(EJBContainer.class);
@@ -115,6 +126,19 @@ public class WebConsoleAction extends ActionSupport {
         Framework framework = WebContextLoader.getManagedFramework();
         Collection<EntityManagerFactoryBuilder> entityManagerFactoryBuilders = framework.getSystemModule().findComponentByInterface(EntityManagerFactoryBuilder.class);
         return entityManagerFactoryBuilders.iterator().next();
+    }
+
+    public static class TestConnectionInvocation extends Invocation {
+        @StringValidation(nullable = false)
+        private String unitName;
+
+        public String getUnitName() {
+            return unitName;
+        }
+
+        public void setUnitName(String unitName) {
+            this.unitName = unitName;
+        }
     }
 
     public static void main(String[] args) {
