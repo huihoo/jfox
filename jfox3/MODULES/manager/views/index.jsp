@@ -108,8 +108,8 @@
         </tr>
         <tr>
             <td class="menu">
-                <a href="demoJSP.html">JSP Examples</a><br/>
                 <a href="demoAction.html">MVC Action Examples</a><br/>
+                <a href="demoJSP.html">JSP Examples</a><br/>
                 <a href="demoEJB.html">EJB Examples</a><br/>
                 &nbsp;
             </td>
