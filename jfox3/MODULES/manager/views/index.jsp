@@ -95,8 +95,7 @@
         </tr>
         <tr>
             <td class="menu">
-                <a href="status.view.do" title="view status">Status</a><br/>
-                <a href="module.view.do" title="view modules">Modules</a><br/>
+                <a href="console.sysinfo.do" title="view status">Web Console</a><br/>
                 &nbsp;
             </td>
         </tr>
@@ -110,7 +109,7 @@
         <tr>
             <td class="menu">
                 <a href="demoJSP.html">JSP Examples</a><br/>
-                <a href="demoAction.html">Servlet Action Examples</a><br/>
+                <a href="demoAction.html">MVC Action Examples</a><br/>
                 <a href="demoEJB.html">EJB Examples</a><br/>
                 &nbsp;
             </td>

@@ -106,8 +106,8 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         return emFactoryMap.values().toArray(new EntityManagerFactory[1])[0];
     }
 
-    public static EntityManagerFactoryImpl[] getEntityManagerFactories(){
-        return emFactoryMap.values().toArray(new EntityManagerFactoryImpl[emFactoryMap.size()]);
+    public static Collection<EntityManagerFactoryImpl> getEntityManagerFactories(){
+        return Collections.unmodifiableCollection(emFactoryMap.values());
     }
 
     /**

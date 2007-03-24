@@ -4,10 +4,9 @@
     <title>JFox Management Console</title>
 </head>
 <body bgcolor="#FFFFFF">
-<table cellspacing="4" width="100%" border="0">
+<table cellspacing="2" width="100%" border="0">
     <tr>
         <td><a href="#"><img border="0" alt="JFox 3" align="left" src="images/jfox.jpg"></a>
-            <a href="http://tomcat.apache.org/"> <img border="0" alt="The Tomcat Servlet/JSP Container" align="right" src="images/tomcat.gif"> </a>
         </td>
     </tr>
 </table>
@@ -17,19 +16,19 @@
         <td colspan="5" class="title"><big>Menu</big></td>
     </tr>
     <tr>
-        <td class="header-center">
+        <td class="page-title">
             <small><a href="console.sysinfo.do">System Infomation</a></small>
         </td>
-        <td class="header-center">
+        <td class="page-title">
             <small><a href="console.jndi.do">JNDI View</a></small>
         </td>
-        <td class="header-center">
+        <td class="page-title">
             <small><a href="console.container.do">EJB Container</a></small>
         </td>
-        <td class="header-center">
+        <td class="page-title">
             <small><a href="console.jpa.do">Persistence Unit</a></small>
         </td>
-        <td class="header-center">
+        <td class="page-title">
             <small><a href="console.modules.do">Modules</a></small>
         </td>
     </tr>
@@ -44,10 +43,10 @@
 <br>
 <table border="1" cellspacing="0" cellpadding="3">
     <tr>
-        <td colspan="5" class="title" title="$module.getDescription()">Module($module.getName())</td>
+        <td colspan="4" class="title" title="$module.getDescription()">Module($module.getName())</td>
     </tr>
     <tr>
-        <td colspan="5" class="row-left" bgcolor="#FFFFFF">
+        <td colspan="4" class="row-left" bgcolor="#FFFFFF">
             <small>
                 <table border="0" cellspacing="0">
                     <tr>
@@ -64,7 +63,13 @@
                     </tr>
                     <tr>
                         <td class="header-center">Reference Modules</td>
-                        <td class="row-left">$!module.getRefModules()</td>
+                        <td class="row-left">
+                            #if($!module.getRefModules())
+                            #foreach($refModule in $!module.getRefModules())
+                            $refModule &nbsp;
+                            #end
+                            #end
+                        </td>
                     </tr>
                     <tr>
                         <td class="header-center">Classpath</td>
@@ -81,61 +86,38 @@
     </tr>
     <tr>
         <td class="header-left">
-            <small>Component</small>
+            <small>ComponentId</small>
         </td>
         <td class="header-left">
-            <small>Display Name</small>
+            <small>Implementation Class</small>
         </td>
         <td class="header-center">
-            <small>Running</small>
+            <small>Interfaces</small>
         </td>
         <td class="header-center">
-            <small>Sessions</small>
-        </td>
-        <td class="header-center">
-            <small>Commands</small>
+            <small>Singleton/<br>Active/<br>Exported</small>
         </td>
     </tr>
-    <tr>
-        <td class="row-left" bgcolor="#FFFFFF">
-            <small><a href="/">/</a></small>
+    #foreach($componentMeta in $module.getAllComponentMetas())
+    <tr bgcolor="#if($velocityCount%2==0)#FFFFFF#else#C3F3C3#end">
+        <td class="row-left">
+            <small>$componentMeta.getComponentId()</small>
         </td>
-        <td class="row-left" bgcolor="#FFFFFF">
-            <small>Welcome to Tomcat</small>
+        <td class="row-left">
+            <small>$componentMeta.getImplementationClass().getName()</small>
         </td>
-        <td class="row-center" bgcolor="#FFFFFF">
-            <small>true</small>
+        <td class="row-left">
+            <small>
+                #foreach($interfaceClass in $componentMeta.getInterfaceClass())
+                $interfaceClass.getName() <br>
+                #end
+            </small>
         </td>
-        <td class="row-center" bgcolor="#FFFFFF">
-            <small><a href="/manager/html/sessions?path=/">0</a></small>
-        </td>
-        <td class="row-left" bgcolor="#FFFFFF">
-            <small> &nbsp;Start&nbsp;
-                &nbsp;<a href="/manager/html/stop?path=/" onClick="return(confirm('Are you sure?'))">Stop</a>&nbsp;
-                &nbsp;<a href="/manager/html/reload?path=/" onClick="return(confirm('Are you sure?'))">Reload</a>&nbsp;
-                &nbsp;<a href="/manager/html/undeploy?path=/" onClick="return(confirm('Are you sure?'))">Undeploy</a>&nbsp; </small>
-        </td>
-    </tr>
-    <tr>
-        <td class="row-left" bgcolor="#C3F3C3">
-            <small><a href="/Tomcat">/Tomcat</a></small>
-        </td>
-        <td class="row-left" bgcolor="#C3F3C3">
-            <small>&nbsp;</small>
-        </td>
-        <td class="row-center" bgcolor="#C3F3C3">
-            <small>true</small>
-        </td>
-        <td class="row-center" bgcolor="#C3F3C3">
-            <small><a href="/manager/html/sessions?path=/Tomcat">0</a></small>
-        </td>
-        <td class="row-left" bgcolor="#C3F3C3">
-            <small> &nbsp;Start&nbsp;
-                &nbsp;<a href="/manager/html/stop?path=/Tomcat" onClick="return(confirm('Are you sure?'))">Stop</a>&nbsp;
-                &nbsp;<a href="/manager/html/reload?path=/Tomcat" onClick="return(confirm('Are you sure?'))">Reload</a>&nbsp;
-                &nbsp;<a href="/manager/html/undeploy?path=/Tomcat" onClick="return(confirm('Are you sure?'))">Undeploy</a>&nbsp; </small>
+        <td class="row-left">
+            <small>$componentMeta.isSingleton()/<br>$componentMeta.isActive()/<br>$componentMeta.isExported()</small>
         </td>
     </tr>
+    #end
 </table>
 #end
 <br>

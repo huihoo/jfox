@@ -116,7 +116,7 @@
         <tr>
             <td class="menu">
                 <a href="RELEASE-NOTES.txt">Release Notes</a><br/>
-                <a href="docs/changelog.html">Change Log</a><br/>
+                <a href="docs/change-log.txt">Change Log</a><br/>
                 <a href="docs/installation.html">Installation Guide(Chinese)</a><br/>
                 <a href="docs/userguide.html">User Guide</a><br/>
                 <a href="javadoc/">Api Documentation</a><br/> &nbsp;
@@ -133,7 +133,7 @@
         <tr>
             <td class="menu">
                 <a href="modules/manager/demoJSP.html">JSP Examples</a><br/>
-                <a href="modules/manager/demoAction.html">Servlet Action Examples</a><br/>
+                <a href="modules/manager/demoAction.html">MVC Action Examples</a><br/>
                 <a href="modules/manager/demoEJB.html">EJB Examples</a><br/>
                 &nbsp;
             </td>

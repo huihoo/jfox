@@ -87,7 +87,7 @@ public class WebConsoleAction extends ActionSupport {
     public void doGetJPA(InvocationContext invocationContext) throws Exception{
         //DataSource, NamedNativeQuery, PersistenceUnit
 //        EntityManagerFactoryBuilder emfBuilder = getEntityManagerFactoryBuilder();
-        EntityManagerFactoryImpl[] entityManagerFactories = EntityManagerFactoryBuilderImpl.getEntityManagerFactories();
+        Collection<EntityManagerFactoryImpl> entityManagerFactories = EntityManagerFactoryBuilderImpl.getEntityManagerFactories();
 
 /*
         List<Cache> caches = new ArrayList<Cache>();

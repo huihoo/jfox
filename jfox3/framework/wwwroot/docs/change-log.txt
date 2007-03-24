@@ -1,0 +1,76 @@
+jfox DR1
+	实现 ejb 容器
+
+jfox DR2
+	EJBAutoDeploy Added，copy to deploy :)
+	MX Http Console Added, http://localhost:80802
+	JTA Added as a single J2EE component, Not integration yet, package org.jfox.tm
+	Added Java2HTML document, in java2html directory
+	some bugs fix
+
+jfox DR3
+	improved MX Http console
+	JTA has integrated into ejb container
+	XADataSource integrated, Support Mysql,ORacle,DB2
+
+jfox beta1
+	better MX View in MX Http console
+	include JFox_User_Guide document, much infomation about jfox
+	Add Log MX,now can Add logger and appender by http console
+	Debug log message output to %JFOX_HOME%/logs/jfox-debug.log
+	examples included, in %JFOX_HOME%examples directory
+	some bugs fix, so many :)
+
+jfox beta2
+	integrate with tomcat 3.3.1a
+	add servlet examples to invoke ejb
+	integrate with xml-rpc, so can support invoke ejb through soap protocol now
+	add startup.jar to boot jfox
+
+jfox beta3
+	improving stateful session bean lifecycle management
+	improving datasource implementation
+	bugs fix,more stable
+
+jfox 1.0
+	integrate jetty as web server
+	add shutdown hook
+	bugs fix,more stable
+
+jfox 1.1
+    integrate jetty 4.2.17
+    add jrmp_ssl protocol for security invoke
+    support ejb-jar.xml for ejb description
+    change some class name for clear meaning
+    bugs fix, more stable
+
+jfox 1.2
+    integrate jetty 4.2.19
+    support env-entry ejb-ref resource-ref resource-env-ref
+    support ear deploy
+    rewrite user guide document
+    add petstore mail as an demo
+
+jfox 2 m1
+    new IOC kernel
+    integrate jetty 4.2.22
+    Mail service
+    Timer Service
+    DAO module
+    JMS module
+
+JFox 2.5
+  1. 新的基于 IoC 的内核
+  2. 实现JMS服务，并支持MessageDrivenBean
+  3. 支持TimerBean
+  4. 支持 EJB 集群
+
+JFox 3
+  1. 重新设计的 IoC 容器，加入 OSGi 思想
+  2. 改为嵌入式架构，能够嵌入到任何 Java Web Server
+  3. 支持 EJB3, JPA
+  4. 采用JOTM提供事务处理
+  5. 采用 XAPool 提供 XA DataSource
+  6. 增加 MVC 框架，自动Forum Mapping, Validator, 并支持Velocity Freemarker模板引擎，满足快开发需要
+  7. 根据JFox EJB3, JPA, MVC 特色完全重写 JPetstore
+  8. 提供 Manager 管理模块
