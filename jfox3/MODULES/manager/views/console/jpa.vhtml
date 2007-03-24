@@ -116,7 +116,7 @@
                 #if(${$$cleared})
                 <font color="red">Cleared</font>
                 #else
-                <a href="console.clearcache.do?unitName=$entityManagerFactory.getUnitName()" onClick="return(confirm('Are you sure?'))">Clear&nbsp;Cache</a>
+                <a href="console.clearcacheconfig.do?unitName=$entityManagerFactory.getUnitName()" onClick="return(confirm('Are you sure?'))">Clear&nbsp;Cache</a>
                 #end
                 <br>
             </small>
@@ -130,6 +130,9 @@
         <td colspan="7" class="title">Caches</td>
     </tr>
     <tr>
+        <td class="header-left">
+            <small>Unit Name</small>
+        </td>
         <td class="header-left">
             <small>Config Name</small>
         </td>
@@ -145,16 +148,26 @@
         <td class="header-center">
             <small>Hits / Misses</small>
         </td>
+        <!--
         <td class="header-center">
             <small>Commands</small>
         </td>
+        -->
         <td class="header-left">
-            <small>Key List</small>
+            <small>Key List (Query Name, ParameterMap)</small>
         </td>
 
     </tr>
-    #foreach($cache in $caches)
+    <!-- loop all EntityManagerFactory -->
+    #foreach($entityManagerFactory in $entityManagerFactories)
+    <!-- loop all CacheConfigs in EntityManagerFactory-->
+    #foreach($cacheConfigs in $entityManagerFactory.getCacheConfigs())
+    <!-- loop all Caches in CacheConfig-->
+    #foreach($cache in $cacheConfigs.getAllCaches())
     <tr bgcolor="#if($velocityCount%2==0)#FFFFFF#else#C3F3C3#end">
+        <td class="row-left">
+            <small>$entityManagerFactory.getUnitName()</small>
+        </td>
         <td class="row-left">
             <small>$cache.getConfig().getName()</small>
         </td>
@@ -170,11 +183,13 @@
         <td class="row-center">
             <small>$cache.getStatus().getHits()/$cache.getStatus().getMisses()</small>
         </td>
+        <!--
         <td class="row-left">
             <small>
-                <a href="console.clearcache.do" onClick="return(confirm('Are you sure?'))">Clear</a> 
+                <a href="console.clearcache.do?unitName=$entityManagerFactory.getUnitName()&cacheconfig=$cacheConfig.getName()&cache=$cache.getName()" onClick="return(confirm('Are you sure?'))">Clear</a>
             </small>
         </td>
+        -->
         <td class="row-center">
             <small>
                 #foreach($key in $cache.keys())
@@ -184,6 +199,8 @@
         </td>        
     </tr>
     #end
+    #end
+    #end
 </table>
 <br>
 <table border="1" cellspacing="0" cellpadding="3">
@@ -192,135 +209,34 @@
     </tr>
     <tr>
         <td class="header-left">
-            <small>Path</small>
+            <small>Name</small>
         </td>
         <td class="header-left">
-            <small>Display Name</small>
+            <small>Result Class</small>
+        </td>
+        <td class="header-left">
+            <small>Defined Class</small>
         </td>
         <td class="header-center">
-            <small>Running</small>
-        </td>
-        <td class="header-center">
-            <small>Sessions</small>
-        </td>
-        <td class="header-center">
-            <small>Commands</small>
+            <small>Template SQL</small>
         </td>
     </tr>
-    <tr>
-        <td class="row-left" bgcolor="#FFFFFF">
-            <small><a href="/">/</a></small>
+    #foreach($namedSQLTemplate in $namedSQLTemplates)
+    <tr bgcolor="#if($velocityCount%2==0)#FFFFFF#else#C3F3C3#end">
+        <td class="row-left">
+            <small>$namedSQLTemplate.getName()</small>
         </td>
-        <td class="row-left" bgcolor="#FFFFFF">
-            <small>Welcome to Tomcat</small>
+        <td class="row-left">
+            <small>$namedSQLTemplate.getResultClass().getName()</small>
         </td>
-        <td class="row-center" bgcolor="#FFFFFF">
-            <small>true</small>
+        <td class="row-left">
+            <small>$namedSQLTemplate.getDefinedClass().getName()</small>
         </td>
-        <td class="row-center" bgcolor="#FFFFFF">
-            <small><a href="/manager/html/sessions?path=/">0</a></small>
-        </td>
-        <td class="row-left" bgcolor="#FFFFFF">
-            <small> &nbsp;Start&nbsp;
-                &nbsp;<a href="/manager/html/stop?path=/" onClick="return(confirm('Are you sure?'))">Stop</a>&nbsp;
-                &nbsp;<a href="/manager/html/reload?path=/" onClick="return(confirm('Are you sure?'))">Reload</a>&nbsp;
-                &nbsp;<a href="/manager/html/undeploy?path=/" onClick="return(confirm('Are you sure?'))">Undeploy</a>&nbsp; </small>
+        <td class="row-left">
+            <small>$namedSQLTemplate.getTemplateSQL()</small>
         </td>
     </tr>
-    <tr>
-        <td class="row-left" bgcolor="#C3F3C3">
-            <small><a href="/Tomcat">/Tomcat</a></small>
-        </td>
-        <td class="row-left" bgcolor="#C3F3C3">
-            <small>&nbsp;</small>
-        </td>
-        <td class="row-center" bgcolor="#C3F3C3">
-            <small>true</small>
-        </td>
-        <td class="row-center" bgcolor="#C3F3C3">
-            <small><a href="/manager/html/sessions?path=/Tomcat">0</a></small>
-        </td>
-        <td class="row-left" bgcolor="#C3F3C3">
-            <small> &nbsp;Start&nbsp;
-                &nbsp;<a href="/manager/html/stop?path=/Tomcat" onClick="return(confirm('Are you sure?'))">Stop</a>&nbsp;
-                &nbsp;<a href="/manager/html/reload?path=/Tomcat" onClick="return(confirm('Are you sure?'))">Reload</a>&nbsp;
-                &nbsp;<a href="/manager/html/undeploy?path=/Tomcat" onClick="return(confirm('Are you sure?'))">Undeploy</a>&nbsp; </small>
-        </td>
-    </tr>
-</table>
-<br>
-<table border="1" cellspacing="0" cellpadding="3">
-    <tr>
-        <td colspan="2" class="title">Deploy</td>
-    </tr>
-    <tr>
-        <td colspan="2" class="header-left">
-            <small>Deploy directory or WAR file located on server</small>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <form method="get" action="/manager/html/deploy">
-                <table cellspacing="0" cellpadding="3">
-                    <tr>
-                        <td class="row-right">
-                            <small>Context Path (optional):</small>
-                        </td>
-                        <td class="row-left">
-                            <input type="text" name="deployPath" size="20">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="row-right">
-                            <small>XML Configuration file URL:</small>
-                        </td>
-                        <td class="row-left">
-                            <input type="text" name="deployConfig" size="20">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="row-right">
-                            <small>WAR or Directory URL:</small>
-                        </td>
-                        <td class="row-left">
-                            <input type="text" name="deployWar" size="40">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="row-right">&nbsp; </td>
-                        <td class="row-left">
-                            <input type="submit" value="Deploy">
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2" class="header-left">
-            <small>WAR file to deploy</small>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-        <form action="/manager/html/upload" method="post" enctype="multipart/form-data">
-            <table cellspacing="0" cellpadding="3">
-                <tr>
-                    <td class="row-right">
-                        <small>Select WAR file to upload</small>
-                    </td>
-                    <td class="row-left">
-                        <input type="file" name="deployWar" size="40">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="row-right">&nbsp; </td>
-                    <td class="row-left">
-                        <input type="submit" value="Deploy">
-                    </td>
-                </tr>
-            </table>
-        </form>
+    #end
 </table>
 <br>
 <hr size="1" noshade="noshade">

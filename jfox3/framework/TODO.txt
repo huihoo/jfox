@@ -256,3 +256,4 @@
 
 2007-03-24
     1. WebContextLoader需要在模块unload的时候释放相关的Action
+    2. WebContextLoader只保留Action的名称，不保留实例，并统一由WebContextLoader调用 action

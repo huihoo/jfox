@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Iterator;
+import java.util.Collection;
+import java.util.Collections;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NamedNativeQueries;
@@ -61,7 +63,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
     /**
      * query name => query template
      */
-    private static Map<String, NamedSQLTemplate> queryMap = new HashMap<String, NamedSQLTemplate>();
+    private static Map<String, NamedSQLTemplate> namedSQLTemplates = new HashMap<String, NamedSQLTemplate>();
 
     private Document xmlDocument = null;
 
@@ -143,6 +145,10 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         throw new PersistenceException("Can not find DataSource with mappedName: " + mappedName);
     }
 
+    public static Collection<NamedSQLTemplate> getNamedSQLTemplates() {
+        return Collections.unmodifiableCollection(namedSQLTemplates.values());
+    }
+
     private static void registerEntityManagerFactory(String name, EntityManagerFactoryImpl emFactory){
         emFactoryMap.put(name,emFactory);
     }
@@ -174,7 +180,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
             emFactory.close();
         }
         emFactoryMap.clear();
-        queryMap.clear();
+        namedSQLTemplates.clear();
     }
 
     public void preUnregister(ComponentContext context) {
@@ -195,7 +201,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
 
         if(moduleEvent instanceof ModuleUnloadedEvent){
             Module module = moduleEvent.getModule();
-            Iterator<Map.Entry<String, NamedSQLTemplate>> it =  queryMap.entrySet().iterator();
+            Iterator<Map.Entry<String, NamedSQLTemplate>> it =  namedSQLTemplates.entrySet().iterator();
             while(it.hasNext()){
                 Map.Entry<String, NamedSQLTemplate> entry = it.next();
                 NamedSQLTemplate sqlTemplate = entry.getValue();
@@ -373,17 +379,17 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
     }
 
     public void registerNamedQuery(NamedNativeQuery namedNativeQuery, Class<?> definedClass) {
-        if (queryMap.containsKey(namedNativeQuery.name())) {
-            logger.warn("NamedQuery " + namedNativeQuery.name() + " has registered by " + queryMap.get(namedNativeQuery.name()).getDefinedClass() + ".");
+        if (namedSQLTemplates.containsKey(namedNativeQuery.name())) {
+            logger.warn("NamedQuery " + namedNativeQuery.name() + " has registered by " + namedSQLTemplates.get(namedNativeQuery.name()).getDefinedClass() + ".");
         }
         else {
             NamedSQLTemplate sqlTemplate = new NamedSQLTemplate(namedNativeQuery, definedClass);
-            queryMap.put(sqlTemplate.getName(), sqlTemplate);
+            namedSQLTemplates.put(sqlTemplate.getName(), sqlTemplate);
         }
     }
 
     public NamedSQLTemplate getNamedQuery(String name) {
-        return queryMap.get(name);
+        return namedSQLTemplates.get(name);
     }
 
     public Document getPersistenceXMLDocument() {

@@ -2,32 +2,29 @@ package net.sourceforge.jfox.manager.console;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Collections;
 import java.util.Comparator;
-
+import java.util.List;
 import javax.naming.Binding;
 import javax.naming.NamingEnumeration;
 
-import net.sourceforge.jfox.ejb3.EJBContainer;
 import net.sourceforge.jfox.ejb3.EJBBucket;
+import net.sourceforge.jfox.ejb3.EJBContainer;
+import net.sourceforge.jfox.entity.EntityManagerFactoryBuilder;
+import net.sourceforge.jfox.entity.EntityManagerFactoryBuilderImpl;
+import net.sourceforge.jfox.entity.EntityManagerFactoryImpl;
 import net.sourceforge.jfox.framework.Constants;
 import net.sourceforge.jfox.framework.Framework;
 import net.sourceforge.jfox.framework.annotation.Service;
 import net.sourceforge.jfox.framework.component.Module;
 import net.sourceforge.jfox.mvc.ActionSupport;
+import net.sourceforge.jfox.mvc.Invocation;
 import net.sourceforge.jfox.mvc.InvocationContext;
 import net.sourceforge.jfox.mvc.PageContext;
 import net.sourceforge.jfox.mvc.WebContextLoader;
-import net.sourceforge.jfox.mvc.Invocation;
-import net.sourceforge.jfox.mvc.validate.StringValidation;
 import net.sourceforge.jfox.mvc.annotation.ActionMethod;
+import net.sourceforge.jfox.mvc.validate.StringValidation;
 import net.sourceforge.jfox.util.SystemUtils;
-import net.sourceforge.jfox.entity.EntityManagerFactoryBuilder;
-import net.sourceforge.jfox.entity.EntityManagerFactoryBuilderImpl;
-import net.sourceforge.jfox.entity.EntityManagerFactoryImpl;
-import net.sourceforge.jfox.entity.cache.Cache;
-import net.sourceforge.jfox.entity.cache.CacheConfig;
 
 /**
  *
@@ -92,6 +89,7 @@ public class WebConsoleAction extends ActionSupport {
 //        EntityManagerFactoryBuilder emfBuilder = getEntityManagerFactoryBuilder();
         EntityManagerFactoryImpl[] entityManagerFactories = EntityManagerFactoryBuilderImpl.getEntityManagerFactories();
 
+/*
         List<Cache> caches = new ArrayList<Cache>();
         for(EntityManagerFactoryImpl emfactory : entityManagerFactories){
             Collection<CacheConfig> cacheConfigs = emfactory.getCacheConfigs();
@@ -100,10 +98,12 @@ public class WebConsoleAction extends ActionSupport {
                 caches.addAll(_caches);
             }
         }
+*/
 
         PageContext pageContext = invocationContext.getPageContext();
         pageContext.setAttribute("entityManagerFactories", entityManagerFactories);
-        pageContext.setAttribute("caches", caches);
+        pageContext.setAttribute("namedSQLTemplates", EntityManagerFactoryBuilderImpl.getNamedSQLTemplates());
+//        pageContext.setAttribute("caches", caches);
   
     }
 
@@ -130,11 +130,21 @@ public class WebConsoleAction extends ActionSupport {
     }
 
     @ActionMethod(successView = "console/jpa.vhtml",invocationClass = TestConnectionInvocation.class)
-    public void doGetClearCache(InvocationContext invocationContext) throws Exception {
+    public void doGetClearConfigCache(InvocationContext invocationContext) throws Exception {
         TestConnectionInvocation invocation = (TestConnectionInvocation)invocationContext.getInvocation();
         String unitName = invocation.getUnitName();
         EntityManagerFactoryBuilderImpl.getEntityManagerFactoryByName(unitName).clearCache();
         doGetJPA(invocationContext);
+    }
+
+    @ActionMethod(successView = "console/jpa.vhtml",invocationClass = TestConnectionInvocation.class)
+    public void doGetClearCache(InvocationContext invocationContext) throws Exception {
+/*
+        TestConnectionInvocation invocation = (TestConnectionInvocation)invocationContext.getInvocation();
+        String unitName = invocation.getUnitName();
+        EntityManagerFactoryBuilderImpl.getEntityManagerFactoryByName(unitName).clearCache();
+        doGetJPA(invocationContext);
+*/
     }
 
 

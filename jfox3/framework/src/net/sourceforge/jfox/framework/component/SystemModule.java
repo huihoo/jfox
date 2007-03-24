@@ -3,8 +3,8 @@ package net.sourceforge.jfox.framework.component;
 import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import net.sourceforge.jfox.ejb3.EJBContainer;
 import net.sourceforge.jfox.framework.Framework;
@@ -36,7 +36,7 @@ public class SystemModule extends Module {
     protected void resolve() throws ModuleResolvedFailedException {
         setName(name);
         setDescription("System Module");
-        setPriority(-1);
+        setPriority(Integer.MIN_VALUE);
     }
 
     public String getName() {

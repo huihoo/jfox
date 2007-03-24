@@ -13,52 +13,75 @@
 </table>
 <hr size="1" noshade="noshade">
 <table cellspacing="0" cellpadding="3" width="100%" border="1">
-        <tr>
-            <td colspan="5" class="title"><big>Menu</big></td>
-        </tr>
-        <tr>
-            <td class="header-center">
-                <small><a href="console.sysinfo.do">System Infomation</a></small>
-            </td>
-            <td class="header-center">
-                <small><a href="console.jndi.do">JNDI View</a></small>
-            </td>
-            <td class="header-center">
-                <small><a href="console.container.do">EJB Container</a></small>
-            </td>
-            <td class="header-center">
-                <small><a href="console.jpa.do">Persistence Unit</a></small>
-            </td>
-            <td class="header-center">
-                <small><a href="console.modules.do">Modules</a></small>
-            </td>
-        </tr>
-</table>
-<br>
-<table cellspacing="4" width="100%" border="0">
     <tr>
-        <td class="page-title" bordercolor="#000000" align="left" nowrap><font size="+2">Persistence Unit Manager</font></td>
+        <td colspan="5" class="title"><big>Menu</big></td>
     </tr>
-</table>
-<br>
-<table border="1" cellspacing="0" cellpadding="3">
     <tr>
-        <td class="row-left" width="10%">
-            <small><strong>Message:</strong></small>
-            &nbsp;</td>
-        <td class="row-left">
-            <pre>OK</pre>
+        <td class="header-center">
+            <small><a href="console.sysinfo.do">System Infomation</a></small>
+        </td>
+        <td class="header-center">
+            <small><a href="console.jndi.do">JNDI View</a></small>
+        </td>
+        <td class="header-center">
+            <small><a href="console.container.do">EJB Container</a></small>
+        </td>
+        <td class="header-center">
+            <small><a href="console.jpa.do">Persistence Unit</a></small>
+        </td>
+        <td class="header-center">
+            <small><a href="console.modules.do">Modules</a></small>
         </td>
     </tr>
 </table>
 <br>
+<table cellspacing="4" width="100%" border="0">
+    <tr>
+        <td class="page-title" bordercolor="#000000" align="left" nowrap><font size="+2">Modules Manager</font></td>
+    </tr>
+</table>
+#foreach($module in $modules)
+<br>
 <table border="1" cellspacing="0" cellpadding="3">
     <tr>
-        <td colspan="5" class="title">Applications</td>
+        <td colspan="5" class="title" title="$module.getDescription()">Module($module.getName())</td>
+    </tr>
+    <tr>
+        <td colspan="5" class="row-left" bgcolor="#FFFFFF">
+            <small>
+                <table border="0" cellspacing="0">
+                    <tr>
+                        <td class="header-center" bgcolor="#FFFFFF">Descprtion</td>
+                        <td class="row-left"> $module.getDescription()</td>
+                    </tr>
+                    <tr>
+                        <td class="header-center">Priority</td>
+                        <td class="row-left">$module.getPriority()</td>
+                    </tr>
+                    <tr>
+                        <td class="header-center">Module Dir</td>
+                        <td class="row-left">$!module.getModuleDir()</td>
+                    </tr>
+                    <tr>
+                        <td class="header-center">Reference Modules</td>
+                        <td class="row-left">$!module.getRefModules()</td>
+                    </tr>
+                    <tr>
+                        <td class="header-center">Classpath</td>
+                        <td class="row-left">
+                            #foreach($url in $module.getClasspathURLs())
+                            $url<br>
+                            #end
+                        </td>
+                    </tr>
+                </table>
+            </small>
+
+        </td>
     </tr>
     <tr>
         <td class="header-left">
-            <small>Path</small>
+            <small>Component</small>
         </td>
         <td class="header-left">
             <small>Display Name</small>
@@ -114,6 +137,7 @@
         </td>
     </tr>
 </table>
+#end
 <br>
 <table border="1" cellspacing="0" cellpadding="3">
     <tr>
@@ -121,55 +145,12 @@
     </tr>
     <tr>
         <td colspan="2" class="header-left">
-            <small>Deploy directory or WAR file located on server</small>
+            <small>Module file(.zip) to deploy</small>
         </td>
     </tr>
     <tr>
         <td colspan="2">
-            <form method="get" action="/manager/html/deploy">
-                <table cellspacing="0" cellpadding="3">
-                    <tr>
-                        <td class="row-right">
-                            <small>Context Path (optional):</small>
-                        </td>
-                        <td class="row-left">
-                            <input type="text" name="deployPath" size="20">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="row-right">
-                            <small>XML Configuration file URL:</small>
-                        </td>
-                        <td class="row-left">
-                            <input type="text" name="deployConfig" size="20">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="row-right">
-                            <small>WAR or Directory URL:</small>
-                        </td>
-                        <td class="row-left">
-                            <input type="text" name="deployWar" size="40">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="row-right">&nbsp; </td>
-                        <td class="row-left">
-                            <input type="submit" value="Deploy">
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2" class="header-left">
-            <small>WAR file to deploy</small>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-        <form action="/manager/html/upload" method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data">
             <table cellspacing="0" cellpadding="3">
                 <tr>
                     <td class="row-right">
@@ -182,57 +163,11 @@
                 <tr>
                     <td class="row-right">&nbsp; </td>
                     <td class="row-left">
-                        <input type="submit" value="Deploy">
+                        <button onclick="alert('Not implemented :-)');return false;" value="Deploy">Deploy</button>
                     </td>
                 </tr>
             </table>
         </form>
-</table>
-<br>
-<table border="1" cellspacing="0" cellpadding="3">
-    <tr>
-        <td colspan="6" class="title">Server Information</td>
-    </tr>
-    <tr>
-        <td class="header-center">
-            <small>Tomcat Version</small>
-        </td>
-        <td class="header-center">
-            <small>JVM Version</small>
-        </td>
-        <td class="header-center">
-            <small>JVM Vendor</small>
-        </td>
-        <td class="header-center">
-            <small>OS Name</small>
-        </td>
-        <td class="header-center">
-            <small>OS Version</small>
-        </td>
-        <td class="header-center">
-            <small>OS Architecture</small>
-        </td>
-    </tr>
-    <tr>
-        <td class="row-center">
-            <small>Apache Tomcat/5.5.20</small>
-        </td>
-        <td class="row-center">
-            <small>1.5.0_11-b03</small>
-        </td>
-        <td class="row-center">
-            <small>Sun Microsystems Inc.</small>
-        </td>
-        <td class="row-center">
-            <small>Windows XP</small>
-        </td>
-        <td class="row-center">
-            <small>5.1</small>
-        </td>
-        <td class="row-center">
-            <small>x86</small>
-        </td>
-    </tr>
 </table>
 <br>
 <hr size="1" noshade="noshade">
