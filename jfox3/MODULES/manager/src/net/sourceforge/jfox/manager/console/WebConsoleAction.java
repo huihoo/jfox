@@ -130,7 +130,7 @@ public class WebConsoleAction extends ActionSupport {
     }
 
     @ActionMethod(successView = "console/jpa.vhtml",invocationClass = TestConnectionInvocation.class)
-    public void doGetClearConfigCache(InvocationContext invocationContext) throws Exception {
+    public void doGetClearCacheConfig(InvocationContext invocationContext) throws Exception {
         TestConnectionInvocation invocation = (TestConnectionInvocation)invocationContext.getInvocation();
         String unitName = invocation.getUnitName();
         EntityManagerFactoryBuilderImpl.getEntityManagerFactoryByName(unitName).clearCache();
