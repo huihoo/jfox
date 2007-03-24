@@ -12,46 +12,32 @@
     </tr>
 </table>
 <hr size="1" noshade="noshade">
-<table cellspacing="4" cellpadding="4" width="100%" border="0">
-<tr>
-<td width="180" class="menu">
-    <br>
-    <br>
-    <table cellspacing="0" width="100%" border="0">
+<table cellspacing="0" cellpadding="3" width="100%" border="1">
         <tr>
-            <td class="title"><big>Menu</big></td>
+            <td colspan="5" class="title"><big>Menu</big></td>
         </tr>
         <tr>
-            <td class="header-left">
+            <td class="header-center">
                 <small><a href="console.sysinfo.do">System Infomation</a></small>
             </td>
-        </tr>
-        <tr>
-            <td class="header-left">
+            <td class="header-center">
                 <small><a href="console.jndi.do">JNDI View</a></small>
             </td>
-        </tr>
-        <tr>
-            <td class="header-left">
+            <td class="header-center">
                 <small><a href="console.container.do">EJB Container</a></small>
             </td>
-        </tr>
-        <tr>
-            <td class="header-left">
+            <td class="header-center">
                 <small><a href="console.jpa.do">Persistence Unit</a></small>
             </td>
-        </tr>
-        <tr>
-            <td class="header-left">
+            <td class="header-center">
                 <small><a href="console.modules.do">Modules</a></small>
             </td>
         </tr>
-    </table>
-</td>
-<td>
+</table>
+<br>
 <table cellspacing="4" width="100%" border="0">
     <tr>
-        <td class="page-title" bordercolor="#000000" align="left" nowrap><font size="+2">Tomcat Web Application Manager</font></td>
+        <td class="page-title" bordercolor="#000000" align="left" nowrap><font size="+2">JNDI Bindings Manager</font></td>
     </tr>
 </table>
 <br>
@@ -83,10 +69,6 @@
         </td>
     </tr>
     #end
-</table>
-<br>
-</td>
-</tr>
 </table>
 <br>
 <hr size="1" noshade="noshade">

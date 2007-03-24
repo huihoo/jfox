@@ -21,6 +21,9 @@ import net.sourceforge.jfox.mvc.PageContext;
 import net.sourceforge.jfox.mvc.WebContextLoader;
 import net.sourceforge.jfox.mvc.annotation.ActionMethod;
 import net.sourceforge.jfox.util.SystemUtils;
+import net.sourceforge.jfox.entity.EntityManagerFactoryBuilder;
+import net.sourceforge.jfox.entity.EntityManagerFactoryBuilderImpl;
+import net.sourceforge.jfox.entity.EntityManagerFactoryImpl;
 
 /**
  *
@@ -79,13 +82,17 @@ public class WebConsoleAction extends ActionSupport {
         pageContext.setAttribute("buckets", buckets);
     }
 
-    @ActionMethod(successView = "console/persistence.vhtml")
-    public void doGetJPAAction(InvocationContext invocationContext) throws Exception{
+    @ActionMethod(successView = "console/jpa.vhtml")
+    public void doGetJPA(InvocationContext invocationContext) throws Exception{
         //DataSource, NamedNativeQuery, PersistenceUnit
-        
+        EntityManagerFactoryBuilder emfBuilder = getEntityManagerFactoryBuilder();
+        EntityManagerFactoryImpl[] entityManagerFactories = EntityManagerFactoryBuilderImpl.getEntityManagerFactories();
+        PageContext pageContext = invocationContext.getPageContext();
+        pageContext.setAttribute("entityManagerFactories", entityManagerFactories);
+  
     }
 
-    @ActionMethod(successView = "console/modules.vhtml")
+    @ActionMethod(successView = "console/module.vhtml")
     public void doGetModulesAction(InvocationContext invocationContext) throws Exception{
         Framework framework = WebContextLoader.getManagedFramework();
         Module systemModule = framework.getSystemModule();
@@ -102,6 +109,12 @@ public class WebConsoleAction extends ActionSupport {
         Framework framework = WebContextLoader.getManagedFramework();
         Collection<EJBContainer> containers = framework.getSystemModule().findComponentByInterface(EJBContainer.class);
         return containers.iterator().next();
+    }
+
+    private EntityManagerFactoryBuilder getEntityManagerFactoryBuilder(){
+        Framework framework = WebContextLoader.getManagedFramework();
+        Collection<EntityManagerFactoryBuilder> entityManagerFactoryBuilders = framework.getSystemModule().findComponentByInterface(EntityManagerFactoryBuilder.class);
+        return entityManagerFactoryBuilders.iterator().next();
     }
 
     public static void main(String[] args) {

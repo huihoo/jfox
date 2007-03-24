@@ -104,10 +104,21 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         return emFactoryMap.values().toArray(new EntityManagerFactory[1])[0];
     }
 
+    public static EntityManagerFactoryImpl[] getEntityManagerFactories(){
+        return emFactoryMap.values().toArray(new EntityManagerFactoryImpl[emFactoryMap.size()]);
+    }
+
+    /**
+     * 使用 @Resource 未指定 name 注入
+     */
     public static DataSource getDefaultDataSource(){
         return ((EntityManagerFactoryImpl)getDefaultEntityManagerFactory()).getDataSource();
     }
 
+    /**
+     * 使用 @Resource 指定 name 注入 
+     * @param unitName unit name, same as @resource name
+     */
     public static DataSource getDataSourceByUnitName(String unitName) {
         EntityManagerFactoryImpl emf = emFactoryMap.get(unitName);
         if(emf == null) {
@@ -118,6 +129,10 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         }
     }
 
+    /**
+     * get data source by Mapped Name, if inject by @PersistenceContext(mappedName="")
+     * @param mappedName mapped name, same as jndi name
+     */
     public static DataSource getDataSourceByMappedName(String mappedName) {
         for(EntityManagerFactory emf : emFactoryMap.values()){
              StandardXAPoolDataSource dataSource = (StandardXAPoolDataSource)(((EntityManagerFactoryImpl)emf).getDataSource());
@@ -335,7 +350,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         sxpds.setDataSource(sxds);
 
         // create EntityManagerFactory
-        return new EntityManagerFactoryImpl(unitName,this,sxpds, cacheConfigMap);
+        return new EntityManagerFactoryImpl(unitName,jndiName, this,sxpds, cacheConfigMap);
     }
 
     private void registerNamedQueriesByClasses(Class[] classes){

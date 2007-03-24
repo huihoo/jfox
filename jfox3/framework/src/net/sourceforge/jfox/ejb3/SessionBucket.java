@@ -67,7 +67,7 @@ public abstract class SessionBucket implements EJBBucket {
     private String ejbName;
 
     private List<String> mappedNames = new ArrayList<String>(2);
-    private String description;
+    private String description = "";
 
     private EJBContainer container = null;
 
@@ -587,7 +587,7 @@ public abstract class SessionBucket implements EJBBucket {
             }
             //TODO: 优化处理 Object 方法
             else if (method.getName().equals("toString") && (args == null || args.length == 0)) {
-                return "$proxy_ejb_stub{id=" + ejbObjectId + ",interface=" + Arrays.toString(getBeanInterface()) + "}";
+                return "$ejb_proxy_stub{id=" + ejbObjectId + ",interface=" + Arrays.toString(getBeanInterface()) + "}";
             }
             else if (method.getName().equals("equals") && args != null && args.length == 1) {
                 if (args[0] == null || !(args[0] instanceof ProxyStubInvocationHandler)) {

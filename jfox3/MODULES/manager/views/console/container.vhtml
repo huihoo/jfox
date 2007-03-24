@@ -12,43 +12,29 @@
     </tr>
 </table>
 <hr size="1" noshade="noshade">
-<table cellspacing="4" cellpadding="4" width="100%" border="0">
-<tr>
-<td width="180" class="menu">
-    <br>
-    <br>
-    <table cellspacing="0" width="100%" border="0">
+<table cellspacing="0" cellpadding="3" width="100%" border="1">
         <tr>
-            <td class="title"><big>Menu</big></td>
+            <td colspan="5" class="title"><big>Menu</big></td>
         </tr>
         <tr>
-            <td class="header-left">
+            <td class="header-center">
                 <small><a href="console.sysinfo.do">System Infomation</a></small>
             </td>
-        </tr>
-        <tr>
-            <td class="header-left">
+            <td class="header-center">
                 <small><a href="console.jndi.do">JNDI View</a></small>
             </td>
-        </tr>
-        <tr>
-            <td class="header-left">
+            <td class="header-center">
                 <small><a href="console.container.do">EJB Container</a></small>
             </td>
-        </tr>
-        <tr>
-            <td class="header-left">
+            <td class="header-center">
                 <small><a href="console.jpa.do">Persistence Unit</a></small>
             </td>
-        </tr>
-        <tr>
-            <td class="header-left">
+            <td class="header-center">
                 <small><a href="console.modules.do">Modules</a></small>
             </td>
         </tr>
-    </table>
-</td>
-<td>
+</table>
+<br>
 <table cellspacing="4" width="100%" border="0">
     <tr>
         <td class="page-title" bordercolor="#000000" align="left" nowrap><font size="+2">EJB Container Manager</font></td>
@@ -73,7 +59,7 @@
         <td class="header-left">
             <small>No.</small>
         </td>
-        <td class="header-left" title="$bucket.getDescription()">
+        <td class="header-left">
             <small>EJB name<br>
             <i>Mapped Names</i></small>
         </td>
@@ -94,7 +80,7 @@
         <td class="row-left">
             <small>$velocityCount</small>
         </td>
-        <td class="row-left">
+        <td class="row-left" title="$bucket.getDescription()">
             <small><a href="console.ejbdetail.do">$bucket.getEJBName()</a>
             #foreach($mappedName in $bucket.getMappedNames())
             <br><i>$mappedName</i>
@@ -128,13 +114,10 @@
     </tr>
     #end
 </table>
-</td>
-</tr>
-</table>
 <br>
 <hr size="1" noshade="noshade">
 <center>
-    <font size="-1" color="#525D76"> <em>Copyright &copy; 1999-2005, Apache Software Foundation</em></font>
+    <font size="-1" color="#525D76"> <em>Copyright &copy; 2002-2007, jfox.org.cn</em></font>
 </center>
 </body>
 </html>

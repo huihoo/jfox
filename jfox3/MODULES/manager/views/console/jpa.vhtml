@@ -43,18 +43,119 @@
 <br>
 <table border="1" cellspacing="0" cellpadding="3">
     <tr>
-        <td class="row-left" width="10%">
-            <small><strong>Message:</strong></small>
-            &nbsp;</td>
-        <td class="row-left">
-            <pre>OK</pre>
+        <td colspan="5" class="title">Persistence Units</td>
+    </tr>
+    <tr>
+        <td class="header-left">
+            <small>Unit name</small>
+        </td>
+        <td class="header-left">
+            <small>JTA Data Source</small>
+        </td>
+        <td class="header-center">
+            <small>Driver<br>URL<br>Username</small>
+        </td>
+        <td class="header-center">
+            <small>Connection Pool</small>
+        </td>
+        <td class="header-center">
+            <small>Cache Config</small>
+        </td>
+    </tr>
+    #foreach($entityManagerFactory in $entityManagerFactories)
+    <tr bgcolor="#if($velocityCount%2==0)#FFFFFF#else#C3F3C3#end">
+        <td class="row-left" bgcolor="#FFFFFF">
+            <small>$entityManagerFactory.getUnitName()</small>
+        </td>
+        <td class="row-left" bgcolor="#FFFFFF">
+            <small>$entityManagerFactory.getJTADataSource()</small>
+        </td>
+        <td class="row-center" bgcolor="#FFFFFF">
+            <small>
+                $entityManagerFactory.getDriver()<br>
+                $entityManagerFactory.getURL()<br>
+                $entityManagerFactory.getUser()
+            </small>
+        </td>
+        <td class="row-center" bgcolor="#FFFFFF">
+            <small><a href="/manager/html/sessions?path=/">0</a></small>
+        </td>
+        <td class="row-left" bgcolor="#FFFFFF">
+            <small> &nbsp;Start&nbsp;
+                &nbsp;<a href="/manager/html/stop?path=/" onClick="return(confirm('Are you sure?'))">Test Connection</a>&nbsp;
+                &nbsp;<a href="/manager/html/reload?path=/" onClick="return(confirm('Are you sure?'))">Reload</a>&nbsp;
+                &nbsp;<a href="/manager/html/undeploy?path=/" onClick="return(confirm('Are you sure?'))">Undeploy</a>&nbsp; </small>
+        </td>
+    </tr>
+    #end
+</table>
+<br>
+<table border="1" cellspacing="0" cellpadding="3">
+    <tr>
+        <td colspan="5" class="title">XA Data Sources</td>
+    </tr>
+    <tr>
+        <td class="header-left">
+            <small>Path</small>
+        </td>
+        <td class="header-left">
+            <small>Display Name</small>
+        </td>
+        <td class="header-center">
+            <small>Running</small>
+        </td>
+        <td class="header-center">
+            <small>Sessions</small>
+        </td>
+        <td class="header-center">
+            <small>Commands</small>
+        </td>
+    </tr>
+    <tr>
+        <td class="row-left" bgcolor="#FFFFFF">
+            <small><a href="/">/</a></small>
+        </td>
+        <td class="row-left" bgcolor="#FFFFFF">
+            <small>Welcome to Tomcat</small>
+        </td>
+        <td class="row-center" bgcolor="#FFFFFF">
+            <small>true</small>
+        </td>
+        <td class="row-center" bgcolor="#FFFFFF">
+            <small><a href="/manager/html/sessions?path=/">0</a></small>
+        </td>
+        <td class="row-left" bgcolor="#FFFFFF">
+            <small> &nbsp;Start&nbsp;
+                &nbsp;<a href="/manager/html/stop?path=/" onClick="return(confirm('Are you sure?'))">Stop</a>&nbsp;
+                &nbsp;<a href="/manager/html/reload?path=/" onClick="return(confirm('Are you sure?'))">Reload</a>&nbsp;
+                &nbsp;<a href="/manager/html/undeploy?path=/" onClick="return(confirm('Are you sure?'))">Undeploy</a>&nbsp; </small>
+        </td>
+    </tr>
+    <tr>
+        <td class="row-left" bgcolor="#C3F3C3">
+            <small><a href="/Tomcat">/Tomcat</a></small>
+        </td>
+        <td class="row-left" bgcolor="#C3F3C3">
+            <small>&nbsp;</small>
+        </td>
+        <td class="row-center" bgcolor="#C3F3C3">
+            <small>true</small>
+        </td>
+        <td class="row-center" bgcolor="#C3F3C3">
+            <small><a href="/manager/html/sessions?path=/Tomcat">0</a></small>
+        </td>
+        <td class="row-left" bgcolor="#C3F3C3">
+            <small> &nbsp;Start&nbsp;
+                &nbsp;<a href="/manager/html/stop?path=/Tomcat" onClick="return(confirm('Are you sure?'))">Stop</a>&nbsp;
+                &nbsp;<a href="/manager/html/reload?path=/Tomcat" onClick="return(confirm('Are you sure?'))">Reload</a>&nbsp;
+                &nbsp;<a href="/manager/html/undeploy?path=/Tomcat" onClick="return(confirm('Are you sure?'))">Undeploy</a>&nbsp; </small>
         </td>
     </tr>
 </table>
 <br>
 <table border="1" cellspacing="0" cellpadding="3">
     <tr>
-        <td colspan="5" class="title">Applications</td>
+        <td colspan="5" class="title">Named Queries</td>
     </tr>
     <tr>
         <td class="header-left">
@@ -187,52 +288,6 @@
                 </tr>
             </table>
         </form>
-</table>
-<br>
-<table border="1" cellspacing="0" cellpadding="3">
-    <tr>
-        <td colspan="6" class="title">Server Information</td>
-    </tr>
-    <tr>
-        <td class="header-center">
-            <small>Tomcat Version</small>
-        </td>
-        <td class="header-center">
-            <small>JVM Version</small>
-        </td>
-        <td class="header-center">
-            <small>JVM Vendor</small>
-        </td>
-        <td class="header-center">
-            <small>OS Name</small>
-        </td>
-        <td class="header-center">
-            <small>OS Version</small>
-        </td>
-        <td class="header-center">
-            <small>OS Architecture</small>
-        </td>
-    </tr>
-    <tr>
-        <td class="row-center">
-            <small>Apache Tomcat/5.5.20</small>
-        </td>
-        <td class="row-center">
-            <small>1.5.0_11-b03</small>
-        </td>
-        <td class="row-center">
-            <small>Sun Microsystems Inc.</small>
-        </td>
-        <td class="row-center">
-            <small>Windows XP</small>
-        </td>
-        <td class="row-center">
-            <small>5.1</small>
-        </td>
-        <td class="row-center">
-            <small>x86</small>
-        </td>
-    </tr>
 </table>
 <br>
 <hr size="1" noshade="noshade">

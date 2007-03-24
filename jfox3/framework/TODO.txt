@@ -253,3 +253,6 @@
 2007-03-17
     1. 支持 FreeMarker
     2. 去掉了 @Helper，需要修改 petstore
+
+2007-03-24
+    1. WebContextLoader需要在模块unload的时候释放相关的Action
