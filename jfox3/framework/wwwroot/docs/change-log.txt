@@ -1,8 +1,8 @@
-jfox DR1
-	ÊµÏÖ ejb ÈİÆ÷
+ï»¿jfox DR1
+	å®ç° ejb å®¹å™¨
 
 jfox DR2
-	EJBAutoDeploy Added£¬copy to deploy :)
+	EJBAutoDeploy Addedï¼Œcopy to deploy :)
 	MX Http Console Added, http://localhost:80802
 	JTA Added as a single J2EE component, Not integration yet, package org.jfox.tm
 	Added Java2HTML document, in java2html directory
@@ -60,17 +60,17 @@ jfox 2 m1
     JMS module
 
 JFox 2.5
-  1. ĞÂµÄ»ùÓÚ IoC µÄÄÚºË
-  2. ÊµÏÖJMS·şÎñ£¬²¢Ö§³ÖMessageDrivenBean
-  3. Ö§³ÖTimerBean
-  4. Ö§³Ö EJB ¼¯Èº
+  1. æ–°çš„åŸºäº IoC çš„å†…æ ¸
+  2. å®ç°JMSæœåŠ¡ï¼Œå¹¶æ”¯æŒMessageDrivenBean
+  3. æ”¯æŒTimerBean
+  4. æ”¯æŒ EJB é›†ç¾¤
 
-JFox 3
-  1. ÖØĞÂÉè¼ÆµÄ IoC ÈİÆ÷£¬¼ÓÈë OSGi Ë¼Ïë
-  2. ¸ÄÎªÇ¶ÈëÊ½¼Ü¹¹£¬ÄÜ¹»Ç¶Èëµ½ÈÎºÎ Java Web Server
-  3. Ö§³Ö EJB3, JPA
-  4. ²ÉÓÃJOTMÌá¹©ÊÂÎñ´¦Àí
-  5. ²ÉÓÃ XAPool Ìá¹© XA DataSource
-  6. Ôö¼Ó MVC ¿ò¼Ü£¬×Ô¶¯Forum Mapping, Validator, ²¢Ö§³ÖVelocity FreemarkerÄ£°åÒıÇæ£¬Âú×ã¿ì¿ª·¢ĞèÒª
-  7. ¸ù¾İJFox EJB3, JPA, MVC ÌØÉ«ÍêÈ«ÖØĞ´ JPetstore
-  8. Ìá¹© Manager ¹ÜÀíÄ£¿é
+JFox 3 - 20070305
+  1. é‡æ–°è®¾è®¡çš„ IoC å®¹å™¨ï¼ŒåŠ å…¥ OSGi æ€æƒ³
+  2. æ”¹ä¸ºåµŒå…¥å¼æ¶æ„ï¼Œèƒ½å¤ŸåµŒå…¥åˆ°ä»»ä½• Java Web Server
+  3. æ”¯æŒ EJB3, JPA
+  4. é‡‡ç”¨JOTMæä¾›äº‹åŠ¡å¤„ç†
+  5. é‡‡ç”¨ XAPool æä¾› XA DataSource
+  6. å¢åŠ  MVC æ¡†æ¶ï¼Œè‡ªåŠ¨Forum Mapping, Validator, å¹¶æ”¯æŒVelocity Freemarkeræ¨¡æ¿å¼•æ“ï¼Œæ»¡è¶³å¿«å¼€å‘éœ€è¦
+  7. æ ¹æ®JFox EJB3, JPA, MVC ç‰¹è‰²å®Œå…¨é‡å†™ JPetstore
+  8. æä¾› Manager ç®¡ç†æ¨¡å—
