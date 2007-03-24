@@ -111,6 +111,10 @@ public abstract class ActionSupport implements Action, ComponentInstantiation, C
         ActionMethod actionMethodAnnotation = actionMethod.getAnnotation(ActionMethod.class);
         String successView = actionMethodAnnotation.successView();
         String errorView = actionMethodAnnotation.errorView();
+        // 没有设置 errorView，则取 successView
+        if(errorView == null || errorView.trim().length()==0) {
+            errorView = successView;
+        }
         invocationContext.getPageContext().setTargetMethod(actionMethodAnnotation.targetMethod());
         invocationContext.getPageContext().setTargetView(successView);
 

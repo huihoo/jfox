@@ -4,6 +4,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -139,18 +141,31 @@ public class CacheConfig {
             }, getMaxIdleTime() / 10, getMaxIdleTime() / 2 , TimeUnit.MILLISECONDS);
         }
         if (!caches.containsKey(cacheName)) {
-            Cache cache = new SimpleCache(this);
+            Cache cache = new SimpleCache(cacheName,this);
             caches.put(cacheName, cache);
         }
         return caches.get(cacheName);
     }
 
-    public void close() {
-        cleaner.shutdown();
+    public Collection<Cache> getAllCaches(){
+        return Collections.unmodifiableCollection(caches.values());
+    }
+
+    public void clear(){
         for(Cache cache : caches.values()){
             cache.clear();
         }
+    }
+
+    public void close() {
+        cleaner.shutdown();
+        clear();
         caches.clear();
+    }
+
+
+    public String toString() {
+        return "CacheConfig@" + getName()+"@"+hashCode();
     }
 
     public static void main(String[] args) {

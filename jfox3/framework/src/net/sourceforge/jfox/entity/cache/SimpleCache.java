@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -16,6 +17,8 @@ public class SimpleCache implements Cache {
 
     private CacheStat cacheStat = null;
 
+    private String name;
+
     /**
      * 用来索引
      */
@@ -26,9 +29,14 @@ public class SimpleCache implements Cache {
      */
     private List<CachedObject> cacheList = new ArrayList<CachedObject>();
 
-    SimpleCache(CacheConfig config) {
+    SimpleCache(String cacheName, CacheConfig config) {
+        this.name = cacheName;
         this.config = config;
         this.cacheStat = new CacheStat();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public CacheConfig getConfig() {
@@ -37,6 +45,10 @@ public class SimpleCache implements Cache {
 
     public CacheStat getStatus() {
         return cacheStat;
+    }
+
+    public Collection<Serializable> keys() {
+        return Collections.unmodifiableCollection(cacheMap.keySet());
     }
 
     public synchronized void put(Serializable key, Serializable obj) {
@@ -144,6 +156,10 @@ public class SimpleCache implements Cache {
         cacheStat.decreaseMemorySize(memorySize);
         cacheMap.remove(cachedObject.getKey());
         cachedObject.reset();
+    }
+
+    public String toString() {
+        return "SimpleCache@"+getName()+"#"+getConfig().toString() ;
     }
 
     public static void main(String[] args) {

@@ -127,65 +127,63 @@
 <br>
 <table border="1" cellspacing="0" cellpadding="3">
     <tr>
-        <td colspan="5" class="title">XA Data Sources</td>
+        <td colspan="7" class="title">Caches</td>
     </tr>
     <tr>
         <td class="header-left">
-            <small>Path</small>
+            <small>Config Name</small>
         </td>
         <td class="header-left">
-            <small>Display Name</small>
+            <small>Paration</small>
         </td>
         <td class="header-center">
-            <small>Running</small>
+            <small>Size / Memory_Size</small>
         </td>
         <td class="header-center">
-            <small>Sessions</small>
+            <small>Puts / Removes</small>
+        </td>
+        <td class="header-center">
+            <small>Hits / Misses</small>
         </td>
         <td class="header-center">
             <small>Commands</small>
         </td>
+        <td class="header-left">
+            <small>Key List</small>
+        </td>
+
     </tr>
-    <tr>
-        <td class="row-left" bgcolor="#FFFFFF">
-            <small><a href="/">/</a></small>
+    #foreach($cache in $caches)
+    <tr bgcolor="#if($velocityCount%2==0)#FFFFFF#else#C3F3C3#end">
+        <td class="row-left">
+            <small>$cache.getConfig().getName()</small>
         </td>
-        <td class="row-left" bgcolor="#FFFFFF">
-            <small>Welcome to Tomcat</small>
+        <td class="row-left">
+            <small>$cache.getName()</small>
         </td>
-        <td class="row-center" bgcolor="#FFFFFF">
-            <small>true</small>
+        <td class="row-center">
+            <small>$cache.getStatus().getSize()/$cache.getStatus().getMemorySize()</small>
         </td>
-        <td class="row-center" bgcolor="#FFFFFF">
-            <small><a href="/manager/html/sessions?path=/">0</a></small>
+        <td class="row-center">
+            <small>$cache.getStatus().getPuts()/$cache.getStatus().getRemoves()</small>
         </td>
-        <td class="row-left" bgcolor="#FFFFFF">
-            <small> &nbsp;Start&nbsp;
-                &nbsp;<a href="/manager/html/stop?path=/" onClick="return(confirm('Are you sure?'))">Stop</a>&nbsp;
-                &nbsp;<a href="/manager/html/reload?path=/" onClick="return(confirm('Are you sure?'))">Reload</a>&nbsp;
-                &nbsp;<a href="/manager/html/undeploy?path=/" onClick="return(confirm('Are you sure?'))">Undeploy</a>&nbsp; </small>
+        <td class="row-center">
+            <small>$cache.getStatus().getHits()/$cache.getStatus().getMisses()</small>
         </td>
+        <td class="row-left">
+            <small>
+                <a href="console.clearcache.do" onClick="return(confirm('Are you sure?'))">Clear</a> 
+            </small>
+        </td>
+        <td class="row-center">
+            <small>
+                #foreach($key in $cache.keys())
+                <pre>$key</pre>
+                #end
+            </small>
+        </td>        
     </tr>
-    <tr>
-        <td class="row-left" bgcolor="#C3F3C3">
-            <small><a href="/Tomcat">/Tomcat</a></small>
-        </td>
-        <td class="row-left" bgcolor="#C3F3C3">
-            <small>&nbsp;</small>
-        </td>
-        <td class="row-center" bgcolor="#C3F3C3">
-            <small>true</small>
-        </td>
-        <td class="row-center" bgcolor="#C3F3C3">
-            <small><a href="/manager/html/sessions?path=/Tomcat">0</a></small>
-        </td>
-        <td class="row-left" bgcolor="#C3F3C3">
-            <small> &nbsp;Start&nbsp;
-                &nbsp;<a href="/manager/html/stop?path=/Tomcat" onClick="return(confirm('Are you sure?'))">Stop</a>&nbsp;
-                &nbsp;<a href="/manager/html/reload?path=/Tomcat" onClick="return(confirm('Are you sure?'))">Reload</a>&nbsp;
-                &nbsp;<a href="/manager/html/undeploy?path=/Tomcat" onClick="return(confirm('Are you sure?'))">Undeploy</a>&nbsp; </small>
-        </td>
-    </tr>
+    #end
 </table>
 <br>
 <table border="1" cellspacing="0" cellpadding="3">

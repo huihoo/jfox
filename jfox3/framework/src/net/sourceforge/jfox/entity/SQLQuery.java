@@ -23,10 +23,10 @@ import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import net.sourceforge.jfox.entity.annotation.ParameterMap;
+import net.sourceforge.jfox.entity.cache.Cache;
+import net.sourceforge.jfox.entity.cache.CacheConfig;
 import net.sourceforge.jfox.entity.dao.DAOSupport;
 import net.sourceforge.jfox.entity.dao.MapperEntity;
-import net.sourceforge.jfox.entity.cache.CacheConfig;
-import net.sourceforge.jfox.entity.cache.Cache;
 import net.sourceforge.jfox.util.ClassUtils;
 import net.sourceforge.jfox.util.VelocityUtils;
 import org.apache.log4j.Logger;
@@ -85,7 +85,7 @@ public class SQLQuery extends QueryExt {
 
     private synchronized CacheKey getCacheKey(){
         if(cacheKey == null) {
-            cacheKey = new CacheKey(getName(), parameterMap);
+            cacheKey = new CacheKey(getSQLTemplate().getTemplateSQL(), parameterMap);
         }
         return cacheKey;
     }
@@ -528,14 +528,18 @@ public class SQLQuery extends QueryExt {
         }
     }
 
-    //TODO: 实现完整的 equals and hashCode
+    //要覆盖equals and hashCode
     class CacheKey implements Serializable {
-        private String sqlTemplateName;
+        private String templateSQL;
         private Map<String, Object> parameterMap = new HashMap<String, Object>();
 
         public CacheKey(String sqlTemplateName, Map<String, Object> parameterMap) {
-            this.sqlTemplateName = sqlTemplateName;
+            this.templateSQL = sqlTemplateName;
             this.parameterMap.putAll(parameterMap);
+        }
+
+        public String toString() {
+            return templateSQL+ " ParameterMap" + parameterMap.toString();
         }
 
         public boolean equals(Object o) {
@@ -545,14 +549,14 @@ public class SQLQuery extends QueryExt {
             CacheKey cacheKey = (CacheKey)o;
 
             if (!parameterMap.equals(cacheKey.parameterMap)) return false;
-            if (!sqlTemplateName.equals(cacheKey.sqlTemplateName)) return false;
+            if (!templateSQL.equals(cacheKey.templateSQL)) return false;
 
             return true;
         }
 
         public int hashCode() {
             int result;
-            result = sqlTemplateName.hashCode();
+            result = templateSQL.hashCode();
             result = 31 * result + parameterMap.hashCode();
             return result;
         }

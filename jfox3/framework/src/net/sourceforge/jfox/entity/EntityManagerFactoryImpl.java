@@ -152,6 +152,12 @@ public class EntityManagerFactoryImpl implements EntityManagerFactory {
         conn.close();
     }
 
+    public void clearCache(){
+        for(CacheConfig cacheConfig : cacheConfigMap.values()) {
+            cacheConfig.clear();
+        }
+    }
+
     public static void main(String[] args) {
 
     }

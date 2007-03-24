@@ -7,8 +7,8 @@ package net.sourceforge.jfox.entity.cache;
  */
 public class ExcusiveCache extends SimpleCache {
 
-    public ExcusiveCache(CacheConfig config) {
-        super(config);
+    public ExcusiveCache(String name, CacheConfig config) {
+        super(name, config);
     }
 
     public static void main(String[] args) {

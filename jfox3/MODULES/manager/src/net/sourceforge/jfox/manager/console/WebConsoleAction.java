@@ -26,6 +26,8 @@ import net.sourceforge.jfox.util.SystemUtils;
 import net.sourceforge.jfox.entity.EntityManagerFactoryBuilder;
 import net.sourceforge.jfox.entity.EntityManagerFactoryBuilderImpl;
 import net.sourceforge.jfox.entity.EntityManagerFactoryImpl;
+import net.sourceforge.jfox.entity.cache.Cache;
+import net.sourceforge.jfox.entity.cache.CacheConfig;
 
 /**
  *
@@ -87,15 +89,26 @@ public class WebConsoleAction extends ActionSupport {
     @ActionMethod(successView = "console/jpa.vhtml")
     public void doGetJPA(InvocationContext invocationContext) throws Exception{
         //DataSource, NamedNativeQuery, PersistenceUnit
-        EntityManagerFactoryBuilder emfBuilder = getEntityManagerFactoryBuilder();
+//        EntityManagerFactoryBuilder emfBuilder = getEntityManagerFactoryBuilder();
         EntityManagerFactoryImpl[] entityManagerFactories = EntityManagerFactoryBuilderImpl.getEntityManagerFactories();
+
+        List<Cache> caches = new ArrayList<Cache>();
+        for(EntityManagerFactoryImpl emfactory : entityManagerFactories){
+            Collection<CacheConfig> cacheConfigs = emfactory.getCacheConfigs();
+            for(CacheConfig cacheConfig : cacheConfigs){
+                Collection<Cache> _caches = cacheConfig.getAllCaches();
+                caches.addAll(_caches);
+            }
+        }
+
         PageContext pageContext = invocationContext.getPageContext();
         pageContext.setAttribute("entityManagerFactories", entityManagerFactories);
+        pageContext.setAttribute("caches", caches);
   
     }
 
     @ActionMethod(successView = "console/module.vhtml")
-    public void doGetModulesAction(InvocationContext invocationContext) throws Exception{
+    public void doGetModules(InvocationContext invocationContext) throws Exception{
         Framework framework = WebContextLoader.getManagedFramework();
         Module systemModule = framework.getSystemModule();
         List<Module> allModules = framework.getAllModules();
@@ -115,6 +128,15 @@ public class WebConsoleAction extends ActionSupport {
         pageContext.setAttribute("unitName", unitName);
         EntityManagerFactoryBuilderImpl.getEntityManagerFactoryByName(unitName).checkConnection();
     }
+
+    @ActionMethod(successView = "console/jpa.vhtml",invocationClass = TestConnectionInvocation.class)
+    public void doGetClearCache(InvocationContext invocationContext) throws Exception {
+        TestConnectionInvocation invocation = (TestConnectionInvocation)invocationContext.getInvocation();
+        String unitName = invocation.getUnitName();
+        EntityManagerFactoryBuilderImpl.getEntityManagerFactoryByName(unitName).clearCache();
+        doGetJPA(invocationContext);
+    }
+
 
     private EJBContainer getEJBContainer(){
         Framework framework = WebContextLoader.getManagedFramework();

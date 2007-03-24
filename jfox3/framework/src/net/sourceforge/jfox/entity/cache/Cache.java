@@ -1,12 +1,17 @@
 package net.sourceforge.jfox.entity.cache;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public interface Cache {
 
+    public String getName();
+
+    public Collection<Serializable> keys();
+    
     /**
      * cache对象
      *
