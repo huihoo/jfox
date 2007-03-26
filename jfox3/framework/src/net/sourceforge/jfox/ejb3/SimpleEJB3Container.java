@@ -7,28 +7,26 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.WeakHashMap;
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import javax.ejb.EJBException;
 import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
+import javax.naming.Binding;
 import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
-import javax.naming.NameNotFoundException;
-import javax.naming.NamingException;
 import javax.naming.NameClassPair;
+import javax.naming.NameNotFoundException;
 import javax.naming.NamingEnumeration;
-import javax.naming.Binding;
+import javax.naming.NamingException;
 import javax.transaction.SystemException;
 import javax.transaction.TransactionManager;
 
@@ -495,9 +493,9 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
          * it will be automatic removed by GC
          * EJBTimerTask => timer hashCode
          */
-        private Map<EJBTimerTask, String> timerTasks = new WeakHashMap<EJBTimerTask, String>();
+//        private Map<EJBTimerTask, String> timerTasks = new WeakHashMap<EJBTimerTask, String>();
 
-        private ScheduledExecutorService scheduleService = Executors.newScheduledThreadPool(5);
+        private ScheduledThreadPoolExecutor scheduleService = new ScheduledThreadPoolExecutor(2);
 
         public ContainerTimerService() {
 
@@ -507,7 +505,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
             EJBTimerTask timer = new EJBTimerTask(this, info);
             ScheduledFuture future = scheduleService.schedule(timer, duration, TimeUnit.MILLISECONDS);
             timer.setFuture(future);
-            timerTasks.put(timer, System.currentTimeMillis() + "");
+//            timerTasks.put(timer, System.currentTimeMillis() + "");
             return timer;
         }
 
@@ -515,7 +513,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
             EJBTimerTask timer = new EJBTimerTask(this, info);
             ScheduledFuture future = scheduleService.schedule(timer, expiration.getTime() - System.currentTimeMillis(), TimeUnit.MILLISECONDS);
             timer.setFuture(future);
-            timerTasks.put(timer, System.currentTimeMillis() + "");
+//            timerTasks.put(timer, System.currentTimeMillis() + "");
             return timer;
         }
 
@@ -523,7 +521,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
             EJBTimerTask timer = new EJBTimerTask(this, info);
             ScheduledFuture future = scheduleService.scheduleWithFixedDelay(timer, initialDuration, intervalDuration, TimeUnit.MILLISECONDS);
             timer.setFuture(future);
-            timerTasks.put(timer, System.currentTimeMillis() + "");
+//            timerTasks.put(timer, System.currentTimeMillis() + "");
             return timer;
         }
 
@@ -531,12 +529,13 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
             EJBTimerTask timer = new EJBTimerTask(this, info);
             ScheduledFuture future = scheduleService.scheduleWithFixedDelay(timer, initialExpiration.getTime() - System.currentTimeMillis(), intervalDuration, TimeUnit.MILLISECONDS);
             timer.setFuture(future);
-            timerTasks.put(timer, System.currentTimeMillis() + "");
+//            timerTasks.put(timer, System.currentTimeMillis() + "");
             return timer;
         }
 
         public Collection getTimers() throws IllegalStateException, EJBException {
-            return Collections.unmodifiableCollection(timerTasks.keySet());
+//            return Collections.unmodifiableCollection(timerTasks.keySet());
+            return Arrays.asList(scheduleService.getQueue().toArray(new Runnable[scheduleService.getQueue().size()]));
         }
 
         /**
