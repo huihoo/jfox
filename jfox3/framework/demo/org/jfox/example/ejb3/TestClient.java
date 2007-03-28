@@ -201,4 +201,15 @@ public class TestClient {
 
     }
 
+    @Test
+    public void invokeSynchronization() throws Exception {
+        Context context = JNDIContextHelper.getInitalContext();
+        org.jfox.example.ejb3.synchronization.ShoppingCart calculator = (org.jfox.example.ejb3.synchronization.ShoppingCart)context.lookup("sychronization.ShoppingCartBean/remote");
+        calculator.buy("apple", 1);
+        calculator.buy("banana", 2);
+        Assert.assertEquals(calculator.getCartContents().size(), 2);
+
+    }
+
+
 }
