@@ -31,7 +31,7 @@ public class TransactionEJBInvocationHandler extends EJBInvocationHandler {
         TransactionManager tm = invocation.getTransactionManager();
 
         Transaction suspendedTrans = null;
-        // 事务同步, 只有 stateful session bean 可以实现 SessionSynchronization 接口
+        // TODO: 事务同步, 规范中，只有 stateful session bean 可以实现 SessionSynchronization 接口
         boolean isSync = (invocation.getTarget() instanceof SessionSynchronization);
 
 /*
@@ -79,6 +79,7 @@ public class TransactionEJBInvocationHandler extends EJBInvocationHandler {
                             // tx synchronize
                             if(isSync) {
                                 EJBSynchronization ejbSync = new EJBSynchronization((SessionSynchronization) invocation.getTarget(), tm.getTransaction());
+                                tm.getTransaction().registerSynchronization(ejbSync);
                                 ejbSync.afterBegin();
                             }
                             created = true;
