@@ -1,4 +1,4 @@
-package net.sourceforge.jfox.forum;
+package org.jfox.forum;
 
 import javax.ejb.Stateless;
 
