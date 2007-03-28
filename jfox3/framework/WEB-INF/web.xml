@@ -9,7 +9,7 @@
     <display-name>ejb3 enabled webapp</display-name>
 
     <listener>
-        <listener-class>net.sourceforge.jfox.mvc.WebContextLoader</listener-class>
+        <listener-class>org.jfox.mvc.WebContextLoader</listener-class>
     </listener>
 
     <!-- if you don't want to use JFox MVC, comment below content -->
@@ -39,7 +39,7 @@
 
     <servlet>
         <servlet-name>xfire_servlet</servlet-name>
-        <servlet-class>net.sourceforge.jfox.webservice.xfire.JFoxXFireServlet</servlet-class>
+        <servlet-class>org.jfox.webservice.xfire.JFoxXFireServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -49,7 +49,7 @@
 
     <servlet>
         <servlet-name>controller_servlet</servlet-name>
-        <servlet-class>net.sourceforge.jfox.mvc.servlet.ControllerServlet</servlet-class>
+        <servlet-class>org.jfox.mvc.servlet.ControllerServlet</servlet-class>
         <init-param>
             <param-name>MAX_UPLOAD_FILE_SIZE</param-name>
             <param-value>5000000</param-value>
@@ -64,26 +64,26 @@
 
     <servlet>
         <servlet-name>template_servlet</servlet-name>
-        <servlet-class>net.sourceforge.jfox.mvc.servlet.TemplateServlet</servlet-class>
+        <servlet-class>org.jfox.mvc.servlet.TemplateServlet</servlet-class>
         <init-param>
             <description>velocity render</description>
-            <param-name>net.sourceforge.jfox.mvc.velocity.VelocityRender</param-name>
+            <param-name>org.jfox.mvc.velocity.VelocityRender</param-name>
             <param-value>*.vm,*.tmpl,*.vhtm,*.vhtml</param-value>
         </init-param>
         <init-param>
             <description>freemarker render</description>
-            <param-name>net.sourceforge.jfox.mvc.freemarker.FreemarkerRender</param-name>
+            <param-name>org.jfox.mvc.freemarker.FreemarkerRender</param-name>
             <param-value>*.ftl,*.fhtm,*.fhtml</param-value>
         </init-param>
         <!--
         <init-param>
             <description>pdf_render</description>
-            <param-name>net.sourceforge.jfox.mvc.pdf.PDFRender</param-name>
+            <param-name>org.jfox.mvc.pdf.PDFRender</param-name>
             <param-value>*.pdf</param-value>
         </init-param>
         <init-param>
             <description>excel_render</description>
-            <param-name>net.sourceforge.jfox.mvc.excel.ExcelRender</param-name>
+            <param-name>org.jfox.mvc.excel.ExcelRender</param-name>
             <param-value>*.xls</param-value>
         </init-param>
         -->

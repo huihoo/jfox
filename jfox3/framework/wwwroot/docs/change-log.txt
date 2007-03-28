@@ -71,6 +71,6 @@ JFox 3 - 20070305
   3. 支持 EJB3, JPA
   4. 采用JOTM提供事务处理
   5. 采用 XAPool 提供 XA DataSource
-  6. 增加 MVC 框架，自动Forum Mapping, Validator, 并支持Velocity Freemarker模板引擎，满足快开发需要
-  7. 根据JFox EJB3, JPA, MVC 特色完全重写 JPetstore
-  8. 提供 Manager 管理模块
+  6. 增加 MVC 框架，支持多模块，自动Form Mapping, Validator, 支持直接在Action中注入EJB，并支持JSP/Velocity/Freemarker，满足快开发需要
+  7. 提供 Manager 管理模块
+  8. 根据JFox EJB3, JPA, MVC 特色完全重写 JPetstore

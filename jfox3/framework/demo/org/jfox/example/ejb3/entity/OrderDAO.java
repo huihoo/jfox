@@ -2,7 +2,7 @@ package org.jfox.example.ejb3.entity;
 
 import java.util.List;
 
-import net.sourceforge.jfox.entity.dao.DataAccessObject;
+import org.jfox.entity.dao.DataAccessObject;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

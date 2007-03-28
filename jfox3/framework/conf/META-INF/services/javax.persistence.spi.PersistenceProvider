@@ -1,1 +1,1 @@
-net.sourceforge.jfox.entity.PersistenceProviderImpl
+org.jfox.entity.PersistenceProviderImpl

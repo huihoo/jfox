@@ -17,19 +17,327 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/www/index.jsp" afterPath="$PROJECT_DIR$/framework/www/index.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/manager/views/images" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/manager/views/index.jsp" afterPath="$PROJECT_DIR$/MODULES/manager/views/index.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/manager/views/demoEJB.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/manager/views/images/jfox.jpg" />
-      <change type="DELETED" beforePath="D:\workspace\jfox3\MODULES\manager\views\index.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/Test2/src/jfox/test/User2.java" afterPath="$PROJECT_DIR$/MODULES/Test2/src/jfox/test/User2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/Test/src/jfox/test/IUserManager.java" afterPath="$PROJECT_DIR$/MODULES/Test/src/jfox/test/IUserManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/Test/src/jfox/test/UserManager.java" afterPath="$PROJECT_DIR$/MODULES/Test/src/jfox/test/UserManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/Test/src/jfox/test/User1.java" afterPath="$PROJECT_DIR$/MODULES/Test/src/jfox/test/User1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/Test/src/jfox/test/IUser.java" afterPath="$PROJECT_DIR$/MODULES/Test/src/jfox/test/IUser.java" />
+    </list>
+    <list name="Failed commit: Default" comment="package change to org.jfox!">
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\annotation\ParameterMap.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\StatefulBucket.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\freemarker" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\interceptor\InterceptorMethod.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\Validator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\invoker\ReflectComponentInvoker.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\cache\LFUComparator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\connector\ConnectionMeta.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\LongValidation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\Render.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\EmailValidation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\QueryExt.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/transaction/JOTMTest.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/transaction/JOTMTest.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\EntityManagerFactoryBuilderImpl.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/AddressDAO.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/AddressDAO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/dao" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\JMSSession.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\naming\InitialContextFactoryImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\interceptor\InternalInterceptorMethod.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\jfox\framework\component\TestComponentImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\EntityManagerFactoryImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\dependent\FieldPersistenceUnittDependence.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/wwwroot/jsp/ejb.jsp" afterPath="$PROJECT_DIR$/framework/wwwroot/jsp/ejb.jsp" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\DoubleValidator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\invoker\TransactableComponentInvoker.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\FileUploaded.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\management" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\transaction" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\webservice\xfire\JFoxXFireServlet.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\ComponentId.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\JMSConnection.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\jfox\framework\FrameworkTest.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\annotation\Inject.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\connector\JMSContainerImpl.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/component/TestComponentImpl.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/component/TestComponentImpl.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\event\EJBUnloadedComponentEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\dao" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\naming\ContextAdapter.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\interceptor\ExternalInterceptorMethod.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\annotation\EntityHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/framework/test-src/net/sourceforge/dao" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\EmailValidator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\NamedQueryNotFoundException.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\message\MessageProperties.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\EventManager.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\util\PlaceholderUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\timer" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\FactoryComponent.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\util\XMLUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\cache\ExcusiveCache.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ModuleClassLoader.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\ValidateException.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\Deliver.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\message\BytesMessageImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\invocation\InterceptorsEJBInvocationHandler.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/wwwroot/docs/installation.html" afterPath="$PROJECT_DIR$/framework/wwwroot/docs/installation.html" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\invocation\TransactionEJBInvocationHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\event\ModuleEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\BaseException.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\JMSConnectionRemote.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\message\JMSMessage.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\dependent" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\event\ModuleLoadingEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\util\AnnotationUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ComponentUUID.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/AddressBOImpl.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/AddressBOImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/entity/OrderDAOImpl.java" afterPath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/entity/OrderDAOImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/AccountDAOImpl.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/AccountDAOImpl.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\invoker\ComponentInvoker.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/entity/Order.java" afterPath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/entity/Order.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\jfox\framework\example\AddressBOImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\dependent\InjectDependence.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\transaction\EJBSynchronization.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\message\TextMessageImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\webservice\naming" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\dependent\FieldEJBDependence.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\connector\SessionMeta.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\JMSQueue.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\EJBContainer.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/TestClient.java" afterPath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/TestClient.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\PageContext.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\dao\DAOSupport.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\dependent\InjectionException.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\SessionContext.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\cache\CacheConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\util\MethodUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\StatelessBucket.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\DoubleValidation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\annotation\Service.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\SimpleEJB3Container.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\servlet\TemplateServlet.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\AbstractEJBContext.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/synchronization/ShoppingCart.java" afterPath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/synchronization/ShoppingCart.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\JMSDestination.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/transaction/JTATransactionManagerTest.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/transaction/JTATransactionManagerTest.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\cache\SimpleCache.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ProxyReferenceFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\annotation" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/AddressBO.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/AddressBO.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\Extention.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/framework/WEB-INF/web.xml" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\event\FrameworkStartedEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\dependent\ResourceDependence.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\event\ModuleLoadedEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/framework/test-src/net/sourceforge/jfox/framework" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\EntityManagerExt.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\jfox\framework\transaction\JOTMTest.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\interceptor\BusinessInterceptorMethod.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\Upload.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/wwwroot/docs/change-log.txt" afterPath="$PROJECT_DIR$/framework/wwwroot/docs/change-log.txt" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/framework/test-src/net/sourceforge/jfox" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\EntityObject.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\EJBContainerException.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\naming\url" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ComponentListener.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\management\ManageableComponent.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\EntityManagerFactoryBuilder.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\LongValidator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\dependent\ConstantDependence.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/Account.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/Account.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\ClassLoaderRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\event\ComponentUnloadedEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ComponentUnregistration.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\dao\TODO.txt" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\webservice\naming\InitialContextFactoryImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\jfox\framework\EJB3ContainerTest.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\FrameworkListener.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\event\FrameworkEvent.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/conf/META-INF/services/javax.persistence.spi.PersistenceProvider" afterPath="$PROJECT_DIR$/framework/conf/META-INF/services/javax.persistence.spi.PersistenceProvider" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ComponentResolvedFailedException.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\UserManagementAction.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\message\Conversions.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ComponentInstantiateException.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/lob/LobberDAOImpl.java" afterPath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/lob/LobberDAOImpl.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\jfox\framework\example\AccountBOImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\util\ClassUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\dependent\FieldEJBDependence.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\BaseRuntimeException.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\connector\JMSContainer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\Constants.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\IntegerValidator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\cache\Cache.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\dependent\FieldPersistenceContextDependence.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\InvocationException.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\connector\JMSHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\SystemModule.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\servlet\ControllerServlet.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\velocity" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\timer\EJBTimerTask.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\util\SystemUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ActiveComponent.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\jfox\framework\component\TestComponent.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\Validators.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\dao\DAOTest.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\EJBInvocation.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/component/TestComponent.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/component/TestComponent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/AccountBO.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/AccountBO.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\naming" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ComponentFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ExtentionPoint.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\JMSConsumer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\message" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\dependent\Dependence.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\jfox\framework\example\Address.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\dependent" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\connector\JMSDestinations.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\EntityTransactionImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\util\FileUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\naming\TODO.txt" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\event\EJBLoadedComponentEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\invoker" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/framework/test-src/net/sourceforge/jfox/framework/component" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\event\ComponentLoadedEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\cache\SingletonCache.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\annotation\Constant.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\message\MapMessageImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\connector\ConsumerMeta.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\util\VelocityUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\DateValidator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\management\ManageableMethod.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\event\ModuleUnloadedEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/framework/test-src/net/sourceforge/jfox/framework/transaction" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\StringValidator.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/dao/DAOTest.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/dao/DAOTest.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\invoker\ComponentInvokerFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\SingletonComponent.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ComponentInvocationException.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\EJBHandleImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\connector" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ComponentInstantiation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\util" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/EJB3ContainerTest.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/EJB3ContainerTest.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\dependent" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/synchronization/ShoppingCartBean.java" afterPath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/synchronization/ShoppingCartBean.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\ValidateErrors.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\Framework.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\webservice" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\cache\LRUComparator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\InterceptableComponent.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\annotation\MappedColumn.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\SessionBucket.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\JMSProducer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\event\ComponentEvent.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/component/TestComponentMain.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/component/TestComponentMain.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\jfox\framework\example\Account.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\StringValidation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\message\MessageHeader.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\dependent\EJBDependence.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\RunnableComponent.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\annotation" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\IntegerValidation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\Invocation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\util\IOUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\cache\CacheFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\jfox\framework\example\AddressDAO.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\FloatValidator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\SQLTemplate.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\cache\CachedObject.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\annotation\ActionMethod.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\cache" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ComponentContext.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\jfox\framework\component\TestComponentMain.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\EJBBucket.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\event" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\invocation" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/FrameworkTest.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/FrameworkTest.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\transaction\TxConnectionsThreadLocal.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\webservice\xfire\JFoxXFireDelegate.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\velocity\Log4jLogSystem.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\naming\url\javaURLContextFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\jfox\framework\example\AccountDAOImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\connector\JMSInvocation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\JMSConnectionFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\PersistenceProviderImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\util\MarshallUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\util\PagedList.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\dao\PKgen.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\UserInvocation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\transaction\JTATransactionManager.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\Repository.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\jfox\framework\example\AddressBO.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ModuleResolvedFailedException.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/stateful/ShoppingCart.java" afterPath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/stateful/ShoppingCart.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\ActionSupport.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\dependent\FieldResourceDependence.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/framework/test-src/net/sourceforge/jfox/framework/example" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\NamedQueryArgumentException.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\event" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\cache\FIFOComparator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\interceptor" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\util" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\cache\CacheStat.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\validate\FloatValidation.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/entity/OrderDAO.java" afterPath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/entity/OrderDAO.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ComponentNotExportedException.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\SQLQuery.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\util\FileFilterUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\servlet" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\Module.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\InvocationContext.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\jfox\framework\example\AccountBO.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\annotation\Exported.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\naming\JNDIContextHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\invocation\ThreadContextEJBInvocationHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\freemarker\FreemarkerRender.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ModuleListener.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\event\FrameworkStoppedEvent.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/webservice/WebServiceClient.java" afterPath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/webservice/WebServiceClient.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\velocity\VelocityRender.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/env/CalculatorBean.java" afterPath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/env/CalculatorBean.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\JMSTopic.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\jfox\framework\transaction\JTATransactionManagerTest.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/AccountDAO.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/AccountDAO.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\message\ObjectMessageImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\EJBObjectId.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\EntityManagerImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\Component.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/conf/jndi.properties" afterPath="$PROJECT_DIR$/framework/conf/jndi.properties" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ComponentMeta.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\webservice\xfire" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\NamedSQLTemplate.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/AccountBOImpl.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/AccountBOImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/test-src/org" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/stateful/ShoppingCartBean.java" afterPath="$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/stateful/ShoppingCartBean.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ASMClassLoader.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\annotation" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\dao\MapperEntity.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\ejb3\EJBInvocationHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\entity\dao\DataAccessObject.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\test-src\net\sourceforge\jfox\framework\example\AccountDAO.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/Address.java" afterPath="$PROJECT_DIR$/framework/test-src/org/jfox/framework/example/Address.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\message\StreamMessageImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\dependent\FieldResourceDependence.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\ComponentNotFoundException.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\jms\JMSObjectId.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\Action.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\mvc\WebContextLoader.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\net\sourceforge\jfox\framework\component\InvalidComponentIdException.java" afterPath="" />
     </list>
   </component>
   <component name="ChangeListSynchronizer" />
   <component name="ChangesViewManager" flattened_view="true" />
   <component name="CheckinPanelState" />
   <component name="Commander">
-    <leftPanel url="file://$PROJECT_DIR$/framework/test-src/net/sourceforge/jfox/framework" />
+    <leftPanel />
     <rightPanel url="file://$PROJECT_DIR$/MODULES/Test/src/jfox/test" />
     <splitter proportion="0.5" />
   </component>
@@ -93,6 +401,21 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <line_breakpoints>
+      <breakpoint url="file://$PROJECT_DIR$/MODULES/manager/src/org/jfox/manager/console/WebConsoleAction.java" line="133" class="org.jfox.manager.console.WebConsoleAction" package="org.jfox.manager.console">
+        <option name="ENABLED" value="true" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -164,22 +487,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="demoAction.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/manager/views/demoAction.html">
-          <provider editor-type-id="HtmlPreview">
-            <state />
-          </provider>
+      <file leaf-file-name="AccountAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/AccountAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="7" selection-start="531" selection-end="531" vertical-scroll-proportion="0.52593917">
-              <folding />
+            <state line="22" column="3" selection-start="714" selection-end="714" vertical-scroll-proportion="0.74666667">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DemoUploadAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/manager/src/net/sourceforge/jfox/manager/DemoUploadAction.java">
+      <file leaf-file-name="User1.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/Test/src/jfox/test/User1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="707" selection-end="707" vertical-scroll-proportion="0.11433447">
+            <state line="17" column="0" selection-start="497" selection-end="497" vertical-scroll-proportion="0.5759494">
               <folding />
             </state>
           </provider>
@@ -188,88 +510,46 @@
       <file leaf-file-name="web.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="0" selection-start="2096" selection-end="2096" vertical-scroll-proportion="0.3771331">
+            <state line="12" column="15" selection-start="468" selection-end="468" vertical-scroll-proportion="0.56">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="demoEJB.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/manager/views/demoEJB.html">
+      <file leaf-file-name="CalculatorBean.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/callback/CalculatorBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="39" selection-start="419" selection-end="419" vertical-scroll-proportion="0.5759494">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.vhtml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MODULES/manager/views/console/console.vhtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="215" column="7" selection-start="7554" selection-end="7554" vertical-scroll-proportion="0.35531136">
+              <folding />
+            </state>
+          </provider>
           <provider editor-type-id="HtmlPreview">
             <state />
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebConsoleAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/manager/src/org/jfox/manager/console/WebConsoleAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="185" selection-end="185" vertical-scroll-proportion="0.2254025">
+            <state line="33" column="24" selection-start="1037" selection-end="1037" vertical-scroll-proportion="0.30333334">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jsp" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/MODULES/manager/views/index.jsp">
+      <file leaf-file-name="ShoppingCart.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/stateful/ShoppingCart.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="23" selection-start="1705" selection-end="1705" vertical-scroll-proportion="0.023890786">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/www/index.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="16" selection-start="2435" selection-end="2435" vertical-scroll-proportion="0.023890786">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebContextLoader.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/WebContextLoader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="1" selection-start="324" selection-end="324" vertical-scroll-proportion="0.023890786">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CheckboxAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/manager/src/net/sourceforge/jfox/manager/CheckboxAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="13" selection-start="449" selection-end="449" vertical-scroll-proportion="0.16211604">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="carts.vhtml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/manager/views/template/carts.vhtml">
-          <provider editor-type-id="HtmlPreview">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="checkbox.vhtml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/manager/views/template/checkbox.vhtml">
-          <provider editor-type-id="HtmlPreview">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="7" selection-start="674" selection-end="674" vertical-scroll-proportion="0.87652177">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActionSupport.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/ActionSupport.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="303" column="0" selection-start="12237" selection-end="12237" vertical-scroll-proportion="0.023890786">
+            <state line="6" column="27" selection-start="120" selection-end="120" vertical-scroll-proportion="0.221519">
               <folding />
             </state>
           </provider>
@@ -302,6 +582,7 @@
   <component name="J2EEProjectPane" />
   <component name="JspContextManager">
     <jsp-to-context jsp-file="file://$PROJECT_DIR$/MODULES/manager/views/jsp/hello.jsp" context-file="file://$PROJECT_DIR$/MODULES/manager/views/jsp/date.jsp" />
+    <jsp-to-context jsp-file="file://$PROJECT_DIR$/framework/wwwroot/jsp/hello.jsp" context-file="file://$PROJECT_DIR$/framework/wwwroot/jsp/date.jsp" />
   </component>
   <component name="ModuleEditorState">
     <option name="LAST_EDITED_MODULE_NAME" />
@@ -390,162 +671,20 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
       </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="petstore" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="petstore" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\petstore" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager\views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager\src\net" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager\src\net\sourceforge" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager\src\net\sourceforge\jfox" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\manager\src\net\sourceforge\jfox\manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework\www" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
     </subPane>
   </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="0.38045377" version="1" splitterProportion="0.5">
+    <navigator currentView="ProjectPane" proportions="0.18475074" version="1" splitterProportion="0.5">
       <flattenPackages ProjectPane="false" />
       <showMembers />
       <showModules />
       <showLibraryContents />
       <hideEmptyPackages ProjectPane="false" />
       <abbreviatePackageNames />
-      <showStructure Scope="false" ProjectPane="false" PackagesPane="false" Favorites="false" />
+      <showStructure Favorites="false" PackagesPane="false" Scope="false" ProjectPane="false" />
       <autoscrollToSource />
       <autoscrollFromSource ProjectPane="false" />
       <sortByType ProjectPane="true" />
@@ -554,19 +693,20 @@
   <component name="PropertiesComponent">
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="cvs_file_history_treeWidth0" value="240" />
-    <property name="cvs_file_history_flatWidth2" value="240" />
+    <property name="cvs_file_history_treeWidth0" value="236" />
+    <property name="cvs_file_history_flatWidth2" value="236" />
     <property name="cvs_file_history_treeOrder1" value="1" />
     <property name="Web Module Deployment Descriptor Default Version" value="2.4" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="cvs_file_history_flatOrder1" value="1" />
-    <property name="cvs_file_history_flatWidth1" value="240" />
-    <property name="cvs_file_history_treeWidth1" value="240" />
+    <property name="cvs_file_history_flatWidth1" value="236" />
+    <property name="cvs_file_history_treeWidth1" value="236" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_forum" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir37833tmp" />
     <property name="cvs_file_history_flatOrder2" value="2" />
-    <property name="cvs_file_history_treeWidth2" value="240" />
+    <property name="TEMP_MODULE_EXPLODED_DIR_FOR_ejbtest" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir12492tmp" />
+    <property name="cvs_file_history_treeWidth2" value="236" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="cvs_file_history_flatOrder3" value="3" />
     <property name="RunManagerConfig.showSettingsBeforeRunnig" value="false" />
@@ -574,12 +714,13 @@
     <property name="RunManagerConfig.compileBeforeRunning" value="true" />
     <property name="cvs_file_history_flatOrder0" value="0" />
     <property name="cvs_file_history_treeOrder3" value="3" />
-    <property name="cvs_file_history_treeWidth3" value="240" />
+    <property name="last_opened_file_path" value="E:\JFox\site\jfox.org.cn-20070327" />
+    <property name="cvs_file_history_treeWidth3" value="236" />
     <property name="cvs_file_history_treeOrder2" value="2" />
     <property name="EJB Module Deployment Descriptor Default Version" value="3.0" />
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_manager" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir43248tmp" />
-    <property name="cvs_file_history_flatWidth0" value="240" />
-    <property name="cvs_file_history_flatWidth3" value="240" />
+    <property name="cvs_file_history_flatWidth0" value="236" />
+    <property name="cvs_file_history_flatWidth3" value="236" />
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_framework" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir58149tmp" />
     <property name="cvs_file_history_treeOrder0" value="0" />
   </component>
@@ -588,32 +729,45 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="net.sourceforge.jfox.framework.event" />
+      <recent name="org.jfox.example.ejb3.webservice" />
       <recent name="net.sourceforge.jfox.manager" />
       <recent name="net.sourceforge.javaee5.mvc.validate" />
       <recent name="net.sourceforge.javaee5.framework.component" />
-      <recent name="net.sourceforge.easyjf.petstore.action" />
-      <recent name="net.sourceforge.javaee5.ejb3.naming" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="net.sourceforge.jfox.framework" />
-      <recent name="jfox.test" />
-      <recent name="net.sourceforge.easyjf.petstore.bo" />
-      <recent name="net.sourceforge.javaee5.mvc" />
-      <recent name="net.sourceforge.easyjf" />
+      <recent name="org.jfox" />
+      <recent name="org" />
+      <recent name="net.sourceforge.jfox.manager.console" />
+      <recent name="net.sourceforge.jfox.manager.demo" />
+      <recent name="net.sourceforge.jfox" />
     </key>
   </component>
   <component name="RestoreUpdateTree" />
   <component name="RunManager" selected="Tomcat Server.Tomcat 5">
-    <tempConfiguration default="false" name="ProductDAOImpl" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" value="net.sourceforge.jfox.petstore.dao.ProductDAOImpl" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <tempConfiguration default="false" name="TestClient.invokeStateless" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
+      <pattern value="org.jfox.example.ejb3.*" />
+      <module name="Test" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <module name="petstore" />
+      <option name="PACKAGE_NAME" value="org.jfox.example.ejb3" />
+      <option name="MAIN_CLASS_NAME" value="org.jfox.example.ejb3.TestClient" />
+      <option name="METHOD_NAME" value="invokeStateless" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ADDITIONAL_CLASS_PATH" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="4370" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method>
         <option name="Make" value="true" />
@@ -650,6 +804,19 @@
       <option name="DEPLOY_TOMCAT_MANAGER" value="false" />
       <option name="BASE_DIRECTORY_NAME" value="" />
       <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <module name="" />
+      <method>
+        <option name="Make" value="true" />
+      </method>
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
@@ -689,21 +856,8 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
-    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <module name="" />
-      <method>
-        <option name="Make" value="true" />
-      </method>
-    </configuration>
     <configuration default="false" name="Framework" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" value="net.sourceforge.jfox.framework.Framework" />
+      <option name="MAIN_CLASS_NAME" value="org.jfox.framework.Framework" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -724,7 +878,7 @@
       </method>
     </configuration>
     <configuration default="false" name="ComponentFactory" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" value="net.sourceforge.jfox.framework.component.ComponentFactory" />
+      <option name="MAIN_CLASS_NAME" value="org.jfox.framework.component.ComponentFactory" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -739,7 +893,7 @@
       </method>
     </configuration>
     <configuration default="false" name="TestComponentMain" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" value="net.sourceforge.jfox.framework.component.TestComponentMain" />
+      <option name="MAIN_CLASS_NAME" value="org.jfox.framework.component.TestComponentMain" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -760,7 +914,7 @@
       </method>
     </configuration>
     <configuration default="false" name="SimpleEJB3Container" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" value="net.sourceforge.jfox.ejb3.SimpleEJB3Container" />
+      <option name="MAIN_CLASS_NAME" value="org.jfox.ejb3.SimpleEJB3Container" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -785,8 +939,8 @@
       <module name="framework" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="net.sourceforge.jfox.framework.transaction" />
-      <option name="MAIN_CLASS_NAME" value="net.sourceforge.jfox.framework.transaction.JOTMTest" />
+      <option name="PACKAGE_NAME" value="org.jfox.framework.transaction" />
+      <option name="MAIN_CLASS_NAME" value="org.jfox.framework.transaction.JOTMTest" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="" />
@@ -813,8 +967,8 @@
       <module name="framework" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="net.sourceforge.jfox.framework" />
-      <option name="MAIN_CLASS_NAME" value="net.sourceforge.jfox.framework.FrameworkTest" />
+      <option name="PACKAGE_NAME" value="org.jfox.framework" />
+      <option name="MAIN_CLASS_NAME" value="org.jfox.framework.FrameworkTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
@@ -841,8 +995,8 @@
       <module name="framework" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="net.sourceforge.jfox.framework.transaction" />
-      <option name="MAIN_CLASS_NAME" value="net.sourceforge.jfox.framework.transaction.JTATransactionManagerTest" />
+      <option name="PACKAGE_NAME" value="org.jfox.framework.transaction" />
+      <option name="MAIN_CLASS_NAME" value="org.jfox.framework.transaction.JTATransactionManagerTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
@@ -869,8 +1023,8 @@
       <module name="framework" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="net.sourceforge.dao" />
-      <option name="MAIN_CLASS_NAME" value="net.sourceforge.dao.DAOTest" />
+      <option name="PACKAGE_NAME" value="org.jfox.dao" />
+      <option name="MAIN_CLASS_NAME" value="org.jfox.dao.DAOTest" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="" />
@@ -897,8 +1051,8 @@
       <module name="petstore" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="net.sourceforge.jfox.petstore.dao.test" />
-      <option name="MAIN_CLASS_NAME" value="net.sourceforge.jfox.petstore.dao.test.AccountDAOTest" />
+      <option name="PACKAGE_NAME" value="org.jfox.petstore.dao.test" />
+      <option name="MAIN_CLASS_NAME" value="org.jfox.petstore.dao.test.AccountDAOTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
@@ -934,12 +1088,12 @@
       </J2EE_MODULE>
       <J2EE_MODULE DEPLOYMENT_SOURCE_NAME="exploded">
         <option name="CONTEXT_PATH" value="/" />
-        <option name="MODULE_NAME" value="petstore" />
+        <option name="MODULE_NAME" value="manager" />
         <option name="DEPLOY" value="false" />
       </J2EE_MODULE>
       <J2EE_MODULE DEPLOYMENT_SOURCE_NAME="exploded">
         <option name="CONTEXT_PATH" value="/" />
-        <option name="MODULE_NAME" value="manager" />
+        <option name="MODULE_NAME" value="petstore" />
         <option name="DEPLOY" value="false" />
       </J2EE_MODULE>
       <option name="DEPLOY_TOMCAT_MANAGER" value="false" />
@@ -950,8 +1104,29 @@
         <option name="TRANSPORT" value="1" />
         <option name="LOCAL" value="true" />
       </RunnerSettings>
+      <RunnerSettings RunnerId="JProfiler">
+        <option name="JVM" value="C:/jdk1.6.0" />
+        <option name="WINDOW" value="false" />
+        <option name="JVMPI" value="false" />
+        <option name="INTERPRETED" value="false" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="D:\apache-tomcat-5.5.20\bin\catalina.bat" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value=" run" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="D:\apache-tomcat-5.5.20\bin\catalina.bat" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value=" stop" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="JProfiler">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
           <option name="USE_DEFAULT" value="true" />
@@ -1016,7 +1191,7 @@
   <component name="StructureViewFactory">
     <option name="AUTOSCROLL_MODE" value="true" />
     <option name="AUTOSCROLL_FROM_SOURCE" value="false" />
-    <option name="ACTIVE_ACTIONS" value="ALPHA_COMPARATOR,SHOW_INHERITED" />
+    <option name="ACTIVE_ACTIONS" value="ALPHA_COMPARATOR" />
   </component>
   <component name="Struts Assistant">
     <option name="showInputs" value="true" />
@@ -1069,29 +1244,30 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1032" height="776" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="CVS" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="1" />
       <window_info id="IDEtalk" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="22" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5538462" order="10" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.317" order="0" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42307693" order="4" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.321" order="0" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47846153" order="4" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.244" order="1" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30923077" order="2" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.42923078" order="2" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42827442" order="9" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="0" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7905138" order="16" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="4" />
-      <window_info id="Ant Build" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24871135" order="4" />
+      <window_info id="Ant Build" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.248" order="4" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3276923" order="20" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37151703" order="5" x="100" y="162" width="634" height="300" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47692308" order="5" x="100" y="162" width="634" height="300" />
       <window_info id="Hierarchy" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.308" order="5" />
       <window_info id="File View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="1" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35538462" order="7" x="16" y="176" width="776" height="371" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.51384616" order="7" x="16" y="176" width="776" height="371" />
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.731" order="3" />
+      <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35692307" order="23" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="21" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.51692307" order="0" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3276923" order="0" />
       <window_info id="SVN Repositories" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32923076" order="23" />
       <window_info id="SQL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7914201" order="15" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
@@ -1106,8 +1282,8 @@
       <window_info id="App Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="11" />
       <window_info id="EJB" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="6" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="8" />
-      <window_info id="WebLogic Deployment View" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32608697" order="18" />
       <window_info id="Code Logic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72783506" order="14" x="22" y="39" width="776" height="476" />
+      <window_info id="WebLogic Deployment View" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32608697" order="18" />
       <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45322245" order="13" />
     </layout>
   </component>
@@ -1125,7 +1301,7 @@
     <option name="PERFORM_COMMIT_IN_BACKGROUND" value="false" />
     <option name="PUT_FOCUS_INTO_COMMENT" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="index changed!" />
+    <option name="LAST_COMMIT_MESSAGE" value="package change to org.jfox!" />
     <option name="SAVE_LAST_COMMIT_MESSAGE" value="true" />
     <option name="CHECKIN_DIALOG_SPLITTER_PROPORTION" value="0.8" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -1138,16 +1314,16 @@
     <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="petstore improved!" />
-    <MESSAGE value="JPetstore worked!" />
-    <MESSAGE value="所有与 Module 相关的设置，都放到了 WebContextLoader 中" />
-    <MESSAGE value="add manager module" />
-    <MESSAGE value="jfox3 index.jsp" />
-    <MESSAGE value="move framework example to Test module!" />
-    <MESSAGE value="add petstore installation.html" />
-    <MESSAGE value="upload ok!" />
-    <MESSAGE value="WebContextLoader improved!" />
-    <MESSAGE value="index changed!" />
+    <MESSAGE value="增强日志" />
+    <MESSAGE value="rename console" />
+    <MESSAGE value="console improved!" />
+    <MESSAGE value="logger" />
+    <MESSAGE value="InvocationContext 增加 ServletConfig" />
+    <MESSAGE value="web console improved!" />
+    <MESSAGE value="change log added!" />
+    <MESSAGE value="jfox icon!" />
+    <MESSAGE value="web console improved, well!" />
+    <MESSAGE value="package change to org.jfox!" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -1190,207 +1366,211 @@
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
+    <buildFile url="file://$PROJECT_DIR$/framework/build.xml">
+      <antCommandLine value="" />
+      <runInBackground value="false" />
+      <targetFilters />
+      <treeView value="true" />
+      <verbose value="true" />
+      <viewClosedWhenNoErrors value="false" />
+    </buildFile>
   </component>
   <component name="com.intellij.ide.util.scopeChooser.ScopeChooserConfigurable" proportions="" version="1">
     <option name="myLastEditedConfigurable" />
   </component>
-  <component name="com.intellij.openapi.roots.ui.configuration.projectRoot.ProjectRootMasterDetailsConfigurable" proportions="0.24676724" version="1">
+  <component name="com.intellij.openapi.roots.ui.configuration.projectRoot.ProjectRootMasterDetailsConfigurable" proportions="0.24676724,0.5" version="1">
     <option name="myPlainMode" value="false" />
-    <option name="myLastEditedConfigurable" value="jfoxng-lib" />
+    <option name="myLastEditedConfigurable" value="petstore" />
   </component>
   <component name="com.intellij.profile.ui.ErrorOptionsConfigurable" proportions="" version="1">
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/template/numberguess.vhtml">
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/console/jpa.vhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="343" selection-end="343" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
       <provider editor-type-id="HtmlPreview">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/console/container.vhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="161" selection-end="161" vertical-scroll-proportion="0.32885906">
+        <state line="116" column="0" selection-start="3665" selection-end="3696" vertical-scroll-proportion="0.7477639">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/console/jndi.vhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="343" selection-end="343" vertical-scroll-proportion="0.025044722">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/console/sysinfo.vhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="310" selection-end="310" vertical-scroll-proportion="0.025044722">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="112" column="46" selection-start="2647" selection-end="2647" vertical-scroll-proportion="0.023890786">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/util/ClassUtils.java">
+    <entry file="file://$PROJECT_DIR$/framework/wwwroot/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="13" selection-start="4761" selection-end="4761" vertical-scroll-proportion="0.7605178">
+        <state line="186" column="8" selection-start="6002" selection-end="6002" vertical-scroll-proportion="0.37209302">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/petstore/views/IncludeBottom.tmpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="77" selection-start="390" selection-end="390" vertical-scroll-proportion="0.31652173">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/wwwroot/docs/change-log.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="33" selection-start="1655" selection-end="1655" vertical-scroll-proportion="0.6433447">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/manager/src/net/sourceforge/jfox/manager/CartsAction.java">
+    <entry file="file://$PROJECT_DIR$/framework/wwwroot/index.htm">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="357" selection-end="357" vertical-scroll-proportion="0.3106796">
+        <state line="10" column="4" selection-start="358" selection-end="358" vertical-scroll-proportion="0.24347825">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/console/module.vhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="154" column="30" selection-start="5385" selection-end="5385" vertical-scroll-proportion="0.7477639">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/console/testconnectionresult.vhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="343" selection-end="343" vertical-scroll-proportion="0.025044722">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://E:/JFox/site/jfox.org.cn-20070327/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="48" selection-start="210" selection-end="210" vertical-scroll-proportion="-0.6319444">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://E:/JFox/site/jfox.org.cn-20070327/about_us.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="28" selection-start="574" selection-end="574" vertical-scroll-proportion="0.41319445">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/forum/src/org/jfox/forum/ForumBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="13" selection-start="163" selection-end="163" vertical-scroll-proportion="0.20355412">
+          <folding>
+            <marker date="1175089648000" expanded="true" signature="54:125" placeholder="/**...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/AccountAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="3" selection-start="714" selection-end="714" vertical-scroll-proportion="0.74666667">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/manager/src/net/sourceforge/jfox/manager/NumberGuessAction.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/Test/src/jfox/test/User1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="13" selection-start="528" selection-end="528" vertical-scroll-proportion="0.29126215">
+        <state line="17" column="0" selection-start="497" selection-end="497" vertical-scroll-proportion="0.5759494">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/FileUploaded.java">
+    <entry file="file://$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/stateful/ShoppingCart.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="603" selection-end="603" vertical-scroll-proportion="1.245614">
+        <state line="6" column="27" selection-start="120" selection-end="120" vertical-scroll-proportion="0.221519">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/framework/lib/commons-fileupload-1.1.1.jar!/org/apache/commons/fileupload/FileUploadBase.class">
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/src/org/jfox/manager/console/WebConsoleAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="26" selection-start="1953" selection-end="1953" vertical-scroll-proportion="0.30029154">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/framework/lib/commons-fileupload-1.1.1.jar!/org/apache/commons/fileupload/disk/DiskFileItemFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="984" selection-end="984" vertical-scroll-proportion="0.8979592">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/demoJSP.html">
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="4" selection-start="415" selection-end="415" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/conf/velocity.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="22" selection-start="3037" selection-end="3037" vertical-scroll-proportion="0.023890786">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/velocity/VelocityRender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="0" selection-start="5006" selection-end="5006" vertical-scroll-proportion="0.036939315">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/framework/lib/source/velocity-1.4-src.jar!/org/apache/velocity/runtime/RuntimeConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="322" column="31" selection-start="10180" selection-end="10180" vertical-scroll-proportion="0.035443038">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/servlet/ControllerServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="0" selection-start="5911" selection-end="5911" vertical-scroll-proportion="0.036939315">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/template/upload.vhtml">
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="22" selection-start="412" selection-end="412" vertical-scroll-proportion="0.8369565">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/demoAction.html">
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="7" selection-start="531" selection-end="531" vertical-scroll-proportion="0.52593917">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/manager/src/net/sourceforge/jfox/manager/DemoUploadAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="707" selection-end="707" vertical-scroll-proportion="0.11433447">
+        <state line="33" column="24" selection-start="1037" selection-end="1037" vertical-scroll-proportion="0.30333334">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="0" selection-start="2096" selection-end="2096" vertical-scroll-proportion="0.3771331">
+        <state line="12" column="15" selection-start="468" selection-end="468" vertical-scroll-proportion="0.56">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/demoEJB.html">
+    <entry file="file://$PROJECT_DIR$/framework/demo/org/jfox/example/ejb3/callback/CalculatorBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="39" selection-start="419" selection-end="419" vertical-scroll-proportion="0.5759494">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/console/console.vhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="215" column="7" selection-start="7554" selection-end="7554" vertical-scroll-proportion="0.35531136">
+          <folding />
+        </state>
+      </provider>
       <provider editor-type-id="HtmlPreview">
         <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="185" selection-end="185" vertical-scroll-proportion="0.2254025">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/www/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="16" selection-start="2435" selection-end="2435" vertical-scroll-proportion="0.023890786">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/WebContextLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="1" selection-start="324" selection-end="324" vertical-scroll-proportion="0.023890786">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/manager/src/net/sourceforge/jfox/manager/CheckboxAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="13" selection-start="449" selection-end="449" vertical-scroll-proportion="0.16211604">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/template/carts.vhtml">
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/template/checkbox.vhtml">
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="7" selection-start="674" selection-end="674" vertical-scroll-proportion="0.87652177">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/net/sourceforge/jfox/mvc/ActionSupport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="303" column="0" selection-start="12237" selection-end="12237" vertical-scroll-proportion="0.023890786">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="23" selection-start="1705" selection-end="1705" vertical-scroll-proportion="0.023890786">
-          <folding />
-        </state>
       </provider>
     </entry>
   </component>

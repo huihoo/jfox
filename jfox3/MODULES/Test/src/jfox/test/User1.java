@@ -1,10 +1,10 @@
 package jfox.test;
 
-import net.sourceforge.jfox.framework.annotation.Constant;
-import net.sourceforge.jfox.framework.annotation.Service;
-import net.sourceforge.jfox.framework.annotation.Inject;
-import net.sourceforge.jfox.framework.component.ComponentContext;
-import net.sourceforge.jfox.framework.component.ComponentInstantiation;
+import org.jfox.framework.annotation.Constant;
+import org.jfox.framework.annotation.Service;
+import org.jfox.framework.annotation.Inject;
+import org.jfox.framework.component.ComponentContext;
+import org.jfox.framework.component.ComponentInstantiation;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>

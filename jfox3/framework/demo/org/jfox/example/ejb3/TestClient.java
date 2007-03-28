@@ -6,9 +6,9 @@ import javax.ejb.EJBException;
 import javax.ejb.EJBObject;
 import javax.naming.Context;
 
-import net.sourceforge.jfox.ejb3.naming.JNDIContextHelper;
-import net.sourceforge.jfox.entity.dao.MapperEntity;
-import net.sourceforge.jfox.framework.Framework;
+import org.jfox.ejb3.naming.JNDIContextHelper;
+import org.jfox.entity.dao.MapperEntity;
+import org.jfox.framework.Framework;
 import org.jfox.example.ejb3.entity.Order;
 import org.jfox.example.ejb3.lob.Lobber;
 import org.junit.After;

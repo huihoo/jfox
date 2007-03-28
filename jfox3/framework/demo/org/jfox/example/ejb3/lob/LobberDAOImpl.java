@@ -6,7 +6,7 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
 
-import net.sourceforge.jfox.entity.dao.DAOSupport;
+import org.jfox.entity.dao.DAOSupport;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

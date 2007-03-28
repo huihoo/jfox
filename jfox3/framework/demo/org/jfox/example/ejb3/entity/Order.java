@@ -4,8 +4,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Column;
 
-import net.sourceforge.jfox.entity.annotation.MappedColumn;
-import net.sourceforge.jfox.entity.annotation.ParameterMap;
+import org.jfox.entity.annotation.MappedColumn;
+import org.jfox.entity.annotation.ParameterMap;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

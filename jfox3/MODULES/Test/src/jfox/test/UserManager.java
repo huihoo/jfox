@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import net.sourceforge.jfox.framework.annotation.Service;
-import net.sourceforge.jfox.framework.component.ComponentInstantiation;
-import net.sourceforge.jfox.framework.component.ModuleListener;
-import net.sourceforge.jfox.framework.component.ComponentContext;
-import net.sourceforge.jfox.framework.event.ModuleEvent;
-import net.sourceforge.jfox.framework.event.ComponentEvent;
-import net.sourceforge.jfox.framework.component.ComponentListener;
+import org.jfox.framework.annotation.Service;
+import org.jfox.framework.component.ComponentInstantiation;
+import org.jfox.framework.component.ModuleListener;
+import org.jfox.framework.component.ComponentContext;
+import org.jfox.framework.event.ModuleEvent;
+import org.jfox.framework.event.ComponentEvent;
+import org.jfox.framework.component.ComponentListener;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

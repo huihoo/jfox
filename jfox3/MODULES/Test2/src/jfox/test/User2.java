@@ -1,12 +1,12 @@
 package jfox.test;
 
-import net.sourceforge.jfox.framework.annotation.Constant;
-import net.sourceforge.jfox.framework.annotation.Inject;
-import net.sourceforge.jfox.framework.annotation.Service;
-import net.sourceforge.jfox.framework.component.ComponentContext;
-import net.sourceforge.jfox.framework.component.ComponentUnregistration;
-import net.sourceforge.jfox.framework.component.ModuleListener;
-import net.sourceforge.jfox.framework.event.ModuleEvent;
+import org.jfox.framework.annotation.Constant;
+import org.jfox.framework.annotation.Inject;
+import org.jfox.framework.annotation.Service;
+import org.jfox.framework.component.ComponentContext;
+import org.jfox.framework.component.ComponentUnregistration;
+import org.jfox.framework.component.ModuleListener;
+import org.jfox.framework.event.ModuleEvent;
 
 /**
  *

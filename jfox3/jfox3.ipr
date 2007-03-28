@@ -2,6 +2,13 @@
 <project version="4" relativePaths="true">
   <component name="AntConfiguration">
     <defaultAnt bundledAnt="true" />
+    <buildFile url="file://$PROJECT_DIR$/framework/build.xml">
+      <additionalClassPath />
+      <antReference projectDefault="true" />
+      <customJdkName value="" />
+      <maximumHeapSize value="128" />
+      <properties />
+    </buildFile>
   </component>
   <component name="BuildJarProjectSettings">
     <option name="BUILD_JARS_ON_MAKE" value="false" />
@@ -17,6 +24,9 @@
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
     <option name="DEPLOY_AFTER_MAKE" value="0" />
+    <excludeFromCompile>
+      <file url="file://$PROJECT_DIR$/MODULES/manager/views/jsp/ejb.jsp" />
+    </excludeFromCompile>
     <resourceExtensions>
       <entry name=".+\.(properties|xml|html|dtd|tld)" />
       <entry name=".+\.(gif|png|jpeg|jpg)" />
@@ -318,7 +328,6 @@
   <component name="libraryTable">
     <library name="jfoxng-lib">
       <CLASSES>
-        <root url="jar://$PROJECT_DIR$/framework/lib/javax.interceptor.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/commons-pool-1.3.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/commons-fileupload-1.1.1.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/velocity-dep-1.4.jar!/" />
@@ -327,12 +336,10 @@
         <root url="jar://$PROJECT_DIR$/framework/lib/asm-commons-3.0.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/javax.security.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/ejb-3_0-api.jar!/" />
-        <root url="jar://$PROJECT_DIR$/framework/lib/javax.annotation.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/commons-logging-1.1.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/ejb3-persistence.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/log4j-1.2.14.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/jotm/jta-spec1_0_1.jar!/" />
-        <root url="jar://$PROJECT_DIR$/framework/lib/jotm/xapool-1.5.0.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/jotm/jotm_jrmp_stubs.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/jotm/jotm.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/jotm/jotm_iiop_stubs.jar!/" />
@@ -340,16 +347,32 @@
         <root url="jar://$PROJECT_DIR$/framework/lib/jotm/connector-1_5.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/jotm/ow_carol.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/commons-io-1.3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/jms.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/xfire/wstx-asl-3.2.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/xfire/activation-1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/xfire/xfire-all-1.2.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/xfire/jdom-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/xfire/stax-api-1.0.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/xfire/wsdl4j-1.6.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/xfire/commons-codec-1.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/xfire/commons-httpclient-3.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/jsr250-api.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/jsr181-api.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/jaxrpc-1_1-fr-spec-api.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/jotm/xapool-1.6.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/freemarker.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/servlet-api.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$PROJECT_DIR$/framework/lib/source/carol-2.0.5-src.jar!/" />
-        <root url="jar://$PROJECT_DIR$/framework/lib/source/velocity-1.4-src.jar!/" />
-        <root url="jar://$PROJECT_DIR$/framework/lib/source/jotm-2.0.10-src.jar!/" />
-        <root url="jar://$PROJECT_DIR$/framework/lib/source/xapool-1.5.0-src.jar!/" />
-        <root url="jar://$PROJECT_DIR$/framework/lib/source/commons-pool-1.3-src.jar!/" />
-        <root url="jar://$PROJECT_DIR$/framework/lib/source/ejb3-persistence-api-src.jar!/" />
-        <root url="jar://$PROJECT_DIR$/framework/lib/source/ejb3-core-api-src.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib-source/ejb3-core-api-src.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib-source/ejb3-persistence-api-src.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib-source/xfire-1.2.4-src.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib-source/xa-pool-1.6.beta-src.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib-source/velocity-1.4-src.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib-source/carol-2.0.5-src.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib-source/jotm-2.0.10-src.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib-source/commons-pool-1.3-src.jar!/" />
       </SOURCES>
     </library>
     <library name="jfoxng-common">

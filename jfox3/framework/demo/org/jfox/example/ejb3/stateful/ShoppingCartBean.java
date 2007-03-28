@@ -9,7 +9,7 @@ import javax.ejb.SessionContext;
 import javax.annotation.Resource;
 
 /**
- * @author <a href="mailto:yy.young@gmail.com">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Stateful(name = "stateful.ShoppingCartBean")
 public class ShoppingCartBean implements ShoppingCart, Serializable {

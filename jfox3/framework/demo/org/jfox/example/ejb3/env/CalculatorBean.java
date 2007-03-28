@@ -8,7 +8,7 @@ import javax.ejb.EJBException;
 import javax.annotation.Resource;
 import javax.naming.Context;
 
-import net.sourceforge.jfox.ejb3.naming.JNDIContextHelper;
+import org.jfox.ejb3.naming.JNDIContextHelper;
 
 @Stateless(name = "env.CalculatorBean")
 @Remote
