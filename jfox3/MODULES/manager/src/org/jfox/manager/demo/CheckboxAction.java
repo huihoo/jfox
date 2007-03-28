@@ -1,11 +1,11 @@
-package net.sourceforge.jfox.manager.demo;
+package org.jfox.manager.demo;
 
-import net.sourceforge.jfox.framework.annotation.Service;
-import net.sourceforge.jfox.mvc.ActionSupport;
-import net.sourceforge.jfox.mvc.InvocationContext;
-import net.sourceforge.jfox.mvc.Invocation;
-import net.sourceforge.jfox.mvc.PageContext;
-import net.sourceforge.jfox.mvc.annotation.ActionMethod;
+import org.jfox.framework.annotation.Service;
+import org.jfox.mvc.ActionSupport;
+import org.jfox.mvc.InvocationContext;
+import org.jfox.mvc.Invocation;
+import org.jfox.mvc.PageContext;
+import org.jfox.mvc.annotation.ActionMethod;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

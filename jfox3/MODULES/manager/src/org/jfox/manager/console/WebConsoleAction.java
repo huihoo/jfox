@@ -1,4 +1,4 @@
-package net.sourceforge.jfox.manager.console;
+package org.jfox.manager.console;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,28 +8,28 @@ import java.util.List;
 import javax.naming.Binding;
 import javax.naming.NamingEnumeration;
 
-import net.sourceforge.jfox.ejb3.EJBBucket;
-import net.sourceforge.jfox.ejb3.EJBContainer;
-import net.sourceforge.jfox.entity.EntityManagerFactoryBuilder;
-import net.sourceforge.jfox.entity.EntityManagerFactoryBuilderImpl;
-import net.sourceforge.jfox.entity.EntityManagerFactoryImpl;
-import net.sourceforge.jfox.framework.Constants;
-import net.sourceforge.jfox.framework.Framework;
-import net.sourceforge.jfox.framework.annotation.Service;
-import net.sourceforge.jfox.framework.component.Module;
-import net.sourceforge.jfox.mvc.ActionSupport;
-import net.sourceforge.jfox.mvc.Invocation;
-import net.sourceforge.jfox.mvc.InvocationContext;
-import net.sourceforge.jfox.mvc.PageContext;
-import net.sourceforge.jfox.mvc.WebContextLoader;
-import net.sourceforge.jfox.mvc.annotation.ActionMethod;
-import net.sourceforge.jfox.mvc.validate.StringValidation;
-import net.sourceforge.jfox.util.SystemUtils;
+import org.jfox.ejb3.EJBBucket;
+import org.jfox.ejb3.EJBContainer;
+import org.jfox.entity.EntityManagerFactoryBuilder;
+import org.jfox.entity.EntityManagerFactoryBuilderImpl;
+import org.jfox.entity.EntityManagerFactoryImpl;
+import org.jfox.framework.Constants;
+import org.jfox.framework.Framework;
+import org.jfox.framework.annotation.Service;
+import org.jfox.framework.component.Module;
+import org.jfox.mvc.ActionSupport;
+import org.jfox.mvc.Invocation;
+import org.jfox.mvc.InvocationContext;
+import org.jfox.mvc.PageContext;
+import org.jfox.mvc.WebContextLoader;
+import org.jfox.mvc.annotation.ActionMethod;
+import org.jfox.mvc.validate.StringValidation;
+import org.jfox.util.SystemUtils;
 
 /**
  *
  *
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id = "console")
 public class WebConsoleAction extends ActionSupport {
