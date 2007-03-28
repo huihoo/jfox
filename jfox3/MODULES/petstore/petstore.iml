@@ -13,8 +13,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="framework" />
     <orderEntry type="library" name="jfoxng-lib" level="project" />
+    <orderEntry type="module" module-name="framework" />
     <orderEntryProperties />
   </component>
   <component name="WebModuleBuildComponent">
