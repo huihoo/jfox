@@ -1,0 +1,1 @@
+实现以 JNDI 接口获取 Component
