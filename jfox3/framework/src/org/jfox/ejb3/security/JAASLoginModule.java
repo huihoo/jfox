@@ -14,6 +14,12 @@ public class JAASLoginModule implements LoginModule {
 
     private CallbackHandler callbackHandler;
 
+    private JAASLoginRequestCallback loginRequestCallback;
+
+    public void setLoginRequestCallback(JAASLoginRequestCallback loginRequestCallback) {
+        this.loginRequestCallback = loginRequestCallback;
+    }
+
     public boolean abort() throws LoginException {
         return false;
     }
@@ -31,7 +37,10 @@ public class JAASLoginModule implements LoginModule {
         System.out.println("@@@@@@@@@@ login");
 
         try {
-            callbackHandler.handle(new Callback[0]);
+            JAASLoginResultCallback loginResultCallback =  new JAASLoginResultCallback();
+            callbackHandler.handle(new Callback[]{loginRequestCallback, loginResultCallback});
+
+            // 处理 loginResultCallback
         }
         catch(Exception e) {
             e.printStackTrace();
