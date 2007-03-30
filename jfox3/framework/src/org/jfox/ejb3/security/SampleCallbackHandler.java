@@ -12,6 +12,9 @@ import javax.security.auth.callback.UnsupportedCallbackException;
 public class SampleCallbackHandler implements CallbackHandler {
 
     public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
+        JAASLoginRequestCallback requestLoginRequestCallback = (JAASLoginRequestCallback)callbacks[0];
+        JAASLoginResultCallback resultCallback = (JAASLoginResultCallback)callbacks[1];
+        
         System.out.println("SampleCallbackHandler.handle: " + Arrays.toString(callbacks));
     }
 

@@ -7,12 +7,11 @@ import javax.security.auth.callback.Callback;
 /**
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
-public class JAASCallback implements Callback {
+public class JAASLoginResultCallback implements Callback {
 
     private String principalId;
 
     private List<String> roles = new ArrayList<String>();
-
 
     public String getPrincipalId() {
         return principalId;
