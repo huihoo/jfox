@@ -10,7 +10,7 @@ import javax.security.auth.Subject;
 /**
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
-public class SampleLoginModule implements LoginModule {
+public class JAASLoginModule implements LoginModule {
 
     private CallbackHandler callbackHandler;
 

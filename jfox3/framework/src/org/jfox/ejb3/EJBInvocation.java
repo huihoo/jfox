@@ -9,6 +9,7 @@ import javax.transaction.TransactionManager;
 
 import org.jfox.ejb3.interceptor.InterceptorMethod;
 import org.jfox.ejb3.interceptor.BusinessInterceptorMethod;
+import org.jfox.ejb3.security.SecurityContext;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -27,6 +28,8 @@ public class EJBInvocation {
     private Object[] params;
 
     private TransactionManager tm;
+
+    private SecurityContext securityContext;
 
     public static void setCurrent(EJBInvocation ejbInvocation){
         currentThreadEJBInvocation.set(ejbInvocation);
@@ -109,5 +112,9 @@ public class EJBInvocation {
 
     public Object[] getArgs() {
         return params;
+    }
+
+    public SecurityContext getSecurityContext() {
+        return securityContext;
     }
 }

@@ -56,9 +56,9 @@ public class SecurityContext implements Serializable {
     /**
      * Default private constructor.
      */
-    public SecurityContext() {
+/*    public SecurityContext() {
 
-    }
+    }*/
 
     /**
      * Build a security context with the given subject.
