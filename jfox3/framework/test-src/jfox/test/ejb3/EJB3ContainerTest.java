@@ -7,13 +7,13 @@ import javax.ejb.Handle;
 import javax.ejb.EJBObject;
 
 import org.jfox.framework.Framework;
-import org.jfox.framework.example.AccountBO;
 import org.jfox.framework.component.Module;
 import org.jfox.ejb3.EJBContainer;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 import org.junit.Test;
 import org.junit.Assert;
+import jfox.test.ejbcomponent.bo.AccountBO;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

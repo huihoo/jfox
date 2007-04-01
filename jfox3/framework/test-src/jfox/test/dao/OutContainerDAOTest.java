@@ -4,14 +4,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-import org.jfox.framework.example.AccountDAO;
-import org.jfox.framework.example.AccountDAOImpl;
-import org.jfox.framework.example.Account;
 import org.jfox.entity.EntityManagerExt;
 import org.jfox.entity.EntityObject;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.Assert;
+import jfox.test.ejbcomponent.entity.Account;
+import jfox.test.ejbcomponent.dao.AccountDAOImpl;
+import jfox.test.ejbcomponent.dao.AccountDAO;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
