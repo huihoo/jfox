@@ -48,7 +48,7 @@ public class FreemarkerRender implements Render {
 
     public void init(ServletConfig config) throws ServletException {
         logger.info("Initializaing Freemarker...");
-        Map<String, File> modulePath2File = WebContextLoader.getModulePath2FileMap();
+        Map<String, File> modulePath2File = WebContextLoader.getModulePath2DirFileMap();
 
         try {
             for (Map.Entry<String, File> entry : modulePath2File.entrySet()) {

@@ -113,17 +113,33 @@ public class WebContextLoader implements ServletContextListener {
      * @param moduleDirPath module path
      * @param moduleDir     module real dir
      */
-    public static void registerModulePath(String moduleDirPath, File moduleDir) {
+    private static void registerModulePath(String moduleDirPath, File moduleDir) {
         modulePath2File.put(moduleDirPath, moduleDir);
 
         String moduleDirName = moduleDirPath.substring(moduleDirPath.lastIndexOf("/") + 1);
         moduleDirName2PathMap.put(moduleDirName, moduleDirPath);
     }
 
-    public static Map<String, File> getModulePath2FileMap() {
+    /**
+     * 得到所有模块路径名到模块目录的映射，如: WEB-INF/MODULES/manager => File://D:/%TOMCAT_HOME%/webapps/jfox3/WEB-INF/MODULES/manager
+     */
+    public static Map<String, File> getModulePath2DirFileMap() {
         return Collections.unmodifiableMap(modulePath2File);
     }
 
+    /**
+     * 通过模块目录名如:manager 得到模块的路径如：WEB-INF/MODULES/manager
+     * @param moduleDirName 模块目录名
+     */
+    public static String getModulePathByModuleDirName(String moduleDirName) {
+        return moduleDirName2PathMap.get(moduleDirName);
+    }
+
+    /**
+     * 注册 Action，由 ActionSupport 在 postPropertiesSet 中调用
+     * @param moduleDirName 模块目录名
+     * @param action Action 实例
+     */
     public static void registerAction(String moduleDirName, ActionSupport action) {
         if (!module2ActionsMap.containsKey(moduleDirName)) {
             module2ActionsMap.put(moduleDirName, new HashMap<String, ActionSupport>());
@@ -132,6 +148,10 @@ public class WebContextLoader implements ServletContextListener {
         actionMap.put(action.getName(), action);
     }
 
+    /**
+     * 删除 Action，在 Action unrigister的时候会调用该方法，有 module unload触发
+     * @param action action实例
+     */
     public static Action removeAction(Action action) {
         //不是 ModuleName，而是 Module Dir name
         String module = ((ActionSupport)action).getModuleDirName();
@@ -141,12 +161,13 @@ public class WebContextLoader implements ServletContextListener {
         return null;
     }
 
-    public static String getModulePathByModuleDirName(String moduleDirName) {
-        return moduleDirName2PathMap.get(moduleDirName);
+    private static Action getAction(String moduleDirName, String actionName) {
+        return module2ActionsMap.get(moduleDirName).get(actionName);
     }
 
-    public static Action getAction(String moduleDirName, String actionName) {
-        return module2ActionsMap.get(moduleDirName).get(actionName);
+    public static void invokeAction(String moduleDirName, String actionName, InvocationContext invocationContext) throws Exception {
+        Action action = WebContextLoader.getAction(moduleDirName, actionName);
+        action.execute(invocationContext);
     }
 
     public static void main(String[] args) {

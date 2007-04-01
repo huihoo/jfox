@@ -37,10 +37,6 @@
       <attribute name="URI" value="&lt;N/A&gt;" />
       <url>jar://$MODULE_DIR$/../../../../IDEA/lib/servlet-api.jar!/</url>
     </containerElement>
-    <containerElement type="library" name="jfoxng-common" level="project">
-      <attribute name="method" value="0" />
-      <attribute name="URI" value="&lt;N/A&gt;" />
-    </containerElement>
     <containerElement type="library" name="jfoxng-lib" level="project">
       <attribute name="method" value="0" />
       <attribute name="URI" value="&lt;N/A&gt;" />

@@ -40,10 +40,6 @@
       <attribute name="URI" value="/WEB-INF/lib/org.mortbay.jetty-5.1.3.jar" />
       <url>jar://E:/Java/xfire/xfire-1.2.4/lib/org.mortbay.jetty-5.1.3.jar!/</url>
     </containerElement>
-    <containerElement type="library" name="jfoxng-common" level="project">
-      <attribute name="method" value="0" />
-      <attribute name="URI" value="&lt;N/A&gt;" />
-    </containerElement>
     <containerElement type="library" name="jfoxng-lib" level="project">
       <attribute name="method" value="0" />
       <attribute name="URI" value="&lt;N/A&gt;" />

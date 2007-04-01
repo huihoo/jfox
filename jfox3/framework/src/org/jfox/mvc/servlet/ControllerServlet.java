@@ -10,17 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.jfox.mvc.Action;
-import org.jfox.mvc.FileUploaded;
-import org.jfox.mvc.InvocationContext;
-import org.jfox.mvc.SessionContext;
-import org.jfox.mvc.WebContextLoader;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.RequestContext;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
+import org.jfox.mvc.FileUploaded;
+import org.jfox.mvc.InvocationContext;
+import org.jfox.mvc.SessionContext;
+import org.jfox.mvc.WebContextLoader;
+import org.jfox.mvc.annotation.ActionMethod;
 
 /**
  * 控制器Servlet，所有的Servlet请求，均由该Servlet负责分发
@@ -170,14 +170,17 @@ public class ControllerServlet extends HttpServlet {
         }
         invocationContext.setSessionContext(sessionContext);
 
-        Action action = WebContextLoader.getAction(moduleDirName, actionName);
         try {
-            action.execute(invocationContext);
-
+            WebContextLoader.invokeAction(moduleDirName, actionName, invocationContext);
 //            request.setAttribute(PAGE_CONTEXT, pageContext);
             request.setAttribute(INVOCATION_CONTEXT, invocationContext);
             //TODO: 根据 PageContext.getTargetMethod 要决定 forward 还是 redirect
-            request.getRequestDispatcher(invocationContext.getPageContext().getTargeView()).forward(request, response);
+            if(invocationContext.getPageContext().getTargetMethod().equals(ActionMethod.TargetMethod.REDIRECT)) {
+                request.getRequestDispatcher(invocationContext.getPageContext().getTargeView()).forward(request, response);
+            }
+            else {
+                request.getRequestDispatcher(invocationContext.getPageContext().getTargeView()).forward(request, response);
+            }
         }
         catch (ServletException e) {
             throw e;
