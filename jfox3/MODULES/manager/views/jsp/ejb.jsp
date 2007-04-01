@@ -4,7 +4,7 @@
     <TITLE>JSP invoke ejb</TITLE>
     <%@ page import="javax.naming.Context" %>
     <%@ page import="org.jfox.ejb3.naming.JNDIContextHelper" %>
-    <%@ page import="org.jfox.example.ejb3.stateless.Calculator" %>
+    <%@ page import="jfox.test.ejb3.stateless.Calculator" %>
 </HEAD>
 <BODY>
 
