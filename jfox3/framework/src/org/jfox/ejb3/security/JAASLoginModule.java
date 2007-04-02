@@ -43,7 +43,7 @@ public class JAASLoginModule implements LoginModule {
             List<String> roles = loginResultCallback.getRoles();
             Subject subject = SecurityContext.buildSubject(principalName, roles);
             SecurityContext securityContext = new SecurityContext(subject);
-            //TODO: complete
+            //TODO: 构造 initialize 中 的 subject
         }
         catch(Exception e) {
             e.printStackTrace();
