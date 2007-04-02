@@ -5,6 +5,7 @@ import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.login.Configuration;
 import javax.security.auth.login.LoginContext;
 import javax.security.auth.Subject;
+import javax.servlet.http.HttpServletRequest;
 
 import com.sun.security.auth.login.ConfigFile;
 import org.jfox.framework.annotation.Inject;
@@ -93,6 +94,11 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
         finally {
             loginRequestThreadLocal.remove();
         }
+    }
+
+    public boolean login(HttpServletRequest request, CallbackHandler callbackHandler, String... params) throws Exception {
+        SessionContext sessionContext = SessionContext.init(request);
+        return login(sessionContext,callbackHandler,params);
     }
 
     public boolean login(SessionContext sessionContext, CallbackHandler callbackHandler, String... params) throws Exception {

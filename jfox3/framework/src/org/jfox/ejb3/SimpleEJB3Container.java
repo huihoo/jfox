@@ -307,6 +307,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
                 throw new NoSuchMethodException("Could not found Concrete Business Method for interface method: " + interfaceMethod.getName());
             }
             EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbContext.getEJBInstance(), interfaceMethod, concreteMethod, params);
+            //TODO: set SecurityContext
             return invokeEJBInvocation(invocation);
         }
         finally {
