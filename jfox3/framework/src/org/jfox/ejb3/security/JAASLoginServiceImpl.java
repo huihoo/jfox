@@ -4,6 +4,7 @@ import java.util.Properties;
 import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.login.Configuration;
 import javax.security.auth.login.LoginContext;
+import javax.security.auth.Subject;
 
 import com.sun.security.auth.login.ConfigFile;
 import org.jfox.framework.annotation.Inject;
@@ -62,11 +63,11 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
      * @param params param array
      * @throws Exception if failed
      */
-    public boolean login(String... params) throws Exception {
+    public Subject login(String... params) throws Exception {
         return login(callbackHandler,params);
     }
 
-    public boolean login(CallbackHandler callbackHandler, String... params) throws Exception {
+    public Subject login(CallbackHandler callbackHandler, String... params) throws Exception {
         
         try {
             JAASLoginRequestCallback loginRequestCallback = new JAASLoginRequestCallback();
