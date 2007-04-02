@@ -27,6 +27,9 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
 
     private Configuration configuration;
 
+    /**
+     * ejb role=>application role
+     */
     private Properties roleLink = new Properties();
 
     @Inject
