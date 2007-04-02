@@ -53,6 +53,7 @@ import org.jfox.framework.dependent.InjectionException;
 import org.jfox.util.AnnotationUtils;
 import org.jfox.util.ClassUtils;
 import org.jfox.util.MethodUtils;
+import org.jfox.mvc.SessionContext;
 import org.apache.log4j.Logger;
 
 /**
@@ -605,6 +606,10 @@ public abstract class SessionBucket implements EJBBucket {
             }
             else {
                 // 其它业务方法
+                SessionContext sessionContext = SessionContext.currentThreadSessionContext();
+                if(sessionContext != null){
+                    //TODO: get SecurityContext
+                }
                 return getEJBContainer().invokeEJB(getEJBObjectId(), method, args);
             }
         }

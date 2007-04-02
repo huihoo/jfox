@@ -183,6 +183,9 @@ public class ControllerServlet extends HttpServlet {
         catch (Exception e) {
             throw new ServletException(e);
         }
+        finally{
+            SessionContext.removeThreadSessionContext();
+        }
     }
 
     public static boolean isMultipartContent(HttpServletRequest req) {

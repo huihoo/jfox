@@ -28,8 +28,6 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
     public static final String JAAS_CONFIG = "jaas.conf";
     public static final String ROLES_CONFIG = "roles.properties";
 
-    public static final String SUBJECT_SESSION_KEY = "__SECURITY_SUBJECT__";
-
     private Configuration configuration;
 
     /**
@@ -112,8 +110,8 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
             LoginContext loginContext = new LoginContext("default", null, callbackHandler, configuration);
             loginContext.login();
             Subject subject = loginContext.getSubject();
-            //TODO: 考虑把 Subject 关联到 SessionContext 中
-            sessionContext.setAttribute(SUBJECT_SESSION_KEY, subject);
+            //把 Subject 关联到 SessionContext 中
+            sessionContext.associateSubject(subject);
             return true;
         }
         finally {

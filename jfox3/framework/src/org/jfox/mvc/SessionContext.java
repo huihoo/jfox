@@ -4,14 +4,19 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
+import javax.security.auth.Subject;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class SessionContext implements Serializable {
+    
     public static final String SESSION_KEY = "__SESSION_KEY__";
+    public static final String SUBJECT_SESSION_KEY = "__SECURITY_SUBJECT__";
 
     private Map<Serializable, Serializable> sessionMap = new HashMap<Serializable, Serializable>();
+
+    static ThreadLocal<SessionContext> threadSession = new ThreadLocal<SessionContext>();
 
     private SessionContext() {
     }
@@ -22,7 +27,20 @@ public class SessionContext implements Serializable {
             sessionContext = new SessionContext();
             request.getSession().setAttribute(SESSION_KEY, sessionContext);
         }
+        threadSession.set(sessionContext);
         return sessionContext;
+    }
+
+    public static SessionContext currentThreadSessionContext(){
+        return threadSession.get();
+    }
+
+    public static void removeThreadSessionContext(){
+        threadSession.remove();
+    }
+
+    public void associateSubject(Subject subject){
+        this.setAttribute(SUBJECT_SESSION_KEY, subject);
     }
 
     public void setAttribute(Serializable key, Serializable value) {
