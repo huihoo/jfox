@@ -22,13 +22,12 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
     @Inject
     private CallbackHandler callbackHandler;
 
-
     public JAASLoginServiceImpl() {
         
     }
 
-
     public void postContruct(ComponentContext componentContext) {
+        
     }
 
     public void postPropertiesSet() {
