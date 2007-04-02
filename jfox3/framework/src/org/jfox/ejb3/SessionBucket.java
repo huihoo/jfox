@@ -37,6 +37,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Status;
 import javax.transaction.SystemException;
+import javax.security.auth.Subject;
 
 import org.jfox.ejb3.dependent.EJBDependence;
 import org.jfox.ejb3.dependent.FieldEJBDependence;
@@ -609,6 +610,8 @@ public abstract class SessionBucket implements EJBBucket {
                 SessionContext sessionContext = SessionContext.currentThreadSessionContext();
                 if(sessionContext != null){
                     //TODO: get SecurityContext
+                    Subject subject = sessionContext.getAssociatedSubect();
+                    // propagate subject
                 }
                 return getEJBContainer().invokeEJB(getEJBObjectId(), method, args);
             }

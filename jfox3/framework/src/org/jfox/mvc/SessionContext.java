@@ -43,6 +43,10 @@ public class SessionContext implements Serializable {
         this.setAttribute(SUBJECT_SESSION_KEY, subject);
     }
 
+    public Subject getAssociatedSubect(){
+        return (Subject)this.getAttribute(SUBJECT_SESSION_KEY);
+    }
+
     public void setAttribute(Serializable key, Serializable value) {
         sessionMap.put(key,value);
     }
