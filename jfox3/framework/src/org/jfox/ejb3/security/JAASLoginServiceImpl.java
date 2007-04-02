@@ -12,12 +12,15 @@ import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.ComponentInstantiation;
 import org.jfox.framework.component.SingletonComponent;
+import org.apache.log4j.Logger;
 
 /**
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
 @Service
 public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, ComponentInstantiation, SingletonComponent {
+
+    static Logger logger = Logger.getLogger(JAASLoginServiceImpl.class); 
 
     public static final String JAAS_CONFIG = "jaas.conf";
     public static final String ROLES_CONFIG = "roles.properties";
@@ -45,9 +48,8 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
             roleLink.load(getClass().getClassLoader().getResourceAsStream(ROLES_CONFIG));
         }
         catch(Exception e) {
-            e.printStackTrace();
+            logger.error("Initialize JAASLoginService failed!", e);
         }
-
     }
 
     /**
