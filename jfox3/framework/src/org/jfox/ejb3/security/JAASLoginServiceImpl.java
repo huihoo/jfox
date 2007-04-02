@@ -67,7 +67,7 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
     }
 
     public boolean login(CallbackHandler callbackHandler, String... params) throws Exception {
-
+        
         try {
             JAASLoginRequestCallback loginRequestCallback = new JAASLoginRequestCallback();
             for (String param : params) {
