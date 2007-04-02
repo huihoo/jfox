@@ -1,0 +1,232 @@
+<html>
+<head>
+    <title>JFox - The most lightweight Java EE Application Server</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <!-- ImageReady Preload Script (index.psd) -->
+    <script type="text/javascript">
+        <!--
+        function newImage(arg) {
+            if (document.images) {
+                rslt = new Image();
+                rslt.src = arg;
+                return rslt;
+            }
+        }
+
+        function changeImages() {
+            if (document.images && (preloadFlag == true)) {
+                for (var i = 0; i < changeImages.arguments.length; i += 2) {
+                    document[changeImages.arguments[i]].src = changeImages.arguments[i + 1];
+                }
+            }
+        }
+        // -->
+    </script>
+    <!-- End Preload Script -->
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<table align="center" width="776" border="0" cellpadding="0" cellspacing="0" class="frame" id="Table_01" background="images/bg.jpg">
+<tr>
+    <td width="100%">
+        <table width="100%">
+            <tr>
+                <td class="titletd"><a href="index.html" class="title">首页</a> | <a href="http://code.google.com/p/jfox" class="title">项目</a> | <a href="http://jfox.blogjava.net" class="title">博客</a> | <a href="http://code.google.com/p/jfox/downloads/list" class="title">下载</a> | <a href="http://code.google.com/p/jfox/source" class="title">源码</a> | <a href="support.html" class="title">服务</a> | <a href="demo.html" class="title">在线演示</a></td>
+                <td align="right" class="titletd"><a href="about_us.html" class="title">关于我们</a>
+                    <!--| <a href="donate.html" class="title">捐赠</a> -->
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="2" height="7" background="images/seperator.jpg" width="100%"></td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr valign="top">
+    <td valign="top">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td bgcolor="#FFFFFF" width="100%"><img src="images/jfox.jpg"></td>
+                <td valign="bottom" bgcolor="#FFFFFF" width="200"><img src="images/shadow_top.jpg" width="200"></td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td bgcolor="#FFFFFF" class="content">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td bgcolor="#FFFFFF">&nbsp;</td>
+                <td valign="top" bgcolor="#FFFFFF" class="content">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td><hr size="1" noshade="noshade" width="90%" align="left"/></td>
+                        </tr>
+                        <tr>
+                            <td class="content"><span class="caption2">3.0发版前有话说</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;随着EJB3规范以及支持EJB3的JavaEE应用服务器的即将发布，全新Java EE体系架构的新战争将拉开帷幕，在过去3年中如火如荼的Spring占据了Java EE应用开发基础平台的大半江山，面对EJB3和Spring你应该如何选择呢？
+                                全文请看JFox博客文章 <a href="http://www.blogjava.net/jfox/archive/2007/04/01/107800.html" class="readmore">EJB3 再战 Spring</a>
+                                <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><hr size="1" noshade="noshade" width="90%" align="left"/></td>
+                        </tr>
+                        <tr>
+                            <td class="content"><span class="caption2">JFox 3.0 is coming...</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;经过长达一年的重新架构和开发，JFox 3.0将在近期发布，敬请期待。
+                                <br>JFox 3 特性：<br>
+                                <OL>
+                                    <li>重新设计的 IoC 容器，融入 OSGi 模块化思想
+                                    <li>改为嵌入式架构，能够嵌入到任何 Java Web Server
+                                    <li>支持 EJB3, JPA
+                                    <li>采用JOTM提供事务处理
+                                    <li>采用 XAPool 提供 XA DataSource
+                                    <li>增加 MVC 框架，支持多模块，自动Form Mapping, Validator, 支持直接在Action中注入EJB，并支持JSP/Velocity/Freemarker，满足快开发需要
+                                    <li>提供 Manager 管理模块，可以查看各种运行时属性
+                                    <li>根据JFox EJB3, JPA, MVC 特色完全重写 JPetstore
+                                </ol>
+                                <div align="center"><img src="images/jfox_arch.jpg"></div>
+                                <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><hr size="1" noshade="noshade" width="90%" align="left"/></td>
+                        </tr>                        
+                        <tr>
+                            <td class="content"><span class="caption2">JFox Hosted in Googlecode</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;JFox 已经申请成为googlecode的项目，所有源代码由Googlecode的版本服务器控制，我们将继续提供高质量的产品。<a href="http://code.google.com/p/jfox">http://code.google.com/p/jfox</a>
+                                <br>
+                                <br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td valign="middle" bgcolor="#FFFFFF" width="20" height="100%"><div style="width:1px; height:98%; border-left: 1px solid #CCC;"></div></td>
+                <td valign="top" bgcolor="#FFFFFF" width="200">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td height="50" align="left" class="content"><span class="caption3">JFox是什么?</span> <br>
+                                JFox 是 Open Source Java EE Application Server，致力于提供轻量级的Java EE应用服务器，从3.0开始，JFox提供了一个支持模块化的MVC框架，以简化EJB以及Web应用的开发! <br>
+                                任何问题，请联系:<br><a href="mailto:support@jfox.org.cn" class="copyright">support@jfox.org.cn</a>
+                                <br>
+                                <!--<a href="#" class="readmore">read more</a>--><br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="50" align="left" class="content"><span class="caption3">相关链接</span> <br>
+                                <a href="http://code.google.com/p/jfox">JFox @googlecode</a> <br>
+                                <a href="http://www.huihoo.org/jfox">JFox @huihoo</a> <br>
+                                <a href="https://glassfish.dev.java.net/nonav/javaee5/api/index.html">Java EE 5 API @glassfish</a> <br>
+                                <a href="http://www.infoq.com/cn/articles/EJB-Glossary">EJB 3 术语汇编 @InfoQ</a> <br>
+                                <a href="http://www.foshanshop.net/">EJB 3 实例教程 @foshanshop</a> <br>
+                                <a href="http://edocs.bea.com/wls/docs100/ejb30/">EJB 3 document gather @BEA</a> <br>
+                                <a href="http://edocs.bea.com/wls/docs100/ejb30/annotations.html">EJB 3 Annotations @BEA</a> <br>
+                                <a href="http://docs.jboss.org/ejb3/app-server/tutorial/">EJB 3 Tutorial @JBoss</a> <br>
+                                <a href="http://www.javabeat.net/javabeat/ejb3/articles/timer_services_api_in_ejb_3_0_1.php">EJB 3 Timeout Service @javabeat</a> <br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td>
+        <table bgcolor="#FFFFFF" width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td height="7" background="images/seperator.jpg" width="100%"></td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td>
+        <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td width="50%">
+                    <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr height="100%">
+                            <td bgcolor="#FFFFFF" width="1"><img src="images/spacer.gif" width="1"></td>
+                            <td valign="top"><img src="images/services.jpg" alt=""></td>
+                            <td align="left" valign="top">
+                                <table height="214" border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td class="caption2" height="30" align="center" valign="middle"> 产品服务</td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top">
+                                            <p align="left"><strong>JFox 支持服务:</strong> JFox Team为采用JFox应用服务器的项目提长期的专业技术支持服务，以保证用户能够在关键商业领域应用JFox。<br>
+                                            </p>
+
+                                            <p><strong>JFox 咨询服务:</strong> 如果您有计划采用全新的JavaEE 5.0架构，JFox 团队的开源专家愿意与您直接合作，共同解决您在开发中遇到的问题，提供定制的咨询服务帮助。</p>
+
+                                            <p><strong>JFox 培训服务:</strong> JFox 团队可为您提供专有的培训服务，包括公开课和On-Site培训，内容包括与JavaEE相关的技术架构，EJB 3.0, IoC等等企业级应用领域的核心技术。对于初次尝试JFox的用户，我们提供免费的半天技术培训。</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td bgcolor="#FFFFFF" width="1"></td>
+                <td valign="top" width="50%">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
+                        <tr height="100%">
+                            <td valign="top"><img src="images/success.jpg" alt="" width="183" height="191"></td>
+                            <td width="100%" valign="top">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td class="caption2" height="30" align="center" valign="middle">成功案例</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="233" valign="top">
+                                            <p>JFox团队现在提供基于JFox应用服务器和JFox MVC框架的全新JavaEE 5 JPetstore实现，点击这里运行online demo. </p>
+
+                                            <p> 如果您有兴趣在项目中采用JFox，欢迎联系我们。</p>
+
+                                            <p>如果您已成功的在项目中实施JFox，为了给您提供更好的支持，也欢迎您把成功案例和大家分享。<br>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td bgcolor="#FFFFFF" width="1"><img src="images/spacer.gif" width="1"></td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr height="7">
+    <td colspan="2" bgcolor="#FFFFFF">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr height="7">
+                <td><img src="images/spacer.gif" height="7" width="1"></td>
+                <td width="100%"><img src="images/seperator.jpg" width="100%" alt=""></td>
+                <td><img src="images/spacer.gif" height="7" width="1"></td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td>
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr height="20">
+                <td bgcolor="#FFFFFF" width="1"><img src="images/spacer.gif" width="1"></td>
+                <td align="left" valign="top" class="titletd">&nbsp;<a href="index.html" class="stitle">首页</a> | <a href="http://code.google.com/p/jfox" class="stitle">项目</a> | <a href="http://jfox.blogjava.net" class="stitle">博客</a> | <a href="http://code.google.com/p/jfox/downloads/list" class="stitle">下载</a> | <a href="http://code.google.com/p/jfox/source" class="stitle">源码</a> | <a href="support.html" class="stitle">服务</a> | <a href="demo.html" class="stitle">在线演示</a></td>
+                <td align="center" valign="top" class="copyright"> Copyright &copy; JFox 2002-2007</td>
+                <td align="right" bgcolor="#FFFFFF" width="1"><img src="images/spacer.gif" width="1" alt=""></td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td bgcolor="#FFFFFF" height="1"><img src="images/spacer.gif" height="1"></td>
+</tr>
+</table>
+<br/>
+</body>
+</html>
