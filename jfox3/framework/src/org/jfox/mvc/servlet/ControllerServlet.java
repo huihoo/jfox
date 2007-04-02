@@ -35,7 +35,6 @@ public class ControllerServlet extends HttpServlet {
 
     public static final String PAGE_CONTEXT = "__PAGE_CONTEXT__";
     public static final String INVOCATION_CONTEXT = "__INVOCATION_CONTEXT__";
-    public static final String SESSION_KEY = "__SESSION_KEY__";
     public static final String MAX_UPLOAD_FILE_SIZE_KEY = "MAX_UPLOAD_FILE_SIZE";
     public static final String VIEW_DIR_KEY = "VIEW_DIR";
     public static final String ACTION_SUFFIX_KEY = "ACTION_SUFFIX";
@@ -163,11 +162,7 @@ public class ControllerServlet extends HttpServlet {
             }
         }
 
-        SessionContext sessionContext = (SessionContext)request.getSession().getAttribute(SESSION_KEY);
-        if (sessionContext == null) {
-            sessionContext = new SessionContext();
-            request.getSession().setAttribute(SESSION_KEY, sessionContext);
-        }
+        SessionContext sessionContext = SessionContext.init(request);
         invocationContext.setSessionContext(sessionContext);
 
         try {

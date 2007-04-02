@@ -17,6 +17,7 @@ import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.Render;
 import org.jfox.mvc.WebContextLoader;
+import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.servlet.ControllerServlet;
 import org.apache.log4j.Logger;
 
@@ -94,7 +95,7 @@ public class FreemarkerRender implements Render {
         freemarkerMap.put("REQUEST", request);
         freemarkerMap.put("WEBAPP_CONTEXT_PATH", request.getContextPath());
 //        velocityContext.put("MODULE_CONTEXT_PATH", request.getContextPath() + "/" + module);
-        Object sessionContext = request.getSession().getAttribute(ControllerServlet.SESSION_KEY);
+        Object sessionContext = SessionContext.init(request);
         freemarkerMap.put("session", sessionContext);
         freemarkerMap.put("SESSION", sessionContext);
         freemarkerMap.put("sessionContext", sessionContext);

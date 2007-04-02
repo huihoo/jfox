@@ -3,13 +3,27 @@ package org.jfox.mvc;
 import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class SessionContext implements Serializable {
+    public static final String SESSION_KEY = "__SESSION_KEY__";
 
     private Map<Serializable, Serializable> sessionMap = new HashMap<Serializable, Serializable>();
+
+    private SessionContext() {
+    }
+
+    public static SessionContext init(HttpServletRequest request) {
+        SessionContext sessionContext = (SessionContext)request.getSession().getAttribute(SESSION_KEY);
+        if (sessionContext == null) {
+            sessionContext = new SessionContext();
+            request.getSession().setAttribute(SESSION_KEY, sessionContext);
+        }
+        return sessionContext;
+    }
 
     public void setAttribute(Serializable key, Serializable value) {
         sessionMap.put(key,value);

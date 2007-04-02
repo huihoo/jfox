@@ -19,6 +19,7 @@ import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.Render;
 import org.jfox.mvc.WebContextLoader;
+import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.servlet.ControllerServlet;
 import org.jfox.mvc.validate.ValidateException;
 import org.apache.velocity.Template;
@@ -372,7 +373,7 @@ public class VelocityRender implements Render {
         velocityContext.put("REQUEST", request);
         velocityContext.put("WEBAPP_CONTEXT_PATH", request.getContextPath());
 //        velocityContext.put("MODULE_CONTEXT_PATH", request.getContextPath() + "/" + module);
-        Object sessionContext = request.getSession().getAttribute(ControllerServlet.SESSION_KEY);
+        Object sessionContext = SessionContext.init(request);
         velocityContext.put("session", sessionContext);
         velocityContext.put("SESSION", sessionContext);
         velocityContext.put("sessionContext", sessionContext);

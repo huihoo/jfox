@@ -29,6 +29,9 @@ public class EJBInvocation {
 
     private TransactionManager tm;
 
+    /**
+     * SecurityContext, 含有 Subject
+     */
     private SecurityContext securityContext;
 
     public static void setCurrent(EJBInvocation ejbInvocation){

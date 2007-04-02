@@ -13,6 +13,7 @@ import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.ComponentInstantiation;
 import org.jfox.framework.component.SingletonComponent;
+import org.jfox.mvc.SessionContext;
 import org.apache.log4j.Logger;
 
 /**
@@ -26,6 +27,8 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
     public static final String JAAS_CONFIG = "jaas.conf";
     public static final String ROLES_CONFIG = "roles.properties";
 
+    public static final String SUBJECT_SESSION_KEY = "__SECURITY_SUBJECT__";
+
     private Configuration configuration;
 
     /**
@@ -35,6 +38,11 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
 
     @Inject
     private CallbackHandler callbackHandler;
+
+    /**
+     * 客户端的 thread subject
+     */
+//    static ThreadLocal<Subject> threadSubject = new ThreadLocal<Subject>();
 
     public JAASLoginServiceImpl() {
         
@@ -63,11 +71,11 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
      * @param params param array
      * @throws Exception if failed
      */
-    public Subject login(String... params) throws Exception {
+    public boolean login(String... params) throws Exception {
         return login(callbackHandler,params);
     }
 
-    public Subject login(CallbackHandler callbackHandler, String... params) throws Exception {
+    public boolean login(CallbackHandler callbackHandler, String... params) throws Exception {
         
         try {
             JAASLoginRequestCallback loginRequestCallback = new JAASLoginRequestCallback();
@@ -78,6 +86,8 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
 
             LoginContext loginContext = new LoginContext("default", null, callbackHandler, configuration);
             loginContext.login();
+            Subject subject = loginContext.getSubject();
+//            threadSubject.set(subject);
             return true;
         }
         finally {
@@ -85,6 +95,25 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
         }
     }
 
+    public boolean login(SessionContext sessionContext, CallbackHandler callbackHandler, String... params) throws Exception {
+        try {
+            JAASLoginRequestCallback loginRequestCallback = new JAASLoginRequestCallback();
+            for (String param : params) {
+                loginRequestCallback.addParam(param);
+            }
+            loginRequestThreadLocal.set(loginRequestCallback);
+
+            LoginContext loginContext = new LoginContext("default", null, callbackHandler, configuration);
+            loginContext.login();
+            Subject subject = loginContext.getSubject();
+            //TODO: 考虑把 Subject 关联到 SessionContext 中
+            sessionContext.setAttribute(SUBJECT_SESSION_KEY, subject);
+            return true;
+        }
+        finally {
+            loginRequestThreadLocal.remove();
+        }
+    }
     public static void main(String[] args) throws Exception {
         JAASLoginServiceImpl loginService = new JAASLoginServiceImpl();
         loginService.postPropertiesSet();
