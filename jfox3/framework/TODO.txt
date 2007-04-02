@@ -264,3 +264,6 @@
 
 2007-03-29
     1. 实现 EJB Security
+
+2007-04-02
+    1. LoginContext.getSubject 可以直接得到 Subject
