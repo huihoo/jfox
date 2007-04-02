@@ -1,5 +1,6 @@
 package org.jfox.ejb3.security;
 
+import java.util.Properties;
 import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.login.Configuration;
 import javax.security.auth.login.LoginContext;
@@ -10,14 +11,20 @@ import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.ComponentInstantiation;
+import org.jfox.framework.component.SingletonComponent;
 
 /**
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
 @Service
-public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, ComponentInstantiation {
+public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, ComponentInstantiation, SingletonComponent {
 
-    Configuration configuration;
+    public static final String JAAS_CONFIG = "jaas.conf";
+    public static final String ROLES_CONFIG = "roles.properties";
+
+    private Configuration configuration;
+
+    private Properties roleLink = new Properties();
 
     @Inject
     private CallbackHandler callbackHandler;
@@ -32,11 +39,15 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
 
     public void postPropertiesSet() {
         try {
-            configuration = new ConfigFile(getClass().getClassLoader().getResource("jaas.conf").toURI());
+            // init configuration
+            configuration = new ConfigFile(getClass().getClassLoader().getResource(JAAS_CONFIG).toURI());
+            // load roles link
+            roleLink.load(getClass().getClassLoader().getResourceAsStream(ROLES_CONFIG));
         }
         catch(Exception e) {
             e.printStackTrace();
         }
+
     }
 
     /**
