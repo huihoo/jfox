@@ -416,7 +416,7 @@ public abstract class SessionBucket implements EJBBucket {
         return beanClass;
     }
 
-    public Class<?>[] getBeanInterface() {
+    public Class[] getBeanInterface() {
         return beanInterfaces;
     }
 
@@ -569,7 +569,7 @@ public abstract class SessionBucket implements EJBBucket {
      * 生成基于动态代理的 Stub
      */
     public synchronized EJBObject createProxyStub() {
-        List<Class<?>> interfaces = new ArrayList<Class<?>>();
+        List<Class> interfaces = new ArrayList<Class>();
         interfaces.add(EJBObject.class);
         interfaces.addAll(Arrays.asList(this.getBeanInterface()));
 

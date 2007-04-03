@@ -36,7 +36,7 @@ public interface EJBBucket {
     /**
      * EJB 的接口，可以由 @Remote @Local指定，未指定则为Bean所有接口
      */
-    Class<?>[] getBeanInterface();
+    Class[] getBeanInterface();
 
     /**
      * new EJB instance, return bean instance, not EJBObject
