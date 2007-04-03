@@ -27,7 +27,7 @@ public class SecurityContext implements Serializable {
     /**
      * Anonymous user name.
      */
-    private static final String ANONYMOUS_USER = "EasyBeans/Anonymous";
+    private static final String ANONYMOUS_USER = "Anonymous";
 
     /**
      * Anonymous role.
