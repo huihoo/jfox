@@ -47,6 +47,7 @@ import org.jfox.ejb3.interceptor.ExternalInterceptorMethod;
 import org.jfox.ejb3.interceptor.InterceptorMethod;
 import org.jfox.ejb3.interceptor.InternalInterceptorMethod;
 import org.jfox.ejb3.naming.ContextAdapter;
+import org.jfox.ejb3.security.SecurityContext;
 import org.jfox.entity.dependent.FieldPersistenceContextDependence;
 import org.jfox.framework.component.Module;
 import org.jfox.framework.component.ModuleClassLoader;
@@ -612,6 +613,7 @@ public abstract class SessionBucket implements EJBBucket {
                     // try get subject from session context
                     Subject subject = sessionContext.getAssociatedSubect();
                     //TODO: get SecurityContext
+                    SecurityContext securityContext = new SecurityContext(subject); 
                     // propagate subject
                 }
                 return getEJBContainer().invokeEJB(getEJBObjectId(), method, args);
