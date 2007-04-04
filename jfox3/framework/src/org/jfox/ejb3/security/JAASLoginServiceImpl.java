@@ -59,6 +59,7 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
             // init configuration
             configuration = new ConfigFile(getClass().getClassLoader().getResource(JAAS_CONFIG).toURI());
             // load roles link
+            //TODO: build roles link
             roleLink.load(getClass().getClassLoader().getResourceAsStream(ROLES_CONFIG));
         }
         catch(Exception e) {
