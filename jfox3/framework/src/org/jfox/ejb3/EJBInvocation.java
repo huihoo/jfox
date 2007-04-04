@@ -133,7 +133,7 @@ public class EJBInvocation {
 
     // 如果是 @RunAs Method，则需要根据 RunAs 指定的值构造 Subject
     public List<? extends Principal> getCallerRolesList(){
-        RunAs runAs = concreteMethod.getAnnotation(RunAs.class);
+        RunAs runAs = getBucket().getBeanClass().getAnnotation(RunAs.class);
         Subject subject = securityContext.getSubject();
         if(runAs != null) {
             String runAsRole = runAs.value();
