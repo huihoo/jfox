@@ -9,6 +9,7 @@ import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.UnsupportedCallbackException;
 
 import org.jfox.framework.annotation.Service;
+import org.jfox.framework.annotation.Inject;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.Invocation;
@@ -25,6 +26,7 @@ import org.jfox.petstore.entity.Account;
 import org.jfox.petstore.entity.Category;
 import org.jfox.ejb3.security.JAASLoginRequestCallback;
 import org.jfox.ejb3.security.JAASLoginResponseCallback;
+import org.jfox.ejb3.security.JAASLoginService;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -40,6 +42,9 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
 //		languages.add("French");
         languages.add("Chinese");
     }
+
+    @Inject
+    JAASLoginService loginService;
 
     @EJB
     AccountBO accountBO;
@@ -97,6 +102,7 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
 
     @ActionMethod(successView = "index.vhtml", errorView = "signon.vhtml", invocationClass = SignonInvocation.class)
     public void doPostSignon(InvocationContext invocationContext) throws Exception {
+        //TODO: use JAAS LoginService
         SignonInvocation invocation = (SignonInvocation)invocationContext.getInvocation();
         Account account = accountBO.getAccount(invocation.getUsername(), invocation.getPassword());
         if (account == null) {
