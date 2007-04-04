@@ -219,6 +219,16 @@ public class SecurityContext implements Serializable {
         return subject;
     }
 
+    public String getUsername() {
+        String username = null;
+        for(Principal p : getSubject().getPrincipals()){
+            if(!(p instanceof Group)) {
+                username = p.getName();
+            }
+        }
+        return username;
+    }
+
     ///
 
     public Subject getSubject() {

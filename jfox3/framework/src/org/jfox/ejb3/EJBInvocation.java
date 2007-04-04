@@ -137,12 +137,7 @@ public class EJBInvocation {
         Subject subject = securityContext.getSubject();
         if(runAs != null) {
             String runAsRole = runAs.value();
-            String username = null;
-            for(Principal p : subject.getPrincipals()){
-                if(!(p instanceof Group)) {
-                    username = p.getName();
-                }
-            }
+            String username = getSecurityContext().getUsername();
             subject = SecurityContext.buildSubject(username, runAsRole);
         }
 

@@ -36,7 +36,7 @@ public class SecurityEJBInvocationHandler extends EJBInvocationHandler {
                 callerRoles.add(p.getName());
             }
             if(Collections.disjoint(Arrays.asList(allowedRoles), callerRoles)){
-                throw new SecurityException("Deny Roles + " + callerRoles + " to invoke: "+ invocation);
+                throw new SecurityException("Deny user: " + invocation.getSecurityContext().getUsername() + " with roles + " + callerRoles + " to invoke: "+ invocation);
             }
             return next(invocation, chain);
         }
