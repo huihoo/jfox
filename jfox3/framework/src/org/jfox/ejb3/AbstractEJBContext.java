@@ -3,9 +3,10 @@ package org.jfox.ejb3;
 import java.rmi.RemoteException;
 import java.security.Identity;
 import java.security.Principal;
-import java.util.Properties;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import javax.ejb.EJBException;
 import javax.ejb.EJBHome;
 import javax.ejb.EJBLocalHome;
@@ -15,12 +16,12 @@ import javax.ejb.Handle;
 import javax.ejb.RemoveException;
 import javax.ejb.SessionContext;
 import javax.ejb.TimerService;
-import javax.transaction.UserTransaction;
-import javax.xml.rpc.handler.MessageContext;
-import javax.naming.NamingException;
+import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
 import javax.naming.NameNotFoundException;
-import javax.naming.Context;
+import javax.naming.NamingException;
+import javax.transaction.UserTransaction;
+import javax.xml.rpc.handler.MessageContext;
 
 import org.jfox.ejb3.naming.ContextAdapter;
 
@@ -76,22 +77,32 @@ public abstract class AbstractEJBContext implements SessionContext, EJBObject, E
     }
 
     public boolean isCallerInRole(final String roleName) {
+        EJBInvocation invocation = EJBInvocation.current();
+        if(invocation == null) {
+            return false;
+        }
+        List<? extends Principal> principals = invocation.getCallerRolesList();
+        for(Principal p : principals){
+            if(p.getName().equals(roleName)) {
+                return true;
+            }
+        }
         return false;
     }
 
     @Deprecated
     public Identity getCallerIdentity() {
-        return null;
+        throw new UnsupportedOperationException("getCallerIdentity");
     }
 
     @Deprecated
     public Properties getEnvironment() {
-        return null;
+        throw new UnsupportedOperationException("getEnvironment");
     }
 
     @Deprecated
     public boolean isCallerInRole(final Identity role) {
-        return false;
+        throw new UnsupportedOperationException("isCallerInRole");
     }
 
     // SessionContext

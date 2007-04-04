@@ -1,14 +1,18 @@
 package org.jfox.ejb3;
 
 import java.lang.reflect.Method;
-import java.util.Collection;
+import java.security.Principal;
+import java.security.acl.Group;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+import javax.annotation.security.RunAs;
+import javax.security.auth.Subject;
 import javax.transaction.TransactionManager;
 
-import org.jfox.ejb3.interceptor.InterceptorMethod;
 import org.jfox.ejb3.interceptor.BusinessInterceptorMethod;
+import org.jfox.ejb3.interceptor.InterceptorMethod;
 import org.jfox.ejb3.security.SecurityContext;
 
 /**
@@ -33,6 +37,11 @@ public class EJBInvocation {
      * SecurityContext, 含有 Subject
      */
     private SecurityContext securityContext;
+
+    /**
+     * 方法是否有 @RunAS
+     */
+    private boolean runAS = false;
 
     public static void setCurrent(EJBInvocation ejbInvocation){
         currentThreadEJBInvocation.set(ejbInvocation);
@@ -120,5 +129,30 @@ public class EJBInvocation {
 
     public SecurityContext getSecurityContext() {
         return securityContext;
+    }
+
+    // 如果是 @RunAs Method，则需要根据 RunAs 指定的值构造 Subject
+    public List<? extends Principal> getCallerRolesList(){
+        RunAs runAs = concreteMethod.getAnnotation(RunAs.class);
+        Subject subject = securityContext.getSubject();
+        if(runAs != null) {
+            String runAsRole = runAs.value();
+            String username = null;
+            for(Principal p : subject.getPrincipals()){
+                if(!(p instanceof Group)) {
+                    username = p.getName();
+                }
+            }
+            subject = SecurityContext.buildSubject(username, runAsRole);
+        }
+
+        // Then, takes all the roles found in this principal.
+        for (Principal principal : subject.getPrincipals(Principal.class)) {
+            if (principal instanceof Group) {
+                return Collections.list(((Group) principal).members());
+            }
+        }
+
+        return new ArrayList<Principal>(0);
     }
 }

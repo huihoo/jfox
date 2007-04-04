@@ -51,7 +51,7 @@ public class SecurityContext implements Serializable {
      * previous one is kept.<br>
      * This previous subject is used to get the caller on the run-as bean.
      */
-    private Subject callerInRunAsModeSubject = null;
+    private Subject runAsSubject = null;
 
     public SecurityContext() {
         this(null);
@@ -70,6 +70,7 @@ public class SecurityContext implements Serializable {
         }
     }
 
+
     /**
      * Enters in run-as mode with the given subject.<br>
      * The previous subject is stored and will be restored when run-as mode will
@@ -79,13 +80,13 @@ public class SecurityContext implements Serializable {
      */
     public Subject enterRunAs(final Subject runAsSubject) {
         // keep previous
-        this.callerInRunAsModeSubject = subject;
+        this.runAsSubject = subject;
 
         // update the new one
         this.subject = runAsSubject;
 
         // return previous.
-        return callerInRunAsModeSubject;
+        return this.runAsSubject;
     }
 
     /**
@@ -96,7 +97,7 @@ public class SecurityContext implements Serializable {
         this.subject = oldSubject;
 
         // cancel caller of run-as subject (run-as mode has ended)
-        this.callerInRunAsModeSubject = null;
+        this.runAsSubject = null;
     }
 
     /**
@@ -108,8 +109,8 @@ public class SecurityContext implements Serializable {
         Subject subject = null;
 
         // in run-as mode, needs to return callerInRunAsModeSubject's principal.
-        if (runAsBean && callerInRunAsModeSubject != null) {
-            subject = this.callerInRunAsModeSubject;
+        if (runAsBean && runAsSubject != null) {
+            subject = this.runAsSubject;
         } else {
             subject = this.subject;
         }
@@ -137,8 +138,8 @@ public class SecurityContext implements Serializable {
         Subject subject = null;
 
         // in run-as mode, needs to return callerInRunAsModeSubject's principal.
-        if (runAsBean && callerInRunAsModeSubject != null) {
-            subject = this.callerInRunAsModeSubject;
+        if (runAsBean && runAsSubject != null) {
+            subject = this.runAsSubject;
         } else {
             subject = this.subject;
         }
@@ -173,7 +174,7 @@ public class SecurityContext implements Serializable {
      * @return anonymous subject.
      */
     private static Subject buildAnonymousSubject() {
-        return buildSubject(ANONYMOUS_USER, new String[] {ANONYMOUS_ROLE});
+        return buildSubject(ANONYMOUS_USER, ANONYMOUS_ROLE);
     }
 
 
@@ -183,7 +184,7 @@ public class SecurityContext implements Serializable {
      * @param roleArray given array of roles.
      * @return built subject.
      */
-    public static Subject buildSubject(final String userName, final String[] roleArray) {
+    public static Subject buildSubject(final String userName, final String... roleArray) {
         List<String> roles = new ArrayList<String>();
         if (roleArray != null) {
             for (String role : roleArray) {
@@ -215,6 +216,12 @@ public class SecurityContext implements Serializable {
         }
         subject.getPrincipals().add(roles);
 
+        return subject;
+    }
+
+    ///
+
+    public Subject getSubject() {
         return subject;
     }
 }
