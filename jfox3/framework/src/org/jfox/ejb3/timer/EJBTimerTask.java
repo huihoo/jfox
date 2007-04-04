@@ -15,6 +15,7 @@ import javax.ejb.TimerHandle;
 
 import org.jfox.ejb3.EJBObjectId;
 import org.jfox.ejb3.SimpleEJB3Container;
+import org.jfox.ejb3.security.SecurityContext;
 
 /**
  * @author <a href="mailto:yangyong@ufsoft.com.cn">Young Yang</a>
@@ -35,6 +36,11 @@ public class EJBTimerTask implements Timer, TimerHandle, Runnable {
      */
     private ScheduledFuture future;
 
+    /**
+     * TODO: set Security Context
+     */
+    private SecurityContext securityContext;
+
     public EJBTimerTask(SimpleEJB3Container.ContainerTimerService timerService, Serializable info) {
         this.timerService = timerService;
         this.info = info;
@@ -46,6 +52,14 @@ public class EJBTimerTask implements Timer, TimerHandle, Runnable {
 
     public void setEJBObjectId(EJBObjectId ejbObjectId) {
         this.ejbObjectId = ejbObjectId;
+    }
+
+    public SecurityContext getSecurityContext() {
+        return securityContext;
+    }
+
+    public void setSecurityContext(SecurityContext securityContext) {
+        this.securityContext = securityContext;
     }
 
     public void setFuture(ScheduledFuture future) {

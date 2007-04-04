@@ -329,13 +329,13 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
      * @param params          parameters
      * @throws Exception exception
      */
-    protected Object invokeTimeout(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params) throws Exception {
+    protected Object invokeTimeout(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params, SecurityContext securityContext) throws Exception {
         EJBBucket bucket = getEJBBucket(ejbObjectId.getEJBName());
         // get instance from bucket's pool
         AbstractEJBContext ejbContext = null;
         try {
             ejbContext = bucket.getEJBContext(ejbObjectId);
-            EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbContext.getEJBInstance(), interfaceMethod, interfaceMethod, params, null);
+            EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbContext.getEJBInstance(), interfaceMethod, interfaceMethod, params, securityContext);
             return invokeEJBInvocation(invocation);
         }
         finally {
@@ -556,7 +556,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
                     timeMethod = _timeoutMethod;
                     logger.info("Call Timeout method: " + _timeoutMethod + " of EJB: " + ejbTimerTask.getEJBObjectId());
                     // 这样会启动事务
-                    invokeTimeout(ejbTimerTask.getEJBObjectId(), _timeoutMethod, new Object[]{ejbTimerTask});
+                    invokeTimeout(ejbTimerTask.getEJBObjectId(), _timeoutMethod, new Object[]{ejbTimerTask}, ejbTimerTask.getSecurityContext());
                 }
             }
             catch (Exception e) {
