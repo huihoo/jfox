@@ -7,11 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.jws.WebService;
 import javax.xml.namespace.QName;
+import javax.security.auth.Subject;
 
 import org.jfox.ejb3.EJBBucket;
 import org.jfox.ejb3.EJBContainer;
 import org.jfox.ejb3.StatelessBucket;
 import org.jfox.ejb3.EJBObjectId;
+import org.jfox.ejb3.security.SecurityContext;
 import org.jfox.ejb3.event.EJBLoadedComponentEvent;
 import org.jfox.ejb3.event.EJBUnloadedComponentEvent;
 import org.jfox.framework.annotation.Inject;
@@ -22,6 +24,7 @@ import org.jfox.framework.component.ComponentListener;
 import org.jfox.framework.component.ComponentInstantiation;
 import org.jfox.framework.component.ComponentUnregistration;
 import org.jfox.framework.event.ComponentEvent;
+import org.jfox.mvc.SessionContext;
 import org.codehaus.xfire.MessageContext;
 import org.codehaus.xfire.XFire;
 import org.codehaus.xfire.XFireFactory;
@@ -137,10 +140,20 @@ public class JFoxXFireDelegate  implements Invoker, ComponentInstantiation, Acti
      * @throws XFireFault
      */
     public Object invoke(Method method, Object[] params, MessageContext messageContext) throws XFireFault {
+        SecurityContext securityContext = null;
+        SessionContext sessionContext = SessionContext.currentThreadSessionContext();
+        if(sessionContext != null){
+            // try get subject from session context
+            Subject subject = sessionContext.getAssociatedSubect();
+            //get SecurityContext
+            securityContext = new SecurityContext(subject);
+            // propagate subject
+        }
+
         String ejbName = getEJBNameByWebServiceEndpointInterface(messageContext.getService().getServiceInfo().getServiceClass());
         try {
             // stateless, 直接用 ejb name 做 ejb id
-            return ejbContainer.invokeEJB(new EJBObjectId(ejbName), method, params);
+            return ejbContainer.invokeEJB(new EJBObjectId(ejbName), method, params, securityContext);
         }
         catch (Exception e) {
             return new XFireFault(e);

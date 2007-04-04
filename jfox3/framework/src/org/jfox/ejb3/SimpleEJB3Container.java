@@ -39,6 +39,7 @@ import org.jfox.ejb3.naming.ContextAdapter;
 import org.jfox.ejb3.naming.InitialContextFactoryImpl;
 import org.jfox.ejb3.timer.EJBTimerTask;
 import org.jfox.ejb3.transaction.JTATransactionManager;
+import org.jfox.ejb3.security.SecurityContext;
 import org.jfox.framework.annotation.Constant;
 import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ActiveComponent;
@@ -294,9 +295,11 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
      * @param ejbObjectId     ejb object id
      * @param interfaceMethod ejb interfaceMethod, 已经解析成实体方法
      * @param params          parameters
+     * @param securityContext security context
      * @throws Exception exception
      */
-    public Object invokeEJB(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params) throws Exception {
+    public Object invokeEJB(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params, SecurityContext securityContext) throws Exception {
+
         EJBBucket bucket = getEJBBucket(ejbObjectId.getEJBName());
         // get instance from bucket's pool
         AbstractEJBContext ejbContext = null;
@@ -306,8 +309,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
             if (concreteMethod == null) {
                 throw new NoSuchMethodException("Could not found Concrete Business Method for interface method: " + interfaceMethod.getName());
             }
-            EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbContext.getEJBInstance(), interfaceMethod, concreteMethod, params);
-            //TODO: set SecurityContext
+            EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbContext.getEJBInstance(), interfaceMethod, concreteMethod, params, securityContext);
             return invokeEJBInvocation(invocation);
         }
         finally {
@@ -316,8 +318,9 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
                 bucket.reuseEJBContext(ejbContext);
             }
         }
-    }
 
+    }
+    
     /**
      * invoke timeout method
      *
@@ -332,7 +335,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         AbstractEJBContext ejbContext = null;
         try {
             ejbContext = bucket.getEJBContext(ejbObjectId);
-            EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbContext.getEJBInstance(), interfaceMethod, interfaceMethod, params);
+            EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbContext.getEJBInstance(), interfaceMethod, interfaceMethod, params, null);
             return invokeEJBInvocation(invocation);
         }
         finally {

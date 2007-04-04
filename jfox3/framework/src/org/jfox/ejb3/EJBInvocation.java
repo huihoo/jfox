@@ -46,13 +46,14 @@ public class EJBInvocation {
         currentThreadEJBInvocation.remove();
     }
 
-    public EJBInvocation(EJBObjectId ejbObjectId, EJBBucket bucket, Object target, Method interfaceMethod, Method concreteMethod, Object[] params) {
+    public EJBInvocation(EJBObjectId ejbObjectId, EJBBucket bucket, Object target, Method interfaceMethod, Method concreteMethod, Object[] params, SecurityContext securityContext) {
         this.ejbObjectId = ejbObjectId;
         this.bucket = bucket;
         this.target = target;
         this.interfaceMethod = interfaceMethod;
         this.concreteMethod = concreteMethod;
         this.params = params;
+        this.securityContext = securityContext;
     }
 
     public TransactionManager getTransactionManager() {

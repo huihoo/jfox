@@ -8,6 +8,7 @@ import javax.transaction.TransactionManager;
 
 import org.jfox.framework.annotation.Exported;
 import org.jfox.framework.component.Component;
+import org.jfox.ejb3.security.SecurityContext;
 
 /**
  * EJB3 容器
@@ -62,10 +63,11 @@ public interface EJBContainer extends Component {
      * @param ejbObjectId ejb object id
      * @param method 要执行的方法
      * @param params 参数 @throws NoSuchEJBException if no such ejb
+     * @param securityContext security context
      * @throws Exception exception
      * @return method result
      */
-    Object invokeEJB(EJBObjectId ejbObjectId, Method method, Object[] params) throws Exception;
+    Object invokeEJB(EJBObjectId ejbObjectId, Method method, Object[] params, SecurityContext securityContext) throws Exception;
 
     /**
      * 通过该方法来完成事务的发起

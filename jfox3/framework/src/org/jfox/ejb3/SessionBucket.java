@@ -608,15 +608,16 @@ public abstract class SessionBucket implements EJBBucket {
             }
             else {
                 // 其它业务方法
+                SecurityContext securityContext = null;
                 SessionContext sessionContext = SessionContext.currentThreadSessionContext();
                 if(sessionContext != null){
                     // try get subject from session context
                     Subject subject = sessionContext.getAssociatedSubect();
-                    //TODO: get SecurityContext
-                    SecurityContext securityContext = new SecurityContext(subject); 
+                    //get SecurityContext
+                    securityContext = new SecurityContext(subject);
                     // propagate subject
                 }
-                return getEJBContainer().invokeEJB(getEJBObjectId(), method, args);
+                return getEJBContainer().invokeEJB(getEJBObjectId(), method, args, securityContext);
             }
         }
 
