@@ -2,7 +2,11 @@ package org.jfox.petstore.action;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.io.IOException;
 import javax.ejb.EJB;
+import javax.security.auth.callback.CallbackHandler;
+import javax.security.auth.callback.Callback;
+import javax.security.auth.callback.UnsupportedCallbackException;
 
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionSupport;
@@ -19,12 +23,14 @@ import org.jfox.petstore.bo.AccountBO;
 import org.jfox.petstore.bo.CategoryBO;
 import org.jfox.petstore.entity.Account;
 import org.jfox.petstore.entity.Category;
+import org.jfox.ejb3.security.JAASLoginRequestCallback;
+import org.jfox.ejb3.security.JAASLoginResponseCallback;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id = "account")
-public class AccountAction extends ActionSupport {
+public class AccountAction extends ActionSupport implements CallbackHandler {
     public static final String ACCOUNT_SESSION_KEY = "__ACCOUNT__";
 
     private static List<String> languages = new ArrayList<String>();
@@ -408,6 +414,13 @@ public class AccountAction extends ActionSupport {
             }
         }
 
+    }
+
+    //TODO: use JAAS login service
+    public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
+        JAASLoginRequestCallback requestLoginRequestCallback = (JAASLoginRequestCallback)callbacks[0];
+        JAASLoginResponseCallback responseCallback = (JAASLoginResponseCallback)callbacks[1];
+        responseCallback.setPrincipalId(requestLoginRequestCallback.getParams().get(0));
     }
 
     public static class NewAccountInvocation extends EditAccountInvocation {
