@@ -17,7 +17,8 @@ public class JAASLoginModule implements LoginModule {
 
     static Logger logger = Logger.getLogger(JAASLoginModule.class);
 
-    private CallbackHandler callbackHandler;
+    private Subject subject = null;
+    private CallbackHandler callbackHandler = null;
 
     public boolean abort() throws LoginException {
         return false;
@@ -29,6 +30,7 @@ public class JAASLoginModule implements LoginModule {
 
     public void initialize(Subject subject, CallbackHandler callbackHandler, Map<String, ?> sharedState, Map<String, ?> options) {
         logger.debug("initialize, callbackHandler: " + callbackHandler);
+        this.subject = subject;
         this.callbackHandler = callbackHandler;
     }
 
@@ -40,13 +42,17 @@ public class JAASLoginModule implements LoginModule {
 
             // 处理 loginResultCallback，构造 Subject, 设置 SecurityContext
             String principalName = loginResultCallback.getPrincipalId();
+            // 得到是 application roles
             List<String> roles = loginResultCallback.getRoles();
-            Subject subject = SecurityContext.buildSubject(principalName, roles);
-            SecurityContext securityContext = new SecurityContext(subject);
-            //TODO: 构造 initialize 中 的 subject
+            subject.getPrincipals().add(new JAASPrincipal(principalName));
+
+            //initialize 中 的 subject
+            SecurityContext.initSubject(subject, principalName, roles);
+
         }
         catch(Exception e) {
-            e.printStackTrace();
+            logger.warn("Login failed.", e);
+            throw new LoginException(e.getMessage());
         }
 
         return true;

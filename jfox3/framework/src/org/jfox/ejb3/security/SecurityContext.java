@@ -202,7 +202,16 @@ public class SecurityContext implements Serializable {
      */
     public static Subject buildSubject(final String userName, final List<String> roleList) {
         Subject subject = new Subject();
+        return initSubject(subject, userName, roleList);
+    }
 
+    /**
+     * Build a subject with the given user name and the list of roles.<br>
+     * @param userName given username
+     * @param roleList given list of roles.
+     * @return built subject.
+     */
+    public static Subject initSubject(final Subject subject, final String userName, final List<String> roleList) {
         // Add principal name
         Principal namePrincipal = new JAASPrincipal(userName);
         subject.getPrincipals().add(namePrincipal);
@@ -218,6 +227,7 @@ public class SecurityContext implements Serializable {
 
         return subject;
     }
+
 
     public String getUsername() {
         String username = null;

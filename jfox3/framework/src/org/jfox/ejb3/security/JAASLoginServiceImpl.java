@@ -18,6 +18,9 @@ import org.jfox.mvc.SessionContext;
 import org.apache.log4j.Logger;
 
 /**
+ * 通过 HttpSession 来传播 Subject
+ * 所以该 Component 一般在 Web 端进行调用
+ *
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
 @Service
@@ -67,33 +70,26 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
      * 登录
      * 需要将 params 构造成 JAASLoginRequestCallback
      *
+     * @param sessionContext http session context
      * @param params param array
      * @throws Exception if failed
      */
-    public boolean login(String... params) throws Exception {
-        return login(callbackHandler,params);
+    public boolean login(SessionContext sessionContext, String... params) throws Exception {
+        return login(sessionContext, callbackHandler, params);
     }
 
-    public boolean login(CallbackHandler callbackHandler, String... params) throws Exception {
-        
-        try {
-            JAASLoginRequestCallback loginRequestCallback = new JAASLoginRequestCallback();
-            for (String param : params) {
-                loginRequestCallback.addParam(param);
-            }
-            loginRequestThreadLocal.set(loginRequestCallback);
-
-            LoginContext loginContext = new LoginContext("default", null, callbackHandler, configuration);
-            loginContext.login();
-            Subject subject = loginContext.getSubject();
-//            threadSubject.set(subject);
-            return true;
-        }
-        finally {
-            loginRequestThreadLocal.remove();
-        }
+    public boolean login(HttpServletRequest request, String... params) throws Exception {
+        SessionContext sessionContext = SessionContext.init(request);
+        return login(sessionContext, params);
     }
-
+    /**
+     * 登录
+     * 需要将 params 构造成 JAASLoginRequestCallback
+     *
+     * @param callbackHandler 用来完成登录过程的 handler
+     * @param params param array
+     * @throws Exception if failed
+     */
     public boolean login(HttpServletRequest request, CallbackHandler callbackHandler, String... params) throws Exception {
         SessionContext sessionContext = SessionContext.init(request);
         return login(sessionContext,callbackHandler,params);
@@ -111,7 +107,9 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
             loginContext.login();
             Subject subject = loginContext.getSubject();
             //把 Subject 关联到 SessionContext 中
-            sessionContext.associateSubject(subject);
+            if(sessionContext != null) {
+                sessionContext.associateSubject(subject);
+            }
             return true;
         }
         finally {
@@ -121,6 +119,6 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
     public static void main(String[] args) throws Exception {
         JAASLoginServiceImpl loginService = new JAASLoginServiceImpl();
         loginService.postPropertiesSet();
-        loginService.login(new SampleCallbackHandler(), "YY", "1234");
+        loginService.login((SessionContext)null, new SampleCallbackHandler(), "YY", "1234");
     }
 }
