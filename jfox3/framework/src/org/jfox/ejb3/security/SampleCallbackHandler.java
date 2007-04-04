@@ -15,8 +15,8 @@ public class SampleCallbackHandler implements CallbackHandler {
 
     public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
         JAASLoginRequestCallback requestLoginRequestCallback = (JAASLoginRequestCallback)callbacks[0];
-        JAASLoginResultCallback resultCallback = (JAASLoginResultCallback)callbacks[1];
-        resultCallback.setPrincipalId(requestLoginRequestCallback.getParams().get(0));
+        JAASLoginResponseCallback responseCallback = (JAASLoginResponseCallback)callbacks[1];
+        responseCallback.setPrincipalId(requestLoginRequestCallback.getParams().get(0));
         
         System.out.println("SampleCallbackHandler.handle: " + Arrays.toString(callbacks));
     }
