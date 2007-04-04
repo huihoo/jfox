@@ -228,6 +228,9 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         return statelessEJBContext;
     }
 
+    /**
+     * 每个Stateless Bucket只有一个 EJBObjectId
+     */
     public synchronized EJBObjectId createEJBObjectId() {
         if (ejbObjectId == null) {
             ejbObjectId = new EJBObjectId(getEJBName());
