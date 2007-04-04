@@ -6,12 +6,16 @@ import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.UnsupportedCallbackException;
 
+import org.jfox.framework.component.Component;
+import org.jfox.framework.annotation.Service;
+
 /**
  * 根据 Callback的内容，实现登录
  *
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
-public class SampleCallbackHandler implements CallbackHandler {
+@Service
+public class SampleCallbackHandler implements CallbackHandler, Component {
 
     public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
         JAASLoginRequestCallback requestLoginRequestCallback = (JAASLoginRequestCallback)callbacks[0];
