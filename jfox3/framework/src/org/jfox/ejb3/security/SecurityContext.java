@@ -53,19 +53,21 @@ public class SecurityContext implements Serializable {
      */
     private Subject callerInRunAsModeSubject = null;
 
-    /**
-     * Default private constructor.
-     */
-/*    public SecurityContext() {
-
-    }*/
+    public SecurityContext() {
+        this(null);
+    }
 
     /**
      * Build a security context with the given subject.
      * @param subject the given subject.
      */
     public SecurityContext(final Subject subject) {
-        this.subject = subject;
+        if(subject == null) {
+            this.subject = buildAnonymousSubject();
+        }
+        else {
+            this.subject = subject;
+        }
     }
 
     /**
