@@ -12,7 +12,7 @@ public interface JAASLoginService {
 
     static ThreadLocal<JAASLoginRequestCallback> loginRequestThreadLocal = new ThreadLocal<JAASLoginRequestCallback>();
 
-    public boolean login(HttpServletRequest request, CallbackHandler callbackHandler, String... params) throws Exception;
+    public Object login(HttpServletRequest request, CallbackHandler callbackHandler, String... params) throws Exception;
     
-    public boolean login(SessionContext sessionContext, CallbackHandler callbackHandler, String... params) throws Exception;
+    public Object login(SessionContext sessionContext, CallbackHandler callbackHandler, String... params) throws Exception;
 }

@@ -100,13 +100,12 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         // do nothing
     }
 
+    //use JAAS LoginService
     @ActionMethod(successView = "index.vhtml", errorView = "signon.vhtml", invocationClass = SignonInvocation.class)
     public void doPostSignon(InvocationContext invocationContext) throws Exception {
         SignonInvocation invocation = (SignonInvocation)invocationContext.getInvocation();
 
-        //TODO: use JAAS LoginService
-//        loginService.login(invocationContext.getSessionContext(), this, invocation.getUsername(),invocation.getPassword());
-        Account account = accountBO.getAccount(invocation.getUsername(), invocation.getPassword());
+        Account account = (Account)loginService.login(invocationContext.getSessionContext(), this, invocation.getUsername(),invocation.getPassword());
         if (account == null) {
             String msg = "Invalid username or password. Signon failed";
             PageContext pageContext = invocationContext.getPageContext();
@@ -119,11 +118,17 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         }
     }
 
-    //TODO: use JAAS login service
+    //JAAS CallbackHandler method
     public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
         JAASLoginRequestCallback requestLoginRequestCallback = (JAASLoginRequestCallback)callbacks[0];
         JAASLoginResponseCallback responseCallback = (JAASLoginResponseCallback)callbacks[1];
-        responseCallback.setPrincipalName(requestLoginRequestCallback.getParams().get(0));
+
+        String username = requestLoginRequestCallback.getParams().get(0);
+        String password = requestLoginRequestCallback.getParams().get(1);
+        Account account = accountBO.getAccount(username, password);
+        responseCallback.setPrincipalName(username);
+        responseCallback.setRole(username);
+        responseCallback.setCallbackObject(account);
     }
 
     @ActionMethod(successView = "index.vhtml")

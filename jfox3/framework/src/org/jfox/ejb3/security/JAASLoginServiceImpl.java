@@ -71,18 +71,18 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
      * @param params param array
      * @throws Exception if failed
      */
-    public boolean login(HttpServletRequest request, CallbackHandler callbackHandler, String... params) throws Exception {
+    public Object login(HttpServletRequest request, CallbackHandler callbackHandler, String... params) throws Exception {
         SessionContext sessionContext = SessionContext.init(request);
         return login(sessionContext,callbackHandler,params);
     }
 
-    public boolean login(SessionContext sessionContext, CallbackHandler callbackHandler, String... params) throws Exception {
+    public Object login(SessionContext sessionContext, CallbackHandler callbackHandler, String... params) throws Exception {
         try {
-            JAASLoginRequestCallback loginRequestCallback = new JAASLoginRequestCallback();
+            JAASLoginRequestCallback requestCallback = new JAASLoginRequestCallback();
             for (String param : params) {
-                loginRequestCallback.addParam(param);
+                requestCallback.addParam(param);
             }
-            loginRequestThreadLocal.set(loginRequestCallback);
+            loginRequestThreadLocal.set(requestCallback);
 
             LoginContext loginContext = new LoginContext("default", null, callbackHandler, configuration);
             loginContext.login();

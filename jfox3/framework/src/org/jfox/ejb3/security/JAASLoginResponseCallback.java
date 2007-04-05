@@ -9,6 +9,8 @@ import javax.security.auth.callback.Callback;
  */
 public class JAASLoginResponseCallback implements Callback {
 
+    private Object callbackObject;
+
     // 一般等于用户名或者 id
     private String principalName;
 
@@ -22,8 +24,23 @@ public class JAASLoginResponseCallback implements Callback {
         this.principalName = principalName;
     }
 
+    public Object getCallbackObject() {
+        return callbackObject;
+    }
+
+    public void setCallbackObject(Object callbackObject) {
+        this.callbackObject = callbackObject;
+    }
+
     public List<String> getRoles() {
         return roles;
+    }
+
+    public void setRole(String... roles){
+        this.roles.clear();
+        for(String roleName : roles){
+            addRole(roleName);
+        }
     }
 
     public void addRole(String role){
