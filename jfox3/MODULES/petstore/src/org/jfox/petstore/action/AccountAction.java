@@ -120,14 +120,19 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
 
     //JAAS CallbackHandler method
     public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
-        JAASLoginRequestCallback requestLoginRequestCallback = (JAASLoginRequestCallback)callbacks[0];
+        JAASLoginRequestCallback requestCallback = (JAASLoginRequestCallback)callbacks[0];
         JAASLoginResponseCallback responseCallback = (JAASLoginResponseCallback)callbacks[1];
 
-        String username = requestLoginRequestCallback.getParams().get(0);
-        String password = requestLoginRequestCallback.getParams().get(1);
+        // first parameter is username
+        String username = requestCallback.getParams().get(0);
+        // second parameter is password
+        String password = requestCallback.getParams().get(1);
         Account account = accountBO.getAccount(username, password);
+        // set callback object, will return by LoginService.login
         responseCallback.setCallbackObject(account);
+        // set principal name
         responseCallback.setPrincipalName(username);
+        // set role
         responseCallback.setRole(username);
     }
 
