@@ -102,8 +102,10 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
 
     @ActionMethod(successView = "index.vhtml", errorView = "signon.vhtml", invocationClass = SignonInvocation.class)
     public void doPostSignon(InvocationContext invocationContext) throws Exception {
-        //TODO: use JAAS LoginService
         SignonInvocation invocation = (SignonInvocation)invocationContext.getInvocation();
+
+        //TODO: use JAAS LoginService
+//        loginService.login(invocationContext.getSessionContext(), this, invocation.getUsername(),invocation.getPassword());
         Account account = accountBO.getAccount(invocation.getUsername(), invocation.getPassword());
         if (account == null) {
             String msg = "Invalid username or password. Signon failed";
@@ -115,6 +117,13 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
             SessionContext sessionContext = invocationContext.getSessionContext();
             sessionContext.setAttribute(ACCOUNT_SESSION_KEY, account);
         }
+    }
+
+    //TODO: use JAAS login service
+    public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
+        JAASLoginRequestCallback requestLoginRequestCallback = (JAASLoginRequestCallback)callbacks[0];
+        JAASLoginResponseCallback responseCallback = (JAASLoginResponseCallback)callbacks[1];
+        responseCallback.setPrincipalId(requestLoginRequestCallback.getParams().get(0));
     }
 
     @ActionMethod(successView = "index.vhtml")
@@ -420,13 +429,6 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
             }
         }
 
-    }
-
-    //TODO: use JAAS login service
-    public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
-        JAASLoginRequestCallback requestLoginRequestCallback = (JAASLoginRequestCallback)callbacks[0];
-        JAASLoginResponseCallback responseCallback = (JAASLoginResponseCallback)callbacks[1];
-        responseCallback.setPrincipalId(requestLoginRequestCallback.getParams().get(0));
     }
 
     public static class NewAccountInvocation extends EditAccountInvocation {
