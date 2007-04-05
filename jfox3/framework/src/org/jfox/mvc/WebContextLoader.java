@@ -167,6 +167,9 @@ public class WebContextLoader implements ServletContextListener {
 
     public static void invokeAction(String moduleDirName, String actionName, InvocationContext invocationContext) throws Exception {
         Action action = WebContextLoader.getAction(moduleDirName, actionName);
+        if(action == null) {
+            throw new ActionNotFoundException("Can not found Action: " + action + " in Module: " + moduleDirName);
+        }
         action.execute(invocationContext);
     }
 

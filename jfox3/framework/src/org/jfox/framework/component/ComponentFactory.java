@@ -106,7 +106,6 @@ public class ComponentFactory {
             // inject @Inject
             for (InjectDependence injectDependence : injectDependences) {
                 try {
-
                     injectDependence.inject(component);
                 }
                 catch (InjectionException e) {

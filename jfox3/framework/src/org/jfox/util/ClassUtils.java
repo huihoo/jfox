@@ -277,7 +277,7 @@ public class ClassUtils {
      */
     public static Field[] getAllDecaredFields(Class clazz) {
         List<Field> fields = new ArrayList<Field>();
-        fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
+//        fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
 
         Class[] superClasses = getAllSuperclasses(clazz);
         for(Class superClass : superClasses){

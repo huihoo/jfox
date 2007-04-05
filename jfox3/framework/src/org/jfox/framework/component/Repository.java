@@ -1,9 +1,9 @@
 package org.jfox.framework.component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Collections;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.jfox.framework.ComponentId;
@@ -18,7 +18,7 @@ import org.jfox.framework.ComponentId;
  */
 public class Repository {
 
-    private final static Map<ComponentId, ComponentMeta> componentMap = new ConcurrentHashMap<ComponentId, ComponentMeta>();
+    private final static Map<ComponentId, ComponentMeta> componentMetas = new ConcurrentHashMap<ComponentId, ComponentMeta>();
 
     private Module module;
 
@@ -31,14 +31,14 @@ public class Repository {
     }
 
     void addComponentMeta(ComponentMeta meta) {
-        componentMap.put(meta.getComponentId(),meta);
+        componentMetas.put(meta.getComponentId(),meta);
     }
 
     ComponentMeta getComponentMeta(ComponentId id) throws ComponentNotFoundException, ComponentNotExportedException {
-        if(!componentMap.containsKey(id)){
+        if(!componentMetas.containsKey(id)){
             throw new ComponentNotFoundException(id.toString());
         }
-        ComponentMeta meta = componentMap.get(id);
+        ComponentMeta meta = componentMetas.get(id);
         if(meta.getModule() != module && !meta.isExported()){
             throw new ComponentNotExportedException(id.toString());
         }
@@ -46,17 +46,17 @@ public class Repository {
     }
 
     void removeComponentMeta(ComponentId id) throws ComponentNotFoundException {
-        if(!componentMap.containsKey(id)){
+        if(!componentMetas.containsKey(id)){
             throw new ComponentNotFoundException(id.toString());
         }
-        ComponentMeta meta = componentMap.get(id);
+        ComponentMeta meta = componentMetas.get(id);
         if(meta.getModule() == module && !meta.isExported()){
-            componentMap.remove(id);
+            componentMetas.remove(id);
         }
     }
 
     boolean hasComponentMeta(ComponentId id){
-        return componentMap.containsKey(id);
+        return componentMetas.containsKey(id);
     }
 
     /**
@@ -65,7 +65,7 @@ public class Repository {
      */
     List<ComponentMeta> getModuleComponentMetas(){
         List<ComponentMeta> metas = new ArrayList<ComponentMeta>();
-        for(ComponentMeta meta : componentMap.values()){
+        for(ComponentMeta meta : componentMetas.values()){
             if(meta.getModule() == this.module) {
                 metas.add(meta);
             }
@@ -76,7 +76,7 @@ public class Repository {
 
     List<ComponentMeta> getModuleComponentMetas(String moduleName){
         List<ComponentMeta> metas = new ArrayList<ComponentMeta>();
-        for(ComponentMeta meta : componentMap.values()){
+        for(ComponentMeta meta : componentMetas.values()){
             if(meta.getModule().getName().equals(moduleName)) {
                 metas.add(meta);
             }
@@ -85,6 +85,9 @@ public class Repository {
         return metas;
     }
 
+    List<ComponentMeta> getAllComponentMetas(){
+        return Collections.unmodifiableList(new ArrayList<ComponentMeta>(componentMetas.values()));
+    }
 
     public static void main(String[] args) {
 

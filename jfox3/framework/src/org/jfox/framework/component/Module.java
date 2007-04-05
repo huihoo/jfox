@@ -17,6 +17,7 @@ import org.jfox.framework.ComponentId;
 import org.jfox.framework.Constants;
 import org.jfox.framework.Framework;
 import org.jfox.framework.annotation.Service;
+import org.jfox.framework.annotation.Exported;
 import org.jfox.framework.event.ComponentUnloadedEvent;
 import org.jfox.framework.event.ComponentLoadedEvent;
 import org.jfox.framework.event.ModuleLoadingEvent;
@@ -303,7 +304,7 @@ public class Module implements Comparable<Module> {
     }
 
     protected void instantiateActiveComponent() throws ComponentInstantiateException {
-        List<ComponentMeta> metas = repo.getModuleComponentMetas();
+        Collection<ComponentMeta> metas = repo.getModuleComponentMetas();
 //        Collections.sort(metas);
         for (ComponentMeta meta : metas) {
             // 立即实例化
@@ -392,13 +393,20 @@ public class Module implements Comparable<Module> {
         }
     }
 
-    public List<ComponentMeta> getAllComponentMetas() {
+    public Collection<ComponentMeta> getAllComponentMetas() {
         return repo.getModuleComponentMetas();
     }
 
     public <T extends Component> Collection<T> findComponentByInterface(Class<T> interfaceClass) {
         List<T> components = new ArrayList<T>();
-        for (ComponentMeta meta : repo.getModuleComponentMetas()) {
+        List<ComponentMeta> searchScope = new ArrayList<ComponentMeta>();
+        if (!interfaceClass.isAnnotationPresent(Exported.class)) {
+            searchScope.addAll(repo.getModuleComponentMetas());
+        }
+        else {
+            searchScope.addAll(repo.getAllComponentMetas());
+        }
+        for (ComponentMeta meta : searchScope) {
             if (meta.isImplemented(interfaceClass)) {
                 try {
                     components.add((T)meta.getComponentInstance());

@@ -36,8 +36,8 @@ public class JAASLoginModule implements LoginModule {
 
     public boolean login() throws LoginException {
         JAASLoginRequestCallback loginRequestCallback = JAASLoginService.loginRequestThreadLocal.get();
+        JAASLoginResponseCallback loginResponseCallback =  JAASLoginService.loginResponseThreadLocal.get();
         try {
-            JAASLoginResponseCallback loginResponseCallback =  new JAASLoginResponseCallback();
             callbackHandler.handle(new Callback[]{loginRequestCallback, loginResponseCallback});
 
             // 处理 loginResultCallback，构造 Subject, 设置 SecurityContext
@@ -45,7 +45,7 @@ public class JAASLoginModule implements LoginModule {
             // 得到是 application roles
             List<String> roles = loginResponseCallback.getRoles();
             subject.getPrincipals().add(new JAASPrincipal(principalName));
-
+            
             //initialize 中 的 subject
             SecurityContext.initSubject(subject, principalName, roles);
 

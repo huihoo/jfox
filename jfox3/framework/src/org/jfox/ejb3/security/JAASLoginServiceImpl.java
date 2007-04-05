@@ -79,10 +79,12 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
     public Object login(SessionContext sessionContext, CallbackHandler callbackHandler, String... params) throws Exception {
         try {
             JAASLoginRequestCallback requestCallback = new JAASLoginRequestCallback();
+            JAASLoginResponseCallback responseCallback = new JAASLoginResponseCallback();
             for (String param : params) {
                 requestCallback.addParam(param);
             }
             loginRequestThreadLocal.set(requestCallback);
+            loginResponseThreadLocal.set(responseCallback);
 
             LoginContext loginContext = new LoginContext("default", null, callbackHandler, configuration);
             loginContext.login();
@@ -91,10 +93,11 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
             if(sessionContext != null) {
                 sessionContext.associateSubject(subject);
             }
-            return true;
+            return responseCallback.getCallbackObject();
         }
         finally {
             loginRequestThreadLocal.remove();
+            loginResponseThreadLocal.remove();
         }
     }
     public static void main(String[] args) throws Exception {

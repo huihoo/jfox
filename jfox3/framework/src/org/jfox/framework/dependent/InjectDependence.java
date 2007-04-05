@@ -34,9 +34,8 @@ public class InjectDependence implements Dependence {
             fieldType = field.getType();
         }
         if(!Component.class.isAssignableFrom(fieldType)){
-            throw new InjectionException("Only Type implements Component interface can be injected.");
+            throw new InjectionException("Can not inject field: " + field + ", because it's type " + fieldType.getName() + " not extends " + Component.class.getName());
         }
-
 
         Object target = null;
 
@@ -44,7 +43,7 @@ public class InjectDependence implements Dependence {
         if (value.trim().length() == 0) { // 自动发现
             Collection<? extends Component> components = context.findComponentBySuper(fieldType.asSubclass(Component.class));
             if (components.isEmpty()) {
-                logger.warn("Can not find component implement interface: " + fieldType.getName());
+                logger.warn("Can not find component implement interface: " + fieldType.getName() + " for field: " + field);
             }
             else {
                 if (components.size() > 1) {
