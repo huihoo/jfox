@@ -270,3 +270,6 @@
 
 2007-04-04
     1. Action 实现 Callback 接口，那么 Callback 就可以获得 EJB
+
+2007-04-05
+    1. 测试 JPetstore JAAS Login
