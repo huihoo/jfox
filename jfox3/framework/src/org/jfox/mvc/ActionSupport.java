@@ -110,11 +110,8 @@ public abstract class ActionSupport implements Action, ComponentInstantiation, C
 
         ActionMethod actionMethodAnnotation = actionMethod.getAnnotation(ActionMethod.class);
         String successView = actionMethodAnnotation.successView();
+        // 没有设置 errorView，将会直接抛出异常
         String errorView = actionMethodAnnotation.errorView();
-        // 没有设置 errorView，则取 successView
-        if(errorView == null || errorView.trim().length()==0) {
-            errorView = successView;
-        }
         invocationContext.getPageContext().setTargetMethod(actionMethodAnnotation.targetMethod());
         invocationContext.getPageContext().setTargetView(successView);
 
@@ -139,6 +136,7 @@ public abstract class ActionSupport implements Action, ComponentInstantiation, C
 
         invocationContext.setInvocation(invocation);
         //build & set invocation
+        Exception exception = null;
         try {
             buildInvocation(invocationClass, invocationContext);
             invocationContext.setInvocation(invocation);
@@ -156,6 +154,7 @@ public abstract class ActionSupport implements Action, ComponentInstantiation, C
             invocationContext.getPageContext().setTargetView(errorView);
             invocationContext.getPageContext().addValidateException(e);
             doActionFailed(invocationContext);
+            exception = e;
         }
         catch (InvocationTargetException e) { // exception throwed, forward to error view
             Exception t = (Exception)e.getTargetException();
@@ -163,15 +162,22 @@ public abstract class ActionSupport implements Action, ComponentInstantiation, C
             invocationContext.getPageContext().setTargetView(errorView);
             invocationContext.getPageContext().setBusinessException(t);
             doActionFailed(invocationContext);
+            exception = t;
         }
         catch (Exception e) { // exception throwed, forward to error view
             logger.warn("Execute Action Method " + actionMethod.getName() + " throws exception.", e);
             invocationContext.getPageContext().setTargetView(errorView);
             invocationContext.getPageContext().setBusinessException(e);
             doActionFailed(invocationContext);
+            exception = e;
         }
 
         postAction(invocationContext);
+
+        // 没有设置 errorView, 抛出异常
+        if(exception != null && (errorView == null || errorView.trim().length()==0)) {
+            throw exception;
+        }
     }
 
     private Method getActionMethod(InvocationContext invocationContext) {
