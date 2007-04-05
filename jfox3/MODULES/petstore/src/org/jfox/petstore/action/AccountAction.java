@@ -126,9 +126,9 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         String username = requestLoginRequestCallback.getParams().get(0);
         String password = requestLoginRequestCallback.getParams().get(1);
         Account account = accountBO.getAccount(username, password);
+        responseCallback.setCallbackObject(account);
         responseCallback.setPrincipalName(username);
         responseCallback.setRole(username);
-        responseCallback.setCallbackObject(account);
     }
 
     @ActionMethod(successView = "index.vhtml")
