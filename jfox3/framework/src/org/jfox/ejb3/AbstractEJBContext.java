@@ -60,7 +60,14 @@ public abstract class AbstractEJBContext implements SessionContext, EJBObject, E
     }
 
     public Principal getCallerPrincipal() {
-        return null;
+        EJBInvocation invocation = EJBInvocation.current();
+        if(invocation != null) {
+            return invocation.getCallerGroup();
+        }
+        else {
+            return null;
+        }
+
     }
 
     public EJBHome getEJBHome() {

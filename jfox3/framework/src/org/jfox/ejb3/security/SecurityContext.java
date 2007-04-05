@@ -1,11 +1,10 @@
 package org.jfox.ejb3.security;
 
+import java.io.Serializable;
 import java.security.Principal;
 import java.security.acl.Group;
-import java.util.List;
-import java.util.Collections;
 import java.util.ArrayList;
-import java.io.Serializable;
+import java.util.List;
 import javax.security.auth.Subject;
 
 import org.apache.log4j.Logger;
@@ -45,14 +44,6 @@ public class SecurityContext implements Serializable {
      */
     private Subject subject = ANONYMOUS_SUBJECT;
 
-    /**
-     * caller subject in run-as mode<br>
-     * In run-as case, the run-as subject is set as the current subject, and the
-     * previous one is kept.<br>
-     * This previous subject is used to get the caller on the run-as bean.
-     */
-    private Subject runAsSubject = null;
-
     public SecurityContext() {
         this(null);
     }
@@ -63,109 +54,25 @@ public class SecurityContext implements Serializable {
      */
     public SecurityContext(final Subject subject) {
         if(subject == null) {
-            this.subject = buildAnonymousSubject();
+            this.subject = ANONYMOUS_SUBJECT;
         }
         else {
             this.subject = subject;
         }
     }
 
-
-    /**
-     * Enters in run-as mode with the given subject.<br>
-     * The previous subject is stored and will be restored when run-as mode will
-     * be ended.
-     * @param runAsSubject the subject to used in run-as mode.
-     * @return the previous subject.
-     */
-    public Subject enterRunAs(final Subject runAsSubject) {
-        // keep previous
-        this.runAsSubject = subject;
-
-        // update the new one
-        this.subject = runAsSubject;
-
-        // return previous.
-        return this.runAsSubject;
+    public Subject getSubject() {
+        return subject;
     }
 
-    /**
-     * Ends the run-as mode and then restore the context stored by container.
-     * @param oldSubject subject kept by container and restored.
-     */
-    public void endsRunAs(final Subject oldSubject) {
-        this.subject = oldSubject;
-
-        // cancel caller of run-as subject (run-as mode has ended)
-        this.runAsSubject = null;
-    }
-
-    /**
-     * Gets the caller's principal.
-     * @param runAsBean if true, the bean is a run-as bean.
-     * @return principal of the caller.
-     */
-    public Principal getCallerPrincipal(final boolean runAsBean) {
-        Subject subject;
-
-        // in run-as mode, needs to return callerInRunAsModeSubject's principal.
-        if (runAsBean && runAsSubject != null) {
-            subject = this.runAsSubject;
-        } else {
-            subject = this.subject;
-        }
-
-        // Then, takes the first principal found. (which is not a role)
-        for (Principal principal : subject.getPrincipals(Principal.class)) {
-            if (!(principal instanceof Group)) {
-                return principal;
+    public String getPrincipalName() {
+        String username = null;
+        for(Principal p : getSubject().getPrincipals()){
+            if(!(p instanceof Group)) {
+                username = p.getName();
             }
         }
-
-        // Principal was not found, severe problem as it should be there. Maybe
-        // the subject was not built correctly.
-        logger.error("No principal found in the current subject. Authentication should have failed when populating subject");
-        throw new IllegalStateException(
-                "No principal found in the current subject. Authentication should have failed when populating subject");
-    }
-
-    /**
-     * Gets the caller's roles.
-     * @param runAsBean if true, the bean is a run-as bean.
-     * @return list of roles of the caller.
-     */
-    public List<? extends Principal> getCallerRolesList(final boolean runAsBean) {
-        Subject subject;
-
-        // in run-as mode, needs to return callerInRunAsModeSubject's principal.
-        if (runAsBean && runAsSubject != null) {
-            subject = this.runAsSubject;
-        } else {
-            subject = this.subject;
-        }
-
-        // Then, takes all the roles found in this principal.
-        for (Principal principal : subject.getPrincipals(Principal.class)) {
-            if (principal instanceof Group) {
-                return Collections.list(((Group) principal).members());
-            }
-        }
-
-        // Principal was not found, severe problem as it should be there. Maybe
-        // the subject was not built correctly.
-        logger.error("No role found in the current subject. Authentication should have failed when populating subject");
-        throw new IllegalStateException(
-                "No role found in the current subject. Authentication should have failed when populating subject");
-    }
-
-    /**
-     * Gets the caller's roles.
-     * @param runAsBean if true, the bean is a run-as bean.
-     * @return array of roles of the caller.
-     */
-    public Principal[] getCallerRoles(final boolean runAsBean) {
-        List<? extends Principal> callerRoles = getCallerRolesList(runAsBean);
-        return callerRoles.toArray(new Principal[callerRoles.size()]);
+        return username;
     }
 
     /**
@@ -229,20 +136,4 @@ public class SecurityContext implements Serializable {
         return subject;
     }
 
-
-    public String getUsername() {
-        String username = null;
-        for(Principal p : getSubject().getPrincipals()){
-            if(!(p instanceof Group)) {
-                username = p.getName();
-            }
-        }
-        return username;
-    }
-
-    ///
-
-    public Subject getSubject() {
-        return subject;
-    }
 }

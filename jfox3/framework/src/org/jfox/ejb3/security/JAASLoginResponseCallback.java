@@ -9,16 +9,16 @@ import javax.security.auth.callback.Callback;
  */
 public class JAASLoginResponseCallback implements Callback {
 
-    private String principalId;
+    private String principalName;
 
     private List<String> roles = new ArrayList<String>();
 
-    public String getPrincipalId() {
-        return principalId;
+    public String getPrincipalName() {
+        return principalName;
     }
 
-    public void setPrincipalId(String principalId) {
-        this.principalId = principalId;
+    public void setPrincipalName(String principalName) {
+        this.principalName = principalName;
     }
 
     public List<String> getRoles() {

@@ -123,7 +123,7 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
     public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
         JAASLoginRequestCallback requestLoginRequestCallback = (JAASLoginRequestCallback)callbacks[0];
         JAASLoginResponseCallback responseCallback = (JAASLoginResponseCallback)callbacks[1];
-        responseCallback.setPrincipalId(requestLoginRequestCallback.getParams().get(0));
+        responseCallback.setPrincipalName(requestLoginRequestCallback.getParams().get(0));
     }
 
     @ActionMethod(successView = "index.vhtml")

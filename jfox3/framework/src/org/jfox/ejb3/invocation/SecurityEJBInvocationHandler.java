@@ -25,6 +25,10 @@ public class SecurityEJBInvocationHandler extends EJBInvocationHandler {
     public Object invoke(final EJBInvocation invocation, final Iterator<EJBInvocationHandler> chain) throws Exception {
         Method method = invocation.getConcreteMethod();
 
+        if(method.isAnnotationPresent(PermitAll.class)){
+            return next(invocation, chain);
+        }
+
         if(method.isAnnotationPresent(DenyAll.class)) {
             throw new EJBAccessException("DenyAll Roles to invoke: "+ invocation);
         }
@@ -37,12 +41,8 @@ public class SecurityEJBInvocationHandler extends EJBInvocationHandler {
                 callerRoles.add(p.getName());
             }
             if(Collections.disjoint(Arrays.asList(allowedRoles), callerRoles)){
-                throw new EJBAccessException("Deny user: " + invocation.getSecurityContext().getUsername() + " with roles + " + callerRoles + " to invoke: "+ invocation);
+                throw new EJBAccessException("Deny user: " + invocation.getSecurityContext().getPrincipalName() + " with roles + " + callerRoles + " to invoke: "+ invocation);
             }
-            return next(invocation, chain);
-        }
-
-        if(method.isAnnotationPresent(PermitAll.class)){
             return next(invocation, chain);
         }
 

@@ -1,18 +1,24 @@
 package jfox.test.ejb3.security;
 
+import java.security.Principal;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.annotation.security.RunAs;
+import javax.annotation.Resource;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.ejb.SessionContext;
 
 @Stateless(name = "security.CalculatorBean")
 @Remote
 @Local
 @RunAs("role")
 public class CalculatorBean implements CalculatorRemote, CalculatorLocal {
+
+    @Resource
+    SessionContext ejbContext;
 
     @PermitAll
     public int add(int x, int y) {
@@ -30,6 +36,7 @@ public class CalculatorBean implements CalculatorRemote, CalculatorLocal {
     }
 
     public double devide(int x, int y) {
+        Principal principal = ejbContext.getCallerPrincipal();
         return x/y;
     }
 

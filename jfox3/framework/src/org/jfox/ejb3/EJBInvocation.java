@@ -131,24 +131,33 @@ public class EJBInvocation {
         return securityContext;
     }
 
-    // 如果是 @RunAs Method，则需要根据 RunAs 指定的值构造 Subject
-    public List<? extends Principal> getCallerRolesList(){
+    public Group getCallerGroup(){
         RunAs runAs = getBucket().getBeanClass().getAnnotation(RunAs.class);
         Subject subject = securityContext.getSubject();
         if(runAs != null) {
             String runAsRole = runAs.value();
-            String username = getSecurityContext().getUsername();
+            String username = getSecurityContext().getPrincipalName();
             subject = SecurityContext.buildSubject(username, runAsRole);
         }
 
         // Then, takes all the roles found in this principal.
         for (Principal principal : subject.getPrincipals(Principal.class)) {
             if (principal instanceof Group) {
-                return Collections.list(((Group) principal).members());
+                return (Group)principal;
             }
         }
+        return null;
+    }
 
-        return new ArrayList<Principal>(0);
+    // 如果是 @RunAs Method，则需要根据 RunAs 指定的值构造 Subject
+    public List<? extends Principal> getCallerRolesList(){
+        Group group = getCallerGroup();
+        if(group != null) {
+            return Collections.list(group.members());
+        }
+        else {
+            return new ArrayList<Principal>(0);
+        }
     }
 
     public String toString() {

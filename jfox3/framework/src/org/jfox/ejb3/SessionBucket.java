@@ -608,7 +608,7 @@ public abstract class SessionBucket implements EJBBucket {
             }
             else {
                 // 其它业务方法
-                SecurityContext securityContext = null;
+                SecurityContext securityContext = new SecurityContext();
                 SessionContext sessionContext = SessionContext.currentThreadSessionContext();
                 if(sessionContext != null){
                     // try get subject from session context

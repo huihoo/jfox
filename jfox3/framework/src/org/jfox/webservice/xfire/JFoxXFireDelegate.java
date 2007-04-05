@@ -140,7 +140,7 @@ public class JFoxXFireDelegate  implements Invoker, ComponentInstantiation, Acti
      * @throws XFireFault
      */
     public Object invoke(Method method, Object[] params, MessageContext messageContext) throws XFireFault {
-        SecurityContext securityContext = null;
+        SecurityContext securityContext = new SecurityContext();
         SessionContext sessionContext = SessionContext.currentThreadSessionContext();
         if(sessionContext != null){
             // try get subject from session context

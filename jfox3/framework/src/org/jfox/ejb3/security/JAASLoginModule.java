@@ -41,7 +41,7 @@ public class JAASLoginModule implements LoginModule {
             callbackHandler.handle(new Callback[]{loginRequestCallback, loginResponseCallback});
 
             // 处理 loginResultCallback，构造 Subject, 设置 SecurityContext
-            String principalName = loginResponseCallback.getPrincipalId();
+            String principalName = loginResponseCallback.getPrincipalName();
             // 得到是 application roles
             List<String> roles = loginResponseCallback.getRoles();
             subject.getPrincipals().add(new JAASPrincipal(principalName));
