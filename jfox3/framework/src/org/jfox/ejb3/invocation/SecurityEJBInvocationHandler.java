@@ -30,7 +30,7 @@ public class SecurityEJBInvocationHandler extends EJBInvocationHandler {
         }
 
         if(method.isAnnotationPresent(DenyAll.class)) {
-            throw new EJBAccessException("DenyAll Roles to invoke: "+ invocation);
+            throw new EJBAccessException("DenyAll Roles to invoke EJB method: "+ invocation);
         }
 
         if(method.isAnnotationPresent(RolesAllowed.class)){
@@ -41,7 +41,7 @@ public class SecurityEJBInvocationHandler extends EJBInvocationHandler {
                 callerRoles.add(p.getName());
             }
             if(Collections.disjoint(Arrays.asList(allowedRoles), callerRoles)){
-                throw new EJBAccessException("Deny user: " + invocation.getSecurityContext().getPrincipalName() + " with roles + " + callerRoles + " to invoke: "+ invocation);
+                throw new EJBAccessException("Deny roles" + callerRoles + " to invoke : "+ invocation);
             }
             return next(invocation, chain);
         }
