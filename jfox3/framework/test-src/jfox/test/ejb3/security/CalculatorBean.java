@@ -1,23 +1,18 @@
 package jfox.test.ejb3.security;
 
-import javax.annotation.Resource;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.annotation.security.RunAs;
 import javax.ejb.Local;
 import javax.ejb.Remote;
-import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 
-@Stateless(name = "stateless.CalculatorBean")
+@Stateless(name = "security.CalculatorBean")
 @Remote
 @Local
-@RunAs("role1")
+@RunAs("role")
 public class CalculatorBean implements CalculatorRemote, CalculatorLocal {
-
-    @Resource
-    SessionContext sessionContext;
 
     @PermitAll
     public int add(int x, int y) {

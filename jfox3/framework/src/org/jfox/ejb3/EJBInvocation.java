@@ -150,4 +150,8 @@ public class EJBInvocation {
 
         return new ArrayList<Principal>(0);
     }
+
+    public String toString() {
+        return "EJBInvocation{EJB=" + getBucket().getBeanClass().getName() + ", method=" + getInterfaceMethod().getName() + "}";
+    }
 }

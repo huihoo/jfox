@@ -35,6 +35,7 @@ import org.jfox.ejb3.event.EJBUnloadedComponentEvent;
 import org.jfox.ejb3.invocation.InterceptorsEJBInvocationHandler;
 import org.jfox.ejb3.invocation.ThreadContextEJBInvocationHandler;
 import org.jfox.ejb3.invocation.TransactionEJBInvocationHandler;
+import org.jfox.ejb3.invocation.SecurityEJBInvocationHandler;
 import org.jfox.ejb3.naming.ContextAdapter;
 import org.jfox.ejb3.naming.InitialContextFactoryImpl;
 import org.jfox.ejb3.timer.EJBTimerTask;
@@ -100,6 +101,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
 
     public SimpleEJB3Container() {
         invocationChain.add(new ThreadContextEJBInvocationHandler());
+        invocationChain.add(new SecurityEJBInvocationHandler());
         invocationChain.add(new TransactionEJBInvocationHandler());
         invocationChain.add(new InterceptorsEJBInvocationHandler());
     }

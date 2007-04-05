@@ -16,7 +16,12 @@ public class SessionContext implements Serializable {
 
     private Map<Serializable, Serializable> sessionMap = new HashMap<Serializable, Serializable>();
 
-    static ThreadLocal<SessionContext> threadSession = new ThreadLocal<SessionContext>();
+    static ThreadLocal<SessionContext> threadSession = new ThreadLocal<SessionContext>() {
+
+        protected SessionContext initialValue() {
+            return new SessionContext();
+        }
+    };
 
     private SessionContext() {
     }

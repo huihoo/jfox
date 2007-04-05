@@ -6,11 +6,14 @@ import javax.ejb.EJBException;
 import javax.ejb.EJBObject;
 import javax.naming.Context;
 
-import org.jfox.ejb3.naming.JNDIContextHelper;
-import org.jfox.entity.dao.MapperEntity;
-import org.jfox.framework.Framework;
 import jfox.test.ejb3.entity.Order;
 import jfox.test.ejb3.lob.Lobber;
+import org.jfox.ejb3.naming.JNDIContextHelper;
+import org.jfox.ejb3.security.JAASLoginServiceImpl;
+import org.jfox.ejb3.security.SampleCallbackHandler;
+import org.jfox.entity.dao.MapperEntity;
+import org.jfox.framework.Framework;
+import org.jfox.mvc.SessionContext;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -211,5 +214,16 @@ public class TestClient {
 
     }
 
+    @Test
+    public void invokeSecurity() throws Exception {
+        JAASLoginServiceImpl loginService = new JAASLoginServiceImpl();
+        loginService.postPropertiesSet();
+        loginService.login(SessionContext.currentThreadSessionContext(), new SampleCallbackHandler(), "role1", "1234");
+        Context context = JNDIContextHelper.getInitalContext();
+        jfox.test.ejb3.security.Calculator calculator = (jfox.test.ejb3.security.Calculator)context.lookup("security.CalculatorBean/remote");
+        Assert.assertEquals(calculator.add(100, 1), 101);
+        Assert.assertEquals(calculator.subtract(100, 1), 99);
+
+    }
 
 }
