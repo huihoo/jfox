@@ -1,21 +1,20 @@
 package org.jfox.ejb3.security;
 
 import java.util.Properties;
+import javax.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.login.Configuration;
 import javax.security.auth.login.LoginContext;
-import javax.security.auth.Subject;
 import javax.servlet.http.HttpServletRequest;
 
 import com.sun.security.auth.login.ConfigFile;
-import org.jfox.framework.annotation.Inject;
+import org.apache.log4j.Logger;
 import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.ComponentInstantiation;
 import org.jfox.framework.component.SingletonComponent;
 import org.jfox.mvc.SessionContext;
-import org.apache.log4j.Logger;
 
 /**
  * 通过 HttpSession 来传播 Subject
@@ -37,9 +36,6 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
      * ejb role=>application role
      */
     private Properties roleLink = new Properties();
-
-    @Inject
-    private CallbackHandler callbackHandler;
 
     /**
      * 客户端的 thread subject
@@ -67,22 +63,6 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
         }
     }
 
-    /**
-     * 登录
-     * 需要将 params 构造成 JAASLoginRequestCallback
-     *
-     * @param sessionContext http session context
-     * @param params param array
-     * @throws Exception if failed
-     */
-    public boolean login(SessionContext sessionContext, String... params) throws Exception {
-        return login(sessionContext, callbackHandler, params);
-    }
-
-    public boolean login(HttpServletRequest request, String... params) throws Exception {
-        SessionContext sessionContext = SessionContext.init(request);
-        return login(sessionContext, params);
-    }
     /**
      * 登录
      * 需要将 params 构造成 JAASLoginRequestCallback
@@ -120,6 +100,6 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
     public static void main(String[] args) throws Exception {
         JAASLoginServiceImpl loginService = new JAASLoginServiceImpl();
         loginService.postPropertiesSet();
-        loginService.login((SessionContext)null, new SampleCallbackHandler(), "YY", "1234");
+        loginService.login(SessionContext.currentThreadSessionContext(), new SampleCallbackHandler(), "YY", "1234");
     }
 }

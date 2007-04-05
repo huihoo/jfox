@@ -106,7 +106,7 @@ public class SecurityContext implements Serializable {
      * @return principal of the caller.
      */
     public Principal getCallerPrincipal(final boolean runAsBean) {
-        Subject subject = null;
+        Subject subject;
 
         // in run-as mode, needs to return callerInRunAsModeSubject's principal.
         if (runAsBean && runAsSubject != null) {
@@ -135,7 +135,7 @@ public class SecurityContext implements Serializable {
      * @return list of roles of the caller.
      */
     public List<? extends Principal> getCallerRolesList(final boolean runAsBean) {
-        Subject subject = null;
+        Subject subject;
 
         // in run-as mode, needs to return callerInRunAsModeSubject's principal.
         if (runAsBean && runAsSubject != null) {
@@ -207,6 +207,7 @@ public class SecurityContext implements Serializable {
 
     /**
      * Build a subject with the given user name and the list of roles.<br>
+     * @param subject subject created
      * @param userName given username
      * @param roleList given list of roles.
      * @return built subject.
