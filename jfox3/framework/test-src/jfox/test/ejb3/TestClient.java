@@ -222,6 +222,7 @@ public class TestClient {
         Context context = JNDIContextHelper.getInitalContext();
         jfox.test.ejb3.security.Calculator calculator = (jfox.test.ejb3.security.Calculator)context.lookup("security.CalculatorBean/remote");
         Assert.assertEquals(calculator.add(100, 1), 101);
+        Assert.assertEquals(calculator.devide(100, 1), 100d);
         Assert.assertEquals(calculator.subtract(100, 1), 99);
 
     }

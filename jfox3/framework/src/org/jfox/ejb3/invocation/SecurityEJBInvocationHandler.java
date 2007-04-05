@@ -10,6 +10,7 @@ import java.util.List;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.RolesAllowed;
 import javax.annotation.security.PermitAll;
+import javax.ejb.EJBAccessException;
 
 import org.jfox.ejb3.EJBInvocation;
 import org.jfox.ejb3.EJBInvocationHandler;
@@ -25,7 +26,7 @@ public class SecurityEJBInvocationHandler extends EJBInvocationHandler {
         Method method = invocation.getConcreteMethod();
 
         if(method.isAnnotationPresent(DenyAll.class)) {
-            throw new SecurityException("DenyAll Roles to invoke: "+ invocation);
+            throw new EJBAccessException("DenyAll Roles to invoke: "+ invocation);
         }
 
         if(method.isAnnotationPresent(RolesAllowed.class)){
@@ -36,7 +37,7 @@ public class SecurityEJBInvocationHandler extends EJBInvocationHandler {
                 callerRoles.add(p.getName());
             }
             if(Collections.disjoint(Arrays.asList(allowedRoles), callerRoles)){
-                throw new SecurityException("Deny user: " + invocation.getSecurityContext().getUsername() + " with roles + " + callerRoles + " to invoke: "+ invocation);
+                throw new EJBAccessException("Deny user: " + invocation.getSecurityContext().getUsername() + " with roles + " + callerRoles + " to invoke: "+ invocation);
             }
             return next(invocation, chain);
         }
