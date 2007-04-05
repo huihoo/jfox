@@ -37,6 +37,7 @@ public class CalculatorBean implements CalculatorRemote, CalculatorLocal {
 
     public double devide(int x, int y) {
         Principal principal = ejbContext.getCallerPrincipal();
+        System.out.println("devide caller principal: " + principal);
         return x/y;
     }
 
