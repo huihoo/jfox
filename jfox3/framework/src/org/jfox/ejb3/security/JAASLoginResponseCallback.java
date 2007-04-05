@@ -9,6 +9,7 @@ import javax.security.auth.callback.Callback;
  */
 public class JAASLoginResponseCallback implements Callback {
 
+    // 一般等于用户名
     private String principalName;
 
     private List<String> roles = new ArrayList<String>();
