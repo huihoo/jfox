@@ -12,11 +12,6 @@ import java.util.Enumeration;
 public class JAASGroup implements Group, Serializable {
 
     /**
-     * UID for serialization.
-     */
-    private static final long serialVersionUID = 7035827226889396034L;
-
-    /**
      * Name of this group.
      */
     private String groupName = null;
