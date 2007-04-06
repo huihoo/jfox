@@ -3,7 +3,7 @@ package org.jfox.ejb3.security;
 import java.io.Serializable;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class JAASPrincipal implements java.security.Principal, Serializable {
 

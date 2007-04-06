@@ -20,7 +20,7 @@ import org.jfox.mvc.SessionContext;
  * 通过 HttpSession 来传播 Subject
  * 所以该 Component 一般在 Web 端进行调用
  *
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service
 public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, ComponentInstantiation, SingletonComponent {

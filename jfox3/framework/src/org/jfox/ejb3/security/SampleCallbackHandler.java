@@ -9,7 +9,7 @@ import javax.security.auth.callback.UnsupportedCallbackException;
 /**
  * 根据 Callback的内容，实现登录
  *
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class SampleCallbackHandler implements CallbackHandler {
 
