@@ -273,3 +273,6 @@
 
 2007-04-05
     1. 测试 JPetstore JAAS Login
+
+2007-04-07
+    1. 容器外测试时，EntityManagerFactory 无法正常关闭
