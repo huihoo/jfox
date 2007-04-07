@@ -19,7 +19,7 @@ import java.util.HashMap;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class PKgen {
+public class PKGenerator {
     /**
      * PK生成锁，用来限定同一时刻只有一个线程进入PK生成计算
      */
@@ -49,14 +49,14 @@ public class PKgen {
      */
     private int suffix = 0;
 
-    private static final Map<Integer, PKgen> instanceMap = new HashMap<Integer, PKgen>();
+    private static final Map<Integer, PKGenerator> instanceMap = new HashMap<Integer, PKGenerator>();
 
     //必须提供正确的参数，以保证 suffix 在机群环境的唯一性
-    private PKgen(int suffix) {
+    private PKGenerator(int suffix) {
         this.suffix = suffix;
     }
 
-    public synchronized static PKgen getInstance(){
+    public synchronized static PKGenerator getInstance(){
         return getInstance(0);
     }
 
@@ -67,10 +67,10 @@ public class PKgen {
      *
      * @param suffix 唯一标识好
      */
-    public synchronized static PKgen getInstance(int suffix){
-        PKgen pkgen;
+    public synchronized static PKGenerator getInstance(int suffix){
+        PKGenerator pkgen;
         if(!instanceMap.containsKey(suffix)){
-            pkgen = new PKgen(suffix);
+            pkgen = new PKGenerator(suffix);
             instanceMap.put(suffix,pkgen);
         }
         else {
@@ -106,7 +106,7 @@ public class PKgen {
     }
 
     public static void main(String[] args) throws Exception {
-        PKgen pkg = PKgen.getInstance(0);
+        PKGenerator pkg = getInstance(0);
         int i = 0;
         long now = System.currentTimeMillis();
         while (i++ < 1000) {

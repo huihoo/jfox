@@ -48,7 +48,7 @@ public abstract class DAOSupport implements DataAccessObject {
      * PK 只保证唯一，不包含任何业务意义，比如：对于 ID 连续性的要求
      */
     public long nextPK() {
-        return PKgen.getInstance().nextPK();
+        return PKGenerator.getInstance().nextPK();
     }
 
     /**
