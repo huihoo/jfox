@@ -1,12 +1,14 @@
 package jfox.test.jpa;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 
 import org.jfox.entity.EntityObject;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
+@Entity
 public interface Address extends EntityObject {
     
     @Column(name="ADR_ID")
