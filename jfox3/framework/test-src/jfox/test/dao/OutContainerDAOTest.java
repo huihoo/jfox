@@ -9,7 +9,7 @@ import org.jfox.entity.EntityObject;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.Assert;
-import jfox.test.ejbcomponent.entity.Account;
+import jfox.test.jpa.Account;
 import jfox.test.ejbcomponent.dao.AccountDAOImpl;
 import jfox.test.ejbcomponent.dao.AccountDAO;
 

@@ -11,7 +11,7 @@ import org.jfox.ejb3.naming.url.javaURLContextFactory;
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class TestMain {
+public class CalculatorTestMain {
 
     public static void main(String[] args) throws Exception {
         // start Framework

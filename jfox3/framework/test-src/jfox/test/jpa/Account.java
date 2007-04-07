@@ -1,4 +1,4 @@
-package jfox.test.ejbcomponent.entity;
+package jfox.test.jpa;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

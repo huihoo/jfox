@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.jfox.entity.EntityObject;
-import jfox.test.ejbcomponent.entity.Account;
+import jfox.test.jpa.Account;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 
 import org.jfox.entity.dao.DAOSupport;
 import org.jfox.entity.EntityManagerExt;
-import jfox.test.ejbcomponent.entity.Address;
+import jfox.test.jpa.Address;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -16,7 +16,7 @@ import jfox.test.ejbcomponent.entity.Address;
 @NamedNativeQueries(
         {
         @NamedNativeQuery(name = "AddressDAO.getAddressById",
-                query = "select * from address where id = $id",
+                query = "select * from address where ADR_ID = $id",
                 resultClass = Address.class),
         @NamedNativeQuery(name = AddressDAO.GET_ADDRESS_BY_ACCOUNT_ID,
                 query = "select * from address where ADR_ACC_ID = $p1",

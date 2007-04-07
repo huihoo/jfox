@@ -14,7 +14,7 @@ import org.jfox.entity.EntityManagerExt;
 import org.jfox.entity.EntityObject;
 import org.jfox.entity.QueryExt;
 import org.jfox.entity.dao.DAOSupport;
-import jfox.test.ejbcomponent.entity.Account;
+import jfox.test.jpa.Account;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
