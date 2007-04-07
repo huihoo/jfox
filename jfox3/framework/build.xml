@@ -3,7 +3,7 @@
     <property name="appname" value="jfox"/>
     <property name="src" value="${basedir}/src"/>
     <property name="conf" value="${basedir}/conf"/>
-    <property name="demo" value="${basedir}/demo"/>
+    <property name="demo" value="${basedir}/test-src"/>
     <property name="webxml" value="${basedir}/WEB-INF/web.xml"/>
     <property name="wwwroot" value="${basedir}/wwwroot"/>
     <property name="lib" value="${basedir}/lib"/>
@@ -13,7 +13,7 @@
     <property name="webapp-classes" value="${webapp-webinfo}/classes"/>
     <property name="webapp-lib" value="${webapp-webinfo}/lib"/>
 
-    <property name="jarname" value="${appname}-3.0.jar"/>
+    <property name="jarname" value="${appname}-3.0.0.jar"/>
     <property name="warname" value="${appname}.war"/>
 
     <path id="classpath">
