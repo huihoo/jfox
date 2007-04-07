@@ -21,6 +21,7 @@ import javax.naming.NameAlreadyBoundException;
 import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
 import javax.transaction.UserTransaction;
+import javax.transaction.SystemException;
 import javax.xml.rpc.handler.MessageContext;
 
 import org.jfox.ejb3.naming.ContextAdapter;
@@ -79,8 +80,18 @@ public abstract class AbstractEJBContext implements SessionContext, EJBObject, E
     }
 
     public UserTransaction getUserTransaction() throws IllegalStateException {
-        //只支持 CMT, 不返回 UserTransaction
-        return null;
+        EJBInvocation invocation = EJBInvocation.current();
+        if(invocation == null) {
+            throw new IllegalStateException("EJBContext.getUserTransactionCurrent() exception, thread not in a EJB invocation!");
+        }
+        else {
+            try {
+                return (UserTransaction)invocation.getTransactionManager().getTransaction();
+            }
+            catch(SystemException e) {
+                throw new IllegalStateException(e);
+            }
+        }
     }
 
     public boolean isCallerInRole(final String roleName) {

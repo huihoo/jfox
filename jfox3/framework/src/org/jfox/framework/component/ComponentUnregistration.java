@@ -15,6 +15,7 @@ public interface ComponentUnregistration {
      * 组件被注销之前的回调方法
      *
      * @param context component context
+     * @return true if can be unregister, false can not be unregister
      */
      boolean preUnregister(ComponentContext context);
 
