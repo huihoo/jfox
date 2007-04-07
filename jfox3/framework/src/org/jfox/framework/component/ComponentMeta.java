@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.jfox.framework.ComponentId;
-import org.jfox.framework.FrameworkListener;
+import org.jfox.framework.event.FrameworkListener;
+import org.jfox.framework.event.ComponentListener;
+import org.jfox.framework.event.ModuleListener;
 import org.jfox.framework.annotation.Service;
 import org.jfox.framework.annotation.Exported;
 import org.jfox.framework.invoker.ComponentInvokerFactory;

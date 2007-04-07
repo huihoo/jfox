@@ -4,10 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.jfox.framework.event.ComponentEvent;
-import org.jfox.framework.component.ComponentListener;
+import org.jfox.framework.event.ComponentListener;
 import org.jfox.framework.event.ModuleEvent;
-import org.jfox.framework.component.ModuleListener;
+import org.jfox.framework.event.ModuleListener;
 import org.jfox.framework.event.FrameworkEvent;
+import org.jfox.framework.event.FrameworkListener;
 
 /**
  * 事件管理器。注册/分发所有的事件

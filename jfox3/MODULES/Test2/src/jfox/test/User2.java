@@ -5,7 +5,7 @@ import org.jfox.framework.annotation.Inject;
 import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.ComponentUnregistration;
-import org.jfox.framework.component.ModuleListener;
+import org.jfox.framework.event.ModuleListener;
 import org.jfox.framework.event.ModuleEvent;
 
 /**

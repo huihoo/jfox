@@ -15,12 +15,12 @@ import java.lang.annotation.ElementType;
 public @interface Constant {
 
     /**
-     * 对于值注射时，值的对象类型，默认对Field本身的类型
+     * 对于值注射时，值的对象类型，默认为Field本身的类型
      */
     Class type() default FieldType.class;
 
     /**
-     * 注射一个固定的值，可以带有占位符(如：${database.driver})，会在注入之前解析
+     * 注射一个固定的值，可以带有占位符(如：${database.driver})，会在注入之前使用Velocity解析
      */
     String value() default "";
 

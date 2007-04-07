@@ -1,6 +1,4 @@
-package org.jfox.framework.component;
-
-import org.jfox.framework.event.ModuleEvent;
+package org.jfox.framework.event;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

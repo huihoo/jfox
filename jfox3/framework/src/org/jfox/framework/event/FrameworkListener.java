@@ -1,4 +1,4 @@
-package org.jfox.framework;
+package org.jfox.framework.event;
 
 import org.jfox.framework.event.FrameworkEvent;
 

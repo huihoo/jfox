@@ -20,7 +20,7 @@ import org.jfox.framework.annotation.Inject;
 import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.ComponentContext;
-import org.jfox.framework.component.ComponentListener;
+import org.jfox.framework.event.ComponentListener;
 import org.jfox.framework.component.ComponentInstantiation;
 import org.jfox.framework.component.ComponentUnregistration;
 import org.jfox.framework.event.ComponentEvent;

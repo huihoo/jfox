@@ -29,7 +29,7 @@ import org.jfox.framework.component.Component;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.ComponentInstantiation;
 import org.jfox.framework.component.ComponentUnregistration;
-import org.jfox.framework.component.ModuleListener;
+import org.jfox.framework.event.ModuleListener;
 import org.jfox.framework.component.Module;
 import org.jfox.framework.event.ModuleEvent;
 import org.jfox.framework.event.ModuleUnloadedEvent;

@@ -6,11 +6,11 @@ import java.util.Arrays;
 
 import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ComponentInstantiation;
-import org.jfox.framework.component.ModuleListener;
+import org.jfox.framework.event.ModuleListener;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.event.ModuleEvent;
 import org.jfox.framework.event.ComponentEvent;
-import org.jfox.framework.component.ComponentListener;
+import org.jfox.framework.event.ComponentListener;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
