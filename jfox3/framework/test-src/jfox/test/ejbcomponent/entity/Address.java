@@ -37,9 +37,4 @@ public interface Address extends EntityObject {
     String getPostalCode();
     void setPostalCode(String postalCode);
 
-    public static class Helper {
-        public String getIdNamePair(Address adderss) {
-            return adderss.getId() + "";
-        }
-    }
 }
