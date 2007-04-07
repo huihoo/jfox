@@ -12,7 +12,7 @@ import javax.persistence.PersistenceException;
 
 import org.jfox.entity.annotation.MappedColumn;
 import org.jfox.entity.annotation.ParameterMap;
-import org.jfox.entity.dao.MapperEntity;
+import org.jfox.entity.dao.MappedEntity;
 import org.jfox.util.AnnotationUtils;
 import org.jfox.util.ClassUtils;
 
@@ -51,7 +51,7 @@ public class SQLTemplate {
         if(ClassUtils.isPrimitiveClass(resultClass)) {
             return;
         }
-        else if(MapperEntity.class.isAssignableFrom(resultClass)) {
+        else if(MappedEntity.class.isAssignableFrom(resultClass)) {
             return ;
         }
         else if(String.class.equals(resultClass) || ClassUtils.isPrimitiveClass(resultClass) || ClassUtils.isPrimitiveWrapperClass(resultClass)) {
@@ -80,7 +80,7 @@ public class SQLTemplate {
             MappedColumn mappedColumn = mappedColumnMethod.getAnnotation(MappedColumn.class);
             MappedColumnEntry mcEntry = new MappedColumnEntry();
             // 用方法名作为 name, 也即为 resultMap 中的 key
-            mcEntry.name = MapperEntity.getColumnMapKeyByMethod(mappedColumnMethod);
+            mcEntry.name = MappedEntity.getColumnMapKeyByMethod(mappedColumnMethod);
             mcEntry.namedQuery = mappedColumn.namedQuery();
             mcEntry.type = mappedColumnMethod.getReturnType();
             mcEntry.params = mappedColumn.params();

@@ -11,7 +11,7 @@ import org.jfox.petstore.domain.CartItem;
 import org.jfox.petstore.entity.Account;
 import org.jfox.petstore.entity.LineItem;
 import org.jfox.petstore.entity.Order;
-import org.jfox.entity.dao.MapperEntity;
+import org.jfox.entity.dao.MappedEntity;
 import org.jfox.entity.dao.PKGenerator;
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionSupport;
@@ -54,7 +54,7 @@ public class OrderAction extends ActionSupport {
 
         Account account = (Account)sessionContext.getAttribute(AccountAction.ACCOUNT_SESSION_KEY);
 
-        Order order = MapperEntity.newEntityObject(Order.class);
+        Order order = MappedEntity.newEntityObject(Order.class);
         order.setOrderId(PKGenerator.getInstance().nextPK());
         order.setUsername(account.getUsername());
         order.setOrderDate(new Date());
@@ -90,7 +90,7 @@ public class OrderAction extends ActionSupport {
 
         int i = 1;
         for (CartItem cartItem : cart.getCartItemList()) {
-            LineItem lineItem = MapperEntity.newEntityObject(LineItem.class);
+            LineItem lineItem = MappedEntity.newEntityObject(LineItem.class);
             lineItem.setLineNumber(i);
             lineItem.setOrderId(order.getOrderId());
             lineItem.setQuantity(cartItem.getQuantity());

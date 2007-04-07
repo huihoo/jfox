@@ -80,7 +80,7 @@ public abstract class DAOSupport implements DataAccessObject {
      * @param dataMap                   data dataMap
      */
     public static <T> T newEntityObject(final Class<T> dataObjectInterfClass, final Map<String, Object> dataMap) {
-        return MapperEntity.newEntityObject(dataObjectInterfClass, dataMap);
+        return MappedEntity.newEntityObject(dataObjectInterfClass, dataMap);
     }
 
 }

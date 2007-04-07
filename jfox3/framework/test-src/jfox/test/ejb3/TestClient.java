@@ -12,7 +12,7 @@ import jfox.test.ejb3.lob.Lobber;
 import org.jfox.ejb3.naming.JNDIContextHelper;
 import org.jfox.ejb3.security.JAASLoginServiceImpl;
 import org.jfox.ejb3.security.SampleCallbackHandler;
-import org.jfox.entity.dao.MapperEntity;
+import org.jfox.entity.dao.MappedEntity;
 import org.jfox.framework.Framework;
 import org.jfox.mvc.SessionContext;
 import org.junit.After;
@@ -133,7 +133,7 @@ public class TestClient {
     public void invokeLob() throws Exception {
         Context context = JNDIContextHelper.getInitalContext();
         jfox.test.ejb3.lob.LobberDAO lobberDAO = (jfox.test.ejb3.lob.LobberDAO)context.lookup("lob.LobberDAO/remote");
-        Lobber lobber = MapperEntity.newEntityObject(Lobber.class);
+        Lobber lobber = MappedEntity.newEntityObject(Lobber.class);
         lobber.setId(1);
         String clobby = "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +
                 "This is a very long string that will be stored in a java.sql.Clob hopefully.  We'll see how this works and if it will work" +

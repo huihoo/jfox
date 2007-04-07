@@ -22,7 +22,7 @@ import org.jfox.util.MethodUtils;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class MapperEntity implements EntityObject {
+public class MappedEntity implements EntityObject {
     /**
      * prefix of @MappedColumn
      */
@@ -44,7 +44,7 @@ public class MapperEntity implements EntityObject {
      */
     private Map<String, Object> valueMap = new HashMap<String, Object>();
 
-    MapperEntity(Class<?> doInterface) {
+    MappedEntity(Class<?> doInterface) {
         this.dataObjectInterfClass = doInterface;
         introspect();
     }
@@ -140,19 +140,19 @@ public class MapperEntity implements EntityObject {
             throw new BaseRuntimeException("Create Entity Object failed, not provide a data object interface, class is: " + dataObjectInterfClass);
         }
 
-        final MapperEntity mapperEntity = new MapperEntity(dataObjectInterfClass);
-        mapperEntity.putAll(map);
+        final MappedEntity mappedEntity = new MappedEntity(dataObjectInterfClass);
+        mappedEntity.putAll(map);
 
         if (dataObjectInterfClass.equals(EntityObject.class)) {
 //            如果接口为 EntityObject，直接返回 EntityMapper
-            return (T)mapperEntity;
+            return (T)mappedEntity;
         }
         else {
-            return newEntityObject(dataObjectInterfClass, mapperEntity);
+            return newEntityObject(dataObjectInterfClass, mappedEntity);
         }
     }
 
-    public static <T> T newEntityObject(final Class<T> dataObjectInterfClass, final MapperEntity mapperEntity) {
+    public static <T> T newEntityObject(final Class<T> dataObjectInterfClass, final MappedEntity mappedEntity) {
         List<Class> interfaceClasses = new ArrayList<Class>();
         interfaceClasses.add(dataObjectInterfClass);
         if (!EntityObject.class.isAssignableFrom(dataObjectInterfClass)) {
@@ -161,30 +161,30 @@ public class MapperEntity implements EntityObject {
         return (T)Proxy.newProxyInstance(
                 dataObjectInterfClass.getClassLoader(),
                 interfaceClasses.toArray(new Class[interfaceClasses.size()]),
-                new EntityMapperInvocationHandler(mapperEntity));
+                new EntityMapperInvocationHandler(mappedEntity));
     }
 
     public static class EntityMapperInvocationHandler implements InvocationHandler, Serializable {
 
-        private MapperEntity mapperEntity;
+        private MappedEntity mappedEntity;
 
-        public EntityMapperInvocationHandler(MapperEntity mapperEntity) {
-            this.mapperEntity = mapperEntity;
+        public EntityMapperInvocationHandler(MappedEntity mappedEntity) {
+            this.mappedEntity = mappedEntity;
         }
 
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             if (method.getDeclaringClass().equals(EntityObject.class)) {
-                return method.invoke(mapperEntity, args);
+                return method.invoke(mappedEntity, args);
             }
             else if (method.getDeclaringClass().equals(Object.class)) {
-                return method.invoke(mapperEntity, args);
+                return method.invoke(mappedEntity, args);
             }
             else if (MethodUtils.isGetMethod(method)) {
-                return mapperEntity.getColumnValue(mapperEntity.getColumnNameByMethod(method)); // 应该使用 Method Annotation
+                return mappedEntity.getColumnValue(mappedEntity.getColumnNameByMethod(method)); // 应该使用 Method Annotation
             }
             else if (MethodUtils.isSetMethod(method)) {
                 // 只有 @Column 描述了匹配的 get 才做 setColumnValue，
-                mapperEntity.setColumnValue(mapperEntity.getColumnNameByMethod(method), args[0]);
+                mappedEntity.setColumnValue(mappedEntity.getColumnNameByMethod(method), args[0]);
                 return null;
             }
             else {
@@ -194,7 +194,7 @@ public class MapperEntity implements EntityObject {
     }
 
     public Object clone() throws CloneNotSupportedException{
-        MapperEntity entity = (MapperEntity)super.clone();
+        MappedEntity entity = (MappedEntity)super.clone();
         Map<String, Object> valueMap = new HashMap<String, Object>();
         valueMap.putAll(this.valueMap);
         entity.valueMap = valueMap;

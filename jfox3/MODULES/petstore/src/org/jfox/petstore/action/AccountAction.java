@@ -19,7 +19,7 @@ import org.jfox.mvc.validate.ValidateException;
 import org.jfox.mvc.validate.StringValidation;
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.entity.EntityObject;
-import org.jfox.entity.dao.MapperEntity;
+import org.jfox.entity.dao.MappedEntity;
 import org.jfox.petstore.bo.AccountBO;
 import org.jfox.petstore.bo.CategoryBO;
 import org.jfox.petstore.entity.Account;
@@ -65,7 +65,7 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
     @ActionMethod(successView = "index.vhtml", errorView = "NewAccountForm.vhtml", invocationClass = NewAccountInvocation.class)
     public void doPostCreate(InvocationContext invocationContext) throws Exception{
         NewAccountInvocation invocation = (NewAccountInvocation)invocationContext.getInvocation();
-        Account newAccount = MapperEntity.newEntityObject(Account.class);
+        Account newAccount = MappedEntity.newEntityObject(Account.class);
         newAccount.setUsername(invocation.getUsername());
         newAccount.setStatus("OK");
         newAccount.setPassword(invocation.getPassword());
@@ -214,7 +214,7 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         }
         else if(invocationContext.getActionMethod().getName().equals("doPostCreate")){
             NewAccountInvocation invocation = (NewAccountInvocation)invocationContext.getInvocation();
-            Account newAccount = MapperEntity.newEntityObject(Account.class);
+            Account newAccount = MappedEntity.newEntityObject(Account.class);
             newAccount.setUsername(invocation.getUsername());
             newAccount.setStatus("OK");
             newAccount.setPassword(invocation.getPassword());

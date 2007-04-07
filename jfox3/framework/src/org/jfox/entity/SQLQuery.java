@@ -24,7 +24,7 @@ import javax.persistence.Query;
 
 import org.jfox.entity.annotation.ParameterMap;
 import org.jfox.entity.dao.DAOSupport;
-import org.jfox.entity.dao.MapperEntity;
+import org.jfox.entity.dao.MappedEntity;
 import org.jfox.entity.cache.CacheConfig;
 import org.jfox.entity.cache.Cache;
 import org.jfox.util.ClassUtils;
@@ -293,7 +293,7 @@ public class SQLQuery extends QueryExt {
         //需要判断 ResultClass 类型
         Class<?> resultClass = sqlTemplate.getResultClass();
 
-        if (resultClass.isInterface() || MapperEntity.class.isAssignableFrom(resultClass)) {
+        if (resultClass.isInterface() || MappedEntity.class.isAssignableFrom(resultClass)) {
             return buildEntityObject(rset);
         }
         else if (resultClass.equals(String.class) || ClassUtils.isPrimitiveClass(resultClass) || ClassUtils.isPrimitiveWrapperClass(resultClass)) {
