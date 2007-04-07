@@ -27,7 +27,7 @@ import org.jfox.framework.component.ASMClassLoader;
 import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.Component;
 import org.jfox.framework.component.ComponentContext;
-import org.jfox.framework.component.ComponentInstantiation;
+import org.jfox.framework.component.ComponentInitialization;
 import org.jfox.framework.component.ComponentUnregistration;
 import org.jfox.framework.event.ModuleListener;
 import org.jfox.framework.component.Module;
@@ -45,7 +45,7 @@ import org.w3c.dom.Element;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id = "EntityManagerFactoryBuilder", active = true, singleton = true, priority = Integer.MIN_VALUE)
-public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuilder, Component, ComponentInstantiation, ComponentUnregistration, ModuleListener, ActiveComponent {
+public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuilder, Component, ComponentInitialization, ComponentUnregistration, ModuleListener, ActiveComponent {
 
     protected static Logger logger = Logger.getLogger(EntityManagerFactoryBuilderImpl.class);
 
@@ -168,7 +168,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         inited = true;
     }
 
-    public void postPropertiesSet() {
+    public void postInject() {
         containerManaged = true;
         initEntityManagerFactories();
     }

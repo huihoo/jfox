@@ -218,7 +218,7 @@ public class TestClient {
     @Test
     public void invokeSecurity() throws Exception {
         JAASLoginServiceImpl loginService = new JAASLoginServiceImpl();
-        loginService.postPropertiesSet();
+        loginService.postInject();
         loginService.login(SessionContext.currentThreadSessionContext(), new SampleCallbackHandler(), "role1", "1234");
         Context context = JNDIContextHelper.getInitalContext();
         jfox.test.ejb3.security.Calculator calculator = (jfox.test.ejb3.security.Calculator)context.lookup("security.CalculatorBean/remote");

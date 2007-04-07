@@ -32,8 +32,8 @@ public class CategoryAction extends ActionSupport {
     @EJB
     ProductBO productBO;
     
-    public void postPropertiesSet() {
-        super.postPropertiesSet();
+    public void postInject() {
+        super.postInject();
     }
 
     /**

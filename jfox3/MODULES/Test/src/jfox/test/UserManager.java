@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.jfox.framework.annotation.Service;
-import org.jfox.framework.component.ComponentInstantiation;
+import org.jfox.framework.component.ComponentInitialization;
 import org.jfox.framework.event.ModuleListener;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.event.ModuleEvent;
@@ -16,7 +16,7 @@ import org.jfox.framework.event.ComponentListener;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service
-public class UserManager implements IUserManager, ComponentInstantiation, ModuleListener, ComponentListener {
+public class UserManager implements IUserManager, ComponentInitialization, ModuleListener, ComponentListener {
 
     private List<IUser> users = new ArrayList<IUser>();
 
@@ -25,7 +25,7 @@ public class UserManager implements IUserManager, ComponentInstantiation, Module
         
     }
 
-    public void postPropertiesSet() {
+    public void postInject() {
     }
 
     public void moduleChanged(ModuleEvent moduleEvent) {

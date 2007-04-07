@@ -46,7 +46,7 @@ import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.Component;
 import org.jfox.framework.component.ComponentContext;
-import org.jfox.framework.component.ComponentInstantiation;
+import org.jfox.framework.component.ComponentInitialization;
 import org.jfox.framework.component.ComponentUnregistration;
 import org.jfox.framework.component.InterceptableComponent;
 import org.jfox.framework.component.Module;
@@ -65,7 +65,7 @@ import org.apache.log4j.Logger;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id = "EJB3Container", singleton = true, active = true, priority = Integer.MIN_VALUE)
-public class SimpleEJB3Container implements EJBContainer, Component, ComponentInstantiation, InterceptableComponent, ModuleListener, ActiveComponent, ComponentUnregistration {
+public class SimpleEJB3Container implements EJBContainer, Component, ComponentInitialization, InterceptableComponent, ModuleListener, ActiveComponent, ComponentUnregistration {
 
     protected Logger logger = Logger.getLogger(SimpleEJB3Container.class);
 
@@ -110,7 +110,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         this.componentContext = componentContext;
     }
 
-    public void postPropertiesSet() {
+    public void postInject() {
         // new NamingContext, then set to InitialContextFactoryImpl
         namingContext = new ContainerNamingContext();
         InitialContextFactoryImpl.setInitialContext(namingContext);

@@ -40,7 +40,7 @@ public class User2 implements IUser2, ComponentUnregistration, ModuleListener {
      * Component 属性设置完毕之后的回调方法
      * 负责做Properties Set 之后的检查工作，以及做 init 操作
      */
-    public void postPropertiesSet() {
+    public void postInject() {
         System.out.println("postPropertiesSet");
         userMgr.addUser(this);
     }

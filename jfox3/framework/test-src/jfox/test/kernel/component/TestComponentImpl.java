@@ -17,7 +17,7 @@ public class TestComponentImpl implements TestComponent {
         log("postInstantiated!");
     }
 
-    public void postPropertiesSet() {
+    public void postInject() {
         log("postPropertiesSet");
     }
 

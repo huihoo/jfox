@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
 import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.ComponentContext;
-import org.jfox.framework.component.ComponentInstantiation;
+import org.jfox.framework.component.ComponentInitialization;
 import org.jfox.framework.component.SingletonComponent;
 import org.jfox.mvc.SessionContext;
 
@@ -23,7 +23,7 @@ import org.jfox.mvc.SessionContext;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service
-public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, ComponentInstantiation, SingletonComponent {
+public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, ComponentInitialization, SingletonComponent {
 
     static Logger logger = Logger.getLogger(JAASLoginServiceImpl.class); 
 
@@ -50,7 +50,7 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
         
     }
 
-    public void postPropertiesSet() {
+    public void postInject() {
         try {
             // init configuration
             configuration = new ConfigFile(getClass().getClassLoader().getResource(JAAS_CONFIG).toURI());
@@ -102,7 +102,7 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
     }
     public static void main(String[] args) throws Exception {
         JAASLoginServiceImpl loginService = new JAASLoginServiceImpl();
-        loginService.postPropertiesSet();
+        loginService.postInject();
         loginService.login(SessionContext.currentThreadSessionContext(), new SampleCallbackHandler(), "YY", "1234");
     }
 }

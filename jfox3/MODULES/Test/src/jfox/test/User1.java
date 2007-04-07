@@ -4,14 +4,14 @@ import org.jfox.framework.annotation.Constant;
 import org.jfox.framework.annotation.Service;
 import org.jfox.framework.annotation.Inject;
 import org.jfox.framework.component.ComponentContext;
-import org.jfox.framework.component.ComponentInstantiation;
+import org.jfox.framework.component.ComponentInitialization;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 @Service(
         id = "User1")
-public class User1 implements IUser, ComponentInstantiation {
+public class User1 implements IUser, ComponentInitialization {
 
     @Inject(id = "UserManager")
     IUserManager userMgr;
@@ -36,7 +36,7 @@ public class User1 implements IUser, ComponentInstantiation {
      * Component 属性设置完毕之后的回调方法
      * 负责做Properties Set 之后的检查工作，以及做 init 操作
      */
-    public void postPropertiesSet() {
+    public void postInject() {
         userMgr.addUser(this);
     }
 

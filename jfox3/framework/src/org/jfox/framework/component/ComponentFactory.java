@@ -161,14 +161,14 @@ public class ComponentFactory {
     }
 
     protected void postInstantiate(Component component, ComponentContext componentContext) {
-        if (component instanceof ComponentInstantiation) {
-            ((ComponentInstantiation)component).postContruct(componentContext);
+        if (component instanceof ComponentInitialization) {
+            ((ComponentInitialization)component).postContruct(componentContext);
         }
     }
 
     protected void postPropertiesSet(Component component) {
-        if (component instanceof ComponentInstantiation) {
-            ((ComponentInstantiation)component).postPropertiesSet();
+        if (component instanceof ComponentInitialization) {
+            ((ComponentInitialization)component).postInject();
         }
     }
 

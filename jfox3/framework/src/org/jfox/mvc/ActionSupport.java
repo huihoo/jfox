@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.ComponentUnregistration;
-import org.jfox.framework.component.ComponentInstantiation;
+import org.jfox.framework.component.ComponentInitialization;
 import org.jfox.framework.component.SingletonComponent;
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.mvc.validate.ValidateException;
@@ -31,7 +31,7 @@ import org.apache.log4j.Logger;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public abstract class ActionSupport implements Action, ComponentInstantiation, ComponentUnregistration, ActiveComponent, SingletonComponent {
+public abstract class ActionSupport implements Action, ComponentInitialization, ComponentUnregistration, ActiveComponent, SingletonComponent {
 
     /**
      * post action prefix, invoked method will be "DOPOST + %ACTION_NAME%"
@@ -55,7 +55,7 @@ public abstract class ActionSupport implements Action, ComponentInstantiation, C
         this.context = componentContext;
     }
 
-    public void postPropertiesSet() {
+    public void postInject() {
         Method[] actionMethods = AnnotationUtils.getAnnotatedMethods(this.getClass(), ActionMethod.class);
         for (Method actionMethod : actionMethods) {
             if (actionMethod.getReturnType().equals(void.class)
