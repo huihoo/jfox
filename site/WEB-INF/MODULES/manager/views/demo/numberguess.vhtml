@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body >
+
+#if ($success)
+
+Congratulations! You got it.
+And after just $count tries.<p>
+
+    Care to <a href="numberguess.view.do">try again</a>?
+
+    #elseif($count == 0)
+
+    Welcome to the Number Guess game.
+
+<p>
+    I'm thinking of a number between 1 and 100.
+
+<p>
+
+<form method=POST>
+    What's your guess? <input type=text name=guessNO>
+    <input type=submit value="Submit">
+</form>
+
+#else
+
+Good guess, but nope. Try <b>$hint</b>.
+
+You have made $count guesses.<p>
+
+    I'm thinking of a number between 1 and 100.
+
+<p>
+
+<form method=POST>
+    What's your guess? <input type=text name=guessNO>
+    <input type=submit value="Submit">
+</form>
+
+#end
+
+</body>
+</html>

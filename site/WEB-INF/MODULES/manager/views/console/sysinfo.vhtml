@@ -1,0 +1,100 @@
+<html>
+<head>
+    <link href="console/styles.css" rel="stylesheet" type="text/css">
+    <title>JFox Management Console</title>
+</head>
+<body bgcolor="#FFFFFF">
+<table cellspacing="2" width="100%" border="0">
+    <tr>
+        <td><a href="#"><img border="0" alt="JFox 3" align="left" src="images/jfox.jpg"></a>
+        </td>
+    </tr>
+</table>
+<hr size="1" noshade="noshade">
+<table cellspacing="0" cellpadding="3" width="100%" border="1">
+    <tr>
+        <td colspan="5" class="title"><big>Menu</big></td>
+    </tr>
+    <tr>
+        <td class="page-title">
+            <small><a href="console.sysinfo.do">System Infomation</a></small>
+        </td>
+        <td class="page-title">
+            <small><a href="console.jndi.do">JNDI View</a></small>
+        </td>
+        <td class="page-title">
+            <small><a href="console.container.do">EJB Container</a></small>
+        </td>
+        <td class="page-title">
+            <small><a href="console.jpa.do">Persistence Unit</a></small>
+        </td>
+        <td class="page-title">
+            <small><a href="console.modules.do">Modules</a></small>
+        </td>
+    </tr>
+</table>
+<br>
+<table cellspacing="4" width="100%" border="0">
+    <tr>
+        <td class="page-title" bordercolor="#000000" align="left" nowrap><font size="+2">System Infomation</font></td>
+    </tr>
+</table>
+<br>
+<table border="1" cellspacing="0" cellpadding="3">
+    <tr>
+        <td colspan="7" class="title">Information</td>
+    </tr>
+    <tr>
+        <td class="header-center">
+            <small>JFox Version</small>
+        </td>
+        <td class="header-center">
+            <small>Tomcat Version</small>
+        </td>
+        <td class="header-center">
+            <small>JVM Version</small>
+        </td>
+        <td class="header-center">
+            <small>JVM Vendor</small>
+        </td>
+        <td class="header-center">
+            <small>OS Name</small>
+        </td>
+        <td class="header-center">
+            <small>OS Version</small>
+        </td>
+        <td class="header-center">
+            <small>OS Architecture</small>
+        </td>
+    </tr>
+    <tr>
+        <td class="row-center">
+            <small>$jfoxVersion</small>
+        </td>
+        <td class="row-center">
+            <small>$webServerVersion</small>
+        </td>
+        <td class="row-center">
+            <small>$jvmVersion</small>
+        </td>
+        <td class="row-center">
+            <small>$jvmVendor</small>
+        </td>
+        <td class="row-center">
+            <small>$osName</small>
+        </td>
+        <td class="row-center">
+            <small>$osVersion</small>
+        </td>
+        <td class="row-center">
+            <small>$osArch</small>
+        </td>
+    </tr>
+</table>
+<br>
+<hr size="1" noshade="noshade">
+<center>
+    <font size="-1" color="#525D76"> <em>Copyright &copy; JFox, 2002-2007</em></font>
+</center>
+</body>
+</html>

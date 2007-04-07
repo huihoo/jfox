@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>petstore demo</title>
+</head>
+<body>
+#parse ("IncludeTop.tmpl")
+
+<table align="left" bgcolor="#008800" border="0" cellspacing="2" cellpadding="2">
+    <tr>
+        <td bgcolor="#FFFF88">
+            <a href="page.index.do"><b><font color="BLACK" size="2">&lt;&lt; Main Menu</font></b></a>
+        </td>
+    </tr>
+</table>
+
+<table align="center" bgcolor="#008800" border="0" cellspacing="2" cellpadding="3">
+    <tr bgcolor="#CCCCCC">
+        <td>&nbsp;</td>
+        <td><b>Product ID</b></td>
+        <td><b>Name</b></td>
+    </tr>
+    #foreach ($product in $productPageList)
+    <tr bgcolor="#FFFF88">
+        <td><a href="product.view.do?productId=$!product.getProductId()">
+            $!product.getDescription()</a></td>
+        <td><b><a href="product.view.do?productId=$!product.getProductId()">
+            <font color="BLACK">$!product.getProductId()</font>
+        </a></b></td>
+        <td>$!product.getName()</td>
+    </tr>
+    #end
+    <tr bgcolor="white">
+        <td colspan=3 align="center">
+            #if (!($productList.isFirstPage()))
+            <a href="product.search.do?page=$previousPage"><img border="0" src="images/button_prev.gif"/>
+            </a>
+            #end
+            #if (!($productList.isLastPage()))
+            <a href="product.search.do?page=$nextPage"><img border="0" src="images/button_next.gif"/>
+            </a>
+            #end
+        </td>
+    </tr>
+
+</table>
+
+#include ("IncludeBottom.tmpl")
+</body>
+</html>

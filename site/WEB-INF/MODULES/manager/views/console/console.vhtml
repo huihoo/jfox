@@ -1,0 +1,242 @@
+<html>
+<head>
+    <link href="console/styles.css" rel="stylesheet" type="text/css">
+    <title>JFox Management Console</title>
+</head>
+<body bgcolor="#FFFFFF">
+<table cellspacing="2" width="100%" border="0">
+    <tr>
+        <td><a href="#"><img border="0" alt="JFox 3" align="left" src="images/jfox.jpg"></a>
+        </td>
+    </tr>
+</table>
+<hr size="1" noshade="noshade">
+<table cellspacing="0" cellpadding="3" width="100%" border="1">
+        <tr>
+            <td colspan="5" class="title"><big>Menu</big></td>
+        </tr>
+        <tr>
+            <td class="page-title">
+                <small><a href="console.sysinfo.do">System Infomation</a></small>
+            </td>
+            <td class="page-title">
+                <small><a href="console.jndi.do">JNDI View</a></small>
+            </td>
+            <td class="page-title">
+                <small><a href="console.container.do">EJB Container</a></small>
+            </td>
+            <td class="page-title">
+                <small><a href="console.jpa.do">Persistence Unit</a></small>
+            </td>
+            <td class="page-title">
+                <small><a href="console.modules.do">Modules</a></small>
+            </td>
+        </tr>
+</table>
+<br>
+<table cellspacing="4" width="100%" border="0">
+    <tr>
+        <td class="page-title" bordercolor="#000000" align="left" nowrap><font size="+2">Persistence Unit Manager</font></td>
+    </tr>
+</table>
+<br>
+<table border="1" cellspacing="0" cellpadding="3">
+    <tr>
+        <td class="row-left" width="10%">
+            <small><strong>Message:</strong></small>
+            &nbsp;</td>
+        <td class="row-left">
+            <pre>OK</pre>
+        </td>
+    </tr>
+</table>
+<br>
+<table border="1" cellspacing="0" cellpadding="3">
+    <tr>
+        <td colspan="5" class="title">Applications</td>
+    </tr>
+    <tr>
+        <td class="header-left">
+            <small>Path</small>
+        </td>
+        <td class="header-left">
+            <small>Display Name</small>
+        </td>
+        <td class="header-center">
+            <small>Running</small>
+        </td>
+        <td class="header-center">
+            <small>Sessions</small>
+        </td>
+        <td class="header-center">
+            <small>Commands</small>
+        </td>
+    </tr>
+    <tr>
+        <td class="row-left" bgcolor="#FFFFFF">
+            <small><a href="/">/</a></small>
+        </td>
+        <td class="row-left" bgcolor="#FFFFFF">
+            <small>Welcome to Tomcat</small>
+        </td>
+        <td class="row-center" bgcolor="#FFFFFF">
+            <small>true</small>
+        </td>
+        <td class="row-center" bgcolor="#FFFFFF">
+            <small><a href="/manager/html/sessions?path=/">0</a></small>
+        </td>
+        <td class="row-left" bgcolor="#FFFFFF">
+            <small> &nbsp;Start&nbsp;
+                &nbsp;<a href="/manager/html/stop?path=/" onClick="return(confirm('Are you sure?'))">Stop</a>&nbsp;
+                &nbsp;<a href="/manager/html/reload?path=/" onClick="return(confirm('Are you sure?'))">Reload</a>&nbsp;
+                &nbsp;<a href="/manager/html/undeploy?path=/" onClick="return(confirm('Are you sure?'))">Undeploy</a>&nbsp; </small>
+        </td>
+    </tr>
+    <tr>
+        <td class="row-left" bgcolor="#C3F3C3">
+            <small><a href="/Tomcat">/Tomcat</a></small>
+        </td>
+        <td class="row-left" bgcolor="#C3F3C3">
+            <small>&nbsp;</small>
+        </td>
+        <td class="row-center" bgcolor="#C3F3C3">
+            <small>true</small>
+        </td>
+        <td class="row-center" bgcolor="#C3F3C3">
+            <small><a href="/manager/html/sessions?path=/Tomcat">0</a></small>
+        </td>
+        <td class="row-left" bgcolor="#C3F3C3">
+            <small> &nbsp;Start&nbsp;
+                &nbsp;<a href="/manager/html/stop?path=/Tomcat" onClick="return(confirm('Are you sure?'))">Stop</a>&nbsp;
+                &nbsp;<a href="/manager/html/reload?path=/Tomcat" onClick="return(confirm('Are you sure?'))">Reload</a>&nbsp;
+                &nbsp;<a href="/manager/html/undeploy?path=/Tomcat" onClick="return(confirm('Are you sure?'))">Undeploy</a>&nbsp; </small>
+        </td>
+    </tr>
+</table>
+<br>
+<table border="1" cellspacing="0" cellpadding="3">
+    <tr>
+        <td colspan="2" class="title">Deploy</td>
+    </tr>
+    <tr>
+        <td colspan="2" class="header-left">
+            <small>Deploy directory or WAR file located on server</small>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <form method="get" action="/manager/html/deploy">
+                <table cellspacing="0" cellpadding="3">
+                    <tr>
+                        <td class="row-right">
+                            <small>Context Path (optional):</small>
+                        </td>
+                        <td class="row-left">
+                            <input type="text" name="deployPath" size="20">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-right">
+                            <small>XML Configuration file URL:</small>
+                        </td>
+                        <td class="row-left">
+                            <input type="text" name="deployConfig" size="20">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-right">
+                            <small>WAR or Directory URL:</small>
+                        </td>
+                        <td class="row-left">
+                            <input type="text" name="deployWar" size="40">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-right">&nbsp; </td>
+                        <td class="row-left">
+                            <input type="submit" value="Deploy">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" class="header-left">
+            <small>WAR file to deploy</small>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+        <form action="/manager/html/upload" method="post" enctype="multipart/form-data">
+            <table cellspacing="0" cellpadding="3">
+                <tr>
+                    <td class="row-right">
+                        <small>Select WAR file to upload</small>
+                    </td>
+                    <td class="row-left">
+                        <input type="file" name="deployWar" size="40">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-right">&nbsp; </td>
+                    <td class="row-left">
+                        <input type="submit" value="Deploy">
+                    </td>
+                </tr>
+            </table>
+        </form>
+</table>
+<br>
+<table border="1" cellspacing="0" cellpadding="3">
+    <tr>
+        <td colspan="6" class="title">Server Information</td>
+    </tr>
+    <tr>
+        <td class="header-center">
+            <small>Tomcat Version</small>
+        </td>
+        <td class="header-center">
+            <small>JVM Version</small>
+        </td>
+        <td class="header-center">
+            <small>JVM Vendor</small>
+        </td>
+        <td class="header-center">
+            <small>OS Name</small>
+        </td>
+        <td class="header-center">
+            <small>OS Version</small>
+        </td>
+        <td class="header-center">
+            <small>OS Architecture</small>
+        </td>
+    </tr>
+    <tr>
+        <td class="row-center">
+            <small>Apache Tomcat/5.5.20</small>
+        </td>
+        <td class="row-center">
+            <small>1.5.0_11-b03</small>
+        </td>
+        <td class="row-center">
+            <small>Sun Microsystems Inc.</small>
+        </td>
+        <td class="row-center">
+            <small>Windows XP</small>
+        </td>
+        <td class="row-center">
+            <small>5.1</small>
+        </td>
+        <td class="row-center">
+            <small>x86</small>
+        </td>
+    </tr>
+</table>
+<br>
+<hr size="1" noshade="noshade">
+<center>
+    <font size="-1" color="#525D76"> <em>Copyright &copy; JFox, 2002-2007</em></font>
+</center>
+</body>
+</html>
