@@ -1,0 +1,63 @@
+<persistence>
+
+    <persistence-unit name="default">
+        <jta-data-source>java:/DefaultMySqlDS</jta-data-source>
+        <properties>
+            <property name="driver" value="com.mysql.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+            <property name="username" value="root"/>
+            <property name="password" value="root"/>
+            <property name="minSize" value="1"/> <!-- min pool size -->
+            <property name="maxSize" value="200"/> <!-- max pool size -->
+            <property name="lifeTime" value="1800000"/> <!-- 2h, connection max idle time, in milliseconds -->
+            <property name="sleepTime" value="600000"/>  <!--PoolKeeper sleep time, in milliseconds -->
+            <property name="deadLockRetryWait" value="2000"/> <!-- retry time if no free connection, in milliseconds -->
+            <property name="deadLockMaxWait" value="60000"/> <!-- max wait time if no free connection, in milliseconds -->
+            <property name="checkLevelObject" value="4"/> <!-- check connection closed -->
+            <property name="cache.default.algorithm" value="LRU"/> <!-- JPA default Cache max size, LRU, LFU, FIFO-->
+            <property name="cache.default.ttl" value="600000"/> <!-- JPA default Cache ttl, in milliseconds-->
+            <property name="cache.default.maxIdleTime" value="300000"/> <!-- JPA default Cache maxidletime, in milliseconds-->
+            <property name="cache.default.maxSize" value="1000"/> <!-- JPA default Cache max size-->
+            <property name="cache.default.maxMemorySize" value="100000000"/> <!-- JPA default Cache max memory size, in bytes-->
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="JPetstoreMysqlDS">
+        <jta-data-source>java:/JPetstoreMysqlDS</jta-data-source>
+        <properties>
+            <property name="driver" value="com.mysql.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql://localhost:3306/jpetstore"/>
+            <property name="username" value="root"/>
+            <property name="password" value="root"/>
+            <property name="minSize" value="1"/> <!-- min pool size -->
+            <property name="maxSize" value="200"/> <!-- max pool size -->
+            <property name="lifeTime" value="1800000"/> <!-- 2h, connection max idle time, in milliseconds -->
+            <property name="sleepTime" value="600000"/>  <!--PoolKeeper sleep time, in milliseconds -->
+            <property name="deadLockRetryWait" value="2000"/> <!-- retry time if no free connection, in milliseconds -->
+            <property name="deadLockMaxWait" value="60000"/> <!-- max wait time if no free connection, in milliseconds -->
+            <property name="checkLevelObject" value="4"/> <!-- check connection closed -->
+            <property name="cache.default.algorithm" value="LRU"/> <!-- JPA default Cache max size, LRU, LFU, FIFO-->
+            <property name="cache.default.ttl" value="600000"/> <!-- JPA default Cache ttl, in milliseconds-->
+            <property name="cache.default.maxIdleTime" value="300000"/> <!-- JPA default Cache maxidletime, in milliseconds-->
+            <property name="cache.default.maxSize" value="1000"/> <!-- JPA default Cache max size-->
+            <property name="cache.default.maxMemorySize" value="100000000"/> <!-- JPA default Cache max memory size, in bytes-->
+            <property name="cache.orders.algorithm" value="LRU"/> <!-- JPA default Cache max size, LRU, LFU, FIFO-->
+            <property name="cache.orders.ttl" value="600000"/> <!-- JPA default Cache ttl, in milliseconds-->
+            <property name="cache.orders.maxIdleTime" value="300000"/> <!-- JPA default Cache maxidletime, in milliseconds-->
+            <property name="cache.orders.maxSize" value="1000"/> <!-- JPA default Cache max size-->
+            <property name="cache.orders.maxMemorySize" value="100000000"/> <!-- JPA default Cache max memory size, in bytes-->
+
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="DefaultHsqlDS">
+        <jta-data-source>java:/DefaultHsqlDS</jta-data-source>
+        <properties>
+            <property name="driver" value="com.mysql.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+            <property name="username" value="root"/>
+            <property name="password" value="root"/>
+        </properties>
+    </persistence-unit>
+    
+</persistence>
