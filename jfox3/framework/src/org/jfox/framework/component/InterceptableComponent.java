@@ -3,9 +3,9 @@ package org.jfox.framework.component;
 import java.lang.reflect.Method;
 
 /**
- * 可进行方法拦截的组件。实现该接口的组件，在执行器方法的时候，可以在方法执行前后，进行额外的操作
- * <br>
- * <b>注意：</b>该功能通过Java动态代理技术实现
+ * 可进行方法拦截的组件。
+ * 实现该接口的组件，在执行器方法的时候，可以在方法执行前后，进行额外的操作，比如：进行日志记录
+ * 注意：该功能通过Java动态代理技术实现
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */

@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.ElementType;
 
 /**
- * 描述在 Component 上以便将该 Component 作为 Service 发布
+ * 描述在 Component 上以便将该 Component 发布至IoC容器中
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
@@ -14,14 +14,14 @@ import java.lang.annotation.ElementType;
 @Target({ElementType.TYPE})
 public @interface Service {
     /**
-     * 该组件实现的接口，这些接口将被 export
-     * 如果没有通过 annotation 指定接口呢，则为所有接口
+     * 该组件实现的接口，组件只能通过指定的接口来访问，
+     * 如果没有指定接口呢，则为所有接口
      */
     Class[] interfaces() default {};
 
     /**
      * 部署的 id
-     * Default 为Component实现类的类名
+     * Default 为Component实现类的类名的简称
      */
     String id() default "";
 
@@ -37,13 +37,14 @@ public @interface Service {
     boolean singleton() default true;
 
     /**
+     * 优先级，在一个模块中组件，优先级值小的会被加载
+     */
+    int priority() default 50;
+
+    /**
      * 描述信息
      */
     String description() default "";
 
-    /**
-     * 优先级
-     */
-    int priority() default 50;
-    
+
 }

@@ -6,6 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.ElementType;
 
 /**
+ * 用来标注一个组件的Field，以使得该组件在实例化的时候，由IoC容器进行依赖注入
+ *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Retention(RetentionPolicy.RUNTIME)
@@ -13,13 +15,13 @@ import java.lang.annotation.ElementType;
 public @interface Inject {
 
     /**
-     * 由解析器负责根据 Enjection 描述的 Field/Constructor 来判断真实的 type
+     * 注入的组件的类型
+     * 如果未指定，则由IoC容器根据Filed的类型判断
      */
     Class type() default FieldType.class;
 
     /**
-     * 引用的 Component
-     * 默认为 Field 的 class 代表的 Component
+     * 通过 component id进行注入
      */
     String id() default "";
     

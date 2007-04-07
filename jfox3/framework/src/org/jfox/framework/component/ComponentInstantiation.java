@@ -7,7 +7,7 @@ package org.jfox.framework.component;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public interface ComponentInstantiation extends Component{
+public interface ComponentInstantiation {
 
     /**
      * Component 实例化之后的回调方法
