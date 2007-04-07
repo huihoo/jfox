@@ -4,9 +4,9 @@
         <jta-data-source>java:/DefaultMySqlDS</jta-data-source>
         <properties>
             <property name="driver" value="com.mysql.jdbc.Driver"/>
-            <property name="url" value="jdbc:mysql://localhost:3306/test"/>
-            <property name="username" value="root"/>
-            <property name="password" value="root"/>
+            <property name="url" value="jdbc:mysql://localhost:3309/jfox_chinajsp"/>
+            <property name="username" value="jfox"/>
+            <property name="password" value="m2b5y6f8"/>
             <property name="minSize" value="1"/> <!-- min pool size -->
             <property name="maxSize" value="200"/> <!-- max pool size -->
             <property name="lifeTime" value="1800000"/> <!-- 2h, connection max idle time, in milliseconds -->
@@ -26,9 +26,9 @@
         <jta-data-source>java:/JPetstoreMysqlDS</jta-data-source>
         <properties>
             <property name="driver" value="com.mysql.jdbc.Driver"/>
-            <property name="url" value="jdbc:mysql://localhost:3306/jpetstore"/>
-            <property name="username" value="root"/>
-            <property name="password" value="root"/>
+            <property name="url" value="jdbc:mysql://localhost:3309/jfox_chinajsp"/>
+            <property name="username" value="jfox"/>
+            <property name="password" value="m2b5y6f8"/>
             <property name="minSize" value="1"/> <!-- min pool size -->
             <property name="maxSize" value="200"/> <!-- max pool size -->
             <property name="lifeTime" value="1800000"/> <!-- 2h, connection max idle time, in milliseconds -->
@@ -50,14 +50,4 @@
         </properties>
     </persistence-unit>
 
-    <persistence-unit name="DefaultHsqlDS">
-        <jta-data-source>java:/DefaultHsqlDS</jta-data-source>
-        <properties>
-            <property name="driver" value="com.mysql.jdbc.Driver"/>
-            <property name="url" value="jdbc:mysql://localhost:3306/test"/>
-            <property name="username" value="root"/>
-            <property name="password" value="root"/>
-        </properties>
-    </persistence-unit>
-    
 </persistence>
