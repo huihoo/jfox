@@ -46,8 +46,9 @@ public class User2 implements IUser2, ComponentUnregistration, ModuleListener {
     }
 
 
-    public void preUnregister(ComponentContext context) {
+    public boolean preUnregister(ComponentContext context) {
         userMgr.removeUser(this);
+        return true;
     }
 
     public void postUnregister() {

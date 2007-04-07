@@ -76,7 +76,8 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         WebContextLoader.registerAction(moduleDirName, this);
     }
 
-    public void preUnregister(ComponentContext context) {
+    public boolean preUnregister(ComponentContext context) {
+        return true;
     }
 
     public void postUnregister() {

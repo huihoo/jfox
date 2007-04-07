@@ -88,8 +88,8 @@ public class JFoxXFireDelegate  implements Invoker, ComponentInitialization, Act
     }
 
 
-    public void preUnregister(ComponentContext context) {
-
+    public boolean preUnregister(ComponentContext context) {
+        return true;
     }
 
     public void postUnregister() {

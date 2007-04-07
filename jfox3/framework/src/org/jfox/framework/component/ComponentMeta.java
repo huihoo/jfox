@@ -303,20 +303,25 @@ public class ComponentMeta implements Comparable<ComponentMeta>{
     /**
      * 销毁 ComponentMeta
      */
-    void unload() {
+    boolean unload() {
         logger.debug("Unload componentMeta: " + getComponentId());
 
         Component instance = getConcreteComponent();
 
-        if(instance == null) return;
-
-        unregisterListeners();
+        if(instance == null) return false;
 
         // callback ComponentUnregistation.preUnregister
+        boolean preUnregisterSuccess = false;
         if (instance instanceof ComponentUnregistration) {
-            ((ComponentUnregistration)instance).preUnregister(componentContext);
+            preUnregisterSuccess = ((ComponentUnregistration)instance).preUnregister(componentContext);
         }
 
+        if(!preUnregisterSuccess) {
+            logger.warn("Unload component: " + getComponentId() + " failed, because preUnregister return false.");
+            return false;
+        }
+
+        unregisterListeners();
         // remove frame component meta cache
         try {
             getModule().unregisterComponent(getComponentId());
@@ -335,6 +340,7 @@ public class ComponentMeta implements Comparable<ComponentMeta>{
         this.componentContext = null;
         referencedComponent.clear();
         beReferencedComponent.clear();
+        return true;
     }
 
     private void registerListeners(Component theComponent) {

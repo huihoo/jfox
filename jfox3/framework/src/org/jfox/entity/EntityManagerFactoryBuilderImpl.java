@@ -183,8 +183,8 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         namedSQLTemplates.clear();
     }
 
-    public void preUnregister(ComponentContext context) {
-
+    public boolean preUnregister(ComponentContext context) {
+        return true;
     }
 
     public boolean isContainerManaged(){

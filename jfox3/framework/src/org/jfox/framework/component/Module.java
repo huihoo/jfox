@@ -101,14 +101,16 @@ public class Module implements Comparable<Module> {
      * @param id component id
      * @throws ComponentNotFoundException not found component
      */
-    public void unloadComponent(ComponentId id) throws ComponentNotFoundException {
+    public boolean unloadComponent(ComponentId id) throws ComponentNotFoundException {
         logger.info("Unload component: " + id + ", Module: " + getName());
+        boolean unloadSuccess = false;
         if (isComponentLoaded(id)) {
             try {
                 ComponentMeta meta = repo.getComponentMeta(id);
                 // 会从 Module 中删除，并回调 preUnregister postUnregister
-                meta.unload();
+                unloadSuccess = meta.unload();
                 getFramework().getEventManager().fireComponentEvent(new ComponentUnloadedEvent(id));
+                return unloadSuccess;
             }
             catch (ComponentNotExportedException e) {
                 throw new ComponentNotFoundException("Failed to unload other module's component.", e);

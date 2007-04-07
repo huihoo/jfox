@@ -1,8 +1,9 @@
 package org.jfox.framework.component;
 
 /**
- * ComponentInstantiation 提供了两个回调方法，
- * 使得在组件构造之后，以及
+ * ComponentInitialization 提供了两个回调方法，
+ * 使得在组件构造之后，以及依赖注入完成之后进行额外的操作。
+ * 
  * instantiated方法是唯一可以传入ComponentContext的回调方法，
  * 如果Component需要使用ComponentContex，就必须实现该接口
  *

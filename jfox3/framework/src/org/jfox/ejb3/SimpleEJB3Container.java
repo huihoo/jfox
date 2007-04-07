@@ -135,7 +135,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         }
     }
 
-    public void preUnregister(ComponentContext context) {
+    public boolean preUnregister(ComponentContext context) {
         tm.stop();
         timerService.stop();
         try {
@@ -145,6 +145,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
             logger.warn("EJBContainer NamingContext close exception.", e);
         }
         jndiMap.clear();
+        return true;
     }
 
     public void postUnregister() {
