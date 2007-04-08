@@ -25,7 +25,7 @@
                         </td>
                         <td>
                             <input type="password" name="password" value="$!account.getPassword()"/> 
-                            <font color="red">$!password_validate_exception.getMessage()</font>
+                            <font color="red">$!validateExceptions.get("password").getMessage()</font>
                         </td>
                     </tr>
                     <tr bgcolor="#FFFF88">

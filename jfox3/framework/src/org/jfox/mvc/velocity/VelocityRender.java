@@ -15,13 +15,6 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.jfox.mvc.InvocationContext;
-import org.jfox.mvc.PageContext;
-import org.jfox.mvc.Render;
-import org.jfox.mvc.WebContextLoader;
-import org.jfox.mvc.SessionContext;
-import org.jfox.mvc.servlet.ControllerServlet;
-import org.jfox.mvc.validate.ValidateException;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
@@ -31,6 +24,12 @@ import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.io.VelocityWriter;
 import org.apache.velocity.runtime.RuntimeSingleton;
 import org.apache.velocity.util.SimplePool;
+import org.jfox.mvc.InvocationContext;
+import org.jfox.mvc.PageContext;
+import org.jfox.mvc.Render;
+import org.jfox.mvc.SessionContext;
+import org.jfox.mvc.WebContextLoader;
+import org.jfox.mvc.servlet.ControllerServlet;
 
 /**
  * Velocity Render
@@ -364,9 +363,7 @@ public class VelocityRender implements Render {
         PageContext pageContext = invocationContext.getPageContext();
 
         VelocityContext velocityContext = new VelocityContext(pageContext.getResultMap());
-        for (ValidateException ve : pageContext.getValidateExceptions()) {
-            velocityContext.put(ve.getInputField() + "_validate_exception", ve);
-        }
+        velocityContext.put("validateExceptions", pageContext.getValidateExceptions());
         velocityContext.put("exception", pageContext.getBusinessException());
 
         velocityContext.put("request", request);

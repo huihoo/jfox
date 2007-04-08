@@ -24,7 +24,7 @@
                     </TD>
                     <TD>
                         <input type="text" name="username" value="$!account.getUsername()"/>
-                        <font color="red">$!username_validate_exception.getMessage()</font>
+                        <font color="red">$!validateExceptions.get("username").getMessage()</font>
                     </TD>
                 </TR>
                 <TR bgcolor="#FFFF88">
@@ -33,7 +33,7 @@
                     </TD>
                     <TD>
                         <input type="password" name="password" value="$!account.getPassword()"/>
-                        <font color="red">$!password_validate_exception.getMessage()</font>
+                        <font color="red">$!validateExceptions.get("password").getMessage()</font>
                     </TD>
                 </TR>
                 <TR bgcolor="#FFFF88">

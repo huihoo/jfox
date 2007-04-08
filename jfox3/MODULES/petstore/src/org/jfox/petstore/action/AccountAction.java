@@ -33,6 +33,15 @@ import org.jfox.ejb3.security.JAASLoginService;
  */
 @Service(id = "account")
 public class AccountAction extends ActionSupport implements CallbackHandler {
+    @Inject
+    JAASLoginService loginService;
+
+    @EJB
+    AccountBO accountBO;
+
+    @EJB
+    CategoryBO categoryBO;
+
     public static final String ACCOUNT_SESSION_KEY = "__ACCOUNT__";
 
     private static List<String> languages = new ArrayList<String>();
@@ -43,14 +52,6 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         languages.add("Chinese");
     }
 
-    @Inject
-    JAASLoginService loginService;
-
-    @EJB
-    AccountBO accountBO;
-
-    @EJB
-    CategoryBO categoryBO;
 
     @ActionMethod(successView = "NewAccountForm.vhtml")
     public void doGetNewAccount(InvocationContext invocationContext) throws Exception {
@@ -97,10 +98,9 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
 
     @ActionMethod(successView = "signon.vhtml")
     public void doGetSignon(InvocationContext invocationContext) throws Exception {
-        // do nothing
+        // don't need do anything, just forward to successView
     }
 
-    //use JAAS LoginService
     @ActionMethod(successView = "index.vhtml", errorView = "signon.vhtml", invocationClass = SignonInvocation.class)
     public void doPostSignon(InvocationContext invocationContext) throws Exception {
         SignonInvocation invocation = (SignonInvocation)invocationContext.getInvocation();
@@ -245,7 +245,6 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
     }
 
     public static class SignonInvocation extends Invocation {
-        //TODO: test Validator
         @StringValidation(minLength = 4, nullable = false)
         private String username;
         

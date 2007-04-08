@@ -1,14 +1,13 @@
 package org.jfox.mvc;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.io.StringWriter;
 import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.jfox.mvc.validate.ValidateException;
 import org.jfox.mvc.annotation.ActionMethod;
+import org.jfox.mvc.validate.ValidateException;
 
 /**
  * Page Context 存储了用来填充 template的 数据
@@ -23,8 +22,8 @@ public class PageContext {
     // success or error view
     private String targetView;
 
-    // validate exception
-    private List<ValidateException> validateExceptions = new ArrayList<ValidateException>();
+    // input field => validate exception
+    private Map<String, ValidateException> validateExceptions = new HashMap<String, ValidateException>();
 
     private Map<String,Object> resultMap = new HashMap<String, Object>();
 
@@ -63,7 +62,7 @@ public class PageContext {
     }
 
     public void addValidateException(ValidateException ve){
-        validateExceptions.add(ve);
+        validateExceptions.put(ve.getInputField(),ve);
     }
 
     public boolean hasValidateException(){
@@ -94,8 +93,8 @@ public class PageContext {
         return sw.getBuffer().toString();
     }
 
-    public List<ValidateException> getValidateExceptions(){
-        return validateExceptions;
+    public Map<String, ValidateException> getValidateExceptions(){
+        return Collections.unmodifiableMap(validateExceptions);
     }
 
     public static void main(String[] args) {

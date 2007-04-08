@@ -18,11 +18,11 @@
         </tr>
         <tr>
             <td>Username:</td>
-            <td><input type="text" name="username" value="j2ee"/> <font color="RED">$!username_validate_exception.getMessage()</font></td>
+            <td><input type="text" name="username" value="j2ee"/> <font color="RED"> $!validateExceptions.get("username").getMessage()</font></td>
         </tr>
         <tr>
             <td>Password:</td>
-            <td><input type="password" name="password" value="j2ee"/> <font color="RED">$!password_validate_exception.getMessage()</font></td>
+            <td><input type="password" name="password" value="j2ee"/> <font color="RED">$!validateExceptions.get("password").getMessage()</font></td>
         </tr>
         <tr>
             <td>&nbsp;</td>
