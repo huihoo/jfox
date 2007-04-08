@@ -132,34 +132,34 @@ public class MappedEntity implements EntityObject {
     /**
      * 使用数据 Map 生成动态代理 PO
      *
-     * @param dataObjectInterfClass data object class
+     * @param entityInterfaceClass entity class
      * @param map                   data map
      */
-    public static <T> T newEntityObject(final Class<T> dataObjectInterfClass, final Map<String, Object> map) {
-        if (!dataObjectInterfClass.isInterface()) {
-            throw new BaseRuntimeException("Create Entity Object failed, not provide a data object interface, class is: " + dataObjectInterfClass);
+    public static <T> T newEntityObject(final Class<T> entityInterfaceClass, final Map<String, Object> map) {
+        if (!entityInterfaceClass.isInterface()) {
+            throw new BaseRuntimeException("Create Entity Object failed, not provide a data object interface, class is: " + entityInterfaceClass);
         }
 
-        final MappedEntity mappedEntity = new MappedEntity(dataObjectInterfClass);
+        final MappedEntity mappedEntity = new MappedEntity(entityInterfaceClass);
         mappedEntity.putAll(map);
 
-        if (dataObjectInterfClass.equals(EntityObject.class)) {
+        if (entityInterfaceClass.equals(EntityObject.class)) {
 //            如果接口为 EntityObject，直接返回 EntityMapper
             return (T)mappedEntity;
         }
         else {
-            return newEntityObject(dataObjectInterfClass, mappedEntity);
+            return newEntityObject(entityInterfaceClass, mappedEntity);
         }
     }
 
-    public static <T> T newEntityObject(final Class<T> dataObjectInterfClass, final MappedEntity mappedEntity) {
+    public static <T> T newEntityObject(final Class<T> entityInterfaceClass, final MappedEntity mappedEntity) {
         List<Class> interfaceClasses = new ArrayList<Class>();
-        interfaceClasses.add(dataObjectInterfClass);
-        if (!EntityObject.class.isAssignableFrom(dataObjectInterfClass)) {
+        interfaceClasses.add(entityInterfaceClass);
+        if (!EntityObject.class.isAssignableFrom(entityInterfaceClass)) {
             interfaceClasses.add(EntityObject.class);
         }
         return (T)Proxy.newProxyInstance(
-                dataObjectInterfClass.getClassLoader(),
+                entityInterfaceClass.getClassLoader(),
                 interfaceClasses.toArray(new Class[interfaceClasses.size()]),
                 new EntityMapperInvocationHandler(mappedEntity));
     }

@@ -5,8 +5,6 @@ import java.util.Map;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
 
 import org.jfox.entity.EntityObject;
 import org.jfox.entity.QueryExt;
@@ -52,35 +50,22 @@ public abstract class DAOSupport implements DataAccessObject {
     }
 
     /**
-     * 返回该 DAO 定义的 NamedQuery
-     */
-    public final NamedNativeQuery[] getNamedQueries() {
-        if (this.getClass().isAnnotationPresent(NamedNativeQueries.class)) {
-            NamedNativeQueries sqlTemplate = this.getClass().getAnnotation(NamedNativeQueries.class);
-            return sqlTemplate.value();
-        }
-        else {
-            return new NamedNativeQuery[0];
-        }
-    }
-
-    /**
      * 根据 DataObject 接口生成 DataObject 实例
      *
-     * @param dataObjectIntfClass data object interface class
+     * @param entityIntfaceClass entity class
      */
-    public static <T> T newEntityObject(Class<T> dataObjectIntfClass) {
-        return newEntityObject(dataObjectIntfClass, new HashMap<String,Object>());
+    public static <T> T newEntityObject(Class<T> entityIntfaceClass) {
+        return newEntityObject(entityIntfaceClass, new HashMap<String,Object>());
     }
 
     /**
      * 使用数据 Map 生成动态代理 PO
      *
-     * @param dataObjectInterfClass data object class
+     * @param entityInterfaceClass entity class
      * @param dataMap                   data dataMap
      */
-    public static <T> T newEntityObject(final Class<T> dataObjectInterfClass, final Map<String, Object> dataMap) {
-        return MappedEntity.newEntityObject(dataObjectInterfClass, dataMap);
+    public static <T> T newEntityObject(final Class<T> entityInterfaceClass, final Map<String, Object> dataMap) {
+        return MappedEntity.newEntityObject(entityInterfaceClass, dataMap);
     }
 
 }
