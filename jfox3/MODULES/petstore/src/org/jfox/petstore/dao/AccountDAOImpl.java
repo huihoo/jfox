@@ -77,7 +77,11 @@ import org.jfox.entity.dao.DAOSupport;
                         " and signon.username = account.userid" +
                         " and profile.userid = account.userid" +
                         " and profile.favcategory = bannerdata.favcategory",
-                resultClass = Account.class
+                resultClass = Account.class,
+                hints = {
+                        @QueryHint(name = "cache.default.partition", value = "account")
+                        }
+
         ),
 
         @NamedNativeQuery(
@@ -211,8 +215,11 @@ public class AccountDAOImpl extends DAOSupport implements AccountDAO {
         return (Account)query.getSingleResult();
     }
 
-    public Account getAccount(String username, String password) throws SQLException {
-        Query query = createNamedNativeQuery(GET_ACCOUNT_BY_USERNAME_AND_PASSWORD).setParameter("username",username).setParameter("password",password);
+    public Account getAccount(String username, String password)
+            throws SQLException {
+        Query query = createNamedNativeQuery(GET_ACCOUNT_BY_USERNAME_AND_PASSWORD)
+                            .setParameter("username",username)
+                            .setParameter("password",password);
         return (Account)query.getSingleResult();
     }
 

@@ -2,15 +2,14 @@ package org.jfox.petstore.dao;
 
 import java.sql.SQLException;
 import java.util.List;
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.PersistenceContext;
-import javax.persistence.EntityManager;
-import javax.ejb.Local;
-import javax.ejb.Stateless;
 
 import org.jfox.entity.dao.DAOSupport;
-import org.jfox.entity.EntityManagerExt;
 import org.jfox.petstore.entity.Category;
 
 /**
@@ -41,7 +40,7 @@ public class CategoryDAOImpl extends DAOSupport implements CategoryDAO{
     EntityManager em;
 
     protected EntityManager getEntityManager() {
-        return (EntityManagerExt)em;
+        return em;
     }
 
     public Category getCategory(String categoryId) throws SQLException {
