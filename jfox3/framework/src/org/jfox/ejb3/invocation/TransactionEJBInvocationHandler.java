@@ -138,7 +138,13 @@ public class TransactionEJBInvocationHandler extends EJBInvocationHandler {
         }
         catch(InvocationTargetException e) {
             toCommit = false;
-            throw (Exception)e.getTargetException();
+            Throwable t = e.getTargetException();
+            if(t instanceof Error) {
+                throw (Error)t;
+            }
+            else {
+                throw (Exception)t;
+            }
         }
         catch(Exception e) {
             toCommit = false;

@@ -104,12 +104,12 @@
     </TR>
     <TR bgcolor="#FFFF88">
         <TD colspan=2>
-            <input type="checkbox" name="listOption" onclick="switchCheckBox(this)" #if ($!account.getListOption($!account) == 1) value="1" checked #else value="0" #end/>Enable MyList
+            <input type="checkbox" name="listOption" onclick="switchCheckBox(this)" #if (1 == $!account.getListOption()) value="1" checked #else value="0" #end/>Enable MyList
         </TD>
     </TR>
     <TR bgcolor="#FFFF88">
         <TD colspan=2>
-            <input type="checkbox" name="bannerOption" onclick="switchCheckBox(this)" #if ($!account.getBannerOption($!account) == 1) value="1" checked #else value="0" #end/>Enable MyBanner
+            <input type="checkbox" name="bannerOption" onclick="switchCheckBox(this)" #if (1 == $!account.getBannerOption()) value="1" checked #else value="0" #end/>Enable MyBanner
         </TD>
     </TR>
 </TABLE>
