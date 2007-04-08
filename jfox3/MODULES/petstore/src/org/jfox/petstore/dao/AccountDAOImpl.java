@@ -83,7 +83,11 @@ import org.jfox.entity.dao.DAOSupport;
         @NamedNativeQuery(
                 name = AccountDAOImpl.GET_USERNAME_LIST,
                 query = "select username as userid from signon",
-                resultClass = String.class
+                resultClass = String.class,
+                hints = {
+                        @QueryHint(name = "cache.default.partition", value = "account")
+                        }
+
         ),
 
         @NamedNativeQuery(
@@ -101,7 +105,11 @@ import org.jfox.entity.dao.DAOSupport;
                         "country = $account.getCountry(), " +
                         "phone = $account.getPhone() " +
                         "where " +
-                        "userid = $account.getUsername()"
+                        "userid = $account.getUsername()",
+                hints = {
+                        @QueryHint(name = "cache.default.partition", value = "account")
+                        }
+
         ),
 
         @NamedNativeQuery(
@@ -131,7 +139,11 @@ import org.jfox.entity.dao.DAOSupport;
                         "$account.getZip(), " +
                         "$account.getCountry(), " +
                         "$account.getPhone(), " +
-                        "$account.getUsername())"
+                        "$account.getUsername())",
+                hints = {
+                        @QueryHint(name = "cache.default.partition", value = "account")
+                        }
+
         ),
 
         @NamedNativeQuery(
