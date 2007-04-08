@@ -308,10 +308,12 @@ public class ComponentMeta implements Comparable<ComponentMeta>{
 
         Component instance = getConcreteComponent();
 
-        if(instance == null) return false;
+        if(instance == null) {
+            return true;
+        }
 
         // callback ComponentUnregistation.preUnregister
-        boolean preUnregisterSuccess = false;
+        boolean preUnregisterSuccess = true;
         if (instance instanceof ComponentUnregistration) {
             preUnregisterSuccess = ((ComponentUnregistration)instance).preUnregister(componentContext);
         }

@@ -211,8 +211,7 @@
                 </td>
                 <td>$!lineItem.getQuantity()</td>
                 <td align="right">$!lineItem.getUnitPrice()</td>
-                #set($totalprice = $lineItem.getUnitPrice() * $lineItem.getQuantity())
-                <td align="right">$totalprice</td>
+                <td align="right">$orderUtil.getTotalPrice($lineItem)</td>
             </tr>
             #end
             <tr bgcolor="#FFFF88">

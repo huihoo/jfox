@@ -204,6 +204,13 @@ public class OrderAction extends ActionSupport {
         Order order = orderBO.getOrder(orderId);
         PageContext pageContext = invocationContext.getPageContext();
         pageContext.setAttribute("order",order);
+        pageContext.setAttribute("orderUtil",new OrderUtil());
+    }
+
+    public static class OrderUtil{
+        public static double getTotalPrice(LineItem lineItem){
+            return lineItem.getUnitPrice() * lineItem.getQuantity();
+        }
     }
 
     public static class ViewOrderInvocation extends Invocation {
