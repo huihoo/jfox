@@ -133,10 +133,10 @@
             <small>Unit Name</small>
         </td>
         <td class="header-left">
-            <small>Config Name</small>
+            <small>Category Name</small>
         </td>
         <td class="header-left">
-            <small>Paration</small>
+            <small>Partition</small>
         </td>
         <td class="header-center">
             <small>Size / Memory_Size</small>
@@ -185,11 +185,11 @@
         <!--
         <td class="row-left">
             <small>
-                <a href="console.clearcache.do?unitName=$entityManagerFactory.getUnitName()&cacheconfig=$cacheConfig.getName()&cache=$cache.getName()" onClick="return(confirm('Are you sure?'))">Clear</a>
+                <a href="#">Clear</a>
             </small>
         </td>
         -->
-        <td class="row-center">
+        <td class="row-left">
             <small>
                 #foreach($key in $cache.keys())
                 <pre>$key</pre>
