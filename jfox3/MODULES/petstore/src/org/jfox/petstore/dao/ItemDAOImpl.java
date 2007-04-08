@@ -3,6 +3,7 @@ package org.jfox.petstore.dao;
 import java.sql.SQLException;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.ejb.Local;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.PersistenceContext;
@@ -40,6 +41,7 @@ import org.jfox.entity.dao.DAOSupport;
                 }
 )
 @Stateless
+@Local
 public class ItemDAOImpl extends DAOSupport implements ItemDAO {
 
     public static final String GET_ITEM_LIST_BY_PRODUCT = "getItemListByProduct";
