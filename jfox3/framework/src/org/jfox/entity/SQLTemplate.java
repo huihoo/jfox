@@ -15,6 +15,7 @@ import org.jfox.entity.annotation.ParameterMap;
 import org.jfox.entity.dao.MappedEntity;
 import org.jfox.util.AnnotationUtils;
 import org.jfox.util.ClassUtils;
+import org.apache.log4j.Logger;
 
 /**
  * 通过 createQuery 调用创建的 SQLTemplate，没有名称
@@ -33,6 +34,8 @@ public class SQLTemplate {
      *  result class => {column name=> column entry}
      */
     protected static Map<Class<?>, Map<String, ColumnEntry>> resultClass2MappedColumnMap = new HashMap<Class<?>, Map<String, ColumnEntry>>();
+
+    protected Logger logger = Logger.getLogger(this.getClass());
 
 //    @SuppressWarnings({"unchecked"})
     public SQLTemplate(String sqlTemplate, Class<?> resultClass) {

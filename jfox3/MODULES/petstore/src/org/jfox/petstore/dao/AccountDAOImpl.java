@@ -47,8 +47,7 @@ import org.jfox.entity.dao.DAOSupport;
                         " and profile.favcategory = bannerdata.favcategory",
                 resultClass = Account.class,
                 hints = {
-                        @QueryHint(name = "cache.config", value = "default"),
-                        @QueryHint(name = "cache.partition", value = "account")
+                        @QueryHint(name = "cache.default.partition", value = "account")
                         }
         ),
 

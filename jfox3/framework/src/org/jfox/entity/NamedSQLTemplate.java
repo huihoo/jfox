@@ -39,11 +39,12 @@ public class NamedSQLTemplate extends SQLTemplate {
         // 解析 QueryHint，比如 (name="cache.config", value="product")
         for(QueryHint hint : namedNativeQuery.hints()){
             String name = hint.name();
-            if(name.equals(CACHE_CONFIG_NAME)) {
-                cacheConfigName = hint.value();
-            }
-            if(name.equals(CACHE_PARTITION_NAME)) {
+            if(name.startsWith("cache.") && name.split("\\.").length ==3 && name.endsWith(".partition")) {
+                int firstDotIndex = name.indexOf(".");
+                int secondDotIndex = name.indexOf(".", firstDotIndex+1);
+                cacheConfigName = name.substring(firstDotIndex+1,secondDotIndex);
                 cachePartition = hint.value();
+                logger.info("Use cache category: " + cacheConfigName + ", partition: " + cachePartition + " for named query: " + getName());
             }
         }
 
