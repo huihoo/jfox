@@ -80,7 +80,7 @@
             <small>$velocityCount</small>
         </td>
         <td class="row-left" title="$bucket.getDescription()">
-            <small><a href="console.ejbdetail.do">$bucket.getEJBName()</a>
+            <small><a href="#">$bucket.getEJBName()</a>
             #foreach($mappedName in $bucket.getMappedNames())
             <br><i>$mappedName</i>
             #end
