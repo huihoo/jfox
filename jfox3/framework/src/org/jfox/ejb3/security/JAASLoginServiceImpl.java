@@ -7,7 +7,6 @@ import javax.security.auth.login.Configuration;
 import javax.security.auth.login.LoginContext;
 import javax.servlet.http.HttpServletRequest;
 
-import com.sun.security.auth.login.ConfigFile;
 import org.apache.log4j.Logger;
 import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ActiveComponent;
@@ -52,8 +51,12 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
 
     public void postInject() {
         try {
+            String configURL = getClass().getClassLoader().getResource(JAAS_CONFIG).toString();
             // init configuration
-            configuration = new ConfigFile(getClass().getClassLoader().getResource(JAAS_CONFIG).toURI());
+//            configuration = new ConfigFile(getClass().getClassLoader().getResource(JAAS_CONFIG).toURI());
+            // 兼容 1.5
+            System.setProperty("java.security.auth.login.config",configURL);
+            configuration = Configuration.getConfiguration();
             // load roles link
             //TODO: build roles link
             roleLink.load(getClass().getClassLoader().getResourceAsStream(ROLES_CONFIG));
