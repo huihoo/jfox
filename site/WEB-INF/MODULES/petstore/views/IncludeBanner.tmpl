@@ -1,0 +1,13 @@
+<br>
+#if ($sessionContext.getAttribute("__ACCOUNT__"))
+#set($account = $sessionContext.getAttribute("__ACCOUNT__"))
+#if (1 == $!account.getListOption())
+<table align="center" background="images/bkg-topbar.gif" cellpadding="5" width="100%">
+<tr><td>
+<center>
+    $account.getBannerName()
+</center>
+</td></tr>
+</table>
+#end
+#end

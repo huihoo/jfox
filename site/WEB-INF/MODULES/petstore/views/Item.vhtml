@@ -1,0 +1,74 @@
+<html>
+<head>
+    <title>petstore demo</title>
+</head>
+<body>
+#parse("IncludeTop.tmpl")
+<table align="left" bgcolor="#008800" border="0" cellspacing="2" cellpadding="2">
+    <tr>
+        <td bgcolor="#FFFF88">
+            <a href="product.view.do?productId=$item.getProductId()">
+                <b><font color="BLACK" size="2">&lt;&lt; $item.getProduct().getName()</font></b>
+            </a>
+        </td>
+    </tr>
+</table>
+
+<p>
+
+<table align="center" bgcolor="#008800" cellspacing="2" cellpadding="3" border="0" width="60%">
+    <tr bgcolor="#FFFF88">
+        <td bgcolor="#FFFFFF">
+            $item.getProduct().getDescription()
+        </td>
+    </tr>
+    <tr bgcolor="#FFFF88">
+        <td width="100%" bgcolor="#cccccc">
+            <b>$!item.getItemId()</b>
+        </td>
+    </tr>
+    <tr bgcolor="#FFFF88">
+        <td>
+            <b><font size="4">
+                $!item.getAttribute1()
+                $!item.getAttribute2()
+                $!item.getAttribute3()
+                $!item.getAttribute4()
+                $!item.getAttribute5()
+                $!product.getName()
+            </font></b>
+        </td>
+    </tr>
+    <tr bgcolor="#FFFF88">
+        <td>
+            <font size="3"><i>$!product.getName()</i></font>
+        </td>
+    </tr>
+    <tr bgcolor="#FFFF88">
+        <td>
+            #if ($item.getQuantity() <= 0)
+            <font color="RED" size="2"><i>Back ordered.</i></font>
+            #end
+            #if ($!item.getQuantity() > 0)
+            <font size="2">$!item.getQuantity() in stock.</font>
+            #end
+        </td>
+    </tr>
+    <tr bgcolor="#FFFF88">
+        <td>
+            $!item.getListPrice()
+        </td>
+    </tr>
+
+    <tr bgcolor="#FFFF88">
+        <td>
+            <a href="cart.addItem.do?workingItemId=$!item.getItemId()">
+                <img border="0" src="images/button_add_to_cart.gif"/>
+            </a>
+        </td>
+    </tr>
+</table>
+
+#include ("IncludeBottom.tmpl")
+</body>
+</html>

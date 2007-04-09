@@ -1,0 +1,32 @@
+<table background="images/bkg-topbar.gif" border="0" cellspacing="0" cellpadding="5" width="100%">
+    <tr>
+        <td><a href="page.index.do"><img border="0" src="images/logo-topbar.gif"/></a></td>
+        <td align="right"><a href="cart.view.do"><img border="0" name="img_cart" src="images/cart.gif"/></a>
+            <img border="0" src="images/separator.gif"/>
+            #if (!$sessionContext.getAttribute("__ACCOUNT__")) <a href="account.signon.do"><img border="0" name="img_signin" src="images/sign-in.gif"/></a>
+            #end
+
+            #if ($sessionContext.getAttribute("__ACCOUNT__")) <a href="account.signoff.do"><img border="0" name="img_signout" src="images/sign-out.gif"/></a>
+            <img border="0" src="images/separator.gif"/>
+            <a href="account.editAccount.do"><img border="0" name="img_myaccount" src="images/my_account.gif"/></a>
+            #end
+            <img border="0" src="images/separator.gif"/>
+            <a href="help.html"><img border="0" name="img_help" src="images/help.gif"/></a>
+        </td>
+        <td align="left" valign="bottom">
+            <form action="product.search.do" method="post">
+                <input name="keyword" size="14"/>&nbsp;<input border="0" src="images/search.gif" type="image" name="search"/>
+            </form>
+        </td>
+    </tr>
+
+</table>
+#include ("IncludeQuickHeader.tmpl")
+
+
+#if ($errors)
+#foreach ($error in $errors)
+<B><FONT color=RED> <BR>
+    $!error </FONT></B>
+#end
+#end

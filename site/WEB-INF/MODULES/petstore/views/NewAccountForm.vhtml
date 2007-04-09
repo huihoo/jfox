@@ -1,0 +1,59 @@
+<html>
+<title>jpetStore Demo</title>
+
+<body bgcolor="white">
+#parse("IncludeTop.tmpl")
+<form action="account.create.do" styleId="workingAccountForm" method="post">
+    <input type="hidden" name="workingAccountForm" property="validate" value="newAccount"/>
+
+    <TABLE cellpadding=10 cellspacing=0 align=center border=1 bgcolor="#dddddd">
+        <TR>
+            <TD>
+
+                <FONT color=darkgreen><H3>User Information</H3></FONT>
+            <TABLE bgcolor="#008800" border=0 cellpadding=3 cellspacing=1>
+                <tr bgcolor="#FFFF88">
+                    <td colspan="2" align="center">
+                        <center><b><font color="RED">$!exception.getMessage() &nbsp;</font></b></center>
+                    </td>
+                </tr>
+
+                <TR bgcolor="#FFFF88">
+                    <TD>
+                        User ID:
+                    </TD>
+                    <TD>
+                        <input type="text" name="username" value="$!account.getUsername()"/>
+                        <font color="red">$!validateExceptions.get("username").getMessage()</font>
+                    </TD>
+                </TR>
+                <TR bgcolor="#FFFF88">
+                    <TD>
+                        New password:
+                    </TD>
+                    <TD>
+                        <input type="password" name="password" value="$!account.getPassword()"/>
+                        <font color="red">$!validateExceptions.get("password").getMessage()</font>
+                    </TD>
+                </TR>
+                <TR bgcolor="#FFFF88">
+                    <TD>
+                        Repeat password:
+                    </TD>
+                    <TD><input type="password" name="repeatpassword" value=""/>
+                    </TD>
+                </TR>
+            </TABLE>
+
+            #parse("IncludeAccountFields.tmpl")
+
+    </TABLE>
+    <BR>
+    <CENTER>
+        <input border=0 type="image" src="images/button_submit.gif"/>
+    </CENTER>
+
+</form>
+#include ("IncludeBottom.tmpl")
+</body>
+</html>
