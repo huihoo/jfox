@@ -49,20 +49,20 @@ public class ASMClassLoader extends URLClassLoader {
 
         URL[] urls = getASMClasspathURLs();
 
-        List<byte[]> classBytesArray = new ArrayList<byte[]>();
+        Map<String, byte[]> classBytesArray = new HashMap<String, byte[]>();
         // 读取所有的类名，以便查找 Component
         for (URL url : urls) {
             try {
 //                classNames.addAll(Arrays.asList(FileUtils.getClassNames(url)));
-                classBytesArray.addAll(FileUtils.getClassBytesMap(url).values());
+                classBytesArray.putAll(FileUtils.getClassBytesMap(url));
             }
             catch (IOException e) {
                 logger.warn("Failed to get Class names from url: " + url.toString());
             }
         }
-        for (byte[] classBytes : classBytesArray) {
+        for (Map.Entry<String,byte[]> entry : classBytesArray.entrySet()) {
             // 会将所有有 Annotation 的泪保存在 annotated 中
-            readClass(classBytes);
+            readClass(entry.getKey(), entry.getValue());
         }
 //        System.out.println("");
     }
@@ -119,9 +119,15 @@ public class ASMClassLoader extends URLClassLoader {
 
 // ----------- ASM bytecode reader ------------
 
-    private void readClass(byte[] classBytes) {
-        ClassReader classReader = new ClassReader(classBytes);
-        classReader.accept(new ClassInfoBuildingVisitor(), ClassReader.SKIP_DEBUG);
+    private void readClass(String className, byte[] classBytes) {
+        try {
+            ClassReader classReader = new ClassReader(classBytes);
+            classReader.accept(new ClassInfoBuildingVisitor(), ClassReader.SKIP_DEBUG);
+        }
+        catch(RuntimeException e){
+            logger.error("Error to read class: " + className, e);
+            throw e;
+        }
     }
 
     private List<ClassInfo> getAnnotationInfos(String name) {
