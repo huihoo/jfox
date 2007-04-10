@@ -470,9 +470,7 @@ public class FileUtils {
                 }
             }
             finally {
-                if(jarFile != null) {
-                    jarFile.close();
-                }
+                jarFile.close();
             }
         }
         return Collections.unmodifiableMap(contents);
