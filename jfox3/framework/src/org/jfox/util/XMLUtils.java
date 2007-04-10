@@ -47,7 +47,7 @@ public class XMLUtils {
     private final static XPathFactory xpf = XPathFactory.newInstance();
 
     static {
-        tf.setAttribute("indent-number", 4);
+//        tf.setAttribute("indent-number", 4);
         dbf.setValidating(false);
         dbf.setNamespaceAware(true);
     }
