@@ -37,6 +37,7 @@ public class ModuleClassLoader extends ASMClassLoader {
     }
 
     protected URL[] getASMClasspathURLs() {
+        // 返回 Module 对 classpath URLs
         return module.getClasspathURLs();
     }
 
