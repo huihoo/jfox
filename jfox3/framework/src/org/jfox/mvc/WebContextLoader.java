@@ -63,7 +63,8 @@ public class WebContextLoader implements ServletContextListener {
                     return;
                 }
 
-                File[] moduleDirs = modulesDir.listFiles(FileFilterUtils.directoryFileFilter());
+                // 过滤调 . 开头的目录
+                File[] moduleDirs = modulesDir.listFiles(FileFilterUtils.and(FileFilterUtils.directoryFileFilter(), FileFilterUtils.not(FileFilterUtils.prefixFileFilter("."))));
                 for (File moduleDir : moduleDirs) {
                     framework.loadModule(moduleDir);
                     // register module path
