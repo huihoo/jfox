@@ -1,1 +1,0 @@
-jfox module don't need web.xml! 
