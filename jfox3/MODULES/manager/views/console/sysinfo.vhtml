@@ -42,7 +42,7 @@
 <br>
 <table border="1" cellspacing="0" cellpadding="3">
     <tr>
-        <td colspan="7" class="title">Information</td>
+        <td colspan="8" class="title">Information</td>
     </tr>
     <tr>
         <td class="header-center">
@@ -66,6 +66,9 @@
         <td class="header-center">
             <small>OS Architecture</small>
         </td>
+        <td class="header-center">
+            <small>Memory(Max/Used)</small>
+        </td>
     </tr>
     <tr>
         <td class="row-center">
@@ -88,6 +91,9 @@
         </td>
         <td class="row-center">
             <small>$osArch</small>
+        </td>
+        <td class="row-center">
+            <small>$maxMemory/$usedMemory M</small>
         </td>
     </tr>
 </table>

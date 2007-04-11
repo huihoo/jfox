@@ -44,7 +44,10 @@ public class WebConsoleAction extends ActionSupport {
         pageContext.setAttribute("osName", SystemUtils.OS_NAME);
         pageContext.setAttribute("osVersion", SystemUtils.OS_VERSION);
         pageContext.setAttribute("osArch", SystemUtils.OS_ARCH);
+        pageContext.setAttribute("maxMemory", Runtime.getRuntime().maxMemory()/(1024*1024));
+        pageContext.setAttribute("usedMemory", (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())/(1024*1024));
     }
+    
     @ActionMethod(successView = "console/jndi.vhtml")
     public void doGetJNDI(InvocationContext invocationContext) throws Exception{
         NamingEnumeration<Binding> enu = getEJBContainer().getNamingContext().listBindings("");
