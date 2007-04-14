@@ -1,10 +1,11 @@
 package org.jfox.mvc;
 
 import java.io.Serializable;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
-import javax.security.auth.Subject;
+
+import org.jfox.ejb3.security.SecurityContext;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -12,7 +13,7 @@ import javax.security.auth.Subject;
 public class SessionContext implements Serializable {
     
     public static final String SESSION_KEY = "__SESSION_KEY__";
-    public static final String SUBJECT_SESSION_KEY = "__SECURITY_SUBJECT__";
+    public static final String SECURITY_CONTEXT_SESSION_KEY = "__SECURITY_SUBJECT__";
 
     private Map<Serializable, Serializable> sessionMap = new HashMap<Serializable, Serializable>();
 
@@ -44,12 +45,19 @@ public class SessionContext implements Serializable {
         threadSession.remove();
     }
 
-    public void associateSubject(Subject subject){
-        this.setAttribute(SUBJECT_SESSION_KEY, subject);
+    /**
+     * 在Session中绑定SecurityContext
+     * @param securityContext 认证完成之后生成的SecurityContext
+     */
+    public void bindSecurityContext(SecurityContext securityContext){
+        this.setAttribute(SECURITY_CONTEXT_SESSION_KEY, securityContext);
     }
 
-    public Subject getAssociatedSubect(){
-        return (Subject)this.getAttribute(SUBJECT_SESSION_KEY);
+    /**
+     * 取得当前Session关联的SecurityContext
+     */
+    public SecurityContext getSecurityContext(){
+        return (SecurityContext)this.getAttribute(SECURITY_CONTEXT_SESSION_KEY);
     }
 
     public void setAttribute(Serializable key, Serializable value) {

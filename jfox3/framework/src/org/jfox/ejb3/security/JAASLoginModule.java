@@ -42,11 +42,11 @@ public class JAASLoginModule implements LoginModule {
 
             // 处理 loginResultCallback，构造 Subject, 设置 SecurityContext
             String principalName = loginResponseCallback.getPrincipalName();
-            // 得到是 application roles
-            List<String> roles = loginResponseCallback.getRoles();
+
             subject.getPrincipals().add(new JAASPrincipal(principalName));
             
             //initialize 中 的 subject
+            List<String> roles = loginResponseCallback.getRoles();
             SecurityContext.initSubject(subject, principalName, roles);
 
         }

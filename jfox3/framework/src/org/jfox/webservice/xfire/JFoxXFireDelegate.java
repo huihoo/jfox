@@ -7,24 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.jws.WebService;
 import javax.xml.namespace.QName;
-import javax.security.auth.Subject;
 
-import org.jfox.ejb3.EJBBucket;
-import org.jfox.ejb3.EJBContainer;
-import org.jfox.ejb3.StatelessBucket;
-import org.jfox.ejb3.EJBObjectId;
-import org.jfox.ejb3.security.SecurityContext;
-import org.jfox.ejb3.event.EJBLoadedComponentEvent;
-import org.jfox.ejb3.event.EJBUnloadedComponentEvent;
-import org.jfox.framework.annotation.Inject;
-import org.jfox.framework.annotation.Service;
-import org.jfox.framework.component.ActiveComponent;
-import org.jfox.framework.component.ComponentContext;
-import org.jfox.framework.event.ComponentListener;
-import org.jfox.framework.component.ComponentInitialization;
-import org.jfox.framework.component.ComponentUnregistration;
-import org.jfox.framework.event.ComponentEvent;
-import org.jfox.mvc.SessionContext;
+import org.apache.log4j.Logger;
 import org.codehaus.xfire.MessageContext;
 import org.codehaus.xfire.XFire;
 import org.codehaus.xfire.XFireFactory;
@@ -36,7 +20,22 @@ import org.codehaus.xfire.service.invoker.Invoker;
 import org.codehaus.xfire.transport.TransportManager;
 import org.codehaus.xfire.util.NamespaceHelper;
 import org.codehaus.xfire.wsdl.ResourceWSDL;
-import org.apache.log4j.Logger;
+import org.jfox.ejb3.EJBBucket;
+import org.jfox.ejb3.EJBContainer;
+import org.jfox.ejb3.EJBObjectId;
+import org.jfox.ejb3.StatelessBucket;
+import org.jfox.ejb3.event.EJBLoadedComponentEvent;
+import org.jfox.ejb3.event.EJBUnloadedComponentEvent;
+import org.jfox.ejb3.security.SecurityContext;
+import org.jfox.framework.annotation.Inject;
+import org.jfox.framework.annotation.Service;
+import org.jfox.framework.component.ActiveComponent;
+import org.jfox.framework.component.ComponentContext;
+import org.jfox.framework.component.ComponentInitialization;
+import org.jfox.framework.component.ComponentUnregistration;
+import org.jfox.framework.event.ComponentEvent;
+import org.jfox.framework.event.ComponentListener;
+import org.jfox.mvc.SessionContext;
 
 /**
  * 使用 XFire 实现 Web Service
@@ -143,11 +142,8 @@ public class JFoxXFireDelegate  implements Invoker, ComponentInitialization, Act
         SecurityContext securityContext = new SecurityContext();
         SessionContext sessionContext = SessionContext.currentThreadSessionContext();
         if(sessionContext != null){
-            // try get subject from session context
-            Subject subject = sessionContext.getAssociatedSubect();
-            //get SecurityContext
-            securityContext = new SecurityContext(subject);
-            // propagate subject
+            // try get SecurityContext from session context
+            securityContext = sessionContext.getSecurityContext();
         }
 
         String ejbName = getEJBNameByWebServiceEndpointInterface(messageContext.getService().getServiceInfo().getServiceClass());

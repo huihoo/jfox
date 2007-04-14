@@ -16,15 +16,18 @@ public class SampleCallbackHandler implements CallbackHandler {
     public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
         JAASLoginRequestCallback requestLoginRequestCallback = (JAASLoginRequestCallback)callbacks[0];
         JAASLoginResponseCallback responseCallback = (JAASLoginResponseCallback)callbacks[1];
+
+        String username = requestLoginRequestCallback.getParams().get(0);
+        String password = requestLoginRequestCallback.getParams().get(1);
+
         // set principal id
-        responseCallback.setPrincipalName(requestLoginRequestCallback.getParams().get(0));
+        responseCallback.setPrincipalName(username);
         // set role
-        responseCallback.addRole(requestLoginRequestCallback.getParams().get(0));
+        responseCallback.addRole(username);
+
+        // setCallbackObject
+        responseCallback.setCallbackObject(username);
         
         System.out.println("SampleCallbackHandler.handle: " + Arrays.toString(callbacks));
-    }
-
-    public static void main(String[] args) {
-
     }
 }

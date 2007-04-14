@@ -92,9 +92,12 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
             LoginContext loginContext = new LoginContext("default", null, callbackHandler, configuration);
             loginContext.login();
             Subject subject = loginContext.getSubject();
-            //把 Subject 关联到 SessionContext 中
+
+            //把 Security 关联到 SessionContext 中
             if(sessionContext != null) {
-                sessionContext.associateSubject(subject);
+                SecurityContext securityContext = new SecurityContext(subject);
+                securityContext.setRoleLink(roleLink);
+                sessionContext.bindSecurityContext(securityContext);
             }
             return responseCallback.getCallbackObject();
         }

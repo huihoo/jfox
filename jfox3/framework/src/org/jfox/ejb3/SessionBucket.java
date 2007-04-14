@@ -37,8 +37,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Status;
 import javax.transaction.SystemException;
-import javax.security.auth.Subject;
 
+import org.apache.log4j.Logger;
 import org.jfox.ejb3.dependent.EJBDependence;
 import org.jfox.ejb3.dependent.FieldEJBDependence;
 import org.jfox.ejb3.dependent.FieldResourceDependence;
@@ -52,11 +52,10 @@ import org.jfox.entity.dependent.FieldPersistenceContextDependence;
 import org.jfox.framework.component.Module;
 import org.jfox.framework.component.ModuleClassLoader;
 import org.jfox.framework.dependent.InjectionException;
+import org.jfox.mvc.SessionContext;
 import org.jfox.util.AnnotationUtils;
 import org.jfox.util.ClassUtils;
 import org.jfox.util.MethodUtils;
-import org.jfox.mvc.SessionContext;
-import org.apache.log4j.Logger;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -611,11 +610,8 @@ public abstract class SessionBucket implements EJBBucket {
                 SecurityContext securityContext = new SecurityContext();
                 SessionContext sessionContext = SessionContext.currentThreadSessionContext();
                 if(sessionContext != null){
-                    // try get subject from session context
-                    Subject subject = sessionContext.getAssociatedSubect();
-                    //get SecurityContext
-                    securityContext = new SecurityContext(subject);
-                    // propagate subject
+                    // try get SecurityContext from session context
+                    securityContext = sessionContext.getSecurityContext();
                 }
                 return getEJBContainer().invokeEJB(getEJBObjectId(), method, args, securityContext);
             }

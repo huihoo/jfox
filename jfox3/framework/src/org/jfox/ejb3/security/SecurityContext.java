@@ -5,6 +5,9 @@ import java.security.Principal;
 import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
+import java.util.Properties;
+import java.util.Enumeration;
 import javax.security.auth.Subject;
 
 import org.apache.log4j.Logger;
@@ -44,21 +47,28 @@ public class SecurityContext implements Serializable {
      */
     private Subject subject = ANONYMOUS_SUBJECT;
 
+    private Properties roleLink = new Properties();
+
     public SecurityContext() {
         this(null);
     }
 
     /**
      * Build a security context with the given subject.
+     *
      * @param subject the given subject.
      */
     public SecurityContext(final Subject subject) {
-        if(subject == null) {
+        if (subject == null) {
             this.subject = ANONYMOUS_SUBJECT;
         }
         else {
             this.subject = subject;
         }
+    }
+
+    public void setRoleLink(Properties prop) {
+        roleLink.putAll(prop);
     }
 
     public Subject getSubject() {
@@ -67,17 +77,44 @@ public class SecurityContext implements Serializable {
 
     public String getPrincipalName() {
         String username = null;
-        for(Principal p : getSubject().getPrincipals()){
-            if(!(p instanceof Group)) {
+        for (Principal p : getSubject().getPrincipals()) {
+            if (!(p instanceof Group)) {
                 username = p.getName();
             }
         }
         return username;
     }
 
+    public Group getCallerGroup(Subject subject) {
+        Group tempGroup = null;
+        for (Principal principal : subject.getPrincipals(Principal.class)) {
+            if (principal instanceof Group) {
+                tempGroup = (Group)principal;
+            }
+        }
+        if (tempGroup != null) {
+            Group roles = new JAASGroup("roles");
+            Enumeration<? extends Principal> members = tempGroup.members();
+            while (members.hasMoreElements()) {
+                Principal p = members.nextElement();
+                if (roleLink.contains(p.getName())) {
+                    JAASPrincipal role = new JAASPrincipal(roleLink.getProperty(p.getName()));
+                    roles.addMember(role);
+                }
+                else {
+                    roles.addMember(p);
+                }
+            }
+            return roles;
+
+        }
+        return null;
+    }
+
     /**
      * Build an anonymous subject when no user is authenticated.<br>
      * This is required as getCallerPrincipal() should never return null.
+     *
      * @return anonymous subject.
      */
     private static Subject buildAnonymousSubject() {
@@ -87,7 +124,8 @@ public class SecurityContext implements Serializable {
 
     /**
      * Build a subject with the given user name and the list of roles.<br>
-     * @param userName given username
+     *
+     * @param userName  given username
      * @param roleArray given array of roles.
      * @return built subject.
      */
@@ -103,6 +141,7 @@ public class SecurityContext implements Serializable {
 
     /**
      * Build a subject with the given user name and the list of roles.<br>
+     *
      * @param userName given username
      * @param roleList given list of roles.
      * @return built subject.
@@ -114,7 +153,8 @@ public class SecurityContext implements Serializable {
 
     /**
      * Build a subject with the given user name and the list of roles.<br>
-     * @param subject subject created
+     *
+     * @param subject  subject created
      * @param userName given username
      * @param roleList given list of roles.
      * @return built subject.
@@ -134,6 +174,17 @@ public class SecurityContext implements Serializable {
         subject.getPrincipals().add(roles);
 
         return subject;
+    }
+
+    public static List<Group> getRoles(Subject subject) {
+        List<Group> roles = new ArrayList<Group>();
+        for (Principal p : subject.getPrincipals()) {
+            if (p instanceof Group) {
+                roles.add((Group)p);
+            }
+        }
+        return Collections.unmodifiableList(roles);
+
     }
 
 }

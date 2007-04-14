@@ -139,14 +139,10 @@ public class EJBInvocation {
             String username = getSecurityContext().getPrincipalName();
             subject = SecurityContext.buildSubject(username, runAsRole);
         }
-
-        // Then, takes all the roles found in this principal.
-        for (Principal principal : subject.getPrincipals(Principal.class)) {
-            if (principal instanceof Group) {
-                return (Group)principal;
-            }
+        if(subject == null) {
+            return null;
         }
-        return null;
+        return getSecurityContext().getCallerGroup(subject);
     }
 
     // 如果是 @RunAs Method，则需要根据 RunAs 指定的值构造 Subject
