@@ -36,6 +36,7 @@ public class DemoUploadAction extends ActionSupport {
     }
 
     public static class UploadInvocation extends Invocation {
+
         private FileUploaded uploadFile;
 
         public FileUploaded getUploadFile() {
@@ -47,7 +48,4 @@ public class DemoUploadAction extends ActionSupport {
         }
     }
 
-    public static void main(String[] args) {
-
-    }
 }

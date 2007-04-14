@@ -6,6 +6,7 @@ import java.lang.annotation.Target;
 import java.lang.annotation.ElementType;
 
 /**
+ * 字符串验证 Annotation
  * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 @Retention(RetentionPolicy.RUNTIME)
@@ -31,6 +32,4 @@ public @interface StringValidation {
      * 是否可以为空
      */
     boolean nullable() default false;
-
-
 }

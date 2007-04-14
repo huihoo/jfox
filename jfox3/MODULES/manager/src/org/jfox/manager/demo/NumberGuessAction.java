@@ -11,6 +11,8 @@ import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.framework.annotation.Service;
 
 /**
+ * number guess action
+ *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id = "numberguess")
@@ -51,6 +53,7 @@ public class NumberGuessAction extends ActionSupport {
                 sessionContext.setAttribute("count", count);
             }
         }
+        
         PageContext pageContext = invocationContext.getPageContext();
         pageContext.setAttribute("success", success);
         pageContext.setAttribute("count", count);

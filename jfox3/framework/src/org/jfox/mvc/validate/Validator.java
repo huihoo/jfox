@@ -3,6 +3,8 @@ package org.jfox.mvc.validate;
 import java.lang.annotation.Annotation;
 
 /**
+ * Validator interface
+ *
  * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 public interface Validator<T> {

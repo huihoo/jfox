@@ -137,7 +137,6 @@ public class WebConsoleAction extends ActionSupport {
         TestConnectionInvocation invocation = (TestConnectionInvocation)invocationContext.getInvocation();
         String unitName = invocation.getUnitName();
         EntityManagerFactoryBuilderImpl.getEntityManagerFactoryByName(unitName).clearCache();
-//        doGetJPA(invocationContext);
     }
 
     @ActionMethod(successView = "console/jpa.vhtml",invocationClass = TestConnectionInvocation.class)

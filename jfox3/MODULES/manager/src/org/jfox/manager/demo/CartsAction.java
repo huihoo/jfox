@@ -13,6 +13,8 @@ import org.jfox.mvc.PageContext;
 import org.jfox.mvc.annotation.ActionMethod;
 
 /**
+ * carts actions
+ *  
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id="carts")
@@ -23,7 +25,7 @@ public class CartsAction extends ActionSupport {
 
     @ActionMethod(successView = "demo/carts.fhtml")
     public void doGetView(InvocationContext invocationContext) throws Exception{
-
+        // do nothing, just forward to successView
     }
 
     @ActionMethod(successView = "demo/carts.fhtml", invocationClass = CartInvocation.class)
@@ -67,7 +69,4 @@ public class CartsAction extends ActionSupport {
         }
     }
 
-    public static void main(String[] args) {
-
-    }
 }

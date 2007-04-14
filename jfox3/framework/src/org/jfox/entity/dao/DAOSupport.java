@@ -34,6 +34,18 @@ public abstract class DAOSupport implements DataAccessObject {
         return (QueryExt)getEntityManager().createNamedQuery(queryName);
     }
 
+    /**
+     * 支持分页查询
+     *
+     * @param queryName
+     * @param offset
+     * @param limit
+     * @return
+     */
+    private QueryExt createNamedNativeQuery(String queryName, int offset, int limit){
+        throw new UnsupportedOperationException();
+    }
+
     public final QueryExt createNativeQuery(String sql) {
         return createNativeQuery(sql, EntityObject.class);
     }

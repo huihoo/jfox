@@ -3,6 +3,8 @@ package org.jfox.mvc.validate;
 import java.lang.annotation.Annotation;
 
 /**
+ * validate integer input
+ *
  * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 public class IntegerValidator implements Validator<Integer> {
@@ -24,7 +26,4 @@ public class IntegerValidator implements Validator<Integer> {
         }
     }
 
-    public static void main(String[] args) {
-
-    }
 }
