@@ -172,11 +172,12 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
             doActionFailed(invocationContext);
             exception = e;
         }
-
-        postAction(invocationContext);
+        finally {
+            postAction(invocationContext);
+        }
 
         // 没有设置 errorView, 抛出异常
-        if(exception != null && (errorView == null || errorView.trim().length()==0)) {
+        if (exception != null && (errorView == null || errorView.trim().length() == 0)) {
             throw exception;
         }
     }
@@ -195,18 +196,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     }
 
     /**
-     * 在 execute 过程中出现异常时，将回调该方法
-     * 该方法可以做一些补偿性工作，比如：在 buildInvocation 过程中出现了异常，
-     * 可以通过实现该方法取得 errorView 的数据
-     *
-     * @param invocationContext invocationContext
-     */
-    protected void doActionFailed(InvocationContext invocationContext) {
-
-    }
-
-    /**
-     * implement in sub class
+     * do something before invoke action method
      *
      * @param invocationContext invcation context
      */
@@ -215,11 +205,22 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     }
 
     /**
-     * implement in sub class
+     * do something after invocation action method
      *
      * @param invocationContext invocation context
      */
     protected void postAction(InvocationContext invocationContext) {
+
+    }
+
+    /**
+     * 在 execute 过程中出现异常时，将回调该方法。
+     * 该方法可以做一些补偿性工作，比如：在 buildInvocation 过程中出现了异常，
+     * 可以通过实现该方法恢复数据，以便能够在 errorView中显示用户数据
+     *
+     * @param invocationContext invocationContext
+     */
+    protected void doActionFailed(InvocationContext invocationContext) {
 
     }
 
