@@ -27,7 +27,6 @@ import org.apache.velocity.util.SimplePool;
 import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.Render;
-import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.WebContextLoader;
 import org.jfox.mvc.servlet.ControllerServlet;
 
@@ -361,25 +360,7 @@ public class VelocityRender implements Render {
     protected Context createVelocityContext(HttpServletRequest request, HttpServletResponse response) {
         InvocationContext invocationContext = (InvocationContext)request.getAttribute(ControllerServlet.INVOCATION_CONTEXT);
         PageContext pageContext = invocationContext.getPageContext();
-
-        VelocityContext velocityContext = new VelocityContext(pageContext.getResultMap());
-        velocityContext.put("validateExceptions", pageContext.getValidateExceptions());
-        velocityContext.put("exception", pageContext.getBusinessException());
-
-        velocityContext.put("request", request);
-        velocityContext.put("REQUEST", request);
-        velocityContext.put("WEBAPP_CONTEXT_PATH", request.getContextPath());
-//        velocityContext.put("MODULE_CONTEXT_PATH", request.getContextPath() + "/" + module);
-        Object sessionContext = SessionContext.init(request);
-        velocityContext.put("session", sessionContext);
-        velocityContext.put("SESSION", sessionContext);
-        velocityContext.put("sessionContext", sessionContext);
-        velocityContext.put("pageCtx", pageContext);
-        velocityContext.put("pageContext", pageContext);
-        //用于在页面上显示 vm 文件全路径，便于调试
-        velocityContext.put("__VIEW__", request.getServletPath());
-
-        return velocityContext;
+        return new VelocityContext(pageContext.getResultMap());
     }
 
     protected void afterRender(HttpServletRequest request, HttpServletResponse response, Context velocityContext) {

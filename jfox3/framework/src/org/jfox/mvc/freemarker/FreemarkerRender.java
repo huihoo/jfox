@@ -13,13 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.apache.log4j.Logger;
 import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.Render;
 import org.jfox.mvc.WebContextLoader;
-import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.servlet.ControllerServlet;
-import org.apache.log4j.Logger;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -89,21 +88,6 @@ public class FreemarkerRender implements Render {
         InvocationContext invocationContext = (InvocationContext)request.getAttribute(ControllerServlet.INVOCATION_CONTEXT);
         PageContext pageContext = invocationContext.getPageContext();
         Map<String, Object> freemarkerMap = new HashMap<String, Object>(pageContext.getResultMap());
-        freemarkerMap.put("exception", pageContext.getBusinessException());
-
-        freemarkerMap.put("request", request);
-        freemarkerMap.put("REQUEST", request);
-        freemarkerMap.put("WEBAPP_CONTEXT_PATH", request.getContextPath());
-//        velocityContext.put("MODULE_CONTEXT_PATH", request.getContextPath() + "/" + module);
-        Object sessionContext = SessionContext.init(request);
-        freemarkerMap.put("session", sessionContext);
-        freemarkerMap.put("SESSION", sessionContext);
-        freemarkerMap.put("sessionContext", sessionContext);
-        freemarkerMap.put("pageCtx", pageContext);
-        freemarkerMap.put("pageContext", pageContext);
-        //用于在页面上显示 vm 文件全路径，便于调试
-        freemarkerMap.put("__VIEW__", request.getServletPath());
-
         return freemarkerMap;
     }
 

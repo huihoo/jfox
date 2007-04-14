@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.ComponentContext;
@@ -180,6 +181,25 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         if (exception != null && (errorView == null || errorView.trim().length() == 0)) {
             throw exception;
         }
+    }
+
+    /**
+     * 设置通用 PageContext 的 attribute
+     * 业务设置的 attribute 不应该重名，否则会被通用 attribute 覆盖
+     */
+    protected void setUniversalPageContextAttributes(InvocationContext invocationContext){
+        HttpServletRequest request = invocationContext.getHttpRequest();
+        PageContext pageContext = invocationContext.getPageContext();
+        pageContext.setAttribute("J_VALIDATE_EXCEPTIONS", pageContext.getValidateExceptions());
+        pageContext.setAttribute("J_EXCEPTION", pageContext.getBusinessException());
+
+        SessionContext sessionContext = SessionContext.init(request);
+        pageContext.setAttribute("J_SESSION_CONTEXT", sessionContext);
+        pageContext.setAttribute("J_PAGE_CONTEXT", pageContext);
+        pageContext.setAttribute("J_REQUEST", request);
+        //用于在页面上显示 vm 文件全路径，便于调试
+        pageContext.setAttribute("J_WEBAPP_CONTEXT_PATH", request.getContextPath());
+        pageContext.setAttribute("J_SERVLET_PATH", request.getServletPath());
     }
 
     private Method getActionMethod(InvocationContext invocationContext) {

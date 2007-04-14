@@ -17,13 +17,13 @@
         <tr>
             <td>Username:</td>
             <td><input type="text" name="username" value="j2ee"/>
-                <font color="RED"> $!validateExceptions.get("username").getMessage()</font>
+                <font color="RED"> $!J_VALIDATE_EXCEPTIONS.get("username").getMessage()</font>
             </td>
         </tr>
         <tr>
             <td>Password:</td>
             <td><input type="password" name="password" value="j2ee"/>
-                <font color="RED">$!validateExceptions.get("password").getMessage()</font>
+                <font color="RED">$!J_VALIDATE_EXCEPTIONS.get("password").getMessage()</font>
             </td>
         </tr>
         <tr>

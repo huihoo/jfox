@@ -109,7 +109,7 @@ public class ControllerServlet extends HttpServlet {
         String actionName = pathInfo.substring(lastSlashIndex + 1, actionMethodDotIndex);
         String actionMethodName = pathInfo.substring(actionMethodDotIndex + 1, dotDoIndex);
 
-        InvocationContext invocationContext = new InvocationContext(getServletConfig(), actionMethodName);
+        InvocationContext invocationContext = new InvocationContext(getServletConfig(), request, actionMethodName);
         invocationContext.setPostMethod(request.getMethod().toUpperCase().equals("POST"));
 
         // 会导致取出的值为数组问题，所以只能使用下面的循环

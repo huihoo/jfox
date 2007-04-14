@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.lang.reflect.Method;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -32,10 +33,17 @@ public class InvocationContext {
 
     private ServletConfig servletConfig;
 
-    public InvocationContext(ServletConfig servletConfig, String name) {
+    private HttpServletRequest request = null;
+
+    public InvocationContext(ServletConfig servletConfig, HttpServletRequest request, String name) {
         this.servletConfig = servletConfig;
+        this.request = request;
         this.actionName = name;
         this.pageContext = new PageContext();
+    }
+
+    HttpServletRequest getHttpRequest() {
+        return request;
     }
 
     public ServletConfig getServletConfig() {
