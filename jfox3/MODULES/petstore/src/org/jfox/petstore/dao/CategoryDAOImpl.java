@@ -51,7 +51,4 @@ public class CategoryDAOImpl extends DAOSupport implements CategoryDAO{
         return (List<Category>)createNamedNativeQuery(GET_CATEGORY_LIST).getResultList();
     }
 
-    public static void main(String[] args) {
-
-    }
 }

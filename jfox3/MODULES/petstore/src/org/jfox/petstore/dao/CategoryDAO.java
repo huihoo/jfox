@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.jfox.petstore.entity.Category;
 
+/**
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
+ */
 public interface CategoryDAO {
 
     List<Category> getCategoryList() throws SQLException;

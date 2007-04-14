@@ -29,7 +29,7 @@ public @interface ActionMethod {
     String successView();
 
     /**
-     * 发生错误时，跳转的页面
+     * 发生错误时，跳转的页面，如果没有定义，讲直接在浏览器中显示异常信息
      */
     String errorView() default "";
 
@@ -39,9 +39,12 @@ public @interface ActionMethod {
     TargetMethod targetMethod() default TargetMethod.FORWARD;
 
     /**
-     * 用来装载Http Request参数的类，name 为 input name
+     * 用来组装HttpRequest参数的类，为一个标准的Java Bean，file name 与 form input name对应。
+     * MVC framework会自动根据Field进行组装。
      *
-     * 支持 file upload，文件上传的类类型必须为 FileUploaded
+     * 可以在field上加上validate annotation来进行数据校验。
+     *
+     * 支持 file upload，文件上传的Field类型必须为 FileUploaded
      */
     Class invocationClass() default Invocation.class;
 }
