@@ -22,6 +22,7 @@ import javax.jws.WebService;
 import org.jfox.ejb3.dependent.FieldEJBDependence;
 import org.jfox.ejb3.dependent.FieldResourceDependence;
 import org.jfox.ejb3.timer.EJBTimerTask;
+import org.jfox.ejb3.timer.TimeoutUtils;
 import org.jfox.entity.dependent.FieldPersistenceContextDependence;
 import org.jfox.framework.component.Module;
 import org.jfox.util.AnnotationUtils;
@@ -36,18 +37,6 @@ import org.apache.commons.pool.impl.GenericObjectPool;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class StatelessBucket extends SessionBucket implements PoolableObjectFactory {
-
-    public static final Method TimeOut;
-
-    static {
-        try {
-            TimeOut = TimedObject.class.getMethod("ejbTimeout", new Class[]{Timer.class});
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            throw new EJBException(e);
-        }
-    }
 
     private EJBObjectId ejbObjectId;
 
@@ -117,7 +106,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             wsAnnotation = getBeanClass().getAnnotation(WebService.class);
             String endpointInterfaceName = wsAnnotation.endpointInterface();
             if (endpointInterfaceName == null || endpointInterfaceName.trim().length() == 0) {
-                Class<?>[] beanInterfaces = this.getBeanInterface();
+                Class<?>[] beanInterfaces = this.getEJBInterfaces();
                 if (beanInterfaces.length > 1) {
                     logger.warn("Use first Bean Interface " + beanInterfaces[0].getName() + " as endpoint interface.");
 
@@ -157,7 +146,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         }
         // timeout method
         if (TimedObject.class.isAssignableFrom(getBeanClass())) {
-            timeoutMethods.add(TimeOut);
+            timeoutMethods.add(TimeoutUtils.getTimeoutMethod());
         }
     }
 
