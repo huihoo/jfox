@@ -1,6 +1,6 @@
 <br>
-#if (J_SESSION_CONTEXT.getAttribute("__ACCOUNT__"))
-#set($account = J_SESSION_CONTEXT.getAttribute("__ACCOUNT__"))
+#if ($J_SESSION_CONTEXT.getAttribute("__ACCOUNT__"))
+#set($account = $J_SESSION_CONTEXT.getAttribute("__ACCOUNT__"))
 #if (1 == $!account.getListOption())
 <table align="center" background="images/bkg-topbar.gif" cellpadding="5" width="100%">
 <tr><td>

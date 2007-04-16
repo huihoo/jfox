@@ -174,6 +174,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
             exception = e;
         }
         finally {
+            setSystemPageContextAttributes(invocationContext);
             postAction(invocationContext);
         }
 
@@ -187,7 +188,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
      * 设置通用 PageContext 的 attribute
      * 业务设置的 attribute 不应该重名，否则会被通用 attribute 覆盖
      */
-    protected void setUniversalPageContextAttributes(InvocationContext invocationContext){
+    protected void setSystemPageContextAttributes(InvocationContext invocationContext){
         HttpServletRequest request = invocationContext.getHttpRequest();
         PageContext pageContext = invocationContext.getPageContext();
         pageContext.setAttribute("J_VALIDATE_EXCEPTIONS", pageContext.getValidateExceptions());

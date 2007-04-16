@@ -21,8 +21,8 @@
                                         <tr>
                                             <td>
                                                 <b><i><font size="2" color="BLACK">Welcome
-                                                    #if ($sessionContext.getAttribute("__ACCOUNT__"))
-                                                        $sessionContext.getAttribute("__ACCOUNT__").getFirstName()!
+                                                    #if ($J_SESSION_CONTEXT.getAttribute("__ACCOUNT__"))
+                                                        $J_SESSION_CONTEXT.getAttribute("__ACCOUNT__").getFirstName()!
                                                     #else
                                                         anonymous!
                                                     #end
