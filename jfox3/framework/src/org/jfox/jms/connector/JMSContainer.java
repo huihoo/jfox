@@ -39,13 +39,6 @@ public interface JMSContainer {// extends Container {
 
 	public boolean isConnectionRegistered(String clientId);
 
-	/**
-	 * register sessionId
-	 * ��� Session ���첽�ģ�����Ҫ���session������Ӧ�� JMSConnectionRemote
-	 *
-	 * @param sessionId
-	 * @param connectionId
-	 */
 	public void registerSession(String connectionId, String sessionId) throws JMSException;
 
 	public void sendMessage(JMSMessage msg) throws JMSException;

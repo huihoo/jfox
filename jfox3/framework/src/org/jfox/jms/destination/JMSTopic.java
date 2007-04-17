@@ -4,27 +4,27 @@
  * more details please visit http://www.huihoo.org/jfox
  */
 
-package org.jfox.jms;
+package org.jfox.jms.destination;
 
 import javax.jms.JMSException;
-import javax.jms.Queue;
+import javax.jms.Topic;
 
 /**
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
  */
 
-public class JMSQueue extends JMSDestination implements Queue {
+public class JMSTopic extends JMSDestination implements Topic {
 
-	public JMSQueue(String name) {
+	public JMSTopic(String name) {
 		super(name);
 	}
 
-	public String getQueueName() throws JMSException {
+	public String getTopicName() throws JMSException {
 		return getName();
 	}
 
 	protected boolean isTopic() {
-		return false;
+		return true;
 	}
 
 	public static void main(String[] args) {

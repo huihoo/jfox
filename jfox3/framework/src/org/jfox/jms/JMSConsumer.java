@@ -17,6 +17,8 @@ import javax.jms.QueueReceiver;
 import javax.jms.Topic;
 import javax.jms.TopicSubscriber;
 
+import org.jfox.jms.destination.JMSDestination;
+
 /**
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
  */

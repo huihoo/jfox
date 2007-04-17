@@ -4,7 +4,7 @@
  * more details please visit http://www.huihoo.org/jfox
  */
 
-package org.jfox.jms;
+package org.jfox.jms.destination;
 
 import java.io.Serializable;
 import javax.jms.Destination;
