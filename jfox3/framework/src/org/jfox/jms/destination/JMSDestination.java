@@ -13,7 +13,8 @@ import javax.jms.Destination;
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
  */
 
-abstract class JMSDestination implements Destination, Serializable {
+public abstract class JMSDestination implements Destination, Serializable, DestinationContainer {
+
 	private String name;
 
 	public JMSDestination(String name) {
@@ -43,7 +44,7 @@ abstract class JMSDestination implements Destination, Serializable {
 		return (name != null ? name.hashCode() : 0);
 	}
 
-	protected abstract boolean isTopic();
+	public abstract boolean isTopic();
 
 
 	public static void main(String[] args) {

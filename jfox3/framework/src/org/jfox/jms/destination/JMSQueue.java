@@ -23,7 +23,7 @@ public class JMSQueue extends JMSDestination implements Queue {
 		return getName();
 	}
 
-	protected boolean isTopic() {
+	public boolean isTopic() {
 		return false;
 	}
 

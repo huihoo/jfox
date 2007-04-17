@@ -23,7 +23,7 @@ public class JMSTopic extends JMSDestination implements Topic {
 		return getName();
 	}
 
-	protected boolean isTopic() {
+	public boolean isTopic() {
 		return true;
 	}
 
