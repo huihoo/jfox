@@ -276,3 +276,8 @@
 
 2007-04-07
     1. 容器外测试时，EntityManagerFactory 无法正常关闭
+
+2007-04-17
+    1. 因为只需要考虑实现Local JMS，所以 Queue/Topic 可以本身拥有 MessagePool，自维护，而不像之前仅是一个 Address
+    2. 另外每次 createQueue时，创建一个新的Queue实例
+    3. 如果需要远程发送消息，建议你使用 Web Service 向 Stateless Bean 发消息，有 Stateless Bean 发给 Message Service
