@@ -132,7 +132,7 @@ public class WebConsoleAction extends ActionSupport {
         EntityManagerFactoryBuilderImpl.getEntityManagerFactoryByName(unitName).checkConnection();
     }
 
-    @ActionMethod(successView = "console.jpa.do", targetMethod = ActionMethod.TargetMethod.REDIRECT,invocationClass = TestConnectionInvocation.class)
+    @ActionMethod(successView = "console.jpa.do", targetMethod = ActionMethod.TargetMethod.REDIRECT, invocationClass = TestConnectionInvocation.class)
     public void doGetClearCacheConfig(InvocationContext invocationContext) throws Exception {
         TestConnectionInvocation invocation = (TestConnectionInvocation)invocationContext.getInvocation();
         String unitName = invocation.getUnitName();
