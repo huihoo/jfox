@@ -15,7 +15,10 @@ import javax.jms.Queue;
 
 public class JMSQueue extends JMSDestination implements Queue {
 
-	public JMSQueue(String name) {
+    //TODO: hold a destination container
+    private transient QueueMessagePool msgPool = null ;
+
+    public JMSQueue(String name) {
 		super(name);
 	}
 

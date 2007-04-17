@@ -13,11 +13,11 @@ import javax.jms.Destination;
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
  */
 
-public abstract class JMSDestination implements Destination, Serializable, DestinationContainer {
+public abstract class JMSDestination implements Destination, Serializable {
 
 	private String name;
 
-	public JMSDestination(String name) {
+    public JMSDestination(String name) {
 		this.name = name;
 	}
 
