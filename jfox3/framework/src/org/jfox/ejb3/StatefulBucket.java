@@ -160,7 +160,7 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
     }
 
     public void destroyObject(Object key, Object obj) throws Exception {
-        //TODO: doPrePassivate when pool destory EJBContext
+        //TODO: do @PrePassivate when pool destory EJBContext
         for (Method preDestroyMethod : getPreDestroyMethods()) {
             logger.debug("PreDestory method for ejb: " + getEJBName() + ", method: " + preDestroyMethod);
             preDestroyMethod.invoke(((AbstractEJBContext)obj).getEJBInstance());
