@@ -44,10 +44,8 @@ public abstract class JMSDestination implements Destination, Serializable {
 		return (name != null ? name.hashCode() : 0);
 	}
 
-	public abstract boolean isTopic();
+    public abstract boolean isTopic();
 
+    //TODO: 增加计数器，记录交换了多少消息
 
-	public static void main(String[] args) {
-
-	}
 }
