@@ -15,6 +15,9 @@ import javax.jms.Message;
 import javax.jms.Queue;
 
 /**
+ * JMS Queue
+ * 维护 JMS Message Queue，并且负责分发消息
+ *
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
  */
 
