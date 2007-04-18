@@ -6,18 +6,18 @@
 
 package org.jfox.jms.destination;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.PriorityBlockingQueue;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 import javax.jms.JMSException;
 import javax.jms.Message;
-import javax.jms.Queue;
-import javax.jms.QueueReceiver;
 import javax.jms.MessageListener;
+import javax.jms.Queue;
 
 import org.apache.log4j.Logger;
 
@@ -45,9 +45,11 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable {
 
     private transient PriorityBlockingQueue<Message> queue = new PriorityBlockingQueue<Message>(0, MESSAGE_COMPARATOR);
 
-    private List<QueueReceiver> receivers = new ArrayList<QueueReceiver>(2);
+    private List<MessageListener> listeners = new ArrayList<MessageListener>(2);
 
     private final ReentrantLock lock = new ReentrantLock();
+    private final Condition notEmptyMessage = lock.newCondition();
+    private final Condition notEmptyListener = lock.newCondition();
 
     Logger logger = Logger.getLogger(JMSQueue.class);
 
@@ -63,13 +65,19 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable {
         return false;
     }
 
-    public synchronized void putMessage(Message msg) {
-        queue.offer(msg);
-        // 交给线程池执行消息分发工作
-        threadExecutor.submit(this);
+    public void putMessage(Message msg) {
+        lock.lock();
+        try {
+            queue.offer(msg);
+            // 交给线程池执行消息分发工作
+            notEmptyMessage.signalAll();
+        }
+        finally {
+            lock.unlock();
+        }
     }
 
-    public synchronized Message popMessage() {
+    public Message popMessage() {
         try {
             return queue.take();
         }
@@ -80,26 +88,48 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable {
         }
     }
 
+    public synchronized void registerMessageListener(MessageListener listener) {
+        lock.lock();
+        try {
+
+            listeners.add(listener);
+            notEmptyListener.signalAll();
+        }
+        finally {
+            lock.unlock();
+        }
+    }
+
+    public void start() {
+        //TODO: DAEMON thread
+        threadExecutor.submit(this);
+    }
+
     public void stop() {
         threadExecutor.shutdown();
     }
 
     public void run() {
+        lock.lock(); // 获得锁
         try {
-            lock.lock(); // 获得锁
             // 分发消息
+            if (queue.isEmpty()) {
+                notEmptyMessage.await();
+            }
+            if (listeners.isEmpty()) {
+                notEmptyListener.await();
+            }
             Message message = popMessage();
             if (message != null) {
                 System.out.println("Hello,World!");
-                if(!receivers.isEmpty()) {
-                    QueueReceiver receiver = receivers.get(0);
-                    MessageListener messageListener = receiver.getMessageListener();
+                if (!listeners.isEmpty()) {
+                    MessageListener messageListener = listeners.get(0);
                     messageListener.onMessage(message);
                 }
             }
         }
-        catch(JMSException e) {
-            e.printStackTrace();
+        catch (InterruptedException e) {
+            logger.warn("Dispatcher Thread Interrupted.", e);
         }
         finally {
             lock.unlock();
