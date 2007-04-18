@@ -18,8 +18,10 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.Queue;
+import javax.jms.TextMessage;
 
 import org.apache.log4j.Logger;
+import org.jfox.jms.message.TextMessageImpl;
 
 /**
  * JMS Queue
@@ -29,7 +31,7 @@ import org.apache.log4j.Logger;
  */
 public class JMSQueue extends JMSDestination implements Queue, Runnable {
     Logger logger = Logger.getLogger(JMSQueue.class);
-    
+
     private static Comparator<Message> MESSAGE_COMPARATOR = new Comparator<Message>() {
 
         public int compare(Message msg1, Message msg2) {
@@ -47,7 +49,7 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable {
     private final List<MessageListener> listeners = new ArrayList<MessageListener>(2);
 
     private ExecutorService threadExecutor = Executors.newSingleThreadExecutor();
-    
+
     private final ReentrantLock lock = new ReentrantLock();
     private final Condition notEmptyMessage = lock.newCondition();
     private final Condition notEmptyListener = lock.newCondition();
@@ -134,7 +136,20 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable {
         }
     }
 
-    public static void main(String[] args) {
-        new JMSQueue("Test").start();
+    public static void main(String[] args) throws Exception {
+        JMSQueue queue = new JMSQueue("Test");
+        queue.start();
+        queue.registerMessageListener(new MessageListener() {
+            public void onMessage(Message message) {
+                System.out.println("Message: " + message);
+            }
+        });
+        TextMessage msg = new TextMessageImpl();
+        msg.setText("Hello,World!");
+        queue.putMessage(msg);
+
+        Thread.sleep(2000);
+        msg.setText("Hello, World2!");
+        queue.putMessage(msg);
     }
 }
