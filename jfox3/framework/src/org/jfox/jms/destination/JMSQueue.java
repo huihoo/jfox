@@ -20,7 +20,6 @@ import javax.jms.Queue;
  *
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
  */
-
 public class JMSQueue extends JMSDestination implements Queue, Runnable{
 
     private static Comparator<Message> MESSAGE_COMPARATOR = new Comparator<Message>(){
