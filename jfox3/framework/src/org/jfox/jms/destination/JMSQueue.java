@@ -22,6 +22,8 @@ import javax.jms.Queue;
  */
 public class JMSQueue extends JMSDestination implements Queue, Runnable{
 
+    private static ExecutorService threadExecutor = Executors.newCachedThreadPool();
+
     private static Comparator<Message> MESSAGE_COMPARATOR = new Comparator<Message>(){
 
         public int compare(Message msg1, Message msg2) {
@@ -34,12 +36,7 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable{
         }
     };
 
-    //TODO: hold a destination container
-    private transient MessagePool msgPool = new QueueMessagePool() ;
-
     private transient PriorityBlockingQueue<Message> queue = new PriorityBlockingQueue<Message>(0, MESSAGE_COMPARATOR);
-
-    private static ExecutorService threadExecutor = Executors.newCachedThreadPool();
 
     public JMSQueue(String name) {
 		super(name);
