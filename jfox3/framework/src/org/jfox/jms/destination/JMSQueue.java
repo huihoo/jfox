@@ -43,9 +43,9 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable {
         }
     };
 
-    private transient PriorityBlockingQueue<Message> queue = new PriorityBlockingQueue<Message>(0, MESSAGE_COMPARATOR);
+    private final transient PriorityBlockingQueue<Message> queue = new PriorityBlockingQueue<Message>(0, MESSAGE_COMPARATOR);
 
-    private List<MessageListener> listeners = new ArrayList<MessageListener>(2);
+    private final List<MessageListener> listeners = new ArrayList<MessageListener>(2);
 
     private final ReentrantLock lock = new ReentrantLock();
     private final Condition notEmptyMessage = lock.newCondition();
@@ -74,17 +74,6 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable {
         }
         finally {
             lock.unlock();
-        }
-    }
-
-    public Message popMessage() {
-        try {
-            return queue.take();
-        }
-        catch (InterruptedException e) {
-            //TODO: logger
-            e.printStackTrace();
-            return null;
         }
     }
 
@@ -128,7 +117,7 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable {
             if (listeners.isEmpty()) {
                 notEmptyListener.await();
             }
-            Message message = popMessage();
+            Message message = queue.take();
             if (message != null) {
                 System.out.println("Hello,World!");
                 if (!listeners.isEmpty()) {
