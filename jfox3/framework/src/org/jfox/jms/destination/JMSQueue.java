@@ -91,9 +91,18 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable {
     public synchronized void registerMessageListener(MessageListener listener) {
         lock.lock();
         try {
-
             listeners.add(listener);
             notEmptyListener.signalAll();
+        }
+        finally {
+            lock.unlock();
+        }
+    }
+
+    public synchronized void unregisterMessageListener(MessageListener listener) {
+        lock.lock();
+        try {
+            listeners.remove(listener);
         }
         finally {
             lock.unlock();
