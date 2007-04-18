@@ -6,20 +6,19 @@
 
 package org.jfox.jms.destination;
 
-import java.util.concurrent.PriorityBlockingQueue;
+import java.util.Comparator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Callable;
-import java.util.Comparator;
+import java.util.concurrent.PriorityBlockingQueue;
 import javax.jms.JMSException;
-import javax.jms.Queue;
 import javax.jms.Message;
+import javax.jms.Queue;
 
 /**
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
  */
 
-public class JMSQueue extends JMSDestination implements Queue {
+public class JMSQueue extends JMSDestination implements Queue, Runnable{
 
     private static Comparator<Message> MESSAGE_COMPARATOR = new Comparator<Message>(){
 
@@ -38,7 +37,7 @@ public class JMSQueue extends JMSDestination implements Queue {
 
     private transient PriorityBlockingQueue<Message> queue = new PriorityBlockingQueue<Message>(0, MESSAGE_COMPARATOR);
 
-    private ExecutorService threadExecutor = Executors.newSingleThreadExecutor();
+    private static ExecutorService threadExecutor = Executors.newCachedThreadPool();
 
     public JMSQueue(String name) {
 		super(name);
@@ -54,14 +53,8 @@ public class JMSQueue extends JMSDestination implements Queue {
 
     public synchronized void putMessage(Message msg){
         queue.offer(msg);
-        // 交给线程执行分发工作
-        threadExecutor.submit(new Callable<Object>() {
-            public Object call() throws Exception {
-                // 分发消息
-                System.out.println("Hello,World!");
-                return null;
-            }
-        });
+        // 交给线程池执行消息分发工作
+        threadExecutor.submit(this);
     }
 
     public synchronized Message popMessage() {
@@ -77,7 +70,14 @@ public class JMSQueue extends JMSDestination implements Queue {
     public void stop(){
         threadExecutor.shutdown();
     }
-    
+
+    public void run() {
+        // 分发消息
+        Message message = popMessage();
+
+        System.out.println("Hello,World!");
+    }
+
     public static void main(String[] args) {
 
 	}
