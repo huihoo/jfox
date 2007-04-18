@@ -62,6 +62,7 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable{
             return queue.take();
         }
         catch(InterruptedException e) {
+            //TODO: logger
             e.printStackTrace();
             return null;
         }
@@ -74,8 +75,9 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable{
     public void run() {
         // 分发消息
         Message message = popMessage();
-
-        System.out.println("Hello,World!");
+        if(message != null) {
+            System.out.println("Hello,World!");
+        }
     }
 
     public static void main(String[] args) {
