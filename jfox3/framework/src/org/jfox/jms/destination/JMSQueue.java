@@ -43,7 +43,7 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable {
         }
     };
 
-    private final transient PriorityBlockingQueue<Message> queue = new PriorityBlockingQueue<Message>(0, MESSAGE_COMPARATOR);
+    private final transient PriorityBlockingQueue<Message> queue = new PriorityBlockingQueue<Message>(1, MESSAGE_COMPARATOR);
 
     private final List<MessageListener> listeners = new ArrayList<MessageListener>(2);
 
@@ -131,10 +131,11 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable {
         }
         finally {
             lock.unlock();
+            threadExecutor.submit(this);
         }
     }
 
     public static void main(String[] args) {
-
+        new JMSQueue("Test").start();
     }
 }
