@@ -28,9 +28,8 @@ import org.apache.log4j.Logger;
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
  */
 public class JMSQueue extends JMSDestination implements Queue, Runnable {
-
-    private static ExecutorService threadExecutor = Executors.newCachedThreadPool();
-
+    Logger logger = Logger.getLogger(JMSQueue.class);
+    
     private static Comparator<Message> MESSAGE_COMPARATOR = new Comparator<Message>() {
 
         public int compare(Message msg1, Message msg2) {
@@ -47,11 +46,13 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable {
 
     private final List<MessageListener> listeners = new ArrayList<MessageListener>(2);
 
+    private ExecutorService threadExecutor = Executors.newSingleThreadExecutor();
+    
     private final ReentrantLock lock = new ReentrantLock();
     private final Condition notEmptyMessage = lock.newCondition();
     private final Condition notEmptyListener = lock.newCondition();
 
-    Logger logger = Logger.getLogger(JMSQueue.class);
+    private volatile boolean started = false;
 
     public JMSQueue(String name) {
         super(name);
@@ -99,34 +100,37 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable {
     }
 
     public void start() {
+        started = true;
         //TODO: DAEMON thread
         threadExecutor.submit(this);
     }
 
     public void stop() {
+        started = false;
         threadExecutor.shutdown();
     }
 
     public void run() {
-        lock.lock(); // 获得锁
-        try {
-            // 分发消息
-            if (queue.isEmpty()) {
-                notEmptyMessage.await();
+        while (started) {
+            lock.lock(); // 获得锁
+            try {
+                // 分发消息
+                if (queue.isEmpty()) {
+                    notEmptyMessage.await();
+                }
+                if (listeners.isEmpty()) {
+                    notEmptyListener.await();
+                }
+                Message message = queue.take();
+                MessageListener messageListener = listeners.get(0);
+                messageListener.onMessage(message);
             }
-            if (listeners.isEmpty()) {
-                notEmptyListener.await();
+            catch (InterruptedException e) {
+                logger.warn("Dispatcher Thread Interrupted.", e);
             }
-            Message message = queue.take();
-            MessageListener messageListener = listeners.get(0);
-            messageListener.onMessage(message);
-        }
-        catch (InterruptedException e) {
-            logger.warn("Dispatcher Thread Interrupted.", e);
-        }
-        finally {
-            lock.unlock();
-            threadExecutor.submit(this);
+            finally {
+                lock.unlock();
+            }
         }
     }
 
