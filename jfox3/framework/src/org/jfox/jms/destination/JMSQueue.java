@@ -118,13 +118,8 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable {
                 notEmptyListener.await();
             }
             Message message = queue.take();
-            if (message != null) {
-                System.out.println("Hello,World!");
-                if (!listeners.isEmpty()) {
-                    MessageListener messageListener = listeners.get(0);
-                    messageListener.onMessage(message);
-                }
-            }
+            MessageListener messageListener = listeners.get(0);
+            messageListener.onMessage(message);
         }
         catch (InterruptedException e) {
             logger.warn("Dispatcher Thread Interrupted.", e);
