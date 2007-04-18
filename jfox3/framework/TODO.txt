@@ -281,3 +281,6 @@
     1. 因为只需要考虑实现Local JMS，所以 Queue/Topic 可以本身拥有 MessagePool，自维护，而不像之前仅是一个 Address
     2. 另外每次 createQueue时，创建一个新的Queue实例
     3. 如果需要远程发送消息，建议你使用 Web Service 向 Stateless Bean 发消息，有 Stateless Bean 发给 Message Service
+
+2007-04-18
+    1. JMS Receiver.receive 的时候，考虑生成临时的 onMessage，已统一消息接收方式

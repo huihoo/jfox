@@ -7,12 +7,15 @@
 package org.jfox.jms.destination;
 
 import java.util.Comparator;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.PriorityBlockingQueue;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.Queue;
+import javax.jms.QueueReceiver;
 
 /**
  * JMS Queue
@@ -37,6 +40,8 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable{
     };
 
     private transient PriorityBlockingQueue<Message> queue = new PriorityBlockingQueue<Message>(0, MESSAGE_COMPARATOR);
+
+    private List<QueueReceiver> receivers = new ArrayList<QueueReceiver>(2);
 
     public JMSQueue(String name) {
 		super(name);
@@ -78,7 +83,7 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable{
             System.out.println("Hello,World!");
         }
     }
-
+    
     public static void main(String[] args) {
 
 	}
