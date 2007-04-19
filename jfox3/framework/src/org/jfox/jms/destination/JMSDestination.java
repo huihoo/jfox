@@ -134,6 +134,7 @@ public abstract class JMSDestination implements Destination, Serializable, Runna
     }
 
     public void stop() {
+        //TODO: 无法正常跳出 await
         lock.lock();
         try {
             started = false;
