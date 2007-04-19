@@ -8,6 +8,7 @@ package org.jfox.jms.destination;
 
 import javax.jms.JMSException;
 import javax.jms.Topic;
+import javax.jms.Message;
 
 /**
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
@@ -27,7 +28,11 @@ public class JMSTopic extends JMSDestination implements Topic {
 		return true;
 	}
 
-	public static void main(String[] args) {
+    public void sendMessage(Message message) {
+
+    }
+
+    public static void main(String[] args) {
 
 	}
 }
