@@ -9,6 +9,7 @@ package org.jfox.jms.destination;
 import javax.jms.JMSException;
 import javax.jms.Topic;
 import javax.jms.Message;
+import javax.jms.MessageListener;
 
 /**
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
@@ -16,23 +17,31 @@ import javax.jms.Message;
 
 public class JMSTopic extends JMSDestination implements Topic {
 
-	public JMSTopic(String name) {
-		super(name);
-	}
+    public JMSTopic(String name) {
+        super(name);
+    }
 
-	public String getTopicName() throws JMSException {
-		return getName();
-	}
+    public String getTopicName() throws JMSException {
+        return getName();
+    }
 
-	public boolean isTopic() {
-		return true;
-	}
+    public boolean isTopic() {
+        return true;
+    }
 
     public void sendMessage(Message message) {
-
+        lock.lock();
+        try {
+            for (MessageListener listener : listeners) {
+                listener.onMessage(message);
+            }
+        }
+        finally {
+            lock.unlock();
+        }
     }
 
     public static void main(String[] args) {
 
-	}
+    }
 }
