@@ -134,7 +134,6 @@ public abstract class JMSDestination implements Destination, Serializable, Runna
     }
 
     public void stop() {
-        //TODO: 无法正常跳出 await
         started = false;
         // 使用 shutdownNow 可以强行中止线程
         threadExecutor.shutdownNow();
