@@ -142,7 +142,9 @@ public class JMSProducer implements MessageProducer, QueueSender, TopicPublisher
 		if (disableTimestamp == false && timeToLive != 0) {
 			message.setJMSExpiration(message.getJMSTimestamp() + timeToLive);
 		}
-        
+
+        //TODO: 要考虑 Session 支持事务的情况
+
         ((JMSDestination)destination).putMessage(message);
     }
 
