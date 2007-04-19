@@ -17,6 +17,8 @@ import javax.jms.QueueSender;
 import javax.jms.Topic;
 import javax.jms.TopicPublisher;
 
+import org.jfox.jms.destination.JMSDestination;
+
 /**
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
  */
@@ -140,9 +142,9 @@ public class JMSProducer implements MessageProducer, QueueSender, TopicPublisher
 		if (disableTimestamp == false && timeToLive != 0) {
 			message.setJMSExpiration(message.getJMSTimestamp() + timeToLive);
 		}
-		session.sendMessage(message);
-//        session.getJMSConnection().getContainer().sendMessage(null);
-	}
+        
+        ((JMSDestination)destination).putMessage(message);
+    }
 
 	public Queue getQueue() throws JMSException {
 		return (Queue) destination;

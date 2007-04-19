@@ -8,37 +8,9 @@ package org.jfox.jms;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
-import javax.jms.BytesMessage;
-import javax.jms.Destination;
-import javax.jms.IllegalStateException;
-import javax.jms.InvalidDestinationException;
-import javax.jms.JMSException;
-import javax.jms.MapMessage;
-import javax.jms.Message;
-import javax.jms.MessageConsumer;
-import javax.jms.MessageListener;
-import javax.jms.MessageProducer;
-import javax.jms.ObjectMessage;
-import javax.jms.Queue;
-import javax.jms.QueueBrowser;
-import javax.jms.QueueReceiver;
-import javax.jms.QueueSender;
-import javax.jms.QueueSession;
-import javax.jms.Session;
-import javax.jms.StreamMessage;
-import javax.jms.TemporaryQueue;
-import javax.jms.TemporaryTopic;
-import javax.jms.TextMessage;
-import javax.jms.Topic;
-import javax.jms.TopicPublisher;
-import javax.jms.TopicSession;
-import javax.jms.TopicSubscriber;
-import javax.jms.XAQueueSession;
-import javax.jms.XASession;
-import javax.jms.XATopicSession;
+import javax.jms.*;
 import javax.transaction.xa.XAResource;
 
 import org.jfox.jms.message.BytesMessageImpl;
@@ -58,6 +30,7 @@ public class JMSSession implements Session,
         XASession,
         XAQueueSession,
         XATopicSession {
+
 	private JMSConnection conn;
 
 	private boolean transacted;
@@ -74,14 +47,11 @@ public class JMSSession implements Session,
 
 	private String sessionId = UUID.randomUUID().toString();
 
-	private Map<String, JMSMessage> asyncMessages = new HashMap<String, JMSMessage>();
-
 	public JMSSession(JMSConnection conn, boolean transacted, int acknowledgeMode, boolean isXA) {
 		this.conn = conn;
 		this.transacted = transacted;
 		this.acknowledgeMode = acknowledgeMode;
 		this.isXA = isXA;
-		start();
 	}
 
 	public BytesMessage createBytesMessage() throws JMSException {
@@ -192,19 +162,19 @@ public class JMSSession implements Session,
 			throw new InvalidDestinationException("destination is null");
 		}
 		JMSConsumer consumer = new JMSConsumer(this, destination, messageSelector, NoLocal);
-		//閿熸枻鎷?JMSContainer 閿熸枻鎷锋敞閿熸枻鎷穋onsumer
-		getJMSConnection().getContainer().registerConsumer(getJMSConnection().getClientID(), getSessionId(), consumer.getConsumerId(), consumer.getDestination());
 		consumers.put(consumer.getConsumerId(), consumer);
 		return consumer;
 	}
 
 	public Queue createQueue(String queueName) throws JMSException {
-		throw new JMSException("not support now!");
+        Queue queue = getJMSConnection().getConnectionFactory().createQueue(queueName);
+        return queue;
 	}
 
 	public Topic createTopic(String topicName) throws JMSException {
-		throw new JMSException("not support now!");
-	}
+		Topic topic = getJMSConnection().getConnectionFactory().createTopic(topicName);
+        return topic;
+    }
 
 	public TopicSubscriber createDurableSubscriber(Topic topic, String name) throws JMSException {
 		throw new JMSException("not support now!");
@@ -284,35 +254,8 @@ public class JMSSession implements Session,
 		return (TopicSession) getSession();
 	}
 
-	/**
-	 * 閿熸枻鎷峰涓€閿熸枻鎷烽敓绔▼锝忔嫹閿熷眾姝ラ敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭?
-	 */
 	public void run() {
-		while (!closed) {
-			try {
-				synchronized (this) {
-					if (asyncMessages.isEmpty()) {
-						wait();
-					}
-					if (closed) break;
-				}
-				for (Iterator it = asyncMessages.entrySet().iterator(); it.hasNext();) {
-					Map.Entry<String, JMSMessage> entry = (Map.Entry<String, JMSMessage>) it.next();
-					String consumerId = entry.getKey();
-					JMSMessage message = entry.getValue();
-					JMSConsumer consumer = consumers.get(consumerId);
-					message.setSession(this);
-					message.setConsumer(consumer);
-					consumer.getMessageListener().onMessage(message);
-					it.remove();
-					if (this.getAcknowledgeMode() == Session.AUTO_ACKNOWLEDGE) {
-						acknowledge(consumer, message);
-					}
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+
 	}
 
 	private void checkClosed() throws javax.jms.IllegalStateException {
@@ -338,25 +281,19 @@ public class JMSSession implements Session,
 		new Thread(this, "JMSSession-" + sessionId).start();
 	}
 
-	void sendMessage(Message message) throws JMSException {
-		getJMSConnection().getContainer().sendMessage((JMSMessage) message);
-	}
 
-	/**
-	 * @param timeout 0 forever; -1 noWait; >1 timeToWait
-	 * @return
-	 */
+/*
 	JMSMessage receiveMessage(JMSConsumer consumer, long timeout) throws JMSException {
 		if (!getJMSConnection().isStarted()) {
 			throw new IllegalStateException("connection " + getJMSConnection().getClientID() + " not started, can't receive message.");
 		}
-		JMSMessage message = getJMSConnection().getContainer().receiveMessage(getJMSConnection().getClientID(),
+		JMSMessage message = getJMSConnection().getConnectionFactory().receiveMessage(getJMSConnection().getClientID(),
 		        getSessionId(),
 		        consumer.getConsumerId(),
 		        timeout);
 		// acknowledge message
 		if (getAcknowledgeMode() == Session.AUTO_ACKNOWLEDGE) {
-			getJMSConnection().getContainer().acknowledge(getJMSConnection().getClientID(),
+			getJMSConnection().getConnectionFactory().acknowledge(getJMSConnection().getClientID(),
 			        getSessionId(),
 			        consumer.getConsumerId(),
 			        message.getJMSMessageID());
@@ -365,7 +302,7 @@ public class JMSSession implements Session,
 	}
 
 	protected synchronized void setConsumerAsync(JMSConsumer consumer, boolean async) throws JMSException {
-		getJMSConnection().getContainer().setConsumerAsync(getJMSConnection().getClientID(),
+		getJMSConnection().getConnectionFactory().setConsumerAsync(getJMSConnection().getClientID(),
 		        getSessionId(),
 		        consumer.getConsumerId(),
 		        async);
@@ -379,8 +316,9 @@ public class JMSSession implements Session,
 	}
 
 	public void acknowledge(JMSConsumer consumer, JMSMessage message) throws JMSException {
-		getJMSConnection().getContainer().acknowledge(getJMSConnection().getClientID(), sessionId, consumer.getConsumerId(), message.getJMSMessageID());
+		getJMSConnection().getConnectionFactory().acknowledge(getJMSConnection().getClientID(), sessionId, consumer.getConsumerId(), message.getJMSMessageID());
 	}
+*/
 
 	void closeConsumer(String consumerId) {
 		consumers.remove(consumerId);

@@ -7,6 +7,9 @@
 package org.jfox.jms;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
@@ -21,24 +24,38 @@ import javax.jms.XAQueueConnectionFactory;
 import javax.jms.XATopicConnection;
 import javax.jms.XATopicConnectionFactory;
 
+import org.jfox.framework.annotation.Service;
+import org.jfox.framework.component.ActiveComponent;
+import org.jfox.framework.component.Component;
+import org.jfox.framework.component.SingletonComponent;
 import org.jfox.jms.connector.JMSContainer;
+import org.jfox.jms.destination.JMSDestination;
+import org.jfox.jms.destination.JMSQueue;
+import org.jfox.jms.destination.JMSTopic;
+import org.jfox.jms.message.JMSMessage;
 
 
 /**
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
  */
 
+@Service(id="defaultcf")
 public class JMSConnectionFactory implements ConnectionFactory,
         QueueConnectionFactory,
         TopicConnectionFactory,
         XAConnectionFactory,
         XAQueueConnectionFactory,
         XATopicConnectionFactory,
-        Serializable {
+        Serializable,
+        Component,
+        SingletonComponent,
+        ActiveComponent {
 
 	private transient JMSContainer container = null;
 
-	public Connection createConnection() throws JMSException {
+    private Map<String, JMSDestination> destinationMap = new HashMap<String, JMSDestination>();
+
+    public Connection createConnection() throws JMSException {
 		return createConnection(null, null);
 	}
 
@@ -86,38 +103,27 @@ public class JMSConnectionFactory implements ConnectionFactory,
         return (XATopicConnection) createXAConnection(userName,password);
 	}
 
-	/**
+    public JMSQueue createQueue(String name){
+        return null;
+    }
+    
+    public JMSTopic createTopic(String name){
+        return null;
+    }
+
+    /**
 	 * @return
 	 * @throws JMSException
 	 */
 	protected synchronized JMSConnection createConnection(String userName, String password, boolean isXA) throws JMSException {
-
-//		String clientId = UUID.randomUUID().toString();
-/* comment for compiler
-		ObjectId clientId = new ObjectId(ObjectUUID.randomUUID());
-		if (container == null) {
-			// lookup ConnectorService from jndi, 鐒堕敓鏂ゆ嫹浣块敓鐭鎷锋€侀敓鏂ゆ嫹閿熸枻鎷烽敓闃跺府鎷烽敓?JMSContainer 閿熸枻鎷烽敓鏂ゆ嫹
-			ConnectorRemote remote = ConnectorHelper.lookupConnector(JNDIProperties.getProviderURL());
-			container = (JMSContainer) Proxy.newProxyInstance(this.getClass().getClassLoader(),
-			        new Class[]{JMSContainer.class},
-			        new JMSConnectorInvoker(clientId, remote));
-		}
-
-		container.auth(userName, password);
-
-		JMSConnection conn = new JMSConnection(clientId.toString(), container, isXA);
-		try {
-			UnicastRemoteObject.exportObject(conn);
-			container.registerConnection(clientId.toString(), Marshaller.marshall(conn));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return conn;
-*/
-        return null;
+        return new JMSConnection(UUID.randomUUID().toString(), this, true);
     }
 
-	public static void main(String[] args) {
+    public void sendMessage(JMSDestination destination, JMSMessage message){
+        
+    }
+
+    public static void main(String[] args) {
 
 	}
 }

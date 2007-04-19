@@ -6,8 +6,6 @@
 
 package org.jfox.jms;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,9 +31,6 @@ import javax.jms.XASession;
 import javax.jms.XATopicConnection;
 import javax.jms.XATopicSession;
 
-import org.jfox.jms.connector.JMSContainer;
-import org.jfox.jms.message.JMSMessage;
-
 /**
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
  */
@@ -45,10 +40,9 @@ public class JMSConnection implements Connection,
                                       TopicConnection,
                                       XAConnection,
                                       XAQueueConnection,
-                                      XATopicConnection,
-        JMSConnectionRemote {
+                                      XATopicConnection {
 
-	protected JMSContainer container = null;
+	protected JMSConnectionFactory connectionFactory = null;
     protected boolean started = false;
     protected boolean closed = false;
 
@@ -60,11 +54,11 @@ public class JMSConnection implements Connection,
 	 * sessions created by this connection
 	 * sessionId => session
 	 */
-    protected transient Map<String, JMSSession> sessions = new HashMap<String, JMSSession>();
+    protected final transient Map<String, JMSSession> sessions = new HashMap<String, JMSSession>();
 
-	public JMSConnection(String clientId, JMSContainer container, boolean isXA) {
+	public JMSConnection(String clientId, JMSConnectionFactory container, boolean isXA) {
 		this.clientId = clientId;
-		this.container = container;
+		this.connectionFactory = container;
 		this.isXA = isXA;
 	}
 
@@ -83,7 +77,6 @@ public class JMSConnection implements Connection,
 			acknowledgeMode = Session.SESSION_TRANSACTED;
 		}
 		JMSSession session = new JMSSession(this, transacted, acknowledgeMode, false);
-		container.registerSession(clientId, session.getSessionId());
 		synchronized (sessions) {
 			sessions.put(session.getSessionId(), session);
 		}
@@ -121,14 +114,12 @@ public class JMSConnection implements Connection,
 	 */
 	public synchronized void start() throws JMSException {
 		if (!started) {
-			container.startConnection(getClientID());
 			this.started = true;
 		}
 	}
 
 	public synchronized void stop() throws JMSException {
 		if (started) {
-			container.stopConnection(getClientID());
 			started = false;
 		}
 	}
@@ -141,13 +132,6 @@ public class JMSConnection implements Connection,
 		List<JMSSession> list = new ArrayList<JMSSession>(sessions.values());
 		for (JMSSession session : list) {
 			session.close();
-		}
-
-		try {
-			container.unregisterConnection(this.getClientID());
-			UnicastRemoteObject.unexportObject(this, false);
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 
 	}
@@ -212,13 +196,9 @@ public class JMSConnection implements Connection,
 		return (XATopicSession) createXASession();
 	}
 
-	public void onMessage(String sessionId, String consumerId, JMSMessage msg) throws RemoteException, JMSException {
-		JMSSession session = sessions.get(sessionId);
-		session.onMessage(consumerId, msg);
-	}
 
-	JMSContainer getContainer() {
-		return container;
+	JMSConnectionFactory getConnectionFactory() {
+		return connectionFactory;
 	}
 
 	protected void checkClosed() throws javax.jms.IllegalStateException {
@@ -233,7 +213,9 @@ public class JMSConnection implements Connection,
 
 	void closeSession(String sessionId) throws JMSException {
 		sessions.remove(sessionId);
-		container.closeSession(clientId, sessionId);
+
+        //TODO: close destinations from connection factory
+//        connectionFactory.closeSession(clientId, sessionId);
 	}
 
 	public static void main(String[] args) {
