@@ -103,7 +103,6 @@ public class JMSQueue extends JMSDestination implements Queue, Runnable {
 
     public void start() {
         started = true;
-        //TODO: DAEMON thread
         threadExecutor.submit(this);
     }
 

@@ -8,6 +8,7 @@ package org.jfox.jms.destination;
 
 import java.io.Serializable;
 import javax.jms.Destination;
+import javax.jms.Message;
 
 /**
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
@@ -45,6 +46,12 @@ public abstract class JMSDestination implements Destination, Serializable {
 	}
 
     public abstract boolean isTopic();
+
+    public abstract void putMessage(Message msg);
+
+    public abstract int remainSize();
+
+    public abstract int sentSize();
 
     //TODO: 增加计数器，记录交换了多少消息
 
