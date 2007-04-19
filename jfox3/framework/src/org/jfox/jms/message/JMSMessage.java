@@ -13,9 +13,6 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageNotWriteableException;
 
-import org.jfox.jms.JMSConsumer;
-import org.jfox.jms.JMSSession;
-
 /**
  * <p/>
  * This class implements the JMS Message. The message class is the underlying
@@ -37,15 +34,6 @@ public class JMSMessage implements Message, Serializable, Comparable {
 
 	// true if message body is modifiable, false if message body is read-only
 	private boolean bodyModifiable = true;
-
-	/**
-	 * ��Ϣ���յ�session
-	 */
-	private transient JMSSession session = null;
-	/**
-	 * ��Ϣ���յ�consumer
-	 */
-	private transient JMSConsumer consumer = null;
 
 	public JMSMessage() {
 		try {
@@ -766,10 +754,7 @@ public class JMSMessage implements Message, Serializable, Comparable {
 	 * @see javax.jms.Message#acknowledge()
 	 */
 	public void acknowledge() throws JMSException {
-		if (session == null || consumer == null) {
-			throw new JMSException("message not delivered.");
-		}
-		session.acknowledge(consumer, this);
+        throw new UnsupportedOperationException("Message.acknowledge");
 	}
 
 	/**
@@ -837,11 +822,4 @@ public class JMSMessage implements Message, Serializable, Comparable {
 		}
 	}
 
-	public void setSession(JMSSession session) {
-		this.session = session;
-	}
-
-	public void setConsumer(JMSConsumer consumer) {
-		this.consumer = consumer;
-	}
 }
