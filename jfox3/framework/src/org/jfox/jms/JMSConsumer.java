@@ -81,6 +81,7 @@ public class JMSConsumer implements MessageConsumer, QueueReceiver, TopicSubscri
 		checkClosed();
         destination.registerMessageListener(this);
         try {
+            //等待 onMessage 唤醒
             this.wait(timeout);
             Message tempMessage = currentReceivedMessage;
             currentReceivedMessage = null;
