@@ -103,6 +103,10 @@ public class JMSConnectionFactory implements ConnectionFactory,
         return (XATopicConnection) createXAConnection(userName,password);
 	}
 
+    /**
+     * TODO: create queue with given name
+     * @param name queue name
+     */
     public JMSQueue createQueue(String name){
         return null;
     }
@@ -111,11 +115,7 @@ public class JMSConnectionFactory implements ConnectionFactory,
         return null;
     }
 
-    /**
-	 * @return
-	 * @throws JMSException
-	 */
-	protected synchronized JMSConnection createConnection(String userName, String password, boolean isXA) throws JMSException {
+	protected synchronized JMSConnection createConnection(String userName, String password, boolean isXA) {
         return new JMSConnection(UUID.randomUUID().toString(), this, true);
     }
 

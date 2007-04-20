@@ -10,7 +10,7 @@ import javax.jms.JMSException;
  *
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
-public class QueueMessagePool implements MessagePool{
+public class QueueMessagePool {
 
     PriorityBlockingQueue<Message> queue = new PriorityBlockingQueue<Message>(0, new Comparator<Message>(){
 

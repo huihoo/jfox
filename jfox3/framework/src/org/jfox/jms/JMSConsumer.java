@@ -103,7 +103,7 @@ public class JMSConsumer implements MessageConsumer, QueueReceiver, TopicSubscri
 	public void close() throws JMSException {
 		if (closed) return;
 		closed = true;
-		session.closeConsumer(consumerId);
+		session.removeConsumer(consumerId);
 	}
 
 	public Queue getQueue() throws JMSException {

@@ -127,11 +127,11 @@ public class JMSProducer implements MessageProducer, QueueSender, TopicPublisher
 			throw new JMSException("Null destination");
 		if (message == null)
 			throw new JMSException("Null message");
-		if (disableMessageID == false) {
+		if (!disableMessageID) {
 			message.setJMSMessageID("ID:" + UUID.randomUUID().toString());
 		}
 
-		if (disableTimestamp == false) {
+		if (!disableTimestamp) {
 			message.setJMSTimestamp(System.currentTimeMillis());
 		}
 
@@ -139,7 +139,7 @@ public class JMSProducer implements MessageProducer, QueueSender, TopicPublisher
 		message.setJMSDeliveryMode(deliveryMode);
 		message.setJMSPriority(priority);
 
-		if (disableTimestamp == false && timeToLive != 0) {
+		if (!disableTimestamp && timeToLive != 0) {
 			message.setJMSExpiration(message.getJMSTimestamp() + timeToLive);
 		}
 
@@ -177,7 +177,7 @@ public class JMSProducer implements MessageProducer, QueueSender, TopicPublisher
 	}
 
 	public void publish(Topic topic, Message message, int deliveryMode, int priority, long timeToLive) throws JMSException {
-		send((Destination) topic, message, deliveryMode, priority, timeToLive);
+		send(topic, message, deliveryMode, priority, timeToLive);
 	}
 
 	/**

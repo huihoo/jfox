@@ -43,7 +43,7 @@ public class JMSSession implements Session,
 
 	private MessageListener listener;
 
-	private Map<String, JMSConsumer> consumers = new HashMap<String, JMSConsumer>();
+	private Map<String, JMSConsumer> consumerMap = new HashMap<String, JMSConsumer>();
 
 	private String sessionId = UUID.randomUUID().toString();
 
@@ -119,11 +119,11 @@ public class JMSSession implements Session,
 	public synchronized void close() throws JMSException {
 		if (closed) return;
 		this.closed = true;
-		conn.closeSession(sessionId);
-		synchronized (this) {
-			notifyAll();
-		}
-	}
+		conn.removeSession(sessionId);
+        for(JMSConsumer consumer : consumerMap.values()){
+            consumer.close();
+        }
+    }
 
 	public synchronized void recover() throws JMSException {
 		throw new JMSException("not support now!");
@@ -136,7 +136,6 @@ public class JMSSession implements Session,
 	public void setMessageListener(MessageListener listener) throws JMSException {
 		checkClosed();
 		this.listener = listener;
-		start();
 	}
 
 	public MessageProducer createProducer(Destination destination) throws JMSException {
@@ -162,7 +161,7 @@ public class JMSSession implements Session,
 			throw new InvalidDestinationException("destination is null");
 		}
 		JMSConsumer consumer = new JMSConsumer(this, destination, messageSelector, NoLocal);
-		consumers.put(consumer.getConsumerId(), consumer);
+		consumerMap.put(consumer.getConsumerId(), consumer);
 		return consumer;
 	}
 
@@ -255,7 +254,7 @@ public class JMSSession implements Session,
 	}
 
 	public void run() {
-
+        // do nothing
 	}
 
 	private void checkClosed() throws javax.jms.IllegalStateException {
@@ -276,52 +275,13 @@ public class JMSSession implements Session,
 	JMSConnection getJMSConnection() {
 		return conn;
 	}
-
-	protected void start() {
-		new Thread(this, "JMSSession-" + sessionId).start();
+    
+	void start() {
+		
 	}
 
-
-/*
-	JMSMessage receiveMessage(JMSConsumer consumer, long timeout) throws JMSException {
-		if (!getJMSConnection().isStarted()) {
-			throw new IllegalStateException("connection " + getJMSConnection().getClientID() + " not started, can't receive message.");
-		}
-		JMSMessage message = getJMSConnection().getConnectionFactory().receiveMessage(getJMSConnection().getClientID(),
-		        getSessionId(),
-		        consumer.getConsumerId(),
-		        timeout);
-		// acknowledge message
-		if (getAcknowledgeMode() == Session.AUTO_ACKNOWLEDGE) {
-			getJMSConnection().getConnectionFactory().acknowledge(getJMSConnection().getClientID(),
-			        getSessionId(),
-			        consumer.getConsumerId(),
-			        message.getJMSMessageID());
-		}
-		return message;
-	}
-
-	protected synchronized void setConsumerAsync(JMSConsumer consumer, boolean async) throws JMSException {
-		getJMSConnection().getConnectionFactory().setConsumerAsync(getJMSConnection().getClientID(),
-		        getSessionId(),
-		        consumer.getConsumerId(),
-		        async);
-	}
-
-	protected void onMessage(String consumerId, JMSMessage message) {
-		synchronized (this) {
-			asyncMessages.put(consumerId, message);
-			this.notifyAll();
-		}
-	}
-
-	public void acknowledge(JMSConsumer consumer, JMSMessage message) throws JMSException {
-		getJMSConnection().getConnectionFactory().acknowledge(getJMSConnection().getClientID(), sessionId, consumer.getConsumerId(), message.getJMSMessageID());
-	}
-*/
-
-	void closeConsumer(String consumerId) {
-		consumers.remove(consumerId);
+	void removeConsumer(String consumerId) {
+		consumerMap.remove(consumerId);
 	}
 
 	public static void main(String[] args) {

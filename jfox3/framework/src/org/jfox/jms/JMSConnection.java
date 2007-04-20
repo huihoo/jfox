@@ -32,6 +32,7 @@ import javax.jms.XATopicConnection;
 import javax.jms.XATopicSession;
 
 /**
+ * 
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
  */
 
@@ -54,7 +55,7 @@ public class JMSConnection implements Connection,
 	 * sessions created by this connection
 	 * sessionId => session
 	 */
-    protected final transient Map<String, JMSSession> sessions = new HashMap<String, JMSSession>();
+    protected final transient Map<String, JMSSession> sessionMap = new HashMap<String, JMSSession>();
 
 	public JMSConnection(String clientId, JMSConnectionFactory container, boolean isXA) {
 		this.clientId = clientId;
@@ -77,8 +78,8 @@ public class JMSConnection implements Connection,
 			acknowledgeMode = Session.SESSION_TRANSACTED;
 		}
 		JMSSession session = new JMSSession(this, transacted, acknowledgeMode, false);
-		synchronized (sessions) {
-			sessions.put(session.getSessionId(), session);
+		synchronized (sessionMap) {
+			sessionMap.put(session.getSessionId(), session);
 		}
 		return session;
 	}
@@ -115,7 +116,10 @@ public class JMSConnection implements Connection,
 	public synchronized void start() throws JMSException {
 		if (!started) {
 			this.started = true;
-		}
+            for(JMSSession session : sessionMap.values()) {
+                session.start();
+            }
+        }
 	}
 
 	public synchronized void stop() throws JMSException {
@@ -129,7 +133,7 @@ public class JMSConnection implements Connection,
 		this.stop();
 		closed = true;
 
-		List<JMSSession> list = new ArrayList<JMSSession>(sessions.values());
+		List<JMSSession> list = new ArrayList<JMSSession>(sessionMap.values());
 		for (JMSSession session : list) {
 			session.close();
 		}
@@ -182,8 +186,8 @@ public class JMSConnection implements Connection,
 		}
 
 		JMSSession session = new JMSSession(this, true, Session.SESSION_TRANSACTED, true);
-		synchronized (sessions) {
-			sessions.put(session.getSessionId(), session);
+		synchronized (sessionMap) {
+			sessionMap.put(session.getSessionId(), session);
 		}
 		return session;
 	}
@@ -211,8 +215,10 @@ public class JMSConnection implements Connection,
 		return started;
 	}
 
-	void closeSession(String sessionId) throws JMSException {
-		sessions.remove(sessionId);
+	void removeSession(String sessionId) throws JMSException {
+        if(sessionMap.containsKey(sessionId)) {
+            sessionMap.remove(sessionId);
+        }
 
         //TODO: close destinations from connection factory
 //        connectionFactory.closeSession(clientId, sessionId);
