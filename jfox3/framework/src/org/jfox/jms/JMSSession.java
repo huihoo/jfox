@@ -44,8 +44,9 @@ public class JMSSession implements Session,
 	private MessageListener listener;
 
 	private Map<String, JMSConsumer> consumerMap = new HashMap<String, JMSConsumer>();
+    private Map<String, JMSProducer> producerMap = new HashMap<String, JMSProducer>();
 
-	private String sessionId = UUID.randomUUID().toString();
+    private String sessionId = UUID.randomUUID().toString();
 
 	public JMSSession(JMSConnection conn, boolean transacted, int acknowledgeMode, boolean isXA) {
 		this.conn = conn;
@@ -284,7 +285,11 @@ public class JMSSession implements Session,
 		consumerMap.remove(consumerId);
 	}
 
-	public static void main(String[] args) {
+    void removeProducer(String producerId){
+        producerMap.remove(producerId);
+    }
+
+    public static void main(String[] args) {
 
 	}
 }
