@@ -109,6 +109,12 @@ public class JMSConnectionFactory implements ConnectionFactory,
         return (XATopicConnection)createXAConnection(userName, password);
     }
 
+    public void close(){
+        for(JMSDestination destination : destinationMap.values()) {
+            destination.stop();
+        }
+    }
+
     /**
      * TODO: create queue with given name
      *
@@ -156,7 +162,7 @@ public class JMSConnectionFactory implements ConnectionFactory,
     }
 
     public static void main(String[] args) throws Exception {
-        QueueConnectionFactory connectionFactory = new JMSConnectionFactory();
+        JMSConnectionFactory connectionFactory = new JMSConnectionFactory();
         QueueConnection connection = connectionFactory.createQueueConnection();
         QueueSession session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
         Queue queue = session.createQueue("defaultQ");
@@ -167,5 +173,8 @@ public class JMSConnectionFactory implements ConnectionFactory,
         QueueReceiver receiver = session.createReceiver(queue);
         Message message = receiver.receive();
         System.out.println("Received Message: " + message);
+
+        Thread.sleep(2000);
+        connectionFactory.close();
     }
 }
