@@ -45,7 +45,7 @@ public class JMSConsumer implements MessageConsumer, QueueReceiver, TopicSubscri
 	private String consumerId = UUID.randomUUID().toString();
 
     // 通过 receive 方法同步接受到的消息
-    private Message currentReceivedMessage = null;
+    private volatile Message currentReceivedMessage = null;
 
     public JMSConsumer(JMSSession session, Destination destination, String msgSelector, boolean noLocal) {
 		this.session = session;
@@ -72,12 +72,12 @@ public class JMSConsumer implements MessageConsumer, QueueReceiver, TopicSubscri
 		this.listener = listener;
 	}
 
-	public Message receive() throws JMSException {
+	public synchronized Message receive() throws JMSException {
 		checkClosed();
 		return receive(0);
 	}
 
-	public Message receive(long timeout) throws JMSException {
+	public synchronized Message receive(long timeout) throws JMSException {
 		checkClosed();
         destination.registerMessageListener(this);
         try {
@@ -95,7 +95,7 @@ public class JMSConsumer implements MessageConsumer, QueueReceiver, TopicSubscri
         }
     }
 
-	public Message receiveNoWait() throws JMSException {
+	public synchronized Message receiveNoWait() throws JMSException {
 		checkClosed();
 		return receive(1);
 	}
@@ -136,7 +136,7 @@ public class JMSConsumer implements MessageConsumer, QueueReceiver, TopicSubscri
 	}
 
     //TODO: 默认 onMessage，在没有设置 MessageListener的情况，调用 receive 方法时，会用默认 MessageListener(this)，注册到 Queue 中
-    public void onMessage(Message message) {
+    public synchronized void onMessage(Message message) {
         // default message listener onMessage
         currentReceivedMessage = message;
         // notify wait in receive method

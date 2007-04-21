@@ -31,7 +31,7 @@ public class JMSSession implements Session,
         XAQueueSession,
         XATopicSession {
 
-	private JMSConnection conn;
+	private JMSConnection connection;
 
 	private boolean transacted;
 
@@ -49,7 +49,7 @@ public class JMSSession implements Session,
     private String sessionId = UUID.randomUUID().toString();
 
 	public JMSSession(JMSConnection conn, boolean transacted, int acknowledgeMode, boolean isXA) {
-		this.conn = conn;
+		this.connection = conn;
 		this.transacted = transacted;
 		this.acknowledgeMode = acknowledgeMode;
 		this.isXA = isXA;
@@ -94,9 +94,9 @@ public class JMSSession implements Session,
 
 	public TextMessage createTextMessage(String text) throws JMSException {
 		checkClosed();
-		TextMessageImpl tm = new TextMessageImpl();
-		tm.setText(text);
-		return tm;
+		TextMessageImpl message = new TextMessageImpl();
+		message.setText(text);
+		return message;
 	}
 
 	public boolean getTransacted() throws JMSException {
@@ -120,7 +120,7 @@ public class JMSSession implements Session,
 	public synchronized void close() throws JMSException {
 		if (closed) return;
 		this.closed = true;
-		conn.removeSession(sessionId);
+		connection.removeSession(sessionId);
         for(JMSConsumer consumer : consumerMap.values()){
             consumer.close();
         }
@@ -216,7 +216,7 @@ public class JMSSession implements Session,
 	}
 
 	public QueueSender createSender(Queue queue) throws JMSException {
-		throw new JMSException("not support now!");
+        return (QueueSender)createProducer(queue);
 	}
 
 	public TopicSubscriber createSubscriber(Topic topic) throws JMSException {
@@ -239,7 +239,7 @@ public class JMSSession implements Session,
 	}
 
 	public XAResource getXAResource() {
-		if (isXA == false) {
+		if (!isXA) {
 			throw new java.lang.IllegalStateException("current session " + this + " is not an XASession");
 		}
 		//TODO: getXAResource
@@ -274,7 +274,7 @@ public class JMSSession implements Session,
 	}
 
 	JMSConnection getJMSConnection() {
-		return conn;
+		return connection;
 	}
     
 	void start() {

@@ -27,6 +27,8 @@ import javax.jms.XATopicConnectionFactory;
 import javax.jms.Queue;
 import javax.jms.QueueSession;
 import javax.jms.QueueSender;
+import javax.jms.QueueReceiver;
+import javax.jms.Message;
 
 import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ActiveComponent;
@@ -145,6 +147,7 @@ public class JMSConnectionFactory implements ConnectionFactory,
     }
 
     protected synchronized JMSConnection createConnection(String userName, String password, boolean isXA) {
+        //TODO: support username & password
         return new JMSConnection(UUID.randomUUID().toString(), this, true);
     }
 
@@ -159,5 +162,10 @@ public class JMSConnectionFactory implements ConnectionFactory,
         Queue queue = session.createQueue("defaultQ");
         QueueSender sender = session.createSender(queue);
         sender.send(session.createTextMessage("Hello, JMS!"));
+
+        connection.start();
+        QueueReceiver receiver = session.createReceiver(queue);
+        Message message = receiver.receive();
+        System.out.println("Received Message: " + message);
     }
 }
