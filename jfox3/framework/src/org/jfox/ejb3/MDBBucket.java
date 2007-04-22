@@ -1,10 +1,15 @@
 package org.jfox.ejb3;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+import javax.ejb.ActivationConfigProperty;
 import javax.ejb.EJBException;
 import javax.ejb.EJBObject;
+import javax.ejb.MessageDriven;
 import javax.ejb.RemoveException;
 import javax.ejb.TimerService;
+import javax.jms.Topic;
 
 import org.apache.commons.pool.PoolableObjectFactory;
 import org.apache.commons.pool.impl.GenericObjectPool;
@@ -12,6 +17,7 @@ import org.jfox.ejb3.dependent.FieldEJBDependence;
 import org.jfox.ejb3.dependent.FieldResourceDependence;
 import org.jfox.entity.dependent.FieldPersistenceContextDependence;
 import org.jfox.framework.component.Module;
+import org.jfox.jms.MessageService;
 
 /**
  * Container of MessageDriven EJB，store all Meta data, and as EJB Factory
@@ -38,9 +44,67 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory {
     public MDBBucket(EJBContainer container, Class<?> beanClass, Module module) {
         super(container, beanClass, module);
 
+        introspectMDB();
         injectClassDependents();
     }
 
+    private void introspectMDB() {
+        MessageDriven messageDriven = getBeanClass().getAnnotation(MessageDriven.class);
+        String name = messageDriven.name();
+        if (name.equals("")) {
+            name = getBeanClass().getSimpleName();
+        }
+        setEJBName(name);
+
+        String mappedName = messageDriven.mappedName();
+        if (mappedName.equals("")) {
+            if (isRemote()) {
+                addMappedName(name + "/remote");
+            }
+            if (isLocal()) {
+                addMappedName(name + "/local");
+            }
+        }
+        else {
+            addMappedName(mappedName);
+        }
+
+        setDescription(messageDriven.description());
+
+        // initialize Message Service
+        Map<String, String> activationConfigMap = new HashMap<String, String>();
+        ActivationConfigProperty[] activationConfigProperties = messageDriven.activationConfig();
+        for (ActivationConfigProperty property : activationConfigProperties) {
+            activationConfigMap.put(property.propertyName(), property.propertyValue());
+        }
+        String destination = activationConfigMap.get("destination");
+        String destinationType = activationConfigMap.get("destinationType");
+        try {
+            if (destinationType.equals(Topic.class.getName())) { //Topic
+                MessageService messageService = getEJBContainer().getMessageService();
+                messageService.createTopic(destination);
+            }
+            else { // Queue
+                MessageService messageService = getEJBContainer().getMessageService();
+                messageService.createQueue(destination);
+            }
+        }
+        catch (Exception e) {
+            throw new EJBException("Could not initialize MessageDriven Bean: " + getEJBName(), e);
+        }
+    }
+
+    public boolean isLocal() {
+        return true;
+    }
+
+    public boolean isRemote() {
+        return false;
+    }
+
+    public boolean isSession() {
+        return false;
+    }
 
     /**
      * 从 Pool 中得到一个新的 Bean 实例
@@ -67,7 +131,7 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory {
         try {
             pool.returnObject(ejbContext);
         }
-        catch(Exception e){
+        catch (Exception e) {
             throw new EJBException("Return EJBContext to pool failed!", e);
         }
     }
@@ -89,7 +153,7 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory {
         return ejbObjectId;
     }
 
-    public boolean isStateless(){
+    public boolean isStateless() {
         return false;
     }
 
@@ -106,7 +170,7 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory {
             pool.clear();
             pool.close();
         }
-        catch(Exception e){
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
