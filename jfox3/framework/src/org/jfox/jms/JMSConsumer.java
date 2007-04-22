@@ -79,6 +79,11 @@ public class JMSConsumer implements MessageConsumer, QueueReceiver, TopicSubscri
 
 	public synchronized Message receive(long timeout) throws JMSException {
 		checkClosed();
+        // connection is not started
+        if(!session.getJMSConnection().isStarted()) {
+            return null;
+        }
+        
         destination.registerMessageListener(this);
         try {
             //等待 onMessage 唤醒
