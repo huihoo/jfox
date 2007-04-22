@@ -10,14 +10,18 @@ import javax.ejb.MessageDriven;
 import javax.ejb.RemoveException;
 import javax.ejb.TimerService;
 import javax.jms.Topic;
+import javax.jms.MessageListener;
+import javax.jms.Message;
 
 import org.apache.commons.pool.PoolableObjectFactory;
 import org.apache.commons.pool.impl.GenericObjectPool;
 import org.jfox.ejb3.dependent.FieldEJBDependence;
 import org.jfox.ejb3.dependent.FieldResourceDependence;
+import org.jfox.ejb3.security.SecurityContext;
 import org.jfox.entity.dependent.FieldPersistenceContextDependence;
 import org.jfox.framework.component.Module;
 import org.jfox.jms.MessageService;
+import org.jfox.jms.MessageListenerUtils;
 import org.jfox.jms.destination.JMSDestination;
 
 /**
@@ -25,7 +29,7 @@ import org.jfox.jms.destination.JMSDestination;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class MDBBucket extends SessionBucket implements PoolableObjectFactory {
+public class MDBBucket extends SessionBucket implements PoolableObjectFactory, MessageListener {
 
     private EJBObjectId ejbObjectId;
 
@@ -167,12 +171,18 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory {
         return false;
     }
 
+    public void start() {
+        // register MessageListener to Destination
+        getDestination().registerMessageListener(this);
+    }
+
     /**
      * destroy bucket, invoke when container unload ejb
      */
-    public void destroy() {
+    public void stop() {
         logger.debug("Destroy EJB: " + getEJBName() + ", Module: " + getModule().getName());
         try {
+            getDestination().unregisterMessageListener(this);
             pool.clear();
             pool.close();
         }
@@ -189,6 +199,19 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory {
             proxyStub = super.createProxyStub();
         }
         return proxyStub;
+    }
+
+    public void onMessage(Message message) {
+        try {
+            getEJBContainer().invokeEJB(createEJBObjectId(), MessageListenerUtils.getOnMessageMethod(), new Object[0], new SecurityContext());
+        }
+        catch(EJBException e) {
+            throw e;
+        }
+        catch(Exception e){
+            throw new EJBException(e);
+        }
+
     }
 
     //--- jakarta commons-pool PoolableObjectFactory ---

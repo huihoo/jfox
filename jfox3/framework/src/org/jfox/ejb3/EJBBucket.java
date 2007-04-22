@@ -119,8 +119,10 @@ public interface EJBBucket {
      */
     Context getENContext(EJBObjectId ejbObjectId);
 
+    void start();
+
     /**
      * 销毁 EJBBucket
      */
-    void destroy();
+    void stop();
 }

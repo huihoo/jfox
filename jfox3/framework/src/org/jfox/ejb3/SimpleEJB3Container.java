@@ -21,8 +21,6 @@ import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
-import javax.jms.Message;
-import javax.jms.MessageListener;
 import javax.naming.Binding;
 import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
@@ -59,9 +57,7 @@ import org.jfox.framework.event.ModuleListener;
 import org.jfox.framework.event.ModuleLoadingEvent;
 import org.jfox.framework.event.ModuleUnloadedEvent;
 import org.jfox.jms.JMSConnectionFactory;
-import org.jfox.jms.MessageListenerUtils;
 import org.jfox.jms.MessageService;
-import org.jfox.jms.destination.JMSDestination;
 
 /**
  * 只支持 Local/Stateless Session Bean, Local MDB
@@ -214,38 +210,23 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
             catch (NamingException e) {
                 throw new EJBException("bind " + bucket.getMappedNames() + " failed!", e);
             }
+            bucket.start();
             logger.info("Stateless EJB loaded, bean class: " + beanClass.getName());
         }
         Class[] statefulBeans = module.getModuleClassLoader().findClassAnnotatedWith(Stateful.class);
         for (Class beanClass : statefulBeans) {
             final EJBBucket bucket = loadStatefulEJB(beanClass, module);
             buckets.add(bucket);
-
             // bind to jndi
             try {
                 for (String mappedName : bucket.getMappedNames()) {
                     this.getNamingContext().bind(mappedName, bucket.createProxyStub());
                 }
-                // register MessageListener to Destination
-                JMSDestination destination = ((MDBBucket)bucket).getDestination();
-                final EJBObjectId ejbObjectId = ((MDBBucket)bucket).createEJBObjectId();
-                destination.registerMessageListener(new MessageListener(){
-                    public void onMessage(Message message) {
-                        try {
-                            invokeEJB(ejbObjectId, MessageListenerUtils.getOnMessageMethod(), new Object[0], new SecurityContext());
-                        }
-                        catch(EJBException e) {
-                            throw e;
-                        }
-                        catch(Exception e){
-                            throw new EJBException(e);
-                        }
-                    }
-                });
             }
             catch (NamingException e) {
                 throw new EJBException("Failed to bind EJB with name: " + Arrays.toString(bucket.getMappedNames()) + " !", e);
             }
+            bucket.start();
             logger.info("Stateful EJB loaded, bean class: " + beanClass.getName());
         }
 
@@ -263,6 +244,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
             catch (NamingException e) {
                 throw new EJBException("Failed to bind EJB with name: " + Arrays.toString(bucket.getMappedNames()) + " !", e);
             }
+            bucket.start();
             logger.info("Message Driven EJB loaded, bean class: " + beanClass.getName());
         }
 
@@ -312,7 +294,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
                 componentContext.fireComponentEvent(new EJBUnloadedComponentEvent(componentContext.getComponentId(), bucket));
                 // destroy ejb bucket
                 logger.info("Unload EJB: " + bucket.getEJBName() + ", Module: " + bucket.getModule().getName());
-                bucket.destroy();
+                bucket.stop();
                 try {
                     for (String mappedName : bucket.getMappedNames()) {
                         this.getNamingContext().unbind(mappedName);

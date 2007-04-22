@@ -543,10 +543,14 @@ public abstract class SessionBucket implements EJBBucket {
     }
 
 
+    public void start() {
+        // do nothing
+    }
+
     /**
      * destroy bucket, invoke when container unload ejb
      */
-    public void destroy() {
+    public void stop() {
         // do nothing
     }
 

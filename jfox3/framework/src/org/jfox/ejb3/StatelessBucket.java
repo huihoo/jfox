@@ -247,7 +247,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     /**
      * destroy bucket, invoke when container unload ejb
      */
-    public void destroy() {
+    public void stop() {
         logger.debug("Destroy EJB: " + getEJBName() + ", Module: " + getModule().getName());
         try {
             pool.clear();
