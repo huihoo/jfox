@@ -195,9 +195,10 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
     protected EJBBucket[] loadEJB(Module module) {
         List<EJBBucket> buckets = new ArrayList<EJBBucket>();
 
+        // stateless
         Class[] statelessBeans = module.getModuleClassLoader().findClassAnnotatedWith(Stateless.class);
         for (Class beanClass : statelessBeans) {
-            EJBBucket bucket = loadStatelessEJB(beanClass, module);
+            EJBBucket bucket = new StatelessBucket(this, beanClass, module);
             buckets.add(bucket);
             //fireEvent, 以便XFire可以 register Endpoint
             componentContext.fireComponentEvent(new EJBLoadedComponentEvent(componentContext.getComponentId(), bucket));
@@ -213,9 +214,10 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
             bucket.start();
             logger.info("Stateless EJB loaded, bean class: " + beanClass.getName());
         }
+        // stateful
         Class[] statefulBeans = module.getModuleClassLoader().findClassAnnotatedWith(Stateful.class);
         for (Class beanClass : statefulBeans) {
-            final EJBBucket bucket = loadStatefulEJB(beanClass, module);
+            final EJBBucket bucket = new StatefulBucket(this, beanClass, module);
             buckets.add(bucket);
             // bind to jndi
             try {
@@ -230,9 +232,10 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
             logger.info("Stateful EJB loaded, bean class: " + beanClass.getName());
         }
 
+        // message driven
         Class[] mdbBeans = module.getModuleClassLoader().findClassAnnotatedWith(MessageDriven.class);
         for (Class beanClass : mdbBeans) {
-            EJBBucket bucket = loadMessageDrivenEJB(beanClass, module);
+            EJBBucket bucket = new MDBBucket(this, beanClass, module);
             buckets.add(bucket);
             // bind to jndi
             // TODO: need to register MDB as MessageListener
@@ -249,39 +252,6 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         }
 
         return buckets.toArray(new EJBBucket[buckets.size()]);
-    }
-
-    /**
-     * load Stateless EJB
-     */
-    protected EJBBucket loadStatelessEJB(Class<?> beanClass, Module module) {
-        if (beanClass.isAnnotationPresent(Stateless.class)) {
-            StatelessBucket bucket = new StatelessBucket(this, beanClass, module);
-            return bucket;
-        }
-        return null;
-    }
-
-    /**
-     * load Stateful EJB
-     */
-    protected EJBBucket loadStatefulEJB(Class<?> beanClass, Module module) {
-        if (beanClass.isAnnotationPresent(Stateful.class)) {
-            StatefulBucket bucket = new StatefulBucket(this, beanClass, module);
-            return bucket;
-        }
-        return null;
-    }
-
-    /**
-     * load MDB 
-     */
-    protected EJBBucket loadMessageDrivenEJB(Class<?> beanClass, Module module) {
-        if(beanClass.isAnnotationPresent(MessageDriven.class)){
-            MDBBucket bucket = new MDBBucket(this, beanClass, module);
-            return bucket;
-        }
-        return null;
     }
 
     protected void unloadEJB(Module module) {
