@@ -210,7 +210,7 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
     public void stop() {
         logger.debug("Destroy EJB: " + getEJBName() + ", Module: " + getModule().getName());
         try {
-            //TODO: close JMS Connection
+            //maybe close by JMS Connection
             getDestination().unregisterMessageListener(this);
             pool.clear();
             pool.close();
