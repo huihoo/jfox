@@ -11,15 +11,7 @@ import javax.ejb.RemoveException;
 import javax.ejb.TimerService;
 import javax.jms.Message;
 import javax.jms.MessageListener;
-import javax.jms.Queue;
-import javax.jms.QueueConnection;
-import javax.jms.QueueReceiver;
-import javax.jms.QueueSession;
-import javax.jms.Session;
 import javax.jms.Topic;
-import javax.jms.TopicConnection;
-import javax.jms.TopicSession;
-import javax.jms.TopicSubscriber;
 
 import org.apache.commons.pool.PoolableObjectFactory;
 import org.apache.commons.pool.impl.GenericObjectPool;
@@ -184,7 +176,10 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
 
     public void start() {
         // register MessageListener to Destination
+        getDestination().registerMessageListener(this);
+/*
         try {
+
             MessageService connectionFactory = getEJBContainer().getMessageService();
             if (isQueue) {
                 QueueConnection connection = connectionFactory.createQueueConnection();
@@ -205,6 +200,8 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
         catch (Exception e) {
             throw new EJBException(e);
         }
+*/
+        
     }
 
     /**
@@ -213,6 +210,7 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
     public void stop() {
         logger.debug("Destroy EJB: " + getEJBName() + ", Module: " + getModule().getName());
         try {
+            //TODO: close JMS Connection
             getDestination().unregisterMessageListener(this);
             pool.clear();
             pool.close();
