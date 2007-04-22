@@ -2,9 +2,15 @@ package jfox.test.ejb3;
 
 import java.util.Arrays;
 import java.util.Map;
+import javax.ejb.EJBAccessException;
 import javax.ejb.EJBException;
 import javax.ejb.EJBObject;
-import javax.ejb.EJBAccessException;
+import javax.jms.Queue;
+import javax.jms.QueueConnection;
+import javax.jms.QueueConnectionFactory;
+import javax.jms.QueueSender;
+import javax.jms.QueueSession;
+import javax.jms.Session;
 import javax.naming.Context;
 
 import jfox.test.ejb3.entity.Order;
@@ -239,6 +245,18 @@ public class TestClient {
         catch(EJBAccessException e) {
 
         }
+
+    }
+
+    @Test
+    public void invokeMDB() throws Exception {
+        Context context = JNDIContextHelper.getInitalContext();
+        QueueConnectionFactory connectionFactory = (QueueConnectionFactory)context.lookup("defaultcf");
+        QueueConnection connection = connectionFactory.createQueueConnection();
+        QueueSession session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+        Queue queue = session.createQueue("testQ");
+        QueueSender sender = session.createSender(queue);
+        sender.send(session.createTextMessage("Hello, JMS!"));
 
     }
 

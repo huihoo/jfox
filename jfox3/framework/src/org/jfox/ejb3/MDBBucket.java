@@ -9,9 +9,17 @@ import javax.ejb.EJBObject;
 import javax.ejb.MessageDriven;
 import javax.ejb.RemoveException;
 import javax.ejb.TimerService;
-import javax.jms.Topic;
-import javax.jms.MessageListener;
 import javax.jms.Message;
+import javax.jms.MessageListener;
+import javax.jms.Queue;
+import javax.jms.QueueConnection;
+import javax.jms.QueueReceiver;
+import javax.jms.QueueSession;
+import javax.jms.Session;
+import javax.jms.Topic;
+import javax.jms.TopicConnection;
+import javax.jms.TopicSession;
+import javax.jms.TopicSubscriber;
 
 import org.apache.commons.pool.PoolableObjectFactory;
 import org.apache.commons.pool.impl.GenericObjectPool;
@@ -20,8 +28,8 @@ import org.jfox.ejb3.dependent.FieldResourceDependence;
 import org.jfox.ejb3.security.SecurityContext;
 import org.jfox.entity.dependent.FieldPersistenceContextDependence;
 import org.jfox.framework.component.Module;
-import org.jfox.jms.MessageService;
 import org.jfox.jms.MessageListenerUtils;
+import org.jfox.jms.MessageService;
 import org.jfox.jms.destination.JMSDestination;
 
 /**
@@ -46,6 +54,7 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
     private final GenericObjectPool pool = new GenericObjectPool(this);
 
     private JMSDestination destination;
+    private boolean isQueue = true;
 
     public MDBBucket(EJBContainer container, Class<?> beanClass, Module module) {
         super(container, beanClass, module);
@@ -87,10 +96,12 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
         String destinationType = activationConfigMap.get("destinationType");
         try {
             if (destinationType.equals(Topic.class.getName())) { //Topic
+                isQueue = false;
                 MessageService messageService = getEJBContainer().getMessageService();
                 this.destination = messageService.createTopic(destination);
             }
             else { // Queue
+                isQueue = true;
                 MessageService messageService = getEJBContainer().getMessageService();
                 this.destination = messageService.createQueue(destination);
             }
@@ -100,7 +111,7 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
         }
     }
 
-    public JMSDestination getDestination(){
+    public JMSDestination getDestination() {
         return destination;
     }
 
@@ -173,7 +184,27 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
 
     public void start() {
         // register MessageListener to Destination
-        getDestination().registerMessageListener(this);
+        try {
+            MessageService connectionFactory = getEJBContainer().getMessageService();
+            if (isQueue) {
+                QueueConnection connection = connectionFactory.createQueueConnection();
+                QueueSession session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+                QueueReceiver receiver = session.createReceiver((Queue)getDestination());
+                receiver.setMessageListener(this);
+                connection.start();
+
+            }
+            else {
+                TopicConnection connection = connectionFactory.createTopicConnection();
+                TopicSession session = connection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
+                TopicSubscriber receiver = session.createSubscriber((Topic)getDestination());
+                receiver.setMessageListener(this);
+                connection.start();
+            }
+        }
+        catch (Exception e) {
+            throw new EJBException(e);
+        }
     }
 
     /**
@@ -203,12 +234,12 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
 
     public void onMessage(Message message) {
         try {
-            getEJBContainer().invokeEJB(createEJBObjectId(), MessageListenerUtils.getOnMessageMethod(), new Object[0], new SecurityContext());
+            getEJBContainer().invokeEJB(createEJBObjectId(), MessageListenerUtils.getOnMessageMethod(), new Object[]{message}, new SecurityContext());
         }
-        catch(EJBException e) {
+        catch (EJBException e) {
             throw e;
         }
-        catch(Exception e){
+        catch (Exception e) {
             throw new EJBException(e);
         }
 

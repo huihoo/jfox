@@ -3,6 +3,7 @@ package org.jfox.jms;
 import java.lang.reflect.Method;
 import javax.ejb.EJBException;
 import javax.jms.MessageListener;
+import javax.jms.Message;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -12,7 +13,7 @@ public class MessageListenerUtils {
 
     static {
         try {
-            OnMessage = MessageListener.class.getMethod("onMessage");
+            OnMessage = MessageListener.class.getMethod("onMessage", Message.class);
         }
         catch (Exception e) {
             e.printStackTrace();

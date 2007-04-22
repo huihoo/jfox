@@ -11,14 +11,12 @@ import javax.jms.Message;
 @MessageDriven(activationConfig =
         {
         @ActivationConfigProperty(propertyName="destinationType", propertyValue="javax.jms.Queue"),
-        @ActivationConfigProperty(propertyName="destination", propertyValue="queue/tutorial/example")
+        @ActivationConfigProperty(propertyName="destination", propertyValue="testQ")
         })
 public class ExampleMDB implements MessageListener {
 
     public void onMessage(Message recvMsg) {
-      System.out.println("----------------");
-      System.out.println("Received message");
-      System.out.println("----------------");
+      System.out.println("Received message: " + recvMsg);
    }
 
 }
