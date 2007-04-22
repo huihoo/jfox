@@ -153,7 +153,7 @@ public abstract class JMSDestination implements Destination, Serializable, Runna
                     notEmptyListener.await();
                 }
                 final Message message = queue.take();
-                // 有可能是stop
+                // 有可能是stop调用，所以需要判断 message == null
                 if (message != null) {
                     // 使用新线程发送消息
                     threadExecutor.execute(new Runnable(){
