@@ -35,7 +35,6 @@ import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.Component;
 import org.jfox.framework.component.SingletonComponent;
-import org.jfox.jms.connector.JMSContainer;
 import org.jfox.jms.destination.JMSDestination;
 import org.jfox.jms.destination.JMSQueue;
 import org.jfox.jms.destination.JMSTopic;
@@ -57,8 +56,6 @@ public class JMSConnectionFactory implements ConnectionFactory,
         Component,
         SingletonComponent,
         ActiveComponent {
-
-    private transient JMSContainer container = null;
 
     private Map<String, JMSDestination> destinationMap = new HashMap<String, JMSDestination>();
 
