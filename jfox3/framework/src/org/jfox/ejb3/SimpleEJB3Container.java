@@ -263,7 +263,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
 
     protected EJBBucket loadMessageDrivenEJB(Class<?> beanClass, Module module) {
         if(beanClass.isAnnotationPresent(MessageDriven.class)){
-            MDBBucket1 bucket = new MDBBucket1(this, beanClass, module);
+            MDBBucket bucket = new MDBBucket(this, beanClass, module);
             return bucket;
         }
         return null;
