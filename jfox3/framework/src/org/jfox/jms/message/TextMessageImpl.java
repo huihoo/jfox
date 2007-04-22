@@ -23,52 +23,53 @@ import javax.jms.TextMessage;
 
 public class TextMessageImpl extends JMSMessage implements TextMessage {
 
-	private String text = null;
+    private String text = null;
 
-	/**
-	 * Defalut contructor.
-	 */
-	public TextMessageImpl() {
-		super();
-	}
+    /**
+     * Defalut contructor.
+     */
+    public TextMessageImpl() {
+        super();
+    }
 
-	/**
-	 * Set TextMessage body
-	 *
-	 * @param string
-	 * @throws javax.jms.JMSException if the JMS provider fails to set the TextMessage bodyt
-	 *                                due to some internal error.
-	 * @see javax.jms.TextMessage#setText(String)
-	 */
-	public void setText(String string) throws JMSException {
-		if (isBodyModifiable()) {
-			text = new String(string);
-		} else {
-			throw new MessageNotWriteableException("TextMessage is read-only.");
-		}
-	}
+    /**
+     * Set TextMessage body
+     *
+     * @param string text
+     * @throws javax.jms.JMSException if the JMS provider fails to set the TextMessage bodyt
+     *                                due to some internal error.
+     * @see javax.jms.TextMessage#setText(String)
+     */
+    public void setText(String string) throws JMSException {
+        if (isBodyModifiable()) {
+            text = string;
+        }
+        else {
+            throw new MessageNotWriteableException("TextMessage is read-only.");
+        }
+    }
 
-	/**
-	 * Return TextMessage body
-	 *
-	 * @return text
-	 * @see javax.jms.TextMessage#getText()
-	 */
-	public String getText() throws JMSException {
-		return text;
-	}
+    /**
+     * Return TextMessage body
+     *
+     * @return text
+     * @see javax.jms.TextMessage#getText()
+     */
+    public String getText() throws JMSException {
+        return text;
+    }
 
-	/**
-	 * Clear out the message body.
-	 *
-	 * @throws javax.jms.JMSException
-	 */
-	public void clearBody() throws JMSException {
-		super.clearBody();
-		text = null;
-	}
+    /**
+     * Clear out the message body.
+     *
+     * @throws javax.jms.JMSException
+     */
+    public void clearBody() throws JMSException {
+        super.clearBody();
+        text = null;
+    }
 
-	public String toString() {
-		return "TextMessage {body=" + text + "}";
-	}
+    public String toString() {
+        return "TextMessage {body=" + text + "}";
+    }
 }

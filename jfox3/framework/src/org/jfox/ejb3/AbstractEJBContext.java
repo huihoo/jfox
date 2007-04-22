@@ -16,6 +16,7 @@ import javax.ejb.Handle;
 import javax.ejb.RemoveException;
 import javax.ejb.SessionContext;
 import javax.ejb.TimerService;
+import javax.ejb.MessageDrivenContext;
 import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
 import javax.naming.NameNotFoundException;
@@ -30,7 +31,7 @@ import org.jfox.ejb3.naming.ContextAdapter;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @SuppressWarnings({"deprecation"})
-public abstract class AbstractEJBContext implements SessionContext, EJBObject, EJBLocalObject {
+public abstract class AbstractEJBContext implements SessionContext, MessageDrivenContext, EJBObject, EJBLocalObject {
 
     private EJBObjectId ejbObjectId;
     private Object ejbInstance;

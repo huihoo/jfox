@@ -20,6 +20,7 @@ import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
+import javax.ejb.MessageDriven;
 import javax.naming.Binding;
 import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
@@ -209,7 +210,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
             catch (NamingException e) {
                 throw new EJBException("bind " + bucket.getMappedNames() + " failed!", e);
             }
-            logger.info("EJB loaded, bean class: " + beanClass.getName());
+            logger.info("Stateless EJB loaded, bean class: " + beanClass.getName());
         }
         Class[] statefulBeans = module.getModuleClassLoader().findClassAnnotatedWith(Stateful.class);
         for (Class beanClass : statefulBeans) {
@@ -224,7 +225,14 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
             catch (NamingException e) {
                 throw new EJBException("Failed to bind EJB with name: " + Arrays.toString(bucket.getMappedNames()) + " !", e);
             }
-            logger.info("EJB loaded, bean class: " + beanClass.getName());
+            logger.info("Stateful EJB loaded, bean class: " + beanClass.getName());
+        }
+
+        Class[] mdbBeans = module.getModuleClassLoader().findClassAnnotatedWith(MessageDriven.class);
+        for (Class beanClass : mdbBeans) {
+            EJBBucket bucket = loadMessageDrivenEJB(beanClass, module);
+            buckets.add(bucket);
+            logger.info("Message Driven EJB loaded, bean class: " + beanClass.getName());
         }
 
         return buckets.toArray(new EJBBucket[buckets.size()]);
@@ -248,6 +256,14 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
     protected EJBBucket loadStatefulEJB(Class<?> beanClass, Module module) {
         if (beanClass.isAnnotationPresent(Stateful.class)) {
             StatefulBucket bucket = new StatefulBucket(this, beanClass, module);
+            return bucket;
+        }
+        return null;
+    }
+
+    protected EJBBucket loadMessageDrivenEJB(Class<?> beanClass, Module module) {
+        if(beanClass.isAnnotationPresent(MessageDriven.class)){
+            MDBBucket1 bucket = new MDBBucket1(this, beanClass, module);
             return bucket;
         }
         return null;
