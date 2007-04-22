@@ -54,6 +54,8 @@ import org.jfox.framework.event.ModuleListener;
 import org.jfox.framework.event.ModuleEvent;
 import org.jfox.framework.event.ModuleLoadingEvent;
 import org.jfox.framework.event.ModuleUnloadedEvent;
+import org.jfox.jms.JMSConnectionFactory;
+import org.jfox.jms.MessageService;
 import org.apache.log4j.Logger;
 
 /**
@@ -78,6 +80,9 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
 
     // TimerServer
     private ContainerTimerService timerService = null;
+
+    // JMS ConnectionFactory
+    private MessageService messageService = null;
 
     // container naming context, also is initialcontext for IntialContextFactoryImpl
     private Context namingContext = null;
@@ -118,12 +123,15 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         tm = JTATransactionManager.getIntsance();
         tm.setDefaultTransactionTimeout(getTransactionTimeout());
         timerService = new ContainerTimerService();
+        messageService = new JMSConnectionFactory();
+
 
         // 将 TransactionManager 注册 java:/TransactionManager
         try {
             tm.setTransactionTimeout(getTransactionTimeout());
             getNamingContext().bind("java:/TransactionManager", tm);
             getNamingContext().bind("java:/UserTransaction", tm);
+            getNamingContext().bind("defaultcf", messageService);
         }
         catch (NamingException e) {
             logger.fatal("Bind TransactionManager error.", e);
@@ -365,6 +373,10 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
 
     public Context getNamingContext() {
         return namingContext;
+    }
+
+    public MessageService getMessageService(){
+        return messageService;
     }
 
     public boolean preInvoke(Method method, Object[] params) {

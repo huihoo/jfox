@@ -6,35 +6,24 @@
 
 package org.jfox.jms;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
-import javax.jms.QueueConnection;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.Session;
-import javax.jms.TopicConnection;
-import javax.jms.TopicConnectionFactory;
-import javax.jms.XAConnection;
-import javax.jms.XAConnectionFactory;
-import javax.jms.XAQueueConnection;
-import javax.jms.XAQueueConnectionFactory;
-import javax.jms.XATopicConnection;
-import javax.jms.XATopicConnectionFactory;
-import javax.jms.Queue;
-import javax.jms.QueueSession;
-import javax.jms.QueueSender;
-import javax.jms.QueueReceiver;
 import javax.jms.Message;
 import javax.jms.MessageListener;
+import javax.jms.Queue;
+import javax.jms.QueueConnection;
+import javax.jms.QueueReceiver;
+import javax.jms.QueueSender;
+import javax.jms.QueueSession;
+import javax.jms.Session;
+import javax.jms.TopicConnection;
+import javax.jms.XAConnection;
+import javax.jms.XAQueueConnection;
+import javax.jms.XATopicConnection;
 
-import org.jfox.framework.annotation.Service;
-import org.jfox.framework.component.ActiveComponent;
-import org.jfox.framework.component.Component;
-import org.jfox.framework.component.SingletonComponent;
 import org.jfox.jms.destination.JMSDestination;
 import org.jfox.jms.destination.JMSQueue;
 import org.jfox.jms.destination.JMSTopic;
@@ -45,17 +34,7 @@ import org.jfox.jms.message.JMSMessage;
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
  */
 
-@Service(id = "defaultcf")
-public class JMSConnectionFactory implements ConnectionFactory,
-        QueueConnectionFactory,
-        TopicConnectionFactory,
-        XAConnectionFactory,
-        XAQueueConnectionFactory,
-        XATopicConnectionFactory,
-        Serializable,
-        Component,
-        SingletonComponent,
-        ActiveComponent {
+public class JMSConnectionFactory implements MessageService{
 
     private Map<String, JMSDestination> destinationMap = new HashMap<String, JMSDestination>();
 
@@ -114,13 +93,13 @@ public class JMSConnectionFactory implements ConnectionFactory,
     }
 
     /**
-     * TODO: create queue with given name
+     * create queue with given name
      *
      * TODO: 是否需要把该方法定义再 Interface 中，否则 framework 通过存根引用的实例无法调用???
      *
      * @param name queue name
      */
-    JMSQueue createQueue(String name) throws JMSException {
+    public JMSQueue createQueue(String name) throws JMSException {
         if (!destinationMap.containsKey(name)) {
             JMSQueue queue = new JMSQueue(name);
             destinationMap.put(name, queue);
@@ -135,7 +114,7 @@ public class JMSConnectionFactory implements ConnectionFactory,
         }
     }
 
-    JMSTopic createTopic(String name) throws JMSException {
+    public JMSTopic createTopic(String name) throws JMSException {
         if (!destinationMap.containsKey(name)) {
             JMSTopic queue = new JMSTopic(name);
             destinationMap.put(name, queue);

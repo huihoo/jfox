@@ -9,6 +9,7 @@ import javax.transaction.TransactionManager;
 import org.jfox.framework.annotation.Exported;
 import org.jfox.framework.component.Component;
 import org.jfox.ejb3.security.SecurityContext;
+import org.jfox.jms.MessageService;
 
 /**
  * EJB3 容器
@@ -51,6 +52,8 @@ public interface EJBContainer extends Component {
     TimerService getTimerService();
 
     Context getNamingContext();
+
+    MessageService getMessageService();
 
     int getTransactionTimeout();
 
