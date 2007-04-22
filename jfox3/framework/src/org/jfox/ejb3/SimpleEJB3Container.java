@@ -232,6 +232,16 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         for (Class beanClass : mdbBeans) {
             EJBBucket bucket = loadMessageDrivenEJB(beanClass, module);
             buckets.add(bucket);
+            // bind to jndi
+            // TODO: need to register MDB as MessageListener
+            try {
+                for (String mappedName : bucket.getMappedNames()) {
+                    this.getNamingContext().bind(mappedName, bucket.createProxyStub());
+                }
+            }
+            catch (NamingException e) {
+                throw new EJBException("Failed to bind EJB with name: " + Arrays.toString(bucket.getMappedNames()) + " !", e);
+            }
             logger.info("Message Driven EJB loaded, bean class: " + beanClass.getName());
         }
 
@@ -239,11 +249,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
     }
 
     /**
-     * 装载一个 EJB
-     *
-     * @param beanClass ejb bean class
-     * @param module    module
-     * @throws EJBContainerException
+     * load Stateless EJB
      */
     protected EJBBucket loadStatelessEJB(Class<?> beanClass, Module module) {
         if (beanClass.isAnnotationPresent(Stateless.class)) {
@@ -253,6 +259,9 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         return null;
     }
 
+    /**
+     * load Stateful EJB
+     */
     protected EJBBucket loadStatefulEJB(Class<?> beanClass, Module module) {
         if (beanClass.isAnnotationPresent(Stateful.class)) {
             StatefulBucket bucket = new StatefulBucket(this, beanClass, module);
@@ -261,6 +270,9 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         return null;
     }
 
+    /**
+     * load MDB 
+     */
     protected EJBBucket loadMessageDrivenEJB(Class<?> beanClass, Module module) {
         if(beanClass.isAnnotationPresent(MessageDriven.class)){
             MDBBucket bucket = new MDBBucket(this, beanClass, module);

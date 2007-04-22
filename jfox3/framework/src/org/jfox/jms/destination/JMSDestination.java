@@ -48,7 +48,7 @@ public abstract class JMSDestination implements Destination, Serializable, Runna
 
     protected final List<MessageListener> listeners = new ArrayList<MessageListener>(2);
 
-    private ExecutorService threadExecutor = Executors.newSingleThreadExecutor();
+    private ExecutorService threadExecutor = Executors.newCachedThreadPool();
 
     protected final ReentrantLock lock = new ReentrantLock();
     protected final Condition notEmptyMessage = lock.newCondition();
@@ -152,10 +152,15 @@ public abstract class JMSDestination implements Destination, Serializable, Runna
                 if (listeners.isEmpty()) {
                     notEmptyListener.await();
                 }
-                Message message = queue.take();
+                final Message message = queue.take();
                 // 有可能是stop
                 if (message != null) {
-                    sendMessage(message);
+                    // 使用新线程发送消息
+                    threadExecutor.execute(new Runnable(){
+                        public void run() {
+                            sendMessage(message);
+                        }
+                    });
                     messageSend++;
                 }
             }
