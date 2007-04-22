@@ -14,7 +14,7 @@ public class TimeoutUtils {
 
     static {
         try {
-            TimeOut = TimedObject.class.getMethod("ejbTimeout", new Class[]{Timer.class});
+            TimeOut = TimedObject.class.getMethod("ejbTimeout", Timer.class);
         }
         catch (Exception e) {
             e.printStackTrace();

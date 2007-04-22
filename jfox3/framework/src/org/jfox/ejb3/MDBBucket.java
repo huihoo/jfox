@@ -18,6 +18,7 @@ import org.jfox.ejb3.dependent.FieldResourceDependence;
 import org.jfox.entity.dependent.FieldPersistenceContextDependence;
 import org.jfox.framework.component.Module;
 import org.jfox.jms.MessageService;
+import org.jfox.jms.destination.JMSDestination;
 
 /**
  * Container of MessageDriven EJB，store all Meta data, and as EJB Factory
@@ -40,6 +41,7 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory {
      */
     private final GenericObjectPool pool = new GenericObjectPool(this);
 
+    private JMSDestination destination;
 
     public MDBBucket(EJBContainer container, Class<?> beanClass, Module module) {
         super(container, beanClass, module);
@@ -82,16 +84,20 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory {
         try {
             if (destinationType.equals(Topic.class.getName())) { //Topic
                 MessageService messageService = getEJBContainer().getMessageService();
-                messageService.createTopic(destination);
+                this.destination = messageService.createTopic(destination);
             }
             else { // Queue
                 MessageService messageService = getEJBContainer().getMessageService();
-                messageService.createQueue(destination);
+                this.destination = messageService.createQueue(destination);
             }
         }
         catch (Exception e) {
             throw new EJBException("Could not initialize MessageDriven Bean: " + getEJBName(), e);
         }
+    }
+
+    public JMSDestination getDestination(){
+        return destination;
     }
 
     public boolean isLocal() {

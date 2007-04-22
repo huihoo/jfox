@@ -16,11 +16,13 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import javax.ejb.EJBException;
+import javax.ejb.MessageDriven;
 import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
-import javax.ejb.MessageDriven;
+import javax.jms.Message;
+import javax.jms.MessageListener;
 import javax.naming.Binding;
 import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
@@ -31,17 +33,18 @@ import javax.naming.NamingException;
 import javax.transaction.SystemException;
 import javax.transaction.TransactionManager;
 
+import org.apache.log4j.Logger;
 import org.jfox.ejb3.event.EJBLoadedComponentEvent;
 import org.jfox.ejb3.event.EJBUnloadedComponentEvent;
 import org.jfox.ejb3.invocation.InterceptorsEJBInvocationHandler;
+import org.jfox.ejb3.invocation.SecurityEJBInvocationHandler;
 import org.jfox.ejb3.invocation.ThreadContextEJBInvocationHandler;
 import org.jfox.ejb3.invocation.TransactionEJBInvocationHandler;
-import org.jfox.ejb3.invocation.SecurityEJBInvocationHandler;
 import org.jfox.ejb3.naming.ContextAdapter;
 import org.jfox.ejb3.naming.InitialContextFactoryImpl;
+import org.jfox.ejb3.security.SecurityContext;
 import org.jfox.ejb3.timer.EJBTimerTask;
 import org.jfox.ejb3.transaction.JTATransactionManager;
-import org.jfox.ejb3.security.SecurityContext;
 import org.jfox.framework.annotation.Constant;
 import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ActiveComponent;
@@ -51,13 +54,14 @@ import org.jfox.framework.component.ComponentInitialization;
 import org.jfox.framework.component.ComponentUnregistration;
 import org.jfox.framework.component.InterceptableComponent;
 import org.jfox.framework.component.Module;
-import org.jfox.framework.event.ModuleListener;
 import org.jfox.framework.event.ModuleEvent;
+import org.jfox.framework.event.ModuleListener;
 import org.jfox.framework.event.ModuleLoadingEvent;
 import org.jfox.framework.event.ModuleUnloadedEvent;
 import org.jfox.jms.JMSConnectionFactory;
+import org.jfox.jms.MessageListenerUtils;
 import org.jfox.jms.MessageService;
-import org.apache.log4j.Logger;
+import org.jfox.jms.destination.JMSDestination;
 
 /**
  * 只支持 Local/Stateless Session Bean, Local MDB
@@ -214,13 +218,30 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         }
         Class[] statefulBeans = module.getModuleClassLoader().findClassAnnotatedWith(Stateful.class);
         for (Class beanClass : statefulBeans) {
-            EJBBucket bucket = loadStatefulEJB(beanClass, module);
+            final EJBBucket bucket = loadStatefulEJB(beanClass, module);
             buckets.add(bucket);
+
             // bind to jndi
             try {
                 for (String mappedName : bucket.getMappedNames()) {
                     this.getNamingContext().bind(mappedName, bucket.createProxyStub());
                 }
+                // register MessageListener to Destination
+                JMSDestination destination = ((MDBBucket)bucket).getDestination();
+                final EJBObjectId ejbObjectId = ((MDBBucket)bucket).createEJBObjectId();
+                destination.registerMessageListener(new MessageListener(){
+                    public void onMessage(Message message) {
+                        try {
+                            invokeEJB(ejbObjectId, MessageListenerUtils.getOnMessageMethod(), new Object[0], new SecurityContext());
+                        }
+                        catch(EJBException e) {
+                            throw e;
+                        }
+                        catch(Exception e){
+                            throw new EJBException(e);
+                        }
+                    }
+                });
             }
             catch (NamingException e) {
                 throw new EJBException("Failed to bind EJB with name: " + Arrays.toString(bucket.getMappedNames()) + " !", e);
