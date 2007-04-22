@@ -62,6 +62,7 @@ public abstract class JMSDestination implements Destination, Serializable, Runna
 
     public JMSDestination(String name) {
         this.name = name;
+        // start thread
         start();
     }
 

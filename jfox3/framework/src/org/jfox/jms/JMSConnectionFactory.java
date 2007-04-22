@@ -29,6 +29,7 @@ import javax.jms.QueueSession;
 import javax.jms.QueueSender;
 import javax.jms.QueueReceiver;
 import javax.jms.Message;
+import javax.jms.MessageListener;
 
 import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ActiveComponent;
@@ -174,7 +175,15 @@ public class JMSConnectionFactory implements ConnectionFactory,
         Message message = receiver.receive();
         System.out.println("Received Message: " + message);
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
+        receiver.setMessageListener(new MessageListener() {
+            public void onMessage(Message message) {
+                System.out.println("onMessage: " + message);
+            }
+        });
+        sender.send(session.createTextMessage("Hello, JMS2!"));
+
+        Thread.sleep(1000);
         connectionFactory.close();
     }
 }

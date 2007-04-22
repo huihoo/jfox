@@ -278,7 +278,7 @@ public class JMSSession implements Session,
 	}
     
 	void start() {
-		
+		// register consumer's listeners
 	}
 
 	void removeConsumer(String consumerId) {

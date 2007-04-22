@@ -70,7 +70,10 @@ public class JMSConsumer implements MessageConsumer, QueueReceiver, TopicSubscri
 	public void setMessageListener(MessageListener listener) throws JMSException {
 		checkClosed();
 		this.listener = listener;
-	}
+        if(session.getJMSConnection().isStarted()){
+            destination.registerMessageListener(listener);
+        }
+    }
 
 	public synchronized Message receive() throws JMSException {
 		checkClosed();
