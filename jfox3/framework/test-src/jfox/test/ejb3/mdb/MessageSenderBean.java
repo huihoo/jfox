@@ -6,6 +6,7 @@ import javax.ejb.SessionContext;
 import javax.ejb.EJBException;
 import javax.annotation.Resource;
 import javax.jms.QueueConnectionFactory;
+import javax.jms.TopicConnectionFactory;
 
 import org.jfox.ejb3.naming.JNDIContextHelper;
 
@@ -27,7 +28,7 @@ public class MessageSenderBean implements MessageSender {
 
     public void sendTopicMessage() {
         try {
-            QueueConnectionFactory qcf = (QueueConnectionFactory)JNDIContextHelper.lookup("defaultcf");
+            TopicConnectionFactory tcf = (TopicConnectionFactory)JNDIContextHelper.lookup("defaultcf");
             //TODO: finish sendTopicMessage
         }
         catch (Exception e) {
