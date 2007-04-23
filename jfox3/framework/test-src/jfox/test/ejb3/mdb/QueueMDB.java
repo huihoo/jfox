@@ -13,7 +13,7 @@ import javax.jms.Message;
         @ActivationConfigProperty(propertyName="destinationType", propertyValue="javax.jms.Queue"),
         @ActivationConfigProperty(propertyName="destination", propertyValue="testQ")
         })
-public class SessionMDB implements MessageListener {
+public class QueueMDB implements MessageListener {
 
     public void onMessage(Message recvMsg) {
       System.out.println("Received message: " + recvMsg);
