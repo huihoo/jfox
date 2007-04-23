@@ -286,5 +286,5 @@
     1. JMS Receiver.receive 的时候，考虑生成临时的 onMessage，已统一消息接收方式
 
 2007-04-23
-    1. 文档中增加MDB和集群的内容
+    1. 文档中增加MDB和集群的内容，还有 Web Service
     
