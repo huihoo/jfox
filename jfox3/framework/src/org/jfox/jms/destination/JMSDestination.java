@@ -36,7 +36,7 @@ public abstract class JMSDestination implements Destination, Serializable, Runna
 
         public int compare(Message msg1, Message msg2) {
             try {
-                return Integer.valueOf(msg1.getJMSPriority()).compareTo(Integer.valueOf(msg2.getJMSPriority()));
+                return Integer.valueOf(msg1.getJMSPriority()).compareTo(msg2.getJMSPriority());
             }
             catch (JMSException e) {
                 return 0;
@@ -80,9 +80,8 @@ public abstract class JMSDestination implements Destination, Serializable, Runna
 
         final JMSDestination jmsDestination = (JMSDestination)pObject;
 
-        if (name != null ? !name.equals(jmsDestination.name) : jmsDestination.name != null) return false;
+        return !(name != null ? !name.equals(jmsDestination.name) : jmsDestination.name != null);
 
-        return true;
     }
 
     public int hashCode() {
@@ -103,6 +102,11 @@ public abstract class JMSDestination implements Destination, Serializable, Runna
         }
     }
 
+    /**
+     * 发送消息，由Queue/Topic实现
+     *
+     * @param message message
+     */
     public abstract void sendMessage(Message message);
 
     public void registerMessageListener(MessageListener listener) {
