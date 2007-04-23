@@ -4,8 +4,12 @@ import javax.annotation.Resource;
 import javax.ejb.EJBException;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.ejb.TimedObject;
+import javax.ejb.Timer;
+import javax.ejb.Timeout;
 import javax.jms.QueueConnectionFactory;
 import javax.jms.TopicConnectionFactory;
+import javax.jms.Message;
 
 import org.jfox.ejb3.naming.JNDIContextHelper;
 
@@ -14,12 +18,12 @@ import org.jfox.ejb3.naming.JNDIContextHelper;
  */
 @Stateless
 @Remote
-public class MessageSenderBean implements MessageSender {
+public class MessageSenderBean implements MessageSender, TimedObject {
 
     @Resource
     QueueConnectionFactory queueConnectionFactory;
 
-    public void sendQuqueMessage() {
+    public void sendQuqueMessage(Message message) {
         try {
             // use injected jms connection factory
             //TODO: finish sendQuqueMessage
@@ -29,7 +33,7 @@ public class MessageSenderBean implements MessageSender {
         }
     }
 
-    public void sendTopicMessage() {
+    public void sendTopicMessage(Message message) {
         try {
             // lookup jms connection factory by jndi
             TopicConnectionFactory tcf = (TopicConnectionFactory)JNDIContextHelper.lookup("defaultcf");
@@ -38,5 +42,9 @@ public class MessageSenderBean implements MessageSender {
         catch (Exception e) {
             throw new EJBException(e);
         }
+    }
+
+    @Timeout
+    public void ejbTimeout(final Timer timer) {
     }
 }
