@@ -11,6 +11,11 @@ import javax.jms.QueueConnectionFactory;
 import javax.jms.QueueSender;
 import javax.jms.QueueSession;
 import javax.jms.Session;
+import javax.jms.Topic;
+import javax.jms.TopicConnection;
+import javax.jms.TopicConnectionFactory;
+import javax.jms.TopicPublisher;
+import javax.jms.TopicSession;
 import javax.naming.Context;
 
 import jfox.test.ejb3.entity.Order;
@@ -257,7 +262,17 @@ public class TestClient {
         Queue queue = session.createQueue("testQ");
         QueueSender sender = session.createSender(queue);
         sender.send(session.createTextMessage("Hello, JMS!"));
+    }
 
+    @Test
+    public void invokeMDB2() throws Exception {
+        Context context = JNDIContextHelper.getInitalContext();
+        TopicConnectionFactory connectionFactory = (TopicConnectionFactory)context.lookup("defaultcf");
+        TopicConnection connection = connectionFactory.createTopicConnection();
+        TopicSession session = connection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
+        Topic queue = session.createTopic("testT");
+        TopicPublisher sender = session.createPublisher(queue);
+        sender.send(session.createTextMessage("Hello, JMS!"));
     }
 
 }
