@@ -254,7 +254,7 @@ public class TestClient {
     }
 
     @Test
-    public void invokeMDB() throws Exception {
+    public void invokeQueueMDB() throws Exception {
         Context context = JNDIContextHelper.getInitalContext();
         QueueConnectionFactory connectionFactory = (QueueConnectionFactory)context.lookup("defaultcf");
         QueueConnection connection = connectionFactory.createQueueConnection();
@@ -265,7 +265,7 @@ public class TestClient {
     }
 
     @Test
-    public void invokeMDB2() throws Exception {
+    public void invokeTopicMDB() throws Exception {
         Context context = JNDIContextHelper.getInitalContext();
         TopicConnectionFactory connectionFactory = (TopicConnectionFactory)context.lookup("defaultcf");
         TopicConnection connection = connectionFactory.createTopicConnection();
