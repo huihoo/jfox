@@ -261,7 +261,11 @@ public class TestClient {
         QueueSession session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
         Queue queue = session.createQueue("testQ");
         QueueSender sender = session.createSender(queue);
-        sender.send(session.createTextMessage("Hello, JMS!"));
+        int i=0;
+        while(i++<10){
+            sender.send(session.createTextMessage("Hello, JMS! " + System.currentTimeMillis()));
+            Thread.sleep(1000);
+        }
     }
 
     @Test
@@ -272,7 +276,12 @@ public class TestClient {
         TopicSession session = connection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
         Topic queue = session.createTopic("testT");
         TopicPublisher sender = session.createPublisher(queue);
-        sender.send(session.createTextMessage("Hello, JMS!"));
+        int i=0;
+        while(i++<10){
+            sender.send(session.createTextMessage("Hello, JMS! " + System.currentTimeMillis()));
+            Thread.sleep(1000);
+        }
+
     }
 
 }
