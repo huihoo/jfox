@@ -53,7 +53,7 @@ public class TestClient {
     @AfterClass
     public static void tearDown() throws Exception {
         System.out.println("Waiting for tearDown...");
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         framework.stop();
         framework = null;
     }

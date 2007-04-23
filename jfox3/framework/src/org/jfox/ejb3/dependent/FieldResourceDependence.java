@@ -3,16 +3,18 @@ package org.jfox.ejb3.dependent;
 import java.lang.reflect.Field;
 import javax.annotation.Resource;
 import javax.ejb.EJBContext;
-import javax.ejb.SessionContext;
 import javax.ejb.MessageDrivenContext;
+import javax.ejb.SessionContext;
 import javax.ejb.TimerService;
+import javax.jms.QueueConnectionFactory;
+import javax.jms.TopicConnectionFactory;
 import javax.sql.DataSource;
 import javax.transaction.UserTransaction;
 
-import org.jfox.ejb3.EJBBucket;
 import org.jfox.ejb3.AbstractEJBContext;
-import org.jfox.framework.dependent.InjectionException;
+import org.jfox.ejb3.EJBBucket;
 import org.jfox.entity.EntityManagerFactoryBuilderImpl;
+import org.jfox.framework.dependent.InjectionException;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -69,6 +71,10 @@ public class FieldResourceDependence extends ResourceDependence {
         else if (field.getType().equals(UserTransaction.class)) {
             //注入 UserTransaction
             targetObject = getBucket().getEJBContainer().getTransactionManager();
+        }
+        else if (field.getType().equals(QueueConnectionFactory.class) || field.getType().equals(TopicConnectionFactory.class)) {
+            //注入 JMS Connection Factory
+            targetObject = getBucket().getEJBContainer().getMessageService();
         }
         else {
             throw new InjectionException("Not support inject type: " + field);

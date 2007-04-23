@@ -1,10 +1,9 @@
 package jfox.test.ejb3.mdb;
 
-import javax.ejb.Stateless;
-import javax.ejb.Remote;
-import javax.ejb.SessionContext;
-import javax.ejb.EJBException;
 import javax.annotation.Resource;
+import javax.ejb.EJBException;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.jms.QueueConnectionFactory;
 import javax.jms.TopicConnectionFactory;
 
@@ -18,16 +17,21 @@ import org.jfox.ejb3.naming.JNDIContextHelper;
 public class MessageSenderBean implements MessageSender {
 
     @Resource
-    SessionContext sessionContext;
+    QueueConnectionFactory queueConnectionFactory;
 
     public void sendQuqueMessage() {
-        QueueConnectionFactory qcf = (QueueConnectionFactory)sessionContext.lookup("defaultcf");
-        //TODO: finish sendQuqueMessage
-
+        try {
+            // use injected jms connection factory
+            //TODO: finish sendQuqueMessage
+        }
+        catch (Exception e) {
+            throw new EJBException(e);
+        }
     }
 
     public void sendTopicMessage() {
         try {
+            // lookup jms connection factory by jndi
             TopicConnectionFactory tcf = (TopicConnectionFactory)JNDIContextHelper.lookup("defaultcf");
             //TODO: finish sendTopicMessage
         }
