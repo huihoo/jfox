@@ -26,6 +26,10 @@ public class JNDIContextHelper {
         return INITIAL_CONTEXT;
     }
 
+    public static Object lookup(String name) throws NamingException{
+        return getInitalContext().lookup(name);
+    }
+
     public static void main(String[] args) {
 
     }
