@@ -16,7 +16,7 @@ import org.jfox.mvc.validate.ValidateException;
  */
 public class PageContext {
 
-    //TODO: 实现可以 redirect 跳转
+    //页面跳转方式，foward/redirect
     private ActionMethod.TargetMethod targetMethod;
 
     // success or error view
