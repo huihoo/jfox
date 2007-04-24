@@ -3,8 +3,6 @@ package org.jfox.framework.component;
 import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.jfox.ejb3.EJBContainer;
 import org.jfox.framework.Framework;
@@ -30,6 +28,10 @@ public class SystemModule extends Module {
                 // parent 是 ClassLoaderRepository
                 return getParent().getResource(name);
             }
+
+            protected URL[] getASMClasspathURLs() {
+                return super.getASMClasspathURLs();
+            }
         };
     }
 
@@ -48,22 +50,10 @@ public class SystemModule extends Module {
     }
 
     /**
-     * SystemModule的 classpath 已经制定在启动 classpath中，无须再添加
+     * SystemModule的 classpath 已经指定在启动 classpath中
      */
     public URL[] getClasspathURLs() {
-        List<URL> appURLs = new ArrayList<URL>();
-        URL[] urls = ((URLClassLoader)SystemModule.class.getClassLoader()).getURLs();
-        for (URL url : urls) {
-            URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{url}, null);
-            //根据是否含有 java.lang.Object 滤掉 rt.jar
-            URL testURL = urlClassLoader.findResource(Object.class.getName().replace(".", "/") + ".class");
-            URL charsetURL = urlClassLoader.findResource("sun/nio/cs/ext/GBK.class"); // charset.jar
-            //为保险起见，只滤掉含有java.lang.Object，滤掉其它
-            if (testURL == null && charsetURL == null) {
-                appURLs.add(url);
-            }
-        }
-        return appURLs.toArray(new URL[appURLs.size()]);
+        return ((URLClassLoader)SystemModule.class.getClassLoader()).getURLs();
     }
 
     public URL getDescriptorURL() {

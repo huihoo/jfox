@@ -214,7 +214,6 @@ public class ComponentMeta implements Comparable<ComponentMeta>{
      * 得到Component的实体对象
      */
     Component getConcreteComponent() {
-        //TODO: 根据 componentUUID 取 component，如果有状态非Singleton，怎么保证取到正确的Component呢？
         return lastConcreteComponent;
     }
 
@@ -297,7 +296,6 @@ public class ComponentMeta implements Comparable<ComponentMeta>{
 
         // 创建 ComponentFactory
         componentFactory = new ComponentFactory(componentContext, constructor);
-        //TODO: 根据 Singleton 初始化不同的Cache
     }
 
     /**

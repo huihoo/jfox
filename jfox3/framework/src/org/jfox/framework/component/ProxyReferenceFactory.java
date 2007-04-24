@@ -51,7 +51,7 @@ class ProxyReferenceFactory {
                         ComponentMeta componentMeta = moduleObj.getComponentMeta(componentId);
                         Component component = componentMeta.getConcreteComponent();
                         if(args == null && method.getName().equals("toString")) {
-                            return "$proxy:" + componentId.toString();
+                            return "$proxy_component_stub:" + componentId.toString();
                         }
                         //TODO: get ImplementationClass 的 Method，以便分析其 annotation 
                         return componentInvoker.invokeMethod(component, componentId, method, args);
@@ -59,7 +59,6 @@ class ProxyReferenceFactory {
                 }
         );
     }
-
 
     static class DelegateModuleClassLoader extends ClassLoader {
         private Framework framework;

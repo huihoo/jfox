@@ -44,14 +44,22 @@ public class ASMClassLoader extends URLClassLoader {
     }
 
     protected void initASM() {
-        //该ModuleClassLoader中，所有可以装载的ClassName
-        List<String> classNames = new ArrayList<String>();
-
         URL[] urls = getASMClasspathURLs();
-
+        // 有效 URL
+        List<URL> appURLs = new ArrayList<URL>();
+        for (URL url : urls) {
+            URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{url}, null);
+            //根据是否含有 java.lang.Object 滤掉 rt.jar
+            URL testURL = urlClassLoader.findResource(Object.class.getName().replace(".", "/") + ".class");
+            URL charsetURL = urlClassLoader.findResource("sun/nio/cs/ext/GBK.class"); // charset.jar
+            //为保险起见，只滤掉含有java.lang.Object，滤掉其它
+            if (testURL == null && charsetURL == null) {
+                appURLs.add(url);
+            }
+        }
         Map<String, byte[]> classBytesArray = new HashMap<String, byte[]>();
         // 读取所有的类名，以便查找 Component
-        for (URL url : urls) {
+        for (URL url : appURLs) {
             try {
 //                classNames.addAll(Arrays.asList(FileUtils.getClassNames(url)));
                 classBytesArray.putAll(FileUtils.getClassBytesMap(url));
@@ -71,27 +79,13 @@ public class ASMClassLoader extends URLClassLoader {
      * 返回ClasspathURLs，用来供 ASM 搜索
      */
     protected URL[] getASMClasspathURLs() {
-
+        // 从 parent URLClassLoader 中 getURLs
         if (getParent() != null && (getParent() instanceof URLClassLoader)) {
-            URL[] urls = ((URLClassLoader)getParent()).getURLs();
-            // 只返回含有 Component 类的路径
-            List<URL> appURLs = new ArrayList<URL>();
-            for (URL url : urls) {
-                URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{url}, null);
-                URL testURL = urlClassLoader.findResource(Object.class.getName().replace(".", "/") + ".class");
-                //滤掉 rt.jar
-                //TODO: 滤掉更多的 jdk jar
-                if (testURL == null) {
-                    appURLs.add(url);
-                }
-            }
-           return appURLs.toArray(new URL[appURLs.size()]);
+            return ((URLClassLoader)getParent()).getURLs();
         }
         else {
             return new URL[]{this.getClass().getProtectionDomain().getCodeSource().getLocation()};
         }
-
-
     }
 
     /**
