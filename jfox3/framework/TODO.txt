@@ -288,3 +288,6 @@
 2007-04-23
     1. 文档中增加MDB和集群的内容，还有 Web Service
     2. 文档中增加如何测试内容    
+
+2007-04-24
+    1. 保证轻量级异步性（Lightweight Asynchronicity）；(来自 Gaving King)
