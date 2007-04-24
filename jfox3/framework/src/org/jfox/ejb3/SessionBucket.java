@@ -606,12 +606,7 @@ public abstract class SessionBucket implements EJBBucket {
                     return "$ejb_proxy_stub{ejbid=" + ejbObjectId + ",interface=" + Arrays.toString(getEJBInterfaceNames()) + "}";
                 }
                 else if (method.getName().equals("equals")) {
-                    if (args[0] == null || !(args[0] instanceof ProxyStubInvocationHandler)) {
-                        return false;
-                    }
-                    else {
-                        return getEJBObjectId().equals(((ProxyStubInvocationHandler)args[0]).getEJBObjectId());
-                    }
+                    return (args[0] instanceof ProxyStubInvocationHandler) &&  getEJBObjectId().equals(((ProxyStubInvocationHandler)args[0]).getEJBObjectId());
                 }
                 else if (method.getName().equals("hashCode")) {
                     return getEJBObjectId().hashCode();
