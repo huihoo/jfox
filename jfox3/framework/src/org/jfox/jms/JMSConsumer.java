@@ -144,7 +144,9 @@ public class JMSConsumer implements MessageConsumer, QueueReceiver, TopicSubscri
         durable = true;
     }
 
-    //TODO: 默认 onMessage，在没有设置 MessageListener的情况，调用 receive 方法时，会用默认 MessageListener(this)，注册到 Queue 中
+    // 默认 onMessage，在没有设置 MessageListener的情况，
+    // 调用 receive 方法时，会用默认 MessageListener(this)，注册到 Queue 中
+    // 消息异步收到后，会notify接收线程，以此实现同步效果
     public synchronized void onMessage(Message message) {
         // default message listener onMessage
         currentReceivedMessage = message;
