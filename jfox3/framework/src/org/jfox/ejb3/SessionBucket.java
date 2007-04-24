@@ -252,7 +252,7 @@ public abstract class SessionBucket implements EJBBucket {
                             }
                         }
                     }
-                    //TODO: 检查 Interceptors 中的 PostConstruct PreDestroy
+                    //TODO: 检测 Interceptors 中的 PostConstruct PreDestroy
                 }
             }
         }
