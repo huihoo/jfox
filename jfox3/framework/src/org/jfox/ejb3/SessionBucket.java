@@ -295,11 +295,11 @@ public abstract class SessionBucket implements EJBBucket {
         return aroundInvokeMethods;
     }
 
-    protected Collection<Method> getPostConstructMethods(){
+    protected Collection<Method> getPostConstructMethods() {
         return Collections.unmodifiableCollection(postConstructMethods);
     }
 
-    protected Collection<Method> getPreDestroyMethods(){
+    protected Collection<Method> getPreDestroyMethods() {
         return Collections.unmodifiableCollection(preDestroyMethods);
     }
 
@@ -419,10 +419,10 @@ public abstract class SessionBucket implements EJBBucket {
         return ejbInterfaces;
     }
 
-    private String[] getEJBInterfaceNames(){
+    private String[] getEJBInterfaceNames() {
         Class[] interfaces = getEJBInterfaces();
         String[] interfaceNames = new String[interfaces.length];
-        for(int i=0; i<interfaces.length; i++){
+        for (int i = 0; i < interfaces.length; i++) {
             interfaceNames[i] = interfaces[i].getName();
         }
         return interfaceNames;
@@ -459,7 +459,7 @@ public abstract class SessionBucket implements EJBBucket {
     public Context getENContext(EJBObjectId ejbObjectId) {
         return getEJBContext(ejbObjectId).getENContext();
     }
-    
+
     protected void injectClassDependents() {
         //解析类级依赖
         for (EJBDependence ejbDependence : classEJBDependents) {
@@ -483,17 +483,17 @@ public abstract class SessionBucket implements EJBBucket {
 
     /**
      * craete new EJBObjectId
-     *
+     * <p/>
      * Stateless: only one EJBObjectId
      * Stateful: create new EJBObjectId very time to create new EJBContext
-     *
      */
     protected abstract EJBObjectId createEJBObjectId();
 
     /**
      * create a new EJBContext according ejbObjectId & instance
+     *
      * @param ejbObjectId ejb object id
-     * @param instance ejb bean instance
+     * @param instance    ejb bean instance
      */
     protected abstract AbstractEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance);
 
@@ -529,7 +529,7 @@ public abstract class SessionBucket implements EJBBucket {
         return Collections.unmodifiableCollection(beanInterceptorMethods);
     }
 
-    public boolean isSession(){
+    public boolean isSession() {
         return true;
     }
 
@@ -596,33 +596,38 @@ public abstract class SessionBucket implements EJBBucket {
         EJBObjectId ejbObjectId = createEJBObjectId();
 
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            //需要判断是否是 EJBObject 的方法
-            if (method.getDeclaringClass().equals(EJBObject.class) || method.getDeclaringClass().equals(EJBLocalObject.class)) { // 拦截 EJBObject 方法
+            //EJBObject 方法
+            if (method.getDeclaringClass().equals(EJBObject.class) || method.getDeclaringClass().equals(EJBLocalObject.class)) {
                 return method.invoke(getEJBContext(getEJBObjectId()), args);
             }
-            //TODO: 优化处理 Object 方法
-            else if (method.getName().equals("toString") && (args == null || args.length == 0)) {
-                return "$ejb_proxy_stub{ejbid=" + ejbObjectId + ",interface=" + Arrays.toString(getEJBInterfaceNames()) + "}";
-            }
-            else if (method.getName().equals("equals") && args != null && args.length == 1) {
-                if (args[0] == null || !(args[0] instanceof ProxyStubInvocationHandler)) {
-                    return false;
+            else if (MethodUtils.isObjectMethod(method)) {
+                //优化处理 Object 方法
+                if (method.getName().equals("toString")) {
+                    return "$ejb_proxy_stub{ejbid=" + ejbObjectId + ",interface=" + Arrays.toString(getEJBInterfaceNames()) + "}";
+                }
+                else if (method.getName().equals("equals")) {
+                    if (args[0] == null || !(args[0] instanceof ProxyStubInvocationHandler)) {
+                        return false;
+                    }
+                    else {
+                        return getEJBObjectId().equals(((ProxyStubInvocationHandler)args[0]).getEJBObjectId());
+                    }
+                }
+                else if (method.getName().equals("hashCode")) {
+                    return getEJBObjectId().hashCode();
+                }
+                else if (method.getName().equals("clone")) {
+                    throw new CloneNotSupportedException(getEJBObjectId().toString());
                 }
                 else {
-                    return getEJBObjectId().equals(((ProxyStubInvocationHandler)args[0]).getEJBObjectId());
+                    throw new UnsupportedOperationException("Unsupport Object Method: " + method);
                 }
-            }
-            else if (method.getName().equals("hashCode") && (args == null || args.length == 0)) {
-                return getEJBObjectId().hashCode();
-            }
-            else if (method.getName().equals("clone") && (args == null || args.length == 0)) {
-                throw new CloneNotSupportedException(getEJBObjectId().toString());
             }
             else {
                 // 其它业务方法
                 SecurityContext securityContext = new SecurityContext();
                 SessionContext sessionContext = SessionContext.currentThreadSessionContext();
-                if(sessionContext != null){
+                if (sessionContext != null) {
                     // try get SecurityContext from session context
                     securityContext = sessionContext.getSecurityContext();
                 }

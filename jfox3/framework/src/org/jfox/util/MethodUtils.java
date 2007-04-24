@@ -4,35 +4,13 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-
 public class MethodUtils {
-
-    public final static Method ToString;
-
-    public final static Method HashCode;
-
-    public final static Method Equals;
-
-    static {
-        try {
-            Class ejbObjectClass = Object.class;
-            ToString = ejbObjectClass.getMethod("toString",
-                    ClassUtils.EMPTY_CLASS_ARRAY);
-            HashCode = ejbObjectClass.getMethod("hashCode",
-                    ClassUtils.EMPTY_CLASS_ARRAY);
-            Equals = ejbObjectClass.getMethod("equals",
-                    Object.class);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-
     private static MessageDigest md5 = null;
 
     static {
@@ -42,6 +20,29 @@ public class MethodUtils {
         catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    private static Map<Long, Method> objectMethods = new HashMap<Long, Method>();
+
+    static {
+        try {
+            Method[] methods = Object.class.getDeclaredMethods();
+            for(Method m : methods){
+                objectMethods.put(getMethodHash(m), m);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    /**
+     * 是否是定义在 Object 中的方法
+     * @param method 方法
+     */
+    public static boolean isObjectMethod(Method method){
+        return objectMethods.containsKey(getMethodHash(method));
     }
 
     /**
@@ -168,6 +169,6 @@ public class MethodUtils {
     }
 
     public static void main(String[] args) {
-
+        MethodUtils.getTypeString(Object.class);
     }
 }

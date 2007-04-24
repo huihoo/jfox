@@ -233,8 +233,7 @@ public class JMSSession implements Session,
         if (!isXA) {
             throw new java.lang.IllegalStateException("current session " + this + " is not an XASession");
         }
-        //TODO: getXAResource
-        return null;
+        throw new UnsupportedOperationException("Not support getXAResource.");
     }
 
     public QueueSession getQueueSession() throws JMSException {

@@ -36,7 +36,6 @@ public class BytesMessageImpl
         extends JMSMessage
         implements BytesMessage, Serializable {
 
-	//TODO: ���л�����
 	private transient DataOutputStream dos = null;
 	private transient DataInputStream dis = null;
 	private transient ByteArrayOutputStream baos = null;
