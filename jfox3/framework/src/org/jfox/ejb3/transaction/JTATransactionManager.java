@@ -105,7 +105,7 @@ public class JTATransactionManager implements TransactionManager {
     }
 
     public void rollback() throws IllegalStateException, SecurityException, SystemException {
-        //TODO: 如果已经自动 rollback，将无法调用 jotm.getTransactionManager, 抛 java.lang.IllegalStateException: Cannot get Transaction for rollback
+        //如果已经自动 rollback，将无法调用 jotm.getTransactionManager, 抛 java.lang.IllegalStateException: Cannot get Transaction for rollback
         jotm.getTransactionManager().rollback();
     }
 
