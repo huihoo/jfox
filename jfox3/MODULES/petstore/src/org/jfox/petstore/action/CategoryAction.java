@@ -52,7 +52,7 @@ public class CategoryAction extends ActionSupport {
 
         PagedList<Product> productPagedList;
 
-        //TODO: cache product list in session
+        //product list cached by JPA Cache
 //        if (!sessionContext.containsAttribute("ProductPageList")) {
             List<Product> products = productBO.getProductsByCategory(invocation.getCategoryId());
             productPagedList = new PagedList<Product>(products, 4);

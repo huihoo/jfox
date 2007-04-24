@@ -7,7 +7,7 @@ import javax.jms.Message;
  */
 public interface MessageSender {
 
-    void sendQuqueMessage(Message message);
+    void sendQueueMessage(Message message);
 
     void sendTopicMessage(Message message);
 }

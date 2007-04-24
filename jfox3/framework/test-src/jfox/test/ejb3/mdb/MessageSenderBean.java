@@ -4,12 +4,16 @@ import javax.annotation.Resource;
 import javax.ejb.EJBException;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-import javax.ejb.TimedObject;
-import javax.ejb.Timer;
-import javax.ejb.Timeout;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.TopicConnectionFactory;
 import javax.jms.Message;
+import javax.jms.QueueConnection;
+import javax.jms.QueueConnectionFactory;
+import javax.jms.QueueSender;
+import javax.jms.QueueSession;
+import javax.jms.Session;
+import javax.jms.TopicConnection;
+import javax.jms.TopicConnectionFactory;
+import javax.jms.TopicPublisher;
+import javax.jms.TopicSession;
 
 import org.jfox.ejb3.naming.JNDIContextHelper;
 
@@ -18,15 +22,18 @@ import org.jfox.ejb3.naming.JNDIContextHelper;
  */
 @Stateless
 @Remote
-public class MessageSenderBean implements MessageSender, TimedObject {
+public class MessageSenderBean implements MessageSender {
 
     @Resource
     QueueConnectionFactory queueConnectionFactory;
 
-    public void sendQuqueMessage(Message message) {
+    public void sendQueueMessage(Message message) {
         try {
             // use injected jms connection factory
-            //TODO: finish sendQuqueMessage
+            QueueConnection qc = queueConnectionFactory.createQueueConnection();
+            QueueSession qs = qc.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+            QueueSender sender = qs.createSender(qs.createQueue("testQ"));
+            sender.send(qs.createTextMessage("Hello, Queue MDB!"));
         }
         catch (Exception e) {
             throw new EJBException(e);
@@ -37,14 +44,14 @@ public class MessageSenderBean implements MessageSender, TimedObject {
         try {
             // lookup jms connection factory by jndi
             TopicConnectionFactory tcf = (TopicConnectionFactory)JNDIContextHelper.lookup("defaultcf");
-            //TODO: finish sendTopicMessage
+            TopicConnection tc = tcf.createTopicConnection();
+            TopicSession ts = tc.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
+            TopicPublisher tp = ts.createPublisher(ts.createTopic("testT"));
+            tp.send(ts.createTextMessage("Hello, Topic MDB!"));
         }
         catch (Exception e) {
             throw new EJBException(e);
         }
     }
 
-    @Timeout
-    public void ejbTimeout(final Timer timer) {
-    }
 }

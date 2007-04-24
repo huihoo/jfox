@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.ejb.Timeout;
 import javax.ejb.Timer;
 import javax.ejb.TimedObject;
+import javax.ejb.TimerService;
 import javax.annotation.Resource;
 
 @Stateless(name = "timer.ExampleTimerBean")
@@ -16,8 +17,13 @@ public class ExampleTimerBean implements ExampleTimer, TimedObject {
     @Resource
     private SessionContext ctx;
 
+    @Resource
+    TimerService timerService;
+
+
     public void scheduleTimer(long milliseconds) {
         ctx.getTimerService().createTimer(new Date(new Date().getTime() + milliseconds), "Hello World");
+        timerService.createTimer(new Date(new Date().getTime() + milliseconds), "Hello World2");
     }
 
     @Timeout
