@@ -182,7 +182,7 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
             fieldEJBDependence.inject(ejbContext);
         }
 
-        // 注入 @EJB
+        // 注入 @Resource
         for (FieldResourceDependence fieldResourceDependence : fieldResourcedependents) {
             fieldResourceDependence.inject(ejbContext);
         }

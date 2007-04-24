@@ -284,7 +284,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             fieldEJBDependence.inject(ejbContext);
         }
 
-        // 注入 @EJB
+        // 注入 @Resource
         for (FieldResourceDependence fieldResourceDependence : fieldResourcedependents) {
             fieldResourceDependence.inject(ejbContext);
         }
