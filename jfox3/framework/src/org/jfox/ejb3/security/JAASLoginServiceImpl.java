@@ -57,8 +57,7 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
             // 兼容 1.5
             System.setProperty("java.security.auth.login.config",configURL);
             configuration = Configuration.getConfiguration();
-            // load roles link
-            //TODO: build roles link
+            // load roles link, actual roles link will dynamic build by Security.getCallerGroup
             roleLink.load(getClass().getClassLoader().getResourceAsStream(ROLES_CONFIG));
         }
         catch(Exception e) {
