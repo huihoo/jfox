@@ -113,8 +113,8 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
         return postConstructMethods;
     }
 
-    public boolean isStateless(){
-        return false;
+    public boolean isStateful(){
+        return true;
     }
 
     public boolean isWebService() {

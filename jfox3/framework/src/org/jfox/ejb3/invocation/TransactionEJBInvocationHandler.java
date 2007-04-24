@@ -31,24 +31,22 @@ public class TransactionEJBInvocationHandler extends EJBInvocationHandler {
         TransactionManager tm = invocation.getTransactionManager();
 
         Transaction suspendedTrans = null;
-        boolean isSync = (invocation.getTarget() instanceof SessionSynchronization);
 
-/*
-        // TODO: 事务同步, 规范中，只有 stateful session bean 可以实现 SessionSynchronization 接口
-        if(isSync) {
-            if(!meta.isSession())
-                throw new EJBException("only stateful session bean can implement javax.ejb.SessionSynchronization.");
+        boolean isSync = false;
+        //事务同步, 规范中，只有 stateful session bean 可以实现 SessionSynchronization 接口 p70
+        if ((invocation.getTarget() instanceof SessionSynchronization)) {
+            if(invocation.isStateful()) {
+                isSync = true;
+            }
             else {
-                if(((SessionDescriptor) meta).isStateless()) {
-                    throw new EJBException("only stateful session bean can implement javax.ejb.SessionSynchronization.");
-                }
+                logger.warn("Only stateful session bean may implement javax.ejb.SessionSynchronization.");
             }
         }
-*/
+
         //得到的已经是实体方法
         Method method = invocation.getConcreteMethod();
         TransactionAttributeType type = TransactionAttributeType.REQUIRED;
-        if(method.isAnnotationPresent(TransactionAttribute.class)) {
+        if (method.isAnnotationPresent(TransactionAttribute.class)) {
             type = method.getAnnotation(TransactionAttribute.class).value();
         }
         int status = tm.getStatus();
@@ -60,117 +58,111 @@ public class TransactionEJBInvocationHandler extends EJBInvocationHandler {
         boolean created = false;
         boolean toCommit = true;
         try {
-            switch(type) {
-                case NOT_SUPPORTED:
-                    {
-                        if(status != Status.STATUS_NO_TRANSACTION) {
-                            suspendedTrans = tm.suspend();
-                        }
-                        break;
+            switch (type) {
+                case NOT_SUPPORTED: {
+                    if (status != Status.STATUS_NO_TRANSACTION) {
+                        suspendedTrans = tm.suspend();
                     }
-                case SUPPORTS:
-                    {
-                        break;
-                    }
-                case REQUIRED:
-                    {
-                        if(status == Status.STATUS_NO_TRANSACTION) {
-                            tm.begin();
-                            // tx synchronize
-                            if(isSync) {
-                                EJBSynchronization ejbSync = new EJBSynchronization((SessionSynchronization) invocation.getTarget(), tm.getTransaction());
-                                tm.getTransaction().registerSynchronization(ejbSync);
-                                ejbSync.afterBegin();
-                            }
-                            created = true;
-                        }
-                        break;
-                    }
-                case REQUIRES_NEW:
-                    {
-                        if(status != Status.STATUS_NO_TRANSACTION) {
-                            suspendedTrans = tm.suspend();
-                        }
+                    break;
+                }
+                case SUPPORTS: {
+                    break;
+                }
+                case REQUIRED: {
+                    if (status == Status.STATUS_NO_TRANSACTION) {
                         tm.begin();
                         // tx synchronize
-                        if(isSync) {
-                            EJBSynchronization ejbSync = new EJBSynchronization((SessionSynchronization) invocation.getTarget(), tm.getTransaction());
+                        if (isSync) {
+                            EJBSynchronization ejbSync = new EJBSynchronization((SessionSynchronization)invocation.getTarget(), tm.getTransaction());
                             tm.getTransaction().registerSynchronization(ejbSync);
                             ejbSync.afterBegin();
                         }
                         created = true;
-                        break;
                     }
-                case MANDATORY:
-                    {
-                        if(status == Status.STATUS_NO_TRANSACTION) {
-                            throw new TransactionRequiredException("Transaction Required, TrasactionAttributeType.MANDATORY!");
-                        }
-                        break;
+                    break;
+                }
+                case REQUIRES_NEW: {
+                    if (status != Status.STATUS_NO_TRANSACTION) {
+                        suspendedTrans = tm.suspend();
                     }
-                case NEVER:
-                    {
-                        if(status != Status.STATUS_NO_TRANSACTION) {
-                            throw new NotSupportedException("Transaction Not Supported, TrasactionAttributeType.NEVER!");
-                        }
-                        break;
+                    tm.begin();
+                    // tx synchronize
+                    if (isSync) {
+                        EJBSynchronization ejbSync = new EJBSynchronization((SessionSynchronization)invocation.getTarget(), tm.getTransaction());
+                        tm.getTransaction().registerSynchronization(ejbSync);
+                        ejbSync.afterBegin();
                     }
+                    created = true;
+                    break;
+                }
+                case MANDATORY: {
+                    if (status == Status.STATUS_NO_TRANSACTION) {
+                        throw new TransactionRequiredException("Transaction Required, TrasactionAttributeType.MANDATORY!");
+                    }
+                    break;
+                }
+                case NEVER: {
+                    if (status != Status.STATUS_NO_TRANSACTION) {
+                        throw new NotSupportedException("Transaction Not Supported, TrasactionAttributeType.NEVER!");
+                    }
+                    break;
+                }
             }
             return next(invocation, chain);
         }
-        catch(EJBException e) {
+        catch (EJBException e) {
             // only catch EJBException, rollback the transaction
             // Application Exception maybe right logic
             toCommit = false;
             throw e;
         }
-        catch(SQLException e) {
+        catch (SQLException e) {
             // only catch EJBException, rollback the transaction
             // Application Exception maybe right logic
             toCommit = false;
             throw e;
         }
-        catch(PersistenceException e) {
+        catch (PersistenceException e) {
             // only catch EJBException, rollback the transaction
             // Application Exception maybe right logic
             toCommit = false;
             throw e;
         }
-        catch(InvocationTargetException e) {
+        catch (InvocationTargetException e) {
             toCommit = false;
             Throwable t = e.getTargetException();
-            if(t instanceof Error) {
+            if (t instanceof Error) {
                 throw (Error)t;
             }
             else {
                 throw (Exception)t;
             }
         }
-        catch(Exception e) {
+        catch (Exception e) {
             toCommit = false;
             throw e;
         }
         finally {
-            if(created) {
-                if(toCommit) {
-                    if(tm.getStatus() == Status.STATUS_MARKED_ROLLBACK){
+            if (created) {
+                if (toCommit) {
+                    if (tm.getStatus() == Status.STATUS_MARKED_ROLLBACK) {
                         // 如果直接 commit 会抛出 RollbackException
                         tm.rollback();
                     }
                     else {
                         tm.commit();
-                    }                    
+                    }
                 }
                 else {
                     tm.rollback();
                 }
             }
             else { // 如果没有新建事务，但是继承了事务并且当前线程抛出了异常，要标记当前事务为 rollback only
-                if(!toCommit && tm.getStatus() != Status.STATUS_NO_TRANSACTION) {
+                if (!toCommit && tm.getStatus() != Status.STATUS_NO_TRANSACTION) {
                     tm.getTransaction().setRollbackOnly();
                 }
             }
-            if(suspendedTrans != null) {
+            if (suspendedTrans != null) {
                 tm.resume(suspendedTrans);
             }
         }

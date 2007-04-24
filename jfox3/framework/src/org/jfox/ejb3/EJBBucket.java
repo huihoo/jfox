@@ -88,7 +88,7 @@ public interface EJBBucket {
      */
     boolean isSession();
 
-    boolean isStateless();
+    boolean isStateful();
 
     /**
      * 是否是 @Remote EJB

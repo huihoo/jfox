@@ -102,6 +102,10 @@ public class EJBInvocation {
         return target;
     }
 
+    public boolean isStateful(){
+        return bucket.isStateful();
+    }
+
     public Method getInterfaceMethod(){
         return interfaceMethod;
     }

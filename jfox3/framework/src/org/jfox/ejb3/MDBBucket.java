@@ -166,7 +166,7 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
         return ejbObjectId;
     }
 
-    public boolean isStateless() {
+    public boolean isStateful() {
         return false;
     }
 

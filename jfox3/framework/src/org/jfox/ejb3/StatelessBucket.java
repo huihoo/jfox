@@ -236,8 +236,8 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         return wsAnnotation;
     }
 
-    public boolean isStateless(){
-        return true;
+    public boolean isStateful(){
+        return false;
     }
 
     public boolean isWebService() {
