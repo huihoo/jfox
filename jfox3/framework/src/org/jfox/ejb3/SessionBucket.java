@@ -35,6 +35,8 @@ import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
+import javax.persistence.EntityManagerFactory;
 import javax.transaction.Status;
 import javax.transaction.SystemException;
 
@@ -49,6 +51,7 @@ import org.jfox.ejb3.interceptor.InternalInterceptorMethod;
 import org.jfox.ejb3.naming.ContextAdapter;
 import org.jfox.ejb3.security.SecurityContext;
 import org.jfox.entity.dependent.FieldPersistenceContextDependence;
+import org.jfox.entity.dependent.FieldPersistenceUnitDependence;
 import org.jfox.framework.component.Module;
 import org.jfox.framework.component.ModuleClassLoader;
 import org.jfox.framework.dependent.InjectionException;
@@ -122,6 +125,7 @@ public abstract class SessionBucket implements EJBBucket {
      * persistenceContext 依赖
      */
     protected List<FieldPersistenceContextDependence> fieldPersistenceContextDependences = new ArrayList<FieldPersistenceContextDependence>();
+    protected List<FieldPersistenceUnitDependence> fieldPersistenceUnitDependences = new ArrayList<FieldPersistenceUnitDependence>();
 
     public SessionBucket(EJBContainer container, Class<?> beanClass, Module module) {
         this.container = container;
@@ -371,7 +375,8 @@ public abstract class SessionBucket implements EJBBucket {
         List<Field> allEJBFields = new ArrayList<Field>();
         List<Field> allResourceFields = new ArrayList<Field>();
         List<Field> allPersistenceContextFields = new ArrayList<Field>();
-
+        List<Field> allPersistenceUnitFields = new ArrayList<Field>();
+        
         // getAllSuperClass，也包括了自已
         for (Class<?> clazz : ClassUtils.getAllSuperclasses(this.getBeanClass())) {
             Field[] ejbFields = AnnotationUtils.getAnnotatedFields(clazz, EJB.class);
@@ -382,6 +387,9 @@ public abstract class SessionBucket implements EJBBucket {
 
             Field[] persistenceContextFields = AnnotationUtils.getAnnotatedFields(clazz, PersistenceContext.class);
             allPersistenceContextFields.addAll(Arrays.asList(persistenceContextFields));
+
+            Field[] persistenceUnitFields = AnnotationUtils.getAnnotatedFields(clazz, PersistenceUnit.class);
+            allPersistenceUnitFields.addAll(Arrays.asList(persistenceUnitFields));
         }
 
         for (Field field : allEJBFields) {
@@ -401,6 +409,15 @@ public abstract class SessionBucket implements EJBBucket {
             PersistenceContext pc = field.getAnnotation(PersistenceContext.class);
             fieldPersistenceContextDependences.add(new FieldPersistenceContextDependence(this, field, pc));
         }
+
+        for (Field field : allPersistenceUnitFields) {
+            if (!EntityManagerFactory.class.isAssignableFrom(field.getType())) {
+                throw new EJBException("@PersistenceUnit must annotated on field with type " + EntityManagerFactory.class.getName() + ", " + field);
+            }
+            PersistenceUnit pu = field.getAnnotation(PersistenceUnit.class);
+            fieldPersistenceUnitDependences.add(new FieldPersistenceUnitDependence(this, field, pu));
+        }
+
     }
 
     public ModuleClassLoader getBucketClassLoader() {

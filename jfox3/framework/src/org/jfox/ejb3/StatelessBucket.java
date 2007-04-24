@@ -24,6 +24,7 @@ import org.jfox.ejb3.dependent.FieldResourceDependence;
 import org.jfox.ejb3.timer.EJBTimerTask;
 import org.jfox.ejb3.timer.TimeoutUtils;
 import org.jfox.entity.dependent.FieldPersistenceContextDependence;
+import org.jfox.entity.dependent.FieldPersistenceUnitDependence;
 import org.jfox.framework.component.Module;
 import org.jfox.util.AnnotationUtils;
 import org.jfox.util.ClassUtils;
@@ -293,6 +294,11 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             fieldPersistenceContextDependence.inject(ejbContext);
         }
 
+        // 注入 @PersistenceUnit
+        for (FieldPersistenceUnitDependence persistenceUnitDependence : fieldPersistenceUnitDependences) {
+            persistenceUnitDependence.inject(ejbContext);
+        }
+        
         //返回 EJBContext
         return ejbContext;
     }
