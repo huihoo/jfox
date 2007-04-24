@@ -14,8 +14,6 @@ import org.jfox.jms.MessageService;
 /**
  * EJB3 容器
  * 负责 load, unload ejb, and invoke ejb method
- *
- * //TODO: 需要支持热部署
  * 
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
@@ -51,12 +49,25 @@ public interface EJBContainer extends Component {
      */
     TimerService getTimerService();
 
+    /**
+     * JNDI Naming Service
+     */
     Context getNamingContext();
 
+    /**
+     * JMS Message Service
+     */
     MessageService getMessageService();
 
+    /**
+     * get JTA Transaction Timeout
+     */
     int getTransactionTimeout();
 
+    /**
+     * set JTA Transaction Timeout
+     * @param timeout timeout in seconds
+     */
     void setTransactionTimeout(int timeout);
 
     /**
