@@ -19,6 +19,7 @@ import org.jfox.ejb3.dependent.FieldEJBDependence;
 import org.jfox.ejb3.dependent.FieldResourceDependence;
 import org.jfox.ejb3.security.SecurityContext;
 import org.jfox.entity.dependent.FieldPersistenceContextDependence;
+import org.jfox.entity.dependent.FieldPersistenceUnitDependence;
 import org.jfox.framework.component.Module;
 import org.jfox.jms.MessageListenerUtils;
 import org.jfox.jms.MessageService;
@@ -258,7 +259,7 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
             fieldEJBDependence.inject(ejbContext);
         }
 
-        // 注入 @EJB
+        // 注入 @Resource
         for (FieldResourceDependence fieldResourceDependence : fieldResourcedependents) {
             fieldResourceDependence.inject(ejbContext);
         }
@@ -266,6 +267,11 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
         // 注入 @PersistenceContext
         for (FieldPersistenceContextDependence fieldPersistenceContextDependence : fieldPersistenceContextDependences) {
             fieldPersistenceContextDependence.inject(ejbContext);
+        }
+
+        // 注入 @PersistenceUnit
+        for (FieldPersistenceUnitDependence persistenceUnitDependence : fieldPersistenceUnitDependences) {
+            persistenceUnitDependence.inject(ejbContext);
         }
 
         //返回 EJBContext
