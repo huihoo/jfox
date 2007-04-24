@@ -8,7 +8,13 @@ import java.lang.annotation.Annotation;
 public class FloatValidator implements Validator<Float> {
 
     public Float validate(String inputValue, Annotation validation) throws ValidateException {
-        FloatValidation intv = (FloatValidation)validation;
+        FloatValidation floatValidation = (FloatValidation)validation;
+        if (inputValue == null || inputValue.trim().length() == 0) {
+            if (!floatValidation.nullable()) {
+                throw new ValidateException("input can not be null!", inputValue);
+            }
+
+        }
         try {
             return Float.valueOf(inputValue);
         }

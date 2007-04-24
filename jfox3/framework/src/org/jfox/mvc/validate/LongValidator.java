@@ -9,6 +9,12 @@ public class LongValidator implements Validator<Long> {
 
     public Long validate(String inputValue, Annotation validation) throws ValidateException {
         LongValidation longValidation = (LongValidation)validation;
+        if (inputValue == null || inputValue.trim().length() == 0) {
+            if (!longValidation.nullable()) {
+                throw new ValidateException("input can not be null!", inputValue);
+            }
+
+        }
         // 整型数据
         long minValue =  longValidation.minValue();
         long maxValue =  longValidation.maxValue();

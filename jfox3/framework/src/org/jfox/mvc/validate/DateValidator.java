@@ -13,6 +13,11 @@ public class DateValidator implements Validator<Date>{
 
     public Date validate(String inputValue, Annotation validation) throws ValidateException {
         DateValidation dateValidation = (DateValidation)validation;
+        if (inputValue == null || inputValue.trim().length() == 0) {
+            if (!dateValidation.nullable()) {
+                throw new ValidateException("input can not be null!", inputValue);
+            }
+        }
         DateFormat dateFormat = new SimpleDateFormat(dateValidation.format());
         try {
             Date date = dateFormat.parse(inputValue);

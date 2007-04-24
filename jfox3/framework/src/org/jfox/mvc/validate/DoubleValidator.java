@@ -8,7 +8,13 @@ import java.lang.annotation.Annotation;
 public class DoubleValidator implements Validator<Double> {
 
     public Double validate(String inputValue, Annotation validation) throws ValidateException {
-        DoubleValidation intv = (DoubleValidation)validation;
+        DoubleValidation doubleValidation = (DoubleValidation)validation;
+        if (inputValue == null || inputValue.trim().length() == 0) {
+            if (!doubleValidation.nullable()) {
+                throw new ValidateException("input can not be null!", inputValue);
+            }
+
+        }
         try {
             return Double.valueOf(inputValue);
         }
