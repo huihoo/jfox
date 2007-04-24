@@ -36,9 +36,6 @@ public class EJBTimerTask implements Timer, TimerHandle, Runnable {
      */
     private ScheduledFuture future;
 
-    /**
-     * TODO: set Security Context
-     */
     private SecurityContext securityContext;
 
     public EJBTimerTask(SimpleEJB3Container.ContainerTimerService timerService, Serializable info) {
@@ -58,6 +55,7 @@ public class EJBTimerTask implements Timer, TimerHandle, Runnable {
         return securityContext;
     }
 
+    // set security context when createTimer
     public void setSecurityContext(SecurityContext securityContext) {
         this.securityContext = securityContext;
     }
