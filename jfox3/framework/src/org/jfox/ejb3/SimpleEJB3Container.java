@@ -238,7 +238,6 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
             EJBBucket bucket = new MDBBucket(this, beanClass, module);
             buckets.add(bucket);
             // bind to jndi
-            // TODO: need to register MDB as MessageListener
             try {
                 for (String mappedName : bucket.getMappedNames()) {
                     this.getNamingContext().bind(mappedName, bucket.createProxyStub());
@@ -247,6 +246,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
             catch (NamingException e) {
                 throw new EJBException("Failed to bind EJB with name: " + Arrays.toString(bucket.getMappedNames()) + " !", e);
             }
+            // will register MDBBucket as MessageListener
             bucket.start();
             logger.info("Message Driven EJB loaded, bean class: " + beanClass.getName());
         }
