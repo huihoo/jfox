@@ -219,9 +219,6 @@ public class JMSConnection implements Connection,
         if(sessionMap.containsKey(sessionId)) {
             sessionMap.remove(sessionId);
         }
-
-        //TODO: close destinations from connection factory
-//        connectionFactory.closeSession(clientId, sessionId);
 	}
 
 	public static void main(String[] args) {

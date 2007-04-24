@@ -51,19 +51,17 @@ public class SystemModule extends Module {
      * SystemModule的 classpath 已经制定在启动 classpath中，无须再添加
      */
     public URL[] getClasspathURLs() {
-        URL[] urls = ((URLClassLoader)SystemModule.class.getClassLoader()).getURLs();
-        // 只返回含有 Component 类的路径
-
         List<URL> appURLs = new ArrayList<URL>();
+        URL[] urls = ((URLClassLoader)SystemModule.class.getClassLoader()).getURLs();
         for (URL url : urls) {
             URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{url}, null);
+            //根据是否含有 java.lang.Object 滤掉 rt.jar
             URL testURL = urlClassLoader.findResource(Object.class.getName().replace(".", "/") + ".class");
-            //滤掉 rt.jar
-            //TODO: 滤掉更多的 jdk jar
-            if (testURL == null) {
+            URL charsetURL = urlClassLoader.findResource("sun/nio/cs/ext/GBK.class"); // charset.jar
+            //为保险起见，只滤掉含有java.lang.Object，滤掉其它
+            if (testURL == null && charsetURL == null) {
                 appURLs.add(url);
             }
-
         }
         return appURLs.toArray(new URL[appURLs.size()]);
     }

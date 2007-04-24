@@ -95,7 +95,7 @@ public class JMSConnectionFactory implements MessageService{
     /**
      * create queue with given name
      *
-     * TODO: 是否需要把该方法定义再 Interface 中，否则 framework 通过存根引用的实例无法调用???
+     * MDBBucket 通过该方法创建Queue
      *
      * @param name queue name
      */
