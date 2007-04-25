@@ -17,5 +17,7 @@ public interface EntityObject extends Serializable, Cloneable {
 
     void setColumnValue(String colName, Object colValue);
 
+    boolean containsColumn(String colName);
+
     Object clone() throws CloneNotSupportedException;
 }

@@ -304,8 +304,13 @@ public class SQLQuery extends QueryExt {
         }
     }
 
+    /**
+     * 将 ResultSet 构造称 EntityObject
+     * @param rset result set
+     * @throws SQLException if failed
+     */
     protected EntityObject buildEntityObject(ResultSet rset) throws SQLException {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
+        final Map<String, Object> resultMap = new HashMap<String, Object>();
         Class<?> resultClass = sqlTemplate.getResultClass();
         ResultSetMetaData rsetMeta = rset.getMetaData();
 
@@ -333,61 +338,60 @@ public class SQLQuery extends QueryExt {
 
         EntityObject dataObject = (EntityObject)DAOSupport.newEntityObject(resultClass, resultMap);
 
-        boolean mapped = false;
         // deal with MappedColumn
-        for (NamedSQLTemplate.MappedColumnEntry mcEntry : sqlTemplate.getMappedColumnEntries()) {
-            ParameterMap[] params = mcEntry.params;
+        final Map<String, Object> mappedColumnResultMap = new HashMap<String, Object>();
+        boolean isMappedColumnSet = false;
+        for (NamedSQLTemplate.MappedColumnEntry mappedColEntry : sqlTemplate.getMappedColumnEntries()) {
+            ParameterMap[] params = mappedColEntry.params;
             final List<Object> parameterResult = new ArrayList<Object>();
 
-            Map<String, Object> parameterValueMap = new HashMap<String, Object>();
+            final Map<String, Object> velocityMap = new HashMap<String, Object>();
             // $this 表示本 data object
-            parameterValueMap.put("this", dataObject);
+            velocityMap.put("this", dataObject);
 
             // 测试参数是否有值，只有在有值的情况才设置 MappedColumn
-            final Map<String, Boolean> valuedMap = new HashMap<String, Boolean>();
-
+            final Map<String, Boolean> mappedColumnSetFlag = new HashMap<String, Boolean>(1);
+            final String EVALUATE_KEY = "evaluated";
+            mappedColumnSetFlag.put(EVALUATE_KEY,true);
             EventHandler eventHandler = new ReferenceInsertionEventHandler() {
                 public Object referenceInsert(String reference, Object value) {
                     if (value == null || value.equals("") || value.equals(reference)) {
-                        valuedMap.put("valued", false);
+                        mappedColumnSetFlag.put(EVALUATE_KEY, false);
                     }
-                    if (value != null) {
-                        //TODO: key 应该 ParameterEntry.name
-                        parameterResult.add(value);
-                    }
+                    parameterResult.add(value);
                     return value;
                 }
             };
 
             for (ParameterMap parameterMap : params) {
                 // 有可能抛出异常
-                VelocityUtils.evaluate(parameterMap.value(), parameterValueMap, eventHandler);
-                if (!valuedMap.containsKey("valued")) {
-                    valuedMap.put("valued", true);
-                }
+                VelocityUtils.evaluate(parameterMap.value(), velocityMap, eventHandler);
             }
 
             // MappedColumn 需要的参数都已经赋值，没有赋值的话说明该次查询也不需要 MappedColumn 的值
-            if (valuedMap.containsKey("valued") && valuedMap.get("valued")) {
-                mapped = true;
-                QueryExt mappedColumnQuery = em.createNamedQuery(mcEntry.namedQuery);
+            if (mappedColumnSetFlag.get(EVALUATE_KEY)) {
+                isMappedColumnSet = true;
+                QueryExt mappedColumnQuery = em.createNamedQuery(mappedColEntry.namedQuery);
                 for (int i = 0; i < params.length; i++) {
                     mappedColumnQuery.setParameter(params[i].name(), parameterResult.get(i));
                 }
 
-                if (mcEntry.type.isArray()) { // array
-                    resultMap.put(mcEntry.name, mappedColumnQuery.getResultList().toArray());
+                if (mappedColEntry.type.isArray()) { // array
+                    mappedColumnResultMap.put(mappedColEntry.name, mappedColumnQuery.getResultList().toArray());
                 }
-                else if (Collection.class.isAssignableFrom(mcEntry.type)) { // Collection
-                    resultMap.put(mcEntry.name, mappedColumnQuery.getResultList());
+                else if (Collection.class.isAssignableFrom(mappedColEntry.type)) { // Collection
+                    mappedColumnResultMap.put(mappedColEntry.name, mappedColumnQuery.getResultList());
                 }
                 else { // single
-                    resultMap.put(mcEntry.name, mappedColumnQuery.getSingleResult());
+                    mappedColumnResultMap.put(mappedColEntry.name, mappedColumnQuery.getSingleResult());
                 }
             }
         }
-        if (mapped) {
-            dataObject = (EntityObject)DAOSupport.newEntityObject(resultClass, resultMap);
+        if (isMappedColumnSet) {
+            // 添加MapColumn到EntityObject
+            for(Map.Entry<String, Object> entry : mappedColumnResultMap.entrySet()){
+                dataObject.setColumnValue(entry.getKey(), entry.getValue());
+            }
         }
         return dataObject;
     }
@@ -547,11 +551,7 @@ public class SQLQuery extends QueryExt {
             if (o == null || getClass() != o.getClass()) return false;
 
             CacheKey cacheKey = (CacheKey)o;
-
-            if (!parameterMap.equals(cacheKey.parameterMap)) return false;
-            if (!templateName.equals(cacheKey.templateName)) return false;
-
-            return true;
+            return templateName.equals(cacheKey.templateName) && parameterMap.equals(cacheKey.parameterMap);
         }
 
         public int hashCode() {

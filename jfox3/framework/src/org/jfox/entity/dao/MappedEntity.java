@@ -107,6 +107,10 @@ public class MappedEntity implements EntityObject {
         valueMap.put(colName.toUpperCase(), colValue);
     }
 
+    public boolean containsColumn(String colName) {
+        return valueMap.containsKey(colName);
+    }
+
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append(dataObjectInterfClass.getSimpleName()).append("{");
