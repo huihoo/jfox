@@ -232,6 +232,8 @@ public class XMLUtils {
         return element;
     }
 
+
+
     /**
      * Add a CDATA element.
      *
@@ -305,7 +307,12 @@ public class XMLUtils {
         parent.appendChild(element);
         return element;
     }
-
+    
+    public static Element addElement(Element parent, Element childElement){
+        Node childNode = parent.getOwnerDocument().importNode(childElement,true);
+        parent.appendChild(childNode);
+        return parent;
+    }
     /**
      * 创建 Attribute
      *
