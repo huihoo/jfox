@@ -9,6 +9,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import org.jfox.framework.Framework;
+import org.jfox.framework.component.Module;
 import org.jfox.util.FileFilterUtils;
 import org.apache.log4j.Logger;
 
@@ -63,7 +64,16 @@ public class WebContextLoader implements ServletContextListener {
                     return;
                 }
 
-                // 过滤调 . 开头的目录
+                // 过滤掉 . 开头的目录
+
+                // zip 文件
+                File[] moduleZips = modulesDir.listFiles(FileFilterUtils.and(FileFilterUtils.not(FileFilterUtils.directoryFileFilter()),FileFilterUtils.suffixFileFilter(Framework.MODULE_ARCHIVE_SUFFIX), FileFilterUtils.not(FileFilterUtils.prefixFileFilter("."))));
+                for(File moduleZip : moduleZips){
+                    Module module = framework.loadModule(moduleZip);
+                    registerModulePath(_modulesDir + "/" + moduleZip.getName().substring(0, moduleZip.getName().lastIndexOf(".")), module.getModuleDir());
+                }
+
+                // module 目录
                 File[] moduleDirs = modulesDir.listFiles(FileFilterUtils.and(FileFilterUtils.directoryFileFilter(), FileFilterUtils.not(FileFilterUtils.prefixFileFilter("."))));
                 for (File moduleDir : moduleDirs) {
                     framework.loadModule(moduleDir);
@@ -71,13 +81,13 @@ public class WebContextLoader implements ServletContextListener {
                     registerModulePath(_modulesDir + "/" + moduleDir.getName(), moduleDir);
                 }
             }
-
+            // start framework, will start all modules
             framework.start();
+            logger.info("JFox started in " + ((System.currentTimeMillis() - now) / 1000) + " seconds!");
         }
         catch (Exception e) {
             logger.error("Start framework failed!", e);
         }
-        logger.info("JFox started in " + ((System.currentTimeMillis() - now) / 1000) + " seconds!");
     }
 
     /**
