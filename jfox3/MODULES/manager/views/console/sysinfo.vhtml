@@ -49,7 +49,7 @@
             <small>JFox Version</small>
         </td>
         <td class="header-center">
-            <small>Tomcat Version</small>
+            <small>Web Container</small>
         </td>
         <td class="header-center">
             <small>JVM Version</small>
