@@ -1,20 +1,7 @@
 package org.jfox.entity;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.PersistenceException;
 
-import org.jfox.entity.annotation.MappedColumn;
-import org.jfox.entity.annotation.ParameterMap;
-import org.jfox.entity.dao.MappedEntity;
-import org.jfox.util.AnnotationUtils;
-import org.jfox.util.ClassUtils;
 import org.apache.log4j.Logger;
 
 /**
@@ -33,7 +20,7 @@ public class SQLTemplate {
      * 保存一个 Result Class 的 column name=>column entry 的对应关系
      *  result class => {column name=> column entry}
      */
-    protected static Map<Class<?>, Map<String, ColumnEntry>> resultClass2MappedColumnMap = new HashMap<Class<?>, Map<String, ColumnEntry>>();
+//    protected static Map<Class<?>, Map<String, ColumnEntry>> resultClass2MappedColumnMap = new HashMap<Class<?>, Map<String, ColumnEntry>>();
 
     protected Logger logger = Logger.getLogger(this.getClass());
 
@@ -51,76 +38,24 @@ public class SQLTemplate {
     }
 
     protected void introspectResultClass(Class<?> resultClass) {
-        if(ClassUtils.isPrimitiveClass(resultClass)) {
-            return;
-        }
-        else if(MappedEntity.class.isAssignableFrom(resultClass)) {
-            return ;
-        }
-        else if(String.class.equals(resultClass) || ClassUtils.isPrimitiveClass(resultClass) || ClassUtils.isPrimitiveWrapperClass(resultClass)) {
-            return;
-        }
-        
-        if(!resultClass.isInterface()){
-            throw new PersistenceException("Not supported result class: " + resultClass.getName() + ", only support primitive class, EntityObject, and @Entity interface.");
-        }
-
-        if(resultClass2MappedColumnMap.containsKey(resultClass)) {
-            return ;
-        }
-        Map<String, ColumnEntry> columnMap = new HashMap<String, ColumnEntry>();
-        Method[] columnMethods = AnnotationUtils.getAnnotatedMethods(resultClass, Column.class);
-        for(Method columnMethod : columnMethods){
-            Column column = columnMethod.getAnnotation(Column.class);
-            ColumnEntry columnEntry = new ColumnEntry();
-            columnEntry.name = column.name();
-            columnEntry.type = columnMethod.getReturnType();
-            columnMap.put(column.name(), columnEntry);
-        }
-
-        Method[] mappedColumnMethods = AnnotationUtils.getAnnotatedMethods(resultClass, MappedColumn.class);
-        for(Method mappedColumnMethod : mappedColumnMethods){
-            MappedColumn mappedColumn = mappedColumnMethod.getAnnotation(MappedColumn.class);
-            MappedColumnEntry mcEntry = new MappedColumnEntry();
-            // 用方法名作为 name, 也即为 resultMap 中的 key
-            mcEntry.name = MappedEntity.getColumnMapKeyByMethod(mappedColumnMethod);
-            mcEntry.namedQuery = mappedColumn.namedQuery();
-            mcEntry.type = mappedColumnMethod.getReturnType();
-            mcEntry.params = mappedColumn.params();
-            columnMap.put(mcEntry.name,mcEntry);
-        }
-
-        resultClass2MappedColumnMap.put(resultClass,columnMap);
+        EntityFactory.introspectResultClass(resultClass);
     }
 
     public Class<?> getColumnClass(String columnName){
-        ColumnEntry columnEntry = resultClass2MappedColumnMap.get(getResultClass()).get(columnName);
+        EntityFactory.ColumnEntry columnEntry = EntityFactory.getColumnEntry(getResultClass(), columnName);
         if(columnEntry == null) {
             return null;
         }
         else {
-            return columnEntry.type;
+            return columnEntry.field.getType();
         }
-    }
-
-    /**
-     * 得到 Result 的 Columns
-     */
-    public Set<String> getColumns(){
-        return resultClass2MappedColumnMap.get(getResultClass()).keySet();
     }
 
     /**
      * 得到所有的 ColumnEntry
      */
-    public Collection<MappedColumnEntry> getMappedColumnEntries(){
-        List<MappedColumnEntry> mappedColumnEntries = new ArrayList<MappedColumnEntry>();
-        for(ColumnEntry entry : resultClass2MappedColumnMap.get(getResultClass()).values()){
-            if(entry instanceof MappedColumnEntry) {
-                mappedColumnEntries.add((MappedColumnEntry)entry);
-            }
-        }
-        return mappedColumnEntries;
+    public Collection<EntityFactory.MappedColumnEntry> getMappedColumnEntries(){
+        return EntityFactory.getMappedColumnEntries(getResultClass());
     }
 
 
@@ -132,15 +67,4 @@ public class SQLTemplate {
         return this.resultClass;
     }
 
-    // @Column
-    public static class ColumnEntry {
-        String name;
-        Class type;
-    }
-
-    // MappedColumn
-    public static class MappedColumnEntry extends ColumnEntry {
-        String namedQuery;
-        ParameterMap[] params;
-    }
 }

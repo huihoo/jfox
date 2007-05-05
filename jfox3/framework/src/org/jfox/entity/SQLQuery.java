@@ -22,16 +22,15 @@ import java.util.Map;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-import org.jfox.entity.annotation.ParameterMap;
-import org.jfox.entity.dao.DAOSupport;
-import org.jfox.entity.dao.MappedEntity;
-import org.jfox.entity.cache.CacheConfig;
-import org.jfox.entity.cache.Cache;
-import org.jfox.util.ClassUtils;
-import org.jfox.util.VelocityUtils;
 import org.apache.log4j.Logger;
 import org.apache.velocity.app.event.EventHandler;
 import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
+import org.jfox.entity.annotation.ParameterMap;
+import org.jfox.entity.cache.Cache;
+import org.jfox.entity.cache.CacheConfig;
+import org.jfox.entity.MappedEntity;
+import org.jfox.util.ClassUtils;
+import org.jfox.util.VelocityUtils;
 
 /**
  * 负责根据根据 SQLTemplate 构造 PreparedStatement，并执行，返回 ResultClass
@@ -309,7 +308,7 @@ public class SQLQuery extends QueryExt {
      * @param rset result set
      * @throws SQLException if failed
      */
-    protected EntityObject buildEntityObject(ResultSet rset) throws SQLException {
+    protected Object buildEntityObject(ResultSet rset) throws SQLException {
         final Map<String, Object> resultMap = new HashMap<String, Object>();
         Class<?> resultClass = sqlTemplate.getResultClass();
         ResultSetMetaData rsetMeta = rset.getMetaData();
@@ -319,7 +318,7 @@ public class SQLQuery extends QueryExt {
             String columnName = rsetMeta.getColumnName(i);
 
             if (resultClass.equals(EntityObject.class)) {
-                // 是 EntityMapper，统一取 String
+                // 是 MappedEntity，无法获得Column Class信息，统一取 String
                 resultMap.put(columnName, rset.getString(columnName));
             }
             else {
@@ -336,12 +335,12 @@ public class SQLQuery extends QueryExt {
             }
         }
 
-        EntityObject dataObject = (EntityObject)DAOSupport.newEntityObject(resultClass, resultMap);
+        Object dataObject = EntityFactory.newEntityObject(resultClass, resultMap);
 
         // deal with MappedColumn
         final Map<String, Object> mappedColumnResultMap = new HashMap<String, Object>();
         boolean isMappedColumnSet = false;
-        for (NamedSQLTemplate.MappedColumnEntry mappedColEntry : sqlTemplate.getMappedColumnEntries()) {
+        for (EntityFactory.MappedColumnEntry mappedColEntry : sqlTemplate.getMappedColumnEntries()) {
             ParameterMap[] params = mappedColEntry.params;
             final List<Object> parameterResult = new ArrayList<Object>();
 
@@ -376,10 +375,10 @@ public class SQLQuery extends QueryExt {
                     mappedColumnQuery.setParameter(params[i].name(), parameterResult.get(i));
                 }
 
-                if (mappedColEntry.type.isArray()) { // array
+                if (mappedColEntry.field.getType().isArray()) { // array
                     mappedColumnResultMap.put(mappedColEntry.name, mappedColumnQuery.getResultList().toArray());
                 }
-                else if (Collection.class.isAssignableFrom(mappedColEntry.type)) { // Collection
+                else if (Collection.class.isAssignableFrom(mappedColEntry.field.getType())) { // Collection
                     mappedColumnResultMap.put(mappedColEntry.name, mappedColumnQuery.getResultList());
                 }
                 else { // single
@@ -388,10 +387,7 @@ public class SQLQuery extends QueryExt {
             }
         }
         if (isMappedColumnSet) {
-            // 添加MapColumn到EntityObject
-            for(Map.Entry<String, Object> entry : mappedColumnResultMap.entrySet()){
-                dataObject.setColumnValue(entry.getKey(), entry.getValue());
-            }
+            EntityFactory.appendMappedColumn(dataObject,mappedColumnResultMap);
         }
         return dataObject;
     }

@@ -19,7 +19,7 @@ import jfox.test.jpa.Address;
                 query = "select * from address where ADR_ID = $id",
                 resultClass = Address.class),
         @NamedNativeQuery(name = AddressDAO.GET_ADDRESS_BY_ACCOUNT_ID,
-                query = "select * from address where ADR_ACC_ID = $p1",
+                query = "select * from address where ADR_ACC_ID = $accountId",
                 resultClass = Address.class),
         @NamedNativeQuery(name = "AddressDAO.getAllAddress",
                 query = "select * from address",

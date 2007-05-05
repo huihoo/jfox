@@ -23,7 +23,7 @@ import jfox.test.ejb3.lob.Lobber;
 import org.jfox.ejb3.naming.JNDIContextHelper;
 import org.jfox.ejb3.security.JAASLoginServiceImpl;
 import org.jfox.ejb3.security.SampleCallbackHandler;
-import org.jfox.entity.dao.MappedEntity;
+import org.jfox.entity.MappedEntity;
 import org.jfox.framework.Framework;
 import org.jfox.mvc.SessionContext;
 import org.junit.After;

@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 
 import org.jfox.entity.EntityObject;
 import org.jfox.entity.QueryExt;
+import org.jfox.entity.MappedEntity;
 
 /**
  * DAOSupport，封装了 DAO 的基本操作

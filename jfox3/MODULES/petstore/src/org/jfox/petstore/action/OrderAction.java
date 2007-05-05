@@ -11,7 +11,7 @@ import org.jfox.petstore.domain.CartItem;
 import org.jfox.petstore.entity.Account;
 import org.jfox.petstore.entity.LineItem;
 import org.jfox.petstore.entity.Order;
-import org.jfox.entity.dao.MappedEntity;
+import org.jfox.entity.MappedEntity;
 import org.jfox.entity.dao.PKGenerator;
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionSupport;

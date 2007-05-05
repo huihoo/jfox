@@ -19,7 +19,7 @@ import org.jfox.mvc.validate.ValidateException;
 import org.jfox.mvc.validate.StringValidation;
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.entity.EntityObject;
-import org.jfox.entity.dao.MappedEntity;
+import org.jfox.entity.MappedEntity;
 import org.jfox.petstore.bo.AccountBO;
 import org.jfox.petstore.bo.CategoryBO;
 import org.jfox.petstore.entity.Account;

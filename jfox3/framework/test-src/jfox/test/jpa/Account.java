@@ -30,6 +30,6 @@ public interface Account {
     String getMail();
     void setMail(String mail);
 
-    @MappedColumn(namedQuery = AddressDAO.GET_ADDRESS_BY_ACCOUNT_ID, params = {@ParameterMap(name = "id",value="$this.getId()")})
+    @MappedColumn(namedQuery = AddressDAO.GET_ADDRESS_BY_ACCOUNT_ID, params = {@ParameterMap(name = "accountId",value="$this.getId()")})
     Address getAddress();
 }

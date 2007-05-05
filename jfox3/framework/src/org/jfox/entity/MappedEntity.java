@@ -1,4 +1,4 @@
-package org.jfox.entity.dao;
+package org.jfox.entity;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
@@ -11,7 +11,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.PersistenceException;
 
-import org.jfox.entity.EntityObject;
 import org.jfox.entity.annotation.MappedColumn;
 import org.jfox.framework.BaseRuntimeException;
 import org.jfox.util.AnnotationUtils;
