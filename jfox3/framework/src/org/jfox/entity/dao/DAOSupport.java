@@ -6,9 +6,9 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 
+import org.jfox.entity.EntityFactory;
 import org.jfox.entity.EntityObject;
 import org.jfox.entity.QueryExt;
-import org.jfox.entity.MappedEntity;
 
 /**
  * DAOSupport，封装了 DAO 的基本操作
@@ -78,7 +78,7 @@ public abstract class DAOSupport implements DataAccessObject {
      * @param dataMap                   data dataMap
      */
     public static <T> T newEntityObject(final Class<T> entityInterfaceClass, final Map<String, Object> dataMap) {
-        return MappedEntity.newEntityObject(entityInterfaceClass, dataMap);
+        return EntityFactory.newEntityObject(entityInterfaceClass, dataMap);
     }
 
 }

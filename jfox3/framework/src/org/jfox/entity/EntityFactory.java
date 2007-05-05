@@ -1,17 +1,16 @@
 package org.jfox.entity;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Collection;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.PersistenceException;
 
-import org.jfox.entity.annotation.MappedColumn;
+import org.jfox.entity.annotation.MappingColumn;
 import org.jfox.entity.annotation.ParameterMap;
-import org.jfox.entity.MappedEntity;
 import org.jfox.util.AnnotationUtils;
 import org.jfox.util.ClassUtils;
 
@@ -37,7 +36,7 @@ public class EntityFactory {
         }
 
         if (resultClass.isInterface()) {
-            throw new PersistenceException("Not supported result class: " + resultClass.getName() + ", only support primitive class, EntityObject, and @Entity Class.");
+            throw new PersistenceException("Not supported result class: " + resultClass.getName() + ", only support primitive class, MappedEntity, and @Entity Class.");
         }
 
         if (resultClass2MappedColumnMap.containsKey(resultClass)) {
@@ -58,28 +57,32 @@ public class EntityFactory {
             columnMap.put(column.name(), columnEntry);
         }
 
-        Field[] mappedColumnMethods = AnnotationUtils.getAnnotatedFields(resultClass, MappedColumn.class);
+        Field[] mappedColumnMethods = AnnotationUtils.getAnnotatedFields(resultClass, MappingColumn.class);
         for (Field mappedColumnMethod : mappedColumnMethods) {
-            MappedColumn mappedColumn = mappedColumnMethod.getAnnotation(MappedColumn.class);
+            MappingColumn mappingColumn = mappedColumnMethod.getAnnotation(MappingColumn.class);
             MappedColumnEntry mcEntry = new MappedColumnEntry();
             mcEntry.name = mappedColumnMethod.getName().toUpperCase();
-            mcEntry.namedQuery = mappedColumn.namedQuery();
+            mcEntry.namedQuery = mappingColumn.namedQuery();
             mcEntry.field = mappedColumnMethod;
-            mcEntry.params = mappedColumn.params();
+            mcEntry.params = mappingColumn.params();
             columnMap.put(mcEntry.name, mcEntry);
         }
 
         resultClass2MappedColumnMap.put(resultClass, columnMap);
     }
 
-    public static Object newEntityObject(Class<?> resultClass, Map<String, Object> resultMap) {
+    public static <T> T newEntityObject(Class<T> resultClass){
+        return newEntityObject(resultClass, new HashMap<String, Object>(0));
+    }
+
+    public static <T> T newEntityObject(Class<T> resultClass, Map<String, Object> resultMap) {
         if (resultClass.equals(EntityObject.class)) {
             return MappedEntity.newEntityObject(resultClass, resultMap);
         }
         else {
             // 从 SQLTemplate 中获得 resultClass 的对应信息，然后Field.set
             try {
-                Object entity = resultClass.newInstance();
+                T entity = resultClass.newInstance();
                 for (Map.Entry<String, Object> entry : resultMap.entrySet()) {
                     String columnName = entry.getKey();
                     ColumnEntry columnEntry = getColumnEntry(resultClass, columnName);

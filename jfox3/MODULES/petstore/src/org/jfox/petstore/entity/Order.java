@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Column;
 
-import org.jfox.entity.annotation.MappedColumn;
+import org.jfox.entity.annotation.MappingColumn;
 import org.jfox.entity.annotation.ParameterMap;
 import org.jfox.petstore.dao.OrderDAOImpl;
 
@@ -120,7 +120,7 @@ public interface Order extends Serializable {
 	void setStatus(String status);
 
     //MappedColumn
-    @MappedColumn(namedQuery = OrderDAOImpl.GET_LINEITEMS_BY_ORDERID, params = {@ParameterMap(name = "orderid", value = "$this.getOrderId()")})
+    @MappingColumn(namedQuery = OrderDAOImpl.GET_LINEITEMS_BY_ORDERID, params = {@ParameterMap(name = "orderid", value = "$this.getOrderId()")})
     List<LineItem> getLineItems();
     void setLineItems(List<LineItem> lineItems);
 

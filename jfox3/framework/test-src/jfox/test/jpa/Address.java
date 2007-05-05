@@ -3,40 +3,87 @@ package jfox.test.jpa;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import org.jfox.entity.EntityObject;
-
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Entity
-public interface Address extends EntityObject {
+public class Address {
     
     @Column(name="ADR_ID")
-    long getId();
-    void setId(long id);
+    long id;
 
     @Column(name="ADR_ACC_ID")
-    long getAccountId();
-    void setAccountId(long accountId);
+    long accountId;
 
     @Column(name="ADR_DESCRIPTION")
-    String getDescription();
-    void setDescription(String description);
+    String description;
 
     @Column(name="ADR_STREET")
-    String getStreet();
-    void setStreet(String street);
+    String street;
 
     @Column(name="ADR_CITY")
-    String getCity();
-    void setCity(String city);
+    String city;
 
     @Column(name="ADR_PROVINCE")
-    String getProvince();
-    void setProvince(String province);
+    String province;
 
     @Column(name="ADR_POSTAL_CODE")
-    String getPostalCode();
-    void setPostalCode(String postalCode);
+    String postalCode;
 
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(long accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
 }

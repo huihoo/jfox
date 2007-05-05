@@ -3,7 +3,7 @@ package jfox.test.jpa;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import org.jfox.entity.annotation.MappedColumn;
+import org.jfox.entity.annotation.MappingColumn;
 import org.jfox.entity.annotation.ParameterMap;
 import jfox.test.ejbcomponent.dao.AddressDAO;
 
@@ -12,24 +12,60 @@ import jfox.test.ejbcomponent.dao.AddressDAO;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Entity
-public interface Account {
+public class Account {
 
     @Column(name="ACC_ID")
-    long getId();
-    void setId(long id);
+    long id;
 
     @Column(name="ACC_FIRST_NAME")
-    String getFirstName();
-    void setFirstName(String name);
+    String firstName;
 
     @Column(name="ACC_LAST_NAME")
-    String getLastName();
-    void setLastName(String name);
+    String lastName;
 
     @Column(name="ACC_EMAIL")
-    String getMail();
-    void setMail(String mail);
+    String mail;
 
-    @MappedColumn(namedQuery = AddressDAO.GET_ADDRESS_BY_ACCOUNT_ID, params = {@ParameterMap(name = "accountId",value="$this.getId()")})
-    Address getAddress();
+    @MappingColumn(namedQuery = AddressDAO.GET_ADDRESS_BY_ACCOUNT_ID, params = {@ParameterMap(name = "accountId",value="$this.getId()")})
+    Address address;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }

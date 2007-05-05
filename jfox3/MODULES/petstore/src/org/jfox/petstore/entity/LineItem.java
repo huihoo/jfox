@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import org.jfox.entity.annotation.MappedColumn;
+import org.jfox.entity.annotation.MappingColumn;
 import org.jfox.entity.annotation.ParameterMap;
 import org.jfox.petstore.dao.ItemDAOImpl;
 
@@ -34,7 +34,7 @@ public interface LineItem extends Serializable {
     public int getQuantity();
     public void setQuantity(int quantity);
 
-    @MappedColumn(namedQuery = ItemDAOImpl.GET_ITEM, params = {@ParameterMap(name = "id",value = "$this.getItemId()")})
+    @MappingColumn(namedQuery = ItemDAOImpl.GET_ITEM, params = {@ParameterMap(name = "id",value = "$this.getItemId()")})
     public Item getItem();
     public void setItem(Item item);
 

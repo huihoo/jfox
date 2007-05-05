@@ -53,7 +53,6 @@ public class OutContainerDAOTest {
         Assert.assertEquals(account.getColumnValue("ACC_ID"),"1");
     }
 
-
     @Test
     public void testGetAllAccounts() throws Exception {
         List<Account> accounts = accountDAO.getAllAccounts();

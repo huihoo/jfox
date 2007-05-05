@@ -9,8 +9,8 @@ import java.lang.annotation.ElementType;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD})
-public @interface MappedColumn {
+@Target({ElementType.FIELD, ElementType.METHOD})
+public @interface MappingColumn {
     /**
      * 定义的 query 的名字
      */

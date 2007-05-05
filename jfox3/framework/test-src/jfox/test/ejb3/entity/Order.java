@@ -4,7 +4,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Column;
 
-import org.jfox.entity.annotation.MappedColumn;
+import org.jfox.entity.annotation.MappingColumn;
 import org.jfox.entity.annotation.ParameterMap;
 
 /**
@@ -21,6 +21,6 @@ public interface Order {
     String getCreateTime();
     void setCreateTime(String total);
 
-    @MappedColumn(namedQuery = OrderDAOImpl.GET_LINEITEMS_BY_ORDER_ID, params = {@ParameterMap(name = "orderid", value="$this.getId()")})
+    @MappingColumn(namedQuery = OrderDAOImpl.GET_LINEITEMS_BY_ORDER_ID, params = {@ParameterMap(name = "orderid", value="$this.getId()")})
     List<LineItem> getLineItems();
 }

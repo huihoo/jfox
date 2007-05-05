@@ -11,7 +11,7 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.PersistenceException;
 
-import org.jfox.entity.annotation.MappedColumn;
+import org.jfox.entity.annotation.MappingColumn;
 import org.jfox.framework.BaseRuntimeException;
 import org.jfox.util.AnnotationUtils;
 import org.jfox.util.MethodUtils;
@@ -54,7 +54,7 @@ public class MappedEntity implements EntityObject {
             Column column = columnMethod.getAnnotation(Column.class);
             columnMap.put(getColumnMapKeyByMethod(columnMethod), column.name());
         }
-        Method[] mappedColumnMethods = AnnotationUtils.getAnnotatedMethods(dataObjectInterfClass, MappedColumn.class);
+        Method[] mappedColumnMethods = AnnotationUtils.getAnnotatedMethods(dataObjectInterfClass, MappingColumn.class);
         for (Method columnMethod : mappedColumnMethods) {
             columnMap.put(getColumnMapKeyByMethod(columnMethod), getColumnMapKeyByMethod(columnMethod));
         }
@@ -128,7 +128,7 @@ public class MappedEntity implements EntityObject {
      *
      * @param dataObjectIntfClass data object interface class
      */
-    public static <T> T newEntityObject(Class<T> dataObjectIntfClass) {
+    static <T> T newEntityObject(Class<T> dataObjectIntfClass) {
         return newEntityObject(dataObjectIntfClass, new HashMap<String,Object>());
     }
 
@@ -138,7 +138,7 @@ public class MappedEntity implements EntityObject {
      * @param entityInterfaceClass entity class
      * @param map                   data map
      */
-    public static <T> T newEntityObject(final Class<T> entityInterfaceClass, final Map<String, Object> map) {
+    static <T> T newEntityObject(final Class<T> entityInterfaceClass, final Map<String, Object> map) {
         if (!entityInterfaceClass.isInterface()) {
             throw new BaseRuntimeException("Create Entity Object failed, not provide a data object interface, class is: " + entityInterfaceClass);
         }
@@ -155,7 +155,7 @@ public class MappedEntity implements EntityObject {
         }
     }
 
-    public static <T> T newEntityObject(final Class<T> entityInterfaceClass, final MappedEntity mappedEntity) {
+    static <T> T newEntityObject(final Class<T> entityInterfaceClass, final MappedEntity mappedEntity) {
         List<Class> interfaceClasses = new ArrayList<Class>();
         interfaceClasses.add(entityInterfaceClass);
         if (!EntityObject.class.isAssignableFrom(entityInterfaceClass)) {
