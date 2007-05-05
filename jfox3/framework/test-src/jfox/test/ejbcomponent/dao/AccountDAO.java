@@ -3,7 +3,7 @@ package jfox.test.ejbcomponent.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.jfox.entity.EntityObject;
+import org.jfox.entity.MappedEntity;
 import jfox.test.jpa.Account;
 
 /**
@@ -15,7 +15,7 @@ public interface AccountDAO {
 
     Account getAccountByIdSQL(long id) throws SQLException;
 
-    EntityObject getAccountByIdSQLEntityObject(long id) throws SQLException;
+    MappedEntity getAccounMappedEntitytById(long id) throws SQLException;
 
     List<Account> getAllAccounts() throws SQLException;
 

@@ -11,8 +11,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.jfox.entity.EntityManagerExt;
-import org.jfox.entity.EntityObject;
 import org.jfox.entity.QueryExt;
+import org.jfox.entity.MappedEntity;
 import org.jfox.entity.dao.DAOSupport;
 import jfox.test.jpa.Account;
 
@@ -58,9 +58,9 @@ public class AccountDAOImpl extends DAOSupport implements AccountDAO {
         return (Account)query.getSingleResult();
     }
 
-    public EntityObject getAccountByIdSQLEntityObject(long id) throws SQLException {
-        Query query = createNativeQuery("select * from ACCOUNT where ACC_ID=$p1", EntityObject.class).setParameter("id", id);
-        return (EntityObject)query.getSingleResult();
+    public MappedEntity getAccounMappedEntitytById(long id) throws SQLException {
+        Query query = createNativeQuery("select * from ACCOUNT where ACC_ID=$p1", MappedEntity.class).setParameter("id", id);
+        return (MappedEntity)query.getSingleResult();
     }
 
     public List<Account> getAllAccounts() throws SQLException {

@@ -68,4 +68,14 @@ public class Account {
     public void setAddress(Address address) {
         this.address = address;
     }
+
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", mail='" + mail + '\'' +
+                ", address=" + address +
+                '}';
+    }
 }

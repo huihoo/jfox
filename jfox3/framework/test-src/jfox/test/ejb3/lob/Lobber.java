@@ -7,17 +7,38 @@ import javax.persistence.Entity;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Entity
-public interface Lobber {
+public class Lobber {
 
     @Column(name="id")
-    public long getId();
-    public void setId(long id);
+    long id;
 
     @Column(name="blobby")
-    public byte[] getBlobby();
-    public void setBlobby(byte[] blobby);
+    byte[] blobby;
 
     @Column(name="clobby")
-    public String getClobby();
-    public void setClobby(String clobby);
+    String clobby;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getClobby() {
+        return clobby;
+    }
+
+    public void setClobby(String clobby) {
+        this.clobby = clobby;
+    }
+
+    public byte[] getBlobby() {
+        return blobby;
+    }
+
+    public void setBlobby(byte[] blobby) {
+        this.blobby = blobby;
+    }
 }

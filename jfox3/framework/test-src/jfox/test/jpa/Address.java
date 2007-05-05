@@ -86,4 +86,16 @@ public class Address {
     public void setStreet(String street) {
         this.street = street;
     }
+
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", accountId=" + accountId +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", province='" + province + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

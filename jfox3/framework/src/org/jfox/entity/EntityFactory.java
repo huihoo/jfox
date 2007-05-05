@@ -76,8 +76,8 @@ public class EntityFactory {
     }
 
     public static <T> T newEntityObject(Class<T> resultClass, Map<String, Object> resultMap) {
-        if (resultClass.equals(EntityObject.class)) {
-            return MappedEntity.newEntityObject(resultClass, resultMap);
+        if (resultClass.equals(MappedEntity.class)) {
+            return (T)MappedEntity.newMappedEntity(resultMap);
         }
         else {
             // 从 SQLTemplate 中获得 resultClass 的对应信息，然后Field.set
@@ -109,8 +109,9 @@ public class EntityFactory {
             try {
                 for (Map.Entry<String, Object> entry : mappedColumnResultMap.entrySet()) {
                     String columnName = entry.getKey();
-                    ColumnEntry columnEntry = getColumnEntry(entry.getClass(), columnName);
+                    ColumnEntry columnEntry = getColumnEntry(entity.getClass(), columnName);
                     if (columnEntry != null) {
+                        columnEntry.field.setAccessible(true);
                         columnEntry.field.set(entity, entry.getValue());
                     }
                 }

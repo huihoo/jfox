@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+import javax.persistence.Entity;
 
 import org.apache.log4j.Logger;
 import org.apache.velocity.app.event.EventHandler;
@@ -28,7 +29,6 @@ import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
 import org.jfox.entity.annotation.ParameterMap;
 import org.jfox.entity.cache.Cache;
 import org.jfox.entity.cache.CacheConfig;
-import org.jfox.entity.MappedEntity;
 import org.jfox.util.ClassUtils;
 import org.jfox.util.VelocityUtils;
 
@@ -292,7 +292,7 @@ public class SQLQuery extends QueryExt {
         //需要判断 ResultClass 类型
         Class<?> resultClass = sqlTemplate.getResultClass();
 
-        if (resultClass.isInterface() || MappedEntity.class.isAssignableFrom(resultClass)) {
+        if ((!resultClass.isInterface() && resultClass.isAnnotationPresent(Entity.class)) || MappedEntity.class.isAssignableFrom(resultClass)) {
             return buildEntityObject(rset);
         }
         else if (resultClass.equals(String.class) || ClassUtils.isPrimitiveClass(resultClass) || ClassUtils.isPrimitiveWrapperClass(resultClass)) {
@@ -317,7 +317,7 @@ public class SQLQuery extends QueryExt {
         for (int i = 1; i <= rsetMeta.getColumnCount(); i++) {
             String columnName = rsetMeta.getColumnName(i);
 
-            if (resultClass.equals(EntityObject.class)) {
+            if (resultClass.equals(MappedEntity.class)) {
                 // 是 MappedEntity，无法获得Column Class信息，统一取 String
                 resultMap.put(columnName, rset.getString(columnName));
             }

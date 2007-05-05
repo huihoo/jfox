@@ -64,7 +64,7 @@ public class EntityManagerImpl implements EntityManagerExt {
     // javax.persistence.EntityManager
 
     public Query createNativeQuery(String sqlString) {
-        return createNativeQuery(sqlString, EntityObject.class);
+        return createNativeQuery(sqlString, MappedEntity.class);
     }
 
     public Query createNativeQuery(String sqlString, Class resultClass) {

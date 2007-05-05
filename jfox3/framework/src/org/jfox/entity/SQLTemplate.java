@@ -30,7 +30,7 @@ public class SQLTemplate {
         this.resultClass = resultClass;
         if(resultClass.equals(void.class)) {
             // @NamedNativeQuery default value is void.class, we want to use EntityObject.class as default
-            this.resultClass = EntityObject.class;
+            this.resultClass = MappedEntity.class;
         }
 
         // 存储 ResultClass 的 column 及 类型
