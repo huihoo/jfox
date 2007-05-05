@@ -54,12 +54,13 @@ public class AccountDAOImpl extends DAOSupport implements AccountDAO {
     }
 
     public Account getAccountByIdSQL(long id) throws SQLException {
-        Query query = createNativeQuery("select * from ACCOUNT where ACC_ID=$p1", Account.class).setParameter("id", id);
+        Query query = createNativeQuery("select * from ACCOUNT where ACC_ID=$id", Account.class).setParameter("id", id);
         return (Account)query.getSingleResult();
     }
 
-    public MappedEntity getAccounMappedEntitytById(long id) throws SQLException {
-        Query query = createNativeQuery("select * from ACCOUNT where ACC_ID=$p1", MappedEntity.class).setParameter("id", id);
+    public MappedEntity getAccountMappedEntityById(long id) throws SQLException {
+        Query query = createNativeQuery("select * from ACCOUNT where ACC_ID=$id", MappedEntity.class)
+                .setParameter("id", id);
         return (MappedEntity)query.getSingleResult();
     }
 

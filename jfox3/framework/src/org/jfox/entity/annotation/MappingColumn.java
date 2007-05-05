@@ -17,7 +17,7 @@ public @interface MappingColumn {
     String namedQuery();
 
     /**
-     * 传给 namedQuery 的参数，要引用改Entity，使用$this，比如 $this.getId()
+     * 传给 namedQuery 的参数，要引用自身，使用$this，比如 $this.getId()
      */
     ParameterMap[] params() default {};
 }

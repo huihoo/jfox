@@ -48,7 +48,7 @@ public class OutContainerDAOTest {
 
     @Test
     public void testGetAccountBySQLResultEntityObject() throws Exception {
-        MappedEntity account = accountDAO.getAccounMappedEntitytById(1L);
+        MappedEntity account = accountDAO.getAccountMappedEntityById(1L);
         System.out.println("Account: " + account);
         Assert.assertEquals(account.getColumnValue("ACC_ID"),"1");
     }

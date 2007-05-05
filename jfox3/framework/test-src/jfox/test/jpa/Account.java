@@ -26,7 +26,8 @@ public class Account {
     @Column(name="ACC_EMAIL")
     String mail;
 
-    @MappingColumn(namedQuery = AddressDAO.GET_ADDRESS_BY_ACCOUNT_ID, params = {@ParameterMap(name = "accountId",value="$this.getId()")})
+    @MappingColumn(namedQuery = AddressDAO.GET_ADDRESS_BY_ACCOUNT_ID,
+            params = {@ParameterMap(name = "accountId",value="$this.getId()")})
     Address address;
 
     public long getId() {

@@ -15,7 +15,7 @@ public interface AccountDAO {
 
     Account getAccountByIdSQL(long id) throws SQLException;
 
-    MappedEntity getAccounMappedEntitytById(long id) throws SQLException;
+    MappedEntity getAccountMappedEntityById(long id) throws SQLException;
 
     List<Account> getAllAccounts() throws SQLException;
 
