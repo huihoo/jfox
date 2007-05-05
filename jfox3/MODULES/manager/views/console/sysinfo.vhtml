@@ -93,7 +93,7 @@
             <small>$osArch</small>
         </td>
         <td class="row-center">
-            <small>$maxMemory/$usedMemory M</small>
+            <small>$maxMemory(M) /$usedMemory(M)</small>
         </td>
     </tr>
 </table>
