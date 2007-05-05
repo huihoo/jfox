@@ -12,7 +12,6 @@ import org.jfox.ejb3.security.JAASLoginRequestCallback;
 import org.jfox.ejb3.security.JAASLoginResponseCallback;
 import org.jfox.ejb3.security.JAASLoginService;
 import org.jfox.entity.EntityFactory;
-import org.jfox.entity.MappedEntity;
 import org.jfox.framework.annotation.Inject;
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionSupport;
@@ -171,8 +170,7 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         SessionContext sessionContext = invocationContext.getSessionContext();
         Account account = (Account)sessionContext.getAttribute(ACCOUNT_SESSION_KEY);
 
-        //TODO: ERRRO
-        Account newAccount = (Account)((MappedEntity)account).clone();
+        Account newAccount = new Account();
 
         newAccount.setPassword(invocation.getPassword());
         newAccount.setAddress1(invocation.getAddress1());

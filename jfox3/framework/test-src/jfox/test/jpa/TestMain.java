@@ -12,7 +12,7 @@ import org.junit.Test;
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class AddressTestMain {
+public class TestMain {
 
     public static EntityManager em;
 

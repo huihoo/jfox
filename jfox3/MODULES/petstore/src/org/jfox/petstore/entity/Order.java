@@ -11,117 +11,306 @@ import org.jfox.entity.annotation.ParameterMap;
 import org.jfox.petstore.dao.OrderDAOImpl;
 
 @Entity
-public interface Order extends Serializable {
+public class Order implements Serializable {
 
     @Column(name = "orderid")
-    long getOrderId();
-	void setOrderId(long orderId);
+    long orderId;
 
     @Column(name = "userid")
-    String getUsername();
-	void setUsername(String username);
+    String username;
 
     @Column(name = "orderdate")
-    Date getOrderDate();
-	void setOrderDate(Date orderDate);
+    Date orderDate;
 
     @Column(name = "shipaddr1")
-    String getShipAddress1();
-	void setShipAddress1(String shipAddress1);
+    String shipAddress1;
 
     @Column(name = "shipaddr2")
-    String getShipAddress2();
-	void setShipAddress2(String shipAddress2);
+    String shipAddress2;
 
     @Column(name = "shipcity")
-    String getShipCity();
-	void setShipCity(String shipCity);
+    String shipCity;
 
     @Column(name = "shipstate")
-    String getShipState();
-	void setShipState(String shipState);
+    String shipState;
 
     @Column(name = "shipzip")
-    String getShipZip();
-	void setShipZip(String shipZip);
+    String shipZip;
 
     @Column(name = "shipcountry")
-    String getShipCountry();
-	void setShipCountry(String shipCountry);
+    String shipCountry;
 
     @Column(name = "billaddr1")
-    String getBillAddress1();
-	void setBillAddress1(String billAddress1);
+    String billAddress1;
 
     @Column(name = "billaddr2")
-    String getBillAddress2();
-	void setBillAddress2(String billAddress2);
+    String billAddress2;
 
     @Column(name = "billcity")
-    String getBillCity();
-	void setBillCity(String billCity);
+    String billCity;
 
     @Column(name = "billstate")
-    String getBillState();
-	void setBillState(String billState);
+    String billState;
 
     @Column(name = "billzip")
-    String getBillZip();
-	void setBillZip(String billZip);
+    String billZip;
 
     @Column(name = "billcountry")
-    String getBillCountry();
-	void setBillCountry(String billCountry);
+    String billCountry;
 
     @Column(name = "courier")
-    String getCourier();
-	void setCourier(String courier);
+    String courier;
 
     @Column(name = "totalprice")
-    double getTotalPrice();
-	void setTotalPrice(double totalPrice);
+    double totalPrice;
 
     @Column(name = "billtofirstname")
-    String getBillToFirstName();
-	void setBillToFirstName(String billToFirstName);
+    String billToFirstName;
 
     @Column(name = "billtolastname")
-    String getBillToLastName();
-	void setBillToLastName(String billToLastName);
+    String billToLastName;
 
     @Column(name = "shiptofirstname")
-    String getShipToFirstName();
-	void setShipToFirstName(String shipFoFirstName);
+    String shipToFirstName;
 
     @Column(name = "shiptolastname")
-    String getShipToLastName();
-	void setShipToLastName(String shipToLastName);
+    String shipToLastName;
 
     @Column(name = "creditcard")
-    String getCreditCard();
-	void setCreditCard(String creditCard);
+    String creditCard;
 
     @Column(name = "exprdate")
-    String getExpiryDate();
-	void setExpiryDate(String expiryDate);
+    String expiryDate;
 
     @Column(name = "cardtype")
-    String getCardType();
-	void setCardType(String cardType);
+    String cardType;
 
     @Column(name = "locale")
-    String getLocale();
-	void setLocale(String locale);
+    String locale;
 
 
     // orderstatus table
     @Column(name = "status")
-    String getStatus();
-	void setStatus(String status);
+    String status;
 
     //MappedColumn
     @MappingColumn(namedQuery = OrderDAOImpl.GET_LINEITEMS_BY_ORDERID, params = {@ParameterMap(name = "orderid", value = "$this.getOrderId()")})
-    List<LineItem> getLineItems();
-    void setLineItems(List<LineItem> lineItems);
+    List<LineItem> lineItems;
 
+
+    public long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(long orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public String getShipAddress1() {
+        return shipAddress1;
+    }
+
+    public void setShipAddress1(String shipAddress1) {
+        this.shipAddress1 = shipAddress1;
+    }
+
+    public String getShipAddress2() {
+        return shipAddress2;
+    }
+
+    public void setShipAddress2(String shipAddress2) {
+        this.shipAddress2 = shipAddress2;
+    }
+
+    public String getShipCity() {
+        return shipCity;
+    }
+
+    public void setShipCity(String shipCity) {
+        this.shipCity = shipCity;
+    }
+
+    public String getShipState() {
+        return shipState;
+    }
+
+    public void setShipState(String shipState) {
+        this.shipState = shipState;
+    }
+
+    public String getShipZip() {
+        return shipZip;
+    }
+
+    public void setShipZip(String shipZip) {
+        this.shipZip = shipZip;
+    }
+
+    public String getShipCountry() {
+        return shipCountry;
+    }
+
+    public void setShipCountry(String shipCountry) {
+        this.shipCountry = shipCountry;
+    }
+
+    public String getBillAddress1() {
+        return billAddress1;
+    }
+
+    public void setBillAddress1(String billAddress1) {
+        this.billAddress1 = billAddress1;
+    }
+
+    public String getBillAddress2() {
+        return billAddress2;
+    }
+
+    public void setBillAddress2(String billAddress2) {
+        this.billAddress2 = billAddress2;
+    }
+
+    public String getBillCity() {
+        return billCity;
+    }
+
+    public void setBillCity(String billCity) {
+        this.billCity = billCity;
+    }
+
+    public String getBillState() {
+        return billState;
+    }
+
+    public void setBillState(String billState) {
+        this.billState = billState;
+    }
+
+    public String getBillZip() {
+        return billZip;
+    }
+
+    public void setBillZip(String billZip) {
+        this.billZip = billZip;
+    }
+
+    public String getBillCountry() {
+        return billCountry;
+    }
+
+    public void setBillCountry(String billCountry) {
+        this.billCountry = billCountry;
+    }
+
+    public String getCourier() {
+        return courier;
+    }
+
+    public void setCourier(String courier) {
+        this.courier = courier;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getBillToFirstName() {
+        return billToFirstName;
+    }
+
+    public void setBillToFirstName(String billToFirstName) {
+        this.billToFirstName = billToFirstName;
+    }
+
+    public String getBillToLastName() {
+        return billToLastName;
+    }
+
+    public void setBillToLastName(String billToLastName) {
+        this.billToLastName = billToLastName;
+    }
+
+    public String getShipToFirstName() {
+        return shipToFirstName;
+    }
+
+    public void setShipToFirstName(String shipToFirstName) {
+        this.shipToFirstName = shipToFirstName;
+    }
+
+    public String getShipToLastName() {
+        return shipToLastName;
+    }
+
+    public void setShipToLastName(String shipToLastName) {
+        this.shipToLastName = shipToLastName;
+    }
+
+    public String getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(String creditCard) {
+        this.creditCard = creditCard;
+    }
+
+    public String getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public String getCardType() {
+        return cardType;
+    }
+
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
+    }
+
+    public String getLocale() {
+        return locale;
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public List<LineItem> getLineItems() {
+        return lineItems;
+    }
+
+    public void setLineItems(List<LineItem> lineItems) {
+        this.lineItems = lineItems;
+    }
 }

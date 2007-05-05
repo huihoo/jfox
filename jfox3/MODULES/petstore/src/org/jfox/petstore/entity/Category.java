@@ -5,18 +5,38 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public interface Category extends Serializable {
+public class Category implements Serializable {
 
     @Column(name = "catid")
-    public String getCategoryId();
-    public void setCategoryId(String categoryId);
+    String categoryId;
 
     @Column(name = "name")
-    public String getName();
-    public void setName(String name);
+    String name;
 
     @Column(name = "descn")
-    public String getDescription();
-    public void setDescription(String description);
+    String description;
 
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
