@@ -22,7 +22,7 @@ public class EntityFactory {
      * 保存一个 Result Class 的 column name=>column entry 的对应关系
      * result class => {column name=> column entry}
      */
-    protected static Map<Class<?>, Map<String, ColumnEntry>> resultClass2MappedColumnMap = new HashMap<Class<?>, Map<String, ColumnEntry>>();
+    protected static Map<Class<?>, Map<String, ColumnEntry>> resultClass2ColumnsMap = new HashMap<Class<?>, Map<String, ColumnEntry>>();
 
     static void introspectResultClass(Class<?> resultClass) {
         if (ClassUtils.isPrimitiveClass(resultClass)) {
@@ -39,36 +39,36 @@ public class EntityFactory {
             throw new PersistenceException("Not supported result class: " + resultClass.getName() + ", only support primitive class, MappedEntity, and @Entity Class.");
         }
 
-        if (resultClass2MappedColumnMap.containsKey(resultClass)) {
+        if (resultClass2ColumnsMap.containsKey(resultClass)) {
             return;
         }
         Map<String, ColumnEntry> columnMap = new HashMap<String, ColumnEntry>();
-        Field[] columnMethods = AnnotationUtils.getAnnotatedFields(resultClass, Column.class);
-        for (Field columnMethod : columnMethods) {
-            columnMethod.setAccessible(true);
-            Column column = columnMethod.getAnnotation(Column.class);
+        Field[] columnFields = AnnotationUtils.getAnnotatedFields(resultClass, Column.class);
+        for (Field columnField : columnFields) {
+            columnField.setAccessible(true);
+            Column column = columnField.getAnnotation(Column.class);
             ColumnEntry columnEntry = new ColumnEntry();
             String columnName = column.name();
             if (columnName.equals("")) {
-                columnName = columnMethod.getName().toUpperCase();
+                columnName = columnField.getName().toUpperCase();
             }
             columnEntry.name = columnName;
-            columnEntry.field = columnMethod;
+            columnEntry.field = columnField;
             columnMap.put(column.name(), columnEntry);
         }
 
-        Field[] mappedColumnMethods = AnnotationUtils.getAnnotatedFields(resultClass, MappingColumn.class);
-        for (Field mappedColumnMethod : mappedColumnMethods) {
-            MappingColumn mappingColumn = mappedColumnMethod.getAnnotation(MappingColumn.class);
+        Field[] mappingColumnFields = AnnotationUtils.getAnnotatedFields(resultClass, MappingColumn.class);
+        for (Field mappingColumnField : mappingColumnFields) {
+            MappingColumn mappingColumn = mappingColumnField.getAnnotation(MappingColumn.class);
             MappedColumnEntry mcEntry = new MappedColumnEntry();
-            mcEntry.name = mappedColumnMethod.getName().toUpperCase();
+            mcEntry.name = mappingColumnField.getName().toUpperCase();
             mcEntry.namedQuery = mappingColumn.namedQuery();
-            mcEntry.field = mappedColumnMethod;
+            mcEntry.field = mappingColumnField;
             mcEntry.params = mappingColumn.params();
             columnMap.put(mcEntry.name, mcEntry);
         }
 
-        resultClass2MappedColumnMap.put(resultClass, columnMap);
+        resultClass2ColumnsMap.put(resultClass, columnMap);
     }
 
     public static <T> T newEntityObject(Class<T> resultClass){
@@ -124,9 +124,9 @@ public class EntityFactory {
 
     public static Collection<MappedColumnEntry> getMappedColumnEntries(Class<?> resultClass) {
         List<MappedColumnEntry> mappedColumnEntries = new ArrayList<MappedColumnEntry>();
-        Map<String, ColumnEntry> entries = resultClass2MappedColumnMap.get(resultClass);
+        Map<String, ColumnEntry> entries = resultClass2ColumnsMap.get(resultClass);
         if (entries != null && !entries.isEmpty()) {
-            for (EntityFactory.ColumnEntry entry : resultClass2MappedColumnMap.get(resultClass).values()) {
+            for (EntityFactory.ColumnEntry entry : resultClass2ColumnsMap.get(resultClass).values()) {
                 if (entry instanceof EntityFactory.MappedColumnEntry) {
                     mappedColumnEntries.add((EntityFactory.MappedColumnEntry)entry);
                 }
@@ -136,7 +136,7 @@ public class EntityFactory {
     }
 
     public static ColumnEntry getColumnEntry(Class<?> resultClass, String columnName) {
-        return resultClass2MappedColumnMap.get(resultClass).get(columnName);
+        return resultClass2ColumnsMap.get(resultClass).get(columnName);
     }
 
     // @Column
