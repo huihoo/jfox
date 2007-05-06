@@ -9,16 +9,16 @@
             <property name="password" value="root"/>
             <property name="minSize" value="1"/> <!-- min pool size -->
             <property name="maxSize" value="200"/> <!-- max pool size -->
-            <property name="lifeTime" value="1800000"/> <!-- 2h, connection max idle time, in milliseconds -->
-            <property name="sleepTime" value="600000"/>  <!--PoolKeeper sleep time, in milliseconds -->
-            <property name="deadLockRetryWait" value="2000"/> <!-- retry time if no free connection, in milliseconds -->
-            <property name="deadLockMaxWait" value="60000"/> <!-- max wait time if no free connection, in milliseconds -->
+            <property name="lifeTime" value="1800000"/> <!-- 3h, connection max idle time, in ms -->
+            <property name="sleepTime" value="600000"/>  <!--PoolKeeper sleep time, in ms -->
+            <property name="deadLockRetryWait" value="2000"/> <!-- retry time if no free connection, in ms -->
+            <property name="deadLockMaxWait" value="60000"/> <!-- max wait time if no free connection, in ms -->
             <property name="checkLevelObject" value="4"/> <!-- check connection closed -->
-            <property name="cache.default.algorithm" value="LRU"/> <!-- JPA default Cache max size, LRU, LFU, FIFO-->
-            <property name="cache.default.ttl" value="600000"/> <!-- JPA default Cache ttl, in milliseconds-->
-            <property name="cache.default.maxIdleTime" value="300000"/> <!-- JPA default Cache maxidletime, in milliseconds-->
-            <property name="cache.default.maxSize" value="1000"/> <!-- JPA default Cache max size-->
-            <property name="cache.default.maxMemorySize" value="100000000"/> <!-- JPA default Cache max memory size, in bytes-->
+            <property name="cache.default.algorithm" value="LRU"/> <!-- algorithm for "default" cache category, LRU, LFU, FIFO-->
+            <property name="cache.default.ttl" value="600000"/> <!-- ttl for "default", in ms-->
+            <property name="cache.default.maxIdleTime" value="300000"/> <!-- maxidletime for "default", in ms-->
+            <property name="cache.default.maxSize" value="1000"/> <!-- max size for "default" -->
+            <property name="cache.default.maxMemorySize" value="100000000"/> <!-- max memory size for "default", in bytes-->
         </properties>
     </persistence-unit>
 
@@ -31,22 +31,21 @@
             <property name="password" value="root"/>
             <property name="minSize" value="1"/> <!-- min pool size -->
             <property name="maxSize" value="200"/> <!-- max pool size -->
-            <property name="lifeTime" value="1800000"/> <!-- 2h, connection max idle time, in milliseconds -->
-            <property name="sleepTime" value="600000"/>  <!--PoolKeeper sleep time, in milliseconds -->
-            <property name="deadLockRetryWait" value="2000"/> <!-- retry time if no free connection, in milliseconds -->
-            <property name="deadLockMaxWait" value="60000"/> <!-- max wait time if no free connection, in milliseconds -->
+            <property name="lifeTime" value="1800000"/> <!-- 3h, connection max idle time, in ms -->
+            <property name="sleepTime" value="600000"/>  <!--PoolKeeper sleep time, in ms -->
+            <property name="deadLockRetryWait" value="2000"/> <!-- retry time if no free connection, in ms -->
+            <property name="deadLockMaxWait" value="60000"/> <!-- max wait time if no free connection, in ms -->
             <property name="checkLevelObject" value="4"/> <!-- check connection closed -->
-            <property name="cache.default.algorithm" value="LRU"/> <!-- JPA default Cache max size, LRU, LFU, FIFO-->
-            <property name="cache.default.ttl" value="600000"/> <!-- JPA default Cache ttl, in milliseconds-->
-            <property name="cache.default.maxIdleTime" value="300000"/> <!-- JPA default Cache maxidletime, in milliseconds-->
-            <property name="cache.default.maxSize" value="1000"/> <!-- JPA default Cache max size-->
-            <property name="cache.default.maxMemorySize" value="100000000"/> <!-- JPA default Cache max memory size, in bytes-->
-            <property name="cache.orders.algorithm" value="LRU"/> <!-- JPA default Cache max size, LRU, LFU, FIFO-->
-            <property name="cache.orders.ttl" value="600000"/> <!-- JPA default Cache ttl, in milliseconds-->
-            <property name="cache.orders.maxIdleTime" value="300000"/> <!-- JPA default Cache maxidletime, in milliseconds-->
-            <property name="cache.orders.maxSize" value="1000"/> <!-- JPA default Cache max size-->
-            <property name="cache.orders.maxMemorySize" value="100000000"/> <!-- JPA default Cache max memory size, in bytes-->
-
+            <property name="cache.default.algorithm" value="LRU"/> <!-- algorithm for "default" cache category, LRU, LFU, FIFO-->
+            <property name="cache.default.ttl" value="600000"/> <!-- ttl for "default", in ms-->
+            <property name="cache.default.maxIdleTime" value="300000"/> <!-- maxidletime for "default", in ms-->
+            <property name="cache.default.maxSize" value="1000"/> <!-- max size for "default" -->
+            <property name="cache.default.maxMemorySize" value="100000000"/> <!-- max memory size for "default", in bytes-->
+            <property name="cache.orders.algorithm" value="LRU"/> <!-- algorithm for "orders" cache category-->
+            <property name="cache.orders.ttl" value="600000"/> <!-- ttl for "orders", in ms-->
+            <property name="cache.orders.maxIdleTime" value="300000"/> <!-- maxidletime for "orders", in ms-->
+            <property name="cache.orders.maxSize" value="1000"/> <!-- max size for "orders" -->
+            <property name="cache.orders.maxMemorySize" value="100000000"/> <!-- max memory size for "orders", in bytes-->
         </properties>
     </persistence-unit>
 
