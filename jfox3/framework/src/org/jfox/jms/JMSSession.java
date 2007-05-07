@@ -1,3 +1,10 @@
+/*
+ * JFox - The most lightweight Java EE Application Server!
+ * more details please visit http://www.huihoo.org/jfox or http://www.jfox.org.cn.
+ *
+ * JFox is licenced and re-distributable under GNU LGPL.
+ */
+
 /* JFox, the OpenSource J2EE Application Server
  *
  * Distributable under GNU LGPL license by gun.org
