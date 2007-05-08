@@ -13,7 +13,13 @@ import javax.jms.Message;
  */
 public interface MessageSender {
 
+    /**
+     * send queue message
+     */
     void sendQueueMessage(Message message);
 
+    /**
+     * send topic message
+     */
     void sendTopicMessage(Message message);
 }
