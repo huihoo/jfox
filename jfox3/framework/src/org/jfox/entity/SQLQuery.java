@@ -91,7 +91,7 @@ public class SQLQuery extends QueryExt {
 
     private synchronized QueryCacheKey getCacheKey() {
         if (cacheKey == null) {
-            cacheKey = new QueryCacheKey(getName(), parameterMap, getStartPosition(), getMaxResult());
+            cacheKey = new QueryCacheKey(getName(), parameterMap, getFirstResult(), getMaxResult());
         }
         return cacheKey;
     }
@@ -126,17 +126,17 @@ public class SQLQuery extends QueryExt {
             rset = pst.executeQuery();
 
             // Skip Results
-            if (getStartPosition() > 0) {
-                if (rset.getType() != ResultSet.TYPE_FORWARD_ONLY) {
-                    rset.absolute(getStartPosition());
+            if (getFirstResult() > 0) {
+                try {
+                    rset.absolute(getFirstResult() + 1); // absolute start from 1
                 }
-                else {
-                    for (int i = 0; i < getStartPosition(); i++) {
+                catch(SQLException e) { // not support
+                    for (int i = 0; i < getFirstResult(); i++) {
                         if (!rset.next()) {
                             return results;
                         }
                     }
-                }                
+                }
             }
 
             int countResult = 0;

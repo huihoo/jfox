@@ -27,21 +27,25 @@ public abstract class QueryExt implements Query {
 
     public abstract List<?> getResultList();
 
-    public abstract Object getSingleResult() ;
+    public abstract Object getSingleResult();
 
     public abstract Query setParameter(String name, Object value);
 
     public Query setFirstResult(int startPosition) {
-        this.startPosition = startPosition;
+        if (startPosition > 0) {
+            this.startPosition = startPosition;
+        }
         return this;
     }
 
     public Query setMaxResults(int maxResult) {
-        this.maxResult = maxResult;
+        if(maxResult > 0) {
+            this.maxResult = maxResult;
+        }
         return this;
     }
 
-    public int getStartPosition() {
+    public int getFirstResult() {
         return startPosition;
     }
 
