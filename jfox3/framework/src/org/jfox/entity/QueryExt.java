@@ -26,8 +26,13 @@ public abstract class QueryExt implements Query {
 
     public abstract Object getSingleResult() ;
 
-    // javax.persistence.Query
+    //TODO: setFirstResult
     public Query setFirstResult(int startPosition) {
+        return null;
+    }
+
+    //TODO: setMaxResult
+    public Query setMaxResults(int maxResult) {
         return null;
     }
 
@@ -36,10 +41,6 @@ public abstract class QueryExt implements Query {
     }
 
     public Query setHint(String hintName, Object value) {
-        return null;
-    }
-
-    public Query setMaxResults(int maxResult) {
         return null;
     }
 
