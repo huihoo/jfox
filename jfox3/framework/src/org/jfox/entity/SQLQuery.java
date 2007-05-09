@@ -44,6 +44,7 @@ import org.jfox.util.VelocityUtils;
  * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 public class SQLQuery extends QueryExt {
+
     protected static Logger logger = Logger.getLogger(SQLQuery.class);
 
     private EntityManagerImpl em;
@@ -56,12 +57,12 @@ public class SQLQuery extends QueryExt {
 
     private boolean isNamedQuery = false;
 
-    private CacheKey cacheKey = null;
+    private QueryCacheKey cacheKey = null;
 
     public SQLQuery(EntityManagerImpl em, SQLTemplate sqlTemplate) {
         this.em = em;
         this.sqlTemplate = sqlTemplate;
-        if(sqlTemplate instanceof NamedSQLTemplate) {
+        if (sqlTemplate instanceof NamedSQLTemplate) {
             isNamedQuery = true;
         }
     }
@@ -79,7 +80,7 @@ public class SQLQuery extends QueryExt {
         }
     }
 
-    private SQLTemplate getSQLTemplate(){
+    private SQLTemplate getSQLTemplate() {
         return sqlTemplate;
     }
 
@@ -88,9 +89,9 @@ public class SQLQuery extends QueryExt {
         return this;
     }
 
-    private synchronized CacheKey getCacheKey(){
-        if(cacheKey == null) {
-            cacheKey = new CacheKey(getName(), parameterMap);
+    private synchronized QueryCacheKey getCacheKey() {
+        if (cacheKey == null) {
+            cacheKey = new QueryCacheKey(getName(), parameterMap, getStartPosition(), getMaxResult());
         }
         return cacheKey;
     }
@@ -113,16 +114,30 @@ public class SQLQuery extends QueryExt {
     public List<?> getResultList() {
 
         Object cachedResult = tryRetrieveCache();
-        if(cachedResult != null) {
+        if (cachedResult != null) {
             return (List<?>)cachedResult;
         }
-        
+
         PreparedStatement pst = null;
         ResultSet rset = null;
         final List<Object> results = new ArrayList<Object>();
         try {
             pst = buildPreparedStatement();
             rset = pst.executeQuery();
+
+            // Skip Results
+            if (getStartPosition() > 0) {
+                if (rset.getType() != ResultSet.TYPE_FORWARD_ONLY) {
+                    rset.absolute(getStartPosition());
+                }
+                else {
+                    for (int i = 0; i < getStartPosition(); i++) {
+                        if (!rset.next()) {
+                            return results;
+                        }
+                    }
+                }                
+            }
 
             while (rset.next()) {
                 results.add(buildResultObject(rset));
@@ -158,10 +173,10 @@ public class SQLQuery extends QueryExt {
 
     public Object getSingleResult() {
         Object cachedObject = tryRetrieveCache();
-        if(cachedObject != null) {
+        if (cachedObject != null) {
             return cachedObject;
         }
-        
+
         PreparedStatement pst = null;
         ResultSet rset = null;
         try {
@@ -311,6 +326,7 @@ public class SQLQuery extends QueryExt {
 
     /**
      * 将 ResultSet 构造称 EntityObject
+     *
      * @param rset result set
      * @throws SQLException if failed
      */
@@ -357,7 +373,7 @@ public class SQLQuery extends QueryExt {
             // 测试参数是否有值，只有在有值的情况才设置 MappedColumn
             final Map<String, Boolean> mappedColumnSetFlag = new HashMap<String, Boolean>(1);
             final String EVALUATE_KEY = "evaluated";
-            mappedColumnSetFlag.put(EVALUATE_KEY,true);
+            mappedColumnSetFlag.put(EVALUATE_KEY, true);
             EventHandler eventHandler = new ReferenceInsertionEventHandler() {
                 public Object referenceInsert(String reference, Object value) {
                     if (value == null || value.equals("") || value.equals(reference)) {
@@ -393,7 +409,7 @@ public class SQLQuery extends QueryExt {
             }
         }
         if (isMappedColumnSet) {
-            EntityFactory.appendMappedColumn(dataObject,mappedColumnResultMap);
+            EntityFactory.appendMappedColumn(dataObject, mappedColumnResultMap);
         }
         return dataObject;
     }
@@ -488,79 +504,86 @@ public class SQLQuery extends QueryExt {
         return value;
     }
 
-    Object tryRetrieveCache(){
-        if(isNamedQuery()){
+    Object tryRetrieveCache() {
+        if (isNamedQuery()) {
             String cacheConfigName = ((NamedSQLTemplate)getSQLTemplate()).getCacheConfigName();
             String cachePartition = ((NamedSQLTemplate)getSQLTemplate()).getCachePartition();
             CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(em.getUnitName(), cacheConfigName);
-            if(cacheConfig != null) {
+            if (cacheConfig != null) {
                 Cache cache = cacheConfig.buildCache(cachePartition);
-                CacheKey key = getCacheKey();
+                QueryCacheKey key = getCacheKey();
                 return cache.get(key);
             }
         }
         return null;
     }
 
-    void tryStoreCache(Object result){
-        if(result == null) {
+    void tryStoreCache(Object result) {
+        if (result == null) {
             return;
         }
-        if(!(result instanceof Serializable)){
+        if (!(result instanceof Serializable)) {
             logger.warn("Store cache failed, result is not Serializable! " + result);
             return;
         }
-        if(isNamedQuery()){
+        if (isNamedQuery()) {
             String cacheConfigName = ((NamedSQLTemplate)getSQLTemplate()).getCacheConfigName();
             String cachePartition = ((NamedSQLTemplate)getSQLTemplate()).getCachePartition();
             CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(em.getUnitName(), cacheConfigName);
-            if(cacheConfig != null) {
+            if (cacheConfig != null) {
                 Cache cache = cacheConfig.buildCache(cachePartition);
-                CacheKey key = getCacheKey();
+                QueryCacheKey key = getCacheKey();
                 cache.put(key, (Serializable)result);
             }
         }
     }
 
-    void tryFlushCache(){
-        if(isNamedQuery()){
+    void tryFlushCache() {
+        if (isNamedQuery()) {
             String cacheConfigName = ((NamedSQLTemplate)getSQLTemplate()).getCacheConfigName();
             String cachePartition = ((NamedSQLTemplate)getSQLTemplate()).getCachePartition();
-            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(em.getUnitName(),cacheConfigName);
-            if(cacheConfig != null) {
+            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(em.getUnitName(), cacheConfigName);
+            if (cacheConfig != null) {
                 Cache cache = cacheConfig.buildCache(cachePartition);
                 cache.clear();
             }
         }
     }
+}
 
-    //实现完整的 equals and hashCode
-    class CacheKey implements Serializable {
-        private String templateName;
-        private Map<String, Object> parameterMap = new HashMap<String, Object>();
+//实现完整的 equals and hashCode
+class QueryCacheKey implements Serializable {
+    private String templateName;
+    private Map<String, Object> parameterMap = new HashMap<String, Object>();
+    private int startPosition = 0;
+    private int maxResult = Integer.MAX_VALUE;
 
-        public CacheKey(String templateName, Map<String, Object> parameterMap) {
-            this.templateName = templateName;
-            this.parameterMap.putAll(parameterMap);
-        }
+    public QueryCacheKey(String templateName, Map<String, Object> parameterMap, int startPosition, int maxResult) {
+        this.templateName = templateName;
+        this.parameterMap.putAll(parameterMap);
+        this.startPosition = startPosition;
+        this.maxResult = maxResult;
+    }
 
-        public String toString() {
-            return templateName + ", ParameterMap" + parameterMap.toString();
-        }
+    public String toString() {
+        return templateName + ", ParameterMap" + parameterMap.toString();
+    }
 
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-            CacheKey cacheKey = (CacheKey)o;
-            return templateName.equals(cacheKey.templateName) && parameterMap.equals(cacheKey.parameterMap);
-        }
+        QueryCacheKey cacheKey = (QueryCacheKey)o;
+        return templateName.equals(cacheKey.templateName)
+                && (startPosition == cacheKey.startPosition)
+                && (maxResult == cacheKey.maxResult)
+                && parameterMap.equals(cacheKey.parameterMap);
+    }
 
-        public int hashCode() {
-            int result;
-            result = templateName.hashCode();
-            result = 31 * result + parameterMap.hashCode();
-            return result;
-        }
+    public int hashCode() {
+        int result;
+        result = templateName.hashCode();
+        result = 31 * result + parameterMap.hashCode();
+        return result;
     }
 }

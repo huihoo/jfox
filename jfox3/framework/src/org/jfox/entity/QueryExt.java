@@ -18,6 +18,9 @@ import javax.persistence.TemporalType;
  */
 public abstract class QueryExt implements Query {
 
+    protected int startPosition = 0;
+    protected int maxResult = Integer.MAX_VALUE;
+
     public abstract String getName();
 
     public abstract int executeUpdate();
@@ -28,14 +31,22 @@ public abstract class QueryExt implements Query {
 
     public abstract Query setParameter(String name, Object value);
 
-    //TODO: setFirstResult
     public Query setFirstResult(int startPosition) {
-        return null;
+        this.startPosition = startPosition;
+        return this;
     }
 
-    //TODO: setMaxResult
     public Query setMaxResults(int maxResult) {
-        return null;
+        this.maxResult = maxResult;
+        return this;
+    }
+
+    public int getStartPosition() {
+        return startPosition;
+    }
+
+    public int getMaxResult() {
+        return maxResult;
     }
 
     public Query setFlushMode(FlushModeType flushMode) {
