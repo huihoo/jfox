@@ -26,6 +26,8 @@ public abstract class QueryExt implements Query {
 
     public abstract Object getSingleResult() ;
 
+    public abstract Query setParameter(String name, Object value);
+
     //TODO: setFirstResult
     public Query setFirstResult(int startPosition) {
         return null;
