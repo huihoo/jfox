@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
+//TODO: abstract EntityManagerExt
 public interface EntityManagerExt extends EntityManager {
 
     Connection getConnection() throws SQLException;
