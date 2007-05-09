@@ -9,8 +9,6 @@ package org.jfox.entity;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.persistence.EntityTransaction;
-import javax.persistence.FlushModeType;
-import javax.persistence.LockModeType;
 import javax.persistence.Query;
 import javax.sql.DataSource;
 
@@ -21,7 +19,7 @@ import org.jfox.ejb3.transaction.TxConnectionsThreadLocal;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class EntityManagerImpl implements EntityManagerExt {
+public class EntityManagerImpl extends EntityManagerExt {
 
 //    private static final Logger logger = Logger.getLogger(EntityManagerImpl.class);
 
@@ -78,76 +76,12 @@ public class EntityManagerImpl implements EntityManagerExt {
         return new SQLQuery(this,sqlTemplate);
     }
 
-    public void clear() {
-    }
-
-    public void close() {
-    }
-
-    public boolean contains(Object entity) {
-        return false;
-    }
-
-    public Query createNativeQuery(String sqlString, String resultSetMapping) {
-        throw new UnsupportedOperationException("EntityManager.createNamedQuery(String name), please use EntityManagerExt.createNativeQuery(String sqlString, Class resultClass) instead.");
-    }
-
-    public Query createQuery(String qlString) {
-        throw new UnsupportedOperationException("EntityManager.createNamedQuery(String name), please use EntityManagerExt.createQuery(String name, Object... args) instead.");
-    }
-
-    public <T> T find(Class<T> entityClass, Object primaryKey) {
-        throw new UnsupportedOperationException("EntityManager.find, please use NamedQuery instead.");
-    }
-
-    public void flush() {
-    }
-
-    public Object getDelegate() {
-        throw new UnsupportedOperationException("EntityManager.getDelegate, please use NamedQuery instead.");
-    }
-
-    public FlushModeType getFlushMode() {
-        throw new UnsupportedOperationException("EntityManager.getFlushMode, please use NamedQuery instead.");
-    }
-
-    public <T> T getReference(Class<T> entityClass, Object primaryKey) {
-        throw new UnsupportedOperationException("EntityManager.getReference(Class<T> entityClass, Object primaryKey).");
-    }
-
     public EntityTransaction getTransaction() {
         return emFactory.getEntityManagerFactoryBuilder().getEntityTransaction();
     }
 
-    public boolean isOpen() {
-        return true;
-    }
-
-    public void joinTransaction() {
-    }
-
-    public void lock(Object entity, LockModeType lockMode) {
-        throw new UnsupportedOperationException("EntityManager.lock(Object entity, LockModeType lockMode).");
-    }
-
-    public <T> T merge(T entity) {
-        throw new UnsupportedOperationException("EntityManager.merge(T entity).");
-    }
-
-    public void persist(Object entity) {
-        throw new UnsupportedOperationException("EntityManager.persist(Object entity).");
-    }
-
-    public void refresh(Object entity) {
-        throw new UnsupportedOperationException("EntityManager.refresh(Object entity).");
-    }
-
-    public void remove(Object entity) {
-        throw new UnsupportedOperationException("EntityManager.remove(Object entity).");
-    }
-
-    public void setFlushMode(FlushModeType flushMode) {
-        throw new UnsupportedOperationException("EntityManager.setFlushMode(FlushModeType flushMode).");
+    public void close() {
+        
     }
 
     public static void main(String[] args) {
