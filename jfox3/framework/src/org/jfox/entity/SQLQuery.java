@@ -139,7 +139,9 @@ public class SQLQuery extends QueryExt {
                 }                
             }
 
-            while (rset.next()) {
+            int countResult = 0;
+
+            while (rset.next() && (countResult++ < getMaxResult())) {
                 results.add(buildResultObject(rset));
             }
 
