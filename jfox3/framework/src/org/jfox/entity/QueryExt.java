@@ -43,27 +43,27 @@ public abstract class QueryExt implements Query {
     }
 
     public Query setHint(String hintName, Object value) {
-        return null;
+        throw new UnsupportedOperationException("Query.setHint(String hintName, Object value)");
     }
 
     public Query setParameter(String name, Calendar value, TemporalType temporalType) {
-        return null;
+        throw new UnsupportedOperationException("Query.setParameter(String name, Calendar value, TemporalType temporalType)");
     }
 
     public Query setParameter(String name, Date value, TemporalType temporalType) {
-        return null;
+        throw new UnsupportedOperationException("Query.setParameter(String name, Date value, TemporalType temporalType)");
     }
 
     public Query setParameter(int position, Calendar value, TemporalType temporalType) {
-        return null;
+        throw new UnsupportedOperationException("Query.setParameter(int position, Calendar value, TemporalType temporalType)");
     }
 
     public Query setParameter(int position, Date value, TemporalType temporalType) {
-        return null;
+        throw new UnsupportedOperationException("Query.setParameter(int position, Date value, TemporalType temporalType)");
     }
 
     public Query setParameter(int position, Object value) {
-        return null;
+        throw new UnsupportedOperationException("Query.setParameter(int position, Object value)");
     }
 
     public static void main(String[] args) {
