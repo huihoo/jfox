@@ -128,7 +128,7 @@ public class SQLQuery extends QueryExt {
             // Skip Results
             if (getFirstResult() > 0) {
                 try {
-                    rset.absolute(getFirstResult() + 1); // absolute start from 1
+                    rset.absolute(getFirstResult() + 1); // absolute start from 1, but firstResult start 0
                 }
                 catch(SQLException e) { // not support
                     for (int i = 0; i < getFirstResult(); i++) {
