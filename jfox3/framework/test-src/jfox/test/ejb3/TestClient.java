@@ -29,7 +29,6 @@ import jfox.test.ejb3.lob.Lobber;
 import org.jfox.ejb3.naming.JNDIContextHelper;
 import org.jfox.ejb3.security.JAASLoginServiceImpl;
 import org.jfox.ejb3.security.SampleCallbackHandler;
-import org.jfox.entity.MappedEntity;
 import org.jfox.entity.EntityFactory;
 import org.jfox.framework.Framework;
 import org.jfox.mvc.SessionContext;
@@ -235,8 +234,10 @@ public class TestClient {
 
     @Test
     public void invokeSecurity() throws Exception {
+        // 新建 JAASLoginService实例，实际环境中有JFox内核负责实例化
         JAASLoginServiceImpl loginService = new JAASLoginServiceImpl();
         loginService.postInject();
+        // 使用构造的 SessionContext，实际环境中将由HttpServletRequest负责提供
         loginService.login(SessionContext.currentThreadSessionContext(), new SampleCallbackHandler(), "role1", "1234");
         Context context = JNDIContextHelper.getInitalContext();
         jfox.test.ejb3.security.Calculator calculator = (jfox.test.ejb3.security.Calculator)context.lookup("security.CalculatorBean/remote");

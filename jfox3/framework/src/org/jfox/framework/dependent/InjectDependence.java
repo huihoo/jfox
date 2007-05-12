@@ -47,7 +47,7 @@ public class InjectDependence implements Dependence {
 
         String value = inject.id(); // value 优先，如果有 value 也有 ref，将使用 value
         if (value.trim().length() == 0) { // 自动发现
-            Collection<? extends Component> components = context.findComponentBySuper(fieldType.asSubclass(Component.class));
+            Collection<? extends Component> components = context.getComponentsByInterface(fieldType.asSubclass(Component.class));
             if (components.isEmpty()) {
                 logger.warn("Can not find component implement interface: " + fieldType.getName() + " for field: " + field);
             }

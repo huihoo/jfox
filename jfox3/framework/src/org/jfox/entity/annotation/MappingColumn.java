@@ -18,7 +18,7 @@ import java.lang.annotation.ElementType;
 @Target({ElementType.FIELD, ElementType.METHOD})
 public @interface MappingColumn {
     /**
-     * 定义的 query 的名字
+     * 用来查询的 query
      */
     String namedQuery();
 

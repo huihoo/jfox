@@ -26,7 +26,6 @@ public class ExampleTimerBean implements ExampleTimer, TimedObject {
     @Resource
     TimerService timerService;
 
-
     public void scheduleTimer(long milliseconds) {
         ctx.getTimerService().createTimer(new Date(new Date().getTime() + milliseconds), "Hello World");
         timerService.createTimer(new Date(new Date().getTime() + milliseconds), "Hello World2");

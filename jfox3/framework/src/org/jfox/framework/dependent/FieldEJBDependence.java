@@ -43,7 +43,7 @@ public class FieldEJBDependence implements Dependence {
         Class beanInterface = ejb.beanInterface();
 
         EJBObject targetEJBObject; // resolve dependence
-        Collection<EJBContainer> ejbContainers = componentContext.findComponentBySuper(EJBContainer.class, SystemModule.name);
+        Collection<EJBContainer> ejbContainers = componentContext.getComponentsByInterface(EJBContainer.class, SystemModule.name);
 
         if (ejbContainers.isEmpty()) {
             logger.warn("@EJB will not be injected, no EJBCotaner deployed! " + ejb);

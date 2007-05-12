@@ -118,11 +118,11 @@ public class ComponentContext {
      * 
      * @param interfaceClass interface class
      */
-    public <T extends Component> Collection<T> findComponentBySuper(Class<T> interfaceClass) {
+    public <T extends Component> Collection<T> getComponentsByInterface(Class<T> interfaceClass) {
         return getModule().findComponentByInterface(interfaceClass);
     }
 
-    public <T extends Component> Collection<T> findComponentBySuper(Class<T> interfaceClass, String moduleName) {
+    public <T extends Component> Collection<T> getComponentsByInterface(Class<T> interfaceClass, String moduleName) {
         return getModule().findComponentByInterface(interfaceClass, moduleName);
     }
 
