@@ -6,20 +6,18 @@
  */
 package org.jfox.entity;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Collection;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import org.jfox.entity.cache.CacheConfig;
+import org.apache.log4j.Logger;
 import org.enhydra.jdbc.pool.StandardXAPoolDataSource;
 import org.enhydra.jdbc.standard.StandardXADataSource;
-import org.apache.log4j.Logger;
+import org.jfox.entity.cache.CacheConfig;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -44,14 +42,14 @@ public class EntityManagerFactoryImpl implements EntityManagerFactory {
     /**
      * cache config map
      */
-    private Map<String, CacheConfig> cacheConfigMap = new HashMap<String, CacheConfig>();
+    private CacheConfig cacheConfig = null;
 
-    public EntityManagerFactoryImpl(String unitName, String jtaDataSource, EntityManagerFactoryBuilderImpl emFactoryBuilder, StandardXAPoolDataSource dataSource, Map<String, CacheConfig> cacheConfigMap) {
+    public EntityManagerFactoryImpl(String unitName, String jtaDataSource, EntityManagerFactoryBuilderImpl emFactoryBuilder, StandardXAPoolDataSource dataSource, CacheConfig cacheConfig) {
         this.unitName = unitName;
         this.jtaDataSource = jtaDataSource;
         this.emFactoryBuilder = emFactoryBuilder;
         this.dataSource = dataSource;
-        this.cacheConfigMap.putAll(cacheConfigMap);
+        this.cacheConfig = cacheConfig;
     }
 
     public EntityManagerFactoryBuilderImpl getEntityManagerFactoryBuilder() {
@@ -74,11 +72,12 @@ public class EntityManagerFactoryImpl implements EntityManagerFactory {
         logger.info("Close EntityManagerFactory: " + getUnitName());
         // shutdown data source
         open = false;
-        for(CacheConfig cacheConfig : cacheConfigMap.values()) {
+        if (cacheConfig != null) {
             cacheConfig.close();
         }
-        cacheConfigMap.clear();
-        dataSource.shutdown(true);
+        if(dataSource != null) {
+            dataSource.shutdown(true);
+        }
     }
 
     protected DataSource getDataSource() {
@@ -89,7 +88,7 @@ public class EntityManagerFactoryImpl implements EntityManagerFactory {
         return unitName;
     }
 
-    public String getJTADataSource(){
+    public String getJTADataSource() {
         return jtaDataSource;
     }
 
@@ -97,71 +96,63 @@ public class EntityManagerFactoryImpl implements EntityManagerFactory {
         return emFactoryBuilder.getNamedQuery(name);
     }
 
-    public void addCacheConfig(String name, CacheConfig cacheConfig) {
-        cacheConfigMap.put(name,cacheConfig);
+
+    public CacheConfig getCacheConfig() {
+        return cacheConfig;
     }
 
-    public CacheConfig getCacheConfig(String name) {
-        return cacheConfigMap.get(name);
-    }
-
-    public Collection<CacheConfig> getCacheConfigs(){
-        return Collections.unmodifiableCollection(cacheConfigMap.values());
-    }
-
-    public String getDriver(){
+    public String getDriver() {
         return ((StandardXADataSource)dataSource.getDataSource()).getDriverName();
     }
 
-    public String getURL(){
+    public String getURL() {
         return ((StandardXADataSource)dataSource.getDataSource()).getUrl();
     }
 
-    public String getUser(){
+    public String getUser() {
         return ((StandardXADataSource)dataSource.getDataSource()).getUser();
     }
 
-    public String getPassword(){
+    public String getPassword() {
         return ((StandardXADataSource)dataSource.getDataSource()).getPassword();
     }
 
-    public int getMinSize(){
+    public int getMinSize() {
         return dataSource.getMinSize();
     }
 
-    public int getMaxSize(){
+    public int getMaxSize() {
         return dataSource.getMaxSize();
     }
 
-    public long getLifeTime(){
+    public long getLifeTime() {
         return dataSource.getLifeTime();
     }
 
-    public long getSleepTime(){
+    public long getSleepTime() {
         return dataSource.getSleepTime();
     }
 
-    public long getDeadLockRetryWait(){
+    public long getDeadLockRetryWait() {
         return dataSource.getDeadLockRetryWait();
     }
 
-    public long getDeadLockMaxWait(){
+    public long getDeadLockMaxWait() {
         return dataSource.getDeadLockMaxWait();
     }
 
-    public int getCheckLevelObject(){
+    public int getCheckLevelObject() {
         return dataSource.getCheckLevelObject();
     }
 
+    //TODO: 返回 Connection Meta，在Console上可以显示更多的信息
     public void checkConnection() throws SQLException {
         Connection conn = dataSource.getConnection();
         conn.close();
     }
 
-    public void clearCache(){
-        for(CacheConfig cacheConfig : cacheConfigMap.values()) {
-            cacheConfig.clear();
-        }
+    public void clearCache() {
+        cacheConfig.clear();
     }
 
     public static void main(String[] args) {

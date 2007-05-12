@@ -26,7 +26,7 @@
                 <small><a href="console.container.do">EJB Container</a></small>
             </td>
             <td class="page-title">
-                <small><a href="console.jpa.do">Persistence Unit</a></small>
+                <small><a href="console.jpa.do">JPA Container</a></small>
             </td>
             <td class="page-title">
                 <small><a href="console.modules.do">Modules</a></small>
@@ -36,7 +36,7 @@
 <br>
 <table cellspacing="4" width="100%" border="0">
     <tr>
-        <td class="page-title" bordercolor="#000000" align="left" nowrap><font size="+2">Persistence Unit Manager</font></td>
+        <td class="page-title" bordercolor="#000000" align="left" nowrap><font size="+2">JPA Container Manager</font></td>
     </tr>
 </table>
 <br>

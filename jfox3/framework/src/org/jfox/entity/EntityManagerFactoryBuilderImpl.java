@@ -160,10 +160,10 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
     }
 
     //get CacheConfig by unit & cacheConfigName
-    public static CacheConfig getCacheConfig(String unitName, String cacheConfigName) {
+    public static CacheConfig getCacheConfig(String unitName) {
         EntityManagerFactoryImpl emf = getEntityManagerFactoryByName(unitName);
         if(emf != null) {
-            return emf.getCacheConfig(cacheConfigName);
+            return emf.getCacheConfig();
         }
         else {
             return null;
@@ -276,10 +276,8 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         sxpds.setCheckLevelObject(4);
         sxpds.setDataSourceName(jndiName);
 
-        /**
-         * cache config map
-         */
-        Map<String, CacheConfig> cacheConfigMap = new HashMap<String, CacheConfig>();
+         // cache config
+        CacheConfig cacheConfig = null;
         for (Map.Entry<String, String> entry : properties.entrySet()) {
             String name = entry.getKey();
             String value = entry.getValue();
@@ -318,14 +316,11 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
             else if (name.equalsIgnoreCase("deadLockMaxWait")) {
                 sxpds.setDeadLockMaxWait(Long.parseLong(value));
             }
-            else if(name.startsWith(CAHCE_PREFIX) && name.lastIndexOf(".")>CAHCE_PREFIX.length()){
+            else if(name.startsWith(CAHCE_PREFIX)){
                 // construct cache config
-                String cacheConfigName = name.substring(CAHCE_PREFIX.length(), name.lastIndexOf("."));
-                if(!cacheConfigMap.containsKey(cacheConfigName)){
-                    CacheConfig cacheConfig = new CacheConfig(cacheConfigName);
-                    cacheConfigMap.put(cacheConfigName, cacheConfig);
+                if(cacheConfig == null) {
+                    cacheConfig = new CacheConfig(unitName);
                 }
-                CacheConfig cacheConfig = cacheConfigMap.get(cacheConfigName);
                 String property = name.substring(name.lastIndexOf(".") + 1);
                 if(property.equalsIgnoreCase("TTL")) {
                     cacheConfig.setTTL(Long.parseLong(value));
@@ -362,7 +357,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         sxpds.setDataSource(sxds);
 
         // create EntityManagerFactory
-        return new EntityManagerFactoryImpl(unitName,jndiName, this,sxpds, cacheConfigMap);
+        return new EntityManagerFactoryImpl(unitName,jndiName, this,sxpds, cacheConfig);
     }
 
     private void registerNamedQueriesByClasses(Class[] classes){

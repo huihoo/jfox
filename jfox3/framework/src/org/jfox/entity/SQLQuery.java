@@ -508,9 +508,8 @@ public class SQLQuery extends QueryExt {
 
     Object tryRetrieveCache() {
         if (isNamedQuery()) {
-            String cacheConfigName = ((NamedSQLTemplate)getSQLTemplate()).getCacheConfigName();
             String cachePartition = ((NamedSQLTemplate)getSQLTemplate()).getCachePartition();
-            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(em.getUnitName(), cacheConfigName);
+            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(em.getUnitName());
             if (cacheConfig != null) {
                 Cache cache = cacheConfig.buildCache(cachePartition);
                 QueryCacheKey key = getCacheKey();
@@ -529,9 +528,8 @@ public class SQLQuery extends QueryExt {
             return;
         }
         if (isNamedQuery()) {
-            String cacheConfigName = ((NamedSQLTemplate)getSQLTemplate()).getCacheConfigName();
             String cachePartition = ((NamedSQLTemplate)getSQLTemplate()).getCachePartition();
-            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(em.getUnitName(), cacheConfigName);
+            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(em.getUnitName());
             if (cacheConfig != null) {
                 Cache cache = cacheConfig.buildCache(cachePartition);
                 QueryCacheKey key = getCacheKey();
@@ -542,9 +540,8 @@ public class SQLQuery extends QueryExt {
 
     void tryFlushCache() {
         if (isNamedQuery()) {
-            String cacheConfigName = ((NamedSQLTemplate)getSQLTemplate()).getCacheConfigName();
             String cachePartition = ((NamedSQLTemplate)getSQLTemplate()).getCachePartition();
-            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(em.getUnitName(), cacheConfigName);
+            CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(em.getUnitName());
             if (cacheConfig != null) {
                 Cache cache = cacheConfig.buildCache(cachePartition);
                 cache.clear();

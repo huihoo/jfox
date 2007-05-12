@@ -53,7 +53,7 @@ import org.jfox.entity.dao.DAOSupport;
                         " and profile.favcategory = bannerdata.favcategory",
                 resultClass = Account.class,
                 hints = {
-                        @QueryHint(name = "cache.default.partition", value = "account")
+                        @QueryHint(name = "cache.partition", value = "account")
                         }
         ),
 
@@ -85,7 +85,7 @@ import org.jfox.entity.dao.DAOSupport;
                         " and profile.favcategory = bannerdata.favcategory",
                 resultClass = Account.class,
                 hints = {
-                        @QueryHint(name = "cache.default.partition", value = "account")
+                        @QueryHint(name = "cache.partition", value = "account")
                         }
 
         ),
@@ -95,7 +95,7 @@ import org.jfox.entity.dao.DAOSupport;
                 query = "select username as userid from signon",
                 resultClass = String.class,
                 hints = {
-                        @QueryHint(name = "cache.default.partition", value = "account")
+                        @QueryHint(name = "cache.partition", value = "account")
                         }
 
         ),
@@ -117,7 +117,7 @@ import org.jfox.entity.dao.DAOSupport;
                         "where " +
                         "userid = $account.getUsername()",
                 hints = {
-                        @QueryHint(name = "cache.default.partition", value = "account")
+                        @QueryHint(name = "cache.partition", value = "account")
                         }
 
         ),
@@ -151,7 +151,7 @@ import org.jfox.entity.dao.DAOSupport;
                         "$account.getPhone(), " +
                         "$account.getUsername())",
                 hints = {
-                        @QueryHint(name = "cache.default.partition", value = "account")
+                        @QueryHint(name = "cache.partition", value = "account")
                         }
 
         ),

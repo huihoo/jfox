@@ -39,7 +39,7 @@ import org.jfox.util.VelocityUtils;
                 query = "select productid, name, descn, category from product where category = $categoryId",
                 resultClass = Product.class,
                 hints = {
-                    @QueryHint(name = "cache.default.partition", value = "product")
+                    @QueryHint(name = "cache.partition", value = "product")
                         }
         ),
         @NamedNativeQuery(
@@ -55,7 +55,7 @@ import org.jfox.util.VelocityUtils;
                         "#end", // $p1 is keyword array
                 resultClass = Product.class,
                 hints = {
-                    @QueryHint(name = "cache.default.partition", value = "product")
+                    @QueryHint(name = "cache.partition", value = "product")
                         }
         )
 

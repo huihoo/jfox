@@ -25,18 +25,11 @@ public class NamedSQLTemplate extends SQLTemplate {
     private NamedNativeQuery namedNativeQuery = null;
 
     /**
-     * 使用的 cache config
-     * cache config 在 persistence.xml 定义
-     */
-    protected String cacheConfigName = "";
-
-    /**
      * 使用的 cache partition，如果没有，则不使用缓存
      * cache partition 在 NamedNativeQuery 中定义
      */
     protected String cachePartition = "";
 
-    public static final String CACHE_CONFIG_NAME = "cache.config";
     public static final String CACHE_PARTITION_NAME = "cache.partition";
 
     public NamedSQLTemplate(NamedNativeQuery namedNativeQuery, Class<?> definedClass) {
@@ -45,12 +38,9 @@ public class NamedSQLTemplate extends SQLTemplate {
         // 解析 QueryHint，比如 (name="cache.config", value="product")
         for(QueryHint hint : namedNativeQuery.hints()){
             String name = hint.name();
-            if(name.startsWith("cache.") && name.split("\\.").length ==3 && name.endsWith(".partition")) {
-                int firstDotIndex = name.indexOf(".");
-                int secondDotIndex = name.indexOf(".", firstDotIndex+1);
-                cacheConfigName = name.substring(firstDotIndex+1,secondDotIndex);
+            if(name.equals(CACHE_PARTITION_NAME)) {
                 cachePartition = hint.value();
-                logger.info("Use cache category: " + cacheConfigName + ", partition: " + cachePartition + " for named query: " + getName());
+                logger.info("Use cache partition: " + cachePartition + " for named query: " + getName());
             }
         }
 
@@ -66,10 +56,6 @@ public class NamedSQLTemplate extends SQLTemplate {
      */
     public String getName() {
         return namedNativeQuery.name();
-    }
-
-    public String getCacheConfigName() {
-        return cacheConfigName;
     }
 
     public String getCachePartition() {

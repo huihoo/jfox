@@ -26,7 +26,7 @@
                 <small><a href="console.container.do">EJB Container</a></small>
             </td>
             <td class="page-title">
-                <small><a href="console.jpa.do">Persistence Unit</a></small>
+                <small><a href="console.jpa.do">JPA Container</a></small>
             </td>
             <td class="page-title">
                 <small><a href="console.modules.do">Modules</a></small>
