@@ -43,7 +43,10 @@ public class TestMain {
 
     @Test
     public void testAccount(){
-        List<Account> accounts = em.createNativeQuery("select * from account", Account.class).setFirstResult(2).setMaxResults(2).getResultList();
+        List<Account> accounts = em.createNativeQuery("select * from account", Account.class)
+                                    .setFirstResult(2)
+                                    .setMaxResults(2)
+                                    .getResultList();
         for(Account account : accounts){
             System.out.println(account);
         }
