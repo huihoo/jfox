@@ -14,6 +14,11 @@ import javax.transaction.TransactionManager;
 
 import org.jfox.framework.annotation.Exported;
 import org.jfox.framework.component.Component;
+import org.jfox.framework.component.InterceptableComponent;
+import org.jfox.framework.component.ComponentInitialization;
+import org.jfox.framework.component.ActiveComponent;
+import org.jfox.framework.component.SingletonComponent;
+import org.jfox.framework.component.ComponentUnregistration;
 import org.jfox.ejb3.security.SecurityContext;
 import org.jfox.jms.MessageService;
 
@@ -24,7 +29,7 @@ import org.jfox.jms.MessageService;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Exported
-public interface EJBContainer extends Component {
+public interface EJBContainer extends Component, InterceptableComponent, ComponentInitialization, ActiveComponent, SingletonComponent, ComponentUnregistration {
 
     public static final String JAVA_COMP_ENV = "java:comp/env";
     
@@ -88,23 +93,5 @@ public interface EJBContainer extends Component {
      * @return method result
      */
     Object invokeEJB(EJBObjectId ejbObjectId, Method method, Object[] params, SecurityContext securityContext) throws Exception;
-
-    /**
-     * 通过该方法来完成事务的发起
-     *
-     * @param method method to invoke
-     * @param params parameters
-     */
-    boolean preInvoke(Method method, Object[] params);
-
-    /**
-     * 该方法负责事务的结束
-     * 
-     * @param method method invoked
-     * @param params parameters
-     * @param result result
-     * @param exception if throws exception
-     */
-    Object postInvoke(Method method, Object[] params, Object result, Throwable exception);
 
 }

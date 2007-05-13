@@ -22,7 +22,7 @@ public class ReflectComponentInvoker implements ComponentInvoker {
 
     public Object invokeMethod(Component theComponent, ComponentId componentId, Method method, Object... args) throws BaseException {
         try {
-            //TODO: maybe need to get the concrete method of component implementation if use Annotation
+            // theComponent is the concrete component
             return method.invoke(theComponent, args);
         }
         catch (Exception e) {

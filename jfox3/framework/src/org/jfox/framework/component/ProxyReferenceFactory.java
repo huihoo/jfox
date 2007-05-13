@@ -59,8 +59,28 @@ class ProxyReferenceFactory {
                         if(args == null && method.getName().equals("toString")) {
                             return "$proxy_component_stub:" + componentId.toString();
                         }
-                        //TODO: get ImplementationClass 的 Method，以便分析其 annotation 
-                        return componentInvoker.invokeMethod(component, componentId, method, args);
+                        boolean isInteceptable = (component instanceof InterceptableComponent);
+                        if(isInteceptable) {
+                            boolean preInvokeResult = ((InterceptableComponent)component).preInvoke(method, args);
+                            if(!preInvokeResult) {
+                                throw new ComponentInvocationException("Failed to invoke " + method + ", because it's interceptor's method preInvoke return false.");
+                            }
+                        }
+
+                        //TODO: get ImplementationClass 的 Method，以便分析其 annotation
+                        Exception exception = null;
+                        Object result = null;
+                        try {
+                            result = componentInvoker.invokeMethod(component, componentId, method, args);
+                        }
+                        catch(Exception e) {
+                            exception = e;
+                        }
+                        if(isInteceptable){
+                            result = ((InterceptableComponent)component).postInvoke(method, args, result, exception);
+                        }
+                        return result;
+
                     }
                 }
         );

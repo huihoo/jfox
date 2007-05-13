@@ -51,12 +51,7 @@ import org.jfox.ejb3.timer.EJBTimerTask;
 import org.jfox.ejb3.transaction.JTATransactionManager;
 import org.jfox.framework.annotation.Constant;
 import org.jfox.framework.annotation.Service;
-import org.jfox.framework.component.ActiveComponent;
-import org.jfox.framework.component.Component;
 import org.jfox.framework.component.ComponentContext;
-import org.jfox.framework.component.ComponentInitialization;
-import org.jfox.framework.component.ComponentUnregistration;
-import org.jfox.framework.component.InterceptableComponent;
 import org.jfox.framework.component.Module;
 import org.jfox.framework.event.ModuleEvent;
 import org.jfox.framework.event.ModuleListener;
@@ -74,7 +69,7 @@ import org.jfox.jms.MessageService;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id = "EJB3Container", singleton = true, active = true, priority = Integer.MIN_VALUE)
-public class SimpleEJB3Container implements EJBContainer, Component, ComponentInitialization, InterceptableComponent, ModuleListener, ActiveComponent, ComponentUnregistration {
+public class SimpleEJB3Container implements EJBContainer, ModuleListener {
 
     protected Logger logger = Logger.getLogger(SimpleEJB3Container.class);
 
@@ -131,7 +126,6 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         tm.setDefaultTransactionTimeout(getTransactionTimeout());
         timerService = new ContainerTimerService();
         messageService = new JMSConnectionFactory();
-
 
         // 将 TransactionManager 注册 java:/TransactionManager
         try {
@@ -204,7 +198,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         // stateless
         Class[] statelessBeans = module.getModuleClassLoader().findClassAnnotatedWith(Stateless.class);
         for (Class beanClass : statelessBeans) {
-            EJBBucket bucket = new StatelessBucket(this, beanClass, module);
+            EJBBucket bucket = new StatelessBucket((EJBContainer)componentContext.getMyselfComponent(), beanClass, module);
             buckets.add(bucket);
             //fireEvent, 以便XFire可以 register Endpoint
             componentContext.fireComponentEvent(new EJBLoadedComponentEvent(componentContext.getComponentId(), bucket));
@@ -223,7 +217,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         // stateful
         Class[] statefulBeans = module.getModuleClassLoader().findClassAnnotatedWith(Stateful.class);
         for (Class beanClass : statefulBeans) {
-            final EJBBucket bucket = new StatefulBucket(this, beanClass, module);
+            final EJBBucket bucket = new StatefulBucket((EJBContainer)componentContext.getMyselfComponent(), beanClass, module);
             buckets.add(bucket);
             // bind to jndi
             try {
@@ -241,7 +235,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         // message driven
         Class[] mdbBeans = module.getModuleClassLoader().findClassAnnotatedWith(MessageDriven.class);
         for (Class beanClass : mdbBeans) {
-            EJBBucket bucket = new MDBBucket(this, beanClass, module);
+            EJBBucket bucket = new MDBBucket((EJBContainer)componentContext.getMyselfComponent(), beanClass, module);
             buckets.add(bucket);
             // bind to jndi
             try {
@@ -317,7 +311,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
      * @throws Exception exception
      */
     public Object invokeEJB(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params, SecurityContext securityContext) throws Exception {
-
+        logger.debug("invokeEJB: EJBObjectId=" + ejbObjectId + ", Method: " + interfaceMethod.getName());
         EJBBucket bucket = getEJBBucket(ejbObjectId.getEJBName());
         // get instance from bucket's pool
         AbstractEJBContext ejbContext = null;
@@ -338,7 +332,7 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         }
 
     }
-    
+
     /**
      * invoke timeout method
      *
@@ -382,11 +376,12 @@ public class SimpleEJB3Container implements EJBContainer, Component, ComponentIn
         return namingContext;
     }
 
-    public MessageService getMessageService(){
+    public MessageService getMessageService() {
         return messageService;
     }
 
     public boolean preInvoke(Method method, Object[] params) {
+        // just return true
         return true;
     }
 
