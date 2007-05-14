@@ -60,7 +60,7 @@ public class InvocationContext {
         this.pageContext = new PageContext();
     }
 
-    HttpServletRequest getHttpRequest() {
+    HttpServletRequest getServletRequest() {
         return request;
     }
 
