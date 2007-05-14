@@ -7,6 +7,8 @@
 package org.jfox.mvc;
 
 /**
+ * 用来装上传的文件
+ * 
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class FileUploaded {

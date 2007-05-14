@@ -227,8 +227,8 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
      *
      * @param invocationContext invcation context
      */
-    protected boolean preAction(InvocationContext invocationContext) {
-        return true;
+    protected void preAction(InvocationContext invocationContext) {
+        
     }
 
     /**

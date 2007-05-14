@@ -52,5 +52,5 @@ public @interface ActionMethod {
      *
      * 支持 file upload，文件上传的Field类型必须为 FileUploaded
      */
-    Class invocationClass() default Invocation.class;
+    Class<? extends Invocation> invocationClass() default Invocation.class;
 }

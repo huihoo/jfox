@@ -13,13 +13,15 @@ import java.util.Set;
 import org.jfox.mvc.validate.ValidateException;
 
 /**
+ * MVC Invocation
+ *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class Invocation {
 
     /**
      * 存的原始数据，从 HttpRequest.parameterMap 复制过来，比如：对于 upload field，这里存的只是 filedname
-     * value 统一用数组
+     * value 统一用数组保存，这样可以处理 checkbox
      */
     private Map<String, String[]> attributes = new HashMap<String, String[]>();
 
