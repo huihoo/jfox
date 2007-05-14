@@ -14,13 +14,25 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * 调用上下文，封装调用过程中的所有资源
+ *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class InvocationContext {
 
+    /**
+     * Action名称
+     */
     private String actionName;
+
+    /**
+     * 是否是http post
+     */
     private boolean postMethod = false;
 
+    /**
+     * 执行的Action方法
+     */
     private Method actionMethod = null;
 
     /**
