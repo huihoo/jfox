@@ -28,7 +28,7 @@ public class InvocationContext {
     /**
      * 是否是http post
      */
-    private boolean postMethod = false;
+    private boolean isPostMethod = false;
 
     /**
      * 执行的Action方法
@@ -53,10 +53,14 @@ public class InvocationContext {
 
     private HttpServletRequest request = null;
 
-    public InvocationContext(ServletConfig servletConfig, HttpServletRequest request, String name) {
+    public InvocationContext(ServletConfig servletConfig, HttpServletRequest request, Map<String, String[]> parameterMap, Map<String, FileUploaded> fileUploadedMap, String name, boolean isPostMethod) {
         this.servletConfig = servletConfig;
         this.request = request;
+        this.parameterMap.putAll(parameterMap);
+        this.fileUploadedMap.putAll(fileUploadedMap);
         this.actionName = name;
+        this.isPostMethod = isPostMethod;
+        this.sessionContext = SessionContext.init(request);
         this.pageContext = new PageContext();
     }
 
@@ -72,35 +76,27 @@ public class InvocationContext {
         return servletConfig.getServletContext();
     }
 
-    public Method getActionMethod() {
-        return actionMethod;
-    }
-
     void setActionMethod(Method actionMethod) {
         this.actionMethod = actionMethod;
     }
 
-    public void setSessionContext(SessionContext sessionContext) {
-        this.sessionContext = sessionContext;
+    public Method getActionMethod() {
+        return actionMethod;
     }
 
     public String getActionName() {
         return actionName;
     }
 
-    public void setPostMethod(boolean postMethod) {
-        this.postMethod = postMethod;
-    }
-
     public boolean isPostMethod(){
-        return postMethod;
+        return isPostMethod;
     }
 
     public SessionContext getSessionContext(){
         return sessionContext;
     }
 
-    public void setInvocation(Invocation invocation) {
+    void setInvocation(Invocation invocation) {
         this.invocation = invocation;
     }
 
@@ -110,10 +106,6 @@ public class InvocationContext {
 
     public PageContext getPageContext(){
         return pageContext;
-    }
-
-    public void addParameter(String key, String[] values){
-        parameterMap.put(key, values);
     }
 
     public String getParameterValue(String key){
@@ -126,10 +118,6 @@ public class InvocationContext {
 
     public Map<String, String[]> getParameterMap() {
         return parameterMap;
-    }
-
-    public void addFileUploaded(String key, FileUploaded fileUploaded){
-        fileUploadedMap.put(key, fileUploaded);
     }
 
     public Map<String, FileUploaded> getFileUploadedMap() {

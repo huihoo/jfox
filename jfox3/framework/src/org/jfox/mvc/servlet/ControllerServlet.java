@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -116,15 +118,18 @@ public class ControllerServlet extends HttpServlet {
         String actionName = pathInfo.substring(lastSlashIndex + 1, actionMethodDotIndex);
         String actionMethodName = pathInfo.substring(actionMethodDotIndex + 1, dotDoIndex);
 
-        InvocationContext invocationContext = new InvocationContext(getServletConfig(), request, actionMethodName);
-        invocationContext.setPostMethod(request.getMethod().toUpperCase().equals("POST"));
+//        InvocationContext invocationContext = new InvocationContext(getServletConfig(), request, actionMethodName);
+//        invocationContext.setPostMethod(request.getMethod().toUpperCase().equals("POST"));
 
         // 会导致取出的值为数组问题，所以只能使用下面的循环
+        final Map<String,String[]> parameterMap = new HashMap<String, String[]>();
+        final Map<String, FileUploaded> fileUploadedMap = new HashMap<String, FileUploaded>();
         if (!isMultipartContent(request)) {
             for (Enumeration enu = request.getParameterNames(); enu.hasMoreElements();) {
                 String key = (String)enu.nextElement();
                 String[] values = request.getParameterValues(key);
-                invocationContext.addParameter(key, values);
+//                invocationContext.addParameter(key, values);
+                parameterMap.put(key,values);
             }
         }
         else { // 有文件上传
@@ -149,7 +154,8 @@ public class ControllerServlet extends HttpServlet {
                         FileItem fileItem = (FileItem)item;
                         if (fileItem.isFormField()) {
                             // 表单内容
-                            invocationContext.addParameter(fileItem.getFieldName(), new String[]{fileItem.getString(DEFAULT_ENCODING)});
+//                            invocationContext.addParameter(fileItem.getFieldName(), new String[]{fileItem.getString(DEFAULT_ENCODING)});
+                            parameterMap.put(fileItem.getFieldName(), new String[]{fileItem.getString(DEFAULT_ENCODING)});
                         }
                         else {
                             //  如果不是表单内容，取出 multipart。
@@ -159,7 +165,8 @@ public class ControllerServlet extends HttpServlet {
                             String fileName = new File(sourcePath).getName();
                             // 读到内存成 FileUpload 对象
                             FileUploaded fileUploaded = new FileUploaded(fileName, fileItem.get());
-                            invocationContext.addFileUploaded(fileItem.getFieldName(), fileUploaded);
+//                            invocationContext.addFileUploaded(fileItem.getFieldName(), fileUploaded);
+                            fileUploadedMap.put(fileItem.getFieldName(), fileUploaded);
                         }
                     }
                 }
@@ -169,8 +176,11 @@ public class ControllerServlet extends HttpServlet {
             }
         }
 
-        SessionContext sessionContext = SessionContext.init(request);
-        invocationContext.setSessionContext(sessionContext);
+        InvocationContext invocationContext = new InvocationContext(getServletConfig(), request, parameterMap, fileUploadedMap, actionMethodName, "POST".equals(request.getMethod().toUpperCase()));
+//        invocationContext.setPostMethod(request.getMethod().toUpperCase().equals("POST"));
+        
+//        SessionContext sessionContext = SessionContext.init(request);
+//        invocationContext.setSessionContext(sessionContext);
 
         try {
             WebContextLoader.invokeAction(moduleDirName, actionName, invocationContext);
