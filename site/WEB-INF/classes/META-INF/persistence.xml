@@ -4,7 +4,7 @@
         <jta-data-source>java:/DefaultMySqlDS</jta-data-source>
         <properties>
             <property name="driver" value="com.mysql.jdbc.Driver"/>
-            <property name="url" value="jdbc:mysql://localhost:3309/jfox_chinajsp?useUnicode=true;characterEncoding=utf8"/>
+            <property name="url" value="jdbc:mysql://localhost:3309/jfox_chinajsp?useUnicode=true&amp;characterEncoding=utf8"/>
             <property name="username" value="jfox"/>
             <property name="password" value="m2b5y6f8"/>
             <property name="minSize" value="1"/> <!-- min pool size -->
@@ -26,7 +26,7 @@
         <jta-data-source>java:/JPetstoreMysqlDS</jta-data-source>
         <properties>
             <property name="driver" value="com.mysql.jdbc.Driver"/>
-            <property name="url" value="jdbc:mysql://localhost:3309/jfox_chinajsp?useUnicode=true;characterEncoding=utf8"/>
+            <property name="url" value="jdbc:mysql://localhost:3309/jfox_chinajsp?useUnicode=true&amp;characterEncoding=utf8"/>
             <property name="username" value="jfox"/>
             <property name="password" value="m2b5y6f8"/>
             <property name="minSize" value="1"/> <!-- min pool size -->
