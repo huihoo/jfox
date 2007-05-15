@@ -39,7 +39,7 @@ public class PageContext {
 
     }
 
-    public void setTargetMethod(ActionMethod.TargetMethod targetMethod) {
+    void setTargetMethod(ActionMethod.TargetMethod targetMethod) {
         this.targetMethod = targetMethod;
     }
 
@@ -48,7 +48,7 @@ public class PageContext {
     }
 
     public Map<String,Object> getResultMap(){
-        return resultMap;
+        return Collections.unmodifiableMap(resultMap);
     }
 
     public void setTargetView(String targetView) {

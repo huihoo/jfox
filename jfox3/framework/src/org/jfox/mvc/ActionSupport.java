@@ -180,7 +180,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
             exception = e;
         }
         finally {
-            setSystemPageContextAttributes(invocationContext);
+            initPageContext(invocationContext);
             postAction(invocationContext);
         }
 
@@ -194,14 +194,13 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
      * 设置通用 PageContext 的 attribute
      * 业务设置的 attribute 不应该重名，否则会被通用 attribute 覆盖
      */
-    protected void setSystemPageContextAttributes(InvocationContext invocationContext){
+    protected void initPageContext(InvocationContext invocationContext){
         HttpServletRequest request = invocationContext.getServletRequest();
         PageContext pageContext = invocationContext.getPageContext();
         pageContext.setAttribute("J_VALIDATE_EXCEPTIONS", pageContext.getValidateExceptions());
         pageContext.setAttribute("J_EXCEPTION", pageContext.getBusinessException());
 
-        SessionContext sessionContext = SessionContext.init(request);
-        pageContext.setAttribute("J_SESSION_CONTEXT", sessionContext);
+        pageContext.setAttribute("J_SESSION_CONTEXT", invocationContext.getSessionContext());
         pageContext.setAttribute("J_PAGE_CONTEXT", pageContext);
         pageContext.setAttribute("J_REQUEST", request);
         //用于在页面上显示 vm 文件全路径，便于调试
