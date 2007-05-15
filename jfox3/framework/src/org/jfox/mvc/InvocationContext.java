@@ -28,7 +28,7 @@ public class InvocationContext {
     /**
      * 是否是http post
      */
-    private boolean isPostMethod = false;
+    private boolean isPost = false;
 
     /**
      * 执行的Action方法
@@ -59,7 +59,7 @@ public class InvocationContext {
         this.parameterMap.putAll(parameterMap);
         this.fileUploadedMap.putAll(fileUploadedMap);
         this.actionName = name;
-        this.isPostMethod = isPostMethod;
+        this.isPost = isPostMethod;
         this.sessionContext = SessionContext.init(request);
         this.pageContext = new PageContext();
     }
@@ -88,8 +88,8 @@ public class InvocationContext {
         return actionName;
     }
 
-    public boolean isPostMethod(){
-        return isPostMethod;
+    public boolean isPost(){
+        return isPost;
     }
 
     public SessionContext getSessionContext(){

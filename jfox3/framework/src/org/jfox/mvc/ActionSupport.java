@@ -111,7 +111,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
 
         Method actionMethod = getActionMethod(invocationContext);
         if (actionMethod == null) {
-            throw new ServletException("No ActionMethod in Action Class: " + getClass().getName() + " responsable for " + (invocationContext.isPostMethod() ? "POST" : "GET") + " action: " + getName() + "." + invocationContext.getActionName() + " !");
+            throw new ServletException("No ActionMethod in Action Class: " + getClass().getName() + " responsable for " + (invocationContext.isPost() ? "POST" : "GET") + " action: " + getName() + "." + invocationContext.getActionName() + " !");
         }
         invocationContext.setActionMethod(actionMethod);
         Class<?> invocationClass = actionMethod.getAnnotation(ActionMethod.class).invocationClass();
@@ -213,7 +213,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         //决定调用 doGetXXX or doPostXXX
         Method actionMethod;
         String name = invocationContext.getActionName();
-        if (invocationContext.isPostMethod()) {
+        if (invocationContext.isPost()) {
             actionMethod = actionMap.get((POST_METHOD_PREFIX + name).toUpperCase());
         }
         else {
