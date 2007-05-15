@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.jfox.ejb3.security.SecurityContext;
 
 /**
+ * Session 上下文，用来存放 Session 数据
+ *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class SessionContext implements Serializable {
