@@ -48,6 +48,7 @@ public class ControllerServlet extends HttpServlet {
 
     public static final String MULTIPART = "multipart/";
 
+    //主要用来控制File Upload, Velocity, Freemarker的编码
     public static String DEFAULT_ENCODING = "UTF-8";
 
     static String ACTION_SUFFIX = ".do";
