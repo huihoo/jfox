@@ -41,6 +41,7 @@ import org.jfox.entity.dao.DAOSupport;
                         "account.zip as zip," +
                         "account.country as country," +
                         "account.phone as phone," +
+                        "signon.password," +
                         "profile.langpref as langpref," +
                         "profile.favcategory as favcategory," +
                         "profile.mylistopt as mylistopt," +
@@ -72,6 +73,7 @@ import org.jfox.entity.dao.DAOSupport;
                         "account.zip," +
                         "account.country," +
                         "account.phone," +
+                        "signon.password," +
                         "profile.langpref," +
                         "profile.favcategory," +
                         "profile.mylistopt," +

@@ -24,7 +24,7 @@
                             New password:
                         </td>
                         <td>
-                            <input type="password" name="password" value="$!account.getPassword()"/> 
+                            <input type="password" name="password" value="$!account.getPassword()" readonly/> 
                             <font color="red">$!J_VALIDATE_EXCEPTIONS.get("password").getMessage()</font>
                         </td>
                     </tr>
@@ -32,7 +32,7 @@
                         <td>
                             Repeat password:
                         </td>
-                        <td><input type="password" name="repeatpassword" value=""/>
+                        <td><input type="password" name="repeatpassword" value="$!account.getPassword()" readonly/>
                         </td>
                     </tr>
                 </table>

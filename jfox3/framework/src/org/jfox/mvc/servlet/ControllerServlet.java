@@ -50,7 +50,7 @@ public class ControllerServlet extends HttpServlet {
 
     public static final String MULTIPART = "multipart/";
 
-    //主要用来控制File Upload, Velocity, Freemarker的编码
+    //主要用来控制request charactor encoding, File Upload, Velocity, Freemarker的编码
     public static String DEFAULT_ENCODING = "UTF-8";
 
     static String ACTION_SUFFIX = ".do";
@@ -84,6 +84,7 @@ public class ControllerServlet extends HttpServlet {
     }
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding(DEFAULT_ENCODING);
         String pathInfo = request.getPathInfo();
         if (pathInfo.endsWith(ACTION_SUFFIX)) {
             // action

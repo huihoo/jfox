@@ -14,7 +14,7 @@ import javax.persistence.Entity;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Entity
-public class Account implements Serializable {
+public class Account implements Serializable, Cloneable {
 
     @Column(name="userid") // signon.username
     String username;
@@ -213,6 +213,10 @@ public class Account implements Serializable {
 
     public void setBannerName(String bannerName) {
         this.bannerName = bannerName;
+    }
+
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public static class AccountHelper {

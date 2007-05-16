@@ -48,7 +48,8 @@ public class PageContext {
     }
 
     public Map<String,Object> getResultMap(){
-        return Collections.unmodifiableMap(resultMap);
+        // 不能返回 unmodifiedMap，因为 Velocity render过程中需要修改
+        return resultMap;
     }
 
     public void setTargetView(String targetView) {

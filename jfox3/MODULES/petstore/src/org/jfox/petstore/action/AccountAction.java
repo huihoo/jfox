@@ -177,6 +177,9 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         Account account = (Account)sessionContext.getAttribute(ACCOUNT_SESSION_KEY);
 
         Account newAccount = new Account();
+        newAccount.setBannerName(account.getBannerName());
+        newAccount.setUsername(account.getUsername());
+        newAccount.setStatus(account.getStatus());
 
         newAccount.setPassword(invocation.getPassword());
         newAccount.setAddress1(invocation.getAddress1());

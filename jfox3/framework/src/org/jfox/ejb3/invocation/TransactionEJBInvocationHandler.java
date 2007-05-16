@@ -120,32 +120,38 @@ public class TransactionEJBInvocationHandler extends EJBInvocationHandler {
             // only catch EJBException, rollback the transaction
             // Application Exception maybe right logic
             toCommit = false;
+            logger.error("EJB method invocation " + method + " failed.", e);
             throw e;
         }
         catch (SQLException e) {
             // only catch EJBException, rollback the transaction
             // Application Exception maybe right logic
             toCommit = false;
+            logger.error("EJB method invocation " + method + " failed.", e);
             throw e;
         }
         catch (PersistenceException e) {
             // only catch EJBException, rollback the transaction
             // Application Exception maybe right logic
             toCommit = false;
+            logger.error("EJB method invocation " + method + " failed.", e);
             throw e;
         }
         catch (InvocationTargetException e) {
             toCommit = false;
             Throwable t = e.getTargetException();
             if (t instanceof Error) {
+                logger.error("EJB method invocation " + method + " failed.", e);
                 throw (Error)t;
             }
             else {
+                logger.error("EJB method invocation " + method + " failed.", e);
                 throw (Exception)t;
             }
         }
         catch (Exception e) {
             toCommit = false;
+            logger.error("EJB method invocation " + method + " failed.", e);
             throw e;
         }
         finally {
