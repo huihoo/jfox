@@ -72,7 +72,7 @@ public class WebConsoleAction extends ActionSupport {
         pageContext.setAttribute("bindings", bindings);
     }
 
-    @ActionMethod(successView = "console/container.vhtml")
+    @ActionMethod(successView = "console/ejb.vhtml")
     public void doGetContainer(InvocationContext invocationContext) throws Exception{
         PageContext pageContext = invocationContext.getPageContext();
         EJBContainer container = getEJBContainer();

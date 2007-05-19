@@ -17,7 +17,7 @@
         </tr>
         <tr>
             <td class="page-title">
-                <small><a href="console.sysinfo.do">System Infomation</a></small>
+                <small><a href="console.sysinfo.do">System Information</a></small>
             </td>
             <td class="page-title">
                 <small><a href="console.jndi.do">JNDI View</a></small>
