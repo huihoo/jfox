@@ -25,6 +25,9 @@ public class SessionContext implements Serializable {
 
     private Map<Serializable, Serializable> sessionMap = new HashMap<Serializable, Serializable>();
 
+    /**
+     * 使用 ThreadLocal 将 SessionContext 和当前线程进行关联
+     */
     static ThreadLocal<SessionContext> threadSession = new ThreadLocal<SessionContext>();
 
     private SessionContext() {
@@ -48,9 +51,16 @@ public class SessionContext implements Serializable {
         return sessionContext;
     }
 
+    /**
+     * 得到与当前线程绑定的SessionContext
+     * @return return null if current thread not associate session context
+     */
     public static SessionContext currentThreadSessionContext(){
-        // return null, if current thread not associate session context
-        return threadSession.get();
+        SessionContext sessionContext = threadSession.get();
+        if(sessionContext == null) {
+            threadSession.remove();
+        }
+        return sessionContext;
     }
 
     public static void disassociateThreadSessionContext(){
