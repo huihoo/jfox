@@ -113,42 +113,29 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         if (actionMethod == null) {
             throw new ServletException("No ActionMethod in Action Class: " + getClass().getName() + " responsable for " + (invocationContext.isPost() ? "POST" : "GET") + " action: " + getName() + "." + invocationContext.getActionName() + " !");
         }
-        invocationContext.setActionMethod(actionMethod);
-        Class<?> invocationClass = actionMethod.getAnnotation(ActionMethod.class).invocationClass();
-
         ActionMethod actionMethodAnnotation = actionMethod.getAnnotation(ActionMethod.class);
+        // invocation class
+        Class<? extends Invocation> invocationClass = actionMethodAnnotation.invocationClass();
         String successView = actionMethodAnnotation.successView();
         // 没有设置 errorView，将会直接抛出异常
         String errorView = actionMethodAnnotation.errorView();
+
+        //设置ActionMethod
+        invocationContext.setActionMethod(actionMethod);
+        //设置跳转方式
         invocationContext.getPageContext().setTargetMethod(actionMethodAnnotation.targetMethod());
+        //设置目标模板页面
         invocationContext.getPageContext().setTargetView(successView);
 
-        if (!Invocation.class.isAssignableFrom(invocationClass)) {
-            throw new InvocationException("Invalid invocation class." + invocationClass.getName());
-        }
-
-        Invocation invocation;
-        if (invocationClass.equals(Invocation.class)) {
-            invocation = new Invocation();
-            invocation.putAll(invocationContext.getParameterMap());
-        }
-        else {
-            try {
-                invocation = (Invocation)invocationClass.newInstance();
-                invocation.putAll(invocationContext.getParameterMap());
-            }
-            catch (Exception e) {
-                throw new InvocationException("Construct invocation exception.", e);
-            }
-        }
-
-        invocationContext.setInvocation(invocation);
-        //build & set invocation
         Exception exception = null;
         try {
-            buildInvocation(invocationClass, invocationContext);
-            invocationContext.setInvocation(invocation);
+            //construct & verify invocation            
+            initInvocation(invocationClass, invocationContext);
+            // 设置通用PageContext属性
+            initPageContext(invocationContext);
+            // pre action
             preAction(invocationContext);
+            // invoke action method
             actionMethod.invoke(this, invocationContext);
         }
         catch (InvocationException e) {
@@ -180,7 +167,6 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
             exception = e;
         }
         finally {
-            initPageContext(invocationContext);
             postAction(invocationContext);
         }
 
@@ -193,6 +179,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     /**
      * 设置通用 PageContext 的 attribute
      * 业务设置的 attribute 不应该重名，否则会被通用 attribute 覆盖
+     * @param invocationContext invocation context
      */
     protected void initPageContext(InvocationContext invocationContext){
         HttpServletRequest request = invocationContext.getServletRequest();
@@ -257,12 +244,27 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
      *
      * @param invocationClass   incation class
      * @param invocationContext invcation context
-     * @throws InvocationException e
-     * @throws ValidateException   e
+     * @throws InvocationException throw when contruct invocation failed
+     * @throws ValidateException throw when invocation attribute validate failed
      */
-    protected Invocation buildInvocation(Class invocationClass, InvocationContext invocationContext) throws InvocationException, ValidateException {
-        Invocation invocation = invocationContext.getInvocation();
-        // build form input field
+    protected Invocation initInvocation(Class<? extends Invocation> invocationClass, InvocationContext invocationContext) throws InvocationException, ValidateException {
+        Invocation invocation;
+        if (invocationClass.equals(Invocation.class)) {
+            invocation = new Invocation();
+            invocation.putAll(invocationContext.getParameterMap());
+        }
+        else {
+            try {
+                invocation = invocationClass.newInstance();
+                invocation.putAll(invocationContext.getParameterMap());
+            }
+            catch (Exception e) {
+                throw new InvocationException("Construct invocation exception.", e);
+            }
+        }
+        invocationContext.setInvocation(invocation);
+
+        // verify & build form input field
         ValidateException validateException = null;
         for (Map.Entry<String, String[]> entry : invocationContext.getParameterMap().entrySet()) {
             String key = entry.getKey();
