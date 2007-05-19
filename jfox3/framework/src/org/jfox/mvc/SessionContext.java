@@ -25,17 +25,20 @@ public class SessionContext implements Serializable {
 
     private Map<Serializable, Serializable> sessionMap = new HashMap<Serializable, Serializable>();
 
-    static ThreadLocal<SessionContext> threadSession = new ThreadLocal<SessionContext>() {
-
-        protected SessionContext initialValue() {
-            return new SessionContext();
-        }
-    };
+    static ThreadLocal<SessionContext> threadSession = new ThreadLocal<SessionContext>();
 
     private SessionContext() {
     }
 
+    /**
+     * 使用 request 初始化 session context，
+     * 初始化完毕之后，将 session context 关联到当前线程
+     * @param request http request
+     */
     public static SessionContext init(HttpServletRequest request) {
+        if(request == null) {
+            return null;
+        }
         SessionContext sessionContext = (SessionContext)request.getSession().getAttribute(SESSION_KEY);
         if (sessionContext == null) {
             sessionContext = new SessionContext();
@@ -46,10 +49,11 @@ public class SessionContext implements Serializable {
     }
 
     public static SessionContext currentThreadSessionContext(){
+        // return null, if current thread not associate session context
         return threadSession.get();
     }
 
-    public static void removeThreadSessionContext(){
+    public static void disassociateThreadSessionContext(){
         threadSession.remove();
     }
 

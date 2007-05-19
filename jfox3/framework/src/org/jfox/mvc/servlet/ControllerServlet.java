@@ -177,13 +177,10 @@ public class ControllerServlet extends HttpServlet {
             }
         }
 
-        InvocationContext invocationContext = new InvocationContext(getServletConfig(), request, parameterMap, fileUploadedMap, actionMethodName, "POST".equals(request.getMethod().toUpperCase()));
-//        invocationContext.setPostMethod(request.getMethod().toUpperCase().equals("POST"));
-        
-//        SessionContext sessionContext = SessionContext.init(request);
-//        invocationContext.setSessionContext(sessionContext);
-
         try {
+            // 初始化 SessionContext，并绑定到线程
+            SessionContext.init(request);
+            InvocationContext invocationContext = new InvocationContext(getServletConfig(), request, parameterMap, fileUploadedMap, actionMethodName, "POST".equals(request.getMethod().toUpperCase()));
             WebContextLoader.invokeAction(moduleDirName, actionName, invocationContext);
             request.setAttribute(INVOCATION_CONTEXT, invocationContext);
             // 根据 PageContext.getTargetMethod 要决定 forward 还是 redirect
@@ -202,7 +199,8 @@ public class ControllerServlet extends HttpServlet {
             throw new ServletException(e);
         }
         finally{
-            SessionContext.removeThreadSessionContext();
+            // 解除 SessionContext 和 线程的绑定
+            SessionContext.disassociateThreadSessionContext();
         }
     }
 

@@ -60,7 +60,7 @@ public class InvocationContext {
         this.fileUploadedMap.putAll(fileUploadedMap);
         this.actionName = name;
         this.isPost = isPostMethod;
-        this.sessionContext = SessionContext.init(request);
+        this.sessionContext = SessionContext.currentThreadSessionContext();
         this.pageContext = new PageContext();
     }
 
