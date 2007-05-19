@@ -23,12 +23,17 @@ public class SessionContext implements Serializable {
     public static final String SESSION_KEY = "__SESSION_KEY__";
     public static final String SECURITY_CONTEXT_SESSION_KEY = "__SECURITY_SUBJECT__";
 
-    private Map<Serializable, Serializable> sessionMap = new HashMap<Serializable, Serializable>();
+    /**
+     * 使用Map存储Session数据
+     */
+    private Map<String, Serializable> sessionMap = new HashMap<String, Serializable>();
 
     /**
      * 使用 ThreadLocal 将 SessionContext 和当前线程进行关联
      */
     static ThreadLocal<SessionContext> threadSession = new ThreadLocal<SessionContext>();
+
+    private HttpServletRequest request;
 
     private SessionContext() {
     }
@@ -42,9 +47,11 @@ public class SessionContext implements Serializable {
         if(request == null) {
             return null;
         }
+
         SessionContext sessionContext = (SessionContext)request.getSession().getAttribute(SESSION_KEY);
         if (sessionContext == null) {
             sessionContext = new SessionContext();
+            sessionContext.request = request;
             request.getSession().setAttribute(SESSION_KEY, sessionContext);
         }
         threadSession.set(sessionContext);
@@ -82,11 +89,11 @@ public class SessionContext implements Serializable {
         return (SecurityContext)this.getAttribute(SECURITY_CONTEXT_SESSION_KEY);
     }
 
-    public void setAttribute(Serializable key, Serializable value) {
+    public void setAttribute(String key, Serializable value) {
         sessionMap.put(key,value);
     }
 
-    public Serializable getAttribute(Serializable key) {
+    public Serializable getAttribute(String key) {
         return sessionMap.get(key);
     }
 
@@ -98,8 +105,17 @@ public class SessionContext implements Serializable {
         return sessionMap.remove(key);
     }
 
+    public String[] getAttributeNames(){
+        return sessionMap.keySet().toArray(new String[sessionMap.size()]);
+    }
+
+    /**
+     * 销毁 SessionContext
+     */
     public void destroy(){
         sessionMap.clear();
+        SessionContext.disassociateThreadSessionContext();
+        request.getSession().removeAttribute(SESSION_KEY);
     }
 
     public static void main(String[] args) {
