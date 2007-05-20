@@ -3,7 +3,7 @@
     <property name="appname" value="jfox"/>
     <property name="src" value="${basedir}/src"/>
     <property name="conf" value="${basedir}/conf"/>
-    <property name="demo" value="${basedir}/test-src"/>
+    <property name="demo-src" value="${basedir}/test-src"/>
     <property name="webxml" value="${basedir}/WEB-INF/web.xml"/>
     <property name="wwwroot" value="${basedir}/wwwroot"/>
     <property name="lib" value="${basedir}/lib"/>
@@ -14,6 +14,7 @@
     <property name="webapp-lib" value="${webapp-webinfo}/lib"/>
 
     <property name="jarname" value="${appname}-3.0.0.jar"/>
+    <property name="testjarname" value="${appname}-3.0.0-test.jar"/>
     <property name="warname" value="${appname}.war"/>
 
     <path id="classpath">
@@ -37,7 +38,7 @@
             <patternset refid="ignored.files"/>
         </javac>
         <javac encoding="UTF-8" source="1.5" target="1.5" destdir="${webapp-classes}" debug="on" deprecation="off" optimize="off">
-            <src path="${demo}"/>
+            <src path="${demo-src}"/>
             <classpath refid="classpath"/>
             <patternset refid="ignored.files"/>
         </javac>
@@ -63,22 +64,83 @@
         </copy>
     </target>
 
-    <target name="war" depends="compile">
+    <target name="jar_framework" depends="compile">
         <jar destfile="${webapp-lib}/${jarname}">
-            <fileset dir="${webapp-classes}"/>
+            <fileset dir="${webapp-classes}">
+                <exclude name="jfox/**"/>
+            </fileset>
+        </jar>
+        <jar destfile="${webapp-lib}/${testjarname}">
+            <fileset dir="${demo-src}">
+                <patternset refid="ignored.files"/>
+            </fileset>
+            <fileset dir="${webapp-classes}">
+                <exclude name="org/**"/>
+                <exclude name="net/**"/>
+                <exclude name="*.properties"/>
+                <exclude name="*.conf"/>
+                <exclude name="META-INF/**"/>
+            </fileset>
         </jar>
         <delete dir="${webapp-classes}/org"/>
         <delete dir="${webapp-classes}/net"/>
-        <jar destfile="${dist}/${warname}">
-            <fileset dir="${webapp-output}"/>
-        </jar>
+        <delete dir="${webapp-classes}/jfox"/>
     </target>
 
-    <target name="all" depends="war">
+    <target name="war_framework" depends="manager">
+        <war destfile="${dist}/${warname}">
+            <fileset dir="${webapp-output}"/>
+        </war>
+    </target>
+
+    <target name="all" depends="war_framework">
 
     </target>
 
     <target name="clean">
         <delete dir="${dist}"/>
     </target>
+
+    <target name="manager" depends="jar_framework">
+        <mkdir dir="${webapp-webinfo}/MODULES/manager/classes"/>
+        <javac encoding="UTF-8" source="1.5" target="1.5" destdir="${webapp-webinfo}/MODULES/manager/classes" debug="on" deprecation="off" optimize="off">
+            <src path="${basedir}/../MODULES/manager/src"/>
+            <classpath refid="classpath"/>
+            <classpath path="${webapp-lib}/${appname}-3.0.0.jar"/>
+            <patternset refid="ignored.files"/>
+        </javac>
+        <copy todir="${webapp-webinfo}/MODULES/manager" flatten="false" description="copy manager files">
+            <fileset dir="${basedir}/../MODULES/manager">
+                <patternset refid="ignored.files"/>
+                <exclude name="WEB-INF/**"/>
+                <exclude name="*.iml"/>
+            </fileset>
+        </copy>
+        <zip destfile="${webapp-webinfo}/MODULES/manager.zip">
+            <fileset dir="${webapp-webinfo}/MODULES/manager"/>
+        </zip>
+        <delete dir="${webapp-webinfo}/MODULES/manager"/>
+    </target>
+
+    <target name="petstore">
+        <mkdir dir="${webapp-webinfo}/MODULES/petstore/classes"/>
+        <javac encoding="UTF-8" source="1.5" target="1.5" destdir="${webapp-webinfo}/MODULES/petstore/classes" debug="on" deprecation="off" optimize="off">
+            <src path="${basedir}/../MODULES/petstore/src"/>
+            <classpath refid="classpath"/>
+            <classpath path="${webapp-lib}/${appname}-3.0.0.jar"/>
+            <patternset refid="ignored.files"/>
+        </javac>
+        <copy todir="${webapp-webinfo}/MODULES/petstore" flatten="false" description="copy petstore files">
+            <fileset dir="${basedir}/../MODULES/petstore">
+                <patternset refid="ignored.files"/>
+                <exclude name="WEB-INF/**"/>
+                <exclude name="*.iml"/>
+            </fileset>
+        </copy>
+        <zip destfile="${webapp-webinfo}/MODULES/petstore.zip">
+            <fileset dir="${webapp-webinfo}/MODULES/petstore"/>
+        </zip>
+        <delete dir="${webapp-webinfo}/MODULES/petstore"/>
+    </target>
+
 </project>
