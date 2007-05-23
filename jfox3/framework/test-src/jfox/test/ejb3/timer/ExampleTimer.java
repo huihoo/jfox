@@ -7,5 +7,8 @@
 package jfox.test.ejb3.timer;
 
 public interface ExampleTimer {
+    /**
+     * EJB 方法，用来提交定时任务
+     */
     void scheduleTimer(long milliseconds);
 }

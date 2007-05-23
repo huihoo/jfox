@@ -26,11 +26,17 @@ public class ExampleTimerBean implements ExampleTimer, TimedObject {
     @Resource
     TimerService timerService;
 
+    /**
+     * 使用两种方式分别提交一个定时任务
+     */
     public void scheduleTimer(long milliseconds) {
         ctx.getTimerService().createTimer(new Date(new Date().getTime() + milliseconds), "Hello World");
         timerService.createTimer(new Date(new Date().getTime() + milliseconds), "Hello World2");
     }
 
+    /**
+     * 使用 @Timeout 标注
+     */
     @Timeout
     public void timeoutHandler(Timer timer) {
         System.out.println("---------------------");
@@ -39,6 +45,9 @@ public class ExampleTimerBean implements ExampleTimer, TimedObject {
         timer.cancel();
     }
 
+    /**
+     * 实现 TimedObject 定义的方法
+     */
     public void ejbTimeout(Timer timer) {
         System.out.println("---------------------");
         System.out.println("* Received interface Timer event : " + timer.getInfo());
