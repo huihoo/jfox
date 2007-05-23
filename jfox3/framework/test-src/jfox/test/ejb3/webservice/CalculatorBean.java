@@ -16,7 +16,7 @@ import jfox.test.ejb3.stateless.Calculator;
 @Stateless(name = "webservice.CalculatorBean")
 @Remote
 @Local
-@WebService(endpointInterface = "jfox.test.ejb3.webservice.Calculator")
+@WebService(endpointInterface = "jfox.test.ejb3.webservice.Calculator", serviceName = "CalculatorBean")
 public class CalculatorBean implements Calculator {
 
     public int add(int x, int y) {

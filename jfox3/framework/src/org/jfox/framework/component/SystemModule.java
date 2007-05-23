@@ -15,6 +15,8 @@ import org.jfox.framework.Framework;
 import org.jfox.framework.annotation.Service;
 import org.jfox.framework.event.ModuleLoadedEvent;
 import org.jfox.framework.event.ModuleLoadingEvent;
+import org.jfox.entity.EntityManagerFactoryBuilder;
+import org.jfox.webservice.WSContainer;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -88,8 +90,12 @@ public class SystemModule extends Module {
             logger.info("Component " + componentClass.getName() + " loaded with id: " + meta.getComponentId() + "!");
         }
 
-        // will instantiate EJBContainer
+        // instantiate EJB container
         findComponentByInterface(EJBContainer.class);
+        // instantiate JPA container
+        findComponentByInterface(EntityManagerFactoryBuilder.class);
+        // instantiate Web Service container
+        findComponentByInterface(WSContainer.class);
         // then fire ModuleLoadingEvent, so EJB Container can load EJB in SYSTEM_MODULE
         getFramework().getEventManager().fireModuleEvent(new ModuleLoadingEvent(this));
         

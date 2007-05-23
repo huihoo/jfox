@@ -68,7 +68,7 @@ import org.jfox.jms.MessageService;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(id = "EJB3Container", singleton = true, active = true, priority = Integer.MIN_VALUE)
+@Service(id = "EJB3Container", singleton = true, active = true)
 public class SimpleEJB3Container implements EJBContainer, ModuleListener {
 
     protected Logger logger = Logger.getLogger(SimpleEJB3Container.class);

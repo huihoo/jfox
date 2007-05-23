@@ -42,14 +42,15 @@ import org.jfox.framework.component.ComponentUnregistration;
 import org.jfox.framework.event.ComponentEvent;
 import org.jfox.framework.event.ComponentListener;
 import org.jfox.mvc.SessionContext;
+import org.jfox.webservice.WSContainer;
 
 /**
  * 使用 XFire 实现 Web Service
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service
-public class JFoxXFireDelegate  implements Invoker, ComponentInitialization, ActiveComponent, ComponentUnregistration, ComponentListener {
+@Service(priority = Integer.MIN_VALUE)
+public class JFoxXFireDelegate  implements WSContainer, Invoker, ComponentInitialization, ActiveComponent, ComponentUnregistration, ComponentListener {
 
     private static final Logger logger = Logger.getLogger(JFoxXFireDelegate.class);
 
@@ -183,7 +184,7 @@ public class JFoxXFireDelegate  implements Invoker, ComponentInitialization, Act
 
             String serviceName = wsAnnotation.serviceName();
             if (serviceName == null || serviceName.trim().length() == 0) {
-                serviceName = makeServiceNameFromClassName(endpointInterface);
+                serviceName = ejbBucket.getBeanClass().getSimpleName();
             }
 
             String serviceNameSpace = wsAnnotation.targetNamespace();
