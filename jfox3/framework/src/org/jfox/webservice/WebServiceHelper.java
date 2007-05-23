@@ -15,7 +15,7 @@ import org.codehaus.xfire.client.XFireProxyFactory;
 /**
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
-public class WSHelper {
+public class WebServiceHelper {
 
     /**
      * 生成 WS 存根
