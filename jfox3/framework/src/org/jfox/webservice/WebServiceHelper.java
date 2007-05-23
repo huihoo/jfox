@@ -13,7 +13,7 @@ import org.codehaus.xfire.service.binding.ObjectServiceFactory;
 import org.codehaus.xfire.client.XFireProxyFactory;
 
 /**
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class WebServiceHelper {
 

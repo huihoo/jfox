@@ -14,7 +14,7 @@ import javax.jms.JMSException;
 /**
  * 由于只考虑支持本地 JMS，所以让 Destination 成为独立的 Container
  *
- * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
+ * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class QueueMessagePool {
 
