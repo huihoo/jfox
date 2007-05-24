@@ -6,6 +6,11 @@
  */
 package jfox.test.ejb3.webservice;
 
+import java.net.URL;
+import javax.xml.rpc.ServiceFactory;
+import javax.xml.rpc.Service;
+import javax.xml.namespace.QName;
+
 import org.jfox.webservice.WebServiceHelper;
 
 /**
@@ -13,11 +18,25 @@ import org.jfox.webservice.WebServiceHelper;
  */
 public class WebServiceClient {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
         Calculator example = WebServiceHelper.lookupWS("http://localhost:8080/jfox/webservice/CalculatorBean", Calculator.class);
 
-        System.out.println("Web Service invoke Calculator.add(1,1): " + example.add(1,1));
-        System.out.println("Web Service invoke Calculator.substract(2,1): " + example.subtract(2,1));
+        System.out.println("Web Service invoke Calculator.add(1,1): " + example.add(1, 1));
+        System.out.println("Web Service invoke Calculator.substract(2,1): " + example.subtract(2, 1));
+    }
+
+    public static void main2(String[] args) throws Exception {
+        URL url = new URL("http://localhost:8080/jfox/webservice/CalculatorBean?wsdl");
+        QName qname = new QName("http://webservice.ejb3.test.jfox",
+                "CalculatorService");
+
+        ServiceFactory factory = ServiceFactory.newInstance();
+        Service service = factory.createService(url, qname);
+
+        Calculator calculator = (Calculator)service.getPort(Calculator.class);
+
+        System.out.println("1 + 1 = " + calculator.add(1, 1));
+        System.out.println("1 - 1 = " + calculator.subtract(1, 1));
     }
 }
