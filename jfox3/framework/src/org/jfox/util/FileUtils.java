@@ -441,7 +441,7 @@ public class FileUtils {
     public static Map<String, byte[]> getClassBytesMap(File file) throws IOException {
         Map<String, byte[]> contents = new HashMap<String, byte[]>();
         if (file.isDirectory()) {
-            List<File> files = listFiles(file, FileFilterUtils.suffixFileFilter(".class"));
+            List<File> files = listFiles(file, FileFilterUtils.and(FileFilterUtils.suffixFileFilter(".class"), FileFilterUtils.not(FileFilterUtils.nameFileFilter("package-info.class"))));
             for (File _file : files) {
                 String className = _file.getPath().substring(file.getPath().length() + 1);
                 className = className.replaceFirst(".class$", "");
@@ -456,7 +456,7 @@ public class FileUtils {
             try {
                 while (enu.hasMoreElements()) {
                     JarEntry entry = enu.nextElement();
-                    if (entry.isDirectory() || !entry.getName().endsWith(".class")) {
+                    if (entry.isDirectory() || !entry.getName().endsWith(".class") || entry.getName().endsWith("package-info.class")) {
                         continue;
                     }
                     String className = entry.getName();
