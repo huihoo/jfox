@@ -209,11 +209,6 @@ public class ControllerServlet extends HttpServlet {
             return false;
         }
         String contentType = req.getContentType();
-        if (contentType != null && contentType.toLowerCase().startsWith(MULTIPART)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return contentType != null && contentType.toLowerCase().startsWith(MULTIPART);
     }
 }
