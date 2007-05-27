@@ -12,27 +12,27 @@ import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Collection;
 
 import org.apache.log4j.Logger;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.jfox.framework.ComponentId;
 import org.jfox.framework.Constants;
 import org.jfox.framework.Framework;
-import org.jfox.framework.annotation.Service;
 import org.jfox.framework.annotation.Exported;
-import org.jfox.framework.event.ComponentUnloadedEvent;
+import org.jfox.framework.annotation.Service;
 import org.jfox.framework.event.ComponentLoadedEvent;
-import org.jfox.framework.event.ModuleLoadingEvent;
+import org.jfox.framework.event.ComponentUnloadedEvent;
 import org.jfox.framework.event.ModuleLoadedEvent;
 import org.jfox.framework.event.ModuleUnloadedEvent;
+import org.jfox.framework.event.ModuleLoadingEvent;
 import org.jfox.util.FileFilterUtils;
 import org.jfox.util.FileUtils;
 import org.jfox.util.PlaceholderUtils;
 import org.jfox.util.XMLUtils;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -290,7 +290,6 @@ public class Module implements Comparable<Module> {
      */
     public void start() throws Exception {
         logger.info("Starting module: " + getName());
-        getFramework().getEventManager().fireModuleEvent(new ModuleLoadingEvent(this));
         Class[] deployComponents = getModuleClassLoader().findClassAnnotatedWith(Service.class);
         for (Class<?> componentClass : deployComponents) {
             if (componentClass.isInterface()
@@ -306,9 +305,16 @@ public class Module implements Comparable<Module> {
             ComponentMeta meta = loadComponent(componentClass.asSubclass(Component.class));
             logger.info("Component " + componentClass.getName() + " loaded with id: " + meta.getComponentId() + "!");
         }
+        //需要明确预加载的Component，以便能监听 ModuleLoadingEvent
+        preActiveComponent();
+        getFramework().getEventManager().fireModuleEvent(new ModuleLoadingEvent(this));
         // 实例化 not lazy components
         instantiateActiveComponent();
         getFramework().getEventManager().fireModuleEvent(new ModuleLoadedEvent(this));
+    }
+
+    protected void preActiveComponent(){
+
     }
 
     protected void instantiateActiveComponent() throws ComponentInstantiateException {

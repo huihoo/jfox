@@ -17,7 +17,7 @@ import org.jfox.webservice.WebServiceHelper;
  */
 public class WebServiceClient {
 
-    public static void main2(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 
         Calculator example = WebServiceHelper.lookupWS("http://localhost:8080/jfox/webservice/CalculatorBean", Calculator.class);
 
@@ -25,7 +25,7 @@ public class WebServiceClient {
         System.out.println("Web Service invoke Calculator.substract(2,1): " + example.subtract(2, 1));
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main2(String[] args) throws Exception {
         URL url = new URL("http://localhost:8080/jfox/webservice/CalculatorBean?wsdl");
         QName qname = new QName("http://webservice.ejb3.test.jfox","CalculatorBean");
 
