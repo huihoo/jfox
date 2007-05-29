@@ -1,3 +1,9 @@
+/*
+ * JFox - The most lightweight Java EE Application Server!
+ * more details please visit http://www.huihoo.org/jfox or http://www.jfox.org.cn.
+ *
+ * JFox is licenced and re-distributable under GNU LGPL.
+ */
 package org.jfox.petstore.action;
 
 import java.util.List;
@@ -52,7 +58,7 @@ public class CategoryAction extends ActionSupport {
 
         PagedList<Product> productPagedList;
 
-        //TODO: cache product list in session
+        //product list cached by JPA Cache
 //        if (!sessionContext.containsAttribute("ProductPageList")) {
             List<Product> products = productBO.getProductsByCategory(invocation.getCategoryId());
             productPagedList = new PagedList<Product>(products, 4);

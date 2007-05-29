@@ -4,20 +4,19 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.petstore.dao;
+package org.jfox.manager.demo;
 
-import java.sql.SQLException;
-import java.util.List;
-
-import org.jfox.petstore.entity.Category;
+import javax.ejb.Stateless;
+import javax.ejb.Remote;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public interface CategoryDAO {
+@Stateless
+@Remote
+public class CartsImpl implements ICarts{
 
-    List<Category> getCategoryList() throws SQLException;
+    public static void main(String[] args) {
 
-    Category getCategory(String categoryId) throws SQLException;
-
+    }
 }

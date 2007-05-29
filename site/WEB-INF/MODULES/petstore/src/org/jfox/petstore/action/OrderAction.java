@@ -1,3 +1,9 @@
+/*
+ * JFox - The most lightweight Java EE Application Server!
+ * more details please visit http://www.huihoo.org/jfox or http://www.jfox.org.cn.
+ *
+ * JFox is licenced and re-distributable under GNU LGPL.
+ */
 package org.jfox.petstore.action;
 
 import java.util.ArrayList;
@@ -5,22 +11,22 @@ import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 
+import org.jfox.entity.EntityFactory;
+import org.jfox.entity.dao.PKGenerator;
+import org.jfox.framework.annotation.Service;
+import org.jfox.mvc.ActionSupport;
+import org.jfox.mvc.Invocation;
+import org.jfox.mvc.InvocationContext;
+import org.jfox.mvc.PageContext;
+import org.jfox.mvc.SessionContext;
+import org.jfox.mvc.annotation.ActionMethod;
+import org.jfox.mvc.validate.LongValidation;
 import org.jfox.petstore.bo.OrderBO;
 import org.jfox.petstore.domain.Cart;
 import org.jfox.petstore.domain.CartItem;
 import org.jfox.petstore.entity.Account;
 import org.jfox.petstore.entity.LineItem;
 import org.jfox.petstore.entity.Order;
-import org.jfox.entity.dao.MappedEntity;
-import org.jfox.entity.dao.PKGenerator;
-import org.jfox.framework.annotation.Service;
-import org.jfox.mvc.ActionSupport;
-import org.jfox.mvc.InvocationContext;
-import org.jfox.mvc.PageContext;
-import org.jfox.mvc.SessionContext;
-import org.jfox.mvc.Invocation;
-import org.jfox.mvc.validate.LongValidation;
-import org.jfox.mvc.annotation.ActionMethod;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -54,7 +60,7 @@ public class OrderAction extends ActionSupport {
 
         Account account = (Account)sessionContext.getAttribute(AccountAction.ACCOUNT_SESSION_KEY);
 
-        Order order = MappedEntity.newEntityObject(Order.class);
+        Order order = EntityFactory.newEntityObject(Order.class);
         order.setOrderId(PKGenerator.getInstance().nextPK());
         order.setUsername(account.getUsername());
         order.setOrderDate(new Date());
@@ -90,7 +96,7 @@ public class OrderAction extends ActionSupport {
 
         int i = 1;
         for (CartItem cartItem : cart.getCartItemList()) {
-            LineItem lineItem = MappedEntity.newEntityObject(LineItem.class);
+            LineItem lineItem = EntityFactory.newEntityObject(LineItem.class);
             lineItem.setLineNumber(i);
             lineItem.setOrderId(order.getOrderId());
             lineItem.setQuantity(cartItem.getQuantity());

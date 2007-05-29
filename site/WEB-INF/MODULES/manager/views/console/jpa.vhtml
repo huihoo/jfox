@@ -17,7 +17,7 @@
         </tr>
         <tr>
             <td class="page-title">
-                <small><a href="console.sysinfo.do">System Infomation</a></small>
+                <small><a href="console.sysinfo.do">System Information</a></small>
             </td>
             <td class="page-title">
                 <small><a href="console.jndi.do">JNDI View</a></small>
@@ -26,7 +26,7 @@
                 <small><a href="console.container.do">EJB Container</a></small>
             </td>
             <td class="page-title">
-                <small><a href="console.jpa.do">Persistence Unit</a></small>
+                <small><a href="console.jpa.do">JPA Container</a></small>
             </td>
             <td class="page-title">
                 <small><a href="console.modules.do">Modules</a></small>
@@ -36,7 +36,7 @@
 <br>
 <table cellspacing="4" width="100%" border="0">
     <tr>
-        <td class="page-title" bordercolor="#000000" align="left" nowrap><font size="+2">Persistence Unit Manager</font></td>
+        <td class="page-title" bordercolor="#000000" align="left" nowrap><font size="+2">JPA Container Manager</font></td>
     </tr>
 </table>
 <br>
@@ -92,13 +92,13 @@
         </td>
         <td class="row-left">
             <small>
-            #foreach($cacheConfig in $entityManagerFactory.getCacheConfigs())
-                <strong>Name</strong>: $cacheConfig.getName() <br>
-                <strong>Algorithm</strong>: $cacheConfig.getAlgorithm() <br>
-                <strong>Max Size</strong>: $cacheConfig.getMaxSize() <br>
-                <strong>Max Memory Size</strong>: $cacheConfig.getMaxMemorySize() bytes<br>
-                <strong>TTL</strong>: $cacheConfig.getTTL() ms<br>
-                <strong>Max Idle Time</strong>: $cacheConfig.getMaxIdleTime() ms<br><br>
+            #if($entityManagerFactory.getCacheConfig())
+                <strong>Name</strong>: $entityManagerFactory.getCacheConfig().getName() <br>
+                <strong>Algorithm</strong>: $entityManagerFactory.getCacheConfig().getAlgorithm() <br>
+                <strong>Max Size</strong>: $entityManagerFactory.getCacheConfig().getMaxSize() <br>
+                <strong>Max Memory Size</strong>: $entityManagerFactory.getCacheConfig().getMaxMemorySize() bytes<br>
+                <strong>TTL</strong>: $entityManagerFactory.getCacheConfig().getTTL() ms<br>
+                <strong>Max Idle Time</strong>: $entityManagerFactory.getCacheConfig().getMaxIdleTime() ms<br><br>
             #end
             </small>
         </td>
@@ -126,14 +126,11 @@
 <br>
 <table border="1" cellspacing="0" cellpadding="3">
     <tr>
-        <td colspan="7" class="title">Caches</td>
+        <td colspan="6" class="title">Caches</td>
     </tr>
     <tr>
         <td class="header-left">
             <small>Unit Name</small>
-        </td>
-        <td class="header-left">
-            <small>Category Name</small>
         </td>
         <td class="header-left">
             <small>Partition</small>
@@ -160,15 +157,12 @@
     <!-- loop all EntityManagerFactory -->
     #foreach($entityManagerFactory in $entityManagerFactories)
     <!-- loop all CacheConfigs in EntityManagerFactory-->
-    #foreach($cacheConfigs in $entityManagerFactory.getCacheConfigs())
+    #if($entityManagerFactory.getCacheConfig())
     <!-- loop all Caches in CacheConfig-->
-    #foreach($cache in $cacheConfigs.getAllCaches())
+    #foreach($cache in $entityManagerFactory.getCacheConfig().getAllCaches())
     <tr bgcolor="#if($velocityCount%2==0)#FFFFFF#else#C3F3C3#end">
         <td class="row-left">
             <small>$entityManagerFactory.getUnitName()</small>
-        </td>
-        <td class="row-left">
-            <small>$cache.getConfig().getName()</small>
         </td>
         <td class="row-left">
             <small>$cache.getName()</small>

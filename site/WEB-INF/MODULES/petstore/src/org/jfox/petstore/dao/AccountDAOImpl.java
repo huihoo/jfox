@@ -1,3 +1,9 @@
+/*
+ * JFox - The most lightweight Java EE Application Server!
+ * more details please visit http://www.huihoo.org/jfox or http://www.jfox.org.cn.
+ *
+ * JFox is licenced and re-distributable under GNU LGPL.
+ */
 package org.jfox.petstore.dao;
 
 import java.sql.SQLException;
@@ -35,6 +41,7 @@ import org.jfox.entity.dao.DAOSupport;
                         "account.zip as zip," +
                         "account.country as country," +
                         "account.phone as phone," +
+                        "signon.password," +
                         "profile.langpref as langpref," +
                         "profile.favcategory as favcategory," +
                         "profile.mylistopt as mylistopt," +
@@ -47,7 +54,7 @@ import org.jfox.entity.dao.DAOSupport;
                         " and profile.favcategory = bannerdata.favcategory",
                 resultClass = Account.class,
                 hints = {
-                        @QueryHint(name = "cache.default.partition", value = "account")
+                        @QueryHint(name = "cache.partition", value = "account")
                         }
         ),
 
@@ -66,6 +73,7 @@ import org.jfox.entity.dao.DAOSupport;
                         "account.zip," +
                         "account.country," +
                         "account.phone," +
+                        "signon.password," +
                         "profile.langpref," +
                         "profile.favcategory," +
                         "profile.mylistopt," +
@@ -79,7 +87,7 @@ import org.jfox.entity.dao.DAOSupport;
                         " and profile.favcategory = bannerdata.favcategory",
                 resultClass = Account.class,
                 hints = {
-                        @QueryHint(name = "cache.default.partition", value = "account")
+                        @QueryHint(name = "cache.partition", value = "account")
                         }
 
         ),
@@ -89,7 +97,7 @@ import org.jfox.entity.dao.DAOSupport;
                 query = "select username as userid from signon",
                 resultClass = String.class,
                 hints = {
-                        @QueryHint(name = "cache.default.partition", value = "account")
+                        @QueryHint(name = "cache.partition", value = "account")
                         }
 
         ),
@@ -111,7 +119,7 @@ import org.jfox.entity.dao.DAOSupport;
                         "where " +
                         "userid = $account.getUsername()",
                 hints = {
-                        @QueryHint(name = "cache.default.partition", value = "account")
+                        @QueryHint(name = "cache.partition", value = "account")
                         }
 
         ),
@@ -145,7 +153,7 @@ import org.jfox.entity.dao.DAOSupport;
                         "$account.getPhone(), " +
                         "$account.getUsername())",
                 hints = {
-                        @QueryHint(name = "cache.default.partition", value = "account")
+                        @QueryHint(name = "cache.partition", value = "account")
                         }
 
         ),

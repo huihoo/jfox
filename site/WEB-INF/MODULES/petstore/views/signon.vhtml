@@ -7,8 +7,6 @@
 
 <form action="account.signon.do" method="POST">
 
-    <input type="hidden" name="forwardAction" value="$!signonForwardAction"/>
-
     <table align="center" border="0">
         <tr>
             <td colspan="2" align="center">
@@ -18,11 +16,15 @@
         </tr>
         <tr>
             <td>Username:</td>
-            <td><input type="text" name="username" value="j2ee"/> <font color="RED"> $!validateExceptions.get("username").getMessage()</font></td>
+            <td><input type="text" name="username" value="j2ee"/>
+                <font color="RED"> $!J_VALIDATE_EXCEPTIONS.get("username").getMessage()</font>
+            </td>
         </tr>
         <tr>
             <td>Password:</td>
-            <td><input type="password" name="password" value="j2ee"/> <font color="RED">$!validateExceptions.get("password").getMessage()</font></td>
+            <td><input type="password" name="password" value="j2ee"/>
+                <font color="RED">$!J_VALIDATE_EXCEPTIONS.get("password").getMessage()</font>
+            </td>
         </tr>
         <tr>
             <td>&nbsp;</td>

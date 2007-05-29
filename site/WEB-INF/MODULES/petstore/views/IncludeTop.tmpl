@@ -3,10 +3,10 @@
         <td><a href="page.index.do"><img border="0" src="images/logo-topbar.gif"/></a></td>
         <td align="right"><a href="cart.view.do"><img border="0" name="img_cart" src="images/cart.gif"/></a>
             <img border="0" src="images/separator.gif"/>
-            #if (!$sessionContext.getAttribute("__ACCOUNT__")) <a href="account.signon.do"><img border="0" name="img_signin" src="images/sign-in.gif"/></a>
+            #if (!$J_SESSION_CONTEXT.getAttribute("__ACCOUNT__")) <a href="account.signon.do"><img border="0" name="img_signin" src="images/sign-in.gif"/></a>
             #end
 
-            #if ($sessionContext.getAttribute("__ACCOUNT__")) <a href="account.signoff.do"><img border="0" name="img_signout" src="images/sign-out.gif"/></a>
+            #if ($J_SESSION_CONTEXT.getAttribute("__ACCOUNT__")) <a href="account.signoff.do"><img border="0" name="img_signout" src="images/sign-out.gif"/></a>
             <img border="0" src="images/separator.gif"/>
             <a href="account.editAccount.do"><img border="0" name="img_myaccount" src="images/my_account.gif"/></a>
             #end

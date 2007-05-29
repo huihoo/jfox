@@ -1,3 +1,9 @@
+/*
+ * JFox - The most lightweight Java EE Application Server!
+ * more details please visit http://www.huihoo.org/jfox or http://www.jfox.org.cn.
+ *
+ * JFox is licenced and re-distributable under GNU LGPL.
+ */
 package org.jfox.petstore.dao;
 
 import java.sql.SQLException;
@@ -33,7 +39,7 @@ import org.jfox.util.VelocityUtils;
                 query = "select productid, name, descn, category from product where category = $categoryId",
                 resultClass = Product.class,
                 hints = {
-                    @QueryHint(name = "cache.default.partition", value = "product")
+                    @QueryHint(name = "cache.partition", value = "product")
                         }
         ),
         @NamedNativeQuery(
@@ -49,7 +55,7 @@ import org.jfox.util.VelocityUtils;
                         "#end", // $p1 is keyword array
                 resultClass = Product.class,
                 hints = {
-                    @QueryHint(name = "cache.default.partition", value = "product")
+                    @QueryHint(name = "cache.partition", value = "product")
                         }
         )
 

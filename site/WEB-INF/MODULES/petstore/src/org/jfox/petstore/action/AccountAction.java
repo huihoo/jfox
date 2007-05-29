@@ -1,38 +1,44 @@
+/*
+ * JFox - The most lightweight Java EE Application Server!
+ * more details please visit http://www.huihoo.org/jfox or http://www.jfox.org.cn.
+ *
+ * JFox is licenced and re-distributable under GNU LGPL.
+ */
 package org.jfox.petstore.action;
 
-import java.util.List;
-import java.util.ArrayList;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
-import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.callback.Callback;
+import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.callback.UnsupportedCallbackException;
 
-import org.jfox.framework.annotation.Service;
+import org.jfox.ejb3.security.JAASLoginRequestCallback;
+import org.jfox.ejb3.security.JAASLoginResponseCallback;
+import org.jfox.ejb3.security.JAASLoginService;
+import org.jfox.entity.EntityFactory;
 import org.jfox.framework.annotation.Inject;
+import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionSupport;
-import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.Invocation;
-import org.jfox.mvc.SessionContext;
+import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
-import org.jfox.mvc.validate.ValidateException;
-import org.jfox.mvc.validate.StringValidation;
+import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.ActionMethod;
-import org.jfox.entity.EntityObject;
-import org.jfox.entity.dao.MappedEntity;
+import org.jfox.mvc.validate.StringValidation;
+import org.jfox.mvc.validate.ValidateException;
 import org.jfox.petstore.bo.AccountBO;
 import org.jfox.petstore.bo.CategoryBO;
 import org.jfox.petstore.entity.Account;
 import org.jfox.petstore.entity.Category;
-import org.jfox.ejb3.security.JAASLoginRequestCallback;
-import org.jfox.ejb3.security.JAASLoginResponseCallback;
-import org.jfox.ejb3.security.JAASLoginService;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(id = "account")
 public class AccountAction extends ActionSupport implements CallbackHandler {
+
     @Inject
     JAASLoginService loginService;
 
@@ -66,7 +72,7 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
     @ActionMethod(successView = "index.vhtml", errorView = "NewAccountForm.vhtml", invocationClass = NewAccountInvocation.class)
     public void doPostCreate(InvocationContext invocationContext) throws Exception{
         NewAccountInvocation invocation = (NewAccountInvocation)invocationContext.getInvocation();
-        Account newAccount = MappedEntity.newEntityObject(Account.class);
+        Account newAccount = EntityFactory.newEntityObject(Account.class);
         newAccount.setUsername(invocation.getUsername());
         newAccount.setStatus("OK");
         newAccount.setPassword(invocation.getPassword());
@@ -118,7 +124,9 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         }
     }
 
-    //JAAS CallbackHandler method
+    /**
+     * JAAS CallbackHandler method
+     */
     public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
         JAASLoginRequestCallback requestCallback = (JAASLoginRequestCallback)callbacks[0];
         JAASLoginResponseCallback responseCallback = (JAASLoginResponseCallback)callbacks[1];
@@ -127,7 +135,9 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         String username = requestCallback.getParams().get(0);
         // second parameter is password
         String password = requestCallback.getParams().get(1);
+
         Account account = accountBO.getAccount(username, password);
+
         // set callback object, will return by LoginService.login
         responseCallback.setCallbackObject(account);
         // set principal name
@@ -166,7 +176,11 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         SessionContext sessionContext = invocationContext.getSessionContext();
         Account account = (Account)sessionContext.getAttribute(ACCOUNT_SESSION_KEY);
 
-        Account newAccount = (Account)((EntityObject)account).clone();
+        Account newAccount = new Account();
+        newAccount.setBannerName(account.getBannerName());
+        newAccount.setUsername(account.getUsername());
+        newAccount.setStatus(account.getStatus());
+
         newAccount.setPassword(invocation.getPassword());
         newAccount.setAddress1(invocation.getAddress1());
         newAccount.setAddress2(invocation.getAddress2());
@@ -214,7 +228,7 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         }
         else if(invocationContext.getActionMethod().getName().equals("doPostCreate")){
             NewAccountInvocation invocation = (NewAccountInvocation)invocationContext.getInvocation();
-            Account newAccount = MappedEntity.newEntityObject(Account.class);
+            Account newAccount = EntityFactory.newEntityObject(Account.class);
             newAccount.setUsername(invocation.getUsername());
             newAccount.setStatus("OK");
             newAccount.setPassword(invocation.getPassword());

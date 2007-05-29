@@ -36,35 +36,79 @@
 <br>
 <table cellspacing="4" width="100%" border="0">
     <tr>
-        <td class="page-title" bordercolor="#000000" align="left" nowrap><font size="+2">JNDI Bindings Manager</font></td>
+        <td class="page-title" bordercolor="#000000" align="left" nowrap><font size="+2">EJB Container Manager</font></td>
     </tr>
 </table>
 <br>
 <table border="1" cellspacing="0" cellpadding="3">
     <tr>
-        <td colspan="3" class="title">JNDI Bindings ($bindings.size())</td>
+        <td colspan="2" class="title">Transaction Manager</td>
+    </tr>
+    <tr>
+        <td class="row-left">Transaction Timeout (seconds)</td>
+        <td class="row-center">$defaultTransactionTimeout</td>
+    </tr>
+</table>
+<br>
+<table border="1" cellspacing="0" cellpadding="3">
+    <tr>
+        <td colspan="8" class="title">EJBs ($buckets.size())</td>
     </tr>
     <tr>
         <td class="header-left">
             <small>No.</small>
         </td>
         <td class="header-left">
-            <small>Naming</small>
+            <small>EJB name<br>
+            <i>Mapped Names</i></small>
         </td>
         <td class="header-left">
-            <small>Object</small>
+            <small>Bean class<br>
+            <i>Interfaces</i></small>
+        </td>
+        <td class="header-center">
+            <small>EJB type</small><br>
+            <small>WebService</small>
+        </td>
+        <td class="header-center">
+            <small>Module</small>
         </td>
     </tr>
-    #foreach($binding in $bindings)
+    #foreach($bucket in $buckets)
     <tr bgcolor="#if($velocityCount%2==0)#FFFFFF#else#C3F3C3#end">
         <td class="row-left">
             <small>$velocityCount</small>
         </td>
-        <td class="row-left">
-            <small>$binding.getName()</small>
+        <td class="row-left" title="$bucket.getDescription()">
+            <small><a href="#">$bucket.getEJBName()</a>
+            #foreach($mappedName in $bucket.getMappedNames())
+            <br><i>$mappedName</i>
+            #end
+            </small>
         </td>
         <td class="row-left">
-            <small>$binding.getObject()</small>
+            <small>$bucket.getBeanClass().getName()
+            #foreach($interfaceClass in $bucket.getEJBInterfaces())
+            <br><i>$interfaceClass.getName()</i>
+            #end
+            </small>
+        </td>
+        <td class="row-left">
+            <small>
+                #if($bucket.isSession())
+                    #if($bucket.isStateless())
+                    Stateless
+                    #else
+                    Stateful
+                    #end
+                #else
+                    MDB
+                #end
+            </small><br>
+            <small>$bucket.isWebService()</small>
+        </td>
+        <td class="row-center">
+            <small>$bucket.getModule().getName()</small>
         </td>
     </tr>
     #end

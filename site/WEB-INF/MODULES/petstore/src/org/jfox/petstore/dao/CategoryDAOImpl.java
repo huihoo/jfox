@@ -1,3 +1,9 @@
+/*
+ * JFox - The most lightweight Java EE Application Server!
+ * more details please visit http://www.huihoo.org/jfox or http://www.jfox.org.cn.
+ *
+ * JFox is licenced and re-distributable under GNU LGPL.
+ */
 package org.jfox.petstore.dao;
 
 import java.sql.SQLException;
@@ -51,7 +57,4 @@ public class CategoryDAOImpl extends DAOSupport implements CategoryDAO{
         return (List<Category>)createNamedNativeQuery(GET_CATEGORY_LIST).getResultList();
     }
 
-    public static void main(String[] args) {
-
-    }
 }

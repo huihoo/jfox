@@ -9,7 +9,7 @@
         Select file you want to upload: <br>
 
         <input TYPE=file name=uploadFile><BR>
-
+        <input type="hidden" name="hiddenInput" value="中文">
         <INPUT TYPE=submit name=submit Value="Submit">
 
     </font>

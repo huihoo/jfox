@@ -1,3 +1,9 @@
+/*
+ * JFox - The most lightweight Java EE Application Server!
+ * more details please visit http://www.huihoo.org/jfox or http://www.jfox.org.cn.
+ *
+ * JFox is licenced and re-distributable under GNU LGPL.
+ */
 package org.jfox.petstore.entity;
 
 import java.io.Serializable;
@@ -5,22 +11,49 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public interface Product extends Serializable {
+public class Product implements Serializable {
 
     @Column(name = "productid")
-    public String getProductId();
-    public void setProductId(String productId);
+    String productId;
 
     @Column(name = "category")
-    public String getCategoryId();
-    public void setCategoryId(String categoryId);
+    String categoryId;
 
     @Column(name = "name")
-    public String getName();
-    public void setName(String name);
+    String name;
 
     @Column(name = "descn")
-    public String getDescription();
-    public void setDescription(String description);
+    String description;
 
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
 }
