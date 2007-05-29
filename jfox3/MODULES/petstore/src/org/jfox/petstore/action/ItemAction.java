@@ -37,12 +37,6 @@ public class ItemAction extends ActionSupport {
         
     }
 
-    @ActionMethod(successView = "item.vm", invocationClass = ItemInvocation.class)
-    public void doPostView(InvocationContext invocationContext) throws Exception{
-
-    }
-
-
     public static class ItemInvocation extends Invocation {
         private String itemId;
 
