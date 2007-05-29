@@ -26,7 +26,7 @@ public class ItemAction extends ActionSupport {
     @EJB
     ItemBO itemBO;
 
-    @ActionMethod(successView = "item.vhtml", invocationClass = ItemInvocation.class)
+    @ActionMethod(successView = "Item.vhtml", invocationClass = ItemInvocation.class)
     public void doGetView(InvocationContext invocationContext) throws Exception {
         ItemInvocation invocation = (ItemInvocation)invocationContext.getInvocation();
         Item item = itemBO.getItem(invocation.getItemId());
