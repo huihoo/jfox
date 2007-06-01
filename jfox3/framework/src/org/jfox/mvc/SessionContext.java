@@ -115,7 +115,9 @@ public class SessionContext implements Serializable {
     public void destroy(){
         sessionMap.clear();
         SessionContext.disassociateThreadSessionContext();
-        request.getSession().removeAttribute(SESSION_KEY);
+        if(request != null) {
+            request.getSession().removeAttribute(SESSION_KEY);
+        }
     }
 
     public static void main(String[] args) {
