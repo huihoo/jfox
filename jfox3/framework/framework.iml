@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module relativePaths="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
-    <facet type="jpa" name="JPA" implicit="true">
+    <facet type="jpa" name="JPA">
       <configuration>
-        <setting name="validation-enabled" value="true" />
+        <setting name="validation-enabled" value="false" />
         <datasource-mapping>
           <factory-entry name="DefaultHsqlDS" />
           <factory-entry name="JPetstoreMysqlDS" />
@@ -49,6 +49,26 @@
             <attribute name="URI" value="/WEB-INF/lib" />
           </containerElement>
         </packaging>
+      </configuration>
+    </facet>
+    <facet type="web" name="Web2" implicit="true">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/WEB-INF/MODULES/manager/WEB-INF/web.xml" optional="false" version="2.4" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/WEB-INF/MODULES/manager" relative="/" />
+        </webroots>
+        <building>
+          <setting name="EXPLODED_URL" value="file://" />
+          <setting name="EXPLODED_ENABLED" value="false" />
+          <setting name="JAR_URL" value="file://" />
+          <setting name="JAR_ENABLED" value="false" />
+          <setting name="BUILD_MODULE_ON_FRAME_DEACTIVATION" value="false" />
+          <setting name="BUILD_EXTERNAL_DEPENDENCIES" value="false" />
+          <setting name="EXCLUDE_EXPLODED_DIRECTORY" value="true" />
+          <setting name="RUN_JASPER_VALIDATION" value="true" />
+        </building>
       </configuration>
     </facet>
   </component>
