@@ -160,7 +160,10 @@ public class Module implements Comparable<Module> {
     public URL getDescriptorURL() {
         if (descriptorURL == null) {
             try {
-                descriptorURL = new File(getModuleDir(), Constants.MODULE_CONFIG_DIR + "/" + Constants.MODULE_CONFIG_FILENAME).toURI().toURL();
+                File moduleDescriptorFile = new File(getModuleDir(), Constants.MODULE_CONFIG_DIR + "/" + Constants.MODULE_CONFIG_FILENAME);
+                if(moduleDescriptorFile.exists()) {
+                    descriptorURL = moduleDescriptorFile.toURI().toURL();
+                }
             }
             catch (IOException e) {
                 e.printStackTrace();

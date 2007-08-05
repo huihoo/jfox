@@ -23,7 +23,7 @@ import org.jfox.mvc.validate.ValidateException;
 public class PageContext {
 
     //页面跳转方式，foward/redirect
-    private ActionMethod.TargetMethod targetMethod;
+    private ActionMethod.ForwardMethod forwardMethod;
 
     // success or error view
     private String targetView;
@@ -39,12 +39,12 @@ public class PageContext {
 
     }
 
-    void setTargetMethod(ActionMethod.TargetMethod targetMethod) {
-        this.targetMethod = targetMethod;
+    void setTargetMethod(ActionMethod.ForwardMethod forwardMethod) {
+        this.forwardMethod = forwardMethod;
     }
 
-    public ActionMethod.TargetMethod getTargetMethod() {
-        return targetMethod;
+    public ActionMethod.ForwardMethod getTargetMethod() {
+        return forwardMethod;
     }
 
     public Map<String,Object> getResultMap(){

@@ -43,8 +43,8 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     /**
      * post action prefix, invoked method will be "DOPOST + %ACTION_NAME%"
      */
-    public static final String POST_METHOD_PREFIX = "doPost";
-    public static final String GET_METHOD_PREFIX = "doGet";
+    public static final String POST_METHOD_PREFIX = "POST_";
+    public static final String GET_METHOD_PREFIX = "GET_";
 
     private String moduleDirName;
 
@@ -69,8 +69,21 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
                     && actionMethod.getParameterTypes().length == 1
                     && actionMethod.getParameterTypes()[0].equals(InvocationContext.class)) {
                 // 统一转换成大写
-                String name = actionMethod.getName().toUpperCase();
-                actionMap.put(name, actionMethod);
+                // TODO: 分析 actionMethod 对应的 @ActionMethod，并根据 @ActionMethod支持的 HttpMethod 作为 key
+                ActionMethod actionMethodAnnotation = actionMethod.getAnnotation(ActionMethod.class);
+                String actionMethodName = actionMethodAnnotation.name();
+                String actionName = (actionMethodName == null || actionMethodName.trim().equals("")) ? actionMethod.getName() : actionMethodName.trim();
+                //TODO: 判断 action key 是否已经存在，如果存在，进行 ERROR，抽象 registerPostAction() 方法
+                if(actionMethodAnnotation.httpMethod().equals(ActionMethod.HttpMethod.GET)){
+                    actionMap.put((GET_METHOD_PREFIX + actionName).toUpperCase(), actionMethod);
+                }
+                else if(actionMethodAnnotation.httpMethod().equals(ActionMethod.HttpMethod.POST)){
+                    actionMap.put((POST_METHOD_PREFIX + actionName).toUpperCase(), actionMethod);
+                }
+                else {
+                    actionMap.put((GET_METHOD_PREFIX + actionName).toUpperCase(), actionMethod);
+                    actionMap.put((POST_METHOD_PREFIX + actionName).toUpperCase(), actionMethod);
+                }
             }
             else {
                 logger.warn("ActionMethod ignored, " + actionMethod);
@@ -123,7 +136,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         //设置ActionMethod
         invocationContext.setActionMethod(actionMethod);
         //设置跳转方式
-        invocationContext.getPageContext().setTargetMethod(actionMethodAnnotation.targetMethod());
+        invocationContext.getPageContext().setTargetMethod(actionMethodAnnotation.forwardMethod());
         //设置目标模板页面
         invocationContext.getPageContext().setTargetView(successView);
 

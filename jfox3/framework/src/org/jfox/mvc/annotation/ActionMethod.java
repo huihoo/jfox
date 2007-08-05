@@ -25,9 +25,20 @@ import org.jfox.mvc.Invocation;
 @Target({ElementType.METHOD})
 public @interface ActionMethod {
 
-    public static enum TargetMethod {
+    //TODO: 实现 name 和 HttpMethod
+
+    public static enum ForwardMethod {
         FORWARD, REDIRECT
     }
+
+    public static enum HttpMethod {
+        GET, POST, ALL
+    }
+
+    /**
+     * ActionMethod name，url访问时使用该名称
+     */
+    String name() default "";
 
     /**
      * 调用成功时，跳转的页面 
@@ -42,7 +53,12 @@ public @interface ActionMethod {
     /**
      * 跳转的方式，默认为 forward
      */
-    TargetMethod targetMethod() default TargetMethod.FORWARD;
+    ForwardMethod forwardMethod() default ForwardMethod.FORWARD;
+
+    /**
+     * 接受的Http调用类型
+     */
+    HttpMethod httpMethod() default HttpMethod.ALL;
 
     /**
      * 用来组装HttpRequest参数的类，为一个标准的Java Bean，file name 与 form input name对应。

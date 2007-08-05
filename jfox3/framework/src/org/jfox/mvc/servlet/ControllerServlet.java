@@ -184,7 +184,7 @@ public class ControllerServlet extends HttpServlet {
             WebContextLoader.invokeAction(moduleDirName, actionName, invocationContext);
             request.setAttribute(INVOCATION_CONTEXT, invocationContext);
             // 根据 PageContext.getTargetMethod 要决定 forward 还是 redirect
-            if(invocationContext.getPageContext().getTargetMethod().equals(ActionMethod.TargetMethod.REDIRECT)) {
+            if(invocationContext.getPageContext().getTargetMethod().equals(ActionMethod.ForwardMethod.REDIRECT)) {
                 response.sendRedirect(invocationContext.getPageContext().getTargeView());
 //                request.getRequestDispatcher(invocationContext.getPageContext().getTargeView()).(request, response);
             }

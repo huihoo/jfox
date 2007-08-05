@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module version="4" relativePaths="true" type="J2EE_WEB_MODULE">
-  <component name="AppServerSpecificValidatorsManager" />
-  <component name="ModuleRootManager" />
+<module relativePaths="true" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/classes" />
     <exclude-output />
-    <exploded url="file://$MODULE_DIR$/../../framework/WEB-INF/MODULES/petstore" />
     <exclude-exploded />
     <output-test url="file://$MODULE_DIR$/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -13,7 +10,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jfoxng-lib" level="project" />
+    <orderEntry type="library" name="jfox-libs" level="project" />
     <orderEntry type="module" module-name="framework" />
     <orderEntryProperties />
   </component>
@@ -22,15 +19,104 @@
     <setting name="EXPLODED_ENABLED" value="true" />
     <setting name="JAR_URL" value="file://" />
     <setting name="JAR_ENABLED" value="false" />
-    <setting name="SYNC_EXPLODED_DIR" value="false" />
     <setting name="BUILD_MODULE_ON_FRAME_DEACTIVATION" value="false" />
     <setting name="BUILD_EXTERNAL_DEPENDENCIES" value="false" />
     <setting name="RUN_JASPER_VALIDATION" value="true" />
   </component>
   <component name="WebModuleProperties">
-    <containerElement type="module" name="framework">
+    <containerElement name="framework" type="module">
       <attribute name="method" value="0" />
       <attribute name="URI" value="&lt;N/A&gt;" />
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/activation.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/FastInfoset.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/http.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxb-api.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxb-impl.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxb-xjc.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxws-api.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxws-rt.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxws-tools.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jsr173_api.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jsr181-api.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jsr250-api.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/resolver.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/saaj-api.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/saaj-impl.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/sjsxp.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/stax-ex.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/streambuffer.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="0" />
@@ -49,7 +135,6 @@
       <root url="file://$MODULE_DIR$/src" relative="/src" />
     </webroots>
   </component>
-  <component name="WeblogicWebModuleProperties" />
   <component name="copyright">
     <Base>
       <setting name="state" value="1" />
@@ -67,30 +152,9 @@
           <option name="filler" value=" " />
         </value>
       </option>
-      <option name="notice" value="JFox - The most lightweight Java EE Application Server!&#10;more details please visit http://www.huihoo.org/jfox or http://www.jfox.org.cn.&#10;&#10;JFox is licenced and re-distributable under GNU LGPL." />
-      <option name="keyword" value="re-distributable" />
-      <option name="fileTypeOverride" value="4" />
-      <option name="relativeBefore" value="true" />
-      <option name="addBlankAfter" value="false" />
-      <option name="fileLocation" value="1" />
-      <option name="useAlternate" value="false" />
-    </LanguageOptions>
-    <LanguageOptions name="CSS">
-      <option name="templateOptions">
-        <value>
-          <option name="block" value="true" />
-          <option name="separateBefore" value="false" />
-          <option name="separateAfter" value="false" />
-          <option name="prefixLines" value="true" />
-          <option name="lenBefore" value="80" />
-          <option name="lenAfter" value="80" />
-          <option name="box" value="false" />
-          <option name="filler" value=" " />
-        </value>
-      </option>
       <option name="notice" value="Copyright (c) &amp;#36;today.year, Your Corporation. All Rights Reserved." />
       <option name="keyword" value="Copyright" />
-      <option name="fileTypeOverride" value="1" />
+      <option name="fileTypeOverride" value="4" />
       <option name="relativeBefore" value="true" />
       <option name="addBlankAfter" value="true" />
       <option name="fileLocation" value="1" />

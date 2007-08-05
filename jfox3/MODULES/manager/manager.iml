@@ -1,11 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module version="4" relativePaths="true" type="J2EE_WEB_MODULE">
-  <component name="AppServerSpecificValidatorsManager" />
-  <component name="ModuleRootManager" />
+<module relativePaths="true" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="web" name="Web">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/WEB-INF/web.xml" optional="false" version="2.4" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$" relative="/" />
+        </webroots>
+        <containerElement type="facet" facetId="framework/web/Web">
+          <attribute name="method" value="0" />
+          <attribute name="URI" value="&lt;N/A&gt;" />
+        </containerElement>
+        <containerElement type="facet" facetId="framework/web/Web2">
+          <attribute name="method" value="0" />
+          <attribute name="URI" value="&lt;N/A&gt;" />
+        </containerElement>
+        <containerElement type="module" name="framework">
+          <attribute name="method" value="0" />
+          <attribute name="URI" value="/WEB-INF/classes" />
+        </containerElement>
+        <containerElement type="module" name="manager">
+          <attribute name="method" value="1" />
+          <attribute name="URI" value="/WEB-INF/classes" />
+        </containerElement>
+        <containerElement type="library" name="jfox-libs" level="project">
+          <attribute name="method" value="0" />
+          <attribute name="URI" value="&lt;N/A&gt;" />
+        </containerElement>
+        <building>
+          <setting name="EXPLODED_URL" value="file://" />
+          <setting name="EXPLODED_ENABLED" value="false" />
+          <setting name="JAR_URL" value="file://" />
+          <setting name="JAR_ENABLED" value="false" />
+          <setting name="BUILD_MODULE_ON_FRAME_DEACTIVATION" value="false" />
+          <setting name="BUILD_EXTERNAL_DEPENDENCIES" value="false" />
+          <setting name="EXCLUDE_EXPLODED_DIRECTORY" value="true" />
+          <setting name="RUN_JASPER_VALIDATION" value="true" />
+        </building>
+        <packaging>
+          <containerElement type="facet" facetId="framework/web/Web">
+            <attribute name="method" value="0" />
+            <attribute name="URI" value="&lt;N/A&gt;" />
+          </containerElement>
+          <containerElement type="facet" facetId="framework/web/Web2">
+            <attribute name="method" value="0" />
+            <attribute name="URI" value="&lt;N/A&gt;" />
+          </containerElement>
+          <containerElement type="module" name="framework">
+            <attribute name="method" value="0" />
+            <attribute name="URI" value="/WEB-INF/classes" />
+          </containerElement>
+          <containerElement type="module" name="manager">
+            <attribute name="method" value="1" />
+            <attribute name="URI" value="/WEB-INF/classes" />
+          </containerElement>
+          <containerElement type="library" name="jfox-libs" level="project">
+            <attribute name="method" value="0" />
+            <attribute name="URI" value="&lt;N/A&gt;" />
+          </containerElement>
+        </packaging>
+      </configuration>
+    </facet>
+  </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/WEB-INF/classes" />
     <exclude-output />
-    <exploded url="file://$MODULE_DIR$/../../framework/WEB-INF/MODULES/manager" />
     <exclude-exploded />
     <output-test url="file://$MODULE_DIR$/WEB-INF/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -14,7 +75,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="framework" />
-    <orderEntry type="library" name="jfoxng-lib" level="project" />
+    <orderEntry type="library" name="jfox-libs" level="project" />
     <orderEntryProperties />
   </component>
   <component name="WebModuleBuildComponent">
@@ -22,13 +83,12 @@
     <setting name="EXPLODED_ENABLED" value="true" />
     <setting name="JAR_URL" value="file://" />
     <setting name="JAR_ENABLED" value="false" />
-    <setting name="SYNC_EXPLODED_DIR" value="false" />
     <setting name="BUILD_MODULE_ON_FRAME_DEACTIVATION" value="false" />
     <setting name="BUILD_EXTERNAL_DEPENDENCIES" value="false" />
     <setting name="RUN_JASPER_VALIDATION" value="true" />
   </component>
   <component name="WebModuleProperties">
-    <containerElement type="module" name="framework">
+    <containerElement name="framework" type="module">
       <attribute name="method" value="0" />
       <attribute name="URI" value="&lt;N/A&gt;" />
     </containerElement>
@@ -238,7 +298,6 @@
       <root url="file://$MODULE_DIR$/views" relative="/views" />
     </webroots>
   </component>
-  <component name="WeblogicWebModuleProperties" />
   <component name="copyright">
     <Base>
       <setting name="state" value="1" />
@@ -256,30 +315,9 @@
           <option name="filler" value=" " />
         </value>
       </option>
-      <option name="notice" value="JFox - The most lightweight Java EE Application Server!&#10;more details please visit http://www.huihoo.org/jfox or http://www.jfox.org.cn.&#10;&#10;JFox is licenced and re-distributable under GNU LGPL." />
-      <option name="keyword" value="re-distributable" />
-      <option name="fileTypeOverride" value="4" />
-      <option name="relativeBefore" value="true" />
-      <option name="addBlankAfter" value="false" />
-      <option name="fileLocation" value="1" />
-      <option name="useAlternate" value="false" />
-    </LanguageOptions>
-    <LanguageOptions name="CSS">
-      <option name="templateOptions">
-        <value>
-          <option name="block" value="true" />
-          <option name="separateBefore" value="false" />
-          <option name="separateAfter" value="false" />
-          <option name="prefixLines" value="true" />
-          <option name="lenBefore" value="80" />
-          <option name="lenAfter" value="80" />
-          <option name="box" value="false" />
-          <option name="filler" value=" " />
-        </value>
-      </option>
       <option name="notice" value="Copyright (c) &amp;#36;today.year, Your Corporation. All Rights Reserved." />
       <option name="keyword" value="Copyright" />
-      <option name="fileTypeOverride" value="1" />
+      <option name="fileTypeOverride" value="4" />
       <option name="relativeBefore" value="true" />
       <option name="addBlankAfter" value="true" />
       <option name="fileLocation" value="1" />

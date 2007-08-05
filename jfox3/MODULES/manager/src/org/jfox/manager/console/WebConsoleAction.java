@@ -40,7 +40,7 @@ import org.jfox.util.SystemUtils;
 @Service(id = "console")
 public class WebConsoleAction extends ActionSupport {
 
-    @ActionMethod(successView = "console/sysinfo.vhtml")
+    @ActionMethod(name="sysinfo",successView = "console/sysinfo.vhtml")
     public void doGetSysinfo(InvocationContext invocationContext) throws Exception {
         PageContext pageContext = invocationContext.getPageContext();
         pageContext.setAttribute("jfoxVersion", Constants.VERSION);
@@ -54,7 +54,7 @@ public class WebConsoleAction extends ActionSupport {
         pageContext.setAttribute("usedMemory", (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())/(1024*1024));
     }
     
-    @ActionMethod(successView = "console/jndi.vhtml")
+    @ActionMethod(name="jndi",successView = "console/jndi.vhtml")
     public void doGetJNDI(InvocationContext invocationContext) throws Exception{
         NamingEnumeration<Binding> enu = getEJBContainer().getNamingContext().listBindings("");
         PageContext pageContext = invocationContext.getPageContext();
@@ -72,7 +72,7 @@ public class WebConsoleAction extends ActionSupport {
         pageContext.setAttribute("bindings", bindings);
     }
 
-    @ActionMethod(successView = "console/ejb.vhtml")
+    @ActionMethod(name="container",successView = "console/ejb.vhtml")
     public void doGetContainer(InvocationContext invocationContext) throws Exception{
         PageContext pageContext = invocationContext.getPageContext();
         EJBContainer container = getEJBContainer();
@@ -92,7 +92,7 @@ public class WebConsoleAction extends ActionSupport {
         pageContext.setAttribute("buckets", buckets);
     }
 
-    @ActionMethod(successView = "console/jpa.vhtml")
+    @ActionMethod(name="jpa",successView = "console/jpa.vhtml")
     public void doGetJPA(InvocationContext invocationContext) throws Exception{
         //DataSource, NamedNativeQuery, PersistenceUnit
 //        EntityManagerFactoryBuilder emfBuilder = getEntityManagerFactoryBuilder();
@@ -116,7 +116,7 @@ public class WebConsoleAction extends ActionSupport {
   
     }
 
-    @ActionMethod(successView = "console/module.vhtml")
+    @ActionMethod(name="modules",successView = "console/module.vhtml")
     public void doGetModules(InvocationContext invocationContext) throws Exception{
         Framework framework = WebContextLoader.getManagedFramework();
         Module systemModule = framework.getSystemModule();
@@ -129,7 +129,7 @@ public class WebConsoleAction extends ActionSupport {
         pageContext.setAttribute("modules", modules);
     }
 
-    @ActionMethod(successView = "console/testconnectionresult.vhtml", errorView = "console/testconnectionresult.vhtml",invocationClass = TestConnectionInvocation.class)
+    @ActionMethod(name="testconnection",successView = "console/testconnectionresult.vhtml", errorView = "console/testconnectionresult.vhtml",invocationClass = TestConnectionInvocation.class)
     public void doGetTestConnection(InvocationContext invocationContext) throws Exception {
         TestConnectionInvocation invocation = (TestConnectionInvocation)invocationContext.getInvocation();
         String unitName = invocation.getUnitName();
@@ -138,14 +138,14 @@ public class WebConsoleAction extends ActionSupport {
         EntityManagerFactoryBuilderImpl.getEntityManagerFactoryByName(unitName).checkConnection();
     }
 
-    @ActionMethod(successView = "console.jpa.do", targetMethod = ActionMethod.TargetMethod.REDIRECT, invocationClass = TestConnectionInvocation.class)
+    @ActionMethod(name="clearcacheconfig",successView = "console.jpa.do", forwardMethod = ActionMethod.ForwardMethod.REDIRECT, invocationClass = TestConnectionInvocation.class)
     public void doGetClearCacheConfig(InvocationContext invocationContext) throws Exception {
         TestConnectionInvocation invocation = (TestConnectionInvocation)invocationContext.getInvocation();
         String unitName = invocation.getUnitName();
         EntityManagerFactoryBuilderImpl.getEntityManagerFactoryByName(unitName).clearCache();
     }
 
-    @ActionMethod(successView = "console/jpa.vhtml",invocationClass = TestConnectionInvocation.class)
+    @ActionMethod(name="clearcache",successView = "console/jpa.vhtml",invocationClass = TestConnectionInvocation.class)
     public void doGetClearCache(InvocationContext invocationContext) throws Exception {
 /*
         TestConnectionInvocation invocation = (TestConnectionInvocation)invocationContext.getInvocation();

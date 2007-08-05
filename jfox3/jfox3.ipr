@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="4" relativePaths="true">
+<project relativePaths="true" version="4">
   <component name="AntConfiguration">
     <defaultAnt bundledAnt="true" />
     <buildFile url="file://$PROJECT_DIR$/framework/build.xml">
@@ -26,6 +26,7 @@
     <option name="DEPLOY_AFTER_MAKE" value="0" />
     <excludeFromCompile>
       <file url="file://$PROJECT_DIR$/MODULES/manager/views/jsp/ejb.jsp" />
+      <file url="file://$PROJECT_DIR$/framework/wwwroot/jsp/ejb.jsp" />
     </excludeFromCompile>
     <resourceExtensions>
       <entry name=".+\.(properties|xml|html|dtd|tld)" />
@@ -42,13 +43,15 @@
       <entry name="?*.dtd" />
       <entry name="?*.tld" />
       <entry name="javax.*" />
+      <entry name="*.conf" />
     </wildcardResourcePatterns>
   </component>
-  <component name="DataSourceManagerImpl" />
   <component name="DependenciesAnalyzeManager">
     <option name="myForwardDirection" value="false" />
   </component>
-  <component name="DependencyValidationManager" />
+  <component name="DependencyValidationManager">
+    <option name="SKIP_IMPORT_STATEMENTS" value="false" />
+  </component>
   <component name="EclipseCompilerSettings">
     <option name="DEBUGGING_INFO" value="true" />
     <option name="GENERATE_NO_WARNINGS" value="true" />
@@ -64,14 +67,26 @@
     <option name="MAXIMUM_HEAP_SIZE" value="128" />
   </component>
   <component name="EntryPointsManager">
-    <entry_points />
+    <entry_points version="2.0" />
   </component>
   <component name="ExportToHTMLSettings">
     <option name="PRINT_LINE_NUMBERS" value="false" />
     <option name="OPEN_IN_BROWSER" value="false" />
     <option name="OUTPUT_DIRECTORY" />
   </component>
-  <component name="GUI Designer component loader factory" />
+  <component name="FacetAutodetectingManager">
+    <autodetection-disabled>
+      <facet-type id="web">
+        <modules>
+          <module name="framework">
+            <files>
+              <file url="file://$PROJECT_DIR$/framework/dist/jfox/WEB-INF/web.xml" />
+            </files>
+          </module>
+        </modules>
+      </facet-type>
+    </autodetection-disabled>
+  </component>
   <component name="IdProvider" IDEtalkID="884CAEE7A3AF44876048D6E9252BE6D6" />
   <component name="InspectionProjectProfileManager">
     <option name="PROJECT_PROFILE" value="Project Default" />
@@ -81,24 +96,6 @@
       <profile version="1.0" is_locked="false">
         <option name="myName" value="Project Default" />
         <option name="myLocal" value="false" />
-        <used_levels>
-          <error>
-            <option name="myName" value="ERROR" />
-            <option name="myVal" value="400" />
-          </error>
-          <warning>
-            <option name="myName" value="WARNING" />
-            <option name="myVal" value="300" />
-          </warning>
-          <information>
-            <option name="myName" value="INFO" />
-            <option name="myVal" value="200" />
-          </information>
-          <server>
-            <option name="myName" value="SERVER PROBLEM" />
-            <option name="myVal" value="100" />
-          </server>
-        </used_levels>
         <inspection_tool class="JavaDoc" level="WARNING" enabled="true">
           <option name="TOP_LEVEL_CLASS_OPTIONS">
             <value>
@@ -130,6 +127,7 @@
         </inspection_tool>
       </profile>
     </profiles>
+    <list size="0" />
   </component>
   <component name="JavacSettings">
     <option name="DEBUGGING_INFO" value="true" />
@@ -139,7 +137,7 @@
     <option name="MAXIMUM_HEAP_SIZE" value="128" />
   </component>
   <component name="JavadocGenerationManager">
-    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/framework/www/javadoc" />
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/framework/doc/javadoc2" />
     <option name="OPTION_SCOPE" value="protected" />
     <option name="OPTION_HIERARCHY" value="true" />
     <option name="OPTION_NAVIGATOR" value="true" />
@@ -153,7 +151,7 @@
     <option name="OTHER_OPTIONS" value="-encoding UTF8 -docencoding UTF8" />
     <option name="HEAP_SIZE" />
     <option name="LOCALE" value="en_US" />
-    <option name="OPEN_IN_BROWSER" value="true" />
+    <option name="OPEN_IN_BROWSER" value="false" />
   </component>
   <component name="JikesSettings">
     <option name="JIKES_PATH" value="" />
@@ -290,20 +288,27 @@
       </item>
     </group>
   </component>
+  <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MODULES/Test/Test.iml" filepath="$PROJECT_DIR$/MODULES/Test/Test.iml" />
       <module fileurl="file://$PROJECT_DIR$/MODULES/Test2/Test2.iml" filepath="$PROJECT_DIR$/MODULES/Test2/Test2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MODULES/forum/forum.iml" filepath="$PROJECT_DIR$/MODULES/forum/forum.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework.iml" filepath="$PROJECT_DIR$/framework/framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" filepath="$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" />
       <module fileurl="file://$PROJECT_DIR$/MODULES/manager/manager.iml" filepath="$PROJECT_DIR$/MODULES/manager/manager.iml" />
       <module fileurl="file://$PROJECT_DIR$/MODULES/petstore/petstore.iml" filepath="$PROJECT_DIR$/MODULES/petstore/petstore.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" assert-keyword="true" jdk-15="true" project-jdk-name="1.5" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/classes" />
   </component>
-  <component name="ProjectRunConfigurationManager" />
+  <component name="ResourceManagerContainer">
+    <option name="myResourceBundles">
+      <value>
+        <list size="0" />
+      </value>
+    </option>
+  </component>
   <component name="RmicSettings">
     <option name="IS_EANABLED" value="false" />
     <option name="DEBUGGING_INFO" value="true" />
@@ -311,8 +316,9 @@
     <option name="GENERATE_IIOP_STUBS" value="false" />
     <option name="ADDITIONAL_OPTIONS_STRING" value="" />
   </component>
-  <component name="StarteamVcsAdapter" />
-  <component name="VssVcs" />
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="svn" />
+  </component>
   <component name="com.intellij.jsf.UserDefinedFacesConfigs">
     <option name="USER_DEFINED_CONFIGS">
       <value>
@@ -322,11 +328,179 @@
   </component>
   <component name="copyright">
     <Base>
-      <setting name="state" value="2" />
+      <setting name="state" value="1" />
     </Base>
+    <LanguageOptions name="CSS">
+      <option name="templateOptions">
+        <value>
+          <option name="block" value="true" />
+          <option name="separateBefore" value="false" />
+          <option name="separateAfter" value="false" />
+          <option name="prefixLines" value="true" />
+          <option name="lenBefore" value="80" />
+          <option name="lenAfter" value="80" />
+          <option name="box" value="false" />
+          <option name="filler" value=" " />
+        </value>
+      </option>
+      <option name="notice" value="Copyright (c) &amp;#36;today.year, Your Corporation. All Rights Reserved." />
+      <option name="keyword" value="Copyright" />
+      <option name="fileTypeOverride" value="1" />
+      <option name="relativeBefore" value="true" />
+      <option name="addBlankAfter" value="true" />
+      <option name="fileLocation" value="1" />
+      <option name="useAlternate" value="false" />
+    </LanguageOptions>
+    <LanguageOptions name="$TEMPLATE$">
+      <option name="templateOptions">
+        <value>
+          <option name="block" value="true" />
+          <option name="separateBefore" value="false" />
+          <option name="separateAfter" value="false" />
+          <option name="prefixLines" value="true" />
+          <option name="lenBefore" value="80" />
+          <option name="lenAfter" value="80" />
+          <option name="box" value="false" />
+          <option name="filler" value=" " />
+        </value>
+      </option>
+      <option name="notice" value="JFox - The most lightweight Java EE Application Server!&#10;more details please visit http://www.huihoo.org/jfox or http://www.jfox.org.cn.&#10;&#10;JFox is licenced and re-distributable under GNU LGPL." />
+      <option name="keyword" value="re-distributable" />
+      <option name="fileTypeOverride" value="4" />
+      <option name="relativeBefore" value="true" />
+      <option name="addBlankAfter" value="false" />
+      <option name="fileLocation" value="1" />
+      <option name="useAlternate" value="false" />
+    </LanguageOptions>
+    <LanguageOptions name="HTML">
+      <option name="templateOptions">
+        <value>
+          <option name="block" value="true" />
+          <option name="separateBefore" value="false" />
+          <option name="separateAfter" value="false" />
+          <option name="prefixLines" value="true" />
+          <option name="lenBefore" value="80" />
+          <option name="lenAfter" value="80" />
+          <option name="box" value="false" />
+          <option name="filler" value=" " />
+        </value>
+      </option>
+      <option name="notice" value="Copyright (c) &amp;#36;today.year, Your Corporation. All Rights Reserved." />
+      <option name="keyword" value="Copyright" />
+      <option name="fileTypeOverride" value="1" />
+      <option name="relativeBefore" value="true" />
+      <option name="addBlankAfter" value="true" />
+      <option name="fileLocation" value="1" />
+      <option name="useAlternate" value="false" />
+    </LanguageOptions>
+    <LanguageOptions name="JAVA">
+      <option name="templateOptions">
+        <value>
+          <option name="block" value="true" />
+          <option name="separateBefore" value="false" />
+          <option name="separateAfter" value="false" />
+          <option name="prefixLines" value="true" />
+          <option name="lenBefore" value="80" />
+          <option name="lenAfter" value="80" />
+          <option name="box" value="false" />
+          <option name="filler" value=" " />
+        </value>
+      </option>
+      <option name="notice" value="Copyright (c) &amp;#36;today.year, Your Corporation. All Rights Reserved." />
+      <option name="keyword" value="Copyright" />
+      <option name="fileTypeOverride" value="2" />
+      <option name="relativeBefore" value="true" />
+      <option name="addBlankAfter" value="true" />
+      <option name="fileLocation" value="1" />
+      <option name="useAlternate" value="false" />
+    </LanguageOptions>
+    <LanguageOptions name="JSP">
+      <option name="templateOptions">
+        <value>
+          <option name="block" value="true" />
+          <option name="separateBefore" value="false" />
+          <option name="separateAfter" value="false" />
+          <option name="prefixLines" value="true" />
+          <option name="lenBefore" value="80" />
+          <option name="lenAfter" value="80" />
+          <option name="box" value="false" />
+          <option name="filler" value=" " />
+        </value>
+      </option>
+      <option name="notice" value="Copyright (c) &amp;#36;today.year, Your Corporation. All Rights Reserved." />
+      <option name="keyword" value="Copyright" />
+      <option name="fileTypeOverride" value="1" />
+      <option name="relativeBefore" value="true" />
+      <option name="addBlankAfter" value="true" />
+      <option name="fileLocation" value="1" />
+      <option name="useAlternate" value="false" />
+    </LanguageOptions>
+    <LanguageOptions name="JavaScript">
+      <option name="templateOptions">
+        <value>
+          <option name="block" value="true" />
+          <option name="separateBefore" value="false" />
+          <option name="separateAfter" value="false" />
+          <option name="prefixLines" value="true" />
+          <option name="lenBefore" value="80" />
+          <option name="lenAfter" value="80" />
+          <option name="box" value="false" />
+          <option name="filler" value=" " />
+        </value>
+      </option>
+      <option name="notice" value="Copyright (c) &amp;#36;today.year, Your Corporation. All Rights Reserved." />
+      <option name="keyword" value="Copyright" />
+      <option name="fileTypeOverride" value="1" />
+      <option name="relativeBefore" value="true" />
+      <option name="addBlankAfter" value="true" />
+      <option name="fileLocation" value="1" />
+      <option name="useAlternate" value="false" />
+    </LanguageOptions>
+    <LanguageOptions name="Properties">
+      <option name="templateOptions">
+        <value>
+          <option name="block" value="true" />
+          <option name="separateBefore" value="false" />
+          <option name="separateAfter" value="false" />
+          <option name="prefixLines" value="true" />
+          <option name="lenBefore" value="80" />
+          <option name="lenAfter" value="80" />
+          <option name="box" value="false" />
+          <option name="filler" value=" " />
+        </value>
+      </option>
+      <option name="notice" value="Copyright (c) &amp;#36;today.year, Your Corporation. All Rights Reserved." />
+      <option name="keyword" value="Copyright" />
+      <option name="fileTypeOverride" value="1" />
+      <option name="relativeBefore" value="true" />
+      <option name="addBlankAfter" value="true" />
+      <option name="fileLocation" value="1" />
+      <option name="useAlternate" value="false" />
+    </LanguageOptions>
+    <LanguageOptions name="XML">
+      <option name="templateOptions">
+        <value>
+          <option name="block" value="true" />
+          <option name="separateBefore" value="false" />
+          <option name="separateAfter" value="false" />
+          <option name="prefixLines" value="true" />
+          <option name="lenBefore" value="80" />
+          <option name="lenAfter" value="80" />
+          <option name="box" value="false" />
+          <option name="filler" value=" " />
+        </value>
+      </option>
+      <option name="notice" value="Copyright (c) &amp;#36;today.year, Your Corporation. All Rights Reserved." />
+      <option name="keyword" value="Copyright" />
+      <option name="fileTypeOverride" value="1" />
+      <option name="relativeBefore" value="true" />
+      <option name="addBlankAfter" value="true" />
+      <option name="fileLocation" value="1" />
+      <option name="useAlternate" value="false" />
+    </LanguageOptions>
   </component>
   <component name="libraryTable">
-    <library name="jfoxng-lib">
+    <library name="jfox-libs">
       <CLASSES>
         <root url="jar://$PROJECT_DIR$/framework/lib/commons-pool-1.3.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/commons-fileupload-1.1.1.jar!/" />
@@ -350,7 +524,6 @@
         <root url="jar://$PROJECT_DIR$/framework/lib/jms.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/xfire/wstx-asl-3.2.0.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/xfire/activation-1.1.jar!/" />
-        <root url="jar://$PROJECT_DIR$/framework/lib/xfire/xfire-all-1.2.4.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/xfire/jdom-1.0.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/xfire/stax-api-1.0.1.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/xfire/wsdl4j-1.6.1.jar!/" />
@@ -358,36 +531,36 @@
         <root url="jar://$PROJECT_DIR$/framework/lib/xfire/commons-httpclient-3.0.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/jsr250-api.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/jsr181-api.jar!/" />
-        <root url="jar://$PROJECT_DIR$/framework/lib/jaxrpc-1_1-fr-spec-api.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/jotm/xapool-1.6.0.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/freemarker.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/servlet-api.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/mysql-connector-java-5.0.4-bin.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/xfire/xfire-all-1.2.6.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/jaxrpc-1_1-fr-spec-api.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$PROJECT_DIR$/framework/lib-source/ejb3-core-api-src.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib-source/ejb3-persistence-api-src.jar!/" />
-        <root url="jar://$PROJECT_DIR$/framework/lib-source/xfire-1.2.4-src.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib-source/xa-pool-1.6.beta-src.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib-source/velocity-1.4-src.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib-source/carol-2.0.5-src.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib-source/jotm-2.0.10-src.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib-source/commons-pool-1.3-src.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib-source/xfire-distribution-1.2.6-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="jfoxng-common">
+    <library name="jfox">
       <CLASSES>
-        <root url="jar://$PROJECT_DIR$/common/mysql-connector-java-5.0.4-bin.jar!/" />
+        <root url="file://$PROJECT_DIR$/framework/lib" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
+      <jarDirectory url="file://$PROJECT_DIR$/framework/lib" recursive="false" />
     </library>
   </component>
-  <component name="uidesigner-configuration">
-    <option name="INSTRUMENT_CLASSES" value="true" />
-    <option name="COPY_FORMS_RUNTIME_TO_OUTPUT" value="true" />
-    <option name="DEFAULT_LAYOUT_MANAGER" value="GridLayoutManager" />
-  </component>
-  <UsedPathMacros />
+  <UsedPathMacros>
+    <macro name="TEMPLATE" />
+  </UsedPathMacros>
 </project>
 

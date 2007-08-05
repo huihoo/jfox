@@ -160,7 +160,7 @@ public class SQLQuery extends QueryExt {
                 }
             }
             catch (SQLException e) {
-//                e.printStackTrace();
+                e.printStackTrace();
             }
             try {
                 if (pst != null) {
@@ -168,7 +168,7 @@ public class SQLQuery extends QueryExt {
                 }
             }
             catch (SQLException e) {
-//                e.printStackTrace();
+                e.printStackTrace();
             }
         }
     }
@@ -205,7 +205,7 @@ public class SQLQuery extends QueryExt {
                 }
             }
             catch (SQLException e) {
-//                e.printStackTrace();
+                e.printStackTrace();
             }
             try {
                 if (pst != null) {
@@ -213,7 +213,7 @@ public class SQLQuery extends QueryExt {
                 }
             }
             catch (SQLException e) {
-//                e.printStackTrace();
+                e.printStackTrace();
             }
         }
     }
