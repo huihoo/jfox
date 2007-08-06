@@ -3,7 +3,7 @@
   <component name="FacetManager">
     <facet type="jpa" name="JPA">
       <configuration>
-        <setting name="validation-enabled" value="false" />
+        <setting name="validation-enabled" value="true" />
         <datasource-mapping>
           <factory-entry name="DefaultHsqlDS" />
           <factory-entry name="JPetstoreMysqlDS" />
@@ -59,6 +59,10 @@
         <webroots>
           <root url="file://$MODULE_DIR$/WEB-INF/MODULES/manager" relative="/" />
         </webroots>
+        <containerElement type="module" name="framework">
+          <attribute name="method" value="1" />
+          <attribute name="URI" value="/WEB-INF/classes" />
+        </containerElement>
         <building>
           <setting name="EXPLODED_URL" value="file://" />
           <setting name="EXPLODED_ENABLED" value="false" />
@@ -69,6 +73,12 @@
           <setting name="EXCLUDE_EXPLODED_DIRECTORY" value="true" />
           <setting name="RUN_JASPER_VALIDATION" value="true" />
         </building>
+        <packaging>
+          <containerElement type="module" name="framework">
+            <attribute name="method" value="1" />
+            <attribute name="URI" value="/WEB-INF/classes" />
+          </containerElement>
+        </packaging>
       </configuration>
     </facet>
   </component>
@@ -207,6 +217,27 @@
     <Base>
       <setting name="state" value="1" />
     </Base>
+    <LanguageOptions name="CSS">
+      <option name="templateOptions">
+        <value>
+          <option name="block" value="true" />
+          <option name="separateBefore" value="false" />
+          <option name="separateAfter" value="false" />
+          <option name="prefixLines" value="true" />
+          <option name="lenBefore" value="80" />
+          <option name="lenAfter" value="80" />
+          <option name="box" value="false" />
+          <option name="filler" value=" " />
+        </value>
+      </option>
+      <option name="notice" value="Copyright (c) &amp;#36;today.year, Your Corporation. All Rights Reserved." />
+      <option name="keyword" value="Copyright" />
+      <option name="fileTypeOverride" value="1" />
+      <option name="relativeBefore" value="true" />
+      <option name="addBlankAfter" value="true" />
+      <option name="fileLocation" value="1" />
+      <option name="useAlternate" value="false" />
+    </LanguageOptions>
     <LanguageOptions name="$TEMPLATE$">
       <option name="templateOptions">
         <value>
