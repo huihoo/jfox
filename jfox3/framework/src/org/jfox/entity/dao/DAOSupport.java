@@ -56,7 +56,7 @@ public abstract class DAOSupport implements DataAccessObject {
      * 给定query name 创建 NamedNativeQeury
      * @param queryName query name
      */
-    public final QueryExt createNamedNativeQuery(String queryName) {
+    public QueryExt createNamedNativeQuery(String queryName) {
         return (QueryExt)getEntityManager().createNamedQuery(queryName);
     }
 
@@ -64,7 +64,7 @@ public abstract class DAOSupport implements DataAccessObject {
      * 给定 sql 构造 Qeury，Result类型为MappedEntity
      * @param sql native sql template
      */
-    public final QueryExt createNativeQuery(String sql) {
+    public QueryExt createNativeQuery(String sql) {
         return createNativeQuery(sql, MappedEntity.class);
     }
 
@@ -73,7 +73,7 @@ public abstract class DAOSupport implements DataAccessObject {
      * @param sql native sql template
      * @param resultClass 返回的结果对象类型
      */
-    public final QueryExt createNativeQuery(String sql, Class<?> resultClass) {
+    public QueryExt createNativeQuery(String sql, Class<?> resultClass) {
         return (QueryExt)getEntityManager().createNativeQuery(sql, resultClass);
     }
 
