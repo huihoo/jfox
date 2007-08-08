@@ -80,7 +80,8 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
     private EntityTransaction entityTransaction = null;
 
     public static final String DEFAULT_UNITNAME = "default";
-    public static final String CAHCE_PREFIX = "cache.";
+    public static final String QUERY_HINT_KEY_FORM_CAHCE_PREFIX = "cache.";
+    public static final String QUERY_HINT_KEY_FOR_JDBC_COMPATIBLE = "jdbc.compatible";
 
     public EntityManagerFactoryBuilderImpl() {
 
@@ -320,7 +321,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
             else if (name.equalsIgnoreCase("deadLockMaxWait")) {
                 sxpds.setDeadLockMaxWait(Long.parseLong(value));
             }
-            else if (name.startsWith(CAHCE_PREFIX)) {
+            else if (name.startsWith(QUERY_HINT_KEY_FORM_CAHCE_PREFIX)) {
                 // construct cache config
                 if (cacheConfig == null) {
                     cacheConfig = new CacheConfig(unitName);
@@ -393,7 +394,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
             if (hints.length > 0) {
                 // 检查 jdbc.compatible
                 for (QueryHint hint : hints) {
-                    if (hint.name().equals("jdbc.compatible")) {
+                    if (hint.name().equals(QUERY_HINT_KEY_FOR_JDBC_COMPATIBLE)) {
                         String compatibleDatabaseTypes = hint.value();
                         for(String compatibleDbType : compatibleDatabaseTypes.split(",")){
                             //query_name = getUserInfo.MYSQL
