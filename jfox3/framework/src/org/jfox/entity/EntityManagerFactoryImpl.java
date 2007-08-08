@@ -96,9 +96,9 @@ public class EntityManagerFactoryImpl implements EntityManagerFactory {
     }
 
     public NamedSQLTemplate getNamedQuery(String name) {
+        // 带数据库类型一起查找 NamedQuery
         return emFactoryBuilder.getNamedQuery(name, getDatabaseType());
     }
-
 
     public CacheConfig getCacheConfig() {
         return cacheConfig;
@@ -158,41 +158,41 @@ public class EntityManagerFactoryImpl implements EntityManagerFactory {
         cacheConfig.clear();
     }
 
-    //TODO: 支持多数据库
-    // 以 MYSQL.NAMEDQUERY 注册
-    // 如果没有指定 QueryHint，则以原名注册
+    /**
+     * 得到数据类型，用来获取该类型的NamedNativeQeury SQL, 以支持多数据库
+     */
     public String getDatabaseType() {
         if (databaseType == null) {
             Connection conn = null;
             try {
                 conn = dataSource.getConnection();
                 DatabaseMetaData dbMeta = conn.getMetaData();
-                String dbProductName = dbMeta.getDatabaseProductName();
-                if (dbProductName.toUpperCase().indexOf("ORACLE") >= 0) {
+                String dbProductName = dbMeta.getDatabaseProductName().toUpperCase();
+                if (dbProductName.indexOf("ORACLE") >= 0) {
                     databaseType = "Oracle";
                 }
-                else if (dbProductName.toUpperCase().indexOf("MYSQL") >= 0) {
+                else if (dbProductName.indexOf("MYSQL") >= 0) {
                     databaseType = "MySQL";
                 }
-                else if (dbProductName.toUpperCase().indexOf("DB2") >= 0) {
+                else if (dbProductName.indexOf("DB2") >= 0) {
                     databaseType = "DB2";
                 }
-                else if (dbProductName.toUpperCase().indexOf("POSTGRESQL") >= 0) {
+                else if (dbProductName.indexOf("POSTGRESQL") >= 0) {
                     databaseType = "PostgreSQL";
                 }
-                else if (dbProductName.toUpperCase().indexOf("MICROSOFT SQL SERVER") >= 0) {
+                else if (dbProductName.indexOf("MICROSOFT SQL SERVER") >= 0) {
                     databaseType = "SQLServer";
                 }
-                else if (dbProductName.toUpperCase().indexOf("SYBASE") >= 0) {
+                else if (dbProductName.indexOf("SYBASE") >= 0) {
                     databaseType = "Sybase";
                 }
-                else if (dbProductName.toUpperCase().indexOf("INFORMIX") >= 0) {
+                else if (dbProductName.indexOf("INFORMIX") >= 0) {
                     databaseType = "Informix";
                 }
-                else if (dbProductName.toUpperCase().indexOf("DERBY") >= 0) {
+                else if (dbProductName.indexOf("DERBY") >= 0) {
                     databaseType = "Derby";
                 }
-                else if (dbProductName.toUpperCase().indexOf("HSQL") >= 0) {
+                else if (dbProductName.indexOf("HSQL") >= 0) {
                     databaseType = "HSQL";
                 }
                 else {
