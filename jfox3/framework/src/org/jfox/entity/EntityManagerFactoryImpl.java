@@ -7,6 +7,7 @@
 package org.jfox.entity;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Map;
@@ -44,6 +45,8 @@ public class EntityManagerFactoryImpl implements EntityManagerFactory {
      */
     private CacheConfig cacheConfig = null;
 
+    private String databaseType = "Unknown";
+
     public EntityManagerFactoryImpl(String unitName, String jtaDataSource, EntityManagerFactoryBuilderImpl emFactoryBuilder, StandardXAPoolDataSource dataSource, CacheConfig cacheConfig) {
         this.unitName = unitName;
         this.jtaDataSource = jtaDataSource;
@@ -75,7 +78,7 @@ public class EntityManagerFactoryImpl implements EntityManagerFactory {
         if (cacheConfig != null) {
             cacheConfig.close();
         }
-        if(dataSource != null) {
+        if (dataSource != null) {
             dataSource.shutdown(true);
         }
     }
@@ -93,7 +96,7 @@ public class EntityManagerFactoryImpl implements EntityManagerFactory {
     }
 
     public NamedSQLTemplate getNamedQuery(String name) {
-        return emFactoryBuilder.getNamedQuery(name);
+        return emFactoryBuilder.getNamedQuery(name, getDatabaseType());
     }
 
 
@@ -156,10 +159,62 @@ public class EntityManagerFactoryImpl implements EntityManagerFactory {
     }
 
     //TODO: 支持多数据库
-    public String getDatabaseType(){
-        // 以 MYSQL.NAMEDQUERY 注册
-        // 如果没有指定 QueryHint，则以原名注册
-        return "MYSQL";
+    // 以 MYSQL.NAMEDQUERY 注册
+    // 如果没有指定 QueryHint，则以原名注册
+    public String getDatabaseType() {
+        if (databaseType == null) {
+            Connection conn = null;
+            try {
+                conn = dataSource.getConnection();
+                DatabaseMetaData dbMeta = conn.getMetaData();
+                String dbProductName = dbMeta.getDatabaseProductName();
+                if (dbProductName.toUpperCase().indexOf("ORACLE") >= 0) {
+                    databaseType = "Oracle";
+                }
+                else if (dbProductName.toUpperCase().indexOf("MYSQL") >= 0) {
+                    databaseType = "MySQL";
+                }
+                else if (dbProductName.toUpperCase().indexOf("DB2") >= 0) {
+                    databaseType = "DB2";
+                }
+                else if (dbProductName.toUpperCase().indexOf("POSTGRESQL") >= 0) {
+                    databaseType = "PostgreSQL";
+                }
+                else if (dbProductName.toUpperCase().indexOf("MICROSOFT SQL SERVER") >= 0) {
+                    databaseType = "SQLServer";
+                }
+                else if (dbProductName.toUpperCase().indexOf("SYBASE") >= 0) {
+                    databaseType = "Sybase";
+                }
+                else if (dbProductName.toUpperCase().indexOf("INFORMIX") >= 0) {
+                    databaseType = "Informix";
+                }
+                else if (dbProductName.toUpperCase().indexOf("DERBY") >= 0) {
+                    databaseType = "Derby";
+                }
+                else if (dbProductName.toUpperCase().indexOf("HSQL") >= 0) {
+                    databaseType = "HSQL";
+                }
+                else {
+                    databaseType = "Unknown";
+                }
+            }
+            catch (SQLException e) {
+                logger.warn("Exception while getDatabaseType for DataSource " + dataSource, e);
+            }
+            finally {
+                try {
+                    if (conn != null && !conn.isClosed()) {
+                        conn.close();
+                    }
+                }
+                catch (Exception e) {
+                    logger.warn("Close connection failed after getDatabaseType for DataSource " + dataSource, e);
+                }
+            }
+        }
+
+        return databaseType;
     }
 
     public static void main(String[] args) {

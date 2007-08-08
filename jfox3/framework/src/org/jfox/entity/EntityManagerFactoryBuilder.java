@@ -18,7 +18,7 @@ public interface EntityManagerFactoryBuilder extends Component {
 
     void registerNamedQuery(NamedNativeQuery namedNativeQuery, Class<?> definedClass);
 
-    NamedSQLTemplate getNamedQuery(String name);
+    NamedSQLTemplate getNamedQuery(String name, String dbType);
 
     Document getPersistenceXMLDocument();
 }

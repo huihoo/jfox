@@ -22,6 +22,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.PersistenceException;
+import javax.persistence.QueryHint;
 import javax.sql.DataSource;
 import javax.transaction.TransactionManager;
 
@@ -88,10 +89,11 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
     /**
      * 容器外运行时，通过 Persistence.createEntityManagerFactory 调用时，会使用该方法
      * 需要初始化 EntityManagerFactoryBuilderImpl，注册所有 NamedQuery
+     *
      * @param name unit name
      */
-    public static EntityManagerFactoryImpl getEntityManagerFactoryByName(String name){
-        if(!inited) { // 没有初始化，是容器外调用，如果是容器内调用，应该已经初始化
+    public static EntityManagerFactoryImpl getEntityManagerFactoryByName(String name) {
+        if (!inited) { // 没有初始化，是容器外调用，如果是容器内调用，应该已经初始化
             EntityManagerFactoryBuilderImpl entityManagerFactoryBuilder = new EntityManagerFactoryBuilderImpl();
             entityManagerFactoryBuilder.containerManaged = false;
             entityManagerFactoryBuilder.initEntityManagerFactories();
@@ -105,31 +107,32 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         return emFactoryMap.get(name);
     }
 
-    public static EntityManagerFactory getDefaultEntityManagerFactory(){
-        if(emFactoryMap.size() != 1){
+    public static EntityManagerFactory getDefaultEntityManagerFactory() {
+        if (emFactoryMap.size() != 1) {
             throw new PersistenceException("More than one unitName, can not decide default!");
         }
         return emFactoryMap.values().toArray(new EntityManagerFactory[1])[0];
     }
 
-    public static Collection<EntityManagerFactoryImpl> getEntityManagerFactories(){
+    public static Collection<EntityManagerFactoryImpl> getEntityManagerFactories() {
         return Collections.unmodifiableCollection(emFactoryMap.values());
     }
 
     /**
      * 使用 @Resource 未指定 name 注入
      */
-    public static DataSource getDefaultDataSource(){
+    public static DataSource getDefaultDataSource() {
         return ((EntityManagerFactoryImpl)getDefaultEntityManagerFactory()).getDataSource();
     }
 
     /**
-     * 使用 @Resource 指定 name 注入 
+     * 使用 @Resource 指定 name 注入
+     *
      * @param unitName unit name, same as @resource name
      */
     public static DataSource getDataSourceByUnitName(String unitName) {
         EntityManagerFactoryImpl emf = emFactoryMap.get(unitName);
-        if(emf == null) {
+        if (emf == null) {
             throw new PersistenceException("Can not find DataSource with unitName: " + unitName);
         }
         else {
@@ -139,12 +142,13 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
 
     /**
      * get data source by Mapped Name, if inject by @PersistenceContext(mappedName="")
+     *
      * @param mappedName mapped name, same as jndi name
      */
     public static DataSource getDataSourceByMappedName(String mappedName) {
-        for(EntityManagerFactory emf : emFactoryMap.values()){
-             StandardXAPoolDataSource dataSource = (StandardXAPoolDataSource)(((EntityManagerFactoryImpl)emf).getDataSource());
-            if((dataSource.getDataSourceName().equals(mappedName))){
+        for (EntityManagerFactory emf : emFactoryMap.values()) {
+            StandardXAPoolDataSource dataSource = (StandardXAPoolDataSource)(((EntityManagerFactoryImpl)emf).getDataSource());
+            if ((dataSource.getDataSourceName().equals(mappedName))) {
                 return dataSource;
             }
         }
@@ -155,14 +159,14 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         return Collections.unmodifiableCollection(namedSQLTemplates.values());
     }
 
-    private static void registerEntityManagerFactory(String name, EntityManagerFactoryImpl emFactory){
-        emFactoryMap.put(name,emFactory);
+    private static void registerEntityManagerFactory(String name, EntityManagerFactoryImpl emFactory) {
+        emFactoryMap.put(name, emFactory);
     }
 
     //get CacheConfig by unit & cacheConfigName
     public static CacheConfig getCacheConfig(String unitName) {
         EntityManagerFactoryImpl emf = getEntityManagerFactoryByName(unitName);
-        if(emf != null) {
+        if (emf != null) {
             return emf.getCacheConfig();
         }
         else {
@@ -193,25 +197,25 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         return true;
     }
 
-    public boolean isContainerManaged(){
+    public boolean isContainerManaged() {
         return containerManaged;
     }
 
     public void moduleChanged(ModuleEvent moduleEvent) {
 
-        if(moduleEvent instanceof ModuleLoadingEvent) {
+        if (moduleEvent instanceof ModuleLoadingEvent) {
             Module module = moduleEvent.getModule();
             Class[] namedQueriesClasses = module.getModuleClassLoader().findClassAnnotatedWith(NamedNativeQueries.class);
             registerNamedQueriesByClasses(namedQueriesClasses);
         }
 
-        if(moduleEvent instanceof ModuleUnloadedEvent){
+        if (moduleEvent instanceof ModuleUnloadedEvent) {
             Module module = moduleEvent.getModule();
-            Iterator<Map.Entry<String, NamedSQLTemplate>> it =  namedSQLTemplates.entrySet().iterator();
-            while(it.hasNext()){
+            Iterator<Map.Entry<String, NamedSQLTemplate>> it = namedSQLTemplates.entrySet().iterator();
+            while (it.hasNext()) {
                 Map.Entry<String, NamedSQLTemplate> entry = it.next();
                 NamedSQLTemplate sqlTemplate = entry.getValue();
-                if(sqlTemplate.getDefinedClass().getClassLoader() == module.getModuleClassLoader()) {
+                if (sqlTemplate.getDefinedClass().getClassLoader() == module.getModuleClassLoader()) {
                     logger.info("Unregister Named Query defined in class: " + sqlTemplate.getDefinedClass().getName() + ", template SQL: " + sqlTemplate.getTemplateSQL());
                     it.remove();
                 }
@@ -239,7 +243,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
                 EntityManagerFactoryImpl emFactory = createEntityManagerFactory(element);
                 registerEntityManagerFactory(emFactory.getUnitName(), emFactory);
                 // 只有容器管理的时候，才注册到 JNDi
-                if(isContainerManaged()) {
+                if (isContainerManaged()) {
                     //注入的应该是：jta-data-source
                     JNDIContextHelper.getInitalContext().bind(((StandardXAPoolDataSource)emFactory.getDataSource()).getDataSourceName(), emFactory);
                 }
@@ -259,7 +263,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         String unitName = XMLUtils.getAtrributeValue(element, "name");
         String jndiName = "java:/" + unitName;
         String jtaDataSource = XMLUtils.getChildElementValueByTagName(element, "jta-data-source");
-        if(jtaDataSource != null && !jtaDataSource.trim().equals("")) {
+        if (jtaDataSource != null && !jtaDataSource.trim().equals("")) {
             jndiName = jtaDataSource;
         }
 
@@ -276,7 +280,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         sxpds.setCheckLevelObject(4);
         sxpds.setDataSourceName(jndiName);
 
-         // cache config
+        // cache config
         CacheConfig cacheConfig = null;
         for (Map.Entry<String, String> entry : properties.entrySet()) {
             String name = entry.getKey();
@@ -295,7 +299,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
                 sxds.setPassword(value);
                 sxpds.setPassword(value);
             }
-            else if(name.equals("checkLevelObject")){
+            else if (name.equals("checkLevelObject")) {
                 sxpds.setCheckLevelObject(Integer.parseInt(value));
             }
             else if (name.equalsIgnoreCase("minSize")) {
@@ -316,33 +320,33 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
             else if (name.equalsIgnoreCase("deadLockMaxWait")) {
                 sxpds.setDeadLockMaxWait(Long.parseLong(value));
             }
-            else if(name.startsWith(CAHCE_PREFIX)){
+            else if (name.startsWith(CAHCE_PREFIX)) {
                 // construct cache config
-                if(cacheConfig == null) {
+                if (cacheConfig == null) {
                     cacheConfig = new CacheConfig(unitName);
                 }
                 String property = name.substring(name.lastIndexOf(".") + 1);
-                if(property.equalsIgnoreCase("TTL")) {
+                if (property.equalsIgnoreCase("TTL")) {
                     cacheConfig.setTTL(Long.parseLong(value));
                 }
-                else if(property.equalsIgnoreCase("algorithm")){
-                    if(value.equalsIgnoreCase("LFU")) {
+                else if (property.equalsIgnoreCase("algorithm")) {
+                    if (value.equalsIgnoreCase("LFU")) {
                         cacheConfig.setAlgorithm(CacheConfig.Algorithm.LFU);
                     }
-                    else if(value.equalsIgnoreCase("FIFO")){
+                    else if (value.equalsIgnoreCase("FIFO")) {
                         cacheConfig.setAlgorithm(CacheConfig.Algorithm.FIFO);
                     }
                     else {
                         cacheConfig.setAlgorithm(CacheConfig.Algorithm.LRU);
                     }
                 }
-                else if(property.equalsIgnoreCase("maxIdleTime")){
+                else if (property.equalsIgnoreCase("maxIdleTime")) {
                     cacheConfig.setMaxIdleTime(Long.parseLong(value));
                 }
-                else if(property.equalsIgnoreCase("maxSize")){
+                else if (property.equalsIgnoreCase("maxSize")) {
                     cacheConfig.setMaxSize(Integer.parseInt(value));
                 }
-                else if(property.equalsIgnoreCase("maxMemorySize")){
+                else if (property.equalsIgnoreCase("maxMemorySize")) {
                     cacheConfig.setMaxMemorySize(Long.parseLong(value));
                 }
                 else {
@@ -357,22 +361,22 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         sxpds.setDataSource(sxds);
 
         // create EntityManagerFactory
-        return new EntityManagerFactoryImpl(unitName,jndiName, this,sxpds, cacheConfig);
+        return new EntityManagerFactoryImpl(unitName, jndiName, this, sxpds, cacheConfig);
     }
 
-    private void registerNamedQueriesByClasses(Class[] classes){
-        for(Class<?> beanClass : classes){
+    private void registerNamedQueriesByClasses(Class[] classes) {
+        for (Class<?> beanClass : classes) {
             List<String> queryNames = new ArrayList<String>();
-            if(beanClass.isAnnotationPresent(NamedNativeQueries.class)){
+            if (beanClass.isAnnotationPresent(NamedNativeQueries.class)) {
                 NamedNativeQueries namedNativeQueries = beanClass.getAnnotation(NamedNativeQueries.class);
-                for(NamedNativeQuery namedNativeQuery : namedNativeQueries.value()){
-                    this.registerNamedQuery(namedNativeQuery,beanClass);
+                for (NamedNativeQuery namedNativeQuery : namedNativeQueries.value()) {
+                    this.registerNamedQuery(namedNativeQuery, beanClass);
                     queryNames.add(namedNativeQuery.name());
                 }
             }
-            if(beanClass.isAnnotationPresent(NamedNativeQuery.class)){
+            if (beanClass.isAnnotationPresent(NamedNativeQuery.class)) {
                 NamedNativeQuery namedNativeQuery = beanClass.getAnnotation(NamedNativeQuery.class);
-                this.registerNamedQuery(namedNativeQuery,beanClass);
+                this.registerNamedQuery(namedNativeQuery, beanClass);
                 queryNames.add(namedNativeQuery.name());
             }
             logger.info("Register NamedQuery for Class: " + beanClass.getName() + ", " + Arrays.toString(queryNames.toArray(new String[queryNames.size()])));
@@ -385,12 +389,31 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         }
         else {
             NamedSQLTemplate sqlTemplate = new NamedSQLTemplate(namedNativeQuery, definedClass);
-            namedSQLTemplates.put(sqlTemplate.getName(), sqlTemplate);
+            QueryHint[] hints = namedNativeQuery.hints();
+            if (hints.length > 0) {
+                // 检查 jdbc.compatible
+                for (QueryHint hint : hints) {
+                    if (hint.name().equals("jdbc.compatible")) {
+                        String compatibleDatabaseTypes = hint.value();
+                        for(String compatibleDbType : compatibleDatabaseTypes.split(",")){
+                            //query_name = getUserInfo.MYSQL
+                            namedSQLTemplates.put(sqlTemplate.getName() + "." + compatibleDbType.toUpperCase(), sqlTemplate);
+                        }
+                    }
+                }
+            }
+            else {
+                namedSQLTemplates.put(sqlTemplate.getName(), sqlTemplate);
+            }
         }
     }
 
-    public NamedSQLTemplate getNamedQuery(String name) {
-        return namedSQLTemplates.get(name);
+    public NamedSQLTemplate getNamedQuery(String name, String dbType) {
+        NamedSQLTemplate sqlTemplate = namedSQLTemplates.get(name + "." + dbType.toUpperCase());
+        if(sqlTemplate == null) {
+            sqlTemplate = namedSQLTemplates.get(name);
+        }
+        return sqlTemplate;
     }
 
     public Document getPersistenceXMLDocument() {
