@@ -155,6 +155,13 @@ public class EntityManagerFactoryImpl implements EntityManagerFactory {
         cacheConfig.clear();
     }
 
+    //TODO: 支持多数据库
+    public String getDatabaseType(){
+        // 以 MYSQL.NAMEDQUERY 注册
+        // 如果没有指定 QueryHint，则以原名注册
+        return "MYSQL";
+    }
+
     public static void main(String[] args) {
 
     }
