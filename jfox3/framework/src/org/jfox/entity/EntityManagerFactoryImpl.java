@@ -177,11 +177,11 @@ public class EntityManagerFactoryImpl implements EntityManagerFactory {
                 else if (dbProductName.indexOf("DB2") >= 0) {
                     databaseType = "DB2";
                 }
-                else if (dbProductName.indexOf("POSTGRESQL") >= 0) {
-                    databaseType = "PostgreSQL";
-                }
                 else if (dbProductName.indexOf("MICROSOFT SQL SERVER") >= 0) {
                     databaseType = "SQLServer";
+                }
+                else if (dbProductName.indexOf("POSTGRESQL") >= 0) {
+                    databaseType = "PostgreSQL";
                 }
                 else if (dbProductName.indexOf("SYBASE") >= 0) {
                     databaseType = "Sybase";
