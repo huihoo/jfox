@@ -31,9 +31,9 @@ public class SessionContext implements Serializable {
     /**
      * 使用 ThreadLocal 将 SessionContext 和当前线程进行关联
      */
-    static ThreadLocal<SessionContext> threadSession = new ThreadLocal<SessionContext>();
+    static transient ThreadLocal<SessionContext> threadSession = new ThreadLocal<SessionContext>();
 
-    private HttpServletRequest request;
+    private transient HttpServletRequest request;
 
     private SessionContext() {
     }
