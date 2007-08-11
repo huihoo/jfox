@@ -152,6 +152,10 @@ public class WebContextLoader implements ServletContextListener {
         return moduleDirName2PathMap.get(moduleDirName);
     }
 
+    public static boolean isModuleExists(String moduleDirName){
+        return moduleDirName2PathMap.containsKey(moduleDirName);
+    }
+
     /**
      * 注册 Action，由 ActionSupport 在 postPropertiesSet 中调用
      * @param moduleDirName 模块目录名

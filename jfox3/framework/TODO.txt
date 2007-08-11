@@ -291,3 +291,7 @@
 
 2007-04-24
     1. 保证轻量级异步性（Lightweight Asynchronicity）；(来自 Gaving King)
+
+2007-08-11
+    1. JPA增加了多数据库支持
+    2. 修改了 ControllerServlet bug，再 url 错误的时候报错，避免死循环

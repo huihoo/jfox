@@ -100,6 +100,10 @@ public class ControllerServlet extends HttpServlet {
         String pathInfo = request.getPathInfo();
         int slashIndex = pathInfo.indexOf("/", 2);
         String moduleDirName = pathInfo.substring(1, slashIndex);
+        if(!WebContextLoader.isModuleExists(moduleDirName)) {
+            throw new ServletException("Invalid request url: " + request.getRequestURL());
+        }
+
         String filePath = pathInfo.substring(slashIndex);
         String realPath = WebContextLoader.getModulePathByModuleDirName(moduleDirName) + "/" + VIEW_DIR + filePath;
         request.getRequestDispatcher(realPath).forward(request, response);
@@ -109,8 +113,8 @@ public class ControllerServlet extends HttpServlet {
         String pathInfo = request.getPathInfo();
         int slashIndex = pathInfo.indexOf("/", 2);
         String moduleDirName = pathInfo.substring(1, slashIndex);
-        if (!moduleDirName.contains(moduleDirName)) {
-            throw new ServletException("Module " + moduleDirName + " is not exists!");
+        if(!WebContextLoader.isModuleExists(moduleDirName)) {
+            throw new ServletException("Invalid request url: " + request.getRequestURL());
         }
 
         int dotDoIndex = pathInfo.lastIndexOf(ACTION_SUFFIX);
