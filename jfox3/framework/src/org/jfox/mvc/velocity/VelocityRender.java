@@ -25,6 +25,8 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.app.event.EventCartridge;
+import org.apache.velocity.app.event.implement.IncludeRelativePath;
 import org.apache.velocity.context.Context;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.io.VelocityWriter;
@@ -123,8 +125,8 @@ public class VelocityRender implements Render {
                 outputEncoding = p.getProperty(Velocity.OUTPUT_ENCODING);
 
                 VelocityEngine ve = new VelocityEngine();
+                EventCartridge ec = new EventCartridge();
                 ve.init(p);
-
                 // 注册相对 module template base dir，以便根据访问的 URL，来判断访问的Module，获得 VelocityEngine
                 baseDir2VelocityEngineMap.put(modulePath + "/" + ControllerServlet.VIEW_DIR, ve);
             }
@@ -366,7 +368,12 @@ public class VelocityRender implements Render {
     protected Context createVelocityContext(HttpServletRequest request, HttpServletResponse response) {
         InvocationContext invocationContext = (InvocationContext)request.getAttribute(ControllerServlet.INVOCATION_CONTEXT);
         PageContext pageContext = invocationContext.getPageContext();
-        return new VelocityContext(pageContext.getResultMap());
+        VelocityContext velocityContext = new VelocityContext(pageContext.getResultMap());
+        // 使用相对路径
+        EventCartridge ec = new EventCartridge();
+        ec.addEventHandler(new IncludeRelativePath());
+        ec.attachToContext(velocityContext);
+        return velocityContext;
     }
 
     protected void afterRender(HttpServletRequest request, HttpServletResponse response, Context velocityContext) {
