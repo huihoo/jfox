@@ -29,15 +29,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/framework.iml" afterPath="$PROJECT_DIR$/framework/framework.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.ipr" afterPath="$PROJECT_DIR$/jfox3.ipr" />
-      <change type="MOVED" beforePath="D:\workspace\jfox3\MODULES\iservicedesk\views\en_US\new_contract.vhtml" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/new_contact.vhtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/common/HomeAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/common/HomeAction.java" />
-      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\lib-source\velocity-1.4-src.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\lib\velocity-dep-1.4.jar" afterPath="" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/lib-source/velocity-1.5-src.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/lib/velocity-dep-1.5.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/velocity/VelocityRender.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/velocity/VelocityRender.java" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
@@ -194,7 +186,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/velocity/VelocityRender.java" line="368" class="org.jfox.mvc.velocity.VelocityRender" package="org.jfox.mvc.velocity">
+      <breakpoint url="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/velocity/VelocityRender.java" line="375" class="org.jfox.mvc.velocity.VelocityRender" package="org.jfox.mvc.velocity">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -302,7 +294,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="867" column="0" selection-start="59945" selection-end="59945" vertical-scroll-proportion="0.1970803">
+            <state line="867" column="0" selection-start="59945" selection-end="59945" vertical-scroll-proportion="0.6101695">
               <folding />
             </state>
           </provider>
@@ -311,7 +303,7 @@
       <file leaf-file-name="EntityObject.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/EntityObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="44" selection-start="607" selection-end="607" vertical-scroll-proportion="0.3803056">
+            <state line="26" column="44" selection-start="607" selection-end="607" vertical-scroll-proportion="1.0275229">
               <folding />
             </state>
           </provider>
@@ -320,11 +312,17 @@
       <file leaf-file-name="VelocityRender.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/velocity/VelocityRender.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="373" column="54" selection-start="13492" selection-end="13492" vertical-scroll-proportion="0.8336163">
-              <folding>
-                <element signature="method#error#0;class#VelocityRender#0" expanded="false" />
-                <element signature="method#afterRender#0;class#VelocityRender#0" expanded="false" />
-              </folding>
+            <state line="92" column="0" selection-start="2825" selection-end="2825" vertical-scroll-proportion="0.61009175">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventCartridge.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/framework/lib-source/velocity-1.5-src.jar!/org/apache/velocity/app/event/EventCartridge.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="267" column="44" selection-start="8324" selection-end="8324" vertical-scroll-proportion="1.2179487">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -332,7 +330,7 @@
       <file leaf-file-name="VelocityUtils.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/util/VelocityUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="8" selection-start="2347" selection-end="2388" vertical-scroll-proportion="0.5483871">
+            <state line="85" column="8" selection-start="2347" selection-end="2388" vertical-scroll-proportion="1.4816514">
               <folding />
             </state>
           </provider>
@@ -341,16 +339,7 @@
       <file leaf-file-name="IncludeRelativePath.java" pinned="false" current="false" current-in-tab="false">
         <entry file="jar://$PROJECT_DIR$/framework/lib-source/velocity-1.5-src.jar!/org/apache/velocity/app/event/implement/IncludeRelativePath.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="13" selection-start="1288" selection-end="1288" vertical-scroll-proportion="0.4057725">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SessionContext.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/SessionContext.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="32" column="13" selection-start="1288" selection-end="1288" vertical-scroll-proportion="1.0963303">
               <folding />
             </state>
           </provider>
@@ -359,7 +348,7 @@
       <file leaf-file-name="HomeAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/common/HomeAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="3" selection-start="218" selection-end="218" vertical-scroll-proportion="0.09256198">
+            <state line="7" column="3" selection-start="218" selection-end="218" vertical-scroll-proportion="0.23931624">
               <folding />
             </state>
           </provider>
@@ -368,7 +357,7 @@
       <file leaf-file-name="ActionSupport.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="124" column="0" selection-start="4725" selection-end="4725" vertical-scroll-proportion="-0.01188455">
+            <state line="124" column="0" selection-start="4725" selection-end="4725" vertical-scroll-proportion="-0.03211009">
               <folding />
             </state>
           </provider>
@@ -377,7 +366,7 @@
       <file leaf-file-name="FunctionBOBean.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/bo/FunctionBOBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="39" selection-start="444" selection-end="444" vertical-scroll-proportion="0.20826447">
+            <state line="16" column="39" selection-start="444" selection-end="444" vertical-scroll-proportion="0.53846157">
               <folding />
             </state>
           </provider>
@@ -386,7 +375,7 @@
       <file leaf-file-name="SuperBO.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/SuperBO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="0" selection-start="1150" selection-end="1150" vertical-scroll-proportion="0.8098472">
+            <state line="40" column="0" selection-start="1150" selection-end="1150" vertical-scroll-proportion="2.1880734">
               <folding>
                 <marker date="1187008568000" expanded="true" signature="1141:1148" placeholder="{...}" />
               </folding>
@@ -397,7 +386,7 @@
       <file leaf-file-name="DataAccessObject.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/DataAccessObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="17" selection-start="234" selection-end="234" vertical-scroll-proportion="0.1663837">
+            <state line="10" column="17" selection-start="234" selection-end="234" vertical-scroll-proportion="0.44954127">
               <folding />
             </state>
           </provider>
@@ -406,7 +395,7 @@
       <file leaf-file-name="FunctionDAO.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/dao/FunctionDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="4" selection-start="221" selection-end="221" vertical-scroll-proportion="0.16198348">
+            <state line="8" column="4" selection-start="221" selection-end="221" vertical-scroll-proportion="0.41880342">
               <folding />
             </state>
           </provider>
@@ -1207,7 +1196,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4027565" order="5" x="100" y="162" width="634" height="300" />
       <window_info id="Hierarchy" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.308" order="5" />
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.731" order="3" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5574273" order="7" x="16" y="176" width="776" height="371" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5574273" order="7" x="16" y="176" width="776" height="371" />
       <window_info id="simpleUML" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4992343" order="12" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="21" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" order="0" />
@@ -1248,7 +1237,7 @@
     <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新Velocity 到 1.5，支持相对路径" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -1274,6 +1263,7 @@
     <MESSAGE value="增加 PDM" />
     <MESSAGE value="删除 Forum 模块" />
     <MESSAGE value="修改 PDM" />
+    <MESSAGE value="更新Velocity 到 1.5，支持相对路径" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -1324,11 +1314,6 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/themes/VintageSugar/images/show.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/themes/VintageSugar/menu.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="352" column="9" selection-start="7859" selection-end="7859" vertical-scroll-proportion="0.78313255">
@@ -1408,14 +1393,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/bo/FunctionBOBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="39" selection-start="444" selection-end="444" vertical-scroll-proportion="0.20826447">
+        <state line="16" column="39" selection-start="444" selection-end="444" vertical-scroll-proportion="0.53846157">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/SuperBO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="1150" selection-end="1150" vertical-scroll-proportion="0.8098472">
+        <state line="40" column="0" selection-start="1150" selection-end="1150" vertical-scroll-proportion="2.1880734">
           <folding>
             <marker date="1187008568000" expanded="true" signature="1141:1148" placeholder="{...}" />
           </folding>
@@ -1424,21 +1409,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/DataAccessObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="17" selection-start="234" selection-end="234" vertical-scroll-proportion="0.1663837">
+        <state line="10" column="17" selection-start="234" selection-end="234" vertical-scroll-proportion="0.44954127">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/dao/FunctionDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="4" selection-start="221" selection-end="221" vertical-scroll-proportion="0.16198348">
+        <state line="8" column="4" selection-start="221" selection-end="221" vertical-scroll-proportion="0.41880342">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/index.vhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="867" column="0" selection-start="59945" selection-end="59945" vertical-scroll-proportion="0.1970803">
+        <state line="867" column="0" selection-start="59945" selection-end="59945" vertical-scroll-proportion="0.6101695">
           <folding />
         </state>
       </provider>
@@ -1448,7 +1433,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/EntityObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="44" selection-start="607" selection-end="607" vertical-scroll-proportion="0.3803056">
+        <state line="26" column="44" selection-start="607" selection-end="607" vertical-scroll-proportion="1.0275229">
           <folding />
         </state>
       </provider>
@@ -1469,39 +1454,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/util/VelocityUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="8" selection-start="2347" selection-end="2388" vertical-scroll-proportion="0.5483871">
+        <state line="85" column="8" selection-start="2347" selection-end="2388" vertical-scroll-proportion="1.4816514">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/common/HomeAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="3" selection-start="218" selection-end="218" vertical-scroll-proportion="0.09256198">
+        <state line="7" column="3" selection-start="218" selection-end="218" vertical-scroll-proportion="0.23931624">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="124" column="0" selection-start="4725" selection-end="4725" vertical-scroll-proportion="-0.01188455">
+        <state line="124" column="0" selection-start="4725" selection-end="4725" vertical-scroll-proportion="-0.03211009">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/framework/lib-source/velocity-1.5-src.jar!/org/apache/velocity/app/event/implement/IncludeRelativePath.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="13" selection-start="1288" selection-end="1288" vertical-scroll-proportion="0.4057725">
+        <state line="32" column="13" selection-start="1288" selection-end="1288" vertical-scroll-proportion="1.0963303">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/framework/lib-source/velocity-1.5-src.jar!/org/apache/velocity/app/event/EventCartridge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="267" column="44" selection-start="8324" selection-end="8324" vertical-scroll-proportion="1.2179487">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/velocity/VelocityRender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="373" column="54" selection-start="13492" selection-end="13492" vertical-scroll-proportion="0.8336163">
-          <folding>
-            <element signature="method#error#0;class#VelocityRender#0" expanded="false" />
-            <element signature="method#afterRender#0;class#VelocityRender#0" expanded="false" />
-          </folding>
+        <state line="92" column="0" selection-start="2825" selection-end="2825" vertical-scroll-proportion="0.61009175">
+          <folding />
         </state>
       </provider>
     </entry>

@@ -85,6 +85,13 @@ public class VelocityRender implements Render {
      */
     private final static SimplePool writerPool = new SimplePool(40);
 
+    public static final EventCartridge ec = new EventCartridge();
+    {
+        //#include #parse 支持相对路径
+        ec.addEventHandler(new IncludeRelativePath());
+    }
+
+
     /**
      * Performs initialization of this servlet.  Called by the servlet
      * container on loading.
@@ -370,8 +377,6 @@ public class VelocityRender implements Render {
         PageContext pageContext = invocationContext.getPageContext();
         VelocityContext velocityContext = new VelocityContext(pageContext.getResultMap());
         // 使用相对路径
-        EventCartridge ec = new EventCartridge();
-        ec.addEventHandler(new IncludeRelativePath());
         ec.attachToContext(velocityContext);
         return velocityContext;
     }
