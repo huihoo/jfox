@@ -6,9 +6,9 @@
  */
 package org.jfox.mvc;
 
-import java.util.Map;
-import java.util.HashMap;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +20,12 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class InvocationContext {
 
-    /**
-     * Action名称
-     */
     private String actionName;
+
+    /**
+     * ActionMethod名称
+     */
+    private String actionMethodName;
 
     /**
      * 是否是http post
@@ -53,12 +55,13 @@ public class InvocationContext {
 
     private HttpServletRequest request = null;
 
-    public InvocationContext(ServletConfig servletConfig, HttpServletRequest request, Map<String, String[]> parameterMap, Map<String, FileUploaded> fileUploadedMap, String name, boolean isPostMethod) {
+    public InvocationContext(ServletConfig servletConfig, HttpServletRequest request, Map<String, String[]> parameterMap, Map<String, FileUploaded> fileUploadedMap, String actionName, String actionMethodName, boolean isPostMethod) {
         this.servletConfig = servletConfig;
         this.request = request;
         this.parameterMap.putAll(parameterMap);
         this.fileUploadedMap.putAll(fileUploadedMap);
-        this.actionName = name;
+        this.actionName = actionName;
+        this.actionMethodName = actionMethodName;
         this.isPost = isPostMethod;
         this.sessionContext = SessionContext.currentThreadSessionContext();
         this.pageContext = new PageContext();
@@ -84,7 +87,15 @@ public class InvocationContext {
         return actionMethod;
     }
 
-    public String getActionName() {
+    public String getActionMethodName() {
+        return actionMethodName;
+    }
+
+    public String getFullActionMethodName(){
+        return getActionName() + "." + getActionMethodName();
+    }
+
+    public String getActionName(){
         return actionName;
     }
 

@@ -18,17 +18,17 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.ComponentContext;
-import org.jfox.framework.component.ComponentUnregistration;
 import org.jfox.framework.component.ComponentInitialization;
+import org.jfox.framework.component.ComponentUnregistration;
 import org.jfox.framework.component.SingletonComponent;
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.mvc.validate.ValidateException;
 import org.jfox.mvc.validate.Validators;
 import org.jfox.util.AnnotationUtils;
 import org.jfox.util.ClassUtils;
-import org.apache.log4j.Logger;
 
 /**
  * Action super class
@@ -124,7 +124,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
 
         Method actionMethod = getActionMethod(invocationContext);
         if (actionMethod == null) {
-            throw new ServletException("No ActionMethod in Action Class: " + getClass().getName() + " responsable for " + (invocationContext.isPost() ? "POST" : "GET") + " action: " + getName() + "." + invocationContext.getActionName() + " !");
+            throw new ServletException("No ActionMethod in Action Class: " + getClass().getName() + " responsable for " + (invocationContext.isPost() ? "POST" : "GET") + " action: " + getName() + "." + invocationContext.getActionMethodName() + " !");
         }
         ActionMethod actionMethodAnnotation = actionMethod.getAnnotation(ActionMethod.class);
         // invocation class
@@ -211,7 +211,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     private Method getActionMethod(InvocationContext invocationContext) {
         //决定调用 doGetXXX or doPostXXX
         Method actionMethod;
-        String name = invocationContext.getActionName();
+        String name = invocationContext.getActionMethodName();
         if (invocationContext.isPost()) {
             actionMethod = actionMap.get((POST_METHOD_PREFIX + name).toUpperCase());
         }

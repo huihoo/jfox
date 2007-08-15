@@ -9,9 +9,9 @@ package org.jfox.mvc.servlet;
 import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -184,7 +184,7 @@ public class ControllerServlet extends HttpServlet {
         try {
             // 初始化 SessionContext，并绑定到线程
             SessionContext.init(request);
-            InvocationContext invocationContext = new InvocationContext(getServletConfig(), request, parameterMap, fileUploadedMap, actionMethodName, "POST".equals(request.getMethod().toUpperCase()));
+            InvocationContext invocationContext = new InvocationContext(getServletConfig(), request, parameterMap, fileUploadedMap, actionName, actionMethodName, "POST".equals(request.getMethod().toUpperCase()));
             WebContextLoader.invokeAction(moduleDirName, actionName, invocationContext);
             request.setAttribute(INVOCATION_CONTEXT, invocationContext);
             // 根据 PageContext.getTargetMethod 要决定 forward 还是 redirect
