@@ -12,11 +12,11 @@ import javax.ejb.EJB;
 import javax.ejb.EJBObject;
 import javax.naming.NamingException;
 
+import org.apache.log4j.Logger;
 import org.jfox.ejb3.EJBBucket;
 import org.jfox.ejb3.EJBContainer;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.SystemModule;
-import org.apache.log4j.Logger;
 
 /**
  * 注入 Field Level @EJB
@@ -80,10 +80,10 @@ public class FieldEJBDependence implements Dependence {
             }
             Collection<EJBBucket> buckets = ejbContainer.getEJBBucketByBeanInterface(beanInterface);
             if (buckets.isEmpty()) {
-                throw new InjectionException("");
+                throw new InjectionException("Could not found EJB by interface: " + beanInterface + " for " + instance);
             }
             else if (buckets.size() != 1) {
-                throw new InjectionException("");
+                throw new InjectionException("Found more than one EJB by interface: " + beanInterface + " for " + instance);
             }
             else {
                 targetEJBObject = buckets.iterator().next().createProxyStub();

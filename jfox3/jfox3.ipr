@@ -21,15 +21,6 @@
       <file url="file://$PROJECT_DIR$/MODULES/manager/views/jsp/ejb.jsp" />
       <file url="file://$PROJECT_DIR$/framework/wwwroot/jsp/ejb.jsp" />
       <file url="file://$PROJECT_DIR$/framework/WEB-INF/MODULES/manager/views/jsp/ejb.jsp" />
-      <file url="file://$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/entity/Order.java" />
-      <file url="file://$PROJECT_DIR$/framework/test-src/jfox/test/jpa/Account.java" />
-      <file url="file://$PROJECT_DIR$/framework/test-src/jfox/test/jpa/Address.java" />
-      <file url="file://$PROJECT_DIR$/framework/test-src/jfox/test/ejbcomponent/dao/AccountDAOImpl.java" />
-      <file url="file://$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/lob/LobberDAOImpl.java" />
-      <file url="file://$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/entity/OrderDAOImpl.java" />
-      <file url="file://$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/lob/Lobber.java" />
-      <file url="file://$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/lob/Lobber.java" />
-      <file url="file://$PROJECT_DIR$/framework/test-src/jfox/test/jpa/TestMain.java" />
     </excludeFromCompile>
     <resourceExtensions>
       <entry name=".+\.(properties|xml|html|dtd|tld)" />
@@ -84,6 +75,7 @@
           <module name="framework">
             <files>
               <file url="file://$PROJECT_DIR$/framework/WEB-INF/MODULES/manager/WEB-INF/web.xml" />
+              <file url="file://$PROJECT_DIR$/framework/WEB-INF/web.xml" />
               <file url="file://$PROJECT_DIR$/framework/dist/jfox/WEB-INF/web.xml" />
             </files>
           </module>

@@ -73,7 +73,7 @@ public class FreemarkerRender implements Render {
             logger.info("Freemarker engine initialized!");
         }
         catch (Exception e) {
-            throw new ServletException("Error initializing Velocity: " + e, e);
+            logger.error("Error initializing Freemarker: " + e.getMessage(), e);
         }
     }
 
@@ -111,7 +111,7 @@ public class FreemarkerRender implements Render {
             }
         }
         if (engine == null) {
-            throw new IOException("Can not found velocity engine for servlet path: " + servletPath);
+            throw new IOException("Can not found Framemarker engine for servlet path: " + servletPath);
         }
 
         return engine.getTemplate(templateName, locale);

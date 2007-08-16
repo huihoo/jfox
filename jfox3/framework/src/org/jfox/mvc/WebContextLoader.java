@@ -14,10 +14,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import org.apache.log4j.Logger;
 import org.jfox.framework.Framework;
 import org.jfox.framework.component.Module;
 import org.jfox.util.FileFilterUtils;
-import org.apache.log4j.Logger;
 
 /**
  * Web Context Loader，initialize framework when jfox3 web application loaded
@@ -54,6 +54,7 @@ public class WebContextLoader implements ServletContextListener {
         framework = new Framework();
 
         try {
+            File modulesDir = null;
             String _modulesDir = servletContextEvent.getServletContext().getInitParameter(MODULES_DIR);
             if (_modulesDir == null || _modulesDir.trim().length() == 0) {
                 logger.warn("MODULES_DIR not configured in web.xml!");
@@ -62,9 +63,13 @@ public class WebContextLoader implements ServletContextListener {
                 if (!_modulesDir.startsWith("/")) {
                     // forward url必须以 / 开头，否则 ControllerServlet forward 出错
                     _modulesDir = "/" + _modulesDir;
+                    modulesDir = new File(servletContextEvent.getServletContext().getRealPath("/"), _modulesDir);
                 }
-
-                File modulesDir = new File(servletContextEvent.getServletContext().getRealPath("/"), _modulesDir);
+                else {
+                    // 支持绝对路径
+                    modulesDir = new File(_modulesDir);
+                }
+                
                 if (!modulesDir.exists()) {
                     logger.warn("Modules dir configured in web.xml not exists, " + modulesDir.toString());
                     return;
