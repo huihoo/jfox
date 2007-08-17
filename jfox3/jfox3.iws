@@ -30,8 +30,9 @@
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/action/NodeAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/action/NodeAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/manager/manager.iml" afterPath="$PROJECT_DIR$/MODULES/manager/manager.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/new_module.vhtml" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/new_module.vhtml" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -237,7 +238,7 @@
       <file leaf-file-name="VelocityRender.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/velocity/VelocityRender.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="160" column="0" selection-start="5704" selection-end="5704" vertical-scroll-proportion="0.3472222">
+            <state line="160" column="0" selection-start="5704" selection-end="5704" vertical-scroll-proportion="0.12733446">
               <folding />
             </state>
           </provider>
@@ -246,7 +247,7 @@
       <file leaf-file-name="new_node.vhtml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/new_node.vhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="69" selection-start="1995" selection-end="1995" vertical-scroll-proportion="0.72">
+            <state line="47" column="57" selection-start="2250" selection-end="2281" vertical-scroll-proportion="0.20437956">
               <folding />
             </state>
           </provider>
@@ -255,19 +256,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NodeAction.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="NodeAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/action/NodeAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="723" selection-end="723" vertical-scroll-proportion="0.2777778">
+            <state line="24" column="0" selection-start="723" selection-end="723" vertical-scroll-proportion="0.09917355">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new_module.vhtml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="new_module.vhtml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/new_module.vhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="69" selection-start="1433" selection-end="1437" vertical-scroll-proportion="0.7714286">
+            <state line="41" column="77" selection-start="2523" selection-end="2523" vertical-scroll-proportion="0.43430656">
               <folding />
             </state>
           </provider>
@@ -279,7 +280,7 @@
       <file leaf-file-name="ModuleAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/action/ModuleAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="39" selection-start="389" selection-end="389" vertical-scroll-proportion="0.4827586">
+            <state line="12" column="39" selection-start="389" selection-end="389" vertical-scroll-proportion="0.18512397">
               <folding />
             </state>
           </provider>
@@ -288,7 +289,7 @@
       <file leaf-file-name="WebContextLoader.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/WebContextLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="0" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.3472222">
+            <state line="56" column="0" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.12733446">
               <folding>
                 <marker date="1187289388000" expanded="false" signature="239:616" placeholder="..." />
               </folding>
@@ -299,34 +300,16 @@
       <file leaf-file-name="TemplateServlet.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/TemplateServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="0" selection-start="2057" selection-end="2057" vertical-scroll-proportion="1.1064814">
+            <state line="61" column="0" selection-start="2057" selection-end="2057" vertical-scroll-proportion="0.4214876">
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="web.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/WEB-INF/web.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="28" selection-start="1211" selection-end="1211" vertical-scroll-proportion="0.93142855">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
-            <state />
-          </provider>
-          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
-            <state />
-          </provider>
-          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
-            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="SuperAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/SuperAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="0" selection-start="1056" selection-end="1056" vertical-scroll-proportion="0.33333334">
+            <state line="43" column="0" selection-start="1056" selection-end="1056" vertical-scroll-proportion="0.12224109">
               <folding />
             </state>
           </provider>
@@ -335,7 +318,7 @@
       <file leaf-file-name="InvocationContext.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/InvocationContext.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="28" selection-start="1971" selection-end="1971" vertical-scroll-proportion="0.625">
+            <state line="69" column="28" selection-start="1971" selection-end="1971" vertical-scroll-proportion="0.22920203">
               <folding />
             </state>
           </provider>
@@ -344,7 +327,7 @@
       <file leaf-file-name="ActionSupport.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="206" column="0" selection-start="8696" selection-end="8696" vertical-scroll-proportion="0.33333334">
+            <state line="206" column="0" selection-start="8696" selection-end="8696" vertical-scroll-proportion="0.12224109">
               <folding />
             </state>
           </provider>
@@ -353,7 +336,7 @@
       <file leaf-file-name="ControllerServlet.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/ControllerServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="114" column="28" selection-start="4756" selection-end="4769" vertical-scroll-proportion="0.2962963">
+            <state line="114" column="28" selection-start="4756" selection-end="4769" vertical-scroll-proportion="0.108658746">
               <folding />
             </state>
           </provider>
@@ -1221,7 +1204,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="IDEtalk" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="22" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32618684" order="10" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2892893" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15815815" order="0" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3767228" order="4" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="1" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" order="2" />
@@ -1235,7 +1218,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39663094" order="5" x="100" y="162" width="634" height="300" />
       <window_info id="Hierarchy" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.308" order="5" />
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.731" order="3" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5344564" order="7" x="16" y="176" width="776" height="371" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41807044" order="7" x="16" y="176" width="776" height="371" />
       <window_info id="simpleUML" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4992343" order="12" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="21" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" order="0" />
@@ -1276,7 +1259,7 @@
     <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="使用 explode 方式，解决了Debug修改类和vhtml无需重启的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="编辑 new_module.vhtml 页面" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -1305,6 +1288,7 @@
     <MESSAGE value="更新Velocity 到 1.5，支持相对路径" />
     <MESSAGE value="完善 FUNCTION PDM" />
     <MESSAGE value="使用 explode 方式，解决了Debug修改类和vhtml无需重启的问题" />
+    <MESSAGE value="编辑 new_module.vhtml 页面" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -1355,13 +1339,6 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/TestClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="35" selection-start="791" selection-end="791" vertical-scroll-proportion="-14.504425">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/framework/dist/jfox/jsp/ejb.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="22" selection-start="182" selection-end="182" vertical-scroll-proportion="0.40462428">
@@ -1451,7 +1428,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="28" selection-start="1211" selection-end="1211" vertical-scroll-proportion="0.93142855">
+        <state line="34" column="28" selection-start="1211" selection-end="1211" vertical-scroll-proportion="0.2890071">
           <folding />
         </state>
       </provider>
@@ -1467,7 +1444,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/WebContextLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="0" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.3472222">
+        <state line="56" column="0" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.12733446">
           <folding>
             <marker date="1187289388000" expanded="false" signature="239:616" placeholder="..." />
           </folding>
@@ -1476,21 +1453,70 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/TemplateServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="0" selection-start="2057" selection-end="2057" vertical-scroll-proportion="1.1064814">
+        <state line="61" column="0" selection-start="2057" selection-end="2057" vertical-scroll-proportion="0.4214876">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/velocity/VelocityRender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="0" selection-start="5704" selection-end="5704" vertical-scroll-proportion="0.3472222">
+        <state line="160" column="0" selection-start="5704" selection-end="5704" vertical-scroll-proportion="0.12733446">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/action/ModuleAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="39" selection-start="389" selection-end="389" vertical-scroll-proportion="0.18512397">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/ControllerServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="114" column="28" selection-start="4756" selection-end="4769" vertical-scroll-proportion="0.108658746">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/SuperAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="0" selection-start="1056" selection-end="1056" vertical-scroll-proportion="0.12224109">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="206" column="0" selection-start="8696" selection-end="8696" vertical-scroll-proportion="0.12224109">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/InvocationContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="28" selection-start="1971" selection-end="1971" vertical-scroll-proportion="0.22920203">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/action/NodeAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="0" selection-start="723" selection-end="723" vertical-scroll-proportion="0.09917355">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/jdk1.5.0_12/src.zip!/java/util/Locale.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="184" column="19" selection-start="7254" selection-end="7254" vertical-scroll-proportion="0.3327674">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/new_node.vhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="69" selection-start="1995" selection-end="1995" vertical-scroll-proportion="0.72">
+        <state line="47" column="57" selection-start="2250" selection-end="2281" vertical-scroll-proportion="0.20437956">
           <folding />
         </state>
       </provider>
@@ -1500,54 +1526,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/new_module.vhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="69" selection-start="1433" selection-end="1437" vertical-scroll-proportion="0.7714286">
+        <state line="41" column="77" selection-start="2523" selection-end="2523" vertical-scroll-proportion="0.43430656">
           <folding />
         </state>
       </provider>
       <provider editor-type-id="HtmlPreview">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/action/ModuleAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="39" selection-start="389" selection-end="389" vertical-scroll-proportion="0.4827586">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/ControllerServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="28" selection-start="4756" selection-end="4769" vertical-scroll-proportion="0.2962963">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/SuperAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="0" selection-start="1056" selection-end="1056" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="206" column="0" selection-start="8696" selection-end="8696" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/InvocationContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="28" selection-start="1971" selection-end="1971" vertical-scroll-proportion="0.625">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/action/NodeAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="723" selection-end="723" vertical-scroll-proportion="0.2777778">
-          <folding />
-        </state>
       </provider>
     </entry>
   </component>
