@@ -205,7 +205,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         pageContext.setAttribute("J_REQUEST", request);
         //用于在页面上显示 vm 文件全路径，便于调试
         pageContext.setAttribute("J_WEBAPP_CONTEXT_PATH", request.getContextPath());
-        pageContext.setAttribute("J_SERVLET_PATH", request.getServletPath());
+        pageContext.setAttribute("J_REQUEST_URI", request.getRequestURI());
     }
 
     private Method getActionMethod(InvocationContext invocationContext) {
