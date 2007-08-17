@@ -71,6 +71,10 @@ public class InvocationContext {
         return request;
     }
 
+    public String getRequestURI(){
+        return getServletRequest().getRequestURI();
+    }
+
     public ServletConfig getServletConfig() {
         return servletConfig;
     }
