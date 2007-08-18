@@ -25,9 +25,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.Entity;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
-import javax.persistence.Entity;
 
 import org.apache.log4j.Logger;
 import org.apache.velocity.app.event.EventHandler;
@@ -249,7 +249,11 @@ public class SQLQuery extends QueryExt {
             // 不能都是用 setString/setobject, 需要使用正确类型,但是该类型无法判断
             Object parameterResult = expressionResults.get(i);
             if (parameterResult == null) {
-                throw new PersistenceException("Failed to build PreparedStatement, because expression " + expressions.get(i) + "'s value is not set!");
+                String msg = "Get null while evalute " + expressions.get(i);
+                if(isNamedQuery()) {
+                    msg += " in named qeury: " + ((NamedSQLTemplate)sqlTemplate).getName();
+                }
+                logger.warn(msg);
             }
             setPreparedStatementParameter(pst, i + 1, expressionResults.get(i));
         }
@@ -267,7 +271,10 @@ public class SQLQuery extends QueryExt {
      * @throws SQLException sql exception
      */
     protected void setPreparedStatementParameter(PreparedStatement pst, int index, Object value) throws SQLException {
-
+        if(value == null) {
+            pst.setObject(index, null);
+            return;
+        }
         Class<?> clazz = value.getClass();
 
         if (Boolean.class.equals(clazz) || boolean.class.equals(clazz)) {

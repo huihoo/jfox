@@ -53,5 +53,26 @@
             <property name="password" value="root"/>
         </properties>
     </persistence-unit>
-    
+
+    <persistence-unit name="iServiceDesk_DS">
+        <jta-data-source>java:/iServiceDesk_DS</jta-data-source>
+        <properties>
+            <property name="driver" value="com.mysql.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql://coregen.3322.org:7725/iservicedesk"/>
+            <property name="username" value="root"/>
+            <property name="password" value="iservicedesk"/>
+            <property name="minSize" value="1"/> <!-- min pool size -->
+            <property name="maxSize" value="200"/> <!-- max pool size -->
+            <property name="lifeTime" value="1800000"/> <!-- 3h, connection max idle time, in ms -->
+            <property name="sleepTime" value="600000"/>  <!--PoolKeeper sleep time, in ms -->
+            <property name="deadLockRetryWait" value="2000"/> <!-- retry time if no free connection, in ms -->
+            <property name="deadLockMaxWait" value="60000"/> <!-- max wait time if no free connection, in ms -->
+            <property name="checkLevelObject" value="4"/> <!-- check connection closed -->
+            <property name="cache.algorithm" value="LRU"/> <!-- algorithm for "default" cache category, LRU, LFU, FIFO-->
+            <property name="cache.ttl" value="600000"/> <!-- ttl for "default", in ms-->
+            <property name="cache.maxIdleTime" value="300000"/> <!-- maxidletime for "default", in ms-->
+            <property name="cache.maxSize" value="1000"/> <!-- max size for "default" -->
+            <property name="cache.maxMemorySize" value="100000000"/> <!-- max memory size for "default", in bytes-->
+        </properties>
+    </persistence-unit>
 </persistence>
