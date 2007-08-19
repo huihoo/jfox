@@ -337,7 +337,7 @@
       <file leaf-file-name="SuperAction.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/SuperAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="16" selection-start="2157" selection-end="2157" vertical-scroll-proportion="0.6124031">
+            <state line="67" column="50" selection-start="2208" selection-end="2208" vertical-scroll-proportion="0.6666667">
               <folding />
             </state>
           </provider>
@@ -1743,7 +1743,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/SuperAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="16" selection-start="2157" selection-end="2157" vertical-scroll-proportion="0.6124031">
+        <state line="67" column="50" selection-start="2208" selection-end="2208" vertical-scroll-proportion="0.6666667">
           <folding />
         </state>
       </provider>
