@@ -29,19 +29,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/entity/Node.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/entity/Node.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/dao/ModuleDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/dao/ModuleDAOBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/bo/ModuleBOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/bo/ModuleBOBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/db/iServiceDesk_PDM.pdm" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/db/iServiceDesk_PDM.pdm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/SuperAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/SuperAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/dao/ModuleDAO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/dao/ModuleDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/include/include_header.vhtml" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/include/include_header.vhtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/db/iServiceDesk_PDM.pdb" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/db/iServiceDesk_PDM.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/action/ModuleAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/action/ModuleAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/list_module.vhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/new_module.vhtml" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/new_module.vhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/entity/Module.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/entity/Module.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/list_module.vhtml" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/list_module.vhtml" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -347,7 +336,7 @@
       <file leaf-file-name="list_module.vhtml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/list_module.vhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="196" column="0" selection-start="9662" selection-end="9662" vertical-scroll-proportion="0.29744527">
+            <state line="194" column="0" selection-start="9506" selection-end="9506" vertical-scroll-proportion="0.24635036">
               <folding />
             </state>
           </provider>
@@ -725,6 +714,44 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views\include\ytree\TreeView\css" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views\include" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views\include\ytree" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views\include\ytree\TreeView" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views\include\ytree\TreeView\css" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views\include\ytree\TreeView\css\folders" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -2051,7 +2078,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/list_module.vhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="196" column="0" selection-start="9662" selection-end="9662" vertical-scroll-proportion="0.29744527">
+        <state line="194" column="0" selection-start="9506" selection-end="9506" vertical-scroll-proportion="0.24635036">
           <folding />
         </state>
       </provider>
