@@ -8,6 +8,7 @@
           <factory-entry name="DefaultHsqlDS" />
           <factory-entry name="JPetstoreMysqlDS" />
           <factory-entry name="default" />
+          <factory-entry name="iServiceDesk_DS" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/conf/META-INF/persistence.xml" optional="false" version="1.0" />
       </configuration>
@@ -179,27 +180,6 @@
     <Base>
       <setting name="state" value="1" />
     </Base>
-    <LanguageOptions name="CSS">
-      <option name="templateOptions">
-        <value>
-          <option name="block" value="true" />
-          <option name="separateBefore" value="false" />
-          <option name="separateAfter" value="false" />
-          <option name="prefixLines" value="true" />
-          <option name="lenBefore" value="80" />
-          <option name="lenAfter" value="80" />
-          <option name="box" value="false" />
-          <option name="filler" value=" " />
-        </value>
-      </option>
-      <option name="notice" value="Copyright (c) &amp;#36;today.year, Your Corporation. All Rights Reserved." />
-      <option name="keyword" value="Copyright" />
-      <option name="fileTypeOverride" value="1" />
-      <option name="relativeBefore" value="true" />
-      <option name="addBlankAfter" value="true" />
-      <option name="fileLocation" value="1" />
-      <option name="useAlternate" value="false" />
-    </LanguageOptions>
     <LanguageOptions name="$TEMPLATE$">
       <option name="templateOptions">
         <value>
