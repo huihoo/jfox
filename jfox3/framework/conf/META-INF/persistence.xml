@@ -58,9 +58,9 @@
         <jta-data-source>java:/iServiceDesk_DS</jta-data-source>
         <properties>
             <property name="driver" value="com.mysql.jdbc.Driver"/>
-            <property name="url" value="jdbc:mysql://coregen.3322.org:7725/iservicedesk"/>
-            <property name="username" value="root"/>
-            <property name="password" value="iservicedesk"/>
+            <property name="url" value="jdbc:mysql://www.jfox.org.cn:3306/nj023"/>
+            <property name="username" value="nj023"/>
+            <property name="password" value="jfox2007"/>
             <property name="minSize" value="1"/> <!-- min pool size -->
             <property name="maxSize" value="200"/> <!-- max pool size -->
             <property name="lifeTime" value="1800000"/> <!-- 3h, connection max idle time, in ms -->
