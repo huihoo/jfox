@@ -29,15 +29,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/framework.iml" afterPath="$PROJECT_DIR$/framework/framework.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/entity/Node.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/entity/Node.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/conf/META-INF/persistence.xml" afterPath="$PROJECT_DIR$/framework/conf/META-INF/persistence.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/dao/ModuleDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/dao/ModuleDAOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/list_module.vhtml" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/list_module.vhtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/manager/manager.iml" afterPath="$PROJECT_DIR$/MODULES/manager/manager.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/dao/NodeDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/dao/NodeDAOBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/entity/Module.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/entity/Module.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/SuperAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/SuperAction.java" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -229,19 +224,6 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/framework/src/org/jfox/entity/SQLQuery.java" line="115" class="org.jfox.entity.SQLQuery" package="org.jfox.entity">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
     </line_breakpoints>
     <exception_breakpoints>
       <breakpoint class_name="java.lang.UnsupportedOperationException" package_name="java.lang">
@@ -331,61 +313,58 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="YAHOO.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/include/javascript/yui/YAHOO.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="7" selection-start="841" selection-end="841" vertical-scroll-proportion="0.05109489">
-              <folding>
-                <marker date="1185870262000" expanded="false" signature="0:2" placeholder="/*...*/" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="include_header.vhtml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/include/include_header.vhtml">
-          <provider editor-type-id="HtmlPreview">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="36" selection-start="1682" selection-end="1682" vertical-scroll-proportion="0.06451613">
+            <state line="17" column="0" selection-start="875" selection-end="875" vertical-scroll-proportion="0.11965812">
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="HtmlPreview">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="persistence.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/conf/META-INF/persistence.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="50" selection-start="3987" selection-end="3987" vertical-scroll-proportion="1.0245901">
+            <state line="44" column="23" selection-start="3227" selection-end="3227" vertical-scroll-proportion="0.20689656">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TreeView.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/include/ytree/TreeView/TreeView.js">
+      <file leaf-file-name="list_module.vhtml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/list_module.vhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="2" selection-start="549" selection-end="549" vertical-scroll-proportion="0.054263566">
+            <state line="337" column="8" selection-start="14980" selection-end="14980" vertical-scroll-proportion="0.72649574">
               <folding />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Module.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/entity/Module.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="27" selection-start="278" selection-end="289" vertical-scroll-proportion="0.35766423">
-              <folding />
-            </state>
+          <provider editor-type-id="HtmlPreview">
+            <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Node.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/entity/Node.java">
+      <file leaf-file-name="treetest.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/treetest.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="25" selection-start="278" selection-end="287" vertical-scroll-proportion="0.35766423">
+            <state line="21" column="0" selection-start="785" selection-end="976" vertical-scroll-proportion="1.2564102">
               <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="HtmlPreview">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="event.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/include/javascript/yui/event.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="722" column="12" selection-start="22591" selection-end="22591" vertical-scroll-proportion="0.71272725">
+              <folding>
+                <marker date="1185870260000" expanded="false" signature="0:2" placeholder="/*...*/" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -393,7 +372,7 @@
       <file leaf-file-name="NodeDAOBean.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/dao/NodeDAOBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="8" selection-start="1961" selection-end="1961" vertical-scroll-proportion="0.42635658">
+            <state line="56" column="8" selection-start="1961" selection-end="1961" vertical-scroll-proportion="0.85818183">
               <folding />
             </state>
           </provider>
@@ -402,17 +381,28 @@
       <file leaf-file-name="SuperAction.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/SuperAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="0" selection-start="987" selection-end="987" vertical-scroll-proportion="0.2248062">
+            <state line="139" column="0" selection-start="4411" selection-end="4411" vertical-scroll-proportion="0.8981818">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModuleAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/action/ModuleAction.java">
+      <file leaf-file-name="SQLQuery.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/SQLQuery.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="3" selection-start="374" selection-end="374" vertical-scroll-proportion="0.054263566">
+            <state line="115" column="0" selection-start="3248" selection-end="3248" vertical-scroll-proportion="0.3309091">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="treeutils.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/include/javascript/treeutils.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1187874938000" expanded="true" signature="166:826" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -420,8 +410,10 @@
       <file leaf-file-name="EntityObject.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/EntityObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="7" selection-start="415" selection-end="415" vertical-scroll-proportion="0.054263566">
-              <folding />
+            <state line="16" column="43" selection-start="415" selection-end="415" vertical-scroll-proportion="0.05090909">
+              <folding>
+                <marker date="1187874928000" expanded="true" signature="5639:5645" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -429,7 +421,7 @@
       <file leaf-file-name="ModuleDAOBean.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/dao/ModuleDAOBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="0" selection-start="2511" selection-end="2511" vertical-scroll-proportion="1.0729927">
+            <state line="68" column="0" selection-start="2511" selection-end="2511" vertical-scroll-proportion="1.1546391">
               <folding />
             </state>
           </provider>
@@ -438,7 +430,7 @@
       <file leaf-file-name="ModuleBOBean.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/bo/ModuleBOBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="760" selection-end="760" vertical-scroll-proportion="1.1751825">
+            <state line="31" column="0" selection-start="760" selection-end="760" vertical-scroll-proportion="1.1065292">
               <folding />
             </state>
           </provider>
@@ -562,11 +554,85 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src\cn\iservicedesk" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views\include" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views\include" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views\include\javascript" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views\en_US" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views\en_US" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\views\en_US\function" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -589,70 +655,6 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src\cn\iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src\cn\iservicedesk\function" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src\cn\iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src\cn\iservicedesk\function" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src\cn\iservicedesk\function\entity" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src\cn\iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src\cn\iservicedesk\function" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src\cn\iservicedesk\function\dao" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -723,7 +725,7 @@
     </subPane>
   </component>
   <component name="ProjectReloadState">
-    <option name="STATE" value="0" />
+    <option name="STATE" value="2" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="0.5277778" version="1" splitterProportion="0.5">
@@ -733,7 +735,7 @@
       <showLibraryContents PackagesPane="true" />
       <hideEmptyPackages PackagesPane="true" ProjectPane="true" />
       <abbreviatePackageNames />
-      <showStructure ProjectPane="false" Scope="false" PackagesPane="false" Favorites="false" />
+      <showStructure PackagesPane="false" Scope="false" Favorites="false" ProjectPane="false" />
       <autoscrollToSource />
       <autoscrollFromSource ProjectPane="false" />
       <sortByType ProjectPane="true" />
@@ -793,99 +795,6 @@
       <recent name="jfox.test.ejbcomponent.entity" />
     </key>
   </component>
-  <component name="RestoreUpdateTree">
-    <UpdateInfo date="07-8-22 下午10:49" ActionInfo="_Update">
-      <UpdatedFiles>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated from server" />
-          <option name="myStatusName" value="Changed on server" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CHANGED_ON_SERVER" />
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Updated" />
-            <option name="myStatusName" value="Changed" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="UPDATED" />
-            <PATH vcs="svn" revision="168">D:\workspace\jfox3\MODULES\iservicedesk\views\include\javascript\treeutils.js</PATH>
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Created" />
-            <option name="myStatusName" value="Created" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="CREATED" />
-            <PATH vcs="svn" revision="168">D:\workspace\jfox3\MODULES\iservicedesk\views\en_US\treetest.html</PATH>
-            <PATH vcs="svn" revision="168">D:\workspace\jfox3\MODULES\iservicedesk\views\include\javascript\yui\treeview.js</PATH>
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Deleted" />
-            <option name="myStatusName" value="Deleted" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="true" />
-            <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Restored" />
-            <option name="myStatusName" value="Will be restored" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="RESTORED" />
-          </FILE-GROUP>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Modified" />
-          <option name="myStatusName" value="Modified" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MODIFIED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Skipped" />
-          <option name="myStatusName" value="Skipped" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="SKIPPED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged with conflicts" />
-          <option name="myStatusName" value="Will be merged with conflicts" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED_WITH_CONFLICTS" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged" />
-          <option name="myStatusName" value="Will be merged" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Not in repository" />
-          <option name="myStatusName" value="Not in repository" />
-          <option name="mySupportsDeletion" value="true" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UNKNOWN" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Locally added" />
-          <option name="myStatusName" value="Locally added" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="LOCALLY_ADDED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Locally removed" />
-          <option name="myStatusName" value="Locally removed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="LOCALLY_REMOVED" />
-        </FILE-GROUP>
-      </UpdatedFiles>
-    </UpdateInfo>
-  </component>
   <component name="RunManager" selected="Tomcat Server.jfox3-startup">
     <tempConfiguration default="false" name="I18n" type="Application" factoryName="Application" enabled="false" merge="false">
       <option name="MAIN_CLASS_NAME" value="cn.iservicedesk.infrastructure.I18n" />
@@ -903,22 +812,28 @@
         <option name="Make" value="true" />
       </method>
     </tempConfiguration>
-    <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
+    <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
       <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
-      <option name="ADDITIONAL_CLASS_PATH" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
+      <module name="" />
       <method>
         <option name="Make" value="true" />
       </method>
@@ -951,38 +866,32 @@
       <option name="BASE_DIRECTORY_NAME" value="" />
       <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
     </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="ADDITIONAL_CLASS_PATH" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <module name="" />
-      <method>
-        <option name="Make" value="true" />
-      </method>
     </configuration>
     <configuration default="false" name="CalculatorTestMain" type="Application" factoryName="Application" enabled="false" merge="false">
       <option name="MAIN_CLASS_NAME" value="jfox.test.ejb3.stateless.CalculatorTestMain" />
@@ -1421,7 +1330,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="IDEtalk" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="22" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32618684" order="10" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2842843" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23623623" order="0" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3767228" order="4" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="1" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" order="2" />
@@ -1432,13 +1341,13 @@
       <window_info id="Ant Build" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.248" order="4" />
       <window_info id="Maven projects" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="9" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32618684" order="20" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39663094" order="5" x="100" y="162" width="634" height="300" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27105665" order="5" x="100" y="162" width="634" height="300" />
       <window_info id="Hierarchy" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.308" order="5" />
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.731" order="3" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.47013783" order="7" x="16" y="176" width="776" height="371" />
       <window_info id="simpleUML" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4992343" order="12" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="21" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" order="0" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" order="0" />
       <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="SVN Repositories" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5" order="23" />
       <window_info id="SQL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7914201" order="15" />
@@ -1455,8 +1364,8 @@
       <window_info id="App Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="11" />
       <window_info id="EJB" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="6" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="8" />
-      <window_info id="WebLogic Deployment View" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32608697" order="18" />
       <window_info id="Code Logic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72783506" order="14" x="22" y="39" width="776" height="476" />
+      <window_info id="WebLogic Deployment View" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32608697" order="18" />
       <window_info id="File View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="1" />
       <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45322245" order="13" />
     </layout>
@@ -1562,22 +1471,6 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/MappedEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="0" selection-start="1851" selection-end="1851" vertical-scroll-proportion="0.2857143">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/LocalNamingAndRefInspectableEntityObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="77" selection-start="487" selection-end="487" vertical-scroll-proportion="0.023809524">
-          <folding>
-            <marker date="1187450222000" expanded="false" signature="48:263" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/interceptor/BusinessInterceptorMethod.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="0" selection-start="730" selection-end="730" vertical-scroll-proportion="0.46503496">
@@ -1600,13 +1493,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/new_module.vhtml">
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="0" selection-start="42" selection-end="42" vertical-scroll-proportion="0.025547445">
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/SuperDAO.java">
@@ -1630,36 +1523,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/list_module.vhtml">
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="330" column="0" selection-start="14369" selection-end="14369" vertical-scroll-proportion="0.74452555">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/include/javascript/yui/log.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="0" selection-start="215" selection-end="215" vertical-scroll-proportion="0.20826447">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/include/javascript/treeutils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/include/javascript/yui/event.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="658" column="22" selection-start="19071" selection-end="19071" vertical-scroll-proportion="0.05090909">
-          <folding>
-            <marker date="1185870260000" expanded="false" signature="0:2" placeholder="/*...*/" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1670,84 +1537,131 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/EntityObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="7" selection-start="415" selection-end="415" vertical-scroll-proportion="0.054263566">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/bo/ModuleBOBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="760" selection-end="760" vertical-scroll-proportion="1.1751825">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/include/javascript/yui/YAHOO.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="7" selection-start="841" selection-end="841" vertical-scroll-proportion="0.05109489">
+        <state line="26" column="7" selection-start="841" selection-end="841" vertical-scroll-proportion="0.023140496">
           <folding>
             <marker date="1185870262000" expanded="false" signature="0:2" placeholder="/*...*/" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/include/include_header.vhtml">
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="36" selection-start="1682" selection-end="1682" vertical-scroll-proportion="0.06451613">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/include/ytree/TreeView/TreeView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="2" selection-start="549" selection-end="549" vertical-scroll-proportion="0.054263566">
+        <state line="18" column="2" selection-start="549" selection-end="549" vertical-scroll-proportion="0.0237691">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/entity/Module.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="27" selection-start="278" selection-end="289" vertical-scroll-proportion="0.35766423">
+        <state line="10" column="27" selection-start="278" selection-end="289" vertical-scroll-proportion="0.16198348">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/entity/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="25" selection-start="278" selection-end="287" vertical-scroll-proportion="0.35766423">
+        <state line="10" column="25" selection-start="278" selection-end="287" vertical-scroll-proportion="0.048109967">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/conf/META-INF/persistence.xml">
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/include/javascript/treeutils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="50" selection-start="3987" selection-end="3987" vertical-scroll-proportion="1.0245901">
-          <folding />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1187874938000" expanded="true" signature="166:826" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/EntityObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="43" selection-start="415" selection-end="415" vertical-scroll-proportion="0.05090909">
+          <folding>
+            <marker date="1187874928000" expanded="true" signature="5639:5645" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/dao/ModuleDAOBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="0" selection-start="2511" selection-end="2511" vertical-scroll-proportion="1.0729927">
+        <state line="68" column="0" selection-start="2511" selection-end="2511" vertical-scroll-proportion="1.1546391">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/bo/ModuleBOBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="760" selection-end="760" vertical-scroll-proportion="1.1065292">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/include/javascript/yui/event.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="722" column="12" selection-start="22591" selection-end="22591" vertical-scroll-proportion="0.71272725">
+          <folding>
+            <marker date="1185870260000" expanded="false" signature="0:2" placeholder="/*...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/treetest.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="0" selection-start="785" selection-end="976" vertical-scroll-proportion="1.2564102">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/conf/META-INF/persistence.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="23" selection-start="3227" selection-end="3227" vertical-scroll-proportion="0.20689656">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/function/list_module.vhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="337" column="8" selection-start="14980" selection-end="14980" vertical-scroll-proportion="0.72649574">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/en_US/include/include_header.vhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="875" selection-end="875" vertical-scroll-proportion="0.11965812">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/function/dao/NodeDAOBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="8" selection-start="1961" selection-end="1961" vertical-scroll-proportion="0.42635658">
+        <state line="56" column="8" selection-start="1961" selection-end="1961" vertical-scroll-proportion="0.85818183">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/SQLQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="115" column="0" selection-start="3248" selection-end="3248" vertical-scroll-proportion="0.3309091">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/cn/iservicedesk/infrastructure/SuperAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="0" selection-start="987" selection-end="987" vertical-scroll-proportion="0.2248062">
+        <state line="139" column="0" selection-start="4411" selection-end="4411" vertical-scroll-proportion="0.8981818">
           <folding />
         </state>
       </provider>
