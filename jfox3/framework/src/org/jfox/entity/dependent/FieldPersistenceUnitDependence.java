@@ -41,6 +41,10 @@ public class FieldPersistenceUnitDependence implements Dependence {
         else {
             emf = EntityManagerFactoryBuilderImpl.getEntityManagerFactoryByName(unitName);
         }
+
+        if(emf == null) {
+            throw new InjectionException("Failed to inject field " + field.getName() + " of @PersistenceContext " + bucket.getEJBName() + ", because could not find PersistenceUnit: " + unitName);
+        }
         // 使用 field 反射注入
         try {
             field.setAccessible(true);

@@ -9,12 +9,12 @@ package org.jfox.entity.dependent;
 import java.lang.reflect.Field;
 import javax.persistence.PersistenceContext;
 
+import org.jfox.ejb3.AbstractEJBContext;
+import org.jfox.ejb3.EJBBucket;
 import org.jfox.entity.EntityManagerExt;
 import org.jfox.entity.EntityManagerFactoryBuilderImpl;
 import org.jfox.framework.dependent.Dependence;
 import org.jfox.framework.dependent.InjectionException;
-import org.jfox.ejb3.EJBBucket;
-import org.jfox.ejb3.AbstractEJBContext;
 
 /**
  * 注入 @PersistenceContext
@@ -47,6 +47,9 @@ public class FieldPersistenceContextDependence implements Dependence {
         }
         else {
             em = (EntityManagerExt)EntityManagerFactoryBuilderImpl.getEntityManagerFactoryByName(unitName).createEntityManager();
+        }
+        if(em == null) {
+            throw new InjectionException("Failed to inject field " + field.getName() + " of @PersistenceContext " + bucket.getEJBName() + ", because could not find EntityManager: " + unitName);
         }
         // 使用 field 反射注入
         try {
