@@ -184,8 +184,9 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         finally {
             postAction(invocationContext);
             releaseSessionToken(invocationContext);
-            logger.info("Request done, URI: " + invocationContext.getRequestURI() + ", time consumed " + (System.currentTimeMillis()-now) + "ms.");
         }
+        
+        logger.info("Request done, URI: " + invocationContext.getRequestURI() + ", time consumed " + (System.currentTimeMillis()-now) + "ms.");
         // 没有设置 errorView, 抛出异常
         if (exception != null && (errorView == null || errorView.trim().length() == 0)) {
             throw exception;
