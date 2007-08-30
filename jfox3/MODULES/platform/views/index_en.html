@@ -1,0 +1,761 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>SugarCRM - Commercial Open Source CRM</title>
+    <link REL="SHORTCUT ICON" HREF="include/images/sugar_icon.ico">
+    <link href="themes/VintageSugar/style.css?s=4.5.1e&c=" rel="stylesheet" type="text/css"/>
+    <link href="themes/VintageSugar/navigation.css?s=4.5.1e&c=" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="themes/VintageSugar/calendar-win2k-cold-1.css?s=4.5.1e&c=">
+    <script type="text/javascript" src="include/javascript/cookie.js?s=4.5.1e&c="></script>
+    <script type="text/javascript" src="jscalendar/calendar.js?s=4.5.1e&c="></script>
+    <script type="text/javascript" src="jscalendar/lang/calendar-en.js?s=4.5.1e&c="></script>
+    <script type="text/javascript" src="jscalendar/calendar-setup_3.js?s=4.5.1e&c="></script>
+    <script src="include/javascript/yui/YAHOO.js?s=4.5.1e&c="></script>
+    <script src="include/javascript/yui/log.js?s=4.5.1e&c="></script>
+    <script src="include/javascript/yui/dom.js?s=4.5.1e&c="></script>
+    <script src="include/javascript/yui/event.js?s=4.5.1e&c="></script>
+    <script src="include/javascript/yui/animation.js?s=4.5.1e&c="></script>
+    <script src="include/javascript/yui/connection.js?s=4.5.1e&c="></script>
+    <script src="include/javascript/yui/dragdrop.js?s=4.5.1e&c="></script>
+    <script src="include/javascript/yui/container.js?s=4.5.1e&c="></script>
+    <script src="include/javascript/yui/ygDDList.js?s=4.5.1e&c="></script>
+    <script type="text/javascript" src="include/javascript/sugar_3.js?s=4.5.1e&c="></script>
+    <script type="text/javascript" src="cache/jsLanguage/en_us.js?s=4.5.1e&c=&j=1"></script>
+    <script type="text/javascript" src="cache/jsLanguage/Contacts/en_us.js?s=4.5.1e&c=&j=1"></script>
+
+    <script language="javascript" src="themes/VintageSugar/menu.js?s=4.5.1e&c="></script>
+    <script language="javascript" src="themes/VintageSugar/cookie.js?s=4.5.1e&c="></script>
+
+    <script type="text/javascript">
+        Calendar.setup({
+            inputField : "jscal_field", ifFormat : "%Y-%m-%d", showsTime : false, button : "jscal_trigger", singleClick : true, step : 1
+        });
+    </script>
+
+    <script type="text/javascript" language="Javascript">
+
+        function trim(s) {
+            while (s.substring(0, 1) == " ") {
+                s = s.substring(1, s.length);
+            }
+            while (s.substring(s.length - 1, s.length) == ' ') {
+                s = s.substring(0, s.length - 1);
+            }
+
+            return s;
+        }
+
+        function verify_data(form) {
+            var isError = false;
+            var errorMessage = "";
+            if (trim(form.last_name.value) == "") {
+                isError = true;
+                errorMessage += "\nLast Name";
+            }
+
+            if (isError == true) {
+                alert("Missing required field:" + errorMessage);
+                return false;
+            }
+            if (trim(form.email1.value) != "" && !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(form.email1.value)) {
+                alert('"' + form.email1.value + '" not a valid email address.');
+                return false;
+            }
+            if (trim(form.email2.value) != "" && !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(form.email2.value)) {
+                alert('"' + form.email2.value + '" not a valid email address.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+    <script type="text/javascript" src="include/JSON.js?s=4.5.1e&c="></script>
+    <script type="text/javascript">sqsWaitGif = "themes/VintageSugar/images/sqsWait.gif";</script>
+    <script type="text/javascript" src="include/javascript/quicksearch.js?s=4.5.1e&c="></script>
+    <script type="text/javascript" language="javascript">sqs_objects = {"account_name":{"method":"query","modules":["Accounts"],"group":"or","field_list":["name","id","billing_address_street","billing_address_city","billing_address_state","billing_address_postalcode","billing_address_country","phone_office"],"populate_list":["account_name","account_id","primary_address_street","primary_address_city","primary_address_state","primary_address_postalcode","primary_address_country","phone_work"],"conditions":[{"name":"name","op":"like_custom","end":"%","value":""}],"order":"name","limit":"30","no_match_text":"No Match"},"assigned_user_name":{"method":"get_user_array","field_list":["user_name","id"],"populate_list":["assigned_user_name","assigned_user_id"],"conditions":[{"name":"user_name","op":"like_custom","end":"%","value":""}],"limit":"30","no_match_text":"No Match"},"campaign_name":{"method":"query","modules":["Campaigns"],"group":"or","field_list":["name","id"],"populate_list":["campaign_name","campaign_id"],"conditions":[{"name":"name","op":"like_custom","end":"%","value":""}],"order":"name","limit":"30","no_match_text":"No Match"}}</script>
+</head>
+
+<body onload="set_focus()" onMouseOut="closeMenus();">
+<div id="MoreMenu" class="menu">
+    <a href="index.php?module=Campaigns&action=index" class="menuItem" id="CampaignsHandle" parentid="MoreMenu" onMouseOver="hiliteItem(this,'yes'); closeSubMenus(this);" onMouseOut="unhiliteItem(this);">Campaigns</a>
+
+    <a href="index.php?module=Project&action=index" class="menuItem" id="ProjectHandle" parentid="MoreMenu" onMouseOver="hiliteItem(this,'yes'); closeSubMenus(this);" onMouseOut="unhiliteItem(this);">Projects</a>
+
+    <a href="index.php?module=Feeds&action=index" class="menuItem" id="FeedsHandle" parentid="MoreMenu" onMouseOver="hiliteItem(this,'yes'); closeSubMenus(this);" onMouseOut="unhiliteItem(this);">RSS</a>
+
+
+    <a href="index.php?module=Dashboard&action=index" class="menuItem" id="DashboardHandle" parentid="MoreMenu" onMouseOver="hiliteItem(this,'yes'); closeSubMenus(this);" onMouseOut="unhiliteItem(this);">Dashboard</a>
+</div>
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+
+<td colspan="3" style="background-image : url(themes/VintageSugar/images/header_bg.gif); background-repeat: repeat-x;">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+    <td width="80%" height="40" rowspan="2" valign="top"><img src="themes/VintageSugar/images/company_logo.png" width="212" height="40" alt="Company Logo" border="0" style="margin-left: 12px;margin-bottom: 3px;"></td>
+    <td rowspan="2" align="right" valign="top" style="border: none;"><img src="themes/VintageSugar/images/myAreaSeparator.gif" width="20" height="20" alt="My Area Links:" border="0"></td>
+    <td height="20" align="right" valign="middle" nowrap class="myAreaBg"><a href="index.php?module=Users&action=DetailView&record=will_id" class="myAreaLink">My Account</a>&nbsp;|&nbsp;
+        <a href="index.php?module=Home&action=TrainingPortal" class="myAreaLink">Training</a>&nbsp;|&nbsp;
+        <a href="index.php?module=Employees&action=ListView" class="myAreaLink">Employees</a>&nbsp;|&nbsp;
+
+        <a href="index.php?module=Users&action=Logout" class="myAreaLink">Logout</a>&nbsp;|&nbsp;
+        <a href="index.php?module=Home&action=About" class="myAreaLink">About</a>
+
+    </td>
+</tr>
+<tr>
+    <td align="right" height="20"><img src="include/images/sugarsales_myarea.png" alt="Sugar Suite" width="140" height="15" border="0" style="margin-top: 6px; margin-right: 6px;"></td>
+</tr>
+<tr>
+<td colspan="3">
+
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td style="padding-left:7px; background-image :url(themes/VintageSugar/images/emptyTabSpace.gif);">&nbsp;</td>
+<td>
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr height="25">
+            <td><img src="themes/VintageSugar/images/otherTab_left.gif" width="5" height="25" border="0" id="otherTab" alt="Home"></td>
+            <td class="otherTab" nowrap><a class="otherTabLink" href="?module=Home&action=index">Home</A></td>
+
+            <td class="otherTabRight"><img src="include/images/blank.gif" width="2" height="1" border="0" alt="Home"></td>
+            <td valign="bottom" style="background-image : url(themes/VintageSugar/images/emptyTabSpace.gif);"> </td>
+        </tr>
+
+    </table>
+</td>
+
+<td>
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr height="25">
+            <td><img src="themes/VintageSugar/images/otherTab_left.gif" width="5" height="25" border="0" id="otherTab" alt="My Portal"></td>
+
+            <td class="otherTab" nowrap><a class="otherTabLink" href="index.php?module=iFrames&action=index">My Portal</A></td>
+            <td class="otherTabRight"><img src="include/images/blank.gif" width="2" height="1" border="0" alt="My Portal"></td>
+            <td valign="bottom" style="background-image : url(themes/VintageSugar/images/emptyTabSpace.gif);"> </td>
+        </tr>
+
+    </table>
+</td>
+
+<td>
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+
+        <tr height="25">
+            <td><img src="themes/VintageSugar/images/otherTab_left.gif" width="5" height="25" border="0" id="otherTab" alt="Calendar"></td>
+            <td class="otherTab" nowrap><a class="otherTabLink" href="index.php?module=Calendar&action=index">Calendar</A></td>
+            <td class="otherTabRight"><img src="include/images/blank.gif" width="2" height="1" border="0" alt="Calendar"></td>
+            <td valign="bottom" style="background-image : url(themes/VintageSugar/images/emptyTabSpace.gif);"> </td>
+        </tr>
+
+    </table>
+</td>
+
+
+<td>
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr height="25">
+            <td><img src="themes/VintageSugar/images/otherTab_left.gif" width="5" height="25" border="0" id="otherTab" alt="Activities"></td>
+            <td class="otherTab" nowrap><a class="otherTabLink" href="index.php?module=Activities&action=index">Activities</A></td>
+            <td class="otherTabRight"><img src="include/images/blank.gif" width="2" height="1" border="0" alt="Activities"></td>
+            <td valign="bottom" style="background-image : url(themes/VintageSugar/images/emptyTabSpace.gif);"> </td>
+        </tr>
+
+    </table>
+</td>
+
+<td>
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr height="25">
+            <td><img src="themes/VintageSugar/images/currentTab_left.gif" width="5" height="25" border="0" id="currentTab" alt="Contacts"></td>
+            <td class="currentTab" nowrap><a class="currentTabLink" href="index.php?module=Contacts&action=index">Contacts</A></td>
+            <td class="currentTabRight"><img src="include/images/blank.gif" width="2" height="1" border="0" alt="Contacts"></td>
+
+            <td valign="bottom" style="background-image : url(themes/VintageSugar/images/emptyTabSpace.gif);"> </td>
+        </tr>
+
+    </table>
+</td>
+
+<td>
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr height="25">
+            <td><img src="themes/VintageSugar/images/otherTab_left.gif" width="5" height="25" border="0" id="otherTab" alt="Accounts"></td>
+            <td class="otherTab" nowrap><a class="otherTabLink" href="index.php?module=Accounts&action=index">Accounts</A></td>
+
+            <td class="otherTabRight"><img src="include/images/blank.gif" width="2" height="1" border="0" alt="Accounts"></td>
+            <td valign="bottom" style="background-image : url(themes/VintageSugar/images/emptyTabSpace.gif);"> </td>
+        </tr>
+
+    </table>
+</td>
+
+<td>
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr height="25">
+            <td><img src="themes/VintageSugar/images/otherTab_left.gif" width="5" height="25" border="0" id="otherTab" alt="Leads"></td>
+
+            <td class="otherTab" nowrap><a class="otherTabLink" href="index.php?module=Leads&action=index">Leads</A></td>
+            <td class="otherTabRight"><img src="include/images/blank.gif" width="2" height="1" border="0" alt="Leads"></td>
+            <td valign="bottom" style="background-image : url(themes/VintageSugar/images/emptyTabSpace.gif);"> </td>
+        </tr>
+
+    </table>
+</td>
+
+<td>
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+
+        <tr height="25">
+            <td><img src="themes/VintageSugar/images/otherTab_left.gif" width="5" height="25" border="0" id="otherTab" alt="Opportunities"></td>
+            <td class="otherTab" nowrap><a class="otherTabLink" href="index.php?module=Opportunities&action=index">Opportunities</A></td>
+            <td class="otherTabRight"><img src="include/images/blank.gif" width="2" height="1" border="0" alt="Opportunities"></td>
+            <td valign="bottom" style="background-image : url(themes/VintageSugar/images/emptyTabSpace.gif);"> </td>
+        </tr>
+
+    </table>
+</td>
+
+
+<td>
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr height="25">
+            <td><img src="themes/VintageSugar/images/otherTab_left.gif" width="5" height="25" border="0" id="otherTab" alt="Cases"></td>
+            <td class="otherTab" nowrap><a class="otherTabLink" href="index.php?module=Cases&action=index">Cases</A></td>
+            <td class="otherTabRight"><img src="include/images/blank.gif" width="2" height="1" border="0" alt="Cases"></td>
+            <td valign="bottom" style="background-image : url(themes/VintageSugar/images/emptyTabSpace.gif);"> </td>
+        </tr>
+
+    </table>
+</td>
+
+<td>
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr height="25">
+            <td><img src="themes/VintageSugar/images/otherTab_left.gif" width="5" height="25" border="0" id="otherTab" alt="Bug Tracker"></td>
+            <td class="otherTab" nowrap><a class="otherTabLink" href="index.php?module=Bugs&action=index">Bug Tracker</A></td>
+            <td class="otherTabRight"><img src="include/images/blank.gif" width="2" height="1" border="0" alt="Bug Tracker"></td>
+
+            <td valign="bottom" style="background-image : url(themes/VintageSugar/images/emptyTabSpace.gif);"> </td>
+        </tr>
+
+    </table>
+</td>
+
+<td>
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr height="25">
+            <td><img src="themes/VintageSugar/images/otherTab_left.gif" width="5" height="25" border="0" id="otherTab" alt="Documents"></td>
+            <td class="otherTab" nowrap><a class="otherTabLink" href="index.php?module=Documents&action=index">Documents</A></td>
+
+            <td class="otherTabRight"><img src="include/images/blank.gif" width="2" height="1" border="0" alt="Documents"></td>
+            <td valign="bottom" style="background-image : url(themes/VintageSugar/images/emptyTabSpace.gif);"> </td>
+        </tr>
+
+    </table>
+</td>
+
+<td>
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr height="25">
+            <td><img src="themes/VintageSugar/images/otherTab_left.gif" width="5" height="25" border="0" id="otherTab" alt="Emails"></td>
+
+            <td class="otherTab" nowrap><a class="otherTabLink" href="index.php?module=Emails&action=index">Emails</A></td>
+            <td class="otherTabRight"><img src="include/images/blank.gif" width="2" height="1" border="0" alt="Emails"></td>
+            <td valign="bottom" style="background-image : url(themes/VintageSugar/images/emptyTabSpace.gif);"><img src='themes/VintageSugar/images/more.gif' alt='' align='absmiddle' id='MoreHandle' style=' margin-left:2px; margin-bottom: 4px; cursor: pointer; cursor: hand;' align='absmiddle' onmouseover='tbButtonMouseOver(this.id,66,"",0);'></td>
+        </tr>
+
+    </table>
+</td>
+<td width="100%" style="background-image : url(themes/VintageSugar/images/emptyTabSpace.gif);"><img src="include/images/blank.gif" width="1" height="1" border="0" alt=""></td>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr height="20">
+    <form name='UnifiedSearch' onsubmit='return SUGAR.unifiedSearchAdvanced.checkUsaAdvanced()'>
+        <input type="hidden" name="action" value="UnifiedSearch">
+        <input type="hidden" name="module" value="Home">
+        <input type="hidden" name="search_form" value="false">
+        <input type="hidden" name="advanced" value="false">
+
+        <td class="subTabBar" colspan="3">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0" height="20">
+                <tr>
+                    <td id="welcome" class="welcome" width="100%">Welcome Will</td>
+                    <td class="welcome" style="padding: 0px" align="right" width="20"><img src="themes/VintageSugar/images/searchSeparator.gif" width="20" height="20" border="0" alt="Search"></td>
+
+                    <td class="search" nowrap style="padding: 0px" align="right">
+                        <img style="filter:alpha(opacity=10);" id="unified_search_advanced_img" src="themes/VintageSugar/images/searchMore.gif" border="0" alt="Search">&nbsp;<b>Search</b>
+
+                    </td>
+                    <td class="search" nowrap>&nbsp; <input type="text" class="searchField" name="query_string" id="query_string" size="20" value="">&nbsp;<input type="image" value="Search" src="themes/VintageSugar/images/searchButton.gif" alt="" align="top" width="25" height="17" class="searchButton"></td>
+                </tr>
+            </table>
+        </td>
+    </form>
+</tr>
+</table>
+
+<div id="unified_search_advanced_div" style="display: none; height: 1px; position: absolute; overflow: hidden; width: 300px; padding-top: 5px"></div>
+</td>
+</tr>
+<tr height="24">
+    <td class="lastView" nowrap colspan="3"><b>Navigator:&nbsp;&nbsp; Contact>>Create Contact </b>
+
+        <a class="lastViewLink" title="[Alt+1]" accessKey="1" href="index.php?module=Project&action=DetailView&record=232b0fc8-e0b5-a4ce-902d-46a4c624649a"><img src='themes/VintageSugar/images/Project.gif' width='16' height='16' border="0" align="absmiddle" alt="Take Over The World"></a>&nbsp;<a class="lastViewLink" title="[Alt+1]" accessKey="1" href="index.php?module=Project&action=DetailView&record=232b0fc8-e0b5-a4ce-902d-46a4c624649a">Take Over The World</A>&nbsp;
+        Create Contact successfully.
+</tr>
+<tr height="11">
+
+    <td colspan="3" style="padding-left: 10px;"></td>
+</tr>
+<tr>
+<td colspan="3">
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+<tr>
+<td valign="top" style="width: 10px;"><img style="cursor: pointer; cursor: hand;" id="HideHandle" name="HideHandle" src="themes/VintageSugar/images/show.gif" alt="" onclick='hideLeftCol("leftCol");closeMenus();' onmouseover="showSubMenu('leftCol')"></td>
+<td id="left" valign="top" style="width: 160px;">
+    <div style="display: none;" id="leftCol">
+        <table cellpadding="0" cellspacing="0" border="0" width="160">
+            <tr>
+                <td style="padding-right: 10px;">
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%" class="leftColumnModuleHead">
+                        <tr>
+
+                            <th width="5" valign="top"><img src="themes/VintageSugar/images/moduleTab_left.gif" alt="Shortcuts" width="5" height="23" border="0"></th>
+                            <th width="100%" class="leftColumnModuleName">Shortcuts</th>
+                            <th width="7" valign="top"><img src="themes/VintageSugar/images/moduleTab_right.gif" alt="Shortcuts" width="7" height="23" border="0"></th>
+                        </tr>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" border="0" class="subMenu" width="100%">
+
+                        <tr>
+                            <td class="subMenuTDIcon" width="16" style="background-image: url(themes/VintageSugar/images/createBg.gif); background-repeat : repeat-y;"><a onMouseOver="document.getElementById('CreateContacts_sh').style.background='#ffffff';" onMouseOut="document.getElementById('CreateContacts_sh').style.background='#eeeeee';" class="subMenuLink" href="index.php?module=Contacts&action=EditView&return_module=Contacts&return_action=DetailView"><img
+                                    src='themes/VintageSugar/images/CreateContacts.gif' width='16' height='16' alt='Create Contact' border='0' align='absmiddle'></a></td>
+                            <td nowrap id="CreateContacts_sh" class="subMenuTD" onMouseOver="this.style.background='#ffffff';this.style.cursor='hand';" onMouseOut="this.style.background='#eeeeee';this.style.cursor='auto';" onclick="location.href='index.php?module=Contacts&action=EditView&return_module=Contacts&return_action=DetailView'">&nbsp;<span class="subMenuLink" onMouseOver="this.style.color='#990033';" onMouseOut="this.style.color='#33485c';">Create Contact</span></td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="subMenuTDIcon" width="16" style="background-image: url(themes/VintageSugar/images/createBg.gif); background-repeat : repeat-y;"><a onMouseOver="document.getElementById('CreateContacts_sh').style.background='#ffffff';" onMouseOut="document.getElementById('CreateContacts_sh').style.background='#eeeeee';" class="subMenuLink" href="index.php?module=Contacts&action=BusinessCard"><img src='themes/VintageSugar/images/CreateContacts.gif' width='16' height='16'
+                                                                                                                                                                                                                                                                                                                                                                                                                                     alt='Enter Business Card' border='0' align='absmiddle'></a></td>
+                            <td nowrap id="CreateContacts_sh" class="subMenuTD" onMouseOver="this.style.background='#ffffff';this.style.cursor='hand';" onMouseOut="this.style.background='#eeeeee';this.style.cursor='auto';" onclick="location.href='index.php?module=Contacts&action=BusinessCard'">&nbsp;<span class="subMenuLink" onMouseOver="this.style.color='#990033';" onMouseOut="this.style.color='#33485c';">Enter Business Card</span></td>
+                        </tr>
+
+                        <tr>
+                            <td class="subMenuTDIcon" width="16" style="background-image: url(themes/VintageSugar/images/createBg.gif); background-repeat : repeat-y;"><a onMouseOver="document.getElementById('CreateContacts_sh').style.background='#ffffff';" onMouseOut="document.getElementById('CreateContacts_sh').style.background='#eeeeee';" class="subMenuLink" href="index.php?module=Contacts&action=ImportVCard"><img src='themes/VintageSugar/images/CreateContacts.gif' width='16' height='16'
+                                                                                                                                                                                                                                                                                                                                                                                                                                    alt='Create From vCard' border='0' align='absmiddle'></a></td>
+
+                            <td nowrap id="CreateContacts_sh" class="subMenuTD" onMouseOver="this.style.background='#ffffff';this.style.cursor='hand';" onMouseOut="this.style.background='#eeeeee';this.style.cursor='auto';" onclick="location.href='index.php?module=Contacts&action=ImportVCard'">&nbsp;<span class="subMenuLink" onMouseOver="this.style.color='#990033';" onMouseOut="this.style.color='#33485c';">Create From vCard</span></td>
+                        </tr>
+
+                        <tr>
+                            <td class="subMenuTDIcon" width="16" style="background-image: url(themes/VintageSugar/images/createBg.gif); background-repeat : repeat-y;"><a onMouseOver="document.getElementById('Contacts_sh').style.background='#ffffff';" onMouseOut="document.getElementById('Contacts_sh').style.background='#eeeeee';" class="subMenuLink" href="index.php?module=Contacts&action=index&return_module=Contacts&return_action=DetailView"><img src='themes/VintageSugar/images/Contacts.gif'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                  width='16' height='16' alt='Contacts' border='0'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                  align='absmiddle'></a></td>
+                            <td nowrap id="Contacts_sh" class="subMenuTD" onMouseOver="this.style.background='#ffffff';this.style.cursor='hand';" onMouseOut="this.style.background='#eeeeee';this.style.cursor='auto';" onclick="location.href='index.php?module=Contacts&action=index&return_module=Contacts&return_action=DetailView'">&nbsp;<span class="subMenuLink" onMouseOver="this.style.color='#990033';" onMouseOut="this.style.color='#33485c';">Contacts</span></td>
+                        </tr>
+
+                        <tr>
+
+                            <td class="subMenuTDIcon" width="16" style="background-image: url(themes/VintageSugar/images/createBg.gif); background-repeat : repeat-y;"><a onMouseOver="document.getElementById('Import_sh').style.background='#ffffff';" onMouseOut="document.getElementById('Import_sh').style.background='#eeeeee';" class="subMenuLink" href="index.php?module=Contacts&action=Import&step=1&return_module=Contacts&return_action=index"><img src='themes/VintageSugar/images/Import.gif'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                 width='16' height='16' alt='Import' border='0'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                 align='absmiddle'></a></td>
+                            <td nowrap id="Import_sh" class="subMenuTD" onMouseOver="this.style.background='#ffffff';this.style.cursor='hand';" onMouseOut="this.style.background='#eeeeee';this.style.cursor='auto';" onclick="location.href='index.php?module=Contacts&action=Import&step=1&return_module=Contacts&return_action=index'">&nbsp;<span class="subMenuLink" onMouseOver="this.style.color='#990033';" onMouseOut="this.style.color='#33485c';">Import</span></td>
+                        </tr>
+
+                        <tr>
+                            <td class="subMenuTDIcon" width="16" style="background-image: url(themes/VintageSugar/images/createBg.gif); background-repeat : repeat-y;"><a onMouseOver="document.getElementById('_sh').style.background='#ffffff';" onMouseOut="document.getElementById('_sh').style.background='#eeeeee';" class="subMenuLink" href="#"></a></td>
+                            <td nowrap id="_sh" class="subMenuTD" onMouseOver="this.style.background='#ffffff';this.style.cursor='hand';" onMouseOut="this.style.background='#eeeeee';this.style.cursor='auto';" onclick="location.href='#'">&nbsp;<span class="subMenuLink" onMouseOver="this.style.color='#990033';" onMouseOut="this.style.color='#33485c';"><span style="display: none">wp_shortcut_fill_0</span></span></td>
+                        </tr>
+
+                    </table>
+                    <img src="themes/VintageSugar/images/blank.gif" alt="" width="160" height="1" border="0"></td>
+            </tr>
+        </table>
+        <script language="Javascript">
+
+            function hideLeftCol(id) {
+
+                if (this.document.getElementById(id).style.display == 'none') {
+                    this.document.getElementById(id).style.display = 'inline';
+
+                    Set_Cookie('showLeftCol', 'true', 30, '/', '', '');
+                    var show = Get_Cookie('showLeftCol');
+                    document['HideHandle'].src = 'themes/VintageSugar/images/hide.gif';
+                }
+                else {
+                    this.document.getElementById(id).style.display = 'none';
+
+                    Set_Cookie('showLeftCol', 'false', 30, '/', '', '');
+                    var show = Get_Cookie('showLeftCol');
+                    document['HideHandle'].src = 'themes/VintageSugar/images/show.gif';
+
+                }
+            }
+
+            function showSubMenu(id) {
+                if (this.document.getElementById(id).style.display == 'none') {
+                    tbButtonMouseOver('HideHandle', 122, '', 10);
+                }
+            }
+
+            if (!Get_Cookie('showLeftCol')) {
+                Set_Cookie('showLeftCol', 'true', 30, '/', '', '');
+            }
+            var show = Get_Cookie('showLeftCol');
+
+            if (show == 'true') {
+                hideLeftCol("leftCol");
+                closeMenus();
+            }
+            else {
+                showSubMenu('leftCol');
+            }
+        </script>
+        
+    </div>
+</td>
+
+<td style="padding-right: 10px; vertical-align: top; width: 100%;">
+
+<!-- start page content -->
+<script type="text/javascript" language="Javascript">
+    function copyAddressRight(form) {
+        form.alt_address_street.value = form.primary_address_street.value;
+        form.alt_address_city.value = form.primary_address_city.value;
+        form.alt_address_state.value = form.primary_address_state.value;
+        form.alt_address_postalcode.value = form.primary_address_postalcode.value;
+        form.alt_address_country.value = form.primary_address_country.value;
+        return true;
+    }
+    function copyAddressLeft(form) {
+        form.primary_address_street.value = form.alt_address_street.value;
+        form.primary_address_city.value = form.alt_address_city.value;
+        form.primary_address_state.value = form.alt_address_state.value;
+        form.primary_address_postalcode.value = form.alt_address_postalcode.value;
+        form.primary_address_country.value = form.alt_address_country.value;
+        return true;
+    }
+</script>
+
+<script type="text/javascript" language="JavaScript">
+
+    function set_focus() {
+        if (document.forms.length > 0) {
+            for (i = 0; i < document.forms.length; i++) {
+                for (j = 0; j < document.forms[i].elements.length; j++) {
+                    var field = document.forms[i].elements[j];
+                    if ((field.type == "text" || field.type == "textarea" || field.type == "password") &&
+                        !field.disabled && (field.name == "first_name" || field.name == "name" || field.name == "user_name" || field.name == "document_name")) {
+                        field.focus();
+                        if (field.type == "text") {
+                            field.select();
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    }
+</script>
+
+<table width='100%' cellpadding='0' cellspacing='0' border='0' class='moduleTitle'>
+    <tr>
+        <td valign='top'>
+            <IMG src='themes/VintageSugar/images/Contacts.gif' width='16' height='16' border='0' style='margin-top: 3px; margin-right: 3px;' alt='Contacts'>&nbsp;</td>
+        <td width='100%'><h2>Contacts: </h2></td>
+        <td valign='top' align='right' nowrap style='padding-top:3px; padding-left: 5px;'>
+            &nbsp;<A href="javascript:void window.open('index.php?module=Administration&action=SupportPortal&view=documentation&version=4.5.1e&edition=OS&lang=en_us&help_module=Contacts&help_action=EditView&key=aa03ae9a9900b1c6b5a72eb2e2266b29','helpwin','width=600,height=600,status=0,resizable=1,scrollbars=1')" class='utilsLink'>
+            <img src='themes/VintageSugar/images/help.gif' width='13' height='13' alt='Help'
+                 border='0' align='absmiddle'></a>&nbsp;<A
+                href="javascript:void window.open('index.php?module=Administration&action=SupportPortal&view=documentation&version=4.5.1e&edition=OS&lang=en_us&help_module=Contacts&help_action=EditView&key=aa03ae9a9900b1c6b5a72eb2e2266b29','helpwin','width=600,height=600,status=0,resizable=1,scrollbars=1');" class='utilsLink'>Help</A>
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript" src="include/javascript/popup_parent_helper.js?s=4.5.1e&c="></script>
+<form name="EditView" method="POST" action="index.php">
+<input type="hidden" name="module" value="Contacts">
+
+<input type="hidden" name="record" value="">
+<input type="hidden" name="action">
+<input type="hidden" name="opportunity_id" value="">
+<input type="hidden" name="contact_role">
+<input type="hidden" name="case_id" value="">
+<input type="hidden" name="bug_id" value="">
+<input type="hidden" name="email_id" value="">
+<input type="hidden" name="inbound_email_id" value="">
+<input type="hidden" name="start" value="">
+
+<input type="hidden" name="type" value="">
+<input type="hidden" name="return_module" value="Contacts">
+<input type="hidden" name="return_id" value="">
+<input type="hidden" name="return_action" value="index">
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td align="right" nowrap><span class="required">*</span> Indicates required field</td>
+        <td align='right'></td>
+
+    </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabForm">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+    <th align="left" class="dataLabel" colspan="4"><h4 class="dataLabel">Contact Information</h4></th>
+</tr>
+<tr>
+    <td width="15%" class="dataLabel">First Name:</td>
+
+    <td width="35%" class="dataField"><select tabindex='1' name='salutation'>
+        <OPTION selected value=''>--None--</OPTION>
+        <OPTION value='Mr.'>Mr.</OPTION>
+        <OPTION value='Ms.'>Ms.</OPTION>
+        <OPTION value='Mrs.'>Mrs.</OPTION>
+        <OPTION value='Dr.'>Dr.</OPTION>
+        <OPTION value='Prof.'>Prof.</OPTION>
+    </select>&nbsp;<input name='first_name' tabindex='1' size='25' maxlength='25' type="text" value=""></td>
+    <td width="15%" class="dataLabel">Office Phone:</td>
+
+    <td width="35%" class="dataField"><input id='phone_work' name='phone_work' type="text" tabindex='2' size='20' maxlength='25' value=''></td>
+</tr>
+<tr>
+    <td class="dataLabel">Last Name: <span class="required">*</span></td>
+    <td class="dataField"><input name='last_name' type="text" tabindex='1' size='25' maxlength='25' value=""></td>
+    <td class="dataLabel">Mobile:</td>
+    <td class="dataField"><input name='phone_mobile' type="text" tabindex='2' size='20' maxlength='25' value=''></td>
+</tr>
+<tr>
+
+    <td class="dataLabel">Account Name:</td>
+    <td class="dataField"><input class="sqsEnabled" tabindex="1" autocomplete="off" id="account_name" name='account_name' type="text" size='35' value=""><input id='account_id' name='account_id' type="hidden" value=''>
+        <input title="Select [Alt+T]" accessKey="T" type="button" tabindex='1' class="button" value='Select' name=btn1
+               onclick='open_popup("Accounts", 600, 400, "", true, false, {"call_back_function":"set_return","form_name":"EditView","field_to_name_array":{"id":"account_id","name":"account_name","billing_address_street":"primary_address_street","billing_address_city":"primary_address_city","billing_address_state":"primary_address_state","billing_address_postalcode":"primary_address_postalcode","billing_address_country":"primary_address_country","phone_office":"phone_work"}}, "single", true);'/>
+    </td>
+    <td class="dataLabel">Home:</td>
+    <td class="dataField"><input name='phone_home' type="text" tabindex='2' size='20' maxlength='25' value=''></td>
+</tr>
+<tr>
+    <td class="dataLabel">Lead Source:</td>
+
+    <td class="dataField"><select name='lead_source' tabindex='1'>
+        <OPTION selected value=''>--None--</OPTION>
+        <OPTION value='Cold Call'>Cold Call</OPTION>
+        <OPTION value='Existing Customer'>Existing Customer</OPTION>
+        <OPTION value='Self Generated'>Self Generated</OPTION>
+        <OPTION value='Employee'>Employee</OPTION>
+        <OPTION value='Partner'>Partner</OPTION>
+        <OPTION value='Public Relations'>Public Relations</OPTION>
+        <OPTION value='Direct Mail'>Direct Mail</OPTION>
+
+        <OPTION value='Conference'>Conference</OPTION>
+        <OPTION value='Trade Show'>Trade Show</OPTION>
+        <OPTION value='Web Site'>Web Site</OPTION>
+        <OPTION value='Word of mouth'>Word of mouth</OPTION>
+        <OPTION value='Email'>Email</OPTION>
+        <OPTION value='Campaign'>Campaign</OPTION>
+        <OPTION value='Other'>Other</OPTION>
+    </select></td>
+    <td class="dataLabel">Other Phone:</td>
+
+    <td class="dataField"><input name='phone_other' type="text" tabindex='2' size='20' maxlength='25' value=''></td>
+</tr>
+<tr>
+    <td width="15%" class="dataLabel">Campaign:</td>
+    <td width="25%" class="dataField">
+        <input class="sqsEnabled" tabindex="1" autocomplete="off" id='campaign_name' name='campaign_name' type="text" value=""/>
+        <input id='campaign_id' name='campaign_id' type="hidden" value=""/>
+        <input title="Select [Alt+T]" accessKey="T" type="button" tabindex='1' class="button" value='Select' name=btn1
+               onclick='open_popup("Campaigns", 600, 400, "", true, false,{"call_back_function":"set_return","form_name":"EditView","field_to_name_array":{"id":"campaign_id","name":"campaign_name"}});'/>
+    </td>
+
+</tr>
+<tr>
+    <td class="dataLabel">Title:</td>
+    <td class="dataField"><input name='title' type="text" tabindex='1' size='25' maxlength='50' value=''></td>
+    <td class="dataLabel">Fax:</td>
+    <td class="dataField"><input name='phone_fax' type="text" tabindex='2' size='20' maxlength='25' value=''></td>
+</tr>
+<tr>
+    <td class="dataLabel">Department:</td>
+
+    <td class="dataField"><input name='department' type="text" tabindex='1' size='25' maxlength='100' value=''></td>
+    <td class="dataLabel">Email:</td>
+    <td class="dataField"><input name='email1' type="text" tabindex='2' size='35' maxlength='100' value=''></td>
+</tr>
+<tr>
+    <td class="dataLabel">Birthdate:</td>
+    <td class="dataField"><input name='birthdate' onblur="parseDate(this, '%Y-%m-%d');" id='jscal_field' type="text" tabindex='1' size='11' maxlength='10' value=""> <img src="themes/VintageSugar/images/jscalendar.gif" alt="Enter Date" id="jscal_trigger" align="absmiddle"> <span class="dateFormat">yyyy-mm-dd</span></td>
+
+    <td class="dataLabel">Other Email:</td>
+    <td class="dataField"><input name='email2' type="text" tabindex='2' size='35' maxlength='100' value=''></td>
+</tr>
+<tr>
+    <td class="dataLabel">Reports To:</td>
+    <td class="dataField"><input type='text' name='report_to_name' id="report_to_name" readonly="readonly" value=''><input type="hidden" name='reports_to_id' id='reports_to_id' value=''>
+        <input type="button" name='button' class="button" title="Select [Alt+T]" accesskey="T" tabindex="1" value='Select'
+               onclick='open_popup("Contacts", 600, 400, "&account_id=&account_name=", true, false, {"call_back_function":"set_return","form_name":"EditView","field_to_name_array":{"id":"reports_to_id","name":"report_to_name"}}, "single", true);'/></td>
+    <td class="dataLabel">Assistant:</td>
+
+    <td class="dataField"><input name='assistant' type="text" tabindex='2' size='25' maxlength='100' value=''></td>
+</tr>
+<tr>
+    <td class="dataLabel">Sync to Outlook&reg;:</td>
+    <td class="dataField"><input name='sync_contact' class="checkbox" type="checkbox" tabindex='1'></td>
+    <td class="dataLabel">Assistant Phone:</td>
+    <td class="dataField"><input name='assistant_phone' type="text" tabindex='2' size='25' maxlength='100' value=''></td>
+</tr>
+<tr>
+
+    <td class="dataLabel">Do Not Call:</td>
+    <td class="dataField"><input name='do_not_call' class="checkbox" type="checkbox" tabindex='1'></td>
+    <td class="dataLabel">Email Opt Out:</td>
+    <td class="dataField"><input name='email_opt_out' class="checkbox" type="checkbox" tabindex='2'></td>
+</tr>
+
+
+<tr>
+    <td class="dataLabel">Assigned to:</td>
+    <td class="dataField"><input class="sqsEnabled" tabindex="1" autocomplete="off" id="assigned_user_name" name='assigned_user_name' type="text" value="will"><input id='assigned_user_id' name='assigned_user_id' type="hidden" value="will_id"/>
+        <input title="Select [Alt+T]" accessKey="T" type="button" tabindex='1' class="button" value='Select' name=btn1
+               onclick='open_popup("Users", 600, 400, "&is_group=0", true, false, {"call_back_function":"set_return","form_name":"EditView","field_to_name_array":{"id":"assigned_user_id","user_name":"assigned_user_name"}});'/>
+
+    </td>
+    <td class="dataLabel">Invalid Email:</td>
+    <td class="dataField"><input type='hidden' name='invalid_email' value='0'><input name='invalid_email' class="checkbox" type="checkbox" tabindex='2' value='1'></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<p></p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabForm">
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                <tr>
+                    <th align="left" class="dataLabel" colspan="5"><h4 class="dataLabel">Address Information</h4></th>
+                </tr>
+                <tr>
+                    <td class="dataLabel" width="15%">Primary Address:</td>
+                    <td class="dataField" width="30%"><textarea id='primary_address_street' name='primary_address_street' rows="2" tabindex='3' cols="30" maxlength='150'></textarea></td>
+                    <td class="tabFormAddDel" rowspan='5' width="10%"><input title="Copy primary address to alternate address" class="button" onclick="return copyAddressRight(EditView)" type="button" name="copyright" value="&gt;&gt;"><br><br>
+                        <input title="Copy alternate address to primary address" class="button" onclick="return copyAddressLeft(EditView)" type="button" name="copyleft" value="<<"></td>
+
+                    <td class="dataLabel" width="15%">Other Address:</td>
+                    <td class="dataField" width="30%"><textarea name='alt_address_street' rows="2" tabindex='4' cols="30" maxlength='150'></textarea></td>
+                </tr>
+                <tr>
+                    <td class="dataLabel">City:</td>
+                    <td class="dataField"><input id='primary_address_city' name='primary_address_city' tabindex='3' size='25' maxlength='100' value=''></td>
+                    <td class="dataLabel">City:</td>
+                    <td class="dataField"><input name='alt_address_city' tabindex='4' size='25' maxlength='100' value=''></td>
+
+                </tr>
+                <tr>
+                    <td class="dataLabel">State:</td>
+                    <td class="dataField"><input id='primary_address_state' name='primary_address_state' tabindex='3' size='15' maxlength='100' value=''></td>
+                    <td class="dataLabel">State:</td>
+                    <td class="dataField"><input name='alt_address_state' tabindex='4' size='15' maxlength='100' value=''></td>
+                </tr>
+                <tr>
+                    <td class="dataLabel">Postal Code:</td>
+
+                    <td class="dataField"><input id='primary_address_postalcode' name='primary_address_postalcode' tabindex='3' size='15' maxlength='20' value=''></td>
+                    <td class="dataLabel">Postal Code:</td>
+                    <td class="dataField"><input name='alt_address_postalcode' tabindex='4' size='15' maxlength='20' value=''></td>
+                </tr>
+                <tr>
+                    <td class="dataLabel">Country:</td>
+                    <td class="dataField"><input id='primary_address_country' name='primary_address_country' tabindex='3' size='10' maxlength='20' value=''></td>
+                    <td class="dataLabel">Country:</td>
+
+                    <td class="dataField"><input name='alt_address_country' tabindex='4' size='10' maxlength='20' value=''></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<p></p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabForm">
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th align="left" class="dataLabel" colspan="2"><h4 class="dataLabel">Description Information</h4></th>
+                </tr>
+                <tr>
+
+                    <td width="15%" valign="top" class="dataLabel">Description:</td>
+                    <td width="85%" class="dataField"><textarea name='description' tabindex='5' cols="60" rows="8"></textarea></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<p></p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabForm">
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th align="left" class="dataLabel" colspan="4"><h4 class="dataLabel">Portal Information</h4></th>
+                </tr>
+                <tr>
+                    <td class="dataLabel" width='15%'>Portal Name:</td>
+
+                    <td class="dataField" align='left' width='35%'><input name='portal_name' type="text" tabindex='6' size='25' maxlength='100' value=''></td>
+                    <td class="dataLabel" width='15%'>Portal Active:</td>
+                    <td class="dataField" align='left'><input name='portal_active' class="checkbox" type="checkbox" tabindex='7' size='25' value='1'></td>
+                </tr>
+
+
+            </table>
+        </td>
+    </tr>
+</table>
+
+<p> </p>
+
+<div id="button_bar">
+    <input title="Save [Alt+S]" accessKey="S" class="button" onclick="this.form.action.value='Save';return check_form('EditView');" type="submit" name="button" value="  保存  "> <input title="Cancel [Alt+X]" accessKey="X" class="button" onclick="this.form.action.value='index'; this.form.module.value='Contacts'; this.form.record.value=''" type="submit" name="button" value="  Cancel  ">
+</div>
+</form>
+<!-- end page content -->
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+    <td colspan="3" class="aboveFooter"><img src="include/images/blank.gif" width="1" height="5" border="0"></td>
+</tr>
+
+<tr>
+    <td colspan="3" align="center" class="footer">
+        <A href="index.php?module=Home&action=index" class="footerLink">Home</A> | <A href="index.php?module=iFrames&action=index" class="footerLink">My Portal</A> | <A href="index.php?module=Calendar&action=index" class="footerLink">Calendar</A> | <A href="index.php?module=Activities&action=index" class="footerLink">Activities</A> | <A href="index.php?module=Contacts&action=index" class="footerLink">Contacts</A> | <A href="index.php?module=Accounts&action=index" class="footerLink">Accounts</A>
+        | <A href="index.php?module=Leads&action=index" class="footerLink">Leads</A> | <A href="index.php?module=Opportunities&action=index" class="footerLink">Opportunities</A> | <A href="index.php?module=Cases&action=index" class="footerLink">Cases</A> | <A href="index.php?module=Bugs&action=index" class="footerLink">Bug Tracker</A> | <A href="index.php?module=Documents&action=index" class="footerLink">Documents</A> | <A href="index.php?module=Emails&action=index" class="footerLink">Emails</A><br>
+        <A href="index.php?module=Campaigns&action=index" class="footerLink">Campaigns</A> | <A href="index.php?module=Project&action=index" class="footerLink">Projects</A> | <A href="index.php?module=Feeds&action=index" class="footerLink">RSS</A> | <A href="index.php?module=Dashboard&action=index" class="footerLink">Dashboard</A></td>
+
+</tr>
+
+</table>
+<table cellpadding='0' cellspacing='0' width='100%' border='0' class='underFooter'>
+    <tr>
+        <td align='center' class='copyRight'>
+            &copy; 2004-2007 <a href="http://www.sugarcrm.com" target="_blank" class="copyRightLink">SugarCRM Inc.</a> All Rights Reserved.<br/><A href='http://www.sugarforge.org' target='_blank'><img style='margin-top: 2px' border='0' width='106' height='23' src='include/images/poweredby_sugarcrm.png' alt='Powered By SugarCRM'></a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

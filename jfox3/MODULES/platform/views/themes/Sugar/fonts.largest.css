@@ -1,0 +1,327 @@
+/*********************************************************************************
+ * The contents of this file are subject to the SugarCRM Public License Version
+ * 1.1.3 ("License"); You may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at http://www.sugarcrm.com/SPL
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied.  See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ * All copies of the Covered Code must include on each user interface screen:
+ *    (i) the "Powered by SugarCRM" logo and
+ *    (ii) the SugarCRM copyright notice
+ * in the same form as they appear in the distribution.  See full license for
+ * requirements.
+ *
+ * The Original Code is: SugarCRM Open Source
+ * The Initial Developer of the Original Code is SugarCRM, Inc.
+ * Portions created by SugarCRM are Copyright (C) 2004-2006 SugarCRM, Inc.;
+ * All Rights Reserved.
+ * Contributor(s): ______________________________________.
+ ********************************************************************************/
+/*********************************************************************************
+
+ * Description:  Contains a variety of utility functions used to display UI 
+ * components such as form headers and footers.  Intended to be modified on a per 
+ * theme basis.
+ ********************************************************************************/
+ 
+/* Default Styles */
+body { 
+	font-size: 14px;
+	}
+.body { 
+	font-size: 14px;
+	}
+	
+table,td {
+	font-size: 13px;
+	}
+
+h2, h1 {
+	font-size: 15px; 
+	}
+
+h3, .monthHeaderH3, .schedulerTopDateCell {
+	font-size: 15px; 
+	}
+
+h4, h4.dataLabel, h5, h5.listViewSubHeadS1 {
+	font-size: 14px; 
+	}
+
+/* Form Styles */
+
+.button {
+	font-size: 14px;
+	}
+	
+.buttonOn, .button:hover, .button:focus, .buttonOn:focus {
+	font-size: 14px;
+	}
+	
+input,select {
+	font-size: 14px;
+	}
+	
+
+textarea {
+	font-size: 14px;
+	}
+	
+/* Content Specific Styles */
+	/* body text */
+	
+	/*for the main screen navigation tabs*/
+	.tabRow {
+		height: 30px;
+	}
+	.currentTab {
+		font-size: 13px;
+		height: 30px;
+		}	
+
+	.otherTab {
+		height: 30px;
+		font-size: 13px;
+		} 
+
+				
+	.subMenu {
+		font: normal 14px Arial, Verdana, Helvetica, sans-serif;
+		}
+		
+
+
+	ul.subMenu li a {
+		padding: 4px 3px 4px 6px;
+		}	
+
+table.leftColumnModuleHead th {
+	/*left column styles*/
+	}
+
+	/* myArea is for my account, admin, logout, an about links*/
+
+	
+		
+	/*welcome user and date bar and last view*/
+
+	.headerBg {
+		font-size: 14px;
+		}
+	.welcome {
+		font-size: 14px;
+		height: 23px;
+	}
+	.searchField {
+		font-size: 13px;
+	}
+
+	#subtabs {
+		font-size: 14px;
+		height: 21px;
+		}
+ul.subTabs
+{
+font: 13px Arial, Verdana, Helvetica, sans-serif;
+}
+	.subTabMore {
+		font-size: 13px;
+	}	
+	.leftColumnModuleS3  {
+		font-size: 13px;
+	}
+	td.leftColumnModuleS3 .button {
+		font-size: 13px;
+	}
+	td.leftColumnModuleS3 .dataLabel {
+		font-size: 13px;
+	}
+
+	a.leftColumnModuleS3Link:link, a.leftColumnModuleS3Link:visited {
+		font-size: 13px;
+		}
+	/*right main content (suffix S1 stands for Style 1) */
+	table.listView th, .listViewThS1{
+		/* this definition should be exactly the same as .listViewThS1 */
+		font-size: 13px;
+	}
+
+	table.listview th a:link, table.listview th a:visited {
+		/* this definition should be exactly the same
+			as a.listViewThLinkS1:link, a.listViewThLinkS1:visited */
+	}
+
+	table.listview th a:hover {
+		/* this definition should be exactly the same
+			as a.listViewThLinkS1:hover */
+	}
+
+
+
+	a.listViewTdLinkS1:link, a.listViewTdLinkS1:visited {
+	font-size: 14px;
+
+		}
+	.evenListRowS1, .oddListRowS1 {
+		font-size: 14px;
+		padding-bottom: 6px;
+		padding-top: 4px;
+	}
+
+	a.listViewPaginationLinkS1:link, a.listViewPaginationLinkS1:visited {
+		font-size: 14px;
+		}	
+	a.listViewCheckLink:link, a.listViewCheckLink:visited {
+		font-size: 13px;
+		font-weight: normal;
+		text-decoration: none;
+		}
+	a.listViewCheckLink:hover {
+		font-size: 13px;
+		}
+	a.utilsLink:link, a.utilsLink:visited {
+		font-size: 13px;
+		}
+	/* charting styles */
+	a.chartToolsLink:link, a.chartToolsLink:visited {
+		font-size: 13px;
+		}
+	/* main tab forms */
+	
+	.tabForm {
+		font-size: 14px;
+	}
+	.subpanelTabForm {
+		font-size: 14px;
+	}
+
+.subpanelTabForm h3 {
+font-size: 13px;
+}
+	h5.dataLabel {
+		font-size: 14px; 
+	}
+
+	.dataLabel {
+		font-size: 14px;
+	}
+	.dataField {
+		font-size: 14px;
+	}
+	
+	
+	a.tabFormAdvLink:link, a.tabFormAdvLink:visited {
+		font-size: 13px;
+		}
+
+	
+	/* main tab panel views */
+	.tabDetailView .listViewPaginationTdS1 {	
+		padding: 4px 5px 5px 8px;
+	}
+	.tabDetailViewDL {
+	font-size: 14px; 
+	}
+	
+	h4.tabDetailViewDL {
+		font-size: 14px; 
+	}
+	.tabDetailViewDF {
+	font-size: 14px;  
+	}
+	.tabDetailViewDL2 {
+	font-size: 14px; 
+	}
+	.tabDetailViewDF2 {
+	font-size: 13px;  
+	}
+	a.tabDetailViewDL2Link:link, a.tabDetailViewDL2Link:visited {
+		font-size: 13px;
+		}
+	/* calendar styles */
+	.monthBox {
+	font-size: 14px;
+	}
+
+
+	a.monthCalBodyWeekLink:link, a.monthCalBodyWeekLink:visited {
+	font-size: 13px;
+	}
+	
+	a.monthCalBodyWeekDayDateLink:link, a.monthCalBodyWeekDayDateLink:visited {
+	font-size: 14px;
+	}
+	a.monthCalBodyWeekDayDateLink:hover, a.monthCalBodyWeekEndDateLink:hover {
+	}		 
+	a.monthCalBodyDayItemLink:link, a.monthCalBodyDayItemLink:visited, a.monthCalBodyDayItemLink:hover  {
+	font-size: 12px;
+	}	
+
+	.dailyCalBodyItems {
+	font-size: 14px;
+	}
+	a.yearCalBodyMonthLink:link, a.yearCalBodyMonthLink:visited {
+	font-size: 14px;
+	}
+	.calSharedUser {
+	font-size: 13px;
+	}
+
+	/* misc font displays */
+	.rssItemDate {
+		font-size: 13px;
+	}
+	.dateFormat {
+		font-size: 13px;
+	}
+	.chartFootnote {
+		font-size: 13px;	
+	}
+	.tm {
+		font-size: 10px;
+	}
+	
+/* Scheduler Styles */
+ .schedulerDiv {
+		font-size: 14px;
+ }
+
+ .schedulerTopRow, .schedulerTopDeleteHeaderCell, .schedulerDeleteHeaderCell, .schedulerTopHeaderCell, .schedulerAttendeeHeaderCell, .schedulerAttendeeHeaderCell  {
+	height: 30px; 
+ }
+ .schedulerAttendeeCell {
+	width: 160px;
+}
+
+
+/* dynamic tab styles */
+.myArea {
+font: 14px Arial, Verdana, Helvetica, sans-serif;
+}
+ul.myArea
+{
+height: 20px;
+font: 14px Arial, Verdana, Helvetica, sans-serif;
+}
+ul.tablist
+{
+font: 14px Arial, Verdana, Helvetica, sans-serif;
+}
+ 
+
+ul.subpanelTablist
+{
+font: 14px Arial, Verdana, Helvetica, sans-serif;
+}
+.sqsMatchedSmartInputItem {
+font-size:13px;
+}
+.olCapFontClass A { 
+	font-size: 11px; 
+}
+
+/* acl role colors */
+
+/* help styles */
