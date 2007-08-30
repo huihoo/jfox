@@ -1,10 +1,10 @@
-package cn.iservicedesk.function.action;
+package jfox.platform.function.action;
 
 import javax.ejb.EJB;
 
-import cn.iservicedesk.function.bo.ModuleBO;
-import cn.iservicedesk.function.entity.Module;
-import cn.iservicedesk.infrastructure.SuperAction;
+import jfox.platform.function.bo.ModuleBO;
+import jfox.platform.function.entity.Module;
+import jfox.platform.infrastructure.SuperAction;
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.Invocation;
 import org.jfox.mvc.InvocationContext;

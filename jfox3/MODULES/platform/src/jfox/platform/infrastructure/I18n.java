@@ -1,4 +1,4 @@
-package cn.iservicedesk.infrastructure;
+package jfox.platform.infrastructure;
 
 import java.util.HashMap;
 import java.util.Locale;

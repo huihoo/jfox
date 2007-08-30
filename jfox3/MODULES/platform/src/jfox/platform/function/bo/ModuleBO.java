@@ -1,8 +1,8 @@
-package cn.iservicedesk.function.bo;
+package jfox.platform.function.bo;
 
 import java.util.List;
 
-import cn.iservicedesk.function.entity.Module;
+import jfox.platform.function.entity.Module;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

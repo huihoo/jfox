@@ -1,9 +1,9 @@
-package cn.iservicedesk.function.entity;
+package jfox.platform.function.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import cn.iservicedesk.infrastructure.LocalNamingAndRefInspectableEntityObject;
+import jfox.platform.infrastructure.LocalNamingAndRefInspectableEntityObject;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

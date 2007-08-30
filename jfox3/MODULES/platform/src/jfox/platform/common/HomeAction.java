@@ -1,6 +1,6 @@
-package cn.iservicedesk.common;
+package jfox.platform.common;
 
-import cn.iservicedesk.infrastructure.SuperAction;
+import jfox.platform.infrastructure.SuperAction;
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.annotation.ActionMethod;

@@ -1,14 +1,14 @@
-package cn.iservicedesk.function.bo;
+package jfox.platform.function.bo;
 
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
-import cn.iservicedesk.function.dao.NodeDAO;
-import cn.iservicedesk.function.entity.Node;
-import cn.iservicedesk.infrastructure.DataAccessObject;
-import cn.iservicedesk.infrastructure.SuperBO;
+import jfox.platform.function.dao.NodeDAO;
+import jfox.platform.function.entity.Node;
+import jfox.platform.infrastructure.DataAccessObject;
+import jfox.platform.infrastructure.SuperBO;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

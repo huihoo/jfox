@@ -1,6 +1,6 @@
-package cn.iservicedesk.function.exception;
+package jfox.platform.function.exception;
 
-import cn.iservicedesk.infrastructure.BusinessException;
+import jfox.platform.infrastructure.BusinessException;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

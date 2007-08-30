@@ -1,11 +1,11 @@
-package cn.iservicedesk.common;
+package jfox.platform.common;
 
-import cn.iservicedesk.infrastructure.SuperAction;
+import jfox.platform.infrastructure.SuperAction;
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.InvocationContext;
 
 /**
- * „1¤7„1¤7„1¤7„1¤7„1¤7ƒ4£6„1¤7„1¤7„1¤7Ô8™6„1¤70Ç0„1¤7„1¤7„1¤7„1¤7„1¤7 Action 0ö4„1¤7„1¤7
+ * æ‰€æœ‰å¼‚æ­¥è¯·æ±‚ï¼Œéƒ½é€šè¿‡è¿™ä¸ª Action æ‰§è¡Œ
  *
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */

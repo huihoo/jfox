@@ -1,4 +1,4 @@
-package cn.iservicedesk.infrastructure;
+package jfox.platform.infrastructure;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,25 +6,25 @@ import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
 
-import cn.iservicedesk.common.JSONUtils;
-import cn.iservicedesk.function.bo.ModuleBO;
-import cn.iservicedesk.function.bo.NodeBO;
-import cn.iservicedesk.function.entity.Module;
-import cn.iservicedesk.function.entity.Node;
+import jfox.platform.common.JSONUtils;
+import jfox.platform.function.bo.ModuleBO;
+import jfox.platform.function.bo.NodeBO;
+import jfox.platform.function.entity.Module;
+import jfox.platform.function.entity.Node;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.SessionContext;
 
 /**
- * „1¤7„1¤7„1¤7„1¤70÷4„1¤7„1¤70†4„1¤7„1¤70§7„1¤7„1¤7„1¤7§Ø„1¤7
+ * åšæ—¥å¿—è®°å½•ã€æƒé™åˆ¤æ–­
  * <p/>
- * „1¤7„1¤7„1¤7„1¤7 Action „1¤7„1¤7„1¤7„1¤7„1¤7„1¤70Á7„1¤7
+ * æ‰€æœ‰ Action ä»Žè¿™é‡Œç»§æ‰¿
  * <p/>
- * //TODO: 0õ1„1¤70ö6„1¤7„1¤7„1¤7„1¤7„1¤7 successView
- * //TODO: 0õ1„1¤7„1¤7 themes 0Ô5„1¤7„1¤7
- * //TODO: „1¤7„1¤7„1¤7„1¤70Ç0„1¤70Š9„1¤7
- * //TODO: „1¤7„1¤7„1¤7„1¤70…8„1¤7„1¤7„1¤70Î4
+ * //TODO: æ”¯æŒå¤šè¯­è¨€ successView
+ * //TODO: æ”¯æŒ themes é€‰æ‹©
+ * //TODO: è®¾ç½®é€šç”¨å˜é‡
+ * //TODO: æ£€æŸ¥æ–°åˆ°æ¶ˆæ¯
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
@@ -48,7 +48,7 @@ public abstract class SuperAction extends ActionSupport {
         // set common attribute
         pageContext.setAttribute("__JSONUTILS__", JSONUtils.getInstance());
 
-        // init currentModule currentNode, „1¤7„1¤7„1¤7 node.BindAction „1¤70‹1„1¤7 node
+        // init currentModule currentNode, æ ¹æ® node.BindAction å¾—åˆ° node
         String actionMethodName = invocationContext.getFullActionMethodName();
         //TODO: uncomment
 //        currentNode = nodeBO.getNodeByBindAction(actionMethodName);
@@ -63,13 +63,13 @@ public abstract class SuperAction extends ActionSupport {
         PageContext pageContext = invocationContext.getPageContext();
         // TODO: set default session
 
-        // „1¤7„1¤7„1¤7„1¤7„1¤7„1¤7„1¤7„1¤7
+        // è®¾ç½®ä¸»é¢˜
         String theme = (String)sessionContext.getAttribute(THEME_KEY);
         if(theme == null) {
             sessionContext.setAttribute(THEME_KEY, "VintageSugar");
         }
         sessionContext.setAttribute(LANG_KEY,"en_US");
-        // „1¤7„1¤7„1¤70‹2„1¤7„1¤7„1¤7„1¤7„1¤7
+        // è®¾ç½®å¤šè¯­è¨€
         String lang = (String)sessionContext.getAttribute(LANG_KEY);
 
         if (lang != null) {
@@ -91,7 +91,7 @@ public abstract class SuperAction extends ActionSupport {
     }
 
     /**
-     * „1¤7„1¤7„1¤7„1¤7„1¤7„1¤7„1¤7„1¤70‘3„1¤7„1¤70Ü7„1¤7„1¤7„1¤70Ð302„1¤70•2„1¤7„1¤7„1¤70ê4„1¤7„1¤7„1¤71±80»5„1¤7
+     * æ ¹æ®ä¸Šä¸‹æ–‡èŽ·å¾—é¡µé¢ä¸Šçš„æŒ‰é’®ï¼Œä»¥åŠå·¦è¾¹èœå•
      * @param invocationContext
      */
     private void buildContextNodes(InvocationContext invocationContext){
@@ -107,7 +107,7 @@ public abstract class SuperAction extends ActionSupport {
         // child nodes in current node
         List<Node> childrenNodes = nodeBO.getChildrenNodes(currentNode.getId());
         for(Node node : childrenNodes){
-            if(node.isMenu()) { // „1¤7„1¤7 button node „1¤7„1¤70Ü6„1¤7„1¤7„1¤7„1¤70û0„1¤7„1¤7 menu node
+            if(node.isMenu()) { // åœ¨ button node ä¸‹ä¹Ÿå¯ä»¥æ³¨å†Œ menu node
                 menuNodes.add(node);
             }
             else {
@@ -127,14 +127,14 @@ public abstract class SuperAction extends ActionSupport {
     }
 
     /**
-     * „1¤7„1¤7„1¤70‹10‘51’1„1¤7
+     * è°ƒç”¨çš„èŠ‚ç‚¹
      */
     protected Node getCurrentNode(){
         return currentNode;
     }
 
     /**
-     * „1¤7„1¤7„1¤7„1¤7„1¤7„1¤7„1¤71’1„1¤700„1¤7„1¤7
+     * è°ƒç”¨æ‰€åœ¨çš„æ¨¡å—
      */
     protected Module getCurrentModule() {
         return currentModule;

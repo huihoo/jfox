@@ -1,4 +1,4 @@
-package cn.iservicedesk.infrastructure;
+package jfox.platform.infrastructure;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -19,7 +19,7 @@ import org.json.JSONObject;
  */
 public abstract class EntityObject implements Comparable<EntityObject>, Serializable {
     /**
-     * 0‹7„1¤7„1¤7„1¤7„1¤7„1¤7„1¤7„1¤7„1¤7ID„1¤70ö6¦²„1¤7„1¤7„1¤7„1¤7„1¤70Ë2 Primary Key
+     * æ¯ä¸ªè¡¨å¿…é¡»æœ‰IDå­—æ®µï¼Œä¸”ä½œä¸º Primary Key
      */
     @Column(name = "ID")
     private long id = -1;
@@ -27,7 +27,7 @@ public abstract class EntityObject implements Comparable<EntityObject>, Serializ
     @Column(name = "NAME")
     private String name;
 
-    // „1¤70‹4„1¤7„1¤7„1¤7 CODE
+    // ç”¨æˆ·çš„ CODE
     @Column(name = "CREATOR")
     private String creator;
 
@@ -45,8 +45,8 @@ public abstract class EntityObject implements Comparable<EntityObject>, Serializ
 
 
     /**
-     * VALID STATUS, „1¤7„1¤7„1¤7„1¤7„1¤7§¹0ü80Á0
-     * 0 „1¤7„1¤7
+     * VALID STATUS, æ•°æ®æœ‰æ•ˆçŠ¶æ€
+     * 0 æ­£å¸¸
      * 1 DISABLED
      * 2 REMOVED
      */
@@ -58,13 +58,13 @@ public abstract class EntityObject implements Comparable<EntityObject>, Serializ
     protected String description;
 
     public EntityObject() {
-        // 0¶0„1¤7„1¤7PKgen„1¤7„1¤7„1¤7id
+        // ä½¿ç”¨PKgenç”Ÿæˆid
         id = PKGenerator.getInstance(0).nextPK();
         createTime = System.currentTimeMillis();
     }
 
     /**
-     * „1¤7„1¤7„1¤7 Id„1¤7„1¤7like: 2006121916471910560
+     * èŽ·å¾— Idï¼Œlike: 2006121916471910560
      */
     @Id
     @Column(name = "ID")
@@ -155,7 +155,7 @@ public abstract class EntityObject implements Comparable<EntityObject>, Serializ
     }
 
     /**
-     * „1¤7„1¤74„1¤7„1¤7„1¤7„1¤7
+     * ç”¨æ¥æŽ’åº
      *
      * @param thatEntity entity to be compared
      */
@@ -170,7 +170,7 @@ public abstract class EntityObject implements Comparable<EntityObject>, Serializ
     }
 
     /**
-     * „1¤7„1¤7„1¤7 @Entity „1¤70‹1„1¤7 Table Name
+     * æ ¹æ® @Entity å¾—åˆ° Table Name
      */
     public String getTableName() {
         Entity entity = this.getClass().getAnnotation(Entity.class);
@@ -184,7 +184,7 @@ public abstract class EntityObject implements Comparable<EntityObject>, Serializ
     }
 
     /**
-     * 0û8„1¤7„1¤7 Map„1¤7„1¤7„1¤70é3‚1ñ2„1¤7„1¤7„1¤7„1¤7„1¤7„1¤7 JSON „1¤7„1¤7„1¤7„1¤7
+     * è½¬æˆ Mapï¼Œä»¥ä¾¿æ–¹ä¾¿çš„ç”Ÿæˆ JSON å¯¹è±¡
      */
     public Map<String, Object> convertToMap() {
         Map<String, Object> valueMap = new HashMap<String, Object>();
@@ -228,7 +228,7 @@ public abstract class EntityObject implements Comparable<EntityObject>, Serializ
     }
 
     /**
-     * 0§0„1¤7„1¤7clz „1¤7„1¤7„1¤7§Ö„1¤7 Field
+     * å–å¾—clz æ‰€æœ‰çš„ Field
      *
      * @param clazz class
      */
@@ -252,11 +252,11 @@ public abstract class EntityObject implements Comparable<EntityObject>, Serializ
         List<Class> classList = new ArrayList<Class>();
         classList.add(cls);
         Class superClass = cls.getSuperclass();
-        while (superClass != null && !superClass.equals(Object.class)) { // java.lang.Object „1¤7„1¤7„1¤7„1¤70Ë2„1¤7„1¤7„1¤7„1¤7
+        while (superClass != null && !superClass.equals(Object.class)) { // java.lang.Object ä¸ç®—ä¸ºè¶…ç±»
             classList.add(superClass);
             superClass = superClass.getSuperclass();
         }
-        Collections.reverse(classList); // reverse„1¤7„1¤7„1¤70é3„1¤70ô8„1¤7„1¤7„1¤72Ó8„1¤70¢5„1¤7„1¤7„1¤7
+        Collections.reverse(classList); // reverseï¼Œä»¥ä¿è¯å­ç±»è¦†ç›–è¶…ç±»
         return classList.toArray(new Class[classList.size()]);
     }
 }

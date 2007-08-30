@@ -1,6 +1,6 @@
-package cn.iservicedesk.aaa.action;
+package jfox.platform.aaa.action;
 
-import cn.iservicedesk.infrastructure.SuperAction;
+import jfox.platform.infrastructure.SuperAction;
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.annotation.ActionMethod;
 

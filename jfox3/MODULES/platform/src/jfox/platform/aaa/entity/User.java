@@ -1,6 +1,6 @@
-package cn.iservicedesk.aaa.entity;
+package jfox.platform.aaa.entity;
 
-import cn.iservicedesk.infrastructure.EntityObject;
+import jfox.platform.infrastructure.EntityObject;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

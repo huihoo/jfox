@@ -1,9 +1,9 @@
-package cn.iservicedesk.infrastructure;
+package jfox.platform.infrastructure;
 
 import javax.ejb.EJBException;
 
 /**
- * DAO „1¤70ü7„1¤7„1¤7„1¤7ƒ4§4
+ * DAO æŠ›å‡ºçš„å¼‚å¸¸
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class DAOException extends EJBException {

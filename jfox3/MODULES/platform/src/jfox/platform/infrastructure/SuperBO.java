@@ -1,4 +1,4 @@
-package cn.iservicedesk.infrastructure;
+package jfox.platform.infrastructure;
 
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
@@ -19,7 +19,7 @@ public abstract class SuperBO implements BusinessObject{
     }
 
     /**
-     * „1¤7„1¤7„1¤7„1¤7EntityObject„1¤70¢9„1¤7„1¤7„1¤7„1¤7„1¤7
+     * æ£€æŸ¥è¯¥EntityObjectæ˜¯å¦è¢«å¼•ç”¨
      *
      * @param entityObject entity
      */
@@ -28,9 +28,9 @@ public abstract class SuperBO implements BusinessObject{
     }
 
     /**
-     * „1¤7„1¤7„1¤7 Version „1¤70¢9¯8¯4„1¤7„1¤7„1¤7
-     * 0¶0„1¤70‹1„1¤7 namedQuery „1¤7„1¤7„1¤7„1¤70Ë20Ç0„1¤7„1¤7 ID „1¤7„1¤7„1¤7 Entity „1¤7„1¤7 query
-     * „1¤7„1¤70¶0„1¤7„1¤7„1¤7„1¤7„1¤7„1¤7„1¤70é3„1¤7„1¤78â70¢2„1¤7„1¤7„1¤7„1¤7„1¤71«9„1¤7„1¤7„1¤70õ4„1¤7„1¤71¥6„1¤7„1¤70…8„1¤7„1¤7„1¤7„1¤7„1¤7
+     * æ£€æŸ¥ Version æ˜¯å¦è¢«æ›´æ–°
+     * ä½¿ç”¨çš„ namedQuery å¿…é¡»ä¸ºé€šè¿‡ ID èŽ·å¾— Entity çš„ query
+     * ä¸ä½¿ç”¨äº‹åŠ¡ï¼Œä»¥é¿å…å½“å‰äº‹åŠ¡æ— æ³•æ„ŸçŸ¥æ•°æ®æ›´æ–°çš„é—®é¢˜
      */
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
     public boolean isVersionValid(VersionableEntityObject entity, String namedQuery) {

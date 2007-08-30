@@ -1,4 +1,4 @@
-package cn.iservicedesk.aaa.bo;
+package jfox.platform.aaa.bo;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

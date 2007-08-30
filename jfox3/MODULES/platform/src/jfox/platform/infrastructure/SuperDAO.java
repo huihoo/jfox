@@ -1,4 +1,4 @@
-package cn.iservicedesk.infrastructure;
+package jfox.platform.infrastructure;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,27 +11,27 @@ import org.jfox.entity.QueryExt;
 import org.jfox.entity.dao.DAOSupport;
 
 /**
- * //TODO: 0õ1„1¤70ö6„1¤7„1¤7„1¤71¦3„1¤7SQLTemplate
+ * //TODO: æ”¯æŒå¤šæ•°æ®åº“SQLTemplate
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public abstract class SuperDAO extends DAOSupport implements DataAccessObject {
     
     /**
-     * 0û0„1¤7„1¤7 JPA EntityManager
+     * æ³¨å…¥ JPA EntityManager
      */
     @PersistenceContext(unitName = "iServiceDesk_DS")
     private EntityManager em = null;
 
     /**
-     * „1¤7„1¤7„1¤7„1¤7 EntityManager„1¤7„1¤708„1¤7„1¤70û0„1¤7„1¤7„1¤7„1¤7„1¤7 default
+     * è¿”å›ž EntityManagerï¼Œé»˜è®¤æ³¨å…¥çš„æ˜¯ default
      */
     protected EntityManager getEntityManager() {
         return em;
     }
 
     /**
-     * „1¤7„1¤7„1¤7 id „1¤70Ü9„1¤7 Entity „1¤7„1¤7„1¤7„1¤7
+     * æ ¹æ® id æ‰¾åˆ° Entity å¯¹è±¡
      *
      * @param namedQuery  named native sql
      * @param placeHolderName sql template column place holder name
@@ -62,7 +62,7 @@ public abstract class SuperDAO extends DAOSupport implements DataAccessObject {
     }
 
     /**
-     * 0¶0„1¤7„1¤70Ý5„1¤7„1¤70è0„1¤7„1¤7„1¤7„1¤7„1¤7 query „1¤7„1¤7„1¤7„1¤7„1¤7§Ó„1¤70Õ9„1¤7„1¤7„1¤7„1¤7„1¤7„1¤7 entity list
+     * ä½¿ç”¨ä¸€ä¸ªé¢„å®šä¹‰çš„ query è¯­å¥è¿›è¡ŒæŸ¥è¯¢ï¼Œè¿”å›ž entity list
      *
      * @param namedQuery   named query
      */
@@ -71,13 +71,13 @@ public abstract class SuperDAO extends DAOSupport implements DataAccessObject {
     }
 
     /**
-     * 0¶0„1¤7„1¤70Ý5„1¤7„1¤70è0„1¤7„1¤7„1¤7„1¤7„1¤7 query „1¤7„1¤7„1¤7„1¤7„1¤7§Ó„1¤70Õ9„1¤7„1¤7„1¤7„1¤7„1¤7„1¤7 entity list
+     * ä½¿ç”¨ä¸€ä¸ªé¢„å®šä¹‰çš„ query è¯­å¥è¿›è¡ŒæŸ¥è¯¢ï¼Œè¿”å›ž entity list
      *
      * @param namedQuery   named query
      * @param paramMap parameter map
-     * @param firstResult „1¤7„1¤70Ý5„1¤7„1¤70ö5„1¤7„1¤7¦Ë„1¤7„1¤7
-     * @param maxResult 0§00ö5„1¤7„1¤7¦¶
-     * @return „1¤7„1¤7„1¤71…5„1¤7„1¤7„1¤7„1¤70Û8„1¤7„1¤7 entity list
+     * @param firstResult ç¬¬ä¸€ä¸ªå€¼çš„ä½ç½®
+     * @param maxResult å–å€¼èŒƒå›´
+     * @return è¿”å›žç¬¦åˆéœ€è¦çš„ entity list
      */
     public List<? extends EntityObject> processNamedNativeQuery(String namedQuery, Map<String, ?> paramMap, int firstResult, int maxResult) {
         Query query = createNamedNativeQuery(namedQuery);

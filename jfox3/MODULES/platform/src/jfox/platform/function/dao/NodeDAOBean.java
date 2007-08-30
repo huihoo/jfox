@@ -1,4 +1,4 @@
-package cn.iservicedesk.function.dao;
+package jfox.platform.function.dao;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -10,8 +10,8 @@ import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.QueryHint;
 
-import cn.iservicedesk.function.entity.Node;
-import cn.iservicedesk.infrastructure.SuperDAO;
+import jfox.platform.function.entity.Node;
+import jfox.platform.infrastructure.SuperDAO;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

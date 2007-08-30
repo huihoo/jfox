@@ -1,6 +1,6 @@
-package cn.iservicedesk.datadict;
+package jfox.platform.datadict;
 
-import cn.iservicedesk.infrastructure.LocalNamingEntityObject;
+import jfox.platform.infrastructure.LocalNamingEntityObject;
 
 /**
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>

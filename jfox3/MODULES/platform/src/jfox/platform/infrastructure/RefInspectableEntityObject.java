@@ -1,4 +1,4 @@
-package cn.iservicedesk.infrastructure;
+package jfox.platform.infrastructure;
 
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
@@ -9,13 +9,13 @@ import java.util.Properties;
 import javax.persistence.Column;
 
 /**
- * „1¤7„1¤7„1¤70ê4„1¤7„1¤7„1¤7„1¤7„1¤70‹1„1¤7 Entity
- * „1¤7„1¤7„1¤7„1¤7 Property „1¤7„1¤70¶4„1¤7„1¤7„1¤7»Ç{ACCOUNT=1,2,3,4 USER=12,34,56}
+ * å¯ä»¥æ£€æŸ¥å¼•ç”¨çš„ Entity
+ * é‡‡ç”¨ Property æ ¼å¼ï¼Œå¦‚ï¼š{ACCOUNT=1,2,3,4 USER=12,34,56}
  *
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
 public abstract class RefInspectableEntityObject extends EntityObject {
-    // „1¤70¢9„1¤7„1¤70×4„1¤7„1¤7„1¤70¶3„1¤7„1¤7 refs
+    // æ˜¯å¦å·²ç»åˆå§‹åŒ– refs
     private boolean refsInit = false;
     private boolean refsChanged = false;
 

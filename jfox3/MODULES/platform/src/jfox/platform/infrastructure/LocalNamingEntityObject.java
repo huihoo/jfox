@@ -1,4 +1,4 @@
-package cn.iservicedesk.infrastructure;
+package jfox.platform.infrastructure;
 
 import java.io.ByteArrayInputStream;
 import java.util.Locale;
@@ -6,13 +6,13 @@ import java.util.Properties;
 import javax.persistence.Column;
 
 /**
- * 0õ1„1¤70ö6„1¤7„1¤7„1¤7„1¤70é7„1¤7 EntityObject„1¤7„1¤7„1¤7»ÇFunction, Module
+ * æ”¯æŒå¤šè¯­è¨€çš„ EntityObjectï¼Œå¦‚ï¼šFunction, Module
  *
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
 public abstract class LocalNamingEntityObject extends EntityObject{
 
-    //localName „1¤7„1¤7„1¤7„1¤7„1¤7„1¤7 properties „1¤70ö7„1¤7
+    //localName å¤šè¯­è¨€ properties å­—ç¬¦ä¸²
     @Column(name="LOCAL_NAME")
     private String localName = "";
     private Properties localNameProperties = null;

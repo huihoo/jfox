@@ -1,9 +1,9 @@
-package cn.iservicedesk.function.dao;
+package jfox.platform.function.dao;
 
 import java.util.List;
 
-import cn.iservicedesk.function.entity.Module;
-import cn.iservicedesk.infrastructure.DataAccessObject;
+import jfox.platform.function.entity.Module;
+import jfox.platform.infrastructure.DataAccessObject;
 
 /**
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>

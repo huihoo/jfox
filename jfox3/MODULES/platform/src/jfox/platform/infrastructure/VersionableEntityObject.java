@@ -1,9 +1,9 @@
-package cn.iservicedesk.infrastructure;
+package jfox.platform.infrastructure;
 
 import javax.persistence.Column;
 
 /**
- * 0õ1„1¤70ö0·Ú„1¤7„1¤70†4„1¤7„1¤7„1¤70ö9„1¤7„1¤7„1¤7„1¤7 EntityObject
+ * æ”¯æŒç‰ˆæœ¬è®°å½•ï¼Œä¹è§‚é”çš„ EntityObject
  *
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */

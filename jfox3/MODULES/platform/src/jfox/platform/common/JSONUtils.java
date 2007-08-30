@@ -1,11 +1,11 @@
-package cn.iservicedesk.common;
+package jfox.platform.common;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import cn.iservicedesk.infrastructure.EntityObject;
+import jfox.platform.infrastructure.EntityObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
