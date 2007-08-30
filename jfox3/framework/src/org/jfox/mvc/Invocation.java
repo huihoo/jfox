@@ -25,6 +25,11 @@ public class Invocation {
      */
     private Map<String, String[]> attributes = new HashMap<String, String[]>();
 
+    /**
+     * form 中需要有 <input type="hidden" name="request_token" value="$J_REQUESET_TOKEN"> 
+     */
+    private String request_token = null;
+
     final void putAll(Map<String, String[]> parameterMap) {
         attributes.putAll(parameterMap);
     }
@@ -71,6 +76,14 @@ public class Invocation {
 
     public void validateAll() throws ValidateException {
         
+    }
+
+    public String getRequestToken() {
+        return request_token;
+    }
+
+    public void setRequestToken(String requestToken) {
+        this.request_token = requestToken;
     }
 
     public static void main(String[] args) {

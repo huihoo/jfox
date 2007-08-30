@@ -121,7 +121,8 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     }
 
     public final void execute(InvocationContext invocationContext) throws Exception {
-
+        logger.info("Request accepted, URI: " + invocationContext.getRequestURI());
+        long now = System.currentTimeMillis();
         Method actionMethod = getActionMethod(invocationContext);
         if (actionMethod == null) {
             throw new ServletException("No ActionMethod in Action Class: " + getClass().getName() + " responsable for " + (invocationContext.isPost() ? "POST" : "GET") + " action: " + getName() + "." + invocationContext.getActionMethodName() + " !");
@@ -146,6 +147,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
             initInvocation(invocationClass, invocationContext);
             // 设置通用PageContext属性
             initPageContext(invocationContext);
+            checkSessionToken(invocationContext);
             // pre action
             preAction(invocationContext);
             // invoke action method
@@ -181,8 +183,9 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         }
         finally {
             postAction(invocationContext);
+            releaseSessionToken(invocationContext);
+            logger.info("Request done, URI: " + invocationContext.getRequestURI() + ", time consumed " + (System.currentTimeMillis()-now) + "ms.");
         }
-
         // 没有设置 errorView, 抛出异常
         if (exception != null && (errorView == null || errorView.trim().length() == 0)) {
             throw exception;
@@ -206,6 +209,8 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         //用于在页面上显示 vm 文件全路径，便于调试
         pageContext.setAttribute("J_WEBAPP_CONTEXT_PATH", request.getContextPath());
         pageContext.setAttribute("J_REQUEST_URI", request.getRequestURI());
+        // request token，用来防止重复提交
+        pageContext.setAttribute("J_REQUEST_TOKEN", System.currentTimeMillis() + "");
     }
 
     private Method getActionMethod(InvocationContext invocationContext) {
@@ -389,6 +394,30 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
          */
         invocation.validateAll();
         return invocation;
+    }
+
+    protected void checkSessionToken(InvocationContext invocationContext) {
+        Invocation invocation = invocationContext.getInvocation();
+        if(invocation.getRequestToken() != null) {
+            SessionContext sessionContext = invocationContext.getSessionContext();
+            String key = SessionContext.TOKEN_SESSION_KEY + invocation.getRequestToken();
+            if(sessionContext.containsAttribute(key)) {
+                // token 已经存在，是重复提交
+                throw new ActionResubmitException("Detected re-submit, action: " + invocationContext.getFullActionMethodName() + ", token: " + invocation.getRequestToken());
+            }
+            else {
+                sessionContext.setAttribute(key, "1");
+            }
+        }
+    }
+
+    protected void releaseSessionToken(InvocationContext invocationContext) {
+        Invocation invocation = invocationContext.getInvocation();
+        if(invocation.getRequestToken() != null) {
+            SessionContext sessionContext = invocationContext.getSessionContext();
+            String key = SessionContext.TOKEN_SESSION_KEY + invocation.getRequestToken();
+            sessionContext.removeAttribute(key);
+        }
     }
 
     public static void main(String[] args) {

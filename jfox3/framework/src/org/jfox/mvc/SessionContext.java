@@ -23,6 +23,8 @@ public class SessionContext implements Serializable {
     public static final String SESSION_KEY = "__SESSION_KEY__";
     public static final String SECURITY_CONTEXT_SESSION_KEY = "__SECURITY_SUBJECT__";
 
+    public static final String TOKEN_SESSION_KEY ="SESSION_TOKEN.";
+
     /**
      * 使用Map存储Session数据
      */
