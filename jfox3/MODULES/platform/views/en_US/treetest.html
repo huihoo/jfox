@@ -1,0 +1,26 @@
+﻿<!doctype html public "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Yahoo! UI Library - Tree Control</title>
+<link rel="stylesheet" type="text/css" href="tree.css">
+<script type="text/javascript" src="../include/javascript/yui/YAHOO.js" ></script>
+<script type="text/javascript" src="../include/javascript/yui/dom.js" ></script>
+<script type="text/javascript" src="../include/javascript/yui/event.js"></script>
+<script type="text/javascript" src="../include/javascript/yui/treeview.js" ></script>
+<script type="text/javascript" src="../include/javascript/treeutils.js"></script>
+</head>
+  
+<body>
+<div id="treeDiv1"></div>
+<script type="text/javascript">
+	(function() {
+		var testData = '[{"ID":"1","PARENT_ID":"0","NAME":"中国"},{"ID":"2","PARENT_ID":"1","NAME":"北京"}]';
+		var treeview = new YAHOO.widget.TreeView("treeDiv1");
+		initYUITree(treeview, testData);
+  })();
+</script>
+</body>
+</html>
+ 

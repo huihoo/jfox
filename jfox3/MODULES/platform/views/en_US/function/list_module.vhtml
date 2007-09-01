@@ -1,0 +1,300 @@
+﻿#parse("../include/include_header.vhtml")
+<link rel="stylesheet" type="text/css" href="include/javascript/yui/treeview/assets/css/folders/tree.css"/>
+<script src="include/javascript/yui/treeview/treeview.js"></script>
+<script src="include/javascript/treeutils.js"></script>
+<style>
+    #treeDiv1 {
+        background: #fff;
+        margin-top: 1em;
+        padding: 1em;
+        min-height: 7em;
+    }
+</style>
+
+<script type="text/javascript">
+
+YAHOO.namespace("jfox");
+YAHOO.jfox.moduleTree = function() {
+    function loadNodeData(node, fnLoadComplete) {
+
+        //We'll load node data based on what we get back when we
+        //use Connection Manager topass the text label of the
+        //expanding node to the Yahoo!
+        //Search "related suggestions" API.  Here, we're at the
+        //first part of the request -- we'll make the request to the
+        //server.  In our success handler, we'll build our new children
+        //and then return fnLoadComplete back to the tree.
+
+        //Get the node's label and urlencode it; this is the word/s
+        //on which we'll search for related words:
+        var nodeLabel = encodeURI(node.label);
+
+			//prepare URL for XHR request:
+        var sUrl = "assets/ysuggest_proxy.php?query=" + nodeLabel;
+
+			//prepare our callback object
+        var callback = {
+
+        //if our XHR call is successful, we want to make use
+        //of the returned data and create child nodes.
+            success: function(oResponse) {
+                YAHOO.log("XHR transaction was successful.", "info", "example");
+					//YAHOO.log(oResponse.responseText);
+                var oResults = eval("(" + oResponse.responseText + ")");
+                if ((oResults.ResultSet.Result) && (oResults.ResultSet.Result.length)) {
+                    //Result is an array if more than one result, string otherwise
+                    if (YAHOO.lang.isArray(oResults.ResultSet.Result)) {
+                        for (var i = 0, j = oResults.ResultSet.Result.length; i < j; i++) {
+                            var tempNode = new YAHOO.widget.TextNode(oResults.ResultSet.Result[i], node, false);
+                        }
+                    }
+                    else {
+                        //there is only one result; comes as string:
+                        var tempNode = new YAHOO.widget.TextNode(oResults.ResultSet.Result, node, false)
+                    }
+                }
+
+					//When we're done creating child nodes, we execute the node's
+                //loadComplete callback method which comes in via the argument
+                //in the response object (we could also access it at node.loadComplete,
+                //if necessary):
+                oResponse.argument.fnLoadComplete();
+            },
+
+        //if our XHR call is not successful, we want to
+        //fire the TreeView callback and let the Tree
+        //proceed with its business.
+            failure: function(oResponse) {
+                YAHOO.log("Failed to process XHR transaction.", "info", "example");
+                oResponse.argument.fnLoadComplete();
+            },
+
+        //our handlers for the XHR response will need the same
+        //argument information we got to loadNodeData, so
+        //we'll pass those along:
+            argument: {
+                "node": node,
+                "fnLoadComplete": fnLoadComplete
+            },
+
+        //timeout -- if more than 7 seconds go by, we'll abort
+        //the transaction and assume there are no children:
+            timeout: 7000
+        };
+
+			//With our callback object ready, it's now time to
+        //make our XHR call using Connection Manager's
+        //asyncRequest method:
+        YAHOO.util.Connect.asyncRequest('GET', sUrl, callback);
+    }
+
+
+    return {
+        init: function() {
+            var testData = $__JSONUTILS__.entitiesToJSONString($__ALL_MODULES__)
+            var treeview = new YAHOO.widget.TreeView("treeDiv1");
+            treeview.setDynamicLoad(loadNodeData, 0);
+            initYUITree(treeview, testData);
+        }
+    }
+}();
+//once the DOM has loaded, we can go ahead and set up our tree:
+YAHOO.util.Event.onDOMReady(YAHOO.jfox.moduleTree.init, YAHOO.jfox.moduleTree, true)
+</script>
+<form name="EditView" method="POST" action="module.new.do">
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td style="padding-bottom: 2px;"></td>
+        <td align="right" nowrap><span class="required">*</span> Indicates required field</td>
+    </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabForm">
+    <tr>
+        <th align="left" class="dataLabel" colspan="2"><h4 class="dataLabel">Module Information</h4></th>
+    </tr>
+    <tr>
+        <td>
+            <div id="treeDiv1"></div>
+        </td>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="15%" class="dataLabel">Name: <span class="required">*</span></td>
+                    <td width="35%" class="dataField"><input name='name' tabindex='1' size='25' maxlength='25' type="text" value=""></td>
+                    <td width="15%" class="dataLabel">Bind Action: <span class="required">*</span></td>
+                    <td width="35%" class="dataField"><input id='bind_action' name='bindAction' type="text" tabindex='2' size='30' maxlength='64' value=''></td>
+                </tr>
+                <tr>
+                    <td class="dataLabel">Icon:</td>
+                    <td class="dataField"><input name='icon' type="text" tabindex='3' size='25' maxlength='50' value=''></td>
+                    <td class="dataLabel">Priority: <span class="required">*</span></td>
+                    <td class="dataField"><input name='priority' type="text" tabindex='4' size='6' maxlength='25' value='99'></td>
+                </tr>
+                <tr>
+                    <td class="dataLabel">Status:</td>
+                    <td class="dataField"><select name='vstatus' tabindex='5'>
+                        <OPTION selected value='0'>Enabled</OPTION>
+                        <OPTION value='1'>Disabled</OPTION>
+                        <OPTION value='2'>Removed</OPTION>
+                    </select></td>
+                    <td class="dataLabel"></td>
+                    <td class="dataField"></td>
+
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr height="10">
+        <td style="padding-left: 10px;"></td>
+    </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabForm">
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th align="left" class="dataLabel" colspan="2"><h4 class="dataLabel">Internationalization Name</h4></th>
+                </tr>
+                <tr>
+                    <td width="25%" class="dataLabel">English Name:</td>
+                    <td width="75%" class="dataField"><input name='localName_en_US' tabindex='6' size='25' maxlength='25' type="text" value=""></td>
+                </tr>
+                <tr>
+                    <td class="dataLabel">Simple Chinese Name:</td>
+                    <td class="dataField"><input name='localName_zh_CN' tabindex='6' size='25' maxlength='25' type="text" value=""></td>
+                </tr>
+                <tr>
+                    <td class="dataLabel">Traditional Chinese Name:</td>
+                    <td class="dataField"><input name='localName_zh_TW' tabindex='8' size='25' maxlength='25' type="text" value=""></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr height="10">
+        <td style="padding-left: 10px;"></td>
+    </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabForm">
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th align="left" class="dataLabel" colspan="2"><h4 class="dataLabel">Description Information</h4></th>
+                </tr>
+                <tr>
+
+                    <td width="15%" valign="top" class="dataLabel">Description:</td>
+                    <td width="85%" class="dataField"><textarea name='description' tabindex='9' cols="60" rows="8"></textarea></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+    Calendar.setup({
+        inputField : "jscal_field", ifFormat : "%Y-%m-%d", showsTime : false, button : "jscal_trigger", singleClick : true, step : 1
+    });
+</script>
+
+<script type="text/javascript" language="Javascript">
+    function copyAddressRight(form) {
+        form.alt_address_street.value = form.primary_address_street.value;
+        form.alt_address_city.value = form.primary_address_city.value;
+        form.alt_address_state.value = form.primary_address_state.value;
+        form.alt_address_postalcode.value = form.primary_address_postalcode.value;
+        form.alt_address_country.value = form.primary_address_country.value;
+        return true;
+    }
+    function copyAddressLeft(form) {
+        form.primary_address_street.value = form.alt_address_street.value;
+        form.primary_address_city.value = form.alt_address_city.value;
+        form.primary_address_state.value = form.alt_address_state.value;
+        form.primary_address_postalcode.value = form.alt_address_postalcode.value;
+        form.primary_address_country.value = form.alt_address_country.value;
+        return true;
+    }
+</script>
+
+<script type="text/javascript" language="JavaScript">
+    function set_focus() {
+        if (document.forms.length > 0) {
+            for (i = 0; i < document.forms.length; i++) {
+                for (j = 0; j < document.forms[i].elements.length; j++) {
+                    var field = document.forms[i].elements[j];
+                    if ((field.type == "text" || field.type == "textarea" || field.type == "password") &&
+                        !field.disabled && (field.name == "first_name" || field.name == "name" || field.name == "user_name" || field.name == "document_name")) {
+                        field.focus();
+                        if (field.type == "text") {
+                            field.select();
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    }
+</script>
+<script type="text/javascript" language="Javascript">
+    function trim(s) {
+        while (s.substring(0, 1) == " ") {
+            s = s.substring(1, s.length);
+        }
+        while (s.substring(s.length - 1, s.length) == ' ') {
+            s = s.substring(0, s.length - 1);
+        }
+
+        return s;
+    }
+
+    function verify_data(form) {
+        var isError = false;
+        var errorMessage = "";
+        if (trim(form.last_name.value) == "") {
+            isError = true;
+            errorMessage += "\nLast Name";
+        }
+
+        if (isError == true) {
+            alert("Missing required field:" + errorMessage);
+            return false;
+        }
+        if (trim(form.email1.value) != "" && !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(form.email1.value)) {
+            alert('"' + form.email1.value + '" not a valid email address.');
+            return false;
+        }
+        if (trim(form.email2.value) != "" && !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(form.email2.value)) {
+            alert('"' + form.email2.value + '" not a valid email address.');
+            return false;
+        }
+
+        return true;
+    }
+</script>
+<script type="text/javascript" src="include/JSON.js"></script>
+<script type="text/javascript">sqsWaitGif = "themes/VintageSugar/images/sqsWait.gif";</script>
+<script type="text/javascript" src="include/javascript/quicksearch.js"></script>
+<script type="text/javascript"
+        language="javascript">sqs_objects = {"account_name":{"method":"query","modules":["Accounts"],"group":"or","field_list":["name","id","billing_address_street","billing_address_city","billing_address_state","billing_address_postalcode","billing_address_country","phone_office"],"populate_list":["account_name","account_id","primary_address_street","primary_address_city","primary_address_state","primary_address_postalcode","primary_address_country","phone_work"],"conditions":[{"name":"name","op":"like_custom","end":"%","value":""}],"order":"name","limit":"30","no_match_text":"No Match"},"assigned_user_name":{"method":"get_user_array","field_list":["user_name","id"],"populate_list":["assigned_user_name","assigned_user_id"],"conditions":[{"name":"user_name","op":"like_custom","end":"%","value":""}],"limit":"30","no_match_text":"No Match"},"campaign_name":{"method":"query","modules":["Campaigns"],"group":"or","field_list":["name","id"],"populate_list":["campaign_name","campaign_id"],"conditions":[{"name":"name","op":"like_custom","end":"%","value":""}],"order":"name","limit":"30","no_match_text":"No Match"}}</script>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr height="10">
+        <td style="padding-left: 10px;"></td>
+    </tr>
+</table>
+
+<div id="button_bar">
+    <input title="Save [Alt+S]" accessKey="S" class="button" onclick="this.form.action.value='Save';return check_form('EditView');" type="submit" name="button" value="  保存  "> <input title="Cancel [Alt+X]" accessKey="X" class="button" onclick="this.form.action.value='index'; this.form.module.value='Contacts'; this.form.record.value=''" type="submit" name="button" value="  Cancel  ">
+</div>
+
+</form>
+
+#parse("../include/include_footer.vhtml")
