@@ -281,9 +281,9 @@
       <module fileurl="file://$PROJECT_DIR$/MODULES/Test/Test.iml" filepath="$PROJECT_DIR$/MODULES/Test/Test.iml" />
       <module fileurl="file://$PROJECT_DIR$/MODULES/Test2/Test2.iml" filepath="$PROJECT_DIR$/MODULES/Test2/Test2.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework.iml" filepath="$PROJECT_DIR$/framework/framework.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" filepath="$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" />
       <module fileurl="file://$PROJECT_DIR$/MODULES/manager/manager.iml" filepath="$PROJECT_DIR$/MODULES/manager/manager.iml" />
       <module fileurl="file://$PROJECT_DIR$/MODULES/petstore/petstore.iml" filepath="$PROJECT_DIR$/MODULES/petstore/petstore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MODULES/iservicedesk/platform.iml" filepath="$PROJECT_DIR$/MODULES/iservicedesk/platform.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" assert-keyword="true" jdk-15="true" project-jdk-name="1.5" project-jdk-type="JavaSDK">
