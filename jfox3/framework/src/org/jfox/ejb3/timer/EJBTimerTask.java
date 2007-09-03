@@ -8,10 +8,10 @@ package org.jfox.ejb3.timer;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
-import java.util.Date;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import javax.ejb.EJBException;
@@ -21,7 +21,7 @@ import javax.ejb.TimerHandle;
 
 import org.jfox.ejb3.EJBObjectId;
 import org.jfox.ejb3.SimpleEJB3Container;
-import org.jfox.ejb3.security.SecurityContext;
+import org.jfox.mvc.SessionContext;
 
 /**
  * @author <a href="mailto:yangyong@ufsoft.com.cn">Young Yang</a>
@@ -42,7 +42,7 @@ public class EJBTimerTask implements Timer, TimerHandle, Runnable {
      */
     private ScheduledFuture future;
 
-    private SecurityContext securityContext;
+    private SessionContext sessionContext;
 
     public EJBTimerTask(SimpleEJB3Container.ContainerTimerService timerService, Serializable info) {
         this.timerService = timerService;
@@ -57,13 +57,13 @@ public class EJBTimerTask implements Timer, TimerHandle, Runnable {
         this.ejbObjectId = ejbObjectId;
     }
 
-    public SecurityContext getSecurityContext() {
-        return securityContext;
+    public SessionContext getSessionContext() {
+        return sessionContext;
     }
 
     // set security context when createTimer
-    public void setSecurityContext(SecurityContext securityContext) {
-        this.securityContext = securityContext;
+    public void setSessionContext(SessionContext sessionContext) {
+        this.sessionContext = sessionContext;
     }
 
     public void setFuture(ScheduledFuture future) {

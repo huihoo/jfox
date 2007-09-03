@@ -148,15 +148,11 @@ public class JFoxXFireDelegate  implements WSContainer, Invoker, ComponentInitia
     public Object invoke(Method method, Object[] params, MessageContext messageContext) throws XFireFault {
         SecurityContext securityContext = new SecurityContext();
         SessionContext sessionContext = SessionContext.currentThreadSessionContext();
-        if(sessionContext != null){
-            // try get SecurityContext from session context
-            securityContext = sessionContext.getSecurityContext();
-        }
 
         String ejbName = getEJBNameByWebServiceEndpointInterface(messageContext.getService().getServiceInfo().getServiceClass());
         try {
             // stateless, 直接用 ejb name 做 ejb id
-            return ejbContainer.invokeEJB(new EJBObjectId(ejbName), method, params, securityContext);
+            return ejbContainer.invokeEJB(new EJBObjectId(ejbName), method, params, sessionContext);
         }
         catch (Exception e) {
             return new XFireFault(e);

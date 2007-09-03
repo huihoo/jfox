@@ -13,14 +13,14 @@ import javax.naming.Context;
 import javax.transaction.TransactionManager;
 
 import org.jfox.framework.annotation.Exported;
-import org.jfox.framework.component.Component;
-import org.jfox.framework.component.InterceptableComponent;
-import org.jfox.framework.component.ComponentInitialization;
 import org.jfox.framework.component.ActiveComponent;
-import org.jfox.framework.component.SingletonComponent;
+import org.jfox.framework.component.Component;
+import org.jfox.framework.component.ComponentInitialization;
 import org.jfox.framework.component.ComponentUnregistration;
-import org.jfox.ejb3.security.SecurityContext;
+import org.jfox.framework.component.InterceptableComponent;
+import org.jfox.framework.component.SingletonComponent;
 import org.jfox.jms.MessageService;
+import org.jfox.mvc.SessionContext;
 
 /**
  * EJB3 容器
@@ -88,10 +88,10 @@ public interface EJBContainer extends Component, InterceptableComponent, Compone
      * @param ejbObjectId ejb object id
      * @param method 要执行的方法
      * @param params 参数 @throws NoSuchEJBException if no such ejb
-     * @param securityContext security context
+     * @param sessionContext session context
      * @throws Exception exception
      * @return method result
      */
-    Object invokeEJB(EJBObjectId ejbObjectId, Method method, Object[] params, SecurityContext securityContext) throws Exception;
+    Object invokeEJB(EJBObjectId ejbObjectId, Method method, Object[] params, SessionContext sessionContext) throws Exception;
 
 }

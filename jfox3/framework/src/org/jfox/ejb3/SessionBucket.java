@@ -55,7 +55,6 @@ import org.jfox.ejb3.interceptor.ExternalInterceptorMethod;
 import org.jfox.ejb3.interceptor.InterceptorMethod;
 import org.jfox.ejb3.interceptor.InternalInterceptorMethod;
 import org.jfox.ejb3.naming.ContextAdapter;
-import org.jfox.ejb3.security.SecurityContext;
 import org.jfox.entity.dependent.FieldPersistenceContextDependence;
 import org.jfox.entity.dependent.FieldPersistenceUnitDependence;
 import org.jfox.framework.component.Module;
@@ -643,13 +642,7 @@ public abstract class SessionBucket implements EJBBucket {
             }
             else {
                 // 其它业务方法
-                SecurityContext securityContext = new SecurityContext();
-                SessionContext sessionContext = SessionContext.currentThreadSessionContext();
-                if (sessionContext != null) {
-                    // try get SecurityContext from session context
-                    securityContext = sessionContext.getSecurityContext();
-                }
-                return getEJBContainer().invokeEJB(getEJBObjectId(), method, args, securityContext);
+                return getEJBContainer().invokeEJB(getEJBObjectId(), method, args, SessionContext.currentThreadSessionContext());
             }
         }
 

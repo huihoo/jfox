@@ -46,7 +46,6 @@ import org.jfox.ejb3.invocation.ThreadContextEJBInvocationHandler;
 import org.jfox.ejb3.invocation.TransactionEJBInvocationHandler;
 import org.jfox.ejb3.naming.ContextAdapter;
 import org.jfox.ejb3.naming.InitialContextFactoryImpl;
-import org.jfox.ejb3.security.SecurityContext;
 import org.jfox.ejb3.timer.EJBTimerTask;
 import org.jfox.ejb3.transaction.JTATransactionManager;
 import org.jfox.framework.annotation.Constant;
@@ -59,6 +58,7 @@ import org.jfox.framework.event.ModuleLoadingEvent;
 import org.jfox.framework.event.ModuleUnloadedEvent;
 import org.jfox.jms.JMSConnectionFactory;
 import org.jfox.jms.MessageService;
+import org.jfox.mvc.SessionContext;
 
 /**
  * 只支持 Local/Stateless Session Bean, Local MDB
@@ -310,7 +310,7 @@ public class SimpleEJB3Container implements EJBContainer, ModuleListener {
      * @param securityContext security context
      * @throws Exception exception
      */
-    public Object invokeEJB(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params, SecurityContext securityContext) throws Exception {
+    public Object invokeEJB(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params, SessionContext securityContext) throws Exception {
         logger.debug("invokeEJB: EJBObjectId=" + ejbObjectId + ", Method: " + interfaceMethod.getName());
         EJBBucket bucket = getEJBBucket(ejbObjectId.getEJBName());
         // get instance from bucket's pool
@@ -341,13 +341,13 @@ public class SimpleEJB3Container implements EJBContainer, ModuleListener {
      * @param params          parameters
      * @throws Exception exception
      */
-    protected Object invokeTimeout(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params, SecurityContext securityContext) throws Exception {
+    protected Object invokeTimeout(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params, SessionContext sessionContext) throws Exception {
         EJBBucket bucket = getEJBBucket(ejbObjectId.getEJBName());
         // get instance from bucket's pool
         ExtendEJBContext ejbContext = null;
         try {
             ejbContext = bucket.getEJBContext(ejbObjectId);
-            EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbContext.getEJBInstance(), interfaceMethod, interfaceMethod, params, securityContext);
+            EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbContext.getEJBInstance(), interfaceMethod, interfaceMethod, params, sessionContext);
             return invokeEJBInvocation(invocation);
         }
         finally {
@@ -573,7 +573,7 @@ public class SimpleEJB3Container implements EJBContainer, ModuleListener {
                     timeMethod = _timeoutMethod;
                     logger.info("Call Timeout method: " + _timeoutMethod + " of EJB: " + ejbTimerTask.getEJBObjectId());
                     // 这样会启动事务
-                    invokeTimeout(ejbTimerTask.getEJBObjectId(), _timeoutMethod, new Object[]{ejbTimerTask}, ejbTimerTask.getSecurityContext());
+                    invokeTimeout(ejbTimerTask.getEJBObjectId(), _timeoutMethod, new Object[]{ejbTimerTask}, ejbTimerTask.getSessionContext());
                 }
             }
             catch (Exception e) {

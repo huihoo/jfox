@@ -20,6 +20,7 @@ import javax.transaction.TransactionManager;
 import org.jfox.ejb3.interceptor.BusinessInterceptorMethod;
 import org.jfox.ejb3.interceptor.InterceptorMethod;
 import org.jfox.ejb3.security.SecurityContext;
+import org.jfox.mvc.SessionContext;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -39,12 +40,7 @@ public class EJBInvocation {
 
     private TransactionManager tm;
 
-    /**
-     * SecurityContext, 含有 Subject
-     */
-    private SecurityContext securityContext;
-
-    private EJBInvocationContext ejbInvocationContext;
+    private SessionContext sessionContext;
 
     /**
      * 方法是否有 @RunAS
@@ -63,14 +59,14 @@ public class EJBInvocation {
         currentThreadEJBInvocation.remove();
     }
 
-    public EJBInvocation(EJBObjectId ejbObjectId, EJBBucket bucket, Object target, Method interfaceMethod, Method concreteMethod, Object[] params, SecurityContext securityContext) {
+    public EJBInvocation(EJBObjectId ejbObjectId, EJBBucket bucket, Object target, Method interfaceMethod, Method concreteMethod, Object[] params, SessionContext securityContext) {
         this.ejbObjectId = ejbObjectId;
         this.bucket = bucket;
         this.target = target;
         this.interfaceMethod = interfaceMethod;
         this.concreteMethod = concreteMethod;
         this.params = params;
-        this.securityContext = securityContext;
+        this.sessionContext = securityContext;
     }
 
     public TransactionManager getTransactionManager() {
@@ -139,13 +135,21 @@ public class EJBInvocation {
         return params;
     }
 
+    protected SessionContext getSessionContext() {
+        return sessionContext;
+    }
+
     public SecurityContext getSecurityContext() {
-        return securityContext;
+        return getSessionContext().getSecurityContext();
+    }
+
+    public Object getSessionAttribute(String attribute){
+        return getSessionContext().getAttribute(attribute);
     }
 
     public Group getCallerGroup(){
         RunAs runAs = getBucket().getBeanClass().getAnnotation(RunAs.class);
-        Subject subject = securityContext.getSubject();
+        Subject subject = getSecurityContext().getSubject();
         if(runAs != null) {
             String runAsRole = runAs.value();
             String username = getSecurityContext().getPrincipalName();
@@ -167,6 +171,7 @@ public class EJBInvocation {
             return new ArrayList<Principal>(0);
         }
     }
+
 
     public String toString() {
         return "EJBInvocation{EJB=" + getBucket().getBeanClass().getName() + ", method=" + getInterfaceMethod().getName() + "}";

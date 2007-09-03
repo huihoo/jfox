@@ -23,13 +23,13 @@ import org.apache.commons.pool.PoolableObjectFactory;
 import org.apache.commons.pool.impl.GenericObjectPool;
 import org.jfox.ejb3.dependent.FieldEJBDependence;
 import org.jfox.ejb3.dependent.FieldResourceDependence;
-import org.jfox.ejb3.security.SecurityContext;
 import org.jfox.entity.dependent.FieldPersistenceContextDependence;
 import org.jfox.entity.dependent.FieldPersistenceUnitDependence;
 import org.jfox.framework.component.Module;
 import org.jfox.jms.MessageListenerUtils;
 import org.jfox.jms.MessageService;
 import org.jfox.jms.destination.JMSDestination;
+import org.jfox.mvc.SessionContext;
 
 /**
  * Container of MessageDriven EJB，store all Meta data, and as EJB Factory
@@ -239,7 +239,8 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
 
     public void onMessage(Message message) {
         try {
-            getEJBContainer().invokeEJB(createEJBObjectId(), MessageListenerUtils.getOnMessageMethod(), new Object[]{message}, new SecurityContext());
+            //TODO: How to get corret SessionContext 
+            getEJBContainer().invokeEJB(createEJBObjectId(), MessageListenerUtils.getOnMessageMethod(), new Object[]{message}, SessionContext.currentThreadSessionContext());
         }
         catch (EJBException e) {
             throw e;

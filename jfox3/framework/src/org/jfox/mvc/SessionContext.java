@@ -88,6 +88,10 @@ public class SessionContext implements Serializable {
      * 取得当前Session关联的SecurityContext
      */
     public SecurityContext getSecurityContext(){
+        if(!this.containsAttribute(SECURITY_CONTEXT_SESSION_KEY)) {
+            this.setAttribute(SECURITY_CONTEXT_SESSION_KEY, new SecurityContext());
+        }
+
         return (SecurityContext)this.getAttribute(SECURITY_CONTEXT_SESSION_KEY);
     }
 

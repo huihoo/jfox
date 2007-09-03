@@ -368,7 +368,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(duration, info);
             timer.setEJBObjectId(createEJBObjectId());
             timer.addTimeoutMethod(getTimeoutMethods());
-            timer.setSecurityContext(EJBInvocation.current().getSecurityContext());
+            timer.setSessionContext(EJBInvocation.current().getSessionContext());
             return timer;
         }
 
@@ -376,7 +376,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(expiration, info);
             timer.setEJBObjectId(createEJBObjectId());
             timer.addTimeoutMethod(getTimeoutMethods());
-            timer.setSecurityContext(EJBInvocation.current().getSecurityContext());
+            timer.setSessionContext(EJBInvocation.current().getSessionContext());
             return timer;
         }
 
@@ -384,7 +384,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(initialDuration, intervalDuration, info);
             timer.setEJBObjectId(createEJBObjectId());
             timer.addTimeoutMethod(getTimeoutMethods());
-            timer.setSecurityContext(EJBInvocation.current().getSecurityContext());
+            timer.setSessionContext(EJBInvocation.current().getSessionContext());
             return timer;
         }
 
@@ -392,7 +392,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
             EJBTimerTask timer = (EJBTimerTask)getEJBContainer().getTimerService().createTimer(initialExpiration, intervalDuration, info);
             timer.setEJBObjectId(createEJBObjectId());
             timer.addTimeoutMethod(getTimeoutMethods());
-            timer.setSecurityContext(EJBInvocation.current().getSecurityContext());
+            timer.setSessionContext(EJBInvocation.current().getSessionContext());
             return timer;
         }
 
