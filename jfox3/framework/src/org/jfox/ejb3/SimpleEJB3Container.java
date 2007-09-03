@@ -314,7 +314,7 @@ public class SimpleEJB3Container implements EJBContainer, ModuleListener {
         logger.debug("invokeEJB: EJBObjectId=" + ejbObjectId + ", Method: " + interfaceMethod.getName());
         EJBBucket bucket = getEJBBucket(ejbObjectId.getEJBName());
         // get instance from bucket's pool
-        AbstractEJBContext ejbContext = null;
+        ExtendEJBContext ejbContext = null;
         try {
             ejbContext = bucket.getEJBContext(ejbObjectId);
             Method concreteMethod = bucket.getConcreteMethod(interfaceMethod);
@@ -344,7 +344,7 @@ public class SimpleEJB3Container implements EJBContainer, ModuleListener {
     protected Object invokeTimeout(EJBObjectId ejbObjectId, Method interfaceMethod, Object[] params, SecurityContext securityContext) throws Exception {
         EJBBucket bucket = getEJBBucket(ejbObjectId.getEJBName());
         // get instance from bucket's pool
-        AbstractEJBContext ejbContext = null;
+        ExtendEJBContext ejbContext = null;
         try {
             ejbContext = bucket.getEJBContext(ejbObjectId);
             EJBInvocation invocation = new EJBInvocation(ejbObjectId, bucket, ejbContext.getEJBInstance(), interfaceMethod, interfaceMethod, params, securityContext);

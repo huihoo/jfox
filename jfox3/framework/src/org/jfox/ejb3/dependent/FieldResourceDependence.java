@@ -17,8 +17,8 @@ import javax.jms.TopicConnectionFactory;
 import javax.sql.DataSource;
 import javax.transaction.UserTransaction;
 
-import org.jfox.ejb3.AbstractEJBContext;
 import org.jfox.ejb3.EJBBucket;
+import org.jfox.ejb3.ExtendEJBContext;
 import org.jfox.entity.EntityManagerFactoryBuilderImpl;
 import org.jfox.framework.dependent.InjectionException;
 
@@ -50,10 +50,10 @@ public class FieldResourceDependence extends ResourceDependence {
         if (field.getType().equals(EJBContext.class) ||
                 field.getType().equals(SessionContext.class) ||
                 field.getType().equals(MessageDrivenContext.class)) {
-            targetObject = (AbstractEJBContext)ejbContext;
+            targetObject = (ExtendEJBContext)ejbContext;
         }
         else if (field.getType().equals(TimerService.class)) {
-            targetObject = ((AbstractEJBContext)ejbContext).getTimerService();
+            targetObject = ((ExtendEJBContext)ejbContext).getTimerService();
         }
         else if (field.getType().equals(DataSource.class)) {
             // 无需通过 InitialContext
@@ -87,7 +87,7 @@ public class FieldResourceDependence extends ResourceDependence {
         }
         try {
             field.setAccessible(true);
-            field.set(((AbstractEJBContext)ejbContext).getEJBInstance(), targetObject);
+            field.set(((ExtendEJBContext)ejbContext).getEJBInstance(), targetObject);
         }
         catch (IllegalAccessException e) {
             throw new InjectionException("Inject EJBContext ");

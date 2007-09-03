@@ -14,6 +14,8 @@ import javax.ejb.PostActivate;
 import javax.ejb.PrePassivate;
 import javax.ejb.Stateful;
 
+import org.apache.commons.pool.KeyedPoolableObjectFactory;
+import org.apache.commons.pool.impl.GenericKeyedObjectPool;
 import org.jfox.ejb3.dependent.FieldEJBDependence;
 import org.jfox.ejb3.dependent.FieldResourceDependence;
 import org.jfox.entity.dependent.FieldPersistenceContextDependence;
@@ -22,8 +24,6 @@ import org.jfox.framework.component.Module;
 import org.jfox.util.AnnotationUtils;
 import org.jfox.util.ClassUtils;
 import org.jfox.util.MethodUtils;
-import org.apache.commons.pool.KeyedPoolableObjectFactory;
-import org.apache.commons.pool.impl.GenericKeyedObjectPool;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -132,11 +132,11 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
         return new EJBObjectId(getEJBName(), "" + id++);
     }
 
-    public AbstractEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
+    public ExtendEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
         return new StatefulEJBContextImpl(ejbObjectId, instance);
     }
 
-    public AbstractEJBContext getEJBContext(EJBObjectId ejbObjectId) {
+    public ExtendEJBContext getEJBContext(EJBObjectId ejbObjectId) {
         try {
             StatefulEJBContextImpl ejbContext = (StatefulEJBContextImpl)pool.borrowObject(ejbObjectId);
             return ejbContext;
@@ -146,7 +146,7 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
         }
     }
 
-    public void reuseEJBContext(AbstractEJBContext ejbContext) {
+    public void reuseEJBContext(ExtendEJBContext ejbContext) {
         try {
             pool.returnObject(ejbContext.getEJBObjectId(), ejbContext);
         }
@@ -170,13 +170,13 @@ public class StatefulBucket extends SessionBucket implements KeyedPoolableObject
         //TODO: do @PrePassivate when pool destory EJBContext
         for (Method preDestroyMethod : getPreDestroyMethods()) {
             logger.debug("PreDestory method for ejb: " + getEJBName() + ", method: " + preDestroyMethod);
-            preDestroyMethod.invoke(((AbstractEJBContext)obj).getEJBInstance());
+            preDestroyMethod.invoke(((ExtendEJBContext)obj).getEJBInstance());
         }
     }
 
     public Object makeObject(Object key) throws Exception {
         Object obj = getBeanClass().newInstance();
-        AbstractEJBContext ejbContext = createEJBContext((EJBObjectId)key, obj);
+        ExtendEJBContext ejbContext = createEJBContext((EJBObjectId)key, obj);
 // post construct
         for (Method postConstructMethod : getPostConstructMethods()) {
             logger.debug("PostConstruct method for ejb: " + getEJBName() + ", method: " + postConstructMethod);

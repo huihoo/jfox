@@ -19,16 +19,16 @@ import javax.ejb.EJBLocalHome;
 import javax.ejb.EJBLocalObject;
 import javax.ejb.EJBObject;
 import javax.ejb.Handle;
+import javax.ejb.MessageDrivenContext;
 import javax.ejb.RemoveException;
 import javax.ejb.SessionContext;
 import javax.ejb.TimerService;
-import javax.ejb.MessageDrivenContext;
 import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
 import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
-import javax.transaction.UserTransaction;
 import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 import javax.xml.rpc.handler.MessageContext;
 
 import org.jfox.ejb3.naming.ContextAdapter;
@@ -37,7 +37,7 @@ import org.jfox.ejb3.naming.ContextAdapter;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @SuppressWarnings({"deprecation"})
-public abstract class AbstractEJBContext implements SessionContext, MessageDrivenContext, EJBObject, EJBLocalObject {
+public abstract class ExtendEJBContext implements SessionContext, MessageDrivenContext, EJBObject, EJBLocalObject {
 
     private EJBObjectId ejbObjectId;
     private Object ejbInstance;
@@ -50,7 +50,7 @@ public abstract class AbstractEJBContext implements SessionContext, MessageDrive
 
     private ENContext envContext = new ENContext();
 
-    public AbstractEJBContext(EJBObjectId ejbObjectId, Object ejbInstance) {
+    public ExtendEJBContext(EJBObjectId ejbObjectId, Object ejbInstance) {
         this.ejbObjectId = ejbObjectId;
         this.ejbInstance = ejbInstance;
     }

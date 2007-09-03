@@ -40,9 +40,9 @@ import javax.naming.NameAlreadyBoundException;
 import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
-import javax.persistence.EntityManagerFactory;
 import javax.transaction.Status;
 import javax.transaction.SystemException;
 
@@ -518,7 +518,7 @@ public abstract class SessionBucket implements EJBBucket {
      * @param ejbObjectId ejb object id
      * @param instance    ejb bean instance
      */
-    protected abstract AbstractEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance);
+    protected abstract ExtendEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance);
 
     /**
      * get EJBContext according ejb object id
@@ -526,14 +526,14 @@ public abstract class SessionBucket implements EJBBucket {
      * @param ejbObjectId ejb object id
      * @throws EJBException exception
      */
-    public abstract AbstractEJBContext getEJBContext(EJBObjectId ejbObjectId);
+    public abstract ExtendEJBContext getEJBContext(EJBObjectId ejbObjectId);
 
     /**
      * 将EJBContext返回给 pool, ejb context 中包含ejb instance
      *
      * @param ejbContext ejb context
      */
-    public abstract void reuseEJBContext(AbstractEJBContext ejbContext);
+    public abstract void reuseEJBContext(ExtendEJBContext ejbContext);
 
     public Collection<InterceptorMethod> getClassInterceptorMethods() {
         return Collections.unmodifiableCollection(classInterceptorMethods);
@@ -694,7 +694,7 @@ public abstract class SessionBucket implements EJBBucket {
     }
 
     // EJBContext Implementation
-    public class EJBContextImpl extends AbstractEJBContext {
+    public class EJBContextImpl extends ExtendEJBContext {
 
         public EJBContextImpl(EJBObjectId ejbObjectId, Object ejbInstance) {
             super(ejbObjectId, ejbInstance);

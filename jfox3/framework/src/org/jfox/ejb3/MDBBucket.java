@@ -132,7 +132,7 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
      * @param ejbObjectId ejb object id
      * @throws javax.ejb.EJBException exception
      */
-    public AbstractEJBContext getEJBContext(EJBObjectId ejbObjectId) throws EJBException {
+    public ExtendEJBContext getEJBContext(EJBObjectId ejbObjectId) throws EJBException {
         try {
             EJBContextImpl ejbContext = (EJBContextImpl)pool.borrowObject();
             return ejbContext;
@@ -147,7 +147,7 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
      *
      * @param ejbContext ejb context
      */
-    public void reuseEJBContext(AbstractEJBContext ejbContext) {
+    public void reuseEJBContext(ExtendEJBContext ejbContext) {
         try {
             pool.returnObject(ejbContext);
         }
@@ -156,7 +156,7 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
         }
     }
 
-    public AbstractEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
+    public ExtendEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
         if (messageDrivenEJBContext == null) {
             messageDrivenEJBContext = new MessageDrivenEJBContextImpl(ejbObjectId, instance);
         }
@@ -253,7 +253,7 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
     //--- jakarta commons-pool PoolableObjectFactory ---
     public Object makeObject() throws Exception {
         Object obj = getBeanClass().newInstance();
-        AbstractEJBContext ejbContext = createEJBContext(createEJBObjectId(), obj);
+        ExtendEJBContext ejbContext = createEJBContext(createEJBObjectId(), obj);
         // post construct
         for (Method postConstructMethod : getPostConstructMethods()) {
             logger.debug("PostConstruct method for ejb: " + getEJBName() + ", method: " + postConstructMethod);
@@ -297,7 +297,7 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
     public void destroyObject(Object obj) throws Exception {
         for (Method preDestroyMethod : getPreDestroyMethods()) {
             logger.debug("PreDestory method for ejb: " + getEJBName() + ", method: " + preDestroyMethod);
-            preDestroyMethod.invoke(((AbstractEJBContext)obj).getEJBInstance());
+            preDestroyMethod.invoke(((ExtendEJBContext)obj).getEJBInstance());
         }
     }
 

@@ -7,9 +7,9 @@
 package org.jfox.ejb3;
 
 import java.io.Serializable;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -25,6 +25,8 @@ import javax.ejb.Timer;
 import javax.ejb.TimerService;
 import javax.jws.WebService;
 
+import org.apache.commons.pool.PoolableObjectFactory;
+import org.apache.commons.pool.impl.GenericObjectPool;
 import org.jfox.ejb3.dependent.FieldEJBDependence;
 import org.jfox.ejb3.dependent.FieldResourceDependence;
 import org.jfox.ejb3.timer.EJBTimerTask;
@@ -35,8 +37,6 @@ import org.jfox.framework.component.Module;
 import org.jfox.util.AnnotationUtils;
 import org.jfox.util.ClassUtils;
 import org.jfox.util.MethodUtils;
-import org.apache.commons.pool.PoolableObjectFactory;
-import org.apache.commons.pool.impl.GenericObjectPool;
 
 /**
  * Container of Statless EJB，store all Meta data, and as EJB Factory
@@ -189,7 +189,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
      * @param ejbObjectId ejb object id
      * @throws EJBException exception
      */
-    public AbstractEJBContext getEJBContext(EJBObjectId ejbObjectId) throws EJBException {
+    public ExtendEJBContext getEJBContext(EJBObjectId ejbObjectId) throws EJBException {
         try {
             EJBContextImpl ejbContext = (EJBContextImpl)pool.borrowObject();
             return ejbContext;
@@ -208,7 +208,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
      *
      * @param ejbContext ejb context
      */
-    public void reuseEJBContext(AbstractEJBContext ejbContext) {
+    public void reuseEJBContext(ExtendEJBContext ejbContext) {
         try {
             pool.returnObject(ejbContext);
         }
@@ -217,7 +217,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         }
     }
 
-    public AbstractEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
+    public ExtendEJBContext createEJBContext(EJBObjectId ejbObjectId, Object instance) {
         if (statelessEJBContext == null) {
             statelessEJBContext = new StatelessEJBContextImpl(ejbObjectId, instance);
         }
@@ -278,7 +278,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     //--- jakarta commons-pool PoolableObjectFactory ---
     public Object makeObject() throws Exception {
         Object obj = getBeanClass().newInstance();
-        AbstractEJBContext ejbContext = createEJBContext(createEJBObjectId(), obj);
+        ExtendEJBContext ejbContext = createEJBContext(createEJBObjectId(), obj);
         // post construct
         for (Method postConstructMethod : getPostConstructMethods()) {
             logger.debug("PostConstruct method for ejb: " + getEJBName() + ", method: " + postConstructMethod);
@@ -322,7 +322,7 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
     public void destroyObject(Object obj) throws Exception {
         for (Method preDestroyMethod : getPreDestroyMethods()) {
             logger.debug("PreDestory method for ejb: " + getEJBName() + ", method: " + preDestroyMethod);
-            preDestroyMethod.invoke(((AbstractEJBContext)obj).getEJBInstance());
+            preDestroyMethod.invoke(((ExtendEJBContext)obj).getEJBInstance());
         }
     }
 

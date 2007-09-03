@@ -44,6 +44,8 @@ public class EJBInvocation {
      */
     private SecurityContext securityContext;
 
+    private EJBInvocationContext ejbInvocationContext;
+
     /**
      * 方法是否有 @RunAS
      */

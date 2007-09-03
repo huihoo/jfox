@@ -13,7 +13,7 @@ import javax.ejb.EJBObject;
 import javax.naming.NamingException;
 
 import org.jfox.ejb3.EJBBucket;
-import org.jfox.ejb3.AbstractEJBContext;
+import org.jfox.ejb3.ExtendEJBContext;
 import org.jfox.framework.dependent.InjectionException;
 
 /**
@@ -112,7 +112,7 @@ public class FieldEJBDependence extends EJBDependence {
         // 使用 field 反射注入
         try {
             field.setAccessible(true);
-            field.set(((AbstractEJBContext)ejbContext).getEJBInstance(), targetEJBObject);
+            field.set(((ExtendEJBContext)ejbContext).getEJBInstance(), targetEJBObject);
         }
         catch (Exception e) {
             throw new InjectionException("Failed to inject field " + field.getName() + " of EJB " + bucket.getEJBName(), e);

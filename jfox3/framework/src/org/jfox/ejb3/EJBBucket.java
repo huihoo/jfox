@@ -49,14 +49,14 @@ public interface EJBBucket {
      *
      * @param ejbObjectId ejb object id
      */
-    AbstractEJBContext getEJBContext(EJBObjectId ejbObjectId);
+    ExtendEJBContext getEJBContext(EJBObjectId ejbObjectId);
 
     /**
      * 重用 ejb instance
      *
      * @param ejbContext ejb context
      */
-    void reuseEJBContext(AbstractEJBContext ejbContext);
+    void reuseEJBContext(ExtendEJBContext ejbContext);
 
     /**
      * EJB 所在的 Module
