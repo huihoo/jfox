@@ -29,9 +29,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/ModuleDAO.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/ModuleDAO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.ipr" afterPath="$PROJECT_DIR$/jfox3.ipr" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/MODULES/platform/src/jfox/platform/aaa/action/UserAction.java" afterPath="$PROJECT_DIR$/MODULES/platform/src/jfox/platform/aaa/action/UserAction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/ModuleDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/ModuleDAOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/db/CCMIS_PDM.pdb" afterPath="$PROJECT_DIR$/MODULES/ccmis/db/CCMIS_PDM.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/ModuleAction.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/ModuleAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/bo/ModuleBOBean.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/bo/ModuleBOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/bo/ModuleBO.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/bo/ModuleBO.java" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -160,7 +165,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/framework/src/org/jfox/entity/SQLQuery.java" line="100" class="org.jfox.entity.SQLQuery" package="org.jfox.entity">
+      <breakpoint url="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/bo/ModuleBOBean.java" line="31" class="jfox.platform.function.bo.ModuleBOBean" package="jfox.platform.function.bo">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -262,112 +267,75 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SuperDAO.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/infrastructure/SuperDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="81" column="130" selection-start="2474" selection-end="2474" vertical-scroll-proportion="0.36363637">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Node.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/function/entity/Node.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="37" selection-start="323" selection-end="323" vertical-scroll-proportion="0.023809524">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LocalNamingAndRefInspectableEntityObject.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/infrastructure/LocalNamingAndRefInspectableEntityObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="74" selection-start="482" selection-end="482" vertical-scroll-proportion="0.024475524">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EntityObject.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/infrastructure/EntityObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="466" selection-end="466" vertical-scroll-proportion="0.024475524">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Module.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/function/entity/Module.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="24" selection-start="473" selection-end="473" vertical-scroll-proportion="0.33333334">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModuleAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/function/action/ModuleAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="21" selection-start="450" selection-end="456" vertical-scroll-proportion="0.024475524">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ActionMethod.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/annotation/ActionMethod.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="11" selection-start="945" selection-end="945" vertical-scroll-proportion="0.0979021">
+            <state line="23" column="35" selection-start="644" selection-end="644" vertical-scroll-proportion="0.04964539">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new_module.vhtml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/platform/views/en_US/function/new_module.vhtml">
-          <provider editor-type-id="HtmlPreview">
-            <state />
-          </provider>
+      <file leaf-file-name="ModuleBOBean.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/bo/ModuleBOBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="41" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0">
+            <state line="41" column="0" selection-start="885" selection-end="989" vertical-scroll-proportion="1.6382979">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/aaa/entity/User.java">
+      <file leaf-file-name="SQLQuery.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/SQLQuery.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="13" selection-start="171" selection-end="171" vertical-scroll-proportion="0.16666667">
+            <state line="109" column="9" selection-start="3201" selection-end="3201" vertical-scroll-proportion="0.05263158">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RefInspectableEntityObject.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/infrastructure/RefInspectableEntityObject.java">
+      <file leaf-file-name="UserAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/aaa/action/UserAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="0" selection-start="1920" selection-end="1920" vertical-scroll-proportion="0.024475524">
+            <state line="18" column="0" selection-start="406" selection-end="406" vertical-scroll-proportion="0.79432625">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="persistence.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/conf/META-INF/persistence.xml">
+      <file leaf-file-name="ModuleAction.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/ModuleAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="0" selection-start="5273" selection-end="5273" vertical-scroll-proportion="0.8494624">
+            <state line="68" column="51" selection-start="2922" selection-end="2922" vertical-scroll-proportion="0.7894737">
+              <folding>
+                <element signature="class#NewModuleInvocation#0;class#ModuleAction#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModuleBO.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/bo/ModuleBO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="40" selection-start="324" selection-end="360" vertical-scroll-proportion="0.7446808">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserAction.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/aaa/action/UserAction.java">
+      <file leaf-file-name="ModuleDAO.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/ModuleDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="1" selection-start="405" selection-end="405" vertical-scroll-proportion="0.35714287">
+            <state line="16" column="0" selection-start="363" selection-end="363" vertical-scroll-proportion="0.6453901">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModuleDAOBean.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/ModuleDAOBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="63" column="64" selection-start="2363" selection-end="2363" vertical-scroll-proportion="0.4574468">
               <folding />
             </state>
           </provider>
@@ -441,7 +409,7 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="platform" />
+          <option name="myItemId" value="ccmis" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -451,11 +419,11 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="platform" />
+          <option name="myItemId" value="ccmis" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -465,19 +433,19 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="platform" />
+          <option name="myItemId" value="ccmis" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform\src" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform\src\jfox\platform" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -487,23 +455,23 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="platform" />
+          <option name="myItemId" value="ccmis" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform\src" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform\src\jfox\platform" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform\src\jfox\platform\aaa" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\function" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -513,27 +481,27 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="platform" />
+          <option name="myItemId" value="ccmis" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform\src" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform\src\jfox\platform" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform\src\jfox\platform\aaa" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\function" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform\src\jfox\platform\aaa\bo" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\function\dao" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -543,27 +511,27 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="platform" />
+          <option name="myItemId" value="ccmis" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform\src" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform\src\jfox\platform" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform\src\jfox\platform\aaa" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\function" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\platform\src\jfox\platform\aaa\action" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\function\action" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -580,7 +548,7 @@
       <showLibraryContents PackagesPane="true" />
       <hideEmptyPackages PackagesPane="true" ProjectPane="true" />
       <abbreviatePackageNames />
-      <showStructure Favorites="false" Scope="false" PackagesPane="false" ProjectPane="false" />
+      <showStructure ProjectPane="false" Scope="false" PackagesPane="false" Favorites="false" />
       <autoscrollToSource />
       <autoscrollFromSource ProjectPane="false" />
       <sortByType ProjectPane="true" />
@@ -650,19 +618,32 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
-      <module name="platform" />
+      <module name="" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method>
         <option name="Make" value="true" />
       </method>
     </tempConfiguration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
+    <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="ADDITIONAL_CLASS_PATH" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <method>
+        <option name="Make" value="true" />
+      </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
       <option name="MAIN_CLASS_NAME" />
@@ -698,6 +679,14 @@
       <option name="OPEN_IN_BROWSER" value="true" />
       <option name="OPEN_IN_BROWSER_URL" value="/" />
       <option name="COMMON_VM_ARGUMENTS" value="" />
+      <JAVAEE_FACET FACET_ID="ccmis/ejb/EJB" DEPLOYMENT_SOURCE_NAME="exploded">
+        <option name="CONTEXT_PATH" value="/" />
+        <option name="DEPLOY" value="false" />
+      </JAVAEE_FACET>
+      <JAVAEE_FACET FACET_ID="ccmis/web/Web" DEPLOYMENT_SOURCE_NAME="exploded">
+        <option name="CONTEXT_PATH" value="/" />
+        <option name="DEPLOY" value="false" />
+      </JAVAEE_FACET>
       <JAVAEE_FACET FACET_ID="framework/web/Web" DEPLOYMENT_SOURCE_NAME="exploded">
         <option name="CONTEXT_PATH" value="/" />
         <option name="DEPLOY" value="false" />
@@ -706,37 +695,16 @@
         <option name="CONTEXT_PATH" value="/" />
         <option name="DEPLOY" value="false" />
       </JAVAEE_FACET>
-      <JAVAEE_FACET FACET_ID="platform/ejb/EJB" DEPLOYMENT_SOURCE_NAME="exploded">
-        <option name="CONTEXT_PATH" value="/" />
-        <option name="DEPLOY" value="false" />
-      </JAVAEE_FACET>
-      <JAVAEE_FACET FACET_ID="platform/web/Web" DEPLOYMENT_SOURCE_NAME="exploded">
-        <option name="CONTEXT_PATH" value="/" />
-        <option name="DEPLOY" value="false" />
-      </JAVAEE_FACET>
       <option name="DEPLOY_TOMCAT_MANAGER" value="false" />
       <option name="BASE_DIRECTORY_NAME" value="" />
       <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
     </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="ADDITIONAL_CLASS_PATH" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
-      <method>
-        <option name="Make" value="true" />
-      </method>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
     </configuration>
     <configuration default="false" name="CalculatorTestMain" type="Application" factoryName="Application" enabled="false" merge="false">
       <option name="MAIN_CLASS_NAME" value="jfox.test.ejb3.stateless.CalculatorTestMain" />
@@ -1002,21 +970,21 @@
       <option name="PORT" value="8080" />
       <option name="LOCAL" value="true" />
       <option name="OPEN_IN_BROWSER" value="false" />
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/platform/framework/" />
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/jfox/framework/" />
       <option name="COMMON_VM_ARGUMENTS" value="" />
+      <JAVAEE_FACET FACET_ID="ccmis/ejb/EJB">
+        <option name="CONTEXT_PATH" value="/" />
+        <option name="DEPLOY" value="false" />
+      </JAVAEE_FACET>
+      <JAVAEE_FACET FACET_ID="ccmis/web/Web" DEPLOYMENT_SOURCE_NAME="exploded">
+        <option name="CONTEXT_PATH" value="/" />
+        <option name="DEPLOY" value="false" />
+      </JAVAEE_FACET>
       <JAVAEE_FACET FACET_ID="framework/web/Web" DEPLOYMENT_SOURCE_NAME="exploded">
-        <option name="CONTEXT_PATH" value="/platform" />
+        <option name="CONTEXT_PATH" value="/jfox" />
         <option name="DEPLOY" value="true" />
       </JAVAEE_FACET>
       <JAVAEE_FACET FACET_ID="manager/web/Web">
-        <option name="CONTEXT_PATH" value="/" />
-        <option name="DEPLOY" value="false" />
-      </JAVAEE_FACET>
-      <JAVAEE_FACET FACET_ID="platform/ejb/EJB">
-        <option name="CONTEXT_PATH" value="/" />
-        <option name="DEPLOY" value="false" />
-      </JAVAEE_FACET>
-      <JAVAEE_FACET FACET_ID="platform/web/Web" DEPLOYMENT_SOURCE_NAME="exploded">
         <option name="CONTEXT_PATH" value="/" />
         <option name="DEPLOY" value="false" />
       </JAVAEE_FACET>
@@ -1169,13 +1137,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1032" height="776" extended-state="6" />
+    <frame x="-4" y="-4" width="1032" height="776" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="IDEtalk" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="22" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32618684" order="10" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3183183" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25225225" order="0" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3767228" order="4" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.123123124" order="1" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" order="2" />
@@ -1189,12 +1157,12 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.51914245" order="5" x="100" y="162" width="634" height="300" />
       <window_info id="Hierarchy" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.308" order="5" />
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.731" order="3" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4333844" order="7" x="16" y="176" width="776" height="371" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.48392037" order="7" x="16" y="176" width="776" height="371" />
       <window_info id="simpleUML" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4992343" order="12" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="21" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" order="0" />
       <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
-      <window_info id="SVN Repositories" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5" order="23" />
+      <window_info id="SVN Repositories" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4327217" order="23" />
       <window_info id="SQL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7914201" order="15" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Aspects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="2" />
@@ -1230,7 +1198,7 @@
     <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="iservicedesk-&gt;platform" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -1317,58 +1285,6 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/InvocationContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="4" selection-start="1947" selection-end="1947" vertical-scroll-proportion="0.89303905">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/infrastructure/SuperAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="22" selection-start="751" selection-end="751" vertical-scroll-proportion="0.3327674">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/platform/views/en_US/index.vhtml">
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="20" selection-start="306" selection-end="306" vertical-scroll-proportion="0.15328467">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/function/bo/NodeBO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="17" selection-start="193" selection-end="193" vertical-scroll-proportion="0.16198348">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/function/bo/ModuleBO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="27" selection-start="205" selection-end="205" vertical-scroll-proportion="0.16198348">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/function/bo/ModuleBOBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="9" selection-start="496" selection-end="496" vertical-scroll-proportion="0.2857143">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/function/dao/ModuleDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="363" selection-end="363" vertical-scroll-proportion="0.30952382">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/MappedEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="40" selection-start="930" selection-end="938" vertical-scroll-proportion="0.5952381">
@@ -1413,35 +1329,73 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/infrastructure/SuperDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="130" selection-start="2474" selection-end="2474" vertical-scroll-proportion="0.36363637">
+        <state line="81" column="130" selection-start="2474" selection-end="2474" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/function/entity/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="37" selection-start="323" selection-end="323" vertical-scroll-proportion="0.023809524">
+        <state line="11" column="37" selection-start="323" selection-end="323" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/infrastructure/LocalNamingAndRefInspectableEntityObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="74" selection-start="482" selection-end="482" vertical-scroll-proportion="0.024475524">
+        <state line="17" column="74" selection-start="482" selection-end="482" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/infrastructure/EntityObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="466" selection-end="466" vertical-scroll-proportion="0.024475524">
+        <state line="19" column="0" selection-start="466" selection-end="466" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/function/entity/Module.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="24" selection-start="473" selection-end="473" vertical-scroll-proportion="0.33333334">
+        <state line="17" column="24" selection-start="473" selection-end="473" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/aaa/entity/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="13" selection-start="171" selection-end="171" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/infrastructure/RefInspectableEntityObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="0" selection-start="1920" selection-end="1920" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/conf/META-INF/persistence.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="0" selection-start="5273" selection-end="5273" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/aaa/action/UserAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="1" selection-start="405" selection-end="405" vertical-scroll-proportion="0.4047619">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/platform/views/en_US/function/new_module.vhtml">
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="8" selection-start="174" selection-end="174" vertical-scroll-proportion="0.07909604">
           <folding />
         </state>
       </provider>
@@ -1455,46 +1409,59 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/annotation/ActionMethod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="11" selection-start="945" selection-end="945" vertical-scroll-proportion="0.0979021">
+        <state line="23" column="35" selection-start="644" selection-end="644" vertical-scroll-proportion="0.04964539">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/platform/views/en_US/function/new_module.vhtml">
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/SQLQuery.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="41" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0">
+        <state line="109" column="9" selection-start="3201" selection-end="3201" vertical-scroll-proportion="0.05263158">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/aaa/entity/User.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/aaa/action/UserAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="171" selection-end="171" vertical-scroll-proportion="0.16666667">
+        <state line="18" column="0" selection-start="406" selection-end="406" vertical-scroll-proportion="0.79432625">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/infrastructure/RefInspectableEntityObject.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/bo/ModuleBO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="0" selection-start="1920" selection-end="1920" vertical-scroll-proportion="0.024475524">
+        <state line="17" column="40" selection-start="324" selection-end="360" vertical-scroll-proportion="0.7446808">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/conf/META-INF/persistence.xml">
+    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/ModuleDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="0" selection-start="5273" selection-end="5273" vertical-scroll-proportion="0.8494624">
+        <state line="16" column="0" selection-start="363" selection-end="363" vertical-scroll-proportion="0.6453901">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/platform/src/jfox/platform/aaa/action/UserAction.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/bo/ModuleBOBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="1" selection-start="405" selection-end="405" vertical-scroll-proportion="0.35714287">
+        <state line="41" column="0" selection-start="885" selection-end="989" vertical-scroll-proportion="1.6382979">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/ModuleDAOBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="64" selection-start="2363" selection-end="2363" vertical-scroll-proportion="0.4574468">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/ModuleAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="51" selection-start="2922" selection-end="2922" vertical-scroll-proportion="0.7894737">
+          <folding>
+            <element signature="class#NewModuleInvocation#0;class#ModuleAction#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
