@@ -29,14 +29,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/ModuleDAO.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/ModuleDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.ipr" afterPath="$PROJECT_DIR$/jfox3.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/ModuleDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/ModuleDAOBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/db/CCMIS_PDM.pdb" afterPath="$PROJECT_DIR$/MODULES/ccmis/db/CCMIS_PDM.pdb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/ModuleAction.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/ModuleAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/bo/ModuleBOBean.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/bo/ModuleBOBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/bo/ModuleBO.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/bo/ModuleBO.java" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -306,8 +300,9 @@
       <file leaf-file-name="ModuleAction.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/ModuleAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="51" selection-start="2922" selection-end="2922" vertical-scroll-proportion="0.7894737">
+            <state line="176" column="0" selection-start="5656" selection-end="5656" vertical-scroll-proportion="0.7293233">
               <folding>
+                <element signature="class#EditModuleInvocation#0;class#ModuleAction#0" expanded="false" />
                 <element signature="class#NewModuleInvocation#0;class#ModuleAction#0" expanded="false" />
               </folding>
             </state>
@@ -1458,8 +1453,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/ModuleAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="51" selection-start="2922" selection-end="2922" vertical-scroll-proportion="0.7894737">
+        <state line="176" column="0" selection-start="5656" selection-end="5656" vertical-scroll-proportion="0.7293233">
           <folding>
+            <element signature="class#EditModuleInvocation#0;class#ModuleAction#0" expanded="false" />
             <element signature="class#NewModuleInvocation#0;class#ModuleAction#0" expanded="false" />
           </folding>
         </state>
