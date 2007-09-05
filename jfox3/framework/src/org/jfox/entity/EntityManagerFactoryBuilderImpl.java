@@ -9,14 +9,14 @@ package org.jfox.entity;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Iterator;
-import java.util.Collection;
-import java.util.Collections;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NamedNativeQueries;
@@ -26,6 +26,9 @@ import javax.persistence.QueryHint;
 import javax.sql.DataSource;
 import javax.transaction.TransactionManager;
 
+import org.apache.log4j.Logger;
+import org.enhydra.jdbc.pool.StandardXAPoolDataSource;
+import org.enhydra.jdbc.standard.StandardXADataSource;
 import org.jfox.ejb3.naming.JNDIContextHelper;
 import org.jfox.ejb3.transaction.JTATransactionManager;
 import org.jfox.entity.cache.CacheConfig;
@@ -36,15 +39,12 @@ import org.jfox.framework.component.Component;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.ComponentInitialization;
 import org.jfox.framework.component.ComponentUnregistration;
-import org.jfox.framework.event.ModuleListener;
 import org.jfox.framework.component.Module;
 import org.jfox.framework.event.ModuleEvent;
-import org.jfox.framework.event.ModuleUnloadedEvent;
+import org.jfox.framework.event.ModuleListener;
 import org.jfox.framework.event.ModuleLoadingEvent;
+import org.jfox.framework.event.ModuleUnloadedEvent;
 import org.jfox.util.XMLUtils;
-import org.apache.log4j.Logger;
-import org.enhydra.jdbc.pool.StandardXAPoolDataSource;
-import org.enhydra.jdbc.standard.StandardXADataSource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -400,6 +400,9 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
                             //query_name = getUserInfo.MYSQL
                             namedSQLTemplates.put(sqlTemplate.getName() + "." + compatibleDbType.toUpperCase(), sqlTemplate);
                         }
+                    }
+                    else {
+                        namedSQLTemplates.put(sqlTemplate.getName(), sqlTemplate);
                     }
                 }
             }

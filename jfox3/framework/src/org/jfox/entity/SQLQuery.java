@@ -239,7 +239,7 @@ public class SQLQuery extends QueryExt {
             }
         });
 
-        logger.debug("Building PreparedStatemenet: " + nativeSQL);
+        logger.info("Building PreparedStatemenet use SQL: " + nativeSQL);
 
         Connection connection = em.getConnection();
         PreparedStatement pst = connection.prepareStatement(nativeSQL);
