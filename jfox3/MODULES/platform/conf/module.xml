@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<module>
-    <name>JFox_Platform</name>
-    <description>JFox Platform</description>
-    <priority>99</priority>
-    <!--
-    <ref-modules>Module_1,Module_2,Module_3,Module_4</ref-modules>
-    -->
-</module>
