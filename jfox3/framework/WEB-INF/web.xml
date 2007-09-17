@@ -59,7 +59,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>controller_servlet</servlet-name>
-        <url-pattern>/modules/*</url-pattern>
+        <url-pattern>/m/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
