@@ -18,9 +18,10 @@ import javax.transaction.SystemException;
 import javax.transaction.Transaction;
 import javax.transaction.TransactionManager;
 
-import org.jfox.ejb3.EJBContainerException;
 import org.apache.log4j.Logger;
+import org.jfox.ejb3.EJBContainerException;
 import org.objectweb.jotm.Jotm;
+import org.objectweb.jotm.TimerManager;
 
 /**
  * 使用 JOTM 构造的 JTA TransactionManager
@@ -60,6 +61,8 @@ public class JTATransactionManager implements TransactionManager {
         logger.debug("postUnregister");
         // 需要调用 stop 方法，以停止 jotm 的线程，使程序能正常终止
         jotm.stop();
+        // stop JOTM Timer Thread
+        TimerManager.stop();
     }
 
     public int getDefaultTransactionTimeout() {
