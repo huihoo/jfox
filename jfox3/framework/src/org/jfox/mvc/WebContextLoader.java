@@ -171,6 +171,9 @@ public class WebContextLoader implements ServletContextListener {
             module2ActionsMap.put(moduleDirName, new HashMap<String, ActionSupport>());
         }
         Map<String, ActionSupport> actionMap = module2ActionsMap.get(moduleDirName);
+        if(actionMap.containsKey(action.getName())){
+            logger.warn("Action: " + action.getName() + " in Module: " + moduleDirName + " exsited, will be replaced!");
+        }
         actionMap.put(action.getName(), action);
     }
 
