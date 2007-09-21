@@ -40,6 +40,8 @@ import org.jfox.util.ClassUtils;
  */
 public abstract class ActionSupport implements Action, ComponentInitialization, ComponentUnregistration, ActiveComponent, SingletonComponent {
 
+    public static final String PAGE_VIEW_PATH = "J_PAGE_VIEW";
+
     /**
      * post action prefix, invoked method will be "DOPOST + %ACTION_NAME%"
      */
@@ -182,6 +184,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
             exception = e;
         }
         finally {
+            postInitPageContext(invocationContext);
             postAction(invocationContext);
             releaseSessionToken(invocationContext);
         }
@@ -213,6 +216,12 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         // request token，用来防止重复提交
         pageContext.setAttribute("J_REQUEST_TOKEN", System.currentTimeMillis() + "");
     }
+
+    protected void postInitPageContext(InvocationContext invocationContext){
+        PageContext pageContext = invocationContext.getPageContext();
+        pageContext.setAttribute(PAGE_VIEW_PATH, pageContext.getTargeView());
+    }
+
 
     private Method getActionMethod(InvocationContext invocationContext) {
         //决定调用 doGetXXX or doPostXXX
