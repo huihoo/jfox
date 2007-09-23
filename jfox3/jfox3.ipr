@@ -524,6 +524,7 @@
         <root url="jar://$PROJECT_DIR$/framework/lib/xfire/xfire-all-1.2.6.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/jaxrpc-1_1-fr-spec-api.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/velocity-dep-1.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/jtds-1.2.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
