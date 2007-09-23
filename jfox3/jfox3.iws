@@ -29,7 +29,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/function/list_module.vhtml" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/function/list_module.vhtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/include/include_footer.vhtml" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/include/include_footer.vhtml" />
     </list>
@@ -307,7 +306,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="48" selection-start="883" selection-end="883" vertical-scroll-proportion="0.459854">
+            <state line="11" column="0" selection-start="609" selection-end="609" vertical-scroll-proportion="0.2810219">
               <folding />
             </state>
           </provider>
@@ -1472,7 +1471,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="48" selection-start="883" selection-end="883" vertical-scroll-proportion="0.459854">
+        <state line="11" column="0" selection-start="609" selection-end="609" vertical-scroll-proportion="0.2810219">
           <folding />
         </state>
       </provider>
