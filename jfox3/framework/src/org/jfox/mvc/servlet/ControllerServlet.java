@@ -53,7 +53,7 @@ public class ControllerServlet extends HttpServlet {
     //主要用来控制request charactor encoding, File Upload, Velocity, Freemarker的编码
     public static String DEFAULT_ENCODING = "UTF-8";
 
-    static String ACTION_SUFFIX = ".do";
+    public static String ACTION_SUFFIX = ".do";
     public static String VIEW_DIR = "views";
     static int MAX_UPLOAD_FILE_SIZE = 5 * 1000 * 1000;
 
