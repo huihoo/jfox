@@ -144,7 +144,7 @@ public class ControllerServlet extends HttpServlet {
                 String key = (String)enu.nextElement();
                 String[] values = request.getParameterValues(key);
 //                invocationContext.addParameter(key, values);
-                if(queryString.contains(key)) { // 是 URL encoding
+                if(queryString != null && queryString.contains(key)) { // 是 URL encoding
                     values = decodeQueryStringParameterValues(values);
                 }
                 parameterMap.put(key,values);
