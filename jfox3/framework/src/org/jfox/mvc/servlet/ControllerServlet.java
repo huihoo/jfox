@@ -8,6 +8,7 @@ package org.jfox.mvc.servlet;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -119,6 +120,7 @@ public class ControllerServlet extends HttpServlet {
 
     protected void forwardAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
+        String queryString = request.getQueryString();
         int slashIndex = pathInfo.indexOf("/", 2);
         String moduleDirName = pathInfo.substring(1, slashIndex);
         if(!WebContextLoader.isModuleExists(moduleDirName)) {
@@ -142,6 +144,9 @@ public class ControllerServlet extends HttpServlet {
                 String key = (String)enu.nextElement();
                 String[] values = request.getParameterValues(key);
 //                invocationContext.addParameter(key, values);
+                if(queryString.contains(key)) { // 是 URL encoding
+                    values = decodeQueryStringParameterValues(values);
+                }
                 parameterMap.put(key,values);
             }
         }
@@ -222,5 +227,24 @@ public class ControllerServlet extends HttpServlet {
         }
         String contentType = req.getContentType();
         return contentType != null && contentType.toLowerCase().startsWith(MULTIPART);
+    }
+
+    public String[] decodeQueryStringParameterValues(String[] values) {
+        if(values != null && values.length > 0) {
+            String[] decodedValues = new String[values.length];
+            for(int i=0; i<values.length; i++) {
+                try {
+                    decodedValues[i] = new String(values[i].getBytes("ISO-8859-1"), "UTF-8");
+                }
+                catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                    decodedValues[i] = values[i];
+                }
+            }
+            return decodedValues;
+        }
+        else {
+            return new String[0];
+        }
     }
 }
