@@ -60,7 +60,7 @@ public class FreemarkerRender implements Render {
             for (Map.Entry<String, File> entry : modulePath2File.entrySet()) {
                 String modulePath = entry.getKey();
                 File moduleDir = entry.getValue();
-                String templateBaseDir = moduleDir.getCanonicalFile().getAbsoluteFile().getPath() + "/" + ControllerServlet.VIEW_DIR;
+                String templateBaseDir = moduleDir.getCanonicalFile().getAbsoluteFile().getPath() + "/" + ControllerServlet.getViewDir();
 
                 Configuration configuration = new Configuration();
                 configuration.setDefaultEncoding(ControllerServlet.DEFAULT_ENCODING);
@@ -68,7 +68,7 @@ public class FreemarkerRender implements Render {
                 configuration.setDirectoryForTemplateLoading(new File(templateBaseDir));
 
                 // 注册相对 module template base dir，以便根据访问的 URL，来判断访问的Module，获得 VelocityEngine
-                baseDir2ConfigurationMap.put(modulePath + "/" + ControllerServlet.VIEW_DIR, configuration);
+                baseDir2ConfigurationMap.put(modulePath + "/" + ControllerServlet.getViewDir(), configuration);
             }
             logger.info("Freemarker engine initialized!");
         }

@@ -118,7 +118,7 @@ public class VelocityRender implements Render {
             for (Map.Entry<String, File> entry : modulePath2File.entrySet()) {
                 String modulePath = entry.getKey();
                 File moduleDir = entry.getValue();
-                String templateBaseDir = moduleDir.getCanonicalFile().getAbsoluteFile().getPath() + "/" + ControllerServlet.VIEW_DIR;
+                String templateBaseDir = moduleDir.getCanonicalFile().getAbsoluteFile().getPath() + "/" + ControllerServlet.getViewDir();
                 Properties p = loadConfiguration(servletConfig);
                 // use loader path by module
                 p.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, templateBaseDir);
@@ -135,7 +135,7 @@ public class VelocityRender implements Render {
                 EventCartridge ec = new EventCartridge();
                 ve.init(p);
                 // 注册相对 module template base dir，以便根据访问的 URL，来判断访问的Module，获得 VelocityEngine
-                baseDir2VelocityEngineMap.put(modulePath + "/" + ControllerServlet.VIEW_DIR, ve);
+                baseDir2VelocityEngineMap.put(modulePath + "/" + ControllerServlet.getViewDir(), ve);
             }
         }
         catch (Exception e) {

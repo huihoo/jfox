@@ -53,8 +53,8 @@ public class ControllerServlet extends HttpServlet {
     //主要用来控制request charactor encoding, File Upload, Velocity, Freemarker的编码
     public static String DEFAULT_ENCODING = "UTF-8";
 
-    public static String ACTION_SUFFIX = ".do";
-    public static String VIEW_DIR = "views";
+    static String ACTION_SUFFIX = ".do";
+    static String VIEW_DIR = "views";
     static int MAX_UPLOAD_FILE_SIZE = 5 * 1000 * 1000;
 
     public void init(ServletConfig servletConfig) throws ServletException {
@@ -81,6 +81,14 @@ public class ControllerServlet extends HttpServlet {
             MAX_UPLOAD_FILE_SIZE = Integer.parseInt(maxUploadFileSize);
         }
 
+    }
+
+    public static String getActionSuffix(){
+        return ACTION_SUFFIX;
+    }
+
+    public static String getViewDir(){
+        return VIEW_DIR;
     }
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
