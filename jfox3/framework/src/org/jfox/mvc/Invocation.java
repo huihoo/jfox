@@ -52,7 +52,7 @@ public class Invocation {
      */
     public Object getAttribute(String key) {
         Object obj = attributes.get(key);
-        if(obj.getClass().isArray()){
+        if(obj != null && obj.getClass().isArray()){
             Object[] objArray = (Object[])obj;
             if(objArray.length == 0){
                 return null;
