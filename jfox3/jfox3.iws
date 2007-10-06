@@ -29,8 +29,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/function/node_management.vhtml" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/function/node_management.vhtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/include/extjs/resources/css/ext-all.css" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/include/extjs/resources/css/ext-all.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/include/jfox/jfox.js" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/include/jfox/jfox.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/include/include_header.vhtml" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/include/include_header.vhtml" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -242,16 +244,16 @@
       <file leaf-file-name="jfox.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/include/jfox/jfox.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="70" selection-start="1497" selection-end="1497" vertical-scroll-proportion="0.0237691">
+            <state line="17" column="31" selection-start="618" selection-end="618" vertical-scroll-proportion="0.2614601">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="node_management.vhtml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="node_management.vhtml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/function/node_management.vhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="25" selection-start="1655" selection-end="1655" vertical-scroll-proportion="0.54562044">
+            <state line="12" column="13" selection-start="233" selection-end="233" vertical-scroll-proportion="0.12773722">
               <folding />
             </state>
           </provider>
@@ -281,10 +283,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="include_header.vhtml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="include_header.vhtml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/include/include_header.vhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="0" selection-start="4234" selection-end="4234" vertical-scroll-proportion="0.70620435">
+            <state line="260" column="112" selection-start="14472" selection-end="14472" vertical-scroll-proportion="0.5018248">
               <folding />
             </state>
           </provider>
@@ -1554,13 +1556,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/include/jfox/jfox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="70" selection-start="1497" selection-end="1497" vertical-scroll-proportion="0.0237691">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/entity/Node.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="40" selection-start="523" selection-end="523" vertical-scroll-proportion="0.026446281">
@@ -1573,16 +1568,6 @@
         <state line="51" column="13" selection-start="1016" selection-end="1016" vertical-scroll-proportion="0.46942148">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/function/node_management.vhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="25" selection-start="1655" selection-end="1655" vertical-scroll-proportion="0.54562044">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="HtmlPreview">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/include/extjs/resources/css/ext-all.css">
@@ -1602,9 +1587,26 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/include/jfox/jfox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="31" selection-start="618" selection-end="618" vertical-scroll-proportion="0.2614601">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/include/include_header.vhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="0" selection-start="4234" selection-end="4234" vertical-scroll-proportion="0.70620435">
+        <state line="260" column="112" selection-start="14472" selection-end="14472" vertical-scroll-proportion="0.5018248">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/function/node_management.vhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="13" selection-start="233" selection-end="233" vertical-scroll-proportion="0.12773722">
           <folding />
         </state>
       </provider>
