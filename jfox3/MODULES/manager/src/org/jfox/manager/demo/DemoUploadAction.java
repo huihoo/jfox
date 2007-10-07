@@ -6,13 +6,13 @@
  */
 package org.jfox.manager.demo;
 
+import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionSupport;
-import org.jfox.mvc.InvocationContext;
-import org.jfox.mvc.Invocation;
 import org.jfox.mvc.FileUploaded;
+import org.jfox.mvc.Invocation;
+import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.annotation.ActionMethod;
-import org.jfox.framework.annotation.Service;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -20,12 +20,12 @@ import org.jfox.framework.annotation.Service;
 @Service(id = "demoupload")
 public class DemoUploadAction extends ActionSupport {
 
-    @ActionMethod(successView = "demo/upload.vhtml")
+    @ActionMethod(name="view", successView = "demo/upload.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetView(InvocationContext invocationContext) throws Exception {
         // donothing
     }
-
-    @ActionMethod(successView = "demo/upload.vhtml", invocationClass = UploadInvocation.class)
+    
+    @ActionMethod(name="upload", successView = "demo/upload.vhtml", invocationClass = UploadInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostUpload(InvocationContext invocationContext) throws Exception {
         UploadInvocation invocation = (UploadInvocation)invocationContext.getInvocation();
         FileUploaded uploadFile = invocation.getUploadFile();

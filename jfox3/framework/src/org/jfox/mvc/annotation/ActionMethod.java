@@ -17,15 +17,14 @@ import org.jfox.mvc.Invocation;
  * 表示一个 Action 方法
  * 用该 Annotation 描述的方法，需要满足以下条件
  * 1.只有一个参数 Invotation
- * 2.返回 PageContext 类型
+ * 2.返回 Void 类型
+ * 3.抛出Exception异常
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})
 public @interface ActionMethod {
-
-    //TODO: 实现 name 和 HttpMethod
 
     public static enum ForwardMethod {
         FORWARD, REDIRECT
@@ -38,7 +37,7 @@ public @interface ActionMethod {
     /**
      * ActionMethod name，url访问时使用该名称
      */
-    String name() default "";
+    String name();
 
     /**
      * 调用成功时，跳转的页面 

@@ -8,8 +8,8 @@ package org.jfox.manager.demo;
 
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionSupport;
-import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.Invocation;
+import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.annotation.ActionMethod;
 
@@ -19,12 +19,12 @@ import org.jfox.mvc.annotation.ActionMethod;
 @Service(id="checkbox")
 public class CheckboxAction extends ActionSupport {
 
-    @ActionMethod(successView = "demo/checkbox.vhtml")
+    @ActionMethod(name="view", successView = "demo/checkbox.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetView(InvocationContext invocationContext) throws Exception{
         // do nothing, just show template
     }
 
-    @ActionMethod(successView = "demo/checkbox.vhtml", invocationClass = CheckboxInvocation.class)
+    @ActionMethod(name="submit", successView = "demo/checkbox.vhtml", invocationClass = CheckboxInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostSubmit(InvocationContext invocationContext) throws Exception{
         CheckboxInvocation invocation = (CheckboxInvocation)invocationContext.getInvocation();
         String[] fruits = invocation.getFruit();

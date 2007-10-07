@@ -8,14 +8,14 @@ package org.jfox.petstore.action;
 
 import javax.ejb.EJB;
 
-import org.jfox.petstore.bo.ItemBO;
-import org.jfox.petstore.entity.Item;
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
 import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.annotation.ActionMethod;
+import org.jfox.petstore.bo.ItemBO;
+import org.jfox.petstore.entity.Item;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -26,7 +26,7 @@ public class ItemAction extends ActionSupport {
     @EJB
     ItemBO itemBO;
 
-    @ActionMethod(successView = "Item.vhtml", invocationClass = ItemInvocation.class)
+    @ActionMethod(name="view", successView = "Item.vhtml", invocationClass = ItemInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetView(InvocationContext invocationContext) throws Exception {
         ItemInvocation invocation = (ItemInvocation)invocationContext.getInvocation();
         Item item = itemBO.getItem(invocation.getItemId());

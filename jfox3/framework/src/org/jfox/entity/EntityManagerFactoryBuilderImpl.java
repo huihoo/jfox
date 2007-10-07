@@ -398,7 +398,10 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
                         String compatibleDatabaseTypes = hint.value();
                         for(String compatibleDbType : compatibleDatabaseTypes.split(",")){
                             //query_name = getUserInfo.MYSQL
-                            namedSQLTemplates.put(sqlTemplate.getName() + "." + compatibleDbType.toUpperCase(), sqlTemplate);
+                            compatibleDbType = compatibleDbType.trim();
+                            if(compatibleDbType.length() > 0) {
+                                namedSQLTemplates.put(sqlTemplate.getName() + "." + compatibleDbType.trim().toUpperCase(), sqlTemplate);
+                            }
                         }
                     }
                     else {

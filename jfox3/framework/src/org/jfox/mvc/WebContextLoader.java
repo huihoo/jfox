@@ -191,13 +191,20 @@ public class WebContextLoader implements ServletContextListener {
     }
 
     private static Action getAction(String moduleDirName, String actionName) {
-        return module2ActionsMap.get(moduleDirName).get(actionName);
+        if(!module2ActionsMap.containsKey(moduleDirName)){
+            throw new ModuleNotFoundException(moduleDirName);
+        }
+        Map<String, ActionSupport> actionMap =  module2ActionsMap.get(moduleDirName);
+        if(!actionMap.containsKey(actionName)) {
+            throw new ActionNotFoundException("Can not found Action: " + actionName + " in Module: " + moduleDirName);
+        }
+        return actionMap.get(actionName);
     }
 
     public static void invokeAction(String moduleDirName, String actionName, InvocationContext invocationContext) throws Exception {
         Action action = WebContextLoader.getAction(moduleDirName, actionName);
         if(action == null) {
-            throw new ActionNotFoundException("Can not found Action: " + action + " in Module: " + moduleDirName);
+            throw new ActionNotFoundException("Can not found Action: " + actionName + " in Module: " + moduleDirName);
         }
         action.execute(invocationContext);
     }

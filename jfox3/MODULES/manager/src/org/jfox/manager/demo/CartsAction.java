@@ -7,15 +7,14 @@
 package org.jfox.manager.demo;
 
 import java.util.ArrayList;
-
 import javax.ejb.EJB;
 
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
 import org.jfox.mvc.InvocationContext;
-import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.PageContext;
+import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.ActionMethod;
 
 /**
@@ -29,12 +28,12 @@ public class CartsAction extends ActionSupport {
     @EJB
     ICarts carts;
 
-    @ActionMethod(successView = "demo/carts.fhtml")
+    @ActionMethod(name="view", successView = "demo/carts.fhtml", httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetView(InvocationContext invocationContext) throws Exception{
         // do nothing, just forward to successView
     }
 
-    @ActionMethod(successView = "demo/carts.fhtml", invocationClass = CartInvocation.class)
+    @ActionMethod(name="submit", successView = "demo/carts.fhtml", invocationClass = CartInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostSubmit(InvocationContext invocationContext) throws Exception {
         CartInvocation invocation = (CartInvocation)invocationContext.getInvocation();
         SessionContext sessionContext = invocationContext.getSessionContext();

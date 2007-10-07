@@ -8,13 +8,13 @@ package org.jfox.manager.demo;
 
 import java.util.Random;
 
+import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionSupport;
-import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.Invocation;
+import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.ActionMethod;
-import org.jfox.framework.annotation.Service;
 
 /**
  * number guess action
@@ -24,7 +24,7 @@ import org.jfox.framework.annotation.Service;
 @Service(id = "numberguess")
 public class NumberGuessAction extends ActionSupport {
 
-    @ActionMethod(successView = "demo/numberguess.vhtml", invocationClass = NumberGuessInvocation.class)
+    @ActionMethod(name="view", successView = "demo/numberguess.vhtml", invocationClass = NumberGuessInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetView(InvocationContext invocationContext) throws Exception {
         NumberGuessInvocation invocation = (NumberGuessInvocation)invocationContext.getInvocation();
 
@@ -67,7 +67,7 @@ public class NumberGuessAction extends ActionSupport {
 
     }
 
-    @ActionMethod(successView = "demo/numberguess.vhtml", invocationClass = NumberGuessInvocation.class)
+    @ActionMethod(name="view", successView = "demo/numberguess.vhtml", invocationClass = NumberGuessInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostView(InvocationContext invocationContext) throws Exception {
         doGetView(invocationContext);
     }

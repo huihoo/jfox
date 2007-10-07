@@ -45,7 +45,7 @@ public class OrderAction extends ActionSupport {
     @EJB
     OrderBO orderBO;
 
-    @ActionMethod(successView = "NewOrder.vhtml")
+    @ActionMethod(name="new", successView = "NewOrder.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetNew(InvocationContext invocationContext) throws Exception {
         SessionContext sessionContext = invocationContext.getSessionContext();
         Cart cart = (Cart)sessionContext.getAttribute(CartAction.CART_SESSION_KEY);
@@ -114,7 +114,7 @@ public class OrderAction extends ActionSupport {
         pageContext.setAttribute("order", order);
     }
 
-    @ActionMethod(successView = "ConfirmOrder.vhtml", invocationClass = NewOrderInvocation.class)
+    @ActionMethod(name="new", successView = "ConfirmOrder.vhtml", invocationClass = NewOrderInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostNew(InvocationContext invocationContext) throws Exception {
         NewOrderInvocation invocation = (NewOrderInvocation)invocationContext.getInvocation();
         SessionContext sessionContext = invocationContext.getSessionContext();
@@ -151,7 +151,7 @@ public class OrderAction extends ActionSupport {
         pageContext.setAttribute("order", order);
     }
 
-    @ActionMethod(successView = "ConfirmOrder.vhtml", invocationClass = ShippingOrderInvocation.class)
+    @ActionMethod(name="confirmshipping", successView = "ConfirmOrder.vhtml", invocationClass = ShippingOrderInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostConfirmShipping(InvocationContext invocationContext) throws Exception {
         ShippingOrderInvocation invocation = (ShippingOrderInvocation)invocationContext.getInvocation();
         SessionContext sessionContext = invocationContext.getSessionContext();
@@ -170,7 +170,7 @@ public class OrderAction extends ActionSupport {
         pageContext.setAttribute("order", order);
     }
 
-    @ActionMethod(successView = "ViewOrder.vhtml", errorView = "Cart.vhtml")
+    @ActionMethod(name="confirm", successView = "ViewOrder.vhtml", errorView = "Cart.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetConfirm(InvocationContext invocationContext) throws Exception {
         SessionContext sessionContext = invocationContext.getSessionContext();
         PageContext pageContext = invocationContext.getPageContext();
@@ -194,7 +194,7 @@ public class OrderAction extends ActionSupport {
         }
     }
 
-    @ActionMethod(successView = "ListOrders.vhtml")
+    @ActionMethod(name="list", successView = "ListOrders.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetList(InvocationContext invocationContext) throws Exception {
         SessionContext sessionContext = invocationContext.getSessionContext();
         Account account = (Account)sessionContext.getAttribute(AccountAction.ACCOUNT_SESSION_KEY);
@@ -204,7 +204,7 @@ public class OrderAction extends ActionSupport {
         pageContext.setAttribute("orders",orders);
     }
 
-    @ActionMethod(successView = "ViewOrder.vhtml", invocationClass = ViewOrderInvocation.class)
+    @ActionMethod(name="view", successView = "ViewOrder.vhtml", invocationClass = ViewOrderInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetView(InvocationContext invocationContext) throws Exception {
         ViewOrderInvocation invocation = (ViewOrderInvocation)invocationContext.getInvocation();
         long orderId = invocation.getOrderId();

@@ -59,7 +59,7 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
     }
 
 
-    @ActionMethod(successView = "NewAccountForm.vhtml")
+    @ActionMethod(name="newaccount",successView = "NewAccountForm.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetNewAccount(InvocationContext invocationContext) throws Exception {
         // do nothing
         PageContext pageContext = invocationContext.getPageContext();
@@ -69,7 +69,7 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         pageContext.setAttribute("categories", categories);
     }
 
-    @ActionMethod(successView = "index.vhtml", errorView = "NewAccountForm.vhtml", invocationClass = NewAccountInvocation.class)
+    @ActionMethod(name="create", successView = "index.vhtml", errorView = "NewAccountForm.vhtml", invocationClass = NewAccountInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostCreate(InvocationContext invocationContext) throws Exception{
         NewAccountInvocation invocation = (NewAccountInvocation)invocationContext.getInvocation();
         Account newAccount = EntityFactory.newEntityObject(Account.class);
@@ -102,12 +102,12 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
     }
 
 
-    @ActionMethod(successView = "signon.vhtml")
+    @ActionMethod(name="signon", successView = "signon.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetSignon(InvocationContext invocationContext) throws Exception {
         // don't need do anything, just forward to successView
     }
 
-    @ActionMethod(successView = "index.vhtml", errorView = "signon.vhtml", invocationClass = SignonInvocation.class)
+    @ActionMethod(name="signon", successView = "index.vhtml", errorView = "signon.vhtml", invocationClass = SignonInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostSignon(InvocationContext invocationContext) throws Exception {
         SignonInvocation invocation = (SignonInvocation)invocationContext.getInvocation();
 
@@ -146,13 +146,13 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         responseCallback.setRole(username);
     }
 
-    @ActionMethod(successView = "index.vhtml")
+    @ActionMethod(name="signoff", successView = "index.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetSignoff(InvocationContext invocationContext) throws Exception {
         SessionContext sessionContext = invocationContext.getSessionContext();
         sessionContext.destroy();
     }
 
-    @ActionMethod(successView = "EditAccount.vhtml", errorView = "signon.vhtml")
+    @ActionMethod(name="editaccount", successView = "EditAccount.vhtml", errorView = "signon.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetEditAccount(InvocationContext invocationContext) throws Exception {
         SessionContext sessionContext = invocationContext.getSessionContext();
         Account account = (Account)sessionContext.getAttribute(ACCOUNT_SESSION_KEY);
@@ -169,7 +169,7 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         pageContext.setAttribute("categories", categories);
     }
 
-    @ActionMethod(successView = "index.vhtml", errorView = "EditAccount.vhtml", invocationClass = EditAccountInvocation.class)
+    @ActionMethod(name="edit", successView = "index.vhtml", errorView = "EditAccount.vhtml", invocationClass = EditAccountInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostEdit(InvocationContext invocationContext) throws Exception {
         EditAccountInvocation invocation = (EditAccountInvocation)invocationContext.getInvocation();
 

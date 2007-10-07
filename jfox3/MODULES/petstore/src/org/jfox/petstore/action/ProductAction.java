@@ -9,17 +9,17 @@ package org.jfox.petstore.action;
 import java.util.List;
 import javax.ejb.EJB;
 
-import org.jfox.petstore.bo.ItemBO;
-import org.jfox.petstore.bo.ProductBO;
-import org.jfox.petstore.entity.Item;
-import org.jfox.petstore.entity.Product;
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
 import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
-import org.jfox.mvc.util.PagedList;
 import org.jfox.mvc.annotation.ActionMethod;
+import org.jfox.mvc.util.PagedList;
+import org.jfox.petstore.bo.ItemBO;
+import org.jfox.petstore.bo.ProductBO;
+import org.jfox.petstore.entity.Item;
+import org.jfox.petstore.entity.Product;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -33,7 +33,7 @@ public class ProductAction extends ActionSupport {
     @EJB
     ProductBO productBO;
 
-    @ActionMethod(successView = "Product.vhtml", invocationClass = ProductInvoation.class)
+    @ActionMethod(name="view", successView = "Product.vhtml", invocationClass = ProductInvoation.class, httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetView(InvocationContext invocationContext) {
         ProductInvoation invocation = (ProductInvoation)invocationContext.getInvocation();
 
@@ -64,7 +64,7 @@ public class ProductAction extends ActionSupport {
 
     }
 
-    @ActionMethod(successView = "SearchProducts.vhtml", invocationClass = SearchProductInvocation.class)
+    @ActionMethod(name="search", successView = "SearchProducts.vhtml", invocationClass = SearchProductInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostSearch(InvocationContext invocationContext) {
         SearchProductInvocation invocation = (SearchProductInvocation)invocationContext.getInvocation();
         String keyword = invocation.getKeyword();
@@ -92,7 +92,7 @@ public class ProductAction extends ActionSupport {
         pageContext.setAttribute("nextPage", nextPage);
     }
 
-    @ActionMethod(successView = "SearchProducts.vhtml", invocationClass = SearchProductInvocation.class)
+    @ActionMethod(name="search", successView = "SearchProducts.vhtml", invocationClass = SearchProductInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetSearch(InvocationContext invocationContext) {
         doPostSearch(invocationContext);
     }

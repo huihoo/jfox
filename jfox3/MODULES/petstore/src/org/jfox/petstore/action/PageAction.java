@@ -25,7 +25,7 @@ public class PageAction extends ActionSupport {
      * @param invocationContext invocationContext
      * @throws Exception exception
      */
-    @ActionMethod(successView = "index.vhtml")
+    @ActionMethod(name="index", successView = "index.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetIndex(InvocationContext invocationContext) throws Exception {
         PageContext pageContext = invocationContext.getPageContext();
         SessionContext sessionContext = invocationContext.getSessionContext();

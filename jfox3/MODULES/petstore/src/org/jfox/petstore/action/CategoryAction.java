@@ -9,12 +9,6 @@ package org.jfox.petstore.action;
 import java.util.List;
 import javax.ejb.EJB;
 
-import org.jfox.petstore.bo.AccountBO;
-import org.jfox.petstore.bo.CategoryBO;
-import org.jfox.petstore.bo.ProductBO;
-import org.jfox.petstore.entity.Product;
-import org.jfox.petstore.entity.Category;
-import org.jfox.mvc.util.PagedList;
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
@@ -22,6 +16,12 @@ import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.ActionMethod;
+import org.jfox.mvc.util.PagedList;
+import org.jfox.petstore.bo.AccountBO;
+import org.jfox.petstore.bo.CategoryBO;
+import org.jfox.petstore.bo.ProductBO;
+import org.jfox.petstore.entity.Category;
+import org.jfox.petstore.entity.Product;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -48,7 +48,7 @@ public class CategoryAction extends ActionSupport {
      * @param invocationContext invocationContext
      * @throws Exception exception
      */
-    @ActionMethod(successView = "Category.vhtml", invocationClass = CategoryInvocation.class)
+    @ActionMethod(name="view", successView = "Category.vhtml", invocationClass = CategoryInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetView(InvocationContext invocationContext) throws Exception {
         CategoryInvocation invocation = (CategoryInvocation)invocationContext.getInvocation();
         Category category = categoryBO.getCategory(invocation.getCategoryId());

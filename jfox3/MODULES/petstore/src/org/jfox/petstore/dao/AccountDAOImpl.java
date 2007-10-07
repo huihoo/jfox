@@ -10,16 +10,16 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.EntityManager;
 import javax.persistence.QueryHint;
 
-import org.jfox.petstore.entity.Account;
 import org.jfox.entity.EntityManagerExt;
 import org.jfox.entity.dao.DAOSupport;
+import org.jfox.petstore.entity.Account;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -97,7 +97,8 @@ import org.jfox.entity.dao.DAOSupport;
                 query = "select username as userid from signon",
                 resultClass = String.class,
                 hints = {
-                        @QueryHint(name = "cache.partition", value = "account")
+                        @QueryHint(name = "cache.partition", value = "account"),
+                        @QueryHint(name = "jdbc.compatible", value = "mysql,sqlserver,oracle,db2,")
                         }
 
         ),
@@ -119,7 +120,8 @@ import org.jfox.entity.dao.DAOSupport;
                         "where " +
                         "userid = $account.getUsername()",
                 hints = {
-                        @QueryHint(name = "cache.partition", value = "account")
+                        @QueryHint(name = "cache.partition", value = "account"),
+                        @QueryHint(name = "jdbc.compatible", value = "mysql,sqlserver,oracle,db2,")
                         }
 
         ),
@@ -153,7 +155,8 @@ import org.jfox.entity.dao.DAOSupport;
                         "$account.getPhone(), " +
                         "$account.getUsername())",
                 hints = {
-                        @QueryHint(name = "cache.partition", value = "account")
+                        @QueryHint(name = "cache.partition", value = "account"),
+                        @QueryHint(name = "jdbc.compatible", value = "mysql,sqlserver,oracle,db2,")
                         }
 
         ),
