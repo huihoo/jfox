@@ -199,6 +199,14 @@ public abstract class ExtendEJBContext implements SessionContext, MessageDrivenC
         throw new CloneNotSupportedException(getEJBObjectId().toString());
     }
 
+    /**
+     * 获取 Http Session 中的数据，需要保证 Web Server 和 EJB Container 在同一虚拟机中
+     * @param attribute session key
+     */
+    public Object getSessionAttribute(String attribute){
+        return EJBInvocation.current().getSessionAttribute(attribute);
+    }
+
     public class ENContext extends ContextAdapter {
 
         //--- java:comp/env naming container

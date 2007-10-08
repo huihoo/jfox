@@ -139,12 +139,16 @@ public class EJBInvocation {
         return sessionContext;
     }
 
-    public SecurityContext getSecurityContext() {
-        return getSessionContext().getSecurityContext();
-    }
-
+    /**
+     * 获取 Http Session 数据
+     * @param attribute session key
+     */
     public Object getSessionAttribute(String attribute){
         return getSessionContext().getAttribute(attribute);
+    }
+
+    public SecurityContext getSecurityContext() {
+        return getSessionContext().getSecurityContext();
     }
 
     public Group getCallerGroup(){
