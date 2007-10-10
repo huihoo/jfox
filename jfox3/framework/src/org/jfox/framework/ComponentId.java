@@ -17,7 +17,9 @@ public class ComponentId {
     /**
      * 注册Component时使用的名称，用来区分同一个Component类型的不同注册
      */
-    private String name = null;
+    private String name = "";
+
+    private String moduleName = "";
 
     public ComponentId(String name) {
         this.name = name;
@@ -25,6 +27,14 @@ public class ComponentId {
 
     public String getName() {
         return name;
+    }
+
+    public String getModuleName() {
+        return moduleName;
+    }
+
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
     }
 
 /*
@@ -44,11 +54,11 @@ public class ComponentId {
 
         ComponentId that = (ComponentId)o;
 
-        return name.equals(that.name);
+        return name.equals(that.name) && moduleName.equals(that.moduleName);
     }
 
     public int hashCode() {
-        return name.hashCode();
+        return name.hashCode() + moduleName.hashCode();
     }
 
     public static void main(String[] args) {

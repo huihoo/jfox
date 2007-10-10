@@ -41,6 +41,7 @@ public class Repository {
     }
 
     ComponentMeta getComponentMeta(ComponentId id) throws ComponentNotFoundException, ComponentNotExportedException {
+        id.setModuleName(module.getName());
         if(!componentMetas.containsKey(id)){
             throw new ComponentNotFoundException(id.toString());
         }
@@ -52,6 +53,7 @@ public class Repository {
     }
 
     void removeComponentMeta(ComponentId id) throws ComponentNotFoundException {
+        id.setModuleName(module.getName());
         if(!componentMetas.containsKey(id)){
             throw new ComponentNotFoundException(id.toString());
         }
@@ -62,6 +64,7 @@ public class Repository {
     }
 
     boolean hasComponentMeta(ComponentId id){
+        id.setModuleName(module.getName());
         return componentMetas.containsKey(id);
     }
 

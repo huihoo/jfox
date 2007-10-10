@@ -138,6 +138,7 @@ public class Module implements Comparable<Module> {
 
     private void registerComponent(ComponentMeta meta) {
 //        componentMetas.put(meta.getComponentId(), meta);
+        meta.getComponentId().setModuleName(getName());
         if(repo.hasComponentMeta(meta.getComponentId())) {
             throw new ComponentExistedException(meta.toString());
         }
