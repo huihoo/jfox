@@ -112,12 +112,10 @@ public class VelocityRender implements Render {
     }
 
     protected void initVelocity(ServletConfig servletConfig) throws ServletException {
-        Map<String, File> modulePath2File = WebContextLoader.getModulePath2DirFileMap();
-
         try {
-            for (Map.Entry<String, File> entry : modulePath2File.entrySet()) {
-                String modulePath = entry.getKey();
-                File moduleDir = entry.getValue();
+            for (String moduleDirName : WebContextLoader.getModuleDirNames()) {
+                String modulePath = WebContextLoader.getModulePathByModuleDirName(moduleDirName);
+                File moduleDir = WebContextLoader.getModuleDirByModuleDirName(moduleDirName);
                 String templateBaseDir = moduleDir.getCanonicalFile().getAbsoluteFile().getPath() + "/" + ControllerServlet.getViewDir();
                 Properties p = loadConfiguration(servletConfig);
                 // use loader path by module
@@ -132,7 +130,7 @@ public class VelocityRender implements Render {
                 outputEncoding = p.getProperty(Velocity.OUTPUT_ENCODING);
 
                 VelocityEngine ve = new VelocityEngine();
-                EventCartridge ec = new EventCartridge();
+//                EventCartridge ec = new EventCartridge();
                 ve.init(p);
                 // 注册相对 module template base dir，以便根据访问的 URL，来判断访问的Module，获得 VelocityEngine
                 baseDir2VelocityEngineMap.put(modulePath + "/" + ControllerServlet.getViewDir(), ve);

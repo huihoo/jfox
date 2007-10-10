@@ -25,8 +25,8 @@ import org.jfox.framework.annotation.Service;
 import org.jfox.framework.event.ComponentLoadedEvent;
 import org.jfox.framework.event.ComponentUnloadedEvent;
 import org.jfox.framework.event.ModuleLoadedEvent;
-import org.jfox.framework.event.ModuleUnloadedEvent;
 import org.jfox.framework.event.ModuleLoadingEvent;
+import org.jfox.framework.event.ModuleUnloadedEvent;
 import org.jfox.util.FileFilterUtils;
 import org.jfox.util.FileUtils;
 import org.jfox.util.PlaceholderUtils;
@@ -138,6 +138,9 @@ public class Module implements Comparable<Module> {
 
     private void registerComponent(ComponentMeta meta) {
 //        componentMetas.put(meta.getComponentId(), meta);
+        if(repo.hasComponentMeta(meta.getComponentId())) {
+            throw new ComponentExistedException(meta.toString());
+        }
         repo.addComponentMeta(meta);
     }
 
@@ -273,7 +276,14 @@ public class Module implements Comparable<Module> {
             }
 
             Element rootElement = doc.getDocumentElement();
-            setName(XMLUtils.getChildElementValueByTagName(rootElement, "name"));
+            String name = XMLUtils.getChildElementValueByTagName(rootElement, "name");
+            if(name != null) {
+                setName(name);
+            }
+            else {
+                // 使用模块的目录名
+                setName(getModuleDir().getName());
+            }
             setDescription(XMLUtils.getChildElementValueByTagName(rootElement, "description"));
             setPriority(Integer.parseInt(XMLUtils.getChildElementValueByTagName(rootElement, "priority")));
             String _refModules = XMLUtils.getChildElementValueByTagName(rootElement, "ref-modules");

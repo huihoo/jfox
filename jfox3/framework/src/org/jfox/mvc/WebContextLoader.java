@@ -7,15 +7,15 @@
 package org.jfox.mvc;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import org.apache.log4j.Logger;
+import org.jfox.framework.ComponentId;
 import org.jfox.framework.Framework;
+import org.jfox.framework.component.Component;
 import org.jfox.framework.component.Module;
 import org.jfox.util.FileFilterUtils;
 
@@ -33,20 +33,12 @@ public class WebContextLoader implements ServletContextListener {
     private static Framework framework = null;
 
     /**
-     * Module Dir Name => Module Path
+     * Module Dir Name => Module Path, 如：manager=>/WEB-INF/MODULES/ccmis
      */
     private static Map<String, String> moduleDirName2PathMap = new HashMap<String, String>();
 
-    /**
-     * 缓存所有的 Action
-     * module dir name => {Actoin deploy id => action}
-     */
-    private static Map<String, Map<String, ActionSupport>> module2ActionsMap = new ConcurrentHashMap<String, Map<String, ActionSupport>>();
-
-    /**
-     * module relative path => module real dir File
-     */
-    private static Map<String, File> modulePath2File = new HashMap<String, File>();
+    // manager=>JFox Management
+    private static Map<String, String> moduleDirName2ModuleName = new HashMap<String, String>();
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         //记录启动消耗时间
@@ -81,15 +73,17 @@ public class WebContextLoader implements ServletContextListener {
                 File[] moduleZips = modulesDir.listFiles(FileFilterUtils.and(FileFilterUtils.not(FileFilterUtils.directoryFileFilter()),FileFilterUtils.suffixFileFilter(Framework.MODULE_ARCHIVE_SUFFIX), FileFilterUtils.not(FileFilterUtils.prefixFileFilter("."))));
                 for(File moduleZip : moduleZips){
                     Module module = framework.loadModule(moduleZip);
-                    registerModulePath(_modulesDir + "/" + moduleZip.getName().substring(0, moduleZip.getName().lastIndexOf(".")), module.getModuleDir());
+                    registerModulePath(_modulesDir + "/" + module.getModuleDir().getName());
+                    moduleDirName2ModuleName.put(module.getModuleDir().getName(), module.getName());
                 }
 
                 // module 目录
                 File[] moduleDirs = modulesDir.listFiles(FileFilterUtils.and(FileFilterUtils.directoryFileFilter(), FileFilterUtils.not(FileFilterUtils.prefixFileFilter("."))));
                 for (File moduleDir : moduleDirs) {
-                    framework.loadModule(moduleDir);
+                    Module module = framework.loadModule(moduleDir);
                     // register module path
-                    registerModulePath(_modulesDir + "/" + moduleDir.getName(), moduleDir);
+                    registerModulePath(_modulesDir + "/" + moduleDir.getName());
+                    moduleDirName2ModuleName.put(moduleDir.getName(), module.getName());
                 }
             }
             // start framework, will start all modules
@@ -116,8 +110,7 @@ public class WebContextLoader implements ServletContextListener {
                 framework.stop();
                 // 清除资源，以便能正常回收，否则webapp 目录可能无法被删除
                 moduleDirName2PathMap.clear();
-                module2ActionsMap.clear();
-                modulePath2File.clear();
+                moduleDirName2ModuleName.clear();
                 framework = null;
                 System.gc();
                 Thread.sleep(2000);
@@ -133,20 +126,34 @@ public class WebContextLoader implements ServletContextListener {
      * 注册模块目录名到 模块路径的映射
      *
      * @param moduleDirPath module path
-     * @param moduleDir     module real dir
      */
-    private static void registerModulePath(String moduleDirPath, File moduleDir) {
-        modulePath2File.put(moduleDirPath, moduleDir);
-
+    private static void registerModulePath(String moduleDirPath) {
         String moduleDirName = moduleDirPath.substring(moduleDirPath.lastIndexOf("/") + 1);
         moduleDirName2PathMap.put(moduleDirName, moduleDirPath);
     }
 
     /**
      * 得到所有模块路径名到模块目录的映射，如: WEB-INF/MODULES/manager => File://D:/%TOMCAT_HOME%/webapps/jfox3/WEB-INF/MODULES/manager
+     * 供 Velocity 和 FreeMarker 按URL路径匹配模块模板文件
      */
+/*
     public static Map<String, File> getModulePath2DirFileMap() {
         return Collections.unmodifiableMap(modulePath2File);
+    }
+*/
+
+    public static String[] getModuleDirNames(){
+        return moduleDirName2PathMap.keySet().toArray(new String[moduleDirName2PathMap.size()]);
+    }
+
+    public static boolean isModuleExists(String moduleDirName){
+        if(!moduleDirName2ModuleName.containsKey(moduleDirName)){
+            return false;
+        }
+        if(framework.getModule(moduleDirName2ModuleName.get(moduleDirName)) == null){
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -157,48 +164,29 @@ public class WebContextLoader implements ServletContextListener {
         return moduleDirName2PathMap.get(moduleDirName);
     }
 
-    public static boolean isModuleExists(String moduleDirName){
-        return moduleDirName2PathMap.containsKey(moduleDirName);
-    }
-
-    /**
-     * 注册 Action，由 ActionSupport 在 postPropertiesSet 中调用
-     * @param moduleDirName 模块目录名
-     * @param action Action 实例
-     */
-    public static void registerAction(String moduleDirName, ActionSupport action) {
-        if (!module2ActionsMap.containsKey(moduleDirName)) {
-            module2ActionsMap.put(moduleDirName, new HashMap<String, ActionSupport>());
-        }
-        Map<String, ActionSupport> actionMap = module2ActionsMap.get(moduleDirName);
-        if(actionMap.containsKey(action.getName())){
-            logger.warn("Action: " + action.getName() + " in Module: " + moduleDirName + " exsited, will be replaced!");
-        }
-        actionMap.put(action.getName(), action);
-    }
-
-    /**
-     * 删除 Action，在 Action unrigister的时候会调用该方法，有 module unload触发
-     * @param action action实例
-     */
-    public static Action removeAction(Action action) {
-        //不是 ModuleName，而是 Module Dir name
-        String module = ((ActionSupport)action).getModuleDirName();
-        if (module2ActionsMap.containsKey(module)) {
-            return module2ActionsMap.get(module).remove(((ActionSupport)action).getName());
-        }
-        return null;
-    }
-
-    private static Action getAction(String moduleDirName, String actionName) {
-        if(!module2ActionsMap.containsKey(moduleDirName)){
+    public static File getModuleDirByModuleDirName(String moduleDirName) {
+        if(!isModuleExists(moduleDirName)) {
             throw new ModuleNotFoundException(moduleDirName);
         }
-        Map<String, ActionSupport> actionMap =  module2ActionsMap.get(moduleDirName);
-        if(!actionMap.containsKey(actionName)) {
+        Module module = framework.getModule(moduleDirName2ModuleName.get(moduleDirName));
+        return module.getModuleDir();
+    }
+
+
+    private static Action getAction(String moduleDirName, String actionName) throws Exception {
+        if(!isModuleExists(moduleDirName)) {
+            throw new ModuleNotFoundException(moduleDirName);
+        }
+        Module module = framework.getModule(moduleDirName2ModuleName.get(moduleDirName));
+        ComponentId actionComponentId = new ComponentId(actionName);
+        if(!module.isComponentLoaded(actionComponentId)) {
             throw new ActionNotFoundException("Can not found Action: " + actionName + " in Module: " + moduleDirName);
         }
-        return actionMap.get(actionName);
+        Component component = module.getComponent(actionComponentId);
+        if(component == null || !(component instanceof Action)) {
+            throw new ActionNotFoundException("Can not found Action: " + actionName + " in Module: " + moduleDirName);
+        }
+        return (Action)component;
     }
 
     public static void invokeAction(String moduleDirName, String actionName, InvocationContext invocationContext) throws Exception {

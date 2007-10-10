@@ -95,7 +95,6 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         // register this to ControllerServlet
         String path = context.getModuleDir().getPath();
         moduleDirName = path.substring(path.lastIndexOf(File.separator) + 1);
-        WebContextLoader.registerAction(moduleDirName, this);
     }
 
     public boolean preUnregister(ComponentContext context) {
@@ -103,7 +102,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     }
 
     public void postUnregister() {
-        WebContextLoader.removeAction(this);
+        
     }
 
     public String getModuleName() {
