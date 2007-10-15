@@ -29,12 +29,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/sample/ext_column_tree.vhtml" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/sample/ext_column_tree.vhtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/sample/SampleAction.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/sample/SampleAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/sample/ext_basic_tree.vhtml" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/sample/ext_basic_tree.vhtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/sample/ext_basic_grid.vhtml" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/sample/ext_basic_grid.vhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/include/jfox/jfox.js" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/include/jfox/jfox.js" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -309,7 +305,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="38" selection-start="3371" selection-end="3371" vertical-scroll-proportion="0.56589144">
+            <state line="81" column="9" selection-start="3601" selection-end="3601" vertical-scroll-proportion="0.81395346">
               <folding />
             </state>
           </provider>
@@ -1507,7 +1503,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="38" selection-start="3371" selection-end="3371" vertical-scroll-proportion="0.56589144">
+        <state line="81" column="9" selection-start="3601" selection-end="3601" vertical-scroll-proportion="0.81395346">
           <folding />
         </state>
       </provider>
