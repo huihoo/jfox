@@ -334,7 +334,7 @@ public class SQLQuery extends QueryExt {
     }
 
     /**
-     * 将 ResultSet 构造称 EntityObject
+     * 将 ResultSet 构造成 EntityObject
      *
      * @param rset result set
      * @throws SQLException if failed
