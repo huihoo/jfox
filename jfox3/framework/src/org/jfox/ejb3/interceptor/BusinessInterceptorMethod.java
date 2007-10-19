@@ -6,6 +6,7 @@
  */
 package org.jfox.ejb3.interceptor;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import javax.interceptor.InvocationContext;
 
@@ -23,7 +24,12 @@ public class BusinessInterceptorMethod implements InterceptorMethod {
     }
 
     public Object invoke(InvocationContext invocationContext) throws Exception {
-        return businessMethod.invoke(invocationContext.getTarget(), invocationContext.getParameters());
+        try {
+            return businessMethod.invoke(invocationContext.getTarget(), invocationContext.getParameters());
+        }
+        catch (InvocationTargetException e) {
+            throw (Exception)e.getTargetException();
+        }
     }
 
     public static void main(String[] args) {

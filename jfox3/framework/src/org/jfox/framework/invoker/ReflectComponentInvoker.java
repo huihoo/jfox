@@ -6,6 +6,7 @@
  */
 package org.jfox.framework.invoker;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.jfox.framework.BaseException;
@@ -24,6 +25,9 @@ public class ReflectComponentInvoker implements ComponentInvoker {
         try {
             // theComponent is the concrete component
             return method.invoke(theComponent, args);
+        }
+        catch (InvocationTargetException e) {
+            throw new ComponentInvocationException("Invoke method " + theComponent.getClass().getName() + "." + method.getName() + " failed, ComponentId is " + componentId, ((InvocationTargetException)e).getTargetException());
         }
         catch (Exception e) {
             throw new ComponentInvocationException("Invoke method " + theComponent.getClass().getName() + "." + method.getName() + " failed, ComponentId is " + componentId, e);

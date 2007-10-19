@@ -15,6 +15,7 @@ import java.lang.reflect.Proxy;
 import java.net.URL;
 import java.util.Enumeration;
 
+import org.jfox.framework.BaseException;
 import org.jfox.framework.ClassLoaderRepository;
 import org.jfox.framework.ComponentId;
 import org.jfox.framework.Framework;
@@ -73,13 +74,24 @@ class ProxyReferenceFactory {
                         try {
                             result = componentInvoker.invokeMethod(component, componentId, method, args);
                         }
-                        catch(Exception e) {
-                            exception = e;
+                        catch(BaseException e) {
+                            Exception innerException = (Exception)e.getCause();
+                            if(innerException != null) {
+                                exception = innerException;
+                            }
+                            else {
+                                exception = e;
+                            }
                         }
                         if(isInteceptable){
                             result = ((InterceptableComponent)component).postInvoke(method, args, result, exception);
                         }
-                        return result;
+                        if(exception != null) {
+                            throw exception;
+                        }
+                        else {
+                            return result;
+                        }
 
                     }
                 }

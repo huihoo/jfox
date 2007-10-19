@@ -8,8 +8,8 @@ package org.jfox.ejb3.invocation;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Iterator;
 import java.sql.SQLException;
+import java.util.Iterator;
 import javax.ejb.EJBException;
 import javax.ejb.SessionSynchronization;
 import javax.ejb.TransactionAttribute;
@@ -62,7 +62,10 @@ public class TransactionEJBInvocationHandler extends EJBInvocationHandler {
          * 但是该方法不能 commit 该事务，而应该由其调用方法来 commit
          */
         boolean created = false;
+        // 是否需要提交事务
         boolean toCommit = true;
+
+        Exception exception = null;
         try {
             switch (type) {
                 case NOT_SUPPORTED: {
@@ -120,38 +123,36 @@ public class TransactionEJBInvocationHandler extends EJBInvocationHandler {
             // only catch EJBException, rollback the transaction
             // Application Exception maybe right logic
             toCommit = false;
-            logger.error("EJB method invocation " + method + " failed.", e);
+            exception = e;
+//            logger.error("EJB method invocation " + method + " failed.", e);
             throw e;
         }
         catch (SQLException e) {
             // only catch EJBException, rollback the transaction
             // Application Exception maybe right logic
             toCommit = false;
-            logger.error("EJB method invocation " + method + " failed.", e);
+            exception = e;
+//            logger.error("EJB method invocation " + method + " failed.", e);
             throw e;
         }
         catch (PersistenceException e) {
             // only catch EJBException, rollback the transaction
             // Application Exception maybe right logic
             toCommit = false;
-            logger.error("EJB method invocation " + method + " failed.", e);
+            exception = e;
+//            logger.error("EJB method invocation " + method + " failed.", e);
             throw e;
         }
         catch (InvocationTargetException e) {
             toCommit = false;
-            Throwable t = e.getTargetException();
-            if (t instanceof Error) {
-                logger.error("EJB method invocation " + method + " failed.", e);
-                throw (Error)t;
-            }
-            else {
-                logger.error("EJB method invocation " + method + " failed.", e);
-                throw (Exception)t;
-            }
+            exception = (Exception)e.getTargetException();
+//                logger.error("EJB method invocation " + method + " failed.", e);
+            throw exception;
         }
         catch (Exception e) {
             toCommit = false;
-            logger.error("EJB method invocation " + method + " failed.", e);
+            exception = e;
+//            logger.error("EJB method invocation " + method + " failed.", e);
             throw e;
         }
         finally {
@@ -159,6 +160,9 @@ public class TransactionEJBInvocationHandler extends EJBInvocationHandler {
                 if (toCommit) {
                     if (tm.getStatus() == Status.STATUS_MARKED_ROLLBACK) {
                         // 如果直接 commit 会抛出 RollbackException
+                        if(exception != null) {
+                            logger.info("Rollback transaction because exception caught for EJB invcation: " + invocation, exception);
+                        }
                         tm.rollback();
                     }
                     else {
@@ -166,6 +170,9 @@ public class TransactionEJBInvocationHandler extends EJBInvocationHandler {
                     }
                 }
                 else {
+                    if(exception != null) {
+                        logger.info("Rollback transaction because exception caught for EJB invcation: " + invocation, exception);
+                    }
                     tm.rollback();
                 }
             }
