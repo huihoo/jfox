@@ -159,7 +159,7 @@
     <containerElement type="library" level="module">
       <attribute name="method" value="0" />
       <attribute name="URI" value="&lt;N/A&gt;" />
-      <url>jar://$MODULE_DIR$/../../../../IDEA/lib/servlet-api.jar!/</url>
+      <url>jar://$APPLICATION_HOME_DIR$/lib/servlet-api.jar!/</url>
     </containerElement>
     <containerElement type="library" name="jfoxng-lib" level="project">
       <attribute name="method" value="0" />
