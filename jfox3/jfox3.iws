@@ -31,9 +31,8 @@
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/NodeDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/NodeDAOBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/sample/ext_basic_tree.vhtml" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/sample/ext_basic_tree.vhtml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/doc/开发步骤.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/doc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/function/node_management.vhtml" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/function/node_management.vhtml" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
@@ -150,13 +149,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="node_management.vhtml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="node_management.vhtml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/function/node_management.vhtml">
           <provider editor-type-id="HtmlPreview">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="151" column="9" selection-start="4733" selection-end="4733" vertical-scroll-proportion="0.6204239">
+            <state line="162" column="0" selection-start="5150" selection-end="5150" vertical-scroll-proportion="0.22390892">
               <folding />
             </state>
           </provider>
@@ -168,7 +167,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-2.9889705">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-3.085389">
               <folding />
             </state>
           </provider>
@@ -177,7 +176,7 @@
       <file leaf-file-name="SuperBO.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/SuperBO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="33" selection-start="1073" selection-end="1087" vertical-scroll-proportion="0.5229202">
+            <state line="41" column="33" selection-start="1073" selection-end="1087" vertical-scroll-proportion="0.53846157">
               <folding />
             </state>
           </provider>
@@ -186,7 +185,7 @@
       <file leaf-file-name="NodeDAOBean.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/NodeDAOBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="194" column="38" selection-start="8209" selection-end="8209" vertical-scroll-proportion="0.34295416">
+            <state line="194" column="38" selection-start="8209" selection-end="8209" vertical-scroll-proportion="0.35314685">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -200,7 +199,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="22" selection-start="2961" selection-end="2962" vertical-scroll-proportion="1.975">
+            <state line="79" column="22" selection-start="2961" selection-end="2962" vertical-scroll-proportion="2.0986717">
               <folding />
             </state>
           </provider>
@@ -212,7 +211,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="27" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.9">
+            <state line="36" column="27" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.95635676">
               <folding />
             </state>
           </provider>
@@ -224,7 +223,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="0" selection-start="2232" selection-end="2309" vertical-scroll-proportion="0.4375">
+            <state line="61" column="0" selection-start="2232" selection-end="2309" vertical-scroll-proportion="0.4516129">
               <folding />
             </state>
           </provider>
@@ -236,7 +235,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="140" column="23" selection-start="7744" selection-end="7744" vertical-scroll-proportion="2.5588236">
+            <state line="140" column="23" selection-start="7744" selection-end="7744" vertical-scroll-proportion="2.6413662">
               <folding />
             </state>
           </provider>
@@ -245,16 +244,16 @@
       <file leaf-file-name="jfox.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/include/jfox/jfox.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="9" selection-start="1680" selection-end="1680" vertical-scroll-proportion="0.32258064">
+            <state line="49" column="9" selection-start="1680" selection-end="1680" vertical-scroll-proportion="0.33216783">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NodeAction.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="NodeAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/NodeAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="8" selection-start="606" selection-end="606" vertical-scroll-proportion="0.23140496">
+            <state line="18" column="21" selection-start="550" selection-end="550" vertical-scroll-proportion="0.17132868">
               <folding />
             </state>
           </provider>
@@ -263,7 +262,7 @@
       <file leaf-file-name="JSONResponse.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/JSONResponse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="31" selection-start="326" selection-end="338" vertical-scroll-proportion="-0.069421485">
+            <state line="13" column="31" selection-start="326" selection-end="338" vertical-scroll-proportion="-0.073426574">
               <folding />
             </state>
           </provider>
@@ -381,225 +380,7 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\views\zh_CN" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\views\zh_CN" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\views\zh_CN\include" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\views\zh_CN" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\views\zh_CN\function" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\views\sample" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\infrastructure" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\function" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\function" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\function\entity" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src" />
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\doc" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -1441,7 +1222,7 @@
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.731" order="3" />
       <window_info id="Maven projects" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="9" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="0" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24924925" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24924925" order="0" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7905138" order="16" />
       <window_info id="Hierarchy" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.308" order="5" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42827442" order="9" />
@@ -1685,7 +1466,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/SuperBO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="33" selection-start="1073" selection-end="1087" vertical-scroll-proportion="0.5229202">
+        <state line="41" column="33" selection-start="1073" selection-end="1087" vertical-scroll-proportion="0.53846157">
           <folding />
         </state>
       </provider>
@@ -1695,14 +1476,14 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="0" selection-start="2232" selection-end="2309" vertical-scroll-proportion="0.4375">
+        <state line="61" column="0" selection-start="2232" selection-end="2309" vertical-scroll-proportion="0.4516129">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/NodeDAOBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="194" column="38" selection-start="8209" selection-end="8209" vertical-scroll-proportion="0.34295416">
+        <state line="194" column="38" selection-start="8209" selection-end="8209" vertical-scroll-proportion="0.35314685">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1711,7 +1492,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/include/jfox/jfox.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="9" selection-start="1680" selection-end="1680" vertical-scroll-proportion="0.32258064">
+        <state line="49" column="9" selection-start="1680" selection-end="1680" vertical-scroll-proportion="0.33216783">
           <folding />
         </state>
       </provider>
@@ -1721,7 +1502,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="27" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.9">
+        <state line="36" column="27" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.95635676">
           <folding />
         </state>
       </provider>
@@ -1731,7 +1512,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="22" selection-start="2961" selection-end="2962" vertical-scroll-proportion="1.975">
+        <state line="79" column="22" selection-start="2961" selection-end="2962" vertical-scroll-proportion="2.0986717">
           <folding />
         </state>
       </provider>
@@ -1748,7 +1529,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/JSONResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="31" selection-start="326" selection-end="338" vertical-scroll-proportion="-0.069421485">
+        <state line="13" column="31" selection-start="326" selection-end="338" vertical-scroll-proportion="-0.073426574">
           <folding />
         </state>
       </provider>
@@ -1758,17 +1539,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-2.9889705">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/function/node_management.vhtml">
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="151" column="9" selection-start="4733" selection-end="4733" vertical-scroll-proportion="0.6204239">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-3.085389">
           <folding />
         </state>
       </provider>
@@ -1778,14 +1549,24 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="140" column="23" selection-start="7744" selection-end="7744" vertical-scroll-proportion="2.5588236">
+        <state line="140" column="23" selection-start="7744" selection-end="7744" vertical-scroll-proportion="2.6413662">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/NodeAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="8" selection-start="606" selection-end="606" vertical-scroll-proportion="0.23140496">
+        <state line="18" column="21" selection-start="550" selection-end="550" vertical-scroll-proportion="0.17132868">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/function/node_management.vhtml">
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="162" column="0" selection-start="5150" selection-end="5150" vertical-scroll-proportion="0.22390892">
           <folding />
         </state>
       </provider>
