@@ -1,11 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
-<web-app>
-
-  <welcome-file-list>
-  	<welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+         version="2.4">
 
     <distributable/>
 
@@ -14,6 +11,16 @@
     <listener>
         <listener-class>org.jfox.mvc.WebContextLoader</listener-class>
     </listener>
+
+    <servlet>
+        <servlet-name>xfire_servlet</servlet-name>
+        <servlet-class>org.jfox.webservice.xfire.JFoxXFireServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>xfire_servlet</servlet-name>
+        <url-pattern>/webservice/*</url-pattern>
+    </servlet-mapping>
 
     <!-- if you don't want to use JFox MVC, comment below content -->
     <context-param>
@@ -29,7 +36,7 @@
     </context-param>
 
     <context-param>
-        <!-- view template dir -->
+        <!-- module's view template dir -->
         <param-name>VIEW_DIR</param-name>
         <param-value>views</param-value>
     </context-param>
@@ -39,16 +46,6 @@
         <param-name>ACTION_SUFFIX</param-name>
         <param-value>.do</param-value>
     </context-param>
-
-    <servlet>
-        <servlet-name>xfire_servlet</servlet-name>
-        <servlet-class>org.jfox.webservice.xfire.JFoxXFireServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>xfire_servlet</servlet-name>
-        <url-pattern>/webservice/*</url-pattern>
-    </servlet-mapping>
 
     <servlet>
         <servlet-name>controller_servlet</servlet-name>
@@ -62,7 +59,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>controller_servlet</servlet-name>
-        <url-pattern>/modules/*</url-pattern>
+        <url-pattern>/m/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -78,18 +75,6 @@
             <param-name>org.jfox.mvc.freemarker.FreemarkerRender</param-name>
             <param-value>*.ftl,*.fhtm,*.fhtml</param-value>
         </init-param>
-        <!--
-        <init-param>
-            <description>pdf_render</description>
-            <param-name>org.jfox.mvc.pdf.PDFRender</param-name>
-            <param-value>*.pdf</param-value>
-        </init-param>
-        <init-param>
-            <description>excel_render</description>
-            <param-name>org.jfox.mvc.excel.ExcelRender</param-name>
-            <param-value>*.xls</param-value>
-        </init-param>
-        -->
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
