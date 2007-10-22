@@ -240,7 +240,7 @@ public class MDBBucket extends SessionBucket implements PoolableObjectFactory, M
     public void onMessage(Message message) {
         try {
             //TODO: How to get corret SessionContext 
-            getEJBContainer().invokeEJB(createEJBObjectId(), MessageListenerUtils.getOnMessageMethod(), new Object[]{message}, SessionContext.currentThreadSessionContext());
+            getEJBContainer().invokeEJB(createEJBObjectId(), MessageListenerUtils.getOnMessageMethod(), new Object[]{message}, SessionContext.getCurrentThreadSessionContext());
         }
         catch (EJBException e) {
             throw e;

@@ -149,7 +149,8 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
     @ActionMethod(name="signoff", successView = "index.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetSignoff(InvocationContext invocationContext) throws Exception {
         SessionContext sessionContext = invocationContext.getSessionContext();
-        sessionContext.destroy();
+        sessionContext.clearAttributes();
+        invocationContext.destroySessionContext();
     }
 
     @ActionMethod(name="editaccount", successView = "EditAccount.vhtml", errorView = "signon.vhtml", httpMethod = ActionMethod.HttpMethod.GET)

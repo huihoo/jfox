@@ -147,7 +147,7 @@ public class JFoxXFireDelegate  implements WSContainer, Invoker, ComponentInitia
      */
     public Object invoke(Method method, Object[] params, MessageContext messageContext) throws XFireFault {
         SecurityContext securityContext = new SecurityContext();
-        SessionContext sessionContext = SessionContext.currentThreadSessionContext();
+        SessionContext sessionContext = SessionContext.getCurrentThreadSessionContext();
 
         String ejbName = getEJBNameByWebServiceEndpointInterface(messageContext.getService().getServiceInfo().getServiceClass());
         try {

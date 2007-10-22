@@ -196,7 +196,6 @@ public class ControllerServlet extends HttpServlet {
 
         try {
             // 初始化 SessionContext，并绑定到线程
-            SessionContext.init(request);
             InvocationContext invocationContext = new InvocationContext(getServletConfig(), request, parameterMap, fileUploadedMap, actionName, actionMethodName, "POST".equals(request.getMethod().toUpperCase()));
             WebContextLoader.invokeAction(moduleDirName, actionName, invocationContext);
             request.setAttribute(INVOCATION_CONTEXT, invocationContext);

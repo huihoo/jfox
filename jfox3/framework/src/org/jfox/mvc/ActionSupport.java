@@ -370,7 +370,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         }
 
         // build upload file field
-        for (Map.Entry<String, FileUploaded> entry : invocationContext.getFileUploadedMap().entrySet()) {
+        for (Map.Entry<String, FileUploaded> entry : invocationContext.getFilesUploaded().entrySet()) {
             String key = entry.getKey();
             FileUploaded fileUploaded = entry.getValue();
             try {

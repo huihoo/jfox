@@ -80,7 +80,7 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
      * @throws Exception if failed
      */
     public Object login(HttpServletRequest request, CallbackHandler callbackHandler, String... params) throws Exception {
-        SessionContext sessionContext = SessionContext.init(request);
+        SessionContext sessionContext = SessionContext.getCurrentThreadSessionContext();
         return login(sessionContext,callbackHandler,params);
     }
 
@@ -114,6 +114,6 @@ public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, 
     public static void main(String[] args) throws Exception {
         JAASLoginServiceImpl loginService = new JAASLoginServiceImpl();
         loginService.postInject();
-        loginService.login(SessionContext.currentThreadSessionContext(), new SampleCallbackHandler(), "YY", "1234");
+        loginService.login(SessionContext.getCurrentThreadSessionContext(), new SampleCallbackHandler(), "YY", "1234");
     }
 }

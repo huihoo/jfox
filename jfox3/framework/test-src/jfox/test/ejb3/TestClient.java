@@ -238,7 +238,7 @@ public class TestClient {
         JAASLoginServiceImpl loginService = new JAASLoginServiceImpl();
         loginService.postInject();
         // 使用构造的 SessionContext，实际环境中将由HttpServletRequest负责提供
-        loginService.login(SessionContext.currentThreadSessionContext(), new SampleCallbackHandler(), "role1", "1234");
+        loginService.login(SessionContext.getCurrentThreadSessionContext(), new SampleCallbackHandler(), "role1", "1234");
         Context context = JNDIContextHelper.getInitalContext();
         jfox.test.ejb3.security.Calculator calculator = (jfox.test.ejb3.security.Calculator)context.lookup("security.CalculatorBean/remote");
         Assert.assertEquals(calculator.add(100, 1), 101);

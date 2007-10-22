@@ -642,7 +642,7 @@ public abstract class SessionBucket implements EJBBucket {
             }
             else {
                 // 其它业务方法
-                return getEJBContainer().invokeEJB(getEJBObjectId(), method, args, SessionContext.currentThreadSessionContext());
+                return getEJBContainer().invokeEJB(getEJBObjectId(), method, args, SessionContext.getCurrentThreadSessionContext());
             }
         }
 

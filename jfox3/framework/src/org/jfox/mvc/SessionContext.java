@@ -20,7 +20,6 @@ import org.jfox.ejb3.security.SecurityContext;
  */
 public class SessionContext implements Serializable {
     
-    public static final String SESSION_KEY = "__SESSION_KEY__";
     public static final String SECURITY_CONTEXT_SESSION_KEY = "__SECURITY_SUBJECT__";
 
     public static final String TOKEN_SESSION_KEY ="SESSION_TOKEN.";
@@ -35,36 +34,21 @@ public class SessionContext implements Serializable {
      */
     static transient ThreadLocal<SessionContext> threadSession = new ThreadLocal<SessionContext>();
 
+    //TODO: 保存 request 不管用
     private transient HttpServletRequest request;
 
-    private SessionContext() {
+    SessionContext() {
     }
 
-    /**
-     * 使用 request 初始化 session context，
-     * 初始化完毕之后，将 session context 关联到当前线程
-     * @param request http request
-     */
-    public static SessionContext init(HttpServletRequest request) {
-        if(request == null) {
-            return null;
-        }
-
-        SessionContext sessionContext = (SessionContext)request.getSession().getAttribute(SESSION_KEY);
-        if (sessionContext == null) {
-            sessionContext = new SessionContext();
-            sessionContext.request = request;
-            request.getSession().setAttribute(SESSION_KEY, sessionContext);
-        }
+    public static void setCurrentThreadSessionContext(SessionContext sessionContext){
         threadSession.set(sessionContext);
-        return sessionContext;
     }
 
     /**
      * 得到与当前线程绑定的SessionContext
      * @return return null if current thread not associate session context
      */
-    public static SessionContext currentThreadSessionContext(){
+    public static SessionContext getCurrentThreadSessionContext(){
         SessionContext sessionContext = threadSession.get();
         if(sessionContext == null) {
             threadSession.remove();
@@ -118,13 +102,8 @@ public class SessionContext implements Serializable {
     /**
      * 销毁 SessionContext
      */
-    public void destroy(){
+    public void clearAttributes(){
         sessionMap.clear();
-        SessionContext.disassociateThreadSessionContext();
-        // request.getSession()可能返回 null
-        if(request != null && request.getSession() != null) {
-            request.getSession().removeAttribute(SESSION_KEY);
-        }
     }
 
     public static void main(String[] args) {

@@ -43,7 +43,7 @@ public class InvocationContext {
     private Map<String, String[]> parameterMap = new HashMap<String, String[]>();
 
     /**
-     * 上传的文件
+     * 上传的文件 filename=>FileUploaded
      */
     private Map<String, FileUploaded> fileUploadedMap = new HashMap<String, FileUploaded>();
 
@@ -55,6 +55,8 @@ public class InvocationContext {
 
     private HttpServletRequest request = null;
 
+    public static final String SESSION_KEY = "__SESSION_KEY__";
+
     public InvocationContext(ServletConfig servletConfig, HttpServletRequest request, Map<String, String[]> parameterMap, Map<String, FileUploaded> fileUploadedMap, String actionName, String actionMethodName, boolean isPostMethod) {
         this.servletConfig = servletConfig;
         this.request = request;
@@ -63,12 +65,36 @@ public class InvocationContext {
         this.actionName = actionName;
         this.actionMethodName = actionMethodName;
         this.isPost = isPostMethod;
-        this.sessionContext = SessionContext.currentThreadSessionContext();
+        this.sessionContext = initSessionContext();
         this.pageContext = new PageContext();
     }
 
+    /**
+     * 使用 request 初始化 session context，
+     * 初始化完毕之后，将 session context 关联到当前线程
+     */
+    SessionContext initSessionContext() {
+        if(request == null) {
+            return null;
+        }
+        SessionContext sessionContext = (SessionContext)request.getSession().getAttribute(SESSION_KEY);
+        if (sessionContext == null) {
+            sessionContext = new SessionContext();
+            request.getSession().setAttribute(SESSION_KEY, sessionContext);
+        }
+        SessionContext.setCurrentThreadSessionContext(sessionContext);
+        return sessionContext;
+    }
+
+
     HttpServletRequest getServletRequest() {
         return request;
+    }
+
+    public void destroySessionContext(){
+        getSessionContext().clearAttributes();
+        SessionContext.disassociateThreadSessionContext();
+        request.getSession().removeAttribute(SESSION_KEY);
     }
 
     public String getRequestURI(){
@@ -135,12 +161,12 @@ public class InvocationContext {
         return parameterMap;
     }
 
-    public Map<String, FileUploaded> getFileUploadedMap() {
+    public Map<String, FileUploaded> getFilesMapUploaded() {
         return fileUploadedMap;
     }
 
-    public FileUploaded getFileUploaded(String key) {
-        return fileUploadedMap.get(key);
+    public FileUploaded getFileUploaded(String filename) {
+        return fileUploadedMap.get(filename);
     }
 
     public static void main(String[] args) {
