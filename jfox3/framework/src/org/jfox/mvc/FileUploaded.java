@@ -13,12 +13,18 @@ package org.jfox.mvc;
  */
 public class FileUploaded {
 
+    private String fieldname;
     private String filename;
     private byte[] content;
 
-    public FileUploaded(String filename, byte[] content) {
+    public FileUploaded(String fieldname, String filename, byte[] content) {
+        this.fieldname = fieldname;
         this.filename = filename;
         this.content = content;
+    }
+
+    public String getFieldname() {
+        return fieldname;
     }
 
     public String getFilename() {

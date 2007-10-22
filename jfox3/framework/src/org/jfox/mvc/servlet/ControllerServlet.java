@@ -182,7 +182,7 @@ public class ControllerServlet extends HttpServlet {
                             //  获取真实文件名
                             String fileName = new File(sourcePath).getName();
                             // 读到内存成 FileUpload 对象
-                            FileUploaded fileUploaded = new FileUploaded(fileName, fileItem.get());
+                            FileUploaded fileUploaded = new FileUploaded(fileItem.getFieldName(), fileName, fileItem.get());
 //                            invocationContext.addFileUploaded(fileItem.getFieldName(), fileUploaded);
                             fileUploadedMap.put(fileItem.getFieldName(), fileUploaded);
                         }

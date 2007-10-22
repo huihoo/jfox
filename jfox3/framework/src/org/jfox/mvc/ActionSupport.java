@@ -370,11 +370,10 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         }
 
         // build upload file field
-        for (Map.Entry<String, FileUploaded> entry : invocationContext.getFilesUploaded().entrySet()) {
-            String key = entry.getKey();
-            FileUploaded fileUploaded = entry.getValue();
+        for (FileUploaded fileUploaded : invocationContext.getFilesUploaded()) {
+            String fieldName = fileUploaded.getFieldname();
             try {
-                Field field = ClassUtils.getDecaredField(invocationClass, key);
+                Field field = ClassUtils.getDecaredField(invocationClass, fieldName);
                 field.setAccessible(true);
                 Class<?> fieldType = field.getType();
                 if (FileUploaded.class.isAssignableFrom(fieldType)) {
@@ -387,12 +386,12 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
                 }
             }
             catch (NoSuchFieldException e) {
-                String msg = "Set invocation " + invocationClass.getName() + "'s FileUploaded field " + key + " with value " + fileUploaded + " failed!";
+                String msg = "Set invocation " + invocationClass.getName() + "'s FileUploaded field " + fieldName + " with value " + fileUploaded + " failed!";
                 logger.warn(msg, e);
                 throw new InvocationException(msg, e);
             }
             catch (IllegalAccessException e) {
-                String msg = "Set invocation " + invocationClass.getName() + "'s FileUploaded field " + key + " with value " + fileUploaded + " failed!";
+                String msg = "Set invocation " + invocationClass.getName() + "'s FileUploaded field " + fieldName + " with value " + fileUploaded + " failed!";
                 logger.warn(msg, e);
                 throw new InvocationException(msg, e);
             }

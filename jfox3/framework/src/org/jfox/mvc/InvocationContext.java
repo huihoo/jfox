@@ -7,6 +7,7 @@
 package org.jfox.mvc;
 
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletConfig;
@@ -43,7 +44,7 @@ public class InvocationContext {
     private Map<String, String[]> parameterMap = new HashMap<String, String[]>();
 
     /**
-     * 上传的文件 filename=>FileUploaded
+     * 上传的文件 fieldname=>FileUploaded
      */
     private Map<String, FileUploaded> fileUploadedMap = new HashMap<String, FileUploaded>();
 
@@ -161,12 +162,12 @@ public class InvocationContext {
         return parameterMap;
     }
 
-    public Map<String, FileUploaded> getFilesMapUploaded() {
-        return fileUploadedMap;
+    public Collection<FileUploaded> getFilesUploaded() {
+        return fileUploadedMap.values();
     }
 
-    public FileUploaded getFileUploaded(String filename) {
-        return fileUploadedMap.get(filename);
+    public FileUploaded getFileUploaded(String fieldname) {
+        return fileUploadedMap.get(fieldname);
     }
 
     public static void main(String[] args) {
