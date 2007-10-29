@@ -31,8 +31,8 @@
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/NodeAction.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/NodeAction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/function/edit_node.vhtml" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/function/edit_node.vhtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/NodeAction.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/NodeAction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/function/new_node.vhtml" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/function/new_node.vhtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt" afterPath="$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/function/node_management.vhtml" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/function/node_management.vhtml" />
@@ -340,16 +340,6 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="jfox3" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="petstore" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
