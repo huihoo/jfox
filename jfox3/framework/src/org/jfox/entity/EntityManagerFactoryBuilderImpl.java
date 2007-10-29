@@ -97,6 +97,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         if (!inited) { // 没有初始化，是容器外调用，如果是容器内调用，应该已经初始化
             EntityManagerFactoryBuilderImpl entityManagerFactoryBuilder = new EntityManagerFactoryBuilderImpl();
             entityManagerFactoryBuilder.containerManaged = false;
+            // 初始化所有的 EntityManagerFactory
             entityManagerFactoryBuilder.initEntityManagerFactories();
             ASMClassLoader asmClassLoader = new ASMClassLoader(entityManagerFactoryBuilder.getClass().getClassLoader());
             Set<Class> namedQueryClasses = new HashSet<Class>();
@@ -160,10 +161,6 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
         return Collections.unmodifiableCollection(namedSQLTemplates.values());
     }
 
-    private static void registerEntityManagerFactory(String name, EntityManagerFactoryImpl emFactory) {
-        emFactoryMap.put(name, emFactory);
-    }
-
     //get CacheConfig by unit & cacheConfigName
     public static CacheConfig getCacheConfig(String unitName) {
         EntityManagerFactoryImpl emf = getEntityManagerFactoryByName(unitName);
@@ -216,6 +213,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
             while (it.hasNext()) {
                 Map.Entry<String, NamedSQLTemplate> entry = it.next();
                 NamedSQLTemplate sqlTemplate = entry.getValue();
+                // 注销所在模块的 NamedSQLTemplate
                 if (sqlTemplate.getDefinedClass().getClassLoader() == module.getModuleClassLoader()) {
                     logger.info("Unregister Named Query defined in class: " + sqlTemplate.getDefinedClass().getName() + ", template SQL: " + sqlTemplate.getTemplateSQL());
                     it.remove();
@@ -242,7 +240,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
             List<Element> persistenceUnits = XMLUtils.getElementsByTagName(rootElement, "persistence-unit");
             for (Element element : persistenceUnits) {
                 EntityManagerFactoryImpl emFactory = createEntityManagerFactory(element);
-                registerEntityManagerFactory(emFactory.getUnitName(), emFactory);
+                emFactoryMap.put(emFactory.getUnitName(), emFactory);
                 // 只有容器管理的时候，才注册到 JNDi
                 if (isContainerManaged()) {
                     //注入的应该是：jta-data-source
