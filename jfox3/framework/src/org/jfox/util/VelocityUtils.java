@@ -78,13 +78,16 @@ public class VelocityUtils {
         }
     }
 
-    public static String evaluate(String template, Map<String, Object> mapContext, EventHandler eventHandler) {
+    public static String evaluate(String template, Map<String, Object> mapContext, EventHandler... eventHandlers) {
         VelocityContext context = new VelocityContext();
         for (Map.Entry entry : mapContext.entrySet()) {
             context.put((String)entry.getKey(), entry.getValue());
         }
         EventCartridge ec = new EventCartridge();
-        ec.addEventHandler(eventHandler);
+
+        for(EventHandler eventHandler : eventHandlers) {
+            ec.addEventHandler(eventHandler);
+        }
         ec.attachToContext(context);
         return evaluate(template, context);
     }
