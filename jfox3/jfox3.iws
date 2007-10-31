@@ -32,9 +32,6 @@
     <list default="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt" afterPath="$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityNotExistedException.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityNotExistedException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityReferencedException.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityReferencedException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/VersionOverdueException.java" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -168,7 +165,7 @@
       <file leaf-file-name="node_management.vhtml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/function/node_management.vhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="136" column="27" selection-start="3895" selection-end="3909" vertical-scroll-proportion="0.10626186">
+            <state line="159" column="24" selection-start="5026" selection-end="5107" vertical-scroll-proportion="0.7172676">
               <folding />
             </state>
           </provider>
@@ -227,7 +224,7 @@
       <file leaf-file-name="开发Q&amp;A.txt" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="9" selection-start="1467" selection-end="1467" vertical-scroll-proportion="0.4125874">
+            <state line="50" column="18" selection-start="1837" selection-end="1837" vertical-scroll-proportion="0.7307692">
               <folding />
             </state>
           </provider>
@@ -1845,16 +1842,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/function/node_management.vhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="27" selection-start="3895" selection-end="3909" vertical-scroll-proportion="0.10626186">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/VersionOverdueException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="13" selection-start="56" selection-end="56" vertical-scroll-proportion="0.071428575">
@@ -1883,9 +1870,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/function/node_management.vhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="159" column="24" selection-start="5026" selection-end="5107" vertical-scroll-proportion="0.7172676">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="9" selection-start="1467" selection-end="1467" vertical-scroll-proportion="0.4125874">
+        <state line="50" column="18" selection-start="1837" selection-end="1837" vertical-scroll-proportion="0.7307692">
           <folding />
         </state>
       </provider>
