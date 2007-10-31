@@ -30,23 +30,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/invoker/ComponentInvoker.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/invoker/ComponentInvoker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/NodeAction.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/NodeAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt" afterPath="$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/include/jfox/jfox.js" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/include/jfox/jfox.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/BusinessException.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/BusinessException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityNotExistedException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/function/node_management.vhtml" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/function/node_management.vhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/invoker/TransactableComponentInvoker.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/invoker/TransactableComponentInvoker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/bo/NodeBOBean.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/bo/NodeBOBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/RefInspectableEntityObject.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/RefInspectableEntityObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/SessionContext.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/SessionContext.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityReferencedException.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/SuperAction.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/SuperAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/invoker/ReflectComponentInvoker.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/invoker/ReflectComponentInvoker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/SystemAction.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/SystemAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/JSONResponse.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/JSONResponse.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt" afterPath="$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityNotExistedException.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityNotExistedException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityReferencedException.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityReferencedException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/VersionOverdueException.java" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -192,7 +180,25 @@
       <file leaf-file-name="EntityReferencedException.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityReferencedException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="531" selection-end="531" vertical-scroll-proportion="0.54761904">
+            <state line="3" column="13" selection-start="56" selection-end="56" vertical-scroll-proportion="0.071428575">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EntityNotExistedException.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityNotExistedException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="56" selection-start="184" selection-end="184" vertical-scroll-proportion="0.16666667">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BusinessException.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/BusinessException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="13" selection-start="171" selection-end="171" vertical-scroll-proportion="0.21428572">
               <folding />
             </state>
           </provider>
@@ -221,7 +227,16 @@
       <file leaf-file-name="开发Q&amp;A.txt" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="40" selection-start="890" selection-end="890" vertical-scroll-proportion="0.22727273">
+            <state line="37" column="9" selection-start="1467" selection-end="1467" vertical-scroll-proportion="0.4125874">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VersionOverdueException.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/VersionOverdueException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="13" selection-start="56" selection-end="56" vertical-scroll-proportion="0.071428575">
               <folding />
             </state>
           </provider>
@@ -260,33 +275,6 @@
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/invoker/ComponentInvoker.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="35" column="12" selection-start="1124" selection-end="1124" vertical-scroll-proportion="0.6363636">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TransactableComponentInvoker.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/invoker/TransactableComponentInvoker.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="18" selection-start="812" selection-end="812" vertical-scroll-proportion="0.44055945">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InvocationTargetException.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://C:/jdk1.5.0_12/src.zip!/java/lang/reflect/InvocationTargetException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="21" selection-start="2447" selection-end="2447" vertical-scroll-proportion="0.5">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RefInspectableEntityObject.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/RefInspectableEntityObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="5" selection-start="1629" selection-end="1629" vertical-scroll-proportion="0.32142857">
               <folding />
             </state>
           </provider>
@@ -343,7 +331,7 @@
     <OptionsSetting value="true" id="Undo Check Out" />
     <OptionsSetting value="true" id="Compare with SourceSafe Version" />
     <OptionsSetting value="true" id="Get Latest Version" />
-    <ConfirmationsSetting value="1" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectPane">
@@ -603,66 +591,6 @@
           <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\aaa" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\aaa\entity" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\aaa" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\aaa\dao" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\aaa" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
       </PATH>
       <PATH>
         <PATH_ELEMENT>
@@ -713,7 +641,7 @@
       <showLibraryContents PackagesPane="true" />
       <hideEmptyPackages PackagesPane="true" ProjectPane="true" />
       <abbreviatePackageNames />
-      <showStructure Favorites="false" Scope="false" PackagesPane="false" ProjectPane="true" />
+      <showStructure Favorites="false" Scope="false" PackagesPane="false" ProjectPane="false" />
       <autoscrollToSource />
       <autoscrollFromSource ProjectPane="false" />
       <sortByType ProjectPane="true" />
@@ -1773,20 +1701,6 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/NodeDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="347" selection-end="347" vertical-scroll-proportion="1.3481481">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/entity/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="57" selection-start="381" selection-end="381" vertical-scroll-proportion="0.67407405">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/LocalNamingAndRefInspectableEntityObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="79" selection-start="388" selection-end="388" vertical-scroll-proportion="0.7226891">
@@ -1811,13 +1725,6 @@
     <entry file="jar://C:/jdk1.5.0_12/src.zip!/java/lang/Throwable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="341" column="18" selection-start="15073" selection-end="15073" vertical-scroll-proportion="1.2727273">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityNotExistedException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="47" selection-start="343" selection-end="343" vertical-scroll-proportion="0.63374484">
           <folding />
         </state>
       </provider>
@@ -1887,7 +1794,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/invoker/TransactableComponentInvoker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="18" selection-start="812" selection-end="812" vertical-scroll-proportion="0.44055945">
+        <state line="27" column="18" selection-start="812" selection-end="812" vertical-scroll-proportion="0.45405406">
           <folding />
         </state>
       </provider>
@@ -1911,13 +1818,6 @@
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/invocation/TransactionEJBInvocationHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="13" selection-start="1025" selection-end="1025" vertical-scroll-proportion="-3.1363637">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityReferencedException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="531" selection-end="531" vertical-scroll-proportion="0.54761904">
           <folding />
         </state>
       </provider>
@@ -1955,9 +1855,37 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/VersionOverdueException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="13" selection-start="56" selection-end="56" vertical-scroll-proportion="0.071428575">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityReferencedException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="13" selection-start="56" selection-end="56" vertical-scroll-proportion="0.071428575">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/BusinessException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="13" selection-start="171" selection-end="171" vertical-scroll-proportion="0.21428572">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityNotExistedException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="56" selection-start="184" selection-end="184" vertical-scroll-proportion="0.16666667">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="40" selection-start="890" selection-end="890" vertical-scroll-proportion="0.22727273">
+        <state line="37" column="9" selection-start="1467" selection-end="1467" vertical-scroll-proportion="0.4125874">
           <folding />
         </state>
       </provider>
