@@ -9,7 +9,6 @@ package org.jfox.mvc;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 
 import org.jfox.ejb3.security.SecurityContext;
 
@@ -33,9 +32,6 @@ public class SessionContext implements Serializable {
      * 使用 ThreadLocal 将 SessionContext 和当前线程进行关联
      */
     static transient ThreadLocal<SessionContext> threadSession = new ThreadLocal<SessionContext>();
-
-    //TODO: 保存 request 不管用
-    private transient HttpServletRequest request;
 
     SessionContext() {
     }

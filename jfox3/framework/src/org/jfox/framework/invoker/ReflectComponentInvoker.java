@@ -9,10 +9,9 @@ package org.jfox.framework.invoker;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import org.jfox.framework.BaseException;
+import org.apache.log4j.Logger;
 import org.jfox.framework.ComponentId;
 import org.jfox.framework.component.Component;
-import org.jfox.framework.component.ComponentInvocationException;
 
 /**
  * 在同一个JVM中，直接通过反射调用 Component
@@ -21,16 +20,21 @@ import org.jfox.framework.component.ComponentInvocationException;
  */
 public class ReflectComponentInvoker implements ComponentInvoker {
 
-    public Object invokeMethod(Component theComponent, ComponentId componentId, Method method, Object... args) throws BaseException {
+    private static Logger logger = Logger.getLogger(ReflectComponentInvoker.class);
+
+    public Object invokeMethod(Component theComponent, ComponentId componentId, Method method, Object... args) throws Exception {
         try {
             // theComponent is the concrete component
             return method.invoke(theComponent, args);
         }
         catch (InvocationTargetException e) {
-            throw new ComponentInvocationException("Invoke method " + theComponent.getClass().getName() + "." + method.getName() + " failed, ComponentId is " + componentId, ((InvocationTargetException)e).getTargetException());
+            logger.error("Invoke method " + theComponent.getClass().getName() + "." + method.getName() + " failed, ComponentId is " + componentId, e.getTargetException());
+            Exception ex = (Exception)e.getTargetException();
+            throw ex;
         }
         catch (Exception e) {
-            throw new ComponentInvocationException("Invoke method " + theComponent.getClass().getName() + "." + method.getName() + " failed, ComponentId is " + componentId, e);
+            logger.error("Invoke method " + theComponent.getClass().getName() + "." + method.getName() + " failed, ComponentId is " + componentId, e);
+            throw e;
         }
     }
 

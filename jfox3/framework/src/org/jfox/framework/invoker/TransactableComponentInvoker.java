@@ -25,7 +25,7 @@ public class TransactableComponentInvoker extends  ReflectComponentInvoker {
      * @param args 参数类标
      * @throws BaseException any exception
      */
-    public Object invokeMethod(Component theComponent, ComponentId componentId, Method method, Object... args) throws BaseException {
+    public Object invokeMethod(Component theComponent, ComponentId componentId, Method method, Object... args) throws Exception {
         return super.invokeMethod(theComponent, componentId, method, args);
     }
 

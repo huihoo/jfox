@@ -33,6 +33,6 @@ public interface ComponentInvoker {
      * @return result
      * @throws BaseException any exception
      */
-    Object invokeMethod(Component theComponent, ComponentId componentId, Method method, Object... args) throws BaseException;
+    Object invokeMethod(Component theComponent, ComponentId componentId, Method method, Object... args) throws Exception;
     
 }
