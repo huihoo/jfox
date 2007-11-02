@@ -10,12 +10,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.net.URL;
 import java.util.Enumeration;
 
-import org.jfox.framework.BaseException;
 import org.jfox.framework.ClassLoaderRepository;
 import org.jfox.framework.ComponentId;
 import org.jfox.framework.Framework;
@@ -74,14 +74,17 @@ class ProxyReferenceFactory {
                         try {
                             result = componentInvoker.invokeMethod(component, componentId, method, args);
                         }
-                        catch(BaseException e) {
-                            Exception innerException = (Exception)e.getCause();
+                        catch(InvocationTargetException e) {
+                            Exception innerException = (Exception)e.getTargetException();
                             if(innerException != null) {
                                 exception = innerException;
                             }
                             else {
                                 exception = e;
                             }
+                        }
+                        catch (Exception e) {
+                            exception = e;
                         }
                         if(isInteceptable){
                             result = ((InterceptableComponent)component).postInvoke(method, args, result, exception);
