@@ -13,6 +13,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.ServletException;
@@ -291,6 +292,13 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
             }
         }
         invocationContext.setInvocation(invocation);
+
+        // 构造 FieldMap
+        Field[] fields = ClassUtils.getAllDecaredFields(invocationClass);
+        Map<String, Field> filedMap = new HashMap<String, Field>(fields.length);
+        for(Field field : fields){
+            filedMap.put(field.getName(), field);
+        }
 
         // verify & build form input field
         ValidateException validateException = null;

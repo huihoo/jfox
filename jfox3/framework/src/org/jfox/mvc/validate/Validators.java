@@ -12,6 +12,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.jfox.mvc.InvocationException;
 
 
@@ -31,8 +32,13 @@ public class Validators {
      */
     private static Map<Class<? extends Validator>, Validator> validatorMap = new HashMap<Class<? extends Validator>, Validator>();
 
+    static Logger logger = Logger.getLogger(Validators.class); 
+
     public static Object validate(Field field, String input, Annotation validation) throws ValidateException, InvocationException {
         Validator validator = getValidator(validation);
+        if(validator == null) {
+            return input;
+        }
         try {
             return validator.validate(input, validation);
         }
@@ -42,6 +48,12 @@ public class Validators {
         }
     }
 
+    /**
+     * 根据 Validation Annotation 获得 Validator
+     * @param validation
+     * @return
+     * @throws InvocationException
+     */
     synchronized static Validator getValidator(Annotation validation) throws InvocationException {
 
         if (!validatorMethodMap.containsKey(validation.getClass())) {
@@ -50,7 +62,8 @@ public class Validators {
                 validatorMethodMap.put(validation.getClass(), validatorClassMethod);
             }
             catch (Exception e) {
-                throw new InvocationException("Failed to reflect method Class<? extends Validator> validatorClass() from validator: " + validation, e);
+                logger.warn("Failed to reflect method Class<? extends Validator> validatorClass() from validator: " + validation, e);
+                return null;
             }
         }
         Method validatorClassMethod = validatorMethodMap.get(validation.getClass());
