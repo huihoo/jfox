@@ -58,11 +58,13 @@ public abstract class Invocation {
         // verify & build form field from parameterMap
         ValidateException validateException = null;
 
+        // 复制一份
+        fieldValidationMap = new HashMap<String, ActionSupport.FieldValidation>(fieldValidationMap);        
         for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
             String key = entry.getKey();
             String[] values = entry.getValue();
             try {
-                ActionSupport.FieldValidation fieldValidation = fieldValidationMap.get(key);
+                ActionSupport.FieldValidation fieldValidation = fieldValidationMap.remove(key);
                 if(fieldValidation == null) {
                     //仅仅发出一个信息
                     String msg = "Set invocation " + this.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed, No such filed!";
@@ -126,6 +128,17 @@ public abstract class Invocation {
             }
         }
 
+        // 检查是否有必须的field还没有设置
+        for(ActionSupport.FieldValidation fieldValidation : fieldValidationMap.values()){
+            Annotation validationAnnotation = fieldValidation.getValidationAnnotation();
+            if(validationAnnotation != null) {
+                if(!Validators.isValidationNullable(validationAnnotation)){
+                    validateException = new ValidateException("input can not be null!", fieldValidation.getField().getName(), null);
+                    break;
+                }
+            }
+        }
+
         if (validateException != null) {
             String msg = "Set invocation + " + this.getClass().getName() + "'s field \"" + validateException.getInputField() + "\" with value \"" + validateException.getInputValue() + "\" failed, " + validateException.getMessage();
             logger.warn(msg);
@@ -159,8 +172,6 @@ public abstract class Invocation {
                 throw new InvocationException(msg, e);
             }
         }
-
-        //TODO: 检查是否有必须的field还没有设置！！！
     }
 
     public final Set<String> attributeKeys(){

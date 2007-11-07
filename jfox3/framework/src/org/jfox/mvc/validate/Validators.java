@@ -88,15 +88,27 @@ public class Validators {
         return validatorMap.get(validatorClass);
     }
 
-    public static boolean isValidationAnnotation(Annotation annotation) {
+    public static boolean isValidationAnnotation(Annotation validationAnnotation) {
         try {
-            annotation.getClass().getMethod("validatorClass");
+            validationAnnotation.getClass().getMethod("validatorClass");
             return true;
         }
         catch (Exception e) {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public static boolean isValidationNullable(Annotation validationAnnotation){
+        try {
+            Method method = validationAnnotation.getClass().getMethod("nullable");
+            return (Boolean)method.invoke(validationAnnotation);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
 

@@ -307,7 +307,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
 
     private Map<String, FieldValidation> getInvocationFieldValidationMap(Class<? extends Invocation> invocationClass){
         if(invocationMap.containsKey(invocationClass)){
-            return invocationMap.get(invocationClass);
+            return Collections.unmodifiableMap(invocationMap.get(invocationClass));
         }
         //构造 fieldMap & validationMap
         Field[] allFields = ClassUtils.getAllDecaredFields(invocationClass);
@@ -325,7 +325,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
             }
         }
         invocationMap.put(invocationClass, fieldValidationMap);
-        return fieldValidationMap;
+        return Collections.unmodifiableMap(fieldValidationMap);
     }
 
     private Annotation getAvailableValidationAnnotation(Field field){
