@@ -88,6 +88,18 @@ public class Validators {
         return validatorMap.get(validatorClass);
     }
 
+    public static boolean isValidationAnnotation(Annotation annotation) {
+        try {
+            annotation.getClass().getMethod("validatorClass");
+            return true;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
     public static void main(String[] args) {
 
     }

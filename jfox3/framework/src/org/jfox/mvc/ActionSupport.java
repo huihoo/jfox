@@ -7,13 +7,8 @@
 package org.jfox.mvc;
 
 import java.io.File;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.ServletException;
@@ -27,9 +22,7 @@ import org.jfox.framework.component.ComponentUnregistration;
 import org.jfox.framework.component.SingletonComponent;
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.mvc.validate.ValidateException;
-import org.jfox.mvc.validate.Validators;
 import org.jfox.util.AnnotationUtils;
-import org.jfox.util.ClassUtils;
 
 /**
  * Action super class
@@ -72,7 +65,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
                     && actionMethod.getParameterTypes().length == 1
                     && actionMethod.getParameterTypes()[0].equals(InvocationContext.class)) {
                 // 统一转换成大写
-                // TODO: 分析 actionMethod 对应的 @ActionMethod，并根据 @ActionMethod支持的 HttpMethod 作为 key
+                // 分析 actionMethod 对应的 @ActionMethod，并根据 @ActionMethod支持的 HttpMethod 作为 key
                 ActionMethod actionMethodAnnotation = actionMethod.getAnnotation(ActionMethod.class);
                 String actionMethodName = actionMethodAnnotation.name();
                 String actionName = (actionMethodName == null || actionMethodName.trim().equals("")) ? actionMethod.getName() : actionMethodName.trim();
@@ -280,136 +273,24 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         Invocation invocation;
         if (invocationClass.equals(Invocation.class)) {
             invocation = new Invocation();
-            invocation.putAll(invocationContext.getParameterMap());
+            invocation.putAll(invocationContext.getParameterMap(), invocationContext.getFilesUploaded());
         }
         else {
             try {
                 invocation = invocationClass.newInstance();
-                invocation.putAll(invocationContext.getParameterMap());
+                // verify input then build fields 
+                invocation.putAll(invocationContext.getParameterMap(), invocationContext.getFilesUploaded());
             }
             catch (Exception e) {
                 throw new InvocationException("Construct invocation exception.", e);
             }
         }
-        invocationContext.setInvocation(invocation);
-
-        // 构造 FieldMap
-        Field[] fields = ClassUtils.getAllDecaredFields(invocationClass);
-        Map<String, Field> filedMap = new HashMap<String, Field>(fields.length);
-        for(Field field : fields){
-            filedMap.put(field.getName(), field);
-        }
-
-        // verify & build form input field
-        ValidateException validateException = null;
-        for (Map.Entry<String, String[]> entry : invocationContext.getParameterMap().entrySet()) {
-            String key = entry.getKey();
-            String[] values = entry.getValue();
-            try {
-                Field field = ClassUtils.getDecaredField(invocationClass, key);
-                field.setAccessible(true);
-                Class<?> fieldType = field.getType();
-                Annotation[] validatorAnnotations = field.getAnnotations();
-                if (fieldType.isArray()) {
-                    Class<?> arrayType = fieldType.getComponentType();
-                    Object[] params = (Object[])Array.newInstance(arrayType, values.length);
-                    for (int i = 0; i < params.length; i++) {
-                        if (validatorAnnotations.length > 0) {
-                            for (Annotation validation : validatorAnnotations) {
-                                try {
-                                    // valiate field input and construct
-                                    params[i] = Validators.validate(field, values[i], validation);
-                                }
-                                catch (ValidateException e) {
-                                    // 只记录第一个 ValidateException
-                                    if (validateException == null) {
-                                        validateException = e;
-                                    }
-                                }
-                            }
-                        }
-                        else {
-                            //no validator, try to use ClassUtils construct object
-                            params[i] = ClassUtils.newObject(arrayType, values[i]);
-                        }
-                    }
-                    field.set(invocation, params);
-                }
-                else {
-                    String value = values[0];
-                    Object v = null;
-
-                    if (validatorAnnotations.length > 0) {
-                        for (Annotation validation : validatorAnnotations) {
-                            try {
-                                v = Validators.validate(field, value, validation);
-                            }
-                            catch (ValidateException e) {
-                                // 只记录第一个 ValidateException
-                                if (validateException == null) {
-                                    validateException = e;
-                                }
-                            }
-                        }
-                    }
-                    else {
-                        v = ClassUtils.newObject(fieldType, value);
-                    }
-                    field.set(invocation, v);
-                }
-            }
-            catch (NoSuchFieldException e) {
-                //仅仅发出一个信息
-                String msg = "Set invocation " + invocationClass.getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed, No such filed!";
-                logger.info(msg);
-//                    throw new InvocationException(msg, e);
-            }
-            catch (Throwable t) {
-                String msg = "Set invocation + " + invocationClass.getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed!";
-                logger.warn(msg, t);
-                throw new InvocationException(msg, t);
-            }
-        }
-
-        if (validateException != null) {
-            String msg = "Set invocation + " + invocationClass.getName() + "'s field \"" + validateException.getInputField() + "\" with value \"" + validateException.getInputValue() + "\" failed, " + validateException.getMessage();
-            logger.warn(msg);
-            throw validateException; // throw exception to execute()
-        }
-
-        // build upload file field
-        for (FileUploaded fileUploaded : invocationContext.getFilesUploaded()) {
-            String fieldName = fileUploaded.getFieldname();
-            try {
-                Field field = ClassUtils.getDecaredField(invocationClass, fieldName);
-                field.setAccessible(true);
-                Class<?> fieldType = field.getType();
-                if (FileUploaded.class.isAssignableFrom(fieldType)) {
-                    field.set(invocation, fileUploaded);
-                }
-                else {
-                    String msg = "Invocation " + invocationClass.getName() + " 's field " + field.getName() + " is not a type " + FileUploaded.class.getName();
-                    logger.warn(msg);
-                    throw new InvocationException(msg);
-                }
-            }
-            catch (NoSuchFieldException e) {
-                String msg = "Set invocation " + invocationClass.getName() + "'s FileUploaded field " + fieldName + " with value " + fileUploaded + " failed!";
-                logger.warn(msg, e);
-                throw new InvocationException(msg, e);
-            }
-            catch (IllegalAccessException e) {
-                String msg = "Set invocation " + invocationClass.getName() + "'s FileUploaded field " + fieldName + " with value " + fileUploaded + " failed!";
-                logger.warn(msg, e);
-                throw new InvocationException(msg, e);
-            }
-        }
-
         /**
          * 有些需要关联验证的，比如：校验两次输入的密码是否正确，
          * 因为不能保证校验密码在初试密码之后得到校验，所以必须放到 validateAll 中进行校验
          */
         invocation.validateAll();
+        invocationContext.setInvocation(invocation);
         return invocation;
     }
 
