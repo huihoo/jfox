@@ -51,7 +51,7 @@ public class ClassUtils {
         }
         List<Class> classList = new ArrayList<Class>();
         Class superClass = cls;
-        while (superClass != null) { // java.lang.Object 也算为超类
+        while (superClass != null && !Object.class.equals(superClass) && !Class.class.equals(superClass)) { // java.lang.Object 不算为超类
             classList.add(superClass);
             superClass = superClass.getSuperclass();
         }

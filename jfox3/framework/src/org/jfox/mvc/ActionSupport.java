@@ -7,8 +7,12 @@
 package org.jfox.mvc;
 
 import java.io.File;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.ServletException;
@@ -22,7 +26,9 @@ import org.jfox.framework.component.ComponentUnregistration;
 import org.jfox.framework.component.SingletonComponent;
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.mvc.validate.ValidateException;
+import org.jfox.mvc.validate.Validators;
 import org.jfox.util.AnnotationUtils;
+import org.jfox.util.ClassUtils;
 
 /**
  * Action super class
@@ -45,6 +51,11 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     private String moduleDirName;
 
     private ComponentContext context;
+
+    /**
+     * 保存 invocationClass 到其 Filed/Annotation的映射
+     */
+    private Map<Class<? extends Invocation>, Map<String,FieldValidation>> invocationMap = new HashMap<Class<? extends Invocation>, Map<String,FieldValidation>>();
 
     /**
      * 声明的 ActionMethod
@@ -272,14 +283,14 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     protected Invocation initInvocation(Class<? extends Invocation> invocationClass, InvocationContext invocationContext) throws InvocationException, ValidateException {
         Invocation invocation;
         if (invocationClass.equals(Invocation.class)) {
-            invocation = new Invocation();
-            invocation.putAll(invocationContext.getParameterMap(), invocationContext.getFilesUploaded());
+            invocation = new Invocation(){};
+            invocation.init(Collections.EMPTY_MAP,invocationContext.getParameterMap(), invocationContext.getFilesUploaded());
         }
         else {
             try {
                 invocation = invocationClass.newInstance();
                 // verify input then build fields 
-                invocation.putAll(invocationContext.getParameterMap(), invocationContext.getFilesUploaded());
+                invocation.init(getInvocationFieldValidationMap(invocationClass),invocationContext.getParameterMap(), invocationContext.getFilesUploaded());
             }
             catch (Exception e) {
                 throw new InvocationException("Construct invocation exception.", e);
@@ -292,6 +303,51 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         invocation.validateAll();
         invocationContext.setInvocation(invocation);
         return invocation;
+    }
+
+    private Map<String, FieldValidation> getInvocationFieldValidationMap(Class<? extends Invocation> invocationClass){
+        if(invocationMap.containsKey(invocationClass)){
+            return invocationMap.get(invocationClass);
+        }
+        //构造 fieldMap & validationMap
+        Field[] allFields = ClassUtils.getAllDecaredFields(invocationClass);
+        Map<String, FieldValidation> fieldValidationMap = new HashMap<String, FieldValidation>(allFields.length);
+
+        for(Field field : allFields){
+            if(!field.getDeclaringClass().equals(Invocation.class)) { //过滤掉Invocation自身的Field 
+                if(fieldValidationMap.containsKey(field.getName())){
+                    logger.warn("Reduplicate filed name: " + field.getName() + " in invocation: " + invocationClass.getName());
+                    continue;
+                }
+                Annotation validationAnnotation = getAvailableValidationAnnotation(field);
+                FieldValidation fieldValidation = new FieldValidation(field, validationAnnotation);
+                fieldValidationMap.put(field.getName(), fieldValidation);                
+            }
+        }
+        invocationMap.put(invocationClass, fieldValidationMap);
+        return fieldValidationMap;
+    }
+
+    private Annotation getAvailableValidationAnnotation(Field field){
+        int count = 0;
+        Annotation validAnnotation = null;
+        Annotation[] fieldAnnotations = field.getAnnotations();
+        for(Annotation annotation : fieldAnnotations){
+            if(Validators.isValidationAnnotation(annotation)) {
+                validAnnotation = annotation;
+                count++;
+            }
+        }
+        if(count == 0) {
+            return null;
+        }
+        else if(count > 1){
+            logger.warn("More than one Validation Annotation on " + field + ", will use last one.");
+            return validAnnotation;
+        }
+        else {
+            return validAnnotation;
+        }
     }
 
     protected void checkSessionToken(InvocationContext invocationContext) {
@@ -317,6 +373,24 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
             sessionContext.removeAttribute(key);
         }
     }
+
+    static class FieldValidation {
+        private Field field;
+        private Annotation validationAnnotation;
+
+        FieldValidation(Field field, Annotation validationAnnotation) {
+            this.field = field;
+            this.validationAnnotation = validationAnnotation;
+        }
+
+        public Field getField() {
+            return field;
+        }
+
+        public Annotation getValidationAnnotation() {
+            return validationAnnotation;
+        }
+    }    
 
     public static void main(String[] args) {
 
