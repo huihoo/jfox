@@ -367,7 +367,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
 
     protected void releaseSessionToken(InvocationContext invocationContext) {
         Invocation invocation = invocationContext.getInvocation();
-        if(invocation.getRequestToken() != null) {
+        if(invocation != null && invocation.getRequestToken() != null) {
             SessionContext sessionContext = invocationContext.getSessionContext();
             String key = SessionContext.TOKEN_SESSION_KEY + invocation.getRequestToken();
             sessionContext.removeAttribute(key);

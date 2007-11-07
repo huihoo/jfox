@@ -31,9 +31,7 @@
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/Validators.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/Validators.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/Invocation.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/Invocation.java" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -167,7 +165,7 @@
       <file leaf-file-name="NodeAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/NodeAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="0" selection-start="1511" selection-end="1511" vertical-scroll-proportion="0.12393888">
+            <state line="40" column="0" selection-start="1511" selection-end="1511" vertical-scroll-proportion="0.41011235">
               <folding />
             </state>
           </provider>
@@ -176,7 +174,7 @@
       <file leaf-file-name="LongValidation.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/LongValidation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="65" selection-start="692" selection-end="692" vertical-scroll-proportion="0.32396695">
+            <state line="22" column="65" selection-start="692" selection-end="692" vertical-scroll-proportion="1.0103092">
               <folding />
             </state>
           </provider>
@@ -185,7 +183,7 @@
       <file leaf-file-name="Constants.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="43" selection-start="230" selection-end="230" vertical-scroll-proportion="0.20826447">
+            <state line="9" column="43" selection-start="230" selection-end="230" vertical-scroll-proportion="0.6494845">
               <folding />
             </state>
           </provider>
@@ -194,10 +192,10 @@
       <file leaf-file-name="ActionSupport.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="327" column="42" selection-start="13878" selection-end="13878" vertical-scroll-proportion="0.9083192">
+            <state line="369" column="33" selection-start="15554" selection-end="15554" vertical-scroll-proportion="0.55617976">
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1194448642000" expanded="false" signature="239:270" placeholder="..." />
+                <marker date="1194449474000" expanded="false" signature="239:270" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -206,7 +204,7 @@
       <file leaf-file-name="LongValidator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/LongValidator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="16" selection-start="703" selection-end="769" vertical-scroll-proportion="0.3106961">
+            <state line="19" column="16" selection-start="703" selection-end="769" vertical-scroll-proportion="1.0280899">
               <folding />
             </state>
           </provider>
@@ -215,7 +213,7 @@
       <file leaf-file-name="InvocationContext.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/InvocationContext.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="165" column="0" selection-start="4362" selection-end="4362" vertical-scroll-proportion="0.5959253">
+            <state line="165" column="0" selection-start="4362" selection-end="4362" vertical-scroll-proportion="1.9719101">
               <folding />
             </state>
           </provider>
@@ -224,7 +222,7 @@
       <file leaf-file-name="Invocation.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/Invocation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="163" column="44" selection-start="6939" selection-end="6939" vertical-scroll-proportion="0.46689305">
+            <state line="59" column="0" selection-start="1856" selection-end="1856" vertical-scroll-proportion="0.5674157">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -235,7 +233,7 @@
       <file leaf-file-name="ValidateException.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/ValidateException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="13" selection-start="368" selection-end="368" vertical-scroll-proportion="0.18512397">
+            <state line="13" column="13" selection-start="368" selection-end="368" vertical-scroll-proportion="0.57731956">
               <folding />
             </state>
           </provider>
@@ -244,7 +242,7 @@
       <file leaf-file-name="Validators.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/Validators.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="101" column="42" selection-start="3505" selection-end="3505" vertical-scroll-proportion="0.4533107">
+            <state line="101" column="42" selection-start="3505" selection-end="3505" vertical-scroll-proportion="1.5">
               <folding />
             </state>
           </provider>
@@ -253,7 +251,7 @@
       <file leaf-file-name="Validator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/Validator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="13" selection-start="680" selection-end="680" vertical-scroll-proportion="0.43966943">
+            <state line="24" column="13" selection-start="680" selection-end="680" vertical-scroll-proportion="1.371134">
               <folding />
             </state>
           </provider>
@@ -262,7 +260,7 @@
       <file leaf-file-name="AnnotationUtils.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/util/AnnotationUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="0" selection-start="1504" selection-end="1504" vertical-scroll-proportion="0.1646859">
+            <state line="44" column="0" selection-start="1504" selection-end="1504" vertical-scroll-proportion="0.5449438">
               <folding />
             </state>
           </provider>
@@ -271,7 +269,7 @@
       <file leaf-file-name="NodeDAO.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/NodeDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="284" selection-end="284" vertical-scroll-proportion="0.20826447">
+            <state line="12" column="0" selection-start="284" selection-end="284" vertical-scroll-proportion="0.6494845">
               <folding />
             </state>
           </provider>
@@ -1511,7 +1509,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="4" />
       <window_info id="Ant Build" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24724725" order="4" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.330781" order="4" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48851454" order="7" x="16" y="176" width="776" height="371" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.618683" order="7" x="16" y="176" width="776" height="371" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="21" />
       <window_info id="IDEtalk" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="22" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" order="0" />
@@ -1747,28 +1745,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/dao/NodeDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="284" selection-end="284" vertical-scroll-proportion="0.20826447">
+        <state line="12" column="0" selection-start="284" selection-end="284" vertical-scroll-proportion="0.6494845">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="43" selection-start="230" selection-end="230" vertical-scroll-proportion="0.20826447">
+        <state line="9" column="43" selection-start="230" selection-end="230" vertical-scroll-proportion="0.6494845">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/InvocationContext.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="165" column="0" selection-start="4362" selection-end="4362" vertical-scroll-proportion="0.5959253">
+        <state line="165" column="0" selection-start="4362" selection-end="4362" vertical-scroll-proportion="1.9719101">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/util/AnnotationUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="0" selection-start="1504" selection-end="1504" vertical-scroll-proportion="0.1646859">
+        <state line="44" column="0" selection-start="1504" selection-end="1504" vertical-scroll-proportion="0.5449438">
           <folding />
         </state>
       </provider>
@@ -1782,7 +1780,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/NodeAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="1511" selection-end="1511" vertical-scroll-proportion="0.12393888">
+        <state line="40" column="0" selection-start="1511" selection-end="1511" vertical-scroll-proportion="0.41011235">
           <folding />
         </state>
       </provider>
@@ -1794,54 +1792,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="327" column="42" selection-start="13878" selection-end="13878" vertical-scroll-proportion="0.9083192">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1194448642000" expanded="false" signature="239:270" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/Validator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="13" selection-start="680" selection-end="680" vertical-scroll-proportion="0.43966943">
+        <state line="24" column="13" selection-start="680" selection-end="680" vertical-scroll-proportion="1.371134">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/LongValidation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="65" selection-start="692" selection-end="692" vertical-scroll-proportion="0.32396695">
+        <state line="22" column="65" selection-start="692" selection-end="692" vertical-scroll-proportion="1.0103092">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/LongValidator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="16" selection-start="703" selection-end="769" vertical-scroll-proportion="0.3106961">
+        <state line="19" column="16" selection-start="703" selection-end="769" vertical-scroll-proportion="1.0280899">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/ValidateException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="13" selection-start="368" selection-end="368" vertical-scroll-proportion="0.18512397">
+        <state line="13" column="13" selection-start="368" selection-end="368" vertical-scroll-proportion="0.57731956">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/Validators.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="42" selection-start="3505" selection-end="3505" vertical-scroll-proportion="0.4533107">
+        <state line="101" column="42" selection-start="3505" selection-end="3505" vertical-scroll-proportion="1.5">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="369" column="33" selection-start="15554" selection-end="15554" vertical-scroll-proportion="0.55617976">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1194449474000" expanded="false" signature="239:270" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/Invocation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="163" column="44" selection-start="6939" selection-end="6939" vertical-scroll-proportion="0.46689305">
+        <state line="59" column="0" selection-start="1856" selection-end="1856" vertical-scroll-proportion="0.5674157">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
