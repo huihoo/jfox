@@ -31,7 +31,7 @@
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/SuperAction.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/SuperAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt" afterPath="$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -215,7 +215,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SuperAction.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SuperAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/SuperAction.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="14" column="38" selection-start="434" selection-end="434" vertical-scroll-proportion="0.3327674">
@@ -245,10 +245,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="开发Q&amp;A.txt" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="开发Q&amp;A.txt" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="150" selection-start="1932" selection-end="1932" vertical-scroll-proportion="0.6196944">
+            <state line="47" column="0" selection-start="2154" selection-end="2154" vertical-scroll-proportion="0.6910017">
               <folding />
             </state>
           </provider>
@@ -1736,13 +1736,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="150" selection-start="1932" selection-end="1932" vertical-scroll-proportion="0.6196944">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/NodeAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="121" column="73" selection-start="5692" selection-end="5709" vertical-scroll-proportion="0.67911714">
@@ -1772,6 +1765,13 @@
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/SuperAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="38" selection-start="434" selection-end="434" vertical-scroll-proportion="0.3327674">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="0" selection-start="2154" selection-end="2154" vertical-scroll-proportion="0.6910017">
           <folding />
         </state>
       </provider>
