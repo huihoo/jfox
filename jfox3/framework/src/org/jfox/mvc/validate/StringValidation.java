@@ -6,10 +6,10 @@
  */
 package org.jfox.mvc.validate;
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import java.lang.annotation.ElementType;
 
 /**
  * 字符串验证 Annotation
@@ -38,4 +38,7 @@ public @interface StringValidation {
      * 是否可以为空
      */
     boolean nullable() default false;
+
+    //TODO: 检查正则表达式
+    String regexp() default "";
 }

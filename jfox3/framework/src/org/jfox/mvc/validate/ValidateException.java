@@ -40,6 +40,13 @@ public class ValidateException extends BaseException {
         return inputValue;
     }
 
+    public String getMessage() {
+        String message =  super.getMessage();
+        String inputInfo = " [name:" + getInputField() + ", value: " + getInputValue() + "]";
+        message += inputInfo;
+        return message;
+    }
+
     public static void main(String[] args) {
 
     }

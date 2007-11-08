@@ -151,8 +151,6 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         try {
             //construct & verify invocation            
             initInvocation(invocationClass, invocationContext);
-            // 设置通用PageContext属性
-            initPageContext(invocationContext);
             checkSessionToken(invocationContext);
             // pre action
             preAction(invocationContext);
@@ -188,7 +186,8 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
             exception = e;
         }
         finally {
-            postInitPageContext(invocationContext);
+            // 设置通用PageContext属性
+            initPageContext(invocationContext);
             postAction(invocationContext);
             releaseSessionToken(invocationContext);
         }
@@ -220,13 +219,8 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         pageContext.setAttribute("J_REQUEST_URI", request.getRequestURI());
         // request token，用来防止重复提交
         pageContext.setAttribute("J_REQUEST_TOKEN", System.currentTimeMillis() + "");
-    }
-
-    protected void postInitPageContext(InvocationContext invocationContext){
-        PageContext pageContext = invocationContext.getPageContext();
         pageContext.setAttribute(PAGE_VIEW_PATH, pageContext.getTargeView());
     }
-
 
     private Method getActionMethod(InvocationContext invocationContext) {
         //决定调用 doGetXXX or doPostXXX
@@ -289,13 +283,13 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         else {
             try {
                 invocation = invocationClass.newInstance();
-                // verify input then build fields 
-                invocation.init(getInvocationFieldValidationMap(invocationClass),invocationContext.getParameterMap(), invocationContext.getFilesUploaded());
+                // verify input then build fields
             }
             catch (Exception e) {
                 throw new InvocationException("Construct invocation exception.", e);
             }
         }
+        invocation.init(getInvocationFieldValidationMap(invocationClass),invocationContext.getParameterMap(), invocationContext.getFilesUploaded());        
         /**
          * 有些需要关联验证的，比如：校验两次输入的密码是否正确，
          * 因为不能保证校验密码在初试密码之后得到校验，所以必须放到 validateAll 中进行校验
