@@ -30,18 +30,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/entity/Log.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/db/CCMIS.sws" afterPath="$PROJECT_DIR$/MODULES/ccmis/db/CCMIS.sws" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/dao" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/entity" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/dao/LogDAO.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\MODULES\ccmis\db\CCMIS_PDM.pdb" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/dao/LogDAOBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/FinancialAction.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/FinancialAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/HomeAction.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/HomeAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/db/CCMIS_PDM.pdm" afterPath="$PROJECT_DIR$/MODULES/ccmis/db/CCMIS_PDM.pdm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/SystemAction.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/SystemAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/db/CCMIS_SYSTEM.pdb" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\MODULES\ccmis\db\CCMIS_PDM.pdm" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/db/CCMIS_SYSTEM.pdm" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -202,8 +195,10 @@
       <file leaf-file-name="FinancialAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/FinancialAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="53" selection-end="53" vertical-scroll-proportion="0.069421485">
-              <folding />
+            <state line="2" column="8" selection-start="39" selection-end="39" vertical-scroll-proportion="0.04628099">
+              <folding>
+                <marker date="1194787190000" expanded="true" signature="38:286" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -211,8 +206,10 @@
       <file leaf-file-name="SystemAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/SystemAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="54" selection-end="54" vertical-scroll-proportion="0.0950764">
-              <folding />
+            <state line="2" column="8" selection-start="39" selection-end="39" vertical-scroll-proportion="0.0475382">
+              <folding>
+                <marker date="1194787190000" expanded="true" signature="38:286" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -220,7 +217,7 @@
       <file leaf-file-name="RoleAction.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/aaa/action/RoleAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="67" selection-start="2894" selection-end="2894" vertical-scroll-proportion="0.4006791">
+            <state line="78" column="18" selection-start="2845" selection-end="2845" vertical-scroll-proportion="0.4006791">
               <folding />
             </state>
           </provider>
@@ -229,9 +226,9 @@
       <file leaf-file-name="HomeAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/HomeAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="450" selection-end="450" vertical-scroll-proportion="0.4040747">
+            <state line="15" column="0" selection-start="427" selection-end="427" vertical-scroll-proportion="0.3565365">
               <folding>
-                <element signature="imports" expanded="true" />
+                <marker date="1194787190000" expanded="true" signature="38:286" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -665,6 +662,24 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\doc" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="ccmis" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\ccmis\db" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -1654,7 +1669,7 @@
     <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加 Q&amp;A" />
+    <option name="LAST_COMMIT_MESSAGE" value="ccmis_pdm rename ccmis_system" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -1665,7 +1680,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="YUI update to 2.3" />
     <MESSAGE value="chanage db to jfox" />
     <MESSAGE value="db" />
     <MESSAGE value="iservicedesk-&gt;platform" />
@@ -1690,6 +1704,7 @@
     <MESSAGE value="优化了Invocation Validation，增加为设置值的 Field nullable 判断" />
     <MESSAGE value="修改了 json_response，加入判断逻辑，处理异常&#10;实现了校验检查，并以 ajax 弹出错误对话框" />
     <MESSAGE value="增加 Q&amp;A" />
+    <MESSAGE value="ccmis_pdm rename ccmis_system" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -1913,30 +1928,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/FinancialAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="53" selection-end="53" vertical-scroll-proportion="0.069421485">
-          <folding />
+        <state line="2" column="8" selection-start="39" selection-end="39" vertical-scroll-proportion="0.04628099">
+          <folding>
+            <marker date="1194787190000" expanded="true" signature="38:286" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/HomeAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="450" selection-end="450" vertical-scroll-proportion="0.4040747">
+        <state line="15" column="0" selection-start="427" selection-end="427" vertical-scroll-proportion="0.3565365">
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1194787190000" expanded="true" signature="38:286" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/SystemAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="54" selection-end="54" vertical-scroll-proportion="0.0950764">
-          <folding />
+        <state line="2" column="8" selection-start="39" selection-end="39" vertical-scroll-proportion="0.0475382">
+          <folding>
+            <marker date="1194787190000" expanded="true" signature="38:286" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/aaa/action/RoleAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="67" selection-start="2894" selection-end="2894" vertical-scroll-proportion="0.4006791">
+        <state line="78" column="18" selection-start="2845" selection-end="2845" vertical-scroll-proportion="0.4006791">
           <folding />
         </state>
       </provider>
