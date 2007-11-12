@@ -226,6 +226,12 @@ public abstract class Invocation {
 
     }
 
+    public String toString() {
+        //TODO: 实现 toString，便于日志记录
+        StringBuffer sb = new StringBuffer();
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
 
     }
