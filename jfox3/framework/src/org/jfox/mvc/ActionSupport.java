@@ -129,6 +129,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     public final void execute(InvocationContext invocationContext) throws Exception {
         logger.info("Request accepted, URI: " + invocationContext.getRequestURI());
         long now = System.currentTimeMillis();
+        // 将把 InvocationContext 关联到 ThreadLocal
         invocationContext.initInvocationContext();
         Method actionMethod = getActionMethod(invocationContext);
         if (actionMethod == null) {
