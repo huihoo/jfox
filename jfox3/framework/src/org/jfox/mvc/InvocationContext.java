@@ -51,6 +51,8 @@ public class InvocationContext {
 
     private HttpServletRequest request = null;
 
+    private Map<String, Object> attributes = new HashMap<String, Object>();
+
     public static final String SESSION_KEY = "__SESSION_KEY__";
 
     /**
@@ -187,6 +189,22 @@ public class InvocationContext {
 
     public String getRemoteAddress(){
         return getServletRequest().getRemoteAddr();
+    }
+
+    public void setAttribute(String key, Object value) {
+        attributes.put(key, value);
+    }
+
+    public Object getAttribute(String key) {
+        return attributes.get(key);
+    }
+
+    public boolean constainsKey(String key){
+        return attributes.containsKey(key);
+    }
+
+    public boolean removeAttribute(String key) {
+        return attributes.remove(key) != null;
     }
 
     public static void main(String[] args) {

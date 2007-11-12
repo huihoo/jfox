@@ -209,7 +209,7 @@ public class SimpleEJB3Container implements EJBContainer, ModuleListener {
                 }
             }
             catch (NamingException e) {
-                throw new EJBException("bind " + bucket.getMappedNames() + " failed!", e);
+                throw new EJBException("bind " + Arrays.toString(bucket.getMappedNames()) + " failed!", e);
             }
             bucket.start();
             logger.info("Stateless EJB loaded, bean class: " + beanClass.getName());
