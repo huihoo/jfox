@@ -27,7 +27,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.jfox.mvc.FileUploaded;
 import org.jfox.mvc.InvocationContext;
-import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.WebContextLoader;
 import org.jfox.mvc.annotation.ActionMethod;
 
@@ -196,7 +195,7 @@ public class ControllerServlet extends HttpServlet {
 
         try {
             // 初始化 SessionContext，并绑定到线程
-            InvocationContext invocationContext = new InvocationContext(getServletConfig(), request, parameterMap, fileUploadedMap, actionName, actionMethodName, "POST".equals(request.getMethod().toUpperCase()));
+            InvocationContext invocationContext = new InvocationContext(getServletConfig(), request, parameterMap, fileUploadedMap, actionName, actionMethodName);
             WebContextLoader.invokeAction(moduleDirName, actionName, invocationContext);
             request.setAttribute(INVOCATION_CONTEXT, invocationContext);
             // 根据 PageContext.getTargetMethod 要决定 forward 还是 redirect
@@ -213,10 +212,6 @@ public class ControllerServlet extends HttpServlet {
         }
         catch (Exception e) {
             throw new ServletException(e);
-        }
-        finally{
-            // 解除 SessionContext 和 线程的绑定
-            SessionContext.disassociateThreadSessionContext();
         }
     }
 

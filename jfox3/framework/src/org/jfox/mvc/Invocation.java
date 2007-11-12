@@ -218,7 +218,6 @@ public abstract class Invocation {
     }
 
 
-
     /**
      * 对应的 @ActionMethod name
      * @throws ValidateException validate exception
@@ -226,8 +225,6 @@ public abstract class Invocation {
     public void validateAll() throws ValidateException {
 
     }
-
-
 
     public static void main(String[] args) {
 

@@ -29,11 +29,6 @@ public class InvocationContext {
     private String actionMethodName;
 
     /**
-     * 是否是http post
-     */
-    private boolean isPost = false;
-
-    /**
      * 执行的Action方法
      */
     private Method actionMethod = null;
@@ -58,23 +53,43 @@ public class InvocationContext {
 
     public static final String SESSION_KEY = "__SESSION_KEY__";
 
-    public InvocationContext(ServletConfig servletConfig, HttpServletRequest request, Map<String, String[]> parameterMap, Map<String, FileUploaded> fileUploadedMap, String actionName, String actionMethodName, boolean isPostMethod) {
+    /**
+     * 使用 ThreadLocal 将 InvocationContext 和当前线程进行关联
+     */
+    static transient ThreadLocal<InvocationContext> threadInvocationContext = new ThreadLocal<InvocationContext>();
+    
+
+    public InvocationContext(ServletConfig servletConfig, HttpServletRequest request, Map<String, String[]> parameterMap, Map<String, FileUploaded> fileUploadedMap, String actionName, String actionMethodName) {
         this.servletConfig = servletConfig;
         this.request = request;
         this.parameterMap.putAll(parameterMap);
         this.fileUploadedMap.putAll(fileUploadedMap);
         this.actionName = actionName;
         this.actionMethodName = actionMethodName;
-        this.isPost = isPostMethod;
-        this.sessionContext = initSessionContext();
         this.pageContext = new PageContext();
+    }
+
+    /**
+     * 得到当前线程绑定的 InvocationContext
+     */
+    public static InvocationContext getCurrentThreadInvocationContext(){
+        return threadInvocationContext.get();
+    }
+
+    public void initInvocationContext(){
+        this.sessionContext = initSessionContext();
+        threadInvocationContext.set(this);
+    }
+
+    public void disassociateThreadInvocationContext(){
+        threadInvocationContext.remove();
     }
 
     /**
      * 使用 request 初始化 session context，
      * 初始化完毕之后，将 session context 关联到当前线程
      */
-    SessionContext initSessionContext() {
+    private SessionContext initSessionContext() {
         if(request == null) {
             return null;
         }
@@ -83,18 +98,18 @@ public class InvocationContext {
             sessionContext = new SessionContext();
             request.getSession().setAttribute(SESSION_KEY, sessionContext);
         }
-        SessionContext.setCurrentThreadSessionContext(sessionContext);
         return sessionContext;
     }
-
 
     HttpServletRequest getServletRequest() {
         return request;
     }
 
+    /**
+     * 销毁 Session
+     */
     public void destroySessionContext(){
         getSessionContext().clearAttributes();
-        SessionContext.disassociateThreadSessionContext();
         request.getSession().removeAttribute(SESSION_KEY);
     }
 
@@ -131,7 +146,7 @@ public class InvocationContext {
     }
 
     public boolean isPost(){
-        return isPost;
+        return "POST".equals(getServletRequest().getMethod().toUpperCase());
     }
 
     public SessionContext getSessionContext(){
@@ -168,6 +183,10 @@ public class InvocationContext {
 
     public FileUploaded getFileUploaded(String fieldname) {
         return fileUploadedMap.get(fieldname);
+    }
+
+    public String getRemoteAddress(){
+        return getServletRequest().getRemoteAddr();
     }
 
     public static void main(String[] args) {

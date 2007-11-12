@@ -28,34 +28,18 @@ public class SessionContext implements Serializable {
      */
     private Map<String, Serializable> sessionMap = new HashMap<String, Serializable>();
 
-    /**
-     * 使用 ThreadLocal 将 SessionContext 和当前线程进行关联
-     */
-    static transient ThreadLocal<SessionContext> threadSession = new ThreadLocal<SessionContext>();
-
     SessionContext() {
     }
 
-    public static void setCurrentThreadSessionContext(SessionContext sessionContext){
-        threadSession.set(sessionContext);
-    }
-
-    /**
-     * 得到与当前线程绑定的SessionContext
-     * @return return null if current thread not associate session context
-     */
     public static SessionContext getCurrentThreadSessionContext(){
-        SessionContext sessionContext = threadSession.get();
-        if(sessionContext == null) {
-            threadSession.remove();
+        InvocationContext invocationContext = InvocationContext.getCurrentThreadInvocationContext();
+        if(invocationContext != null) {
+            return invocationContext.getSessionContext();
         }
-        return sessionContext;
+        else {
+            return null;
+        }
     }
-
-    public static void disassociateThreadSessionContext(){
-        threadSession.remove();
-    }
-
     /**
      * 在Session中绑定SecurityContext
      * @param securityContext 认证完成之后生成的SecurityContext

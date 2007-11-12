@@ -129,6 +129,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     public final void execute(InvocationContext invocationContext) throws Exception {
         logger.info("Request accepted, URI: " + invocationContext.getRequestURI());
         long now = System.currentTimeMillis();
+        invocationContext.initInvocationContext();
         Method actionMethod = getActionMethod(invocationContext);
         if (actionMethod == null) {
             throw new ServletException("No ActionMethod in Action Class: " + getClass().getName() + " responsable for " + (invocationContext.isPost() ? "POST" : "GET") + " action: " + getName() + "." + invocationContext.getActionMethodName() + " !");
@@ -190,6 +191,8 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
             initPageContext(invocationContext);
             postAction(invocationContext);
             releaseSessionToken(invocationContext);
+            //每次执行 Action 之后都应该解除 ThreadContext
+            invocationContext.disassociateThreadInvocationContext();
         }
         
         logger.info("Request done, URI: " + invocationContext.getRequestURI() + ", consumed " + (System.currentTimeMillis()-now) + "ms.");
