@@ -31,8 +31,6 @@
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/bo/LogBOBean.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/bo/LogBOBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/dao/LogDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/dao/LogDAOBean.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/Invocation.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/Invocation.java" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
@@ -160,10 +158,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Log.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Log.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/entity/Log.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="31" selection-start="936" selection-end="936" vertical-scroll-proportion="0.61946905">
+            <state line="41" column="27" selection-start="900" selection-end="900" vertical-scroll-proportion="0.43362832">
               <folding />
             </state>
           </provider>
@@ -229,10 +227,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Invocation.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Invocation.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/Invocation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="229" column="10" selection-start="8743" selection-end="8743" vertical-scroll-proportion="0.13809524">
+            <state line="253" column="9" selection-start="9486" selection-end="9486" vertical-scroll-proportion="0.5904762">
               <folding />
             </state>
           </provider>
@@ -1718,13 +1716,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/Invocation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="229" column="10" selection-start="8743" selection-end="8743" vertical-scroll-proportion="0.13809524">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/bo/LogBOBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="0" selection-start="619" selection-end="619" vertical-scroll-proportion="1.300885">
@@ -1750,7 +1741,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/entity/Log.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="31" selection-start="936" selection-end="936" vertical-scroll-proportion="0.61946905">
+        <state line="41" column="27" selection-start="900" selection-end="900" vertical-scroll-proportion="0.43362832">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/Invocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="253" column="9" selection-start="9486" selection-end="9486" vertical-scroll-proportion="0.5904762">
           <folding />
         </state>
       </provider>

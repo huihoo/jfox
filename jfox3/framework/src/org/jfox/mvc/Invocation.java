@@ -252,7 +252,6 @@ public abstract class Invocation {
             }
             i++;
         }
-        sb.append(attributes.toString());
         sb.append("}");
         return sb.toString();
     }
