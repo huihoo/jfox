@@ -32,10 +32,10 @@
     <list default="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/JSONUtils.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/JSONUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/action" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/action/LogAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/logging/log_management.vhtml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/action" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/logging" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/logging/log_management.vhtml" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -154,7 +154,7 @@
       <file leaf-file-name="LogDAOBean.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/dao/LogDAOBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="943" selection-end="943" vertical-scroll-proportion="0.5553719">
+            <state line="32" column="0" selection-start="943" selection-end="943" vertical-scroll-proportion="0.86153847">
               <folding>
                 <marker date="1195050568000" expanded="true" signature="3289:3295" placeholder="{...}" />
               </folding>
@@ -165,7 +165,7 @@
       <file leaf-file-name="Log.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/entity/Log.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="27" selection-start="900" selection-end="900" vertical-scroll-proportion="0.16198348">
+            <state line="41" column="27" selection-start="900" selection-end="900" vertical-scroll-proportion="0.25128207">
               <folding />
             </state>
           </provider>
@@ -174,7 +174,7 @@
       <file leaf-file-name="SuperAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/SuperAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="22" selection-start="867" selection-end="867" vertical-scroll-proportion="0.3327674">
+            <state line="33" column="22" selection-start="867" selection-end="867" vertical-scroll-proportion="0.5240642">
               <folding />
             </state>
           </provider>
@@ -183,7 +183,7 @@
       <file leaf-file-name="JSONUtils.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/JSONUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="9" selection-start="1733" selection-end="1733" vertical-scroll-proportion="0.90743804">
+            <state line="57" column="9" selection-start="1733" selection-end="1733" vertical-scroll-proportion="1.4076923">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -194,7 +194,7 @@
       <file leaf-file-name="EntityObject.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="33" selection-start="1173" selection-end="1173" vertical-scroll-proportion="0.0237691">
+            <state line="46" column="33" selection-start="1173" selection-end="1173" vertical-scroll-proportion="0.037433155">
               <folding />
             </state>
           </provider>
@@ -203,7 +203,7 @@
       <file leaf-file-name="Invocation.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/Invocation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="253" column="9" selection-start="9486" selection-end="9486" vertical-scroll-proportion="0.6434635">
+            <state line="253" column="9" selection-start="9486" selection-end="9486" vertical-scroll-proportion="1.013369">
               <folding />
             </state>
           </provider>
@@ -212,7 +212,7 @@
       <file leaf-file-name="LogAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/action/LogAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="85" selection-start="514" selection-end="534" vertical-scroll-proportion="0.43966943">
+            <state line="19" column="85" selection-start="514" selection-end="534" vertical-scroll-proportion="0.6820513">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -226,7 +226,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="144" column="0" selection-start="4510" selection-end="4510" vertical-scroll-proportion="0.35477942">
+            <state line="148" column="43" selection-start="4637" selection-end="4637" vertical-scroll-proportion="0.7568389">
               <folding />
             </state>
           </provider>
@@ -238,7 +238,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="0" selection-start="0" selection-end="5401" vertical-scroll-proportion="0.5661765">
+            <state line="22" column="0" selection-start="0" selection-end="5401" vertical-scroll-proportion="0.9361702">
               <folding />
             </state>
           </provider>
@@ -247,7 +247,7 @@
       <file leaf-file-name="LogBOBean.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/bo/LogBOBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="468" selection-end="468" vertical-scroll-proportion="0.30082646">
+            <state line="20" column="0" selection-start="468" selection-end="468" vertical-scroll-proportion="0.46666667">
               <folding />
             </state>
           </provider>
@@ -256,7 +256,7 @@
       <file leaf-file-name="NodeAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/NodeAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="13" selection-start="614" selection-end="614" vertical-scroll-proportion="0.1901528">
+            <state line="20" column="13" selection-start="614" selection-end="614" vertical-scroll-proportion="0.29946524">
               <folding />
             </state>
           </provider>
@@ -1448,7 +1448,7 @@
       <window_info id="IDEtalk" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="22" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4287902" order="0" />
       <window_info id="simpleUML" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4992343" order="12" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31852987" order="2" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31852987" order="2" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32618684" order="10" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1911912" order="1" />
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.731" order="3" />
@@ -1684,14 +1684,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/SuperAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="22" selection-start="867" selection-end="867" vertical-scroll-proportion="0.3327674">
+        <state line="33" column="22" selection-start="867" selection-end="867" vertical-scroll-proportion="0.5240642">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/dao/LogDAOBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="943" selection-end="943" vertical-scroll-proportion="0.5553719">
+        <state line="32" column="0" selection-start="943" selection-end="943" vertical-scroll-proportion="0.86153847">
           <folding>
             <marker date="1195050568000" expanded="true" signature="3289:3295" placeholder="{...}" />
           </folding>
@@ -1700,21 +1700,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/entity/Log.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="27" selection-start="900" selection-end="900" vertical-scroll-proportion="0.16198348">
+        <state line="41" column="27" selection-start="900" selection-end="900" vertical-scroll-proportion="0.25128207">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="33" selection-start="1173" selection-end="1173" vertical-scroll-proportion="0.0237691">
+        <state line="46" column="33" selection-start="1173" selection-end="1173" vertical-scroll-proportion="0.037433155">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/Invocation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="253" column="9" selection-start="9486" selection-end="9486" vertical-scroll-proportion="0.6434635">
+        <state line="253" column="9" selection-start="9486" selection-end="9486" vertical-scroll-proportion="1.013369">
           <folding />
         </state>
       </provider>
@@ -1735,21 +1735,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/function/action/NodeAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="13" selection-start="614" selection-end="614" vertical-scroll-proportion="0.1901528">
+        <state line="20" column="13" selection-start="614" selection-end="614" vertical-scroll-proportion="0.29946524">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/bo/LogBOBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="468" selection-end="468" vertical-scroll-proportion="0.30082646">
+        <state line="20" column="0" selection-start="468" selection-end="468" vertical-scroll-proportion="0.46666667">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/action/LogAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="85" selection-start="514" selection-end="534" vertical-scroll-proportion="0.43966943">
+        <state line="19" column="85" selection-start="514" selection-end="534" vertical-scroll-proportion="0.6820513">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1761,7 +1761,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="0" selection-end="5401" vertical-scroll-proportion="0.5661765">
+        <state line="22" column="0" selection-start="0" selection-end="5401" vertical-scroll-proportion="0.9361702">
           <folding />
         </state>
       </provider>
@@ -1775,7 +1775,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/JSONUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="9" selection-start="1733" selection-end="1733" vertical-scroll-proportion="0.90743804">
+        <state line="57" column="9" selection-start="1733" selection-end="1733" vertical-scroll-proportion="1.4076923">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1787,7 +1787,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="144" column="0" selection-start="4510" selection-end="4510" vertical-scroll-proportion="0.35477942">
+        <state line="148" column="43" selection-start="4637" selection-end="4637" vertical-scroll-proportion="0.7568389">
           <folding />
         </state>
       </provider>
