@@ -227,9 +227,33 @@ public abstract class Invocation {
     }
 
     public String toString() {
-        //TODO: 实现 toString，便于日志记录
+        // 实现 toString，便于日志记录
         StringBuffer sb = new StringBuffer();
+        sb.append("{");
+        int i=0;
+        for(Map.Entry<String,String[]> entry : attributes.entrySet()){
+            String key = entry.getKey();
+            if(i>0) {
+                sb.append(",");
+            }
+            sb.append(key).append("=");
+            String[] value = entry.getValue();
+            if(value == null) {
+                sb.append("null");
+            }
+            else if(value.length == 0) {
+                sb.append("");
+            }
+            else if(value.length == 1) {
+                sb.append(value[0]);
+            }
+            else {
+                sb.append(Arrays.toString(value));
+            }
+            i++;
+        }
         sb.append(attributes.toString());
+        sb.append("}");
         return sb.toString();
     }
 
