@@ -30,7 +30,7 @@ public class MappedEntity {
      * 方法名到列名的映射，如果是 MappedColumn Method, Method name =
      * Method_name => Column_name
      */
-    private Map<String, String> columnMap = new HashMap<String, String>();
+//    private Map<String, String> columnMap = new HashMap<String, String>();
 
     /**
      * 用来存储查询到的 column=>value 值对
