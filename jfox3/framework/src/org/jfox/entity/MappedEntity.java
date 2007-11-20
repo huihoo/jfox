@@ -6,6 +6,8 @@
  */
 package org.jfox.entity;
 
+import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,22 +17,7 @@ import java.util.Map;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class MappedEntity {
-    /**
-     * prefix of @MappedColumn
-     */
-//    public final static String MAPPED_COLUMN_PREFIX = "MAPPED_COLUMN_";
-
-    /**
-     * entity interface
-     */
-    private Class<?> dataObjectInterfClass = null;
-
-    /**
-     * 方法名到列名的映射，如果是 MappedColumn Method, Method name =
-     * Method_name => Column_name
-     */
-//    private Map<String, String> columnMap = new HashMap<String, String>();
+public class MappedEntity implements Serializable {
 
     /**
      * 用来存储查询到的 column=>value 值对
@@ -66,7 +53,7 @@ public class MappedEntity {
 
     public String toString() {
         StringBuffer sb = new StringBuffer();
-        sb.append(dataObjectInterfClass.getSimpleName()).append("{");
+        sb.append(this.getClass().getSimpleName()).append("{");
         int i = 0;
         for (Map.Entry<String, Object> entry : valueMap.entrySet()) {
             sb.append(entry.getKey()).append("=").append(entry.getValue());
@@ -84,6 +71,10 @@ public class MappedEntity {
         valueMap.putAll(this.valueMap);
         entity.valueMap = valueMap;
         return entity;
+    }
+
+    public Map<String, Object> getValueMap() {
+        return Collections.unmodifiableMap(valueMap);
     }
 
     public static void main(String[] args) {
