@@ -30,16 +30,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/logging/log_management.vhtml" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/logging/log_management.vhtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/DateValidator.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/DateValidator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/include/include_header.vhtml" afterPath="$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/include/include_header.vhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/bo/LogBOBean.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/bo/LogBOBean.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/action/LogAction.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/action/LogAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/LongDateValidator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/SuperAction.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/SuperAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/Utils.java" afterPath="$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/Utils.java" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -184,7 +176,7 @@
       <file leaf-file-name="LogAction.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/action/LogAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="0" selection-start="1549" selection-end="1549" vertical-scroll-proportion="0.61904764">
+            <state line="52" column="28" selection-start="1902" selection-end="1902" vertical-scroll-proportion="0.71428573">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -2000,7 +1992,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/action/LogAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="0" selection-start="1549" selection-end="1549" vertical-scroll-proportion="0.61904764">
+        <state line="52" column="28" selection-start="1902" selection-end="1902" vertical-scroll-proportion="0.71428573">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
