@@ -55,7 +55,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     /**
      * 保存 invocationClass 到其 Filed/Annotation的映射
      */
-    private Map<Class<? extends Invocation>, Map<String,FieldValidation>> invocationMap = new HashMap<Class<? extends Invocation>, Map<String,FieldValidation>>();
+    private Map<Class<? extends Invocation>, Map<String, FieldValidation>> invocationMap = new HashMap<Class<? extends Invocation>, Map<String, FieldValidation>>();
 
     /**
      * 声明的 ActionMethod
@@ -81,10 +81,10 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
                 String actionMethodName = actionMethodAnnotation.name();
                 String actionName = (actionMethodName == null || actionMethodName.trim().equals("")) ? actionMethod.getName() : actionMethodName.trim();
                 //TODO: 判断 action key 是否已经存在，如果存在，进行 ERROR，抽象 registerPostAction() 方法
-                if(actionMethodAnnotation.httpMethod().equals(ActionMethod.HttpMethod.GET)){
+                if (actionMethodAnnotation.httpMethod().equals(ActionMethod.HttpMethod.GET)) {
                     actionMap.put((GET_METHOD_PREFIX + actionName).toUpperCase(), actionMethod);
                 }
-                else if(actionMethodAnnotation.httpMethod().equals(ActionMethod.HttpMethod.POST)){
+                else if (actionMethodAnnotation.httpMethod().equals(ActionMethod.HttpMethod.POST)) {
                     actionMap.put((POST_METHOD_PREFIX + actionName).toUpperCase(), actionMethod);
                 }
                 else {
@@ -107,7 +107,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     }
 
     public void postUnregister() {
-        
+
     }
 
     public String getModuleName() {
@@ -153,15 +153,9 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         try {
             //construct & verify invocation            
             initInvocation(invocationClass, invocationContext);
-            checkSessionToken(invocationContext);
-            // pre action
-            preAction(invocationContext);
-            // invoke action method
-            actionMethod.invoke(this, invocationContext);
         }
         catch (InvocationException e) {
             //invocation exception, throw out
-            doActionFailed(invocationContext);
             throw e; // throw out InvocationException
 //            invocationContext.getPageContext().setTargetView(errorView);
         }
@@ -169,34 +163,51 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
             //invocation validate exception
             invocationContext.getPageContext().setTargetView(errorView);
             invocationContext.getPageContext().addValidateException(e);
-            doActionFailed(invocationContext);
             exception = e;
         }
-        catch (InvocationTargetException e) { // exception throwed, forward to error view
-            Exception t = (Exception)e.getTargetException();
-            logger.warn("Execute Action Method " + actionMethod.getName() + " throws exception.", t);
-            invocationContext.getPageContext().setTargetView(errorView);
-            invocationContext.getPageContext().setBusinessException(t);
-            doActionFailed(invocationContext);
-            exception = t;
+
+        if (exception == null) { // 初始化 invocation 没有异常
+            try {
+                checkSessionToken(invocationContext);
+                // pre action
+                preAction(invocationContext);
+                // invoke action method
+                actionMethod.invoke(this, invocationContext);
+            }
+            catch (InvocationTargetException e) { // exception throwed, forward to error view
+                Exception t = (Exception)e.getTargetException();
+                logger.warn("Execute Action Method " + actionMethod.getName() + " throws exception.", t);
+                invocationContext.getPageContext().setTargetView(errorView);
+                invocationContext.getPageContext().setBusinessException(t);
+                doActionFailed(invocationContext);
+                exception = t;
+            }
+            catch (Exception e) { // exception throwed, forward to error view
+                logger.warn("Execute Action Method " + actionMethod.getName() + " throws exception.", e);
+                invocationContext.getPageContext().setTargetView(errorView);
+                invocationContext.getPageContext().setBusinessException(e);
+                doActionFailed(invocationContext);
+                exception = e;
+            }
+            finally {
+                // 设置通用PageContext属性
+                initPageContext(invocationContext);
+                try {
+                    if (exception != null) {
+                        doActionFailed(invocationContext);
+                    }
+                }
+                finally {
+                    postAction(invocationContext);
+                    releaseSessionToken(invocationContext);
+                    //每次执行 Action 之后都应该解除 ThreadContext
+                    invocationContext.disassociateThreadInvocationContext();
+
+                }
+            }
         }
-        catch (Exception e) { // exception throwed, forward to error view
-            logger.warn("Execute Action Method " + actionMethod.getName() + " throws exception.", e);
-            invocationContext.getPageContext().setTargetView(errorView);
-            invocationContext.getPageContext().setBusinessException(e);
-            doActionFailed(invocationContext);
-            exception = e;
-        }
-        finally {
-            // 设置通用PageContext属性
-            initPageContext(invocationContext);
-            postAction(invocationContext);
-            releaseSessionToken(invocationContext);
-            //每次执行 Action 之后都应该解除 ThreadContext
-            invocationContext.disassociateThreadInvocationContext();
-        }
-        
-        logger.info("Request done, URI: " + invocationContext.getRequestURI() + ", consumed " + (System.currentTimeMillis()-now) + "ms.");
+
+        logger.info("Request done, URI: " + invocationContext.getRequestURI() + ", consumed " + (System.currentTimeMillis() - now) + "ms.");
         // 没有设置 errorView, 抛出异常
         if (exception != null && (errorView == null || errorView.trim().length() == 0)) {
             throw exception;
@@ -206,9 +217,10 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     /**
      * 设置通用 PageContext 的 attribute
      * 业务设置的 attribute 不应该重名，否则会被通用 attribute 覆盖
+     *
      * @param invocationContext invocation context
      */
-    protected void initPageContext(InvocationContext invocationContext){
+    protected void initPageContext(InvocationContext invocationContext) {
         HttpServletRequest request = invocationContext.getServletRequest();
         PageContext pageContext = invocationContext.getPageContext();
         pageContext.setAttribute("J_VALIDATE_EXCEPTIONS", pageContext.getValidateExceptions());
@@ -245,7 +257,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
      * @param invocationContext invcation context
      */
     protected void preAction(InvocationContext invocationContext) {
-        
+
     }
 
     /**
@@ -276,13 +288,14 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
      * @param invocationClass   incation class
      * @param invocationContext invcation context
      * @throws InvocationException throw when contruct invocation failed
-     * @throws ValidateException throw when invocation attribute validate failed
+     * @throws ValidateException   throw when invocation attribute validate failed
      */
     protected Invocation initInvocation(Class<? extends Invocation> invocationClass, InvocationContext invocationContext) throws InvocationException, ValidateException {
         Invocation invocation;
         if (invocationClass.equals(Invocation.class)) {
-            invocation = new Invocation(){};
-            invocation.init(Collections.EMPTY_MAP,invocationContext.getParameterMap(), invocationContext.getFilesUploaded());
+            invocation = new Invocation() {
+            };
+            invocation.init(Collections.EMPTY_MAP, invocationContext.getParameterMap(), invocationContext.getFilesUploaded());
         }
         else {
             try {
@@ -293,7 +306,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
                 throw new InvocationException("Construct invocation exception.", e);
             }
         }
-        invocation.init(getInvocationFieldValidationMap(invocationClass),invocationContext.getParameterMap(), invocationContext.getFilesUploaded());        
+        invocation.init(getInvocationFieldValidationMap(invocationClass), invocationContext.getParameterMap(), invocationContext.getFilesUploaded());
         /**
          * 有些需要关联验证的，比如：校验两次输入的密码是否正确，
          * 因为不能保证校验密码在初试密码之后得到校验，所以必须放到 validateAll 中进行校验
@@ -303,43 +316,43 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         return invocation;
     }
 
-    private Map<String, FieldValidation> getInvocationFieldValidationMap(Class<? extends Invocation> invocationClass){
-        if(invocationMap.containsKey(invocationClass)){
+    private Map<String, FieldValidation> getInvocationFieldValidationMap(Class<? extends Invocation> invocationClass) {
+        if (invocationMap.containsKey(invocationClass)) {
             return Collections.unmodifiableMap(invocationMap.get(invocationClass));
         }
         //构造 fieldMap & validationMap
         Field[] allFields = ClassUtils.getAllDecaredFields(invocationClass);
         Map<String, FieldValidation> fieldValidationMap = new HashMap<String, FieldValidation>(allFields.length);
 
-        for(Field field : allFields){
-            if(!field.getDeclaringClass().equals(Invocation.class)) { //过滤掉Invocation自身的Field 
-                if(fieldValidationMap.containsKey(field.getName())){
+        for (Field field : allFields) {
+            if (!field.getDeclaringClass().equals(Invocation.class)) { //过滤掉Invocation自身的Field
+                if (fieldValidationMap.containsKey(field.getName())) {
                     logger.warn("Reduplicate filed name: " + field.getName() + " in invocation: " + invocationClass.getName());
                     continue;
                 }
                 Annotation validationAnnotation = getAvailableValidationAnnotation(field);
                 FieldValidation fieldValidation = new FieldValidation(field, validationAnnotation);
-                fieldValidationMap.put(field.getName(), fieldValidation);                
+                fieldValidationMap.put(field.getName(), fieldValidation);
             }
         }
         invocationMap.put(invocationClass, fieldValidationMap);
         return Collections.unmodifiableMap(fieldValidationMap);
     }
 
-    private Annotation getAvailableValidationAnnotation(Field field){
+    private Annotation getAvailableValidationAnnotation(Field field) {
         int count = 0;
         Annotation validAnnotation = null;
         Annotation[] fieldAnnotations = field.getAnnotations();
-        for(Annotation annotation : fieldAnnotations){
-            if(Validators.isValidationAnnotation(annotation)) {
+        for (Annotation annotation : fieldAnnotations) {
+            if (Validators.isValidationAnnotation(annotation)) {
                 validAnnotation = annotation;
                 count++;
             }
         }
-        if(count == 0) {
+        if (count == 0) {
             return null;
         }
-        else if(count > 1){
+        else if (count > 1) {
             logger.warn("More than one Validation Annotation on " + field + ", will use last one.");
             return validAnnotation;
         }
@@ -350,10 +363,10 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
 
     protected void checkSessionToken(InvocationContext invocationContext) {
         Invocation invocation = invocationContext.getInvocation();
-        if(invocation.getRequestToken() != null) {
+        if (invocation.getRequestToken() != null) {
             SessionContext sessionContext = invocationContext.getSessionContext();
             String key = SessionContext.TOKEN_SESSION_KEY + invocation.getRequestToken();
-            if(sessionContext.containsAttribute(key)) {
+            if (sessionContext.containsAttribute(key)) {
                 // token 已经存在，是重复提交
                 throw new ActionResubmitException("Detected re-submit, action: " + invocationContext.getFullActionMethodName() + ", token: " + invocation.getRequestToken());
             }
@@ -365,7 +378,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
 
     protected void releaseSessionToken(InvocationContext invocationContext) {
         Invocation invocation = invocationContext.getInvocation();
-        if(invocation != null && invocation.getRequestToken() != null) {
+        if (invocation != null && invocation.getRequestToken() != null) {
             SessionContext sessionContext = invocationContext.getSessionContext();
             String key = SessionContext.TOKEN_SESSION_KEY + invocation.getRequestToken();
             sessionContext.removeAttribute(key);
@@ -388,7 +401,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         public Annotation getValidationAnnotation() {
             return validationAnnotation;
         }
-    }    
+    }
 
     public static void main(String[] args) {
 
