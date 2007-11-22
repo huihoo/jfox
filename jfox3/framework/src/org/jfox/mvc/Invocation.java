@@ -9,6 +9,7 @@ package org.jfox.mvc;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -120,6 +121,12 @@ public abstract class Invocation {
                     }
                     field.set(this, v);
                 }
+            }
+            catch (InvocationTargetException e) {
+                Throwable t = e.getTargetException();
+                String msg = "Set invocation + " + this.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed!";
+                logger.warn(msg, t);
+                throw new InvocationException(msg, t);
             }
             catch (Throwable t) {
                 String msg = "Set invocation + " + this.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed!";
