@@ -124,7 +124,6 @@ public class SQLQuery extends QueryExt {
         try {
             pst = buildPreparedStatement();
             rset = pst.executeQuery();
-
             // Skip Results
             if (getFirstResult() > 0) {
                 try {
