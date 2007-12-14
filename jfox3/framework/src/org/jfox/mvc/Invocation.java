@@ -140,7 +140,7 @@ public abstract class Invocation {
             Annotation validationAnnotation = fieldValidation.getValidationAnnotation();
             if(validationAnnotation != null) {
                 if(!Validators.isValidationNullable(validationAnnotation)){
-                    validateException = new ValidateException("input can not be null!", fieldValidation.getField().getName(), null);
+                    validateException = new ValidateException("input can not be null!", this.getClass().getName() + "." + fieldValidation.getField().getName(), null);
                     break;
                 }
             }
