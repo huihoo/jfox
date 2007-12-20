@@ -21,6 +21,11 @@
         <webroots>
           <root url="file://$MODULE_DIR$/wwwroot" relative="/" />
         </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/conf" />
+          <root url="file://$MODULE_DIR$/src" />
+          <root url="file://$MODULE_DIR$/test-src" />
+        </sourceRoots>
         <building>
           <setting name="EXPLODED_URL" value="file://$MODULE_DIR$/../exploded/" />
           <setting name="EXPLODED_ENABLED" value="true" />
