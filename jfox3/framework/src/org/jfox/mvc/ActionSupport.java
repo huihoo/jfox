@@ -169,6 +169,8 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
                 exception = e;
             }
 
+            postInitInvocation(invocationContext);
+
             if (exception == null) { // 初始化 invocation 没有异常
                 try {
                     checkSessionToken(invocationContext);
@@ -193,8 +195,6 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
                     exception = e;
                 }
                 finally {
-                    // 设置通用PageContext属性
-                    initPageContext(invocationContext);
                     try {
                         if (exception != null) {
                             doActionFailed(invocationContext);
@@ -217,20 +217,6 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         if (exception != null && (errorView == null || errorView.trim().length() == 0)) {
             throw exception;
         }
-    }
-
-    /**
-     * 设置通用 PageContext 的 attribute
-     * 业务设置的 attribute 不应该重名，否则会被通用 attribute 覆盖
-     *
-     * @param invocationContext invocation context
-     */
-    protected void initPageContext(InvocationContext invocationContext) {
-        PageContext pageContext = invocationContext.getPageContext();
-        pageContext.setAttribute("J_VALIDATE_EXCEPTIONS", pageContext.getValidateExceptions());
-        pageContext.setAttribute("J_EXCEPTION", pageContext.getBusinessException());
-        pageContext.setAttribute("J_INVOCATION", invocationContext.getInvocation());
-        pageContext.setAttribute(PAGE_VIEW_PATH, pageContext.getTargeView());
     }
 
     private Method getActionMethod(InvocationContext invocationContext) {
@@ -261,7 +247,11 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         pageContext.setAttribute("J_WEBAPP_CONTEXT_PATH", request.getContextPath());
         pageContext.setAttribute("J_REQUEST_URI", request.getRequestURI());
 
+    }
 
+    protected void postInitInvocation(InvocationContext invocationContext) {
+        PageContext pageContext = invocationContext.getPageContext();
+        pageContext.setAttribute("J_VALIDATE_EXCEPTIONS", pageContext.getValidateExceptions());
     }
 
     /**
@@ -290,7 +280,10 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
      * @param invocationContext invocation context
      */
     protected void postAction(InvocationContext invocationContext) {
-
+        PageContext pageContext = invocationContext.getPageContext();
+        pageContext.setAttribute(PAGE_VIEW_PATH, pageContext.getTargeView());
+        pageContext.setAttribute("J_EXCEPTION", pageContext.getBusinessException());
+        pageContext.setAttribute("J_INVOCATION", invocationContext.getInvocation());
     }
 
     /**
