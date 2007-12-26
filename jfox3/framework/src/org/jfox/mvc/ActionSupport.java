@@ -151,62 +151,67 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
 
         Exception exception = null;
         try {
-            //construct & verify invocation            
-            initInvocation(invocationClass, invocationContext);
-        }
-        catch (InvocationException e) {
-            //invocation exception, throw out
-            throw e; // throw out InvocationException
-//            invocationContext.getPageContext().setTargetView(errorView);
-        }
-        catch (ValidateException e) {
-            //invocation validate exception
-            invocationContext.getPageContext().setTargetView(errorView);
-            invocationContext.getPageContext().addValidateException(e);
-            exception = e;
-        }
+            preExecute(invocationContext);
 
-        if (exception == null) { // 初始化 invocation 没有异常
             try {
-                checkSessionToken(invocationContext);
-                // pre action
-                preAction(invocationContext);
-                // invoke action method
-                actionMethod.invoke(this, invocationContext);
+                //construct & verify invocation
+                initInvocation(invocationClass, invocationContext);
             }
-            catch (InvocationTargetException e) { // exception throwed, forward to error view
-                Exception t = (Exception)e.getTargetException();
-                logger.warn("Execute Action Method " + actionMethod.getName() + " throws exception.", t);
-                invocationContext.getPageContext().setTargetView(errorView);
-                invocationContext.getPageContext().setBusinessException(t);
-                doActionFailed(invocationContext);
-                exception = t;
+            catch (InvocationException e) {
+                //invocation exception, throw out
+                throw e; // throw out InvocationException
+//            invocationContext.getPageContext().setTargetView(errorView);
             }
-            catch (Exception e) { // exception throwed, forward to error view
-                logger.warn("Execute Action Method " + actionMethod.getName() + " throws exception.", e);
+            catch (ValidateException e) {
+                //invocation validate exception
                 invocationContext.getPageContext().setTargetView(errorView);
-                invocationContext.getPageContext().setBusinessException(e);
-                doActionFailed(invocationContext);
+                invocationContext.getPageContext().addValidateException(e);
                 exception = e;
             }
-            finally {
-                // 设置通用PageContext属性
-                initPageContext(invocationContext);
+
+            if (exception == null) { // 初始化 invocation 没有异常
                 try {
-                    if (exception != null) {
-                        doActionFailed(invocationContext);
-                    }
+                    checkSessionToken(invocationContext);
+                    // pre action
+                    preAction(invocationContext);
+                    // invoke action method
+                    actionMethod.invoke(this, invocationContext);
+                }
+                catch (InvocationTargetException e) { // exception throwed, forward to error view
+                    Exception t = (Exception)e.getTargetException();
+                    logger.warn("Execute Action Method " + actionMethod.getName() + " throws exception.", t);
+                    invocationContext.getPageContext().setTargetView(errorView);
+                    invocationContext.getPageContext().setBusinessException(t);
+                    doActionFailed(invocationContext);
+                    exception = t;
+                }
+                catch (Exception e) { // exception throwed, forward to error view
+                    logger.warn("Execute Action Method " + actionMethod.getName() + " throws exception.", e);
+                    invocationContext.getPageContext().setTargetView(errorView);
+                    invocationContext.getPageContext().setBusinessException(e);
+                    doActionFailed(invocationContext);
+                    exception = e;
                 }
                 finally {
-                    postAction(invocationContext);
-                    releaseSessionToken(invocationContext);
-                    //每次执行 Action 之后都应该解除 ThreadContext
-                    invocationContext.disassociateThreadInvocationContext();
-
+                    // 设置通用PageContext属性
+                    initPageContext(invocationContext);
+                    try {
+                        if (exception != null) {
+                            doActionFailed(invocationContext);
+                        }
+                    }
+                    finally {
+                        postAction(invocationContext);
+                        releaseSessionToken(invocationContext);
+                    }
                 }
             }
         }
-
+        finally {
+            //每次执行 Action 之后都应该解除 ThreadContext
+            postExecute(invocationContext);
+            invocationContext.disassociateThreadInvocationContext();
+        }
         logger.info("Request done, URI: " + invocationContext.getRequestURI() + ", consumed " + (System.currentTimeMillis() - now) + "ms.");
         // 没有设置 errorView, 抛出异常
         if (exception != null && (errorView == null || errorView.trim().length() == 0)) {
@@ -221,20 +226,10 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
      * @param invocationContext invocation context
      */
     protected void initPageContext(InvocationContext invocationContext) {
-        HttpServletRequest request = invocationContext.getServletRequest();
         PageContext pageContext = invocationContext.getPageContext();
         pageContext.setAttribute("J_VALIDATE_EXCEPTIONS", pageContext.getValidateExceptions());
         pageContext.setAttribute("J_EXCEPTION", pageContext.getBusinessException());
-
-        pageContext.setAttribute("J_SESSION_CONTEXT", invocationContext.getSessionContext());
-        pageContext.setAttribute("J_PAGE_CONTEXT", pageContext);
         pageContext.setAttribute("J_INVOCATION", invocationContext.getInvocation());
-        pageContext.setAttribute("J_REQUEST", request);
-        //用于在页面上显示 vm 文件全路径，便于调试
-        pageContext.setAttribute("J_WEBAPP_CONTEXT_PATH", request.getContextPath());
-        pageContext.setAttribute("J_REQUEST_URI", request.getRequestURI());
-        // request token，用来防止重复提交
-        pageContext.setAttribute("J_REQUEST_TOKEN", System.currentTimeMillis() + "");
         pageContext.setAttribute(PAGE_VIEW_PATH, pageContext.getTargeView());
     }
 
@@ -252,12 +247,41 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     }
 
     /**
+     * do something before Execute
+     *
+     * @param invocationContext invcation context
+     */
+    protected void preExecute(InvocationContext invocationContext) {
+        HttpServletRequest request = invocationContext.getServletRequest();
+        PageContext pageContext = invocationContext.getPageContext();
+        pageContext.setAttribute("J_SESSION_CONTEXT", invocationContext.getSessionContext());
+        pageContext.setAttribute("J_PAGE_CONTEXT", pageContext);
+        pageContext.setAttribute("J_REQUEST", request);
+        //用于在页面上显示 vm 文件全路径，便于调试
+        pageContext.setAttribute("J_WEBAPP_CONTEXT_PATH", request.getContextPath());
+        pageContext.setAttribute("J_REQUEST_URI", request.getRequestURI());
+
+
+    }
+
+    /**
+     * do something after Execute
+     *
+     * @param invocationContext invocation context
+     */
+    protected void postExecute(InvocationContext invocationContext) {
+
+    }
+
+    /**
      * do something before invoke action method
      *
      * @param invocationContext invcation context
      */
     protected void preAction(InvocationContext invocationContext) {
-
+        PageContext pageContext = invocationContext.getPageContext();
+        // request token，用来防止重复提交
+        pageContext.setAttribute("J_REQUEST_TOKEN", System.currentTimeMillis() + "");
     }
 
     /**
