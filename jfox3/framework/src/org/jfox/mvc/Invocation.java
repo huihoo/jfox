@@ -79,12 +79,12 @@ public abstract class Invocation {
                 Class<?> fieldType = field.getType();
                 if (fieldType.isArray()) {
                     Class<?> arrayType = fieldType.getComponentType();
-                    Object[] params = (Object[])Array.newInstance(arrayType, values.length);
-                    for (int i = 0; i < params.length; i++) {
+                    Object paramArray = Array.newInstance(arrayType, values.length);
+                    for (int i = 0; i < Array.getLength(paramArray); i++) {
                         if (validationAnnotation != null) {
                             try {
                                 // valiate field input and construct
-                                params[i] = Validators.validate(field, values[i], validationAnnotation);
+                                Array.set(paramArray,i, Validators.validate(field, values[i], validationAnnotation));
                             }
                             catch (ValidateException e) {
                                 // 只记录第一个 ValidateException
@@ -92,14 +92,14 @@ public abstract class Invocation {
                                     validateException = e;
                                 }
                             }
-
                         }
                         else {
                             //no validator, try to use ClassUtils construct object
-                            params[i] = ClassUtils.newObject(arrayType, values[i]);
+                            Array.set(paramArray,i, ClassUtils.newObject(arrayType, values[i]));
+//                            paramArray[i] = ClassUtils.newObject(arrayType, values[i]);
                         }
                     }
-                    field.set(this, params);
+                    field.set(this, paramArray);
                 }
                 else {
                     String value = values[0];
