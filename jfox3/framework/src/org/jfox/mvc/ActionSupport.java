@@ -78,18 +78,42 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
                 // 统一转换成大写
                 // 分析 actionMethod 对应的 @ActionMethod，并根据 @ActionMethod支持的 HttpMethod 作为 key
                 ActionMethod actionMethodAnnotation = actionMethod.getAnnotation(ActionMethod.class);
-                String actionMethodName = actionMethodAnnotation.name();
-                String actionName = (actionMethodName == null || actionMethodName.trim().equals("")) ? actionMethod.getName() : actionMethodName.trim();
-                //TODO: 判断 action key 是否已经存在，如果存在，进行 ERROR，抽象 registerPostAction() 方法
+                String actionMethodName = actionMethodAnnotation.name().trim(); // ActionMethod 指定的名称
+                if(actionMethodName.length() == 0) { // 判断是否为空
+                    logger.error("ActionMethod name can not be empty. Action: " + this.getClass().getName() + "." + actionMethod.getName());
+                    continue;
+                }
+
                 if (actionMethodAnnotation.httpMethod().equals(ActionMethod.HttpMethod.GET)) {
-                    actionMap.put((GET_METHOD_PREFIX + actionName).toUpperCase(), actionMethod);
+                    String key = (GET_METHOD_PREFIX + actionMethodName).toUpperCase();
+                    //判断 action key 是否已经存在，如果存在，日志并忽略
+                    if(actionMap.containsKey(key)) {
+                        logger.warn("ActionMethod with name " + actionMethodName + " in Action's Method " + this.getClass().getName() + "." + actionMethod.getName() + " has been registed, ignored.");
+                    }
+                    else {
+                        actionMap.put(key, actionMethod);
+                    }
                 }
                 else if (actionMethodAnnotation.httpMethod().equals(ActionMethod.HttpMethod.POST)) {
-                    actionMap.put((POST_METHOD_PREFIX + actionName).toUpperCase(), actionMethod);
+                    String key = (POST_METHOD_PREFIX + actionMethodName).toUpperCase();
+                    if(actionMap.containsKey(key)) {
+                        logger.warn("ActionMethod with name " + actionMethodName + " in Action's Method " + this.getClass().getName() + "." + actionMethod.getName() + " has been registed, ignored.");
+                    }
+                    else {
+                        actionMap.put(key, actionMethod);
+                    }
                 }
                 else {
-                    actionMap.put((GET_METHOD_PREFIX + actionName).toUpperCase(), actionMethod);
-                    actionMap.put((POST_METHOD_PREFIX + actionName).toUpperCase(), actionMethod);
+                    String key1 = (GET_METHOD_PREFIX + actionMethodName).toUpperCase();
+                    String key2 = (POST_METHOD_PREFIX + actionMethodName).toUpperCase();
+
+                    if(actionMap.containsKey(key1) || actionMap.containsKey(key2)){
+                        logger.warn("ActionMethod with name " + actionMethodName + " in Action's Method " + this.getClass().getName() + "." + actionMethod.getName() + " has been registed, ignored.");
+                    }
+                    else {
+                        actionMap.put((GET_METHOD_PREFIX + actionMethodName).toUpperCase(), actionMethod);
+                        actionMap.put((POST_METHOD_PREFIX + actionMethodName).toUpperCase(), actionMethod);
+                    }
                 }
             }
             else {
