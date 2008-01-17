@@ -196,8 +196,8 @@ public class ControllerServlet extends HttpServlet {
         try {
             // 初始化 SessionContext，并绑定到线程
             ActionContext actionContext = new ActionContext(getServletConfig(), request, parameterMap, fileUploadedMap, actionName, actionMethodName);
-            WebContextLoader.invokeAction(moduleDirName, actionName, actionContext);
             request.setAttribute(INVOCATION_CONTEXT, actionContext);
+            WebContextLoader.invokeAction(moduleDirName, actionName, actionContext);
             // 根据 PageContext.getTargetMethod 要决定 forward 还是 redirect
             if(actionContext.getPageContext().getTargetMethod().equals(ActionMethod.ForwardMethod.REDIRECT)) {
                 response.sendRedirect(actionContext.getPageContext().getTargeView());
