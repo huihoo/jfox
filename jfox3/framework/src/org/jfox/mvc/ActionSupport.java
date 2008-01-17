@@ -201,7 +201,9 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
                     // pre action
                     preAction(invocationContext);
 
+                    // 判断执行权限
                     if(!hasPermission(invocationContext)){
+                        // hasPermission 返回 false, 这里统一抛出异常
                         throw new PermissionNotAllowedException(invocationContext.getFullActionMethodName(), "Unknown"); 
                     }
 
