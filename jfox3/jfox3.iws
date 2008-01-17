@@ -30,6 +30,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/TODO.txt" afterPath="$PROJECT_DIR$/framework/TODO.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
@@ -146,29 +147,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="log_management.vhtml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/logging/log_management.vhtml">
-          <provider editor-type-id="HtmlPreview">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="46" selection-start="2014" selection-end="2014" vertical-scroll-proportion="0.025735294">
-              <folding>
-                <marker date="1200135576000" expanded="true" signature="3822:4708" placeholder="{...}" />
-                <marker date="1200135576000" expanded="true" signature="3822:3960" placeholder="{...}" />
-                <marker date="1200135576000" expanded="true" signature="4032:4706" placeholder="{...}" />
-                <marker date="1200135576000" expanded="true" signature="4145:4190" placeholder="{...}" />
-                <marker date="1200135576000" expanded="true" signature="4195:4260" placeholder="//..." />
-                <marker date="1200135576000" expanded="true" signature="4269:4457" placeholder="/*...*/" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="JSONResponse.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/JSONResponse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="31" selection-start="1114" selection-end="1126" vertical-scroll-proportion="0.0237691">
+            <state line="50" column="31" selection-start="1114" selection-end="1126" vertical-scroll-proportion="0.037433155">
               <folding>
                 <marker date="1196261212000" expanded="true" signature="3573:3675" placeholder="{...}" />
               </folding>
@@ -179,19 +161,28 @@
       <file leaf-file-name="jfox.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/include/jfox/jfox.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="240" column="32" selection-start="8269" selection-end="8269" vertical-scroll-proportion="0.0237691">
+            <state line="240" column="32" selection-start="8269" selection-end="8269" vertical-scroll-proportion="0.037433155">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_edit.vhtml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="user_edit.vhtml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/zh_CN/platform/aaa/user_edit.vhtml">
           <provider editor-type-id="HtmlPreview">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="231" column="0" selection-start="10681" selection-end="10681" vertical-scroll-proportion="0.53125">
+            <state line="224" column="9" selection-start="10529" selection-end="10529" vertical-scroll-proportion="0.5805471">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TODO.txt" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/framework/TODO.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="300" column="38" selection-start="9926" selection-end="9926" vertical-scroll-proportion="0.9251337">
               <folding />
             </state>
           </provider>
@@ -203,7 +194,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="197" column="105" selection-start="9326" selection-end="9326" vertical-scroll-proportion="0.025735294">
+            <state line="197" column="105" selection-start="9326" selection-end="9326" vertical-scroll-proportion="0.04255319">
               <folding />
             </state>
           </provider>
@@ -212,9 +203,10 @@
       <file leaf-file-name="User.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/aaa/entity/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="285" column="31" selection-start="5007" selection-end="5020" vertical-scroll-proportion="0.023140496">
+            <state line="285" column="3" selection-start="5020" selection-end="5020" vertical-scroll-proportion="0.035897437">
               <folding>
-                <marker date="1200137132000" expanded="false" signature="42:246" placeholder="..." />
+                <marker date="1200495978000" expanded="false" signature="42:46" placeholder="..." />
+                <marker date="1200495978000" expanded="true" signature="5909:5916" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -223,9 +215,9 @@
       <file leaf-file-name="UserAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/aaa/action/UserAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="206" column="54" selection-start="9242" selection-end="9242" vertical-scroll-proportion="0.0237691">
+            <state line="206" column="54" selection-start="9145" selection-end="9145" vertical-scroll-proportion="0.037433155">
               <folding>
-                <marker date="1200137132000" expanded="false" signature="42:773" placeholder="..." />
+                <marker date="1200583504000" expanded="false" signature="42:409" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -237,7 +229,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="55" selection-start="567" selection-end="567" vertical-scroll-proportion="0.025735294">
+            <state line="18" column="55" selection-start="567" selection-end="567" vertical-scroll-proportion="0.04255319">
               <folding />
             </state>
           </provider>
@@ -246,7 +238,7 @@
       <file leaf-file-name="开发Q&amp;A.txt" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="72" selection-start="3614" selection-end="3627" vertical-scroll-proportion="0.0237691">
+            <state line="83" column="72" selection-start="3614" selection-end="3627" vertical-scroll-proportion="0.037433155">
               <folding />
             </state>
           </provider>
@@ -255,7 +247,7 @@
       <file leaf-file-name="EmailValidation.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/EmailValidation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="62" selection-start="689" selection-end="689" vertical-scroll-proportion="0.34710744">
+            <state line="23" column="62" selection-start="689" selection-end="689" vertical-scroll-proportion="0.53846157">
               <folding />
             </state>
           </provider>
@@ -264,7 +256,7 @@
       <file leaf-file-name="EmailValidator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/EmailValidator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="13" selection-start="366" selection-end="366" vertical-scroll-proportion="0.1901528">
+            <state line="13" column="13" selection-start="366" selection-end="366" vertical-scroll-proportion="0.29946524">
               <folding />
             </state>
           </provider>
@@ -273,7 +265,7 @@
       <file leaf-file-name="LogAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/action/LogAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="2" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.0237691">
+            <state line="34" column="14" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.037433155">
               <folding />
             </state>
           </provider>
@@ -347,6 +339,48 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework\doc" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
           <option name="myItemId" value="ccmis" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
@@ -396,7 +430,7 @@
       <showLibraryContents PackagesPane="true" />
       <hideEmptyPackages PackagesPane="true" ProjectPane="true" />
       <abbreviatePackageNames />
-      <showStructure PackagesPane="false" Scope="false" Favorites="false" ProjectPane="false" />
+      <showStructure Favorites="false" Scope="false" PackagesPane="false" ProjectPane="false" />
       <autoscrollToSource />
       <autoscrollFromSource ProjectPane="false" />
       <sortByType ProjectPane="true" />
@@ -456,6 +490,123 @@
       <recent name="org.jfox.framework.event" />
     </key>
   </component>
+  <component name="RestoreUpdateTree">
+    <UpdateInfo date="08-1-17 下午11:25" ActionInfo="_Update">
+      <UpdatedFiles>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated from server" />
+          <option name="myStatusName" value="Changed on server" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CHANGED_ON_SERVER" />
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Updated" />
+            <option name="myStatusName" value="Changed" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="UPDATED" />
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\infrastructure\SuperAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\sample\SampleAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\aaa\bo\UserBO.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\aaa\bo\UserBOBean.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\aaa\action\RoleAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\aaa\action\UserAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\organization\action\DepartmentAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\organization\action\CompanyAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\function\action\NodeAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\logging\action\LogAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\LoginAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\common\SystemAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\common\FinancialAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\common\HomeAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\common\JSONAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\common\Constants.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\jfox\platform\datadict\action\DictMgmtAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\ccmis\finance\voucher\action\IvvoucherDisassembleAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\ccmis\finance\voucher\action\VoucherHeadAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\ccmis\finance\account\action\SubjectListAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\ccmis\finance\capital\action\InterestRateAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\ccmis\finance\capital\action\LendContractAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\ccmis\material\facility\action\FacilityAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\ccmis\material\facility\action\ArrivedRecordAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\ccmis\material\facility\action\InventoryAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\src\ccmis\material\MaterialAction.java</PATH>
+            <PATH vcs="svn" revision="543">D:\workspace\jfox3\MODULES\ccmis\views\zh_CN\platform\logon.vhtml</PATH>
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Created" />
+            <option name="myStatusName" value="Created" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="CREATED" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Deleted" />
+            <option name="myStatusName" value="Deleted" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="true" />
+            <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Restored" />
+            <option name="myStatusName" value="Will be restored" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="RESTORED" />
+          </FILE-GROUP>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Modified" />
+          <option name="myStatusName" value="Modified" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MODIFIED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Skipped" />
+          <option name="myStatusName" value="Skipped" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="SKIPPED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged with conflicts" />
+          <option name="myStatusName" value="Will be merged with conflicts" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED_WITH_CONFLICTS" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged" />
+          <option name="myStatusName" value="Will be merged" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Not in repository" />
+          <option name="myStatusName" value="Not in repository" />
+          <option name="mySupportsDeletion" value="true" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UNKNOWN" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Locally added" />
+          <option name="myStatusName" value="Locally added" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="LOCALLY_ADDED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Locally removed" />
+          <option name="myStatusName" value="Locally removed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="LOCALLY_REMOVED" />
+        </FILE-GROUP>
+      </UpdatedFiles>
+    </UpdateInfo>
+  </component>
   <component name="RunManager" selected="Tomcat Server.jfox3-startup">
     <tempConfiguration default="false" name="I18n" type="Application" factoryName="Application" enabled="false" merge="false">
       <option name="MAIN_CLASS_NAME" value="cn.platform.infrastructure.I18n" />
@@ -475,41 +626,44 @@
         <option name="Make" value="true" />
       </method>
     </tempConfiguration>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local">
+      <option name="WORKING_DIRECTORY" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="8080" />
+      <option name="LOCAL" value="true" />
+      <option name="OPEN_IN_BROWSER" value="true" />
+      <option name="OPEN_IN_BROWSER_URL" value="/" />
+      <option name="COMMON_VM_ARGUMENTS" value="" />
+      <JAVAEE_FACET FACET_ID="ccmis/ejb/EJB" DEPLOYMENT_SOURCE_NAME="exploded">
+        <option name="CONTEXT_PATH" value="/" />
+        <option name="DEPLOY" value="false" />
+      </JAVAEE_FACET>
+      <JAVAEE_FACET FACET_ID="ccmis/web/Web" DEPLOYMENT_SOURCE_NAME="exploded">
+        <option name="CONTEXT_PATH" value="/" />
+        <option name="DEPLOY" value="false" />
+      </JAVAEE_FACET>
+      <JAVAEE_FACET FACET_ID="framework/web/Web" DEPLOYMENT_SOURCE_NAME="exploded">
+        <option name="CONTEXT_PATH" value="/" />
+        <option name="DEPLOY" value="false" />
+      </JAVAEE_FACET>
+      <JAVAEE_FACET FACET_ID="manager/web/Web" DEPLOYMENT_SOURCE_NAME="exploded">
+        <option name="CONTEXT_PATH" value="/" />
+        <option name="DEPLOY" value="false" />
+      </JAVAEE_FACET>
+      <JAVAEE_FACET FACET_ID="petstore/web/Web" DEPLOYMENT_SOURCE_NAME="exploded">
+        <option name="CONTEXT_PATH" value="/" />
+        <option name="DEPLOY" value="false" />
+      </JAVAEE_FACET>
+      <option name="DEPLOY_TOMCAT_MANAGER" value="false" />
+      <option name="BASE_DIRECTORY_NAME" value="" />
+      <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
+    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-    </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG" enabled="false" merge="false">
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="ADDITIONAL_CLASS_PATH" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-      <method>
-        <option name="Make" value="true" />
-      </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <module name="" />
@@ -545,38 +699,6 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
     </configuration>
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local">
-      <option name="WORKING_DIRECTORY" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="8080" />
-      <option name="LOCAL" value="true" />
-      <option name="OPEN_IN_BROWSER" value="true" />
-      <option name="OPEN_IN_BROWSER_URL" value="/" />
-      <option name="COMMON_VM_ARGUMENTS" value="" />
-      <JAVAEE_FACET FACET_ID="ccmis/ejb/EJB" DEPLOYMENT_SOURCE_NAME="exploded">
-        <option name="CONTEXT_PATH" value="/" />
-        <option name="DEPLOY" value="false" />
-      </JAVAEE_FACET>
-      <JAVAEE_FACET FACET_ID="ccmis/web/Web" DEPLOYMENT_SOURCE_NAME="exploded">
-        <option name="CONTEXT_PATH" value="/" />
-        <option name="DEPLOY" value="false" />
-      </JAVAEE_FACET>
-      <JAVAEE_FACET FACET_ID="framework/web/Web" DEPLOYMENT_SOURCE_NAME="exploded">
-        <option name="CONTEXT_PATH" value="/" />
-        <option name="DEPLOY" value="false" />
-      </JAVAEE_FACET>
-      <JAVAEE_FACET FACET_ID="manager/web/Web" DEPLOYMENT_SOURCE_NAME="exploded">
-        <option name="CONTEXT_PATH" value="/" />
-        <option name="DEPLOY" value="false" />
-      </JAVAEE_FACET>
-      <JAVAEE_FACET FACET_ID="petstore/web/Web" DEPLOYMENT_SOURCE_NAME="exploded">
-        <option name="CONTEXT_PATH" value="/" />
-        <option name="DEPLOY" value="false" />
-      </JAVAEE_FACET>
-      <option name="DEPLOY_TOMCAT_MANAGER" value="false" />
-      <option name="BASE_DIRECTORY_NAME" value="" />
-      <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
-    </configuration>
     <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
       <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" />
@@ -589,6 +711,35 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG" enabled="false" merge="false">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="ADDITIONAL_CLASS_PATH" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
       <method>
         <option name="Make" value="true" />
       </method>
@@ -1230,13 +1381,13 @@
       <window_info id="IDEtalk" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="22" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43797857" order="0" />
       <window_info id="simpleUML" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4992343" order="12" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31852987" order="2" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31852987" order="2" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32618684" order="10" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1911912" order="1" />
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.731" order="3" />
       <window_info id="Maven projects" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932934" order="9" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="0" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22922923" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2862863" order="0" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7905138" order="16" />
       <window_info id="Hierarchy" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.308" order="5" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42827442" order="9" />
@@ -1278,7 +1429,7 @@
     <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善用户管理" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -1372,13 +1523,6 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/DateValidation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="62" selection-start="688" selection-end="688" vertical-scroll-proportion="0.65015477">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/DateValidator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="34" selection-start="956" selection-end="956" vertical-scroll-proportion="0.7368421">
@@ -1502,17 +1646,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/JSONResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="31" selection-start="1114" selection-end="1126" vertical-scroll-proportion="0.0237691">
+        <state line="50" column="31" selection-start="1114" selection-end="1126" vertical-scroll-proportion="0.037433155">
           <folding>
             <marker date="1196261212000" expanded="true" signature="3573:3675" placeholder="{...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/include/jfox/jfox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="240" column="32" selection-start="8269" selection-end="8269" vertical-scroll-proportion="0.0237691">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1521,25 +1658,26 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="197" column="105" selection-start="9326" selection-end="9326" vertical-scroll-proportion="0.025735294">
+        <state line="197" column="105" selection-start="9326" selection-end="9326" vertical-scroll-proportion="0.04255319">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/aaa/entity/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="285" column="31" selection-start="5007" selection-end="5020" vertical-scroll-proportion="0.023140496">
+        <state line="285" column="3" selection-start="5020" selection-end="5020" vertical-scroll-proportion="0.035897437">
           <folding>
-            <marker date="1200137132000" expanded="false" signature="42:246" placeholder="..." />
+            <marker date="1200495978000" expanded="false" signature="42:46" placeholder="..." />
+            <marker date="1200495978000" expanded="true" signature="5909:5916" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/aaa/action/UserAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="206" column="54" selection-start="9242" selection-end="9242" vertical-scroll-proportion="0.0237691">
+        <state line="206" column="54" selection-start="9145" selection-end="9145" vertical-scroll-proportion="0.037433155">
           <folding>
-            <marker date="1200137132000" expanded="false" signature="42:773" placeholder="..." />
+            <marker date="1200583504000" expanded="false" signature="42:409" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1549,35 +1687,42 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="55" selection-start="567" selection-end="567" vertical-scroll-proportion="0.025735294">
+        <state line="18" column="55" selection-start="567" selection-end="567" vertical-scroll-proportion="0.04255319">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/doc/开发Q&amp;A.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="72" selection-start="3614" selection-end="3627" vertical-scroll-proportion="0.0237691">
+        <state line="83" column="72" selection-start="3614" selection-end="3627" vertical-scroll-proportion="0.037433155">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/EmailValidation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="62" selection-start="689" selection-end="689" vertical-scroll-proportion="0.34710744">
+        <state line="23" column="62" selection-start="689" selection-end="689" vertical-scroll-proportion="0.53846157">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/validate/EmailValidator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="13" selection-start="366" selection-end="366" vertical-scroll-proportion="0.1901528">
+        <state line="13" column="13" selection-start="366" selection-end="366" vertical-scroll-proportion="0.29946524">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/logging/action/LogAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="2" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.0237691">
+        <state line="34" column="14" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.037433155">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/views/include/jfox/jfox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="240" column="32" selection-start="8269" selection-end="8269" vertical-scroll-proportion="0.037433155">
           <folding />
         </state>
       </provider>
@@ -1587,7 +1732,14 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="231" column="0" selection-start="10681" selection-end="10681" vertical-scroll-proportion="0.53125">
+        <state line="224" column="9" selection-start="10529" selection-end="10529" vertical-scroll-proportion="0.5805471">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/TODO.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="300" column="38" selection-start="9926" selection-end="9926" vertical-scroll-proportion="0.9251337">
           <folding />
         </state>
       </provider>
