@@ -200,6 +200,11 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
                     checkSessionToken(invocationContext);
                     // pre action
                     preAction(invocationContext);
+
+                    if(!hasPermission(invocationContext)){
+                        throw new PermissionNotAllowedException(invocationContext.getFullActionMethodName(), "Unknown"); 
+                    }
+
                     // invoke action method
                     actionMethod.invoke(this, invocationContext);
                 }
@@ -276,6 +281,17 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     protected void postInitInvocation(InvocationContext invocationContext) {
         PageContext pageContext = invocationContext.getPageContext();
         pageContext.setAttribute("J_VALIDATE_EXCEPTIONS", pageContext.getValidateExceptions());
+    }
+
+
+    /**
+     * 判断当前用户是否有权限操作该Action
+     * @param invocationContext
+     * @return true/false
+     * @throws PermissionNotAllowedException 如果不具备权限，抛出异常，如果不抛出异常，直接返回 false, ActionSupport统一抛出异常
+     */
+    protected boolean hasPermission(InvocationContext invocationContext) throws PermissionNotAllowedException{
+        return true;
     }
 
     /**
