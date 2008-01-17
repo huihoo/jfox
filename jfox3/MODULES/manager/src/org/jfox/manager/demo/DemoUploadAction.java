@@ -7,10 +7,10 @@
 package org.jfox.manager.demo;
 
 import org.jfox.framework.annotation.Service;
+import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.FileUploaded;
 import org.jfox.mvc.Invocation;
-import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.annotation.ActionMethod;
 
@@ -21,13 +21,13 @@ import org.jfox.mvc.annotation.ActionMethod;
 public class DemoUploadAction extends ActionSupport {
 
     @ActionMethod(name="view", successView = "demo/upload.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetView(InvocationContext invocationContext) throws Exception {
+    public void doGetView(ActionContext actionContext) throws Exception {
         // donothing
     }
     
     @ActionMethod(name="upload", successView = "demo/upload.vhtml", invocationClass = UploadInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
-    public void doPostUpload(InvocationContext invocationContext) throws Exception {
-        UploadInvocation invocation = (UploadInvocation)invocationContext.getInvocation();
+    public void doPostUpload(ActionContext actionContext) throws Exception {
+        UploadInvocation invocation = (UploadInvocation)actionContext.getInvocation();
         FileUploaded uploadFile = invocation.getUploadFile();
         String filename = uploadFile.getFilename();
         int size = uploadFile.getContent().length;
@@ -35,7 +35,7 @@ public class DemoUploadAction extends ActionSupport {
         // escape html tag
         content = content.replace("<","&lt;");
 
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("filename",filename);
         pageContext.setAttribute("size", size);
         pageContext.setAttribute("content", content);

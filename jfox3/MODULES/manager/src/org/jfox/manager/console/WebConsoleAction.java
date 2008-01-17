@@ -23,9 +23,9 @@ import org.jfox.framework.Constants;
 import org.jfox.framework.Framework;
 import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.Module;
+import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
-import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.WebContextLoader;
 import org.jfox.mvc.annotation.ActionMethod;
@@ -41,10 +41,10 @@ import org.jfox.util.SystemUtils;
 public class WebConsoleAction extends ActionSupport {
 
     @ActionMethod(name="sysinfo",successView = "console/sysinfo.vhtml")
-    public void doGetSysinfo(InvocationContext invocationContext) throws Exception {
-        PageContext pageContext = invocationContext.getPageContext();
+    public void doGetSysinfo(ActionContext actionContext) throws Exception {
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("jfoxVersion", Constants.VERSION);
-        pageContext.setAttribute("webServerVersion", invocationContext.getServletContext().getServerInfo());
+        pageContext.setAttribute("webServerVersion", actionContext.getServletContext().getServerInfo());
         pageContext.setAttribute("jvmVersion", SystemUtils.JAVA_VERSION);
         pageContext.setAttribute("jvmVendor", SystemUtils.JAVA_VENDOR);
         pageContext.setAttribute("osName", SystemUtils.OS_NAME);
@@ -55,9 +55,9 @@ public class WebConsoleAction extends ActionSupport {
     }
     
     @ActionMethod(name="jndi",successView = "console/jndi.vhtml")
-    public void doGetJNDI(InvocationContext invocationContext) throws Exception{
+    public void doGetJNDI(ActionContext actionContext) throws Exception{
         NamingEnumeration<Binding> enu = getEJBContainer().getNamingContext().listBindings("");
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         List<Binding> bindings = new ArrayList<Binding>();
         while(enu.hasMoreElements()){
             bindings.add(enu.nextElement());
@@ -73,8 +73,8 @@ public class WebConsoleAction extends ActionSupport {
     }
 
     @ActionMethod(name="container",successView = "console/ejb.vhtml")
-    public void doGetContainer(InvocationContext invocationContext) throws Exception{
-        PageContext pageContext = invocationContext.getPageContext();
+    public void doGetContainer(ActionContext actionContext) throws Exception{
+        PageContext pageContext = actionContext.getPageContext();
         EJBContainer container = getEJBContainer();
         int defaultTransactionTimeout = container.getTransactionTimeout();
         List<EJBBucket> buckets = new ArrayList<EJBBucket>(container.listBuckets());
@@ -93,7 +93,7 @@ public class WebConsoleAction extends ActionSupport {
     }
 
     @ActionMethod(name="jpa",successView = "console/jpa.vhtml")
-    public void doGetJPA(InvocationContext invocationContext) throws Exception{
+    public void doGetJPA(ActionContext actionContext) throws Exception{
         //DataSource, NamedNativeQuery, PersistenceUnit
 //        EntityManagerFactoryBuilder emfBuilder = getEntityManagerFactoryBuilder();
         Collection<EntityManagerFactoryImpl> entityManagerFactories = EntityManagerFactoryBuilderImpl.getEntityManagerFactories();
@@ -109,7 +109,7 @@ public class WebConsoleAction extends ActionSupport {
         }
 */
 
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("entityManagerFactories", entityManagerFactories);
         pageContext.setAttribute("namedSQLTemplates", EntityManagerFactoryBuilderImpl.getNamedSQLTemplates());
 //        pageContext.setAttribute("caches", caches);
@@ -117,7 +117,7 @@ public class WebConsoleAction extends ActionSupport {
     }
 
     @ActionMethod(name="modules",successView = "console/module.vhtml")
-    public void doGetModules(InvocationContext invocationContext) throws Exception{
+    public void doGetModules(ActionContext actionContext) throws Exception{
         Framework framework = WebContextLoader.getManagedFramework();
         Module systemModule = framework.getSystemModule();
         List<Module> allModules = framework.getAllModules();
@@ -125,28 +125,28 @@ public class WebConsoleAction extends ActionSupport {
         List<Module> modules = new ArrayList<Module>(allModules.size()+1);
         modules.add(systemModule);
         modules.addAll(allModules);
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("modules", modules);
     }
 
     @ActionMethod(name="testconnection",successView = "console/testconnectionresult.vhtml", errorView = "console/testconnectionresult.vhtml",invocationClass = TestConnectionInvocation.class)
-    public void doGetTestConnection(InvocationContext invocationContext) throws Exception {
-        TestConnectionInvocation invocation = (TestConnectionInvocation)invocationContext.getInvocation();
+    public void doGetTestConnection(ActionContext actionContext) throws Exception {
+        TestConnectionInvocation invocation = (TestConnectionInvocation)actionContext.getInvocation();
         String unitName = invocation.getUnitName();
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("unitName", unitName);
         EntityManagerFactoryBuilderImpl.getEntityManagerFactoryByName(unitName).checkConnection();
     }
 
     @ActionMethod(name="clearcacheconfig",successView = "console.jpa.do", forwardMethod = ActionMethod.ForwardMethod.REDIRECT, invocationClass = TestConnectionInvocation.class)
-    public void doGetClearCacheConfig(InvocationContext invocationContext) throws Exception {
-        TestConnectionInvocation invocation = (TestConnectionInvocation)invocationContext.getInvocation();
+    public void doGetClearCacheConfig(ActionContext actionContext) throws Exception {
+        TestConnectionInvocation invocation = (TestConnectionInvocation)actionContext.getInvocation();
         String unitName = invocation.getUnitName();
         EntityManagerFactoryBuilderImpl.getEntityManagerFactoryByName(unitName).clearCache();
     }
 
     @ActionMethod(name="clearcache",successView = "console/jpa.vhtml",invocationClass = TestConnectionInvocation.class)
-    public void doGetClearCache(InvocationContext invocationContext) throws Exception {
+    public void doGetClearCache(ActionContext actionContext) throws Exception {
 /*
         TestConnectionInvocation invocation = (TestConnectionInvocation)invocationContext.getInvocation();
         String unitName = invocation.getUnitName();

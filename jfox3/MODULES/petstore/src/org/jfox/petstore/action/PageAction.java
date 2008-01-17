@@ -7,8 +7,8 @@
 package org.jfox.petstore.action;
 
 import org.jfox.framework.annotation.Service;
+import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
-import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.ActionMethod;
@@ -22,13 +22,13 @@ public class PageAction extends ActionSupport {
     /**
      * index page
      * 
-     * @param invocationContext invocationContext
+     * @param actionContext invocationContext
      * @throws Exception exception
      */
     @ActionMethod(name="index", successView = "index.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetIndex(InvocationContext invocationContext) throws Exception {
-        PageContext pageContext = invocationContext.getPageContext();
-        SessionContext sessionContext = invocationContext.getSessionContext();
+    public void doGetIndex(ActionContext actionContext) throws Exception {
+        PageContext pageContext = actionContext.getPageContext();
+        SessionContext sessionContext = actionContext.getSessionContext();
 /*
         Account account = DAOSupport.newEntityObject(Account.class);
         account.setFirstName("Yang Yong");

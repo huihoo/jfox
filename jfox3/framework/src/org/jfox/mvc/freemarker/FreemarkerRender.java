@@ -20,7 +20,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.log4j.Logger;
-import org.jfox.mvc.InvocationContext;
+import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.Render;
 import org.jfox.mvc.WebContextLoader;
@@ -89,8 +89,8 @@ public class FreemarkerRender implements Render {
      * @param response http response
      */
     protected Map createFreemarkerContext(HttpServletRequest request, HttpServletResponse response) {
-        InvocationContext invocationContext = (InvocationContext)request.getAttribute(ControllerServlet.INVOCATION_CONTEXT);
-        PageContext pageContext = invocationContext.getPageContext();
+        ActionContext actionContext = (ActionContext)request.getAttribute(ControllerServlet.INVOCATION_CONTEXT);
+        PageContext pageContext = actionContext.getPageContext();
         Map<String, Object> freemarkerMap = new HashMap<String, Object>(pageContext.getResultMap());
         return freemarkerMap;
     }

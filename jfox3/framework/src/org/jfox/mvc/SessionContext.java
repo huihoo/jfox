@@ -32,9 +32,9 @@ public class SessionContext implements Serializable {
     }
 
     public static SessionContext getCurrentThreadSessionContext(){
-        InvocationContext invocationContext = InvocationContext.getCurrentThreadInvocationContext();
-        if(invocationContext != null) {
-            return invocationContext.getSessionContext();
+        ActionContext actionContext = ActionContext.getCurrentThreadInvocationContext();
+        if(actionContext != null) {
+            return actionContext.getSessionContext();
         }
         else {
             return null;

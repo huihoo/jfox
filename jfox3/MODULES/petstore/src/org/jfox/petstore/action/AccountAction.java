@@ -20,9 +20,9 @@ import org.jfox.ejb3.security.JAASLoginService;
 import org.jfox.entity.EntityFactory;
 import org.jfox.framework.annotation.Inject;
 import org.jfox.framework.annotation.Service;
+import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
-import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.ActionMethod;
@@ -60,9 +60,9 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
 
 
     @ActionMethod(name="newaccount",successView = "NewAccountForm.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetNewAccount(InvocationContext invocationContext) throws Exception {
+    public void doGetNewAccount(ActionContext actionContext) throws Exception {
         // do nothing
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("languages", languages);
 
         List<Category> categories = categoryBO.getCategoryList();
@@ -70,8 +70,8 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
     }
 
     @ActionMethod(name="create", successView = "index.vhtml", errorView = "NewAccountForm.vhtml", invocationClass = NewAccountInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
-    public void doPostCreate(InvocationContext invocationContext) throws Exception{
-        NewAccountInvocation invocation = (NewAccountInvocation)invocationContext.getInvocation();
+    public void doPostCreate(ActionContext actionContext) throws Exception{
+        NewAccountInvocation invocation = (NewAccountInvocation)actionContext.getInvocation();
         Account newAccount = EntityFactory.newEntityObject(Account.class);
         newAccount.setUsername(invocation.getUsername());
         newAccount.setStatus("OK");
@@ -103,23 +103,23 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
 
 
     @ActionMethod(name="signon", successView = "signon.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetSignon(InvocationContext invocationContext) throws Exception {
+    public void doGetSignon(ActionContext actionContext) throws Exception {
         // don't need do anything, just forward to successView
     }
 
     @ActionMethod(name="signon", successView = "index.vhtml", errorView = "signon.vhtml", invocationClass = SignonInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
-    public void doPostSignon(InvocationContext invocationContext) throws Exception {
-        SignonInvocation invocation = (SignonInvocation)invocationContext.getInvocation();
+    public void doPostSignon(ActionContext actionContext) throws Exception {
+        SignonInvocation invocation = (SignonInvocation)actionContext.getInvocation();
 
-        Account account = (Account)loginService.login(invocationContext.getSessionContext(), this, invocation.getUsername(),invocation.getPassword());
+        Account account = (Account)loginService.login(actionContext.getSessionContext(), this, invocation.getUsername(),invocation.getPassword());
         if (account == null) {
             String msg = "Invalid username or password. Signon failed";
-            PageContext pageContext = invocationContext.getPageContext();
+            PageContext pageContext = actionContext.getPageContext();
             pageContext.setAttribute("errorMessage", msg);
             throw new Exception(msg);
         }
         else {
-            SessionContext sessionContext = invocationContext.getSessionContext();
+            SessionContext sessionContext = actionContext.getSessionContext();
             sessionContext.setAttribute(ACCOUNT_SESSION_KEY, account);
         }
     }
@@ -147,22 +147,22 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
     }
 
     @ActionMethod(name="signoff", successView = "index.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetSignoff(InvocationContext invocationContext) throws Exception {
-        SessionContext sessionContext = invocationContext.getSessionContext();
+    public void doGetSignoff(ActionContext actionContext) throws Exception {
+        SessionContext sessionContext = actionContext.getSessionContext();
         sessionContext.clearAttributes();
-        invocationContext.destroySessionContext();
+        actionContext.destroySessionContext();
     }
 
     @ActionMethod(name="editaccount", successView = "EditAccount.vhtml", errorView = "signon.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetEditAccount(InvocationContext invocationContext) throws Exception {
-        SessionContext sessionContext = invocationContext.getSessionContext();
+    public void doGetEditAccount(ActionContext actionContext) throws Exception {
+        SessionContext sessionContext = actionContext.getSessionContext();
         Account account = (Account)sessionContext.getAttribute(ACCOUNT_SESSION_KEY);
 
         if(account == null) {
             throw new IllegalArgumentException("Not login, please login first!");
         }
 
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("account", account);
         pageContext.setAttribute("languages", languages);
 
@@ -171,10 +171,10 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
     }
 
     @ActionMethod(name="edit", successView = "index.vhtml", errorView = "EditAccount.vhtml", invocationClass = EditAccountInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
-    public void doPostEdit(InvocationContext invocationContext) throws Exception {
-        EditAccountInvocation invocation = (EditAccountInvocation)invocationContext.getInvocation();
+    public void doPostEdit(ActionContext actionContext) throws Exception {
+        EditAccountInvocation invocation = (EditAccountInvocation)actionContext.getInvocation();
 
-        SessionContext sessionContext = invocationContext.getSessionContext();
+        SessionContext sessionContext = actionContext.getSessionContext();
         Account account = (Account)sessionContext.getAttribute(ACCOUNT_SESSION_KEY);
 
         Account newAccount = new Account();
@@ -213,22 +213,22 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
      * 在 doPostEdit 发生异常时，通过该方法设置 PageContext account，
      * 以便跳转到 errorView 时，可以预设数据
      *
-     * @param invocationContext invocationContext
+     * @param actionContext invocationContext
      */
-    protected void doActionFailed(InvocationContext invocationContext) {
-        if (invocationContext.getActionMethod().getName().equals("doPostEdit")) {
-            SessionContext sessionContext = invocationContext.getSessionContext();
+    protected void doActionFailed(ActionContext actionContext) {
+        if (actionContext.getActionMethod().getName().equals("doPostEdit")) {
+            SessionContext sessionContext = actionContext.getSessionContext();
             Account account = (Account)sessionContext.getAttribute(ACCOUNT_SESSION_KEY);
 
-            PageContext pageContext = invocationContext.getPageContext();
+            PageContext pageContext = actionContext.getPageContext();
             pageContext.setAttribute("account", account);
             pageContext.setAttribute("languages", languages);
 
             List<Category> categories = categoryBO.getCategoryList();
             pageContext.setAttribute("categories", categories);
         }
-        else if(invocationContext.getActionMethod().getName().equals("doPostCreate")){
-            NewAccountInvocation invocation = (NewAccountInvocation)invocationContext.getInvocation();
+        else if(actionContext.getActionMethod().getName().equals("doPostCreate")){
+            NewAccountInvocation invocation = (NewAccountInvocation)actionContext.getInvocation();
             Account newAccount = EntityFactory.newEntityObject(Account.class);
             newAccount.setUsername(invocation.getUsername());
             newAccount.setStatus("OK");
@@ -248,10 +248,10 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
             newAccount.setPhone(invocation.getPhone());
             newAccount.setState(invocation.getState());
             newAccount.setZip(invocation.getZip());
-            PageContext pageContext = invocationContext.getPageContext();
+            PageContext pageContext = actionContext.getPageContext();
             pageContext.setAttribute("account", newAccount);
             try {
-                doGetNewAccount(invocationContext);
+                doGetNewAccount(actionContext);
             }
             catch(Exception e) {
                 logger.error("doActionFailed error.", e);

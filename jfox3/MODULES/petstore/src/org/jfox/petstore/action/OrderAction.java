@@ -14,9 +14,9 @@ import javax.ejb.EJB;
 import org.jfox.entity.EntityFactory;
 import org.jfox.entity.dao.PKGenerator;
 import org.jfox.framework.annotation.Service;
+import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
-import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.ActionMethod;
@@ -46,11 +46,11 @@ public class OrderAction extends ActionSupport {
     OrderBO orderBO;
 
     @ActionMethod(name="new", successView = "NewOrder.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetNew(InvocationContext invocationContext) throws Exception {
-        SessionContext sessionContext = invocationContext.getSessionContext();
+    public void doGetNew(ActionContext actionContext) throws Exception {
+        SessionContext sessionContext = actionContext.getSessionContext();
         Cart cart = (Cart)sessionContext.getAttribute(CartAction.CART_SESSION_KEY);
 
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
 
         if(!sessionContext.containsAttribute(AccountAction.ACCOUNT_SESSION_KEY)) {
             // not login
@@ -115,9 +115,9 @@ public class OrderAction extends ActionSupport {
     }
 
     @ActionMethod(name="new", successView = "ConfirmOrder.vhtml", invocationClass = NewOrderInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
-    public void doPostNew(InvocationContext invocationContext) throws Exception {
-        NewOrderInvocation invocation = (NewOrderInvocation)invocationContext.getInvocation();
-        SessionContext sessionContext = invocationContext.getSessionContext();
+    public void doPostNew(ActionContext actionContext) throws Exception {
+        NewOrderInvocation invocation = (NewOrderInvocation)actionContext.getInvocation();
+        SessionContext sessionContext = actionContext.getSessionContext();
 //        Account account = (Account)sessionContext.getAttribute(AccountAction.ACCOUNT_SESSION_KEY);
         Order order = (Order)sessionContext.getAttribute(ORDER_SESSION_KEY);
 
@@ -144,17 +144,17 @@ public class OrderAction extends ActionSupport {
 
         if ("1".equals(invocation.getShippingAddressRequired())) {
             // don't need input shipping address
-            invocationContext.getPageContext().setTargetView("Shipping.vhtml");
+            actionContext.getPageContext().setTargetView("Shipping.vhtml");
         }
 
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("order", order);
     }
 
     @ActionMethod(name="confirmshipping", successView = "ConfirmOrder.vhtml", invocationClass = ShippingOrderInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
-    public void doPostConfirmShipping(InvocationContext invocationContext) throws Exception {
-        ShippingOrderInvocation invocation = (ShippingOrderInvocation)invocationContext.getInvocation();
-        SessionContext sessionContext = invocationContext.getSessionContext();
+    public void doPostConfirmShipping(ActionContext actionContext) throws Exception {
+        ShippingOrderInvocation invocation = (ShippingOrderInvocation)actionContext.getInvocation();
+        SessionContext sessionContext = actionContext.getSessionContext();
         Order order = (Order)sessionContext.getAttribute(ORDER_SESSION_KEY);
 
         order.setShipToFirstName(invocation.getShipToFirstName());
@@ -166,14 +166,14 @@ public class OrderAction extends ActionSupport {
         order.setShipZip(invocation.getShipZip());
         order.setShipCountry(invocation.getShipCountry());
 
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("order", order);
     }
 
     @ActionMethod(name="confirm", successView = "ViewOrder.vhtml", errorView = "Cart.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetConfirm(InvocationContext invocationContext) throws Exception {
-        SessionContext sessionContext = invocationContext.getSessionContext();
-        PageContext pageContext = invocationContext.getPageContext();
+    public void doGetConfirm(ActionContext actionContext) throws Exception {
+        SessionContext sessionContext = actionContext.getSessionContext();
+        PageContext pageContext = actionContext.getPageContext();
 
         Order order = (Order)sessionContext.getAttribute(ORDER_SESSION_KEY);
         if (order != null) {
@@ -195,21 +195,21 @@ public class OrderAction extends ActionSupport {
     }
 
     @ActionMethod(name="list", successView = "ListOrders.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetList(InvocationContext invocationContext) throws Exception {
-        SessionContext sessionContext = invocationContext.getSessionContext();
+    public void doGetList(ActionContext actionContext) throws Exception {
+        SessionContext sessionContext = actionContext.getSessionContext();
         Account account = (Account)sessionContext.getAttribute(AccountAction.ACCOUNT_SESSION_KEY);
         List<Order> orders = orderBO.getOrdersByUsername(account.getUsername());
 
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("orders",orders);
     }
 
     @ActionMethod(name="view", successView = "ViewOrder.vhtml", invocationClass = ViewOrderInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetView(InvocationContext invocationContext) throws Exception {
-        ViewOrderInvocation invocation = (ViewOrderInvocation)invocationContext.getInvocation();
+    public void doGetView(ActionContext actionContext) throws Exception {
+        ViewOrderInvocation invocation = (ViewOrderInvocation)actionContext.getInvocation();
         long orderId = invocation.getOrderId();
         Order order = orderBO.getOrder(orderId);
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("order",order);
         pageContext.setAttribute("orderUtil",OrderUtil.getInstance());
     }

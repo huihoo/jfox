@@ -10,9 +10,9 @@ import java.util.List;
 import javax.ejb.EJB;
 
 import org.jfox.framework.annotation.Service;
+import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
-import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.mvc.util.PagedList;
@@ -34,8 +34,8 @@ public class ProductAction extends ActionSupport {
     ProductBO productBO;
 
     @ActionMethod(name="view", successView = "Product.vhtml", invocationClass = ProductInvoation.class, httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetView(InvocationContext invocationContext) {
-        ProductInvoation invocation = (ProductInvoation)invocationContext.getInvocation();
+    public void doGetView(ActionContext actionContext) {
+        ProductInvoation invocation = (ProductInvoation)actionContext.getInvocation();
 
         Product product = productBO.getProduct(invocation.getProductId());
 
@@ -55,7 +55,7 @@ public class ProductAction extends ActionSupport {
             previousPage--;
         }
 
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("product", product);
         pageContext.setAttribute("productId", invocation.getProductId());
         pageContext.setAttribute("itemPageList", itemPageList);
@@ -65,8 +65,8 @@ public class ProductAction extends ActionSupport {
     }
 
     @ActionMethod(name="search", successView = "SearchProducts.vhtml", invocationClass = SearchProductInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
-    public void doPostSearch(InvocationContext invocationContext) {
-        SearchProductInvocation invocation = (SearchProductInvocation)invocationContext.getInvocation();
+    public void doPostSearch(ActionContext actionContext) {
+        SearchProductInvocation invocation = (SearchProductInvocation)actionContext.getInvocation();
         String keyword = invocation.getKeyword();
         String[] keywords = keyword.split(" ");
         List<Product> products = productBO.searchProductList(keywords);
@@ -86,15 +86,15 @@ public class ProductAction extends ActionSupport {
             previousPage--;
         }
 
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("productPageList", productPagedList);
         pageContext.setAttribute("previousPage", previousPage);
         pageContext.setAttribute("nextPage", nextPage);
     }
 
     @ActionMethod(name="search", successView = "SearchProducts.vhtml", invocationClass = SearchProductInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetSearch(InvocationContext invocationContext) {
-        doPostSearch(invocationContext);
+    public void doGetSearch(ActionContext actionContext) {
+        doPostSearch(actionContext);
     }
 
     public static class ProductInvoation extends Invocation {

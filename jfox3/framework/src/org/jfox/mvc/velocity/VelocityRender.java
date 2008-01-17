@@ -32,7 +32,7 @@ import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.io.VelocityWriter;
 import org.apache.velocity.runtime.RuntimeSingleton;
 import org.apache.velocity.util.SimplePool;
-import org.jfox.mvc.InvocationContext;
+import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.Render;
 import org.jfox.mvc.WebContextLoader;
@@ -371,8 +371,8 @@ public class VelocityRender implements Render {
      * @param response http response
      */
     protected Context createVelocityContext(HttpServletRequest request, HttpServletResponse response) {
-        InvocationContext invocationContext = (InvocationContext)request.getAttribute(ControllerServlet.INVOCATION_CONTEXT);
-        PageContext pageContext = invocationContext.getPageContext();
+        ActionContext actionContext = (ActionContext)request.getAttribute(ControllerServlet.INVOCATION_CONTEXT);
+        PageContext pageContext = actionContext.getPageContext();
         VelocityContext velocityContext = new VelocityContext(pageContext.getResultMap());
         // 使用相对路径
         ec.attachToContext(velocityContext);

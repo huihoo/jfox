@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class InvocationContext {
+public class ActionContext {
 
     private String actionName;
 
@@ -58,10 +58,10 @@ public class InvocationContext {
     /**
      * 使用 ThreadLocal 将 InvocationContext 和当前线程进行关联
      */
-    static transient ThreadLocal<InvocationContext> threadInvocationContext = new ThreadLocal<InvocationContext>();
+    static transient ThreadLocal<ActionContext> threadInvocationContext = new ThreadLocal<ActionContext>();
     
 
-    public InvocationContext(ServletConfig servletConfig, HttpServletRequest request, Map<String, String[]> parameterMap, Map<String, FileUploaded> fileUploadedMap, String actionName, String actionMethodName) {
+    public ActionContext(ServletConfig servletConfig, HttpServletRequest request, Map<String, String[]> parameterMap, Map<String, FileUploaded> fileUploadedMap, String actionName, String actionMethodName) {
         this.servletConfig = servletConfig;
         this.request = request;
         this.parameterMap.putAll(parameterMap);
@@ -74,7 +74,7 @@ public class InvocationContext {
     /**
      * 得到当前线程绑定的 InvocationContext
      */
-    public static InvocationContext getCurrentThreadInvocationContext(){
+    public static ActionContext getCurrentThreadInvocationContext(){
         return threadInvocationContext.get();
     }
 

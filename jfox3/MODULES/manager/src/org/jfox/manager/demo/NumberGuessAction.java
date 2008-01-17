@@ -9,9 +9,9 @@ package org.jfox.manager.demo;
 import java.util.Random;
 
 import org.jfox.framework.annotation.Service;
+import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
-import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.ActionMethod;
@@ -25,14 +25,14 @@ import org.jfox.mvc.annotation.ActionMethod;
 public class NumberGuessAction extends ActionSupport {
 
     @ActionMethod(name="view", successView = "demo/numberguess.vhtml", invocationClass = NumberGuessInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetView(InvocationContext invocationContext) throws Exception {
-        NumberGuessInvocation invocation = (NumberGuessInvocation)invocationContext.getInvocation();
+    public void doGetView(ActionContext actionContext) throws Exception {
+        NumberGuessInvocation invocation = (NumberGuessInvocation)actionContext.getInvocation();
 
         int count = 0;
         boolean success = false;
         String hint = "";
 
-        SessionContext sessionContext = invocationContext.getSessionContext();
+        SessionContext sessionContext = actionContext.getSessionContext();
         if (!sessionContext.containsAttribute("count")) { //start
             count = 0;
             int answer = Math.abs(new Random().nextInt() % 100) + 1;
@@ -60,7 +60,7 @@ public class NumberGuessAction extends ActionSupport {
             }
         }
         
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("success", success);
         pageContext.setAttribute("count", count);
         pageContext.setAttribute("hint", hint);
@@ -68,8 +68,8 @@ public class NumberGuessAction extends ActionSupport {
     }
 
     @ActionMethod(name="view", successView = "demo/numberguess.vhtml", invocationClass = NumberGuessInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
-    public void doPostView(InvocationContext invocationContext) throws Exception {
-        doGetView(invocationContext);
+    public void doPostView(ActionContext actionContext) throws Exception {
+        doGetView(actionContext);
     }
 
     public static class NumberGuessInvocation extends Invocation {

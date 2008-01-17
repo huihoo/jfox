@@ -74,7 +74,7 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         for (Method actionMethod : actionMethods) {
             if (actionMethod.getReturnType().equals(void.class)
                     && actionMethod.getParameterTypes().length == 1
-                    && actionMethod.getParameterTypes()[0].equals(InvocationContext.class)) {
+                    && actionMethod.getParameterTypes()[0].equals(ActionContext.class)) {
                 // 统一转换成大写
                 // 分析 actionMethod 对应的 @ActionMethod，并根据 @ActionMethod支持的 HttpMethod 作为 key
                 ActionMethod actionMethodAnnotation = actionMethod.getAnnotation(ActionMethod.class);
@@ -150,14 +150,14 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         return logger;
     }
 
-    public final void execute(InvocationContext invocationContext) throws Exception {
-        logger.info("Request accepted, URI: " + invocationContext.getRequestURI());
+    public final void execute(ActionContext actionContext) throws Exception {
+        logger.info("Request accepted, URI: " + actionContext.getRequestURI());
         long now = System.currentTimeMillis();
         // 将把 InvocationContext 关联到 ThreadLocal
-        invocationContext.initInvocationContext();
-        Method actionMethod = getActionMethod(invocationContext);
+        actionContext.initInvocationContext();
+        Method actionMethod = getActionMethod(actionContext);
         if (actionMethod == null) {
-            throw new ServletException("No ActionMethod in Action Class: " + getClass().getName() + " responsable for " + (invocationContext.isPost() ? "POST" : "GET") + " action: " + getName() + "." + invocationContext.getActionMethodName() + " !");
+            throw new ServletException("No ActionMethod in Action Class: " + getClass().getName() + " responsable for " + (actionContext.isPost() ? "POST" : "GET") + " action: " + getName() + "." + actionContext.getActionMethodName() + " !");
         }
         ActionMethod actionMethodAnnotation = actionMethod.getAnnotation(ActionMethod.class);
         // invocation class
@@ -167,19 +167,19 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         String errorView = actionMethodAnnotation.errorView();
 
         //设置ActionMethod
-        invocationContext.setActionMethod(actionMethod);
+        actionContext.setActionMethod(actionMethod);
         //设置跳转方式
-        invocationContext.getPageContext().setTargetMethod(actionMethodAnnotation.forwardMethod());
+        actionContext.getPageContext().setTargetMethod(actionMethodAnnotation.forwardMethod());
         //设置目标模板页面
-        invocationContext.getPageContext().setTargetView(successView);
+        actionContext.getPageContext().setTargetView(successView);
 
         Exception exception = null;
         try {
-            preExecute(invocationContext);
+            preExecute(actionContext);
 
             try {
                 //construct & verify invocation
-                initInvocation(invocationClass, invocationContext);
+                initInvocation(invocationClass, actionContext);
             }
             catch (InvocationException e) {
                 //invocation exception, throw out
@@ -188,73 +188,73 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
             }
             catch (ValidateException e) {
                 //invocation validate exception
-                invocationContext.getPageContext().setTargetView(errorView);
-                invocationContext.getPageContext().addValidateException(e);
+                actionContext.getPageContext().setTargetView(errorView);
+                actionContext.getPageContext().addValidateException(e);
                 exception = e;
             }
 
-            postInitInvocation(invocationContext);
+            postInitInvocation(actionContext);
 
             if (exception == null) { // 初始化 invocation 没有异常
                 try {
-                    checkSessionToken(invocationContext);
+                    checkSessionToken(actionContext);
                     // pre action
-                    preAction(invocationContext);
+                    preAction(actionContext);
 
                     // 判断执行权限
-                    if(!hasPermission(invocationContext)){
+                    if(!hasPermission(actionContext)){
                         // hasPermission 返回 false, 这里统一抛出异常
-                        throw new PermissionNotAllowedException(invocationContext.getFullActionMethodName(), "Unknown"); 
+                        throw new PermissionNotAllowedException(actionContext.getFullActionMethodName(), "Unknown");
                     }
 
                     // invoke action method
-                    actionMethod.invoke(this, invocationContext);
+                    actionMethod.invoke(this, actionContext);
                 }
                 catch (InvocationTargetException e) { // exception throwed, forward to error view
                     Exception t = (Exception)e.getTargetException();
                     logger.warn("Execute Action Method " + actionMethod.getName() + " throws exception.", t);
-                    invocationContext.getPageContext().setTargetView(errorView);
-                    invocationContext.getPageContext().setBusinessException(t);
-                    doActionFailed(invocationContext);
+                    actionContext.getPageContext().setTargetView(errorView);
+                    actionContext.getPageContext().setBusinessException(t);
+                    doActionFailed(actionContext);
                     exception = t;
                 }
                 catch (Exception e) { // exception throwed, forward to error view
                     logger.warn("Execute Action Method " + actionMethod.getName() + " throws exception.", e);
-                    invocationContext.getPageContext().setTargetView(errorView);
-                    invocationContext.getPageContext().setBusinessException(e);
-                    doActionFailed(invocationContext);
+                    actionContext.getPageContext().setTargetView(errorView);
+                    actionContext.getPageContext().setBusinessException(e);
+                    doActionFailed(actionContext);
                     exception = e;
                 }
                 finally {
                     try {
                         if (exception != null) {
-                            doActionFailed(invocationContext);
+                            doActionFailed(actionContext);
                         }
                     }
                     finally {
-                        postAction(invocationContext);
-                        releaseSessionToken(invocationContext);
+                        postAction(actionContext);
+                        releaseSessionToken(actionContext);
                     }
                 }
             }
         }
         finally {
             //每次执行 Action 之后都应该解除 ThreadContext
-            postExecute(invocationContext);
-            invocationContext.disassociateThreadInvocationContext();
+            postExecute(actionContext);
+            actionContext.disassociateThreadInvocationContext();
         }
-        logger.info("Request done, URI: " + invocationContext.getRequestURI() + ", consumed " + (System.currentTimeMillis() - now) + "ms.");
+        logger.info("Request done, URI: " + actionContext.getRequestURI() + ", consumed " + (System.currentTimeMillis() - now) + "ms.");
         // 没有设置 errorView, 抛出异常
         if (exception != null && (errorView == null || errorView.trim().length() == 0)) {
             throw exception;
         }
     }
 
-    private Method getActionMethod(InvocationContext invocationContext) {
+    private Method getActionMethod(ActionContext actionContext) {
         //决定调用 doGetXXX or doPostXXX
         Method actionMethod;
-        String name = invocationContext.getActionMethodName();
-        if (invocationContext.isPost()) {
+        String name = actionContext.getActionMethodName();
+        if (actionContext.isPost()) {
             actionMethod = actionMap.get((POST_METHOD_PREFIX + name).toUpperCase());
         }
         else {
@@ -266,12 +266,12 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     /**
      * do something before Execute
      *
-     * @param invocationContext invcation context
+     * @param actionContext invcation context
      */
-    protected void preExecute(InvocationContext invocationContext) {
-        HttpServletRequest request = invocationContext.getServletRequest();
-        PageContext pageContext = invocationContext.getPageContext();
-        pageContext.setAttribute("J_SESSION_CONTEXT", invocationContext.getSessionContext());
+    protected void preExecute(ActionContext actionContext) {
+        HttpServletRequest request = actionContext.getServletRequest();
+        PageContext pageContext = actionContext.getPageContext();
+        pageContext.setAttribute("J_SESSION_CONTEXT", actionContext.getSessionContext());
         pageContext.setAttribute("J_PAGE_CONTEXT", pageContext);
         pageContext.setAttribute("J_REQUEST", request);
         //用于在页面上显示 vm 文件全路径，便于调试
@@ -280,38 +280,38 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
 
     }
 
-    protected void postInitInvocation(InvocationContext invocationContext) {
-        PageContext pageContext = invocationContext.getPageContext();
+    protected void postInitInvocation(ActionContext actionContext) {
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("J_VALIDATE_EXCEPTIONS", pageContext.getValidateExceptions());
     }
 
 
     /**
      * 判断当前用户是否有权限操作该Action
-     * @param invocationContext
+     * @param actionContext
      * @return true/false
      * @throws PermissionNotAllowedException 如果不具备权限，抛出异常，如果不抛出异常，直接返回 false, ActionSupport统一抛出异常
      */
-    protected boolean hasPermission(InvocationContext invocationContext) throws PermissionNotAllowedException{
+    protected boolean hasPermission(ActionContext actionContext) throws PermissionNotAllowedException{
         return true;
     }
 
     /**
      * do something after Execute
      *
-     * @param invocationContext invocation context
+     * @param actionContext invocation context
      */
-    protected void postExecute(InvocationContext invocationContext) {
+    protected void postExecute(ActionContext actionContext) {
 
     }
 
     /**
      * do something before invoke action method
      *
-     * @param invocationContext invcation context
+     * @param actionContext invcation context
      */
-    protected void preAction(InvocationContext invocationContext) {
-        PageContext pageContext = invocationContext.getPageContext();
+    protected void preAction(ActionContext actionContext) {
+        PageContext pageContext = actionContext.getPageContext();
         // request token，用来防止重复提交
         pageContext.setAttribute("J_REQUEST_TOKEN", System.currentTimeMillis() + "");
     }
@@ -319,13 +319,13 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
     /**
      * do something after invocation action method
      *
-     * @param invocationContext invocation context
+     * @param actionContext invocation context
      */
-    protected void postAction(InvocationContext invocationContext) {
-        PageContext pageContext = invocationContext.getPageContext();
+    protected void postAction(ActionContext actionContext) {
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute(PAGE_VIEW_PATH, pageContext.getTargeView());
         pageContext.setAttribute("J_EXCEPTION", pageContext.getBusinessException());
-        pageContext.setAttribute("J_INVOCATION", invocationContext.getInvocation());
+        pageContext.setAttribute("J_INVOCATION", actionContext.getInvocation());
     }
 
     /**
@@ -333,9 +333,9 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
      * 该方法可以做一些补偿性工作，比如：在 buildInvocation 过程中出现了异常，
      * 可以通过实现该方法恢复数据，以便能够在 errorView中显示用户数据
      *
-     * @param invocationContext invocationContext
+     * @param actionContext invocationContext
      */
-    protected void doActionFailed(InvocationContext invocationContext) {
+    protected void doActionFailed(ActionContext actionContext) {
 
     }
 
@@ -345,16 +345,16 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
      * set invocation field value
      *
      * @param invocationClass   incation class
-     * @param invocationContext invcation context
+     * @param actionContext invcation context
      * @throws InvocationException throw when contruct invocation failed
      * @throws ValidateException   throw when invocation attribute validate failed
      */
-    protected Invocation initInvocation(Class<? extends Invocation> invocationClass, InvocationContext invocationContext) throws InvocationException, ValidateException {
+    protected Invocation initInvocation(Class<? extends Invocation> invocationClass, ActionContext actionContext) throws InvocationException, ValidateException {
         Invocation invocation;
         if (invocationClass.equals(Invocation.class)) {
             invocation = new Invocation() {
             };
-            invocation.init(Collections.EMPTY_MAP, invocationContext.getParameterMap(), invocationContext.getFilesUploaded());
+            invocation.init(Collections.EMPTY_MAP, actionContext.getParameterMap(), actionContext.getFilesUploaded());
         }
         else {
             try {
@@ -365,13 +365,13 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
                 throw new InvocationException("Construct invocation exception.", e);
             }
         }
-        invocation.init(getInvocationFieldValidationMap(invocationClass), invocationContext.getParameterMap(), invocationContext.getFilesUploaded());
+        invocation.init(getInvocationFieldValidationMap(invocationClass), actionContext.getParameterMap(), actionContext.getFilesUploaded());
         /**
          * 有些需要关联验证的，比如：校验两次输入的密码是否正确，
          * 因为不能保证校验密码在初试密码之后得到校验，所以必须放到 validateAll 中进行校验
          */
         invocation.validateAll();
-        invocationContext.setInvocation(invocation);
+        actionContext.setInvocation(invocation);
         return invocation;
     }
 
@@ -420,14 +420,14 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         }
     }
 
-    protected void checkSessionToken(InvocationContext invocationContext) {
-        Invocation invocation = invocationContext.getInvocation();
+    protected void checkSessionToken(ActionContext actionContext) {
+        Invocation invocation = actionContext.getInvocation();
         if (invocation.getRequestToken() != null) {
-            SessionContext sessionContext = invocationContext.getSessionContext();
+            SessionContext sessionContext = actionContext.getSessionContext();
             String key = SessionContext.TOKEN_SESSION_KEY + invocation.getRequestToken();
             if (sessionContext.containsAttribute(key)) {
                 // token 已经存在，是重复提交
-                throw new ActionResubmitException("Detected re-submit, action: " + invocationContext.getFullActionMethodName() + ", token: " + invocation.getRequestToken());
+                throw new ActionResubmitException("Detected re-submit, action: " + actionContext.getFullActionMethodName() + ", token: " + invocation.getRequestToken());
             }
             else {
                 sessionContext.setAttribute(key, "1");
@@ -435,10 +435,10 @@ public abstract class ActionSupport implements Action, ComponentInitialization, 
         }
     }
 
-    protected void releaseSessionToken(InvocationContext invocationContext) {
-        Invocation invocation = invocationContext.getInvocation();
+    protected void releaseSessionToken(ActionContext actionContext) {
+        Invocation invocation = actionContext.getInvocation();
         if (invocation != null && invocation.getRequestToken() != null) {
-            SessionContext sessionContext = invocationContext.getSessionContext();
+            SessionContext sessionContext = actionContext.getSessionContext();
             String key = SessionContext.TOKEN_SESSION_KEY + invocation.getRequestToken();
             sessionContext.removeAttribute(key);
         }

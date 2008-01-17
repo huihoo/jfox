@@ -9,9 +9,9 @@ package org.jfox.petstore.action;
 import javax.ejb.EJB;
 
 import org.jfox.framework.annotation.Service;
+import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
-import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.petstore.bo.ItemBO;
@@ -27,11 +27,11 @@ public class ItemAction extends ActionSupport {
     ItemBO itemBO;
 
     @ActionMethod(name="view", successView = "Item.vhtml", invocationClass = ItemInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetView(InvocationContext invocationContext) throws Exception {
-        ItemInvocation invocation = (ItemInvocation)invocationContext.getInvocation();
+    public void doGetView(ActionContext actionContext) throws Exception {
+        ItemInvocation invocation = (ItemInvocation)actionContext.getInvocation();
         Item item = itemBO.getItem(invocation.getItemId());
 
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         
         pageContext.setAttribute("item",item);
         

@@ -20,6 +20,6 @@ import org.jfox.framework.component.Component;
 @Exported
 public interface Action extends Component {
 
-    void execute(InvocationContext invocationContext) throws Exception;
+    void execute(ActionContext actionContext) throws Exception;
 
 }

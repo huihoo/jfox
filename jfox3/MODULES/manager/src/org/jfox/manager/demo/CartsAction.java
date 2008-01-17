@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import javax.ejb.EJB;
 
 import org.jfox.framework.annotation.Service;
+import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
-import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.ActionMethod;
@@ -29,14 +29,14 @@ public class CartsAction extends ActionSupport {
     ICarts carts;
 
     @ActionMethod(name="view", successView = "demo/carts.fhtml", httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetView(InvocationContext invocationContext) throws Exception{
+    public void doGetView(ActionContext actionContext) throws Exception{
         // do nothing, just forward to successView
     }
 
     @ActionMethod(name="submit", successView = "demo/carts.fhtml", invocationClass = CartInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
-    public void doPostSubmit(InvocationContext invocationContext) throws Exception {
-        CartInvocation invocation = (CartInvocation)invocationContext.getInvocation();
-        SessionContext sessionContext = invocationContext.getSessionContext();
+    public void doPostSubmit(ActionContext actionContext) throws Exception {
+        CartInvocation invocation = (CartInvocation)actionContext.getInvocation();
+        SessionContext sessionContext = actionContext.getSessionContext();
         ArrayList<String> carts = (ArrayList<String>)sessionContext.getAttribute("carts");
         if(carts == null) {
             carts = new ArrayList<String>();
@@ -49,7 +49,7 @@ public class CartsAction extends ActionSupport {
         else if(invocation.getSubmit().equals("remove")){
             carts.remove(invocation.getItem());
         }
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("carts", carts);
     }
 

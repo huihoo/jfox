@@ -10,9 +10,9 @@ import java.util.List;
 import javax.ejb.EJB;
 
 import org.jfox.framework.annotation.Service;
+import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
-import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.ActionMethod;
@@ -45,16 +45,16 @@ public class CategoryAction extends ActionSupport {
     /**
      * index page
      *
-     * @param invocationContext invocationContext
+     * @param actionContext invocationContext
      * @throws Exception exception
      */
     @ActionMethod(name="view", successView = "Category.vhtml", invocationClass = CategoryInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetView(InvocationContext invocationContext) throws Exception {
-        CategoryInvocation invocation = (CategoryInvocation)invocationContext.getInvocation();
+    public void doGetView(ActionContext actionContext) throws Exception {
+        CategoryInvocation invocation = (CategoryInvocation)actionContext.getInvocation();
         Category category = categoryBO.getCategory(invocation.getCategoryId());
 
-        PageContext pageContext = invocationContext.getPageContext();
-        SessionContext sessionContext = invocationContext.getSessionContext();
+        PageContext pageContext = actionContext.getPageContext();
+        SessionContext sessionContext = actionContext.getSessionContext();
 
         PagedList<Product> productPagedList;
 

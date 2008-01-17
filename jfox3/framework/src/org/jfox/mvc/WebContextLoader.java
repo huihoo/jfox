@@ -189,12 +189,12 @@ public class WebContextLoader implements ServletContextListener {
         return (Action)component;
     }
 
-    public static void invokeAction(String moduleDirName, String actionName, InvocationContext invocationContext) throws Exception {
+    public static void invokeAction(String moduleDirName, String actionName, ActionContext actionContext) throws Exception {
         Action action = WebContextLoader.getAction(moduleDirName, actionName);
         if(action == null) {
             throw new ActionNotFoundException("Can not found Action: " + actionName + " in Module: " + moduleDirName);
         }
-        action.execute(invocationContext);
+        action.execute(actionContext);
     }
 
     public static void main(String[] args) {

@@ -25,8 +25,8 @@ import org.apache.commons.fileupload.RequestContext;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
+import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.FileUploaded;
-import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.WebContextLoader;
 import org.jfox.mvc.annotation.ActionMethod;
 
@@ -195,16 +195,16 @@ public class ControllerServlet extends HttpServlet {
 
         try {
             // 初始化 SessionContext，并绑定到线程
-            InvocationContext invocationContext = new InvocationContext(getServletConfig(), request, parameterMap, fileUploadedMap, actionName, actionMethodName);
-            WebContextLoader.invokeAction(moduleDirName, actionName, invocationContext);
-            request.setAttribute(INVOCATION_CONTEXT, invocationContext);
+            ActionContext actionContext = new ActionContext(getServletConfig(), request, parameterMap, fileUploadedMap, actionName, actionMethodName);
+            WebContextLoader.invokeAction(moduleDirName, actionName, actionContext);
+            request.setAttribute(INVOCATION_CONTEXT, actionContext);
             // 根据 PageContext.getTargetMethod 要决定 forward 还是 redirect
-            if(invocationContext.getPageContext().getTargetMethod().equals(ActionMethod.ForwardMethod.REDIRECT)) {
-                response.sendRedirect(invocationContext.getPageContext().getTargeView());
+            if(actionContext.getPageContext().getTargetMethod().equals(ActionMethod.ForwardMethod.REDIRECT)) {
+                response.sendRedirect(actionContext.getPageContext().getTargeView());
 //                request.getRequestDispatcher(invocationContext.getPageContext().getTargeView()).(request, response);
             }
             else {
-                request.getRequestDispatcher(invocationContext.getPageContext().getTargeView()).forward(request, response);
+                request.getRequestDispatcher(actionContext.getPageContext().getTargeView()).forward(request, response);
             }
         }
         catch (ServletException e) {

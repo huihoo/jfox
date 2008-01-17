@@ -9,9 +9,9 @@ package org.jfox.petstore.action;
 import javax.ejb.EJB;
 
 import org.jfox.framework.annotation.Service;
+import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
-import org.jfox.mvc.InvocationContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.ActionMethod;
@@ -32,23 +32,23 @@ public class CartAction extends ActionSupport {
     ItemBO itemBO;
 
     @ActionMethod(name="view", successView = "Cart.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetView(InvocationContext invocationContext) throws Exception {
-        SessionContext sessionContext = invocationContext.getSessionContext();
+    public void doGetView(ActionContext actionContext) throws Exception {
+        SessionContext sessionContext = actionContext.getSessionContext();
         Cart cart = (Cart)sessionContext.getAttribute(CART_SESSION_KEY);
         if (cart == null) {
             cart = new Cart();
             sessionContext.setAttribute(CART_SESSION_KEY, cart);
         }
 
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("cart", cart);
     }
 
     @ActionMethod(name="additem", successView = "Cart.vhtml", invocationClass = CartInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetAddItem(InvocationContext invocationContext) throws Exception {
-        CartInvocation invocation = (CartInvocation)invocationContext.getInvocation();
+    public void doGetAddItem(ActionContext actionContext) throws Exception {
+        CartInvocation invocation = (CartInvocation)actionContext.getInvocation();
 
-        SessionContext sessionContext = invocationContext.getSessionContext();
+        SessionContext sessionContext = actionContext.getSessionContext();
         Cart cart = (Cart)sessionContext.getAttribute(CART_SESSION_KEY);
         if (cart == null) {
             cart = new Cart();
@@ -62,14 +62,14 @@ public class CartAction extends ActionSupport {
             cart.incrementQuantityByItemId(invocation.getWorkingItemId());
         }
 
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("cart", cart);
     }
 
     @ActionMethod(name="removeitem", successView = "Cart.vhtml", invocationClass = CartInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetRemoveItem(InvocationContext invocationContext) throws Exception {
-        CartInvocation invocation = (CartInvocation)invocationContext.getInvocation();
-        SessionContext sessionContext = invocationContext.getSessionContext();
+    public void doGetRemoveItem(ActionContext actionContext) throws Exception {
+        CartInvocation invocation = (CartInvocation)actionContext.getInvocation();
+        SessionContext sessionContext = actionContext.getSessionContext();
         Cart cart = (Cart)sessionContext.getAttribute(CART_SESSION_KEY);
         if (cart == null) {
             cart = new Cart();
@@ -79,15 +79,15 @@ public class CartAction extends ActionSupport {
             cart.removeItemById(invocation.getWorkingItemId());
         }
 
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("cart", cart);
 
     }
 
     @ActionMethod(name="update", successView = "Cart.vhtml", invocationClass = Invocation.class, httpMethod = ActionMethod.HttpMethod.POST)
-    public void doPostUpdate(InvocationContext invocationContext) throws Exception {
-        Invocation invocation = invocationContext.getInvocation();
-        SessionContext sessionContext = invocationContext.getSessionContext();
+    public void doPostUpdate(ActionContext actionContext) throws Exception {
+        Invocation invocation = actionContext.getInvocation();
+        SessionContext sessionContext = actionContext.getSessionContext();
         Cart cart = (Cart)sessionContext.getAttribute(CART_SESSION_KEY);
         if (cart == null) {
             cart = new Cart();
@@ -106,16 +106,16 @@ public class CartAction extends ActionSupport {
             }
         }
 
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("cart", cart);
 
     }
 
     @ActionMethod(name="checkout", successView = "Checkout.vhtml", httpMethod = ActionMethod.HttpMethod.GET)
-    public void doGetCheckout(InvocationContext invocationContext) throws Exception{
-        SessionContext sessionContext = invocationContext.getSessionContext();
+    public void doGetCheckout(ActionContext actionContext) throws Exception{
+        SessionContext sessionContext = actionContext.getSessionContext();
         Cart cart = (Cart)sessionContext.getAttribute(CART_SESSION_KEY);
-        PageContext pageContext = invocationContext.getPageContext();
+        PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("cart", cart);
     }
 
