@@ -299,3 +299,16 @@
 2008-01-17
     1. InvoationContext -> ActionContext
     2. 修正了 SessionContext 销毁时抛 NPE 的错误
+
+2008-04-07
+    1. 开始考虑支持 EJB3.1
+    2. MVC 支持 chain，可以通过增加 ChainInvoker 的方式来完善功能，比如：URL解析，文件上传处理
+    3. 考虑支持JDK内置的JMX，方便进行管理
+    4. 增加 Hessian 支持，以提供 EJB 的远程访问 (也可以支持Java Serializable 或者 JBoss remoting)
+    5. 考虑实现JMS远程访问，并以回调二次确认方式实现事务(可以先考虑以客户端拉的方式来实现，这样不需要添加新的Connector，类似于Web Gtalk)
+    6. 完善文档中的集群部分
+    7. 改变思路，EJB容器已经不讨好，是不是改叫 EJB Application Platform 更合适呢？
+    8. 以 maven 建立项目
+    9. 增加 ContainerInvoker，实现通过 Servlet 来调用 EJB(不需要实现 Local Invoker)(可以采用集成XFire类似的方式，实现独立的 Invoker, Invoker可以实现成@Service，然后用独立的Servlet来调用Invoker)
+    10. DAOSupport支持自动生成 CRUD SQLTemplate
+    11. 支持标准 Web 目录结构

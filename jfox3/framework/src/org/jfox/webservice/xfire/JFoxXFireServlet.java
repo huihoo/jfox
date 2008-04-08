@@ -8,8 +8,8 @@ package org.jfox.webservice.xfire;
 
 import javax.servlet.ServletException;
 
-import org.codehaus.xfire.transport.http.XFireServlet;
 import org.codehaus.xfire.XFire;
+import org.codehaus.xfire.transport.http.XFireServlet;
 
 /**
  * 用来接受 WebService 请求的 Servlet
@@ -19,7 +19,7 @@ import org.codehaus.xfire.XFire;
 public class JFoxXFireServlet extends XFireServlet {
 
     public XFire createXFire() throws ServletException {
-        // get XFire from XFireJFoxService
+        // always get XFire from XFireJFoxService, singleton
         return JFoxXFireDelegate.getXFireInstance();
     }
 
