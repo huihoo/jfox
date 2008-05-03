@@ -6,6 +6,7 @@
         <setting name="validation-enabled" value="false" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
+          <factory-entry name="CCMIS" />
           <factory-entry name="DefaultHsqlDS" />
           <factory-entry name="JPetstoreMysqlDS" />
           <factory-entry name="default" />

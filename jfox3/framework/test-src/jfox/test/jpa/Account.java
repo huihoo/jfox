@@ -6,12 +6,13 @@
  */
 package jfox.test.jpa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-
+import jfox.test.ejbcomponent.dao.AddressDAO;
 import org.jfox.entity.annotation.MappingColumn;
 import org.jfox.entity.annotation.ParameterMap;
-import jfox.test.ejbcomponent.dao.AddressDAO;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
@@ -21,6 +22,7 @@ import jfox.test.ejbcomponent.dao.AddressDAO;
 public class Account {
 
     @Column(name="ACC_ID")
+    @Id
     long id;
 
     @Column(name="ACC_FIRST_NAME")

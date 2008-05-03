@@ -6,18 +6,18 @@
  */
 package jfox.test.dao;
 
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-
+import jfox.test.ejbcomponent.dao.AccountDAO;
+import jfox.test.ejbcomponent.dao.AccountDAOImpl;
+import jfox.test.jpa.Account;
 import org.jfox.entity.EntityManagerExt;
 import org.jfox.entity.MappedEntity;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.Assert;
-import jfox.test.jpa.Account;
-import jfox.test.ejbcomponent.dao.AccountDAOImpl;
-import jfox.test.ejbcomponent.dao.AccountDAO;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import java.util.List;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -73,6 +73,9 @@ public class OutContainerDAOTest {
         Assert.assertEquals(account.getFirstName(), "Yang");
     }
 
+    public void testDefaultSelectQuery(){
+        
+    }
 
     public static void main(String[] args) {
 

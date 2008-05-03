@@ -312,3 +312,6 @@
     9. 增加 ContainerInvoker，实现通过 Servlet 来调用 EJB(不需要实现 Local Invoker)(可以采用集成XFire类似的方式，实现独立的 Invoker, Invoker可以实现成@Service，然后用独立的Servlet来调用Invoker)
     10. DAOSupport支持自动生成 CRUD SQLTemplate
     11. 支持标准 Web 目录结构
+
+2008-05-03
+    1.文档中添加如何测试EJB JPA章节

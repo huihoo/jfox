@@ -548,11 +548,11 @@
         <root url="jar://$PROJECT_DIR$/framework/lib/jotm/xapool-1.6.0.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/freemarker.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/servlet-api.jar!/" />
-        <root url="jar://$PROJECT_DIR$/framework/lib/mysql-connector-java-5.0.4-bin.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/xfire/xfire-all-1.2.6.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/jaxrpc-1_1-fr-spec-api.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/velocity-dep-1.5.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/jtds-1.2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/mysql-connector-java-5.1.6-bin.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
