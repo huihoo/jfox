@@ -100,7 +100,7 @@ public class SQLGenerator {
         int colIndex = 0;
         for(String column : columns) {
             if(colIndex > 0) {
-                sql.append(", ");
+                sql.append(" AND ");
             }
             sql.append(column.toUpperCase()).append(" = $").append(column.toUpperCase());
             colIndex++;
