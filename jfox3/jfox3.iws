@@ -30,8 +30,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/entity/annotation/MappingColumn.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/entity/annotation/MappingColumn.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/ccmis.iml" afterPath="$PROJECT_DIR$/MODULES/ccmis/ccmis.iml" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -123,8 +123,8 @@
       <property name="field_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByClasses" value="true" />
       <property name="exception_breakpoints_viewId" value="TABLE" />
-      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="field_breakpoints_viewId" value="TABLE" />
+      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByMethods" value="false" />
     </ui_properties>
   </component>
@@ -147,21 +147,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EntityFactory.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/EntityFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="27" selection-start="2466" selection-end="2466" vertical-scroll-proportion="1.3271277">
-              <folding>
-                <marker date="1209787448000" expanded="false" signature="250:669" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SQLTemplate.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/SQLTemplate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="8" selection-start="1684" selection-end="1684" vertical-scroll-proportion="0.3324468">
+            <state line="53" column="8" selection-start="1684" selection-end="1684" vertical-scroll-proportion="0.034">
               <folding>
                 <marker date="1209787448000" expanded="false" signature="242:437" placeholder="..." />
               </folding>
@@ -172,7 +161,7 @@
       <file leaf-file-name="AccountAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/AccountAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="231" column="33" selection-start="10145" selection-end="10145" vertical-scroll-proportion="0.045212764">
+            <state line="231" column="33" selection-start="10145" selection-end="10145" vertical-scroll-proportion="0.034">
               <folding>
                 <marker date="1209787448000" expanded="false" signature="251:1281" placeholder="..." />
               </folding>
@@ -183,7 +172,7 @@
       <file leaf-file-name="NamedSQLTemplate.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/NamedSQLTemplate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="44" selection-start="482" selection-end="482" vertical-scroll-proportion="0.045212764">
+            <state line="17" column="44" selection-start="482" selection-end="482" vertical-scroll-proportion="0.034">
               <folding />
             </state>
           </provider>
@@ -192,18 +181,27 @@
       <file leaf-file-name="SQLGenerator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/SQLGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="39" selection-start="4676" selection-end="4676" vertical-scroll-proportion="0.62234044">
+            <state line="129" column="36" selection-start="4896" selection-end="4896" vertical-scroll-proportion="4.25">
               <folding>
-                <marker date="1209787448000" expanded="false" signature="37:181" placeholder="..." />
+                <marker date="1209800297922" expanded="false" signature="37:181" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DAOSupport.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DAOSupport.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/DAOSupport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="0" selection-start="815" selection-end="815" vertical-scroll-proportion="0.62234044">
+            <state line="114" column="7" selection-start="3303" selection-end="3303" vertical-scroll-proportion="0.442">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MappingColumn.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/annotation/MappingColumn.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="5" selection-start="692" selection-end="692" vertical-scroll-proportion="0.67054266">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -214,7 +212,7 @@
       <file leaf-file-name="ColumnEntry.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/ColumnEntry.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="21" selection-start="454" selection-end="454" vertical-scroll-proportion="0.29081634">
+            <state line="21" column="21" selection-start="454" selection-end="454" vertical-scroll-proportion="0.07751938">
               <folding />
             </state>
           </provider>
@@ -223,7 +221,7 @@
       <file leaf-file-name="Account.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/Account.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="231" column="34" selection-start="4609" selection-end="4609" vertical-scroll-proportion="1.1147959">
+            <state line="231" column="34" selection-start="4609" selection-end="4609" vertical-scroll-proportion="0.70348835">
               <folding>
                 <marker date="1209787448000" expanded="false" signature="251:399" placeholder="..." />
               </folding>
@@ -234,7 +232,7 @@
       <file leaf-file-name="AccountDAOImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/dao/AccountDAOImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="261" column="89" selection-start="11635" selection-end="11635" vertical-scroll-proportion="1.2101064">
+            <state line="254" column="5" selection-start="11207" selection-end="11207" vertical-scroll-proportion="0.456">
               <folding>
                 <marker date="1209787448000" expanded="false" signature="248:749" placeholder="..." />
               </folding>
@@ -245,7 +243,7 @@
       <file leaf-file-name="AccountDAOTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/dao/test/AccountDAOTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="71" selection-start="1627" selection-end="1627" vertical-scroll-proportion="0.3324468">
+            <state line="50" column="71" selection-start="1627" selection-end="1627" vertical-scroll-proportion="0.034">
               <folding>
                 <marker date="1209787448000" expanded="false" signature="253:632" placeholder="..." />
               </folding>
@@ -631,6 +629,36 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework\src\org\jfox\entity\cache" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework\src\org\jfox" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework\src\org\jfox\entity" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
           <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework\src\org\jfox\entity\annotation" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
@@ -658,7 +686,7 @@
       <showLibraryContents PackagesPane="true" />
       <hideEmptyPackages PackagesPane="true" ProjectPane="true" />
       <abbreviatePackageNames />
-      <showStructure PackagesPane="false" Scope="false" Favorites="false" ProjectPane="true" />
+      <showStructure ProjectPane="false" Scope="false" PackagesPane="false" Favorites="false" />
       <autoscrollToSource />
       <autoscrollFromSource ProjectPane="false" />
       <sortByType ProjectPane="true" />
@@ -666,8 +694,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="cvs_file_history_treeOrder2" value="2" />
-    <property name="cvs_file_history_treeOrder1" value="1" />
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_ejbtest" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir12492tmp" />
+    <property name="cvs_file_history_treeOrder1" value="1" />
     <property name="RunManagerConfig.showSettingsBeforeRunnig" value="false" />
     <property name="cvs_file_history_treeOrder3" value="3" />
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_forum" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir37833tmp" />
@@ -691,8 +719,8 @@
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_manager" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir43248tmp" />
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_framework/web/framework" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir45731tmp" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="TEMP_MODULE_EXPLODED_DIR_FOR_framework" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir58149tmp" />
     <property name="RunManagerConfig.compileBeforeRunning" value="true" />
+    <property name="TEMP_MODULE_EXPLODED_DIR_FOR_framework" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir58149tmp" />
     <property name="cvs_file_history_flatOrder2" value="2" />
     <property name="cvs_file_history_flatOrder3" value="3" />
     <property name="cvs_file_history_flatOrder0" value="0" />
@@ -743,28 +771,17 @@
         <option name="Make" value="true" />
       </method>
     </tempConfiguration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
       <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method>
-        <option name="Make" value="true" />
-      </method>
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG" enabled="false" merge="false">
       <module name="" />
@@ -827,6 +844,29 @@
       <option name="BASE_DIRECTORY_NAME" value="" />
       <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
     </configuration>
+    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -848,18 +888,6 @@
       <method>
         <option name="Make" value="true" />
       </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
     </configuration>
     <configuration default="false" name="CalculatorTestMain" type="Application" factoryName="Application" enabled="false" merge="false">
       <option name="MAIN_CLASS_NAME" value="jfox.test.ejb3.stateless.CalculatorTestMain" />
@@ -1485,7 +1513,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1032" height="776" extended-state="0" />
+    <frame x="25" y="40" width="974" height="702" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
@@ -1497,28 +1525,28 @@
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="21" />
       <window_info id="IDEtalk" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="22" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43797857" order="0" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31755725" order="2" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31755725" order="2" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32618684" order="10" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1911912" order="1" />
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.731" order="3" />
       <window_info id="Maven projects" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932934" order="9" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="0" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24524525" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31562167" order="0" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7905138" order="16" />
       <window_info id="Hierarchy" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3073073" order="5" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42827442" order="9" />
       <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2946565" order="5" x="100" y="162" width="634" height="300" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29432014" order="5" x="100" y="162" width="634" height="300" />
       <window_info id="Code Logic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72783506" order="14" x="22" y="39" width="776" height="476" />
       <window_info id="Clover" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="6" />
-      <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45322245" order="13" />
       <window_info id="Aspects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="2" />
+      <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45322245" order="13" />
       <window_info id="SQL Schema" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.74408287" order="19" />
       <window_info id="simpleUML" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4992343" order="12" />
       <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4327217" order="23" />
       <window_info id="File View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="1" />
-      <window_info id="App Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="11" />
       <window_info id="Sequence" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="17" />
+      <window_info id="App Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="11" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="8" />
       <window_info id="SQL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7914201" order="15" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
@@ -1640,13 +1668,6 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/EntityObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="179" column="0" selection-start="4022" selection-end="4396" vertical-scroll-proportion="0.028764805">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/RefInspectableEntityObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="65" selection-start="448" selection-end="448" vertical-scroll-proportion="0.028764805">
@@ -1682,50 +1703,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/dao/test/AccountDAOTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="71" selection-start="1627" selection-end="1627" vertical-scroll-proportion="0.3324468">
-          <folding>
-            <marker date="1209787448000" expanded="false" signature="253:632" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/NamedSQLTemplate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="44" selection-start="482" selection-end="482" vertical-scroll-proportion="0.045212764">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/ColumnEntry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="21" selection-start="454" selection-end="454" vertical-scroll-proportion="0.29081634">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/Account.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="231" column="34" selection-start="4609" selection-end="4609" vertical-scroll-proportion="1.1147959">
-          <folding>
-            <marker date="1209787448000" expanded="false" signature="251:399" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/dao/AccountDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="261" column="89" selection-start="11635" selection-end="11635" vertical-scroll-proportion="1.2101064">
-          <folding>
-            <marker date="1209787448000" expanded="false" signature="248:749" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/EntityFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="27" selection-start="2466" selection-end="2466" vertical-scroll-proportion="1.3271277">
+        <state line="63" column="27" selection-start="2466" selection-end="2466" vertical-scroll-proportion="0.032882012">
           <folding>
             <marker date="1209787448000" expanded="false" signature="250:669" placeholder="..." />
           </folding>
@@ -1734,7 +1714,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/SQLTemplate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="8" selection-start="1684" selection-end="1684" vertical-scroll-proportion="0.3324468">
+        <state line="53" column="8" selection-start="1684" selection-end="1684" vertical-scroll-proportion="0.034">
           <folding>
             <marker date="1209787448000" expanded="false" signature="242:437" placeholder="..." />
           </folding>
@@ -1743,25 +1723,73 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/AccountAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="231" column="33" selection-start="10145" selection-end="10145" vertical-scroll-proportion="0.045212764">
+        <state line="231" column="33" selection-start="10145" selection-end="10145" vertical-scroll-proportion="0.034">
           <folding>
             <marker date="1209787448000" expanded="false" signature="251:1281" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/NamedSQLTemplate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="44" selection-start="482" selection-end="482" vertical-scroll-proportion="0.034">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/ColumnEntry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="21" selection-start="454" selection-end="454" vertical-scroll-proportion="0.07751938">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/dao/test/AccountDAOTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="71" selection-start="1627" selection-end="1627" vertical-scroll-proportion="0.034">
+          <folding>
+            <marker date="1209787448000" expanded="false" signature="253:632" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/dao/AccountDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="254" column="5" selection-start="11207" selection-end="11207" vertical-scroll-proportion="0.456">
+          <folding>
+            <marker date="1209787448000" expanded="false" signature="248:749" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="231" column="34" selection-start="4609" selection-end="4609" vertical-scroll-proportion="0.70348835">
+          <folding>
+            <marker date="1209787448000" expanded="false" signature="251:399" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/SQLGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="39" selection-start="4676" selection-end="4676" vertical-scroll-proportion="0.62234044">
+        <state line="129" column="36" selection-start="4896" selection-end="4896" vertical-scroll-proportion="4.25">
           <folding>
-            <marker date="1209787448000" expanded="false" signature="37:181" placeholder="..." />
+            <marker date="1209800297922" expanded="false" signature="37:181" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/DAOSupport.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="815" selection-end="815" vertical-scroll-proportion="0.62234044">
+        <state line="114" column="7" selection-start="3303" selection-end="3303" vertical-scroll-proportion="0.442">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/annotation/MappingColumn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="5" selection-start="692" selection-end="692" vertical-scroll-proportion="0.67054266">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
