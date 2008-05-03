@@ -30,36 +30,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\org\jfox\entity\annotation\EntityHelper.java" afterPath="" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/controller/ParseParameterControllerInvocationHandler.java" />
-      <change type="MOVED" beforePath="D:\workspace\jfox3\framework\src\org\jfox\entity\EntityFactory.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/EntityFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/entity/dao/SQLGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/entity/SQLQuery.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/entity/SQLQuery.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/entity/dao/DAOSupport.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/entity/dao/DAOSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/Account.java" afterPath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/Account.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/manager/manager.iml" afterPath="$PROJECT_DIR$/MODULES/manager/manager.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/OrderAction.java" afterPath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/OrderAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/controller/FileUploadControllerInvocationHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/entity/mapping" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/ColumnEntry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/ejb3/EJBInvocationHandler.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/ejb3/EJBInvocationHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.ipr" afterPath="$PROJECT_DIR$/jfox3.ipr" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/dao/AccountDAOImpl.java" afterPath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/dao/AccountDAOImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ControllerException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/TestClient.java" afterPath="$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/TestClient.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/controller/ControllerInvocationHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionNotFoundException.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionNotFoundException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/dao/test/AccountDAOTest.java" afterPath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/dao/test/AccountDAOTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/ControllerServlet.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/ControllerServlet.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/controller/ExecuteActionControllerInvocationHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/petstore/petstore.iml" afterPath="$PROJECT_DIR$/MODULES/petstore/petstore.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/controller" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/framework.iml" afterPath="$PROJECT_DIR$/framework/framework.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/entity/SQLTemplate.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/entity/SQLTemplate.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/MappingColumnEntry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/AccountAction.java" afterPath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/AccountAction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/ccmis/ccmis.iml" afterPath="$PROJECT_DIR$/MODULES/ccmis/ccmis.iml" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
@@ -179,7 +150,7 @@
       <file leaf-file-name="EntityFactory.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/EntityFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="27" selection-start="2466" selection-end="2466" vertical-scroll-proportion="0.8443316">
+            <state line="63" column="27" selection-start="2466" selection-end="2466" vertical-scroll-proportion="1.3271277">
               <folding>
                 <marker date="1209787448000" expanded="false" signature="250:669" placeholder="..." />
               </folding>
@@ -190,7 +161,7 @@
       <file leaf-file-name="SQLTemplate.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/SQLTemplate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="8" selection-start="1684" selection-end="1684" vertical-scroll-proportion="0.21150592">
+            <state line="53" column="8" selection-start="1684" selection-end="1684" vertical-scroll-proportion="0.3324468">
               <folding>
                 <marker date="1209787448000" expanded="false" signature="242:437" placeholder="..." />
               </folding>
@@ -201,7 +172,7 @@
       <file leaf-file-name="AccountAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/AccountAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="231" column="33" selection-start="10145" selection-end="10145" vertical-scroll-proportion="0.028764805">
+            <state line="231" column="33" selection-start="10145" selection-end="10145" vertical-scroll-proportion="0.045212764">
               <folding>
                 <marker date="1209787448000" expanded="false" signature="251:1281" placeholder="..." />
               </folding>
@@ -212,7 +183,7 @@
       <file leaf-file-name="NamedSQLTemplate.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/NamedSQLTemplate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="44" selection-start="482" selection-end="482" vertical-scroll-proportion="0.028764805">
+            <state line="17" column="44" selection-start="482" selection-end="482" vertical-scroll-proportion="0.045212764">
               <folding />
             </state>
           </provider>
@@ -221,7 +192,7 @@
       <file leaf-file-name="SQLGenerator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/SQLGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="39" selection-start="4676" selection-end="4676" vertical-scroll-proportion="0.39593908">
+            <state line="122" column="39" selection-start="4676" selection-end="4676" vertical-scroll-proportion="0.62234044">
               <folding>
                 <marker date="1209787448000" expanded="false" signature="37:181" placeholder="..." />
               </folding>
@@ -232,7 +203,7 @@
       <file leaf-file-name="DAOSupport.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/DAOSupport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="0" selection-start="815" selection-end="815" vertical-scroll-proportion="0.39593908">
+            <state line="28" column="0" selection-start="815" selection-end="815" vertical-scroll-proportion="0.62234044">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -243,7 +214,7 @@
       <file leaf-file-name="ColumnEntry.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/ColumnEntry.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="21" selection-start="454" selection-end="454" vertical-scroll-proportion="0.1878089">
+            <state line="21" column="21" selection-start="454" selection-end="454" vertical-scroll-proportion="0.29081634">
               <folding />
             </state>
           </provider>
@@ -252,7 +223,7 @@
       <file leaf-file-name="Account.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/Account.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="231" column="34" selection-start="4609" selection-end="4609" vertical-scroll-proportion="0.7199341">
+            <state line="231" column="34" selection-start="4609" selection-end="4609" vertical-scroll-proportion="1.1147959">
               <folding>
                 <marker date="1209787448000" expanded="false" signature="251:399" placeholder="..." />
               </folding>
@@ -263,7 +234,7 @@
       <file leaf-file-name="AccountDAOImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/dao/AccountDAOImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="261" column="89" selection-start="11635" selection-end="11635" vertical-scroll-proportion="0.76988155">
+            <state line="261" column="89" selection-start="11635" selection-end="11635" vertical-scroll-proportion="1.2101064">
               <folding>
                 <marker date="1209787448000" expanded="false" signature="248:749" placeholder="..." />
               </folding>
@@ -274,7 +245,7 @@
       <file leaf-file-name="AccountDAOTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/dao/test/AccountDAOTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="71" selection-start="1627" selection-end="1627" vertical-scroll-proportion="0.21150592">
+            <state line="50" column="71" selection-start="1627" selection-end="1627" vertical-scroll-proportion="0.3324468">
               <folding>
                 <marker date="1209787448000" expanded="false" signature="253:632" placeholder="..." />
               </folding>
@@ -1526,7 +1497,7 @@
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="21" />
       <window_info id="IDEtalk" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="22" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43797857" order="0" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31755725" order="2" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31755725" order="2" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32618684" order="10" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1911912" order="1" />
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.731" order="3" />
@@ -1713,7 +1684,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/dao/test/AccountDAOTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="71" selection-start="1627" selection-end="1627" vertical-scroll-proportion="0.21150592">
+        <state line="50" column="71" selection-start="1627" selection-end="1627" vertical-scroll-proportion="0.3324468">
           <folding>
             <marker date="1209787448000" expanded="false" signature="253:632" placeholder="..." />
           </folding>
@@ -1722,21 +1693,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/NamedSQLTemplate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="44" selection-start="482" selection-end="482" vertical-scroll-proportion="0.028764805">
+        <state line="17" column="44" selection-start="482" selection-end="482" vertical-scroll-proportion="0.045212764">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/ColumnEntry.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="21" selection-start="454" selection-end="454" vertical-scroll-proportion="0.1878089">
+        <state line="21" column="21" selection-start="454" selection-end="454" vertical-scroll-proportion="0.29081634">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/Account.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="231" column="34" selection-start="4609" selection-end="4609" vertical-scroll-proportion="0.7199341">
+        <state line="231" column="34" selection-start="4609" selection-end="4609" vertical-scroll-proportion="1.1147959">
           <folding>
             <marker date="1209787448000" expanded="false" signature="251:399" placeholder="..." />
           </folding>
@@ -1745,7 +1716,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/dao/AccountDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="261" column="89" selection-start="11635" selection-end="11635" vertical-scroll-proportion="0.76988155">
+        <state line="261" column="89" selection-start="11635" selection-end="11635" vertical-scroll-proportion="1.2101064">
           <folding>
             <marker date="1209787448000" expanded="false" signature="248:749" placeholder="..." />
           </folding>
@@ -1754,7 +1725,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/EntityFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="27" selection-start="2466" selection-end="2466" vertical-scroll-proportion="0.8443316">
+        <state line="63" column="27" selection-start="2466" selection-end="2466" vertical-scroll-proportion="1.3271277">
           <folding>
             <marker date="1209787448000" expanded="false" signature="250:669" placeholder="..." />
           </folding>
@@ -1763,7 +1734,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/SQLTemplate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="8" selection-start="1684" selection-end="1684" vertical-scroll-proportion="0.21150592">
+        <state line="53" column="8" selection-start="1684" selection-end="1684" vertical-scroll-proportion="0.3324468">
           <folding>
             <marker date="1209787448000" expanded="false" signature="242:437" placeholder="..." />
           </folding>
@@ -1772,7 +1743,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/AccountAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="231" column="33" selection-start="10145" selection-end="10145" vertical-scroll-proportion="0.028764805">
+        <state line="231" column="33" selection-start="10145" selection-end="10145" vertical-scroll-proportion="0.045212764">
           <folding>
             <marker date="1209787448000" expanded="false" signature="251:1281" placeholder="..." />
           </folding>
@@ -1781,7 +1752,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/SQLGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="39" selection-start="4676" selection-end="4676" vertical-scroll-proportion="0.39593908">
+        <state line="122" column="39" selection-start="4676" selection-end="4676" vertical-scroll-proportion="0.62234044">
           <folding>
             <marker date="1209787448000" expanded="false" signature="37:181" placeholder="..." />
           </folding>
@@ -1790,7 +1761,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/DAOSupport.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="815" selection-end="815" vertical-scroll-proportion="0.39593908">
+        <state line="28" column="0" selection-start="815" selection-end="815" vertical-scroll-proportion="0.62234044">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
