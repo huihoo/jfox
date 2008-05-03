@@ -6,12 +6,14 @@
  */
 package org.jfox.mvc;
 
+import org.jfox.framework.BaseRuntimeException;
+
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class ActionNotFoundException extends ActionException {
+public class ControllerException extends BaseRuntimeException {
 
-    public ActionNotFoundException(String message) {
+    public ControllerException(String message) {
         super(message);
     }
 

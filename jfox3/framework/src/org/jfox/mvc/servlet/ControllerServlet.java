@@ -6,19 +6,6 @@
  */
 package org.jfox.mvc.servlet;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.RequestContext;
@@ -29,6 +16,22 @@ import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.FileUploaded;
 import org.jfox.mvc.WebContextLoader;
 import org.jfox.mvc.annotation.ActionMethod;
+import org.jfox.mvc.controller.ControllerInvocationHandler;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 控制器Servlet，所有的Servlet请求，均由该Servlet负责分发
@@ -56,6 +59,10 @@ public class ControllerServlet extends HttpServlet {
     static String ACTION_SUFFIX = ".do";
     static String VIEW_DIR = "views";
     static int MAX_UPLOAD_FILE_SIZE = 5 * 1000 * 1000;
+
+    // controller invocation chain
+    //TODO: add invocationHandlerChain
+    private static final List<ControllerInvocationHandler> controllerInvocationHandlerChain = new ArrayList<ControllerInvocationHandler>(5);
 
     public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
@@ -97,6 +104,9 @@ public class ControllerServlet extends HttpServlet {
         if (pathInfo.endsWith(ACTION_SUFFIX)) {
             // action
             forwardAction(request, response);
+            Iterator<ControllerInvocationHandler> chain = controllerInvocationHandlerChain.iterator();
+//            chain.next().invoke(actionContext, chain);
+//            controllerInvocationHandlerChain.iterator().next().invoke(actionContext, controllerInvocationHandlerChain);
         }
         else {
             // static page or template

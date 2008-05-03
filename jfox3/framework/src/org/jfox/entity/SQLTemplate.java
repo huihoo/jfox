@@ -6,9 +6,12 @@
  */
 package org.jfox.entity;
 
-import java.util.Collection;
-
 import org.apache.log4j.Logger;
+import org.jfox.entity.mapping.ColumnEntry;
+import org.jfox.entity.mapping.EntityFactory;
+import org.jfox.entity.mapping.MappingColumnEntry;
+
+import java.util.Collection;
 
 /**
  * 通过 createQuery 调用创建的 SQLTemplate，没有名称
@@ -48,20 +51,20 @@ public class SQLTemplate {
     }
 
     public Class<?> getColumnClass(String columnName){
-        EntityFactory.ColumnEntry columnEntry = EntityFactory.getColumnEntry(getResultClass(), columnName);
+        ColumnEntry columnEntry = EntityFactory.getColumnEntry(getResultClass(), columnName);
         if(columnEntry == null) {
             return null;
         }
         else {
-            return columnEntry.field.getType();
+            return columnEntry.getField().getType();
         }
     }
 
     /**
      * 得到所有的 ColumnEntry
      */
-    public Collection<EntityFactory.MappedColumnEntry> getMappedColumnEntries(){
-        return EntityFactory.getMappedColumnEntries(getResultClass());
+    public Collection<MappingColumnEntry> getMappedColumnEntries(){
+        return EntityFactory.getMappingColumnEntries(getResultClass());
     }
 
 

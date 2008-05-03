@@ -6,13 +6,13 @@
  */
 package org.jfox.entity.dao;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.persistence.EntityManager;
-
-import org.jfox.entity.EntityFactory;
 import org.jfox.entity.MappedEntity;
 import org.jfox.entity.QueryExt;
+import org.jfox.entity.mapping.EntityFactory;
+
+import javax.persistence.EntityManager;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * DAOSupport，封装了 DAO 的基本操作
@@ -26,7 +26,6 @@ import org.jfox.entity.QueryExt;
  * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
 public abstract class DAOSupport implements DataAccessObject {
-
 
     /**
      * 返回 EntityManager，由子类使用 @PersistenceContext 注入
@@ -75,6 +74,51 @@ public abstract class DAOSupport implements DataAccessObject {
      */
     public QueryExt createNativeQuery(String sql, Class<?> resultClass) {
         return (QueryExt)getEntityManager().createNativeQuery(sql, resultClass);
+    }
+
+    /**
+     * 自动增加记录的 Query
+     * @param entityClass entity class
+     * @return QueryExt
+     */
+    public QueryExt buildDefaultCreateQuery(Class entityClass) {
+        return createNativeQuery(SQLGenerator.buildCreateSQL(entityClass), entityClass);
+    }
+
+    /**
+     * 自动生成 Delete Query
+     * @param entityClass
+     * @return QueryExt
+     */
+    public QueryExt buildDefaultDeleteQuery(Class entityClass) {
+        return createNativeQuery(SQLGenerator.buildDeleteSQL(entityClass), entityClass);
+    }
+
+    /**
+     * 自动生成 Update Query
+     * @param entityClass
+     * @return QueryExt
+     */
+    public QueryExt buildDefaultUpdateQuery(Class entityClass) {
+        return createNativeQuery(SQLGenerator.buildUpdateSQL(entityClass), entityClass);
+    }
+
+    /**
+     * 自动生成 Select all Query by id
+     * @param entityClass
+     * @return QueryExt
+     */
+    public QueryExt buildDefaultSelectByIdQuery(Class entityClass) {
+        return createNativeQuery(SQLGenerator.buildSeleteSQLById(entityClass), entityClass);
+    }
+
+    /**
+     * 自动生成 Select all Query by specic column
+     * @param entityClass
+     * @return QueryExt
+     */
+    public QueryExt buildDefaultSelectByColumnQuery(Class entityClass, String... columns) {
+        return createNativeQuery(SQLGenerator.buildSeleteSQLByColumn(entityClass, columns), entityClass);
     }
 
     /**

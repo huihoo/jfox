@@ -4,21 +4,22 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.entity;
+package org.jfox.entity.mapping;
 
+import org.jfox.entity.MappedEntity;
+import org.jfox.entity.annotation.MappingColumn;
+import org.jfox.util.AnnotationUtils;
+import org.jfox.util.ClassUtils;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.PersistenceException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.persistence.Column;
-import javax.persistence.PersistenceException;
-
-import org.jfox.entity.annotation.MappingColumn;
-import org.jfox.entity.annotation.ParameterMap;
-import org.jfox.util.AnnotationUtils;
-import org.jfox.util.ClassUtils;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -30,7 +31,11 @@ public class EntityFactory {
      */
     protected static Map<Class<?>, Map<String, ColumnEntry>> resultClass2ColumnsMap = new HashMap<Class<?>, Map<String, ColumnEntry>>();
 
-    static void introspectResultClass(Class<?> resultClass) {
+    public static void introspectResultClass(Class<?> resultClass) {
+        if (resultClass2ColumnsMap.containsKey(resultClass)) {
+            return;
+        }
+
         if (ClassUtils.isPrimitiveClass(resultClass)) {
             return;
         }
@@ -44,10 +49,6 @@ public class EntityFactory {
         if (resultClass.isInterface()) {
             throw new PersistenceException("Not supported result class: " + resultClass.getName() + ", only support primitive class, MappedEntity, and @Entity Class.");
         }
-
-        if (resultClass2ColumnsMap.containsKey(resultClass)) {
-            return;
-        }
         Map<String, ColumnEntry> columnMap = new HashMap<String, ColumnEntry>();
         Field[] columnFields = AnnotationUtils.getAnnotatedFields(resultClass, Column.class);
         for (Field columnField : columnFields) {
@@ -58,20 +59,24 @@ public class EntityFactory {
             if (columnName.equals("")) {
                 columnName = columnField.getName().toUpperCase();
             }
-            columnEntry.name = columnName;
-            columnEntry.field = columnField;
+            columnEntry.setName(columnName);
+            columnEntry.setField(columnField);
+            // is PK Column
+            if(columnField.isAnnotationPresent(Id.class)) {
+                columnEntry.setPK(true);
+            }
             columnMap.put(column.name(), columnEntry);
         }
 
         Field[] mappingColumnFields = AnnotationUtils.getAnnotatedFields(resultClass, MappingColumn.class);
         for (Field mappingColumnField : mappingColumnFields) {
             MappingColumn mappingColumn = mappingColumnField.getAnnotation(MappingColumn.class);
-            MappedColumnEntry mcEntry = new MappedColumnEntry();
-            mcEntry.name = mappingColumnField.getName().toUpperCase();
-            mcEntry.namedQuery = mappingColumn.namedQuery();
-            mcEntry.field = mappingColumnField;
-            mcEntry.params = mappingColumn.params();
-            columnMap.put(mcEntry.name, mcEntry);
+            MappingColumnEntry mcEntry = new MappingColumnEntry();
+            mcEntry.setName(mappingColumnField.getName().toUpperCase());
+            mcEntry.setNamedQuery(mappingColumn.namedQuery());
+            mcEntry.setField(mappingColumnField);
+            mcEntry.setParams(mappingColumn.params());
+            columnMap.put(mcEntry.getName(), mcEntry);
         }
 
         resultClass2ColumnsMap.put(resultClass, columnMap);
@@ -93,7 +98,7 @@ public class EntityFactory {
                     String columnName = entry.getKey();
                     ColumnEntry columnEntry = getColumnEntry(resultClass, columnName);
                     if (columnEntry != null) {
-                        columnEntry.field.set(entity, entry.getValue());
+                        columnEntry.getField().set(entity, entry.getValue());
                     }
                 }
                 return entity;
@@ -104,8 +109,12 @@ public class EntityFactory {
         }
     }
 
-    public static void appendMappedColumn(Object entity, Map<String, Object> mappedColumnResultMap) {
-        // 添加MapColumn到EntityObject
+    /**
+     * 添加MapColumn到EntityObject
+     * @param entity
+     * @param mappedColumnResultMap
+     */
+    public static void appendMappingColumn(Object entity, Map<String, Object> mappedColumnResultMap) {
         if (entity.getClass().equals(MappedEntity.class)) {
             for (Map.Entry<String, Object> entry : mappedColumnResultMap.entrySet()) {
                 ((MappedEntity)entity).setColumnValue(entry.getKey(), entry.getValue());
@@ -117,8 +126,8 @@ public class EntityFactory {
                     String columnName = entry.getKey();
                     ColumnEntry columnEntry = getColumnEntry(entity.getClass(), columnName);
                     if (columnEntry != null) {
-                        columnEntry.field.setAccessible(true);
-                        columnEntry.field.set(entity, entry.getValue());
+                        columnEntry.getField().setAccessible(true);
+                        columnEntry.getField().set(entity, entry.getValue());
                     }
                 }
             }
@@ -128,33 +137,44 @@ public class EntityFactory {
         }
     }
 
-
-    public static Collection<MappedColumnEntry> getMappedColumnEntries(Class<?> resultClass) {
-        List<MappedColumnEntry> mappedColumnEntries = new ArrayList<MappedColumnEntry>();
+    public static Collection<MappingColumnEntry> getMappingColumnEntries(Class<?> resultClass) {
+        List<MappingColumnEntry> mappingColumnEntries = new ArrayList<MappingColumnEntry>();
         Map<String, ColumnEntry> entries = resultClass2ColumnsMap.get(resultClass);
         if (entries != null && !entries.isEmpty()) {
-            for (EntityFactory.ColumnEntry entry : resultClass2ColumnsMap.get(resultClass).values()) {
-                if (entry instanceof EntityFactory.MappedColumnEntry) {
-                    mappedColumnEntries.add((EntityFactory.MappedColumnEntry)entry);
+            for (ColumnEntry entry : resultClass2ColumnsMap.get(resultClass).values()) {
+                if (entry instanceof MappingColumnEntry) {
+                    mappingColumnEntries.add((MappingColumnEntry)entry);
                 }
             }
         }
-        return mappedColumnEntries;
+        return mappingColumnEntries;
+    }
+
+    public static Collection<ColumnEntry> getNonMappedColumnEntries(Class<?> resultClass) {
+        List<ColumnEntry> nonMappedColumnEntries = new ArrayList<ColumnEntry>();
+        Map<String, ColumnEntry> entries = resultClass2ColumnsMap.get(resultClass);
+        if (entries != null && !entries.isEmpty()) {
+            for (ColumnEntry entry : resultClass2ColumnsMap.get(resultClass).values()) {
+                if (!(entry instanceof MappingColumnEntry)) {
+                    nonMappedColumnEntries.add(entry);
+                }
+            }
+        }
+        return nonMappedColumnEntries;
     }
 
     public static ColumnEntry getColumnEntry(Class<?> resultClass, String columnName) {
         return resultClass2ColumnsMap.get(resultClass).get(columnName);
     }
 
-    // @Column
-    public static class ColumnEntry {
-        String name;
-        Field field;
-    }
-
-    // @MappedColumn
-    public static class MappedColumnEntry extends ColumnEntry {
-        String namedQuery;
-        ParameterMap[] params;
+    public static ColumnEntry getPKColumnEntry(Class<?> resultClass){
+        Map<String, ColumnEntry> entries = resultClass2ColumnsMap.get(resultClass);
+        for(Map.Entry<String, ColumnEntry> entry : entries.entrySet()){
+            ColumnEntry columnEntry = entry.getValue();
+            if(columnEntry.isPK()) {
+                return columnEntry;
+            }
+        }
+        return null;
     }
 }

@@ -6,8 +6,11 @@
  */
 package org.jfox.petstore.dao;
 
-import java.sql.SQLException;
-import java.util.List;
+import org.jfox.entity.EntityManagerExt;
+import org.jfox.entity.dao.DAOSupport;
+import org.jfox.entity.dao.SQLGenerator;
+import org.jfox.petstore.entity.Account;
+
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,10 +19,8 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.QueryHint;
-
-import org.jfox.entity.EntityManagerExt;
-import org.jfox.entity.dao.DAOSupport;
-import org.jfox.petstore.entity.Account;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -251,6 +252,14 @@ public class AccountDAOImpl extends DAOSupport implements AccountDAO {
         createNamedNativeQuery(UPDATE_ACCOUNT).setParameter("account", account).executeUpdate();
         createNamedNativeQuery(UPDATE_PROFILE).setParameter("account", account).executeUpdate();
         createNamedNativeQuery(UPDATE_SIGNON).setParameter("username", account.getUsername()).setParameter("password",account.getPassword()).executeUpdate();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(SQLGenerator.buildCreateSQL(Account.class));
+        System.out.println(SQLGenerator.buildDeleteSQL(Account.class));
+        System.out.println(SQLGenerator.buildUpdateSQL(Account.class));
+        System.out.println(SQLGenerator.buildSeleteSQLById(Account.class));
+        System.out.println(SQLGenerator.buildSeleteSQLByColumn(Account.class, "ID", "NAME"));
     }
 
 }

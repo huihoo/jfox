@@ -4,6 +4,7 @@
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="false" />
+        <setting name="provider-name" value="" />
         <datasource-mapping>
           <factory-entry name="DefaultHsqlDS" />
           <factory-entry name="JPetstoreMysqlDS" />
@@ -21,11 +22,6 @@
         <webroots>
           <root url="file://$MODULE_DIR$/wwwroot" relative="/" />
         </webroots>
-        <sourceRoots>
-          <root url="file://$MODULE_DIR$/conf" />
-          <root url="file://$MODULE_DIR$/src" />
-          <root url="file://$MODULE_DIR$/test-src" />
-        </sourceRoots>
         <building>
           <setting name="EXPLODED_URL" value="file://$MODULE_DIR$/../exploded/" />
           <setting name="EXPLODED_ENABLED" value="true" />
@@ -78,92 +74,92 @@
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/activation.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/activation.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/activation.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/FastInfoset.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/FastInfoset.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/FastInfoset.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/http.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/http.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/http.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/jaxb-api.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxb-api.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxb-api.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/jaxb-impl.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxb-impl.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxb-impl.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/jaxb-xjc.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxb-xjc.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxb-xjc.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/jaxws-api.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxws-api.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxws-api.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/jaxws-rt.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxws-rt.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxws-rt.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/jaxws-tools.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxws-tools.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jaxws-tools.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/jsr173_api.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jsr173_api.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jsr173_api.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/jsr181-api.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jsr181-api.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jsr181-api.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/jsr250-api.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jsr250-api.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/jsr250-api.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/resolver.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/resolver.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/resolver.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/saaj-api.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/saaj-api.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/saaj-api.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/saaj-impl.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/saaj-impl.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/saaj-impl.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/sjsxp.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/sjsxp.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/sjsxp.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/stax-ex.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/stax-ex.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/stax-ex.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/streambuffer.jar" />
-      <url>jar://C:/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/streambuffer.jar!/</url>
+      <url>jar://$TEMPLATE$/Documents and Settings/Administrator/Desktop/jaxws-ri/lib/streambuffer.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="0" />

@@ -6,6 +6,20 @@
  */
 package org.jfox.entity;
 
+import org.apache.log4j.Logger;
+import org.apache.velocity.app.event.EventHandler;
+import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
+import org.jfox.entity.annotation.ParameterMap;
+import org.jfox.entity.cache.Cache;
+import org.jfox.entity.cache.CacheConfig;
+import org.jfox.entity.mapping.EntityFactory;
+import org.jfox.entity.mapping.MappingColumnEntry;
+import org.jfox.util.ClassUtils;
+import org.jfox.util.VelocityUtils;
+
+import javax.persistence.Entity;
+import javax.persistence.PersistenceException;
+import javax.persistence.Query;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,18 +39,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.persistence.Entity;
-import javax.persistence.PersistenceException;
-import javax.persistence.Query;
-
-import org.apache.log4j.Logger;
-import org.apache.velocity.app.event.EventHandler;
-import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
-import org.jfox.entity.annotation.ParameterMap;
-import org.jfox.entity.cache.Cache;
-import org.jfox.entity.cache.CacheConfig;
-import org.jfox.util.ClassUtils;
-import org.jfox.util.VelocityUtils;
 
 /**
  * 负责根据根据 SQLTemplate 构造 PreparedStatement，并执行，返回 ResultClass
@@ -369,9 +371,9 @@ public class SQLQuery extends QueryExt {
 
         // deal with MappedColumn
         final Map<String, Object> mappedColumnResultMap = new HashMap<String, Object>();
-        boolean isMappedColumnSet = false;
-        for (EntityFactory.MappedColumnEntry mappedColEntry : sqlTemplate.getMappedColumnEntries()) {
-            ParameterMap[] params = mappedColEntry.params;
+        boolean isMappingColumnSet = false;
+        for (MappingColumnEntry mappingColEntry : sqlTemplate.getMappedColumnEntries()) {
+            ParameterMap[] params = mappingColEntry.getParams();
             final List<Object> parameterResult = new ArrayList<Object>();
 
             final Map<String, Object> velocityMap = new HashMap<String, Object>();
@@ -399,25 +401,25 @@ public class SQLQuery extends QueryExt {
 
             // MappedColumn 需要的参数都已经赋值，没有赋值的话说明该次查询也不需要 MappedColumn 的值
             if (mappedColumnSetFlag.get(EVALUATE_KEY)) {
-                isMappedColumnSet = true;
-                QueryExt mappedColumnQuery = em.createNamedQuery(mappedColEntry.namedQuery);
+                isMappingColumnSet = true;
+                QueryExt mappedColumnQuery = em.createNamedQuery(mappingColEntry.getNamedQuery());
                 for (int i = 0; i < params.length; i++) {
                     mappedColumnQuery.setParameter(params[i].name(), parameterResult.get(i));
                 }
 
-                if (mappedColEntry.field.getType().isArray()) { // array
-                    mappedColumnResultMap.put(mappedColEntry.name, mappedColumnQuery.getResultList().toArray());
+                if (mappingColEntry.getField().getType().isArray()) { // array
+                    mappedColumnResultMap.put(mappingColEntry.getName(), mappedColumnQuery.getResultList().toArray());
                 }
-                else if (Collection.class.isAssignableFrom(mappedColEntry.field.getType())) { // Collection
-                    mappedColumnResultMap.put(mappedColEntry.name, mappedColumnQuery.getResultList());
+                else if (Collection.class.isAssignableFrom(mappingColEntry.getField().getType())) { // Collection
+                    mappedColumnResultMap.put(mappingColEntry.getName(), mappedColumnQuery.getResultList());
                 }
                 else { // single
-                    mappedColumnResultMap.put(mappedColEntry.name, mappedColumnQuery.getSingleResult());
+                    mappedColumnResultMap.put(mappingColEntry.getName(), mappedColumnQuery.getSingleResult());
                 }
             }
         }
-        if (isMappedColumnSet) {
-            EntityFactory.appendMappedColumn(dataObject, mappedColumnResultMap);
+        if (isMappingColumnSet) {
+            EntityFactory.appendMappingColumn(dataObject, mappedColumnResultMap);
         }
         return dataObject;
     }

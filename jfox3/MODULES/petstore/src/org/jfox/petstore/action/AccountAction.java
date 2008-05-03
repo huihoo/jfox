@@ -6,18 +6,10 @@
  */
 package org.jfox.petstore.action;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import javax.ejb.EJB;
-import javax.security.auth.callback.Callback;
-import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.callback.UnsupportedCallbackException;
-
 import org.jfox.ejb3.security.JAASLoginRequestCallback;
 import org.jfox.ejb3.security.JAASLoginResponseCallback;
 import org.jfox.ejb3.security.JAASLoginService;
-import org.jfox.entity.EntityFactory;
+import org.jfox.entity.mapping.EntityFactory;
 import org.jfox.framework.annotation.Inject;
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionContext;
@@ -32,6 +24,14 @@ import org.jfox.petstore.bo.AccountBO;
 import org.jfox.petstore.bo.CategoryBO;
 import org.jfox.petstore.entity.Account;
 import org.jfox.petstore.entity.Category;
+
+import javax.ejb.EJB;
+import javax.security.auth.callback.Callback;
+import javax.security.auth.callback.CallbackHandler;
+import javax.security.auth.callback.UnsupportedCallbackException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

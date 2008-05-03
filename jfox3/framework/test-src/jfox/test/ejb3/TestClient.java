@@ -6,8 +6,21 @@
  */
 package jfox.test.ejb3;
 
-import java.util.Arrays;
-import java.util.Map;
+import jfox.test.ejb3.entity.Order;
+import jfox.test.ejb3.lob.Lobber;
+import org.jfox.ejb3.naming.JNDIContextHelper;
+import org.jfox.ejb3.security.JAASLoginServiceImpl;
+import org.jfox.ejb3.security.SampleCallbackHandler;
+import org.jfox.entity.mapping.EntityFactory;
+import org.jfox.framework.Framework;
+import org.jfox.mvc.SessionContext;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import javax.ejb.EJBAccessException;
 import javax.ejb.EJBException;
 import javax.ejb.EJBObject;
@@ -23,21 +36,8 @@ import javax.jms.TopicConnectionFactory;
 import javax.jms.TopicPublisher;
 import javax.jms.TopicSession;
 import javax.naming.Context;
-
-import jfox.test.ejb3.entity.Order;
-import jfox.test.ejb3.lob.Lobber;
-import org.jfox.ejb3.naming.JNDIContextHelper;
-import org.jfox.ejb3.security.JAASLoginServiceImpl;
-import org.jfox.ejb3.security.SampleCallbackHandler;
-import org.jfox.entity.EntityFactory;
-import org.jfox.framework.Framework;
-import org.jfox.mvc.SessionContext;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import java.util.Arrays;
+import java.util.Map;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

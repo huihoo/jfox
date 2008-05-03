@@ -6,11 +6,6 @@
  */
 package org.jfox.petstore.dao.test;
 
-import java.util.Arrays;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-
 import org.jfox.entity.EntityManagerExt;
 import org.jfox.entity.dao.DAOSupport;
 import org.jfox.petstore.dao.AccountDAO;
@@ -18,6 +13,11 @@ import org.jfox.petstore.dao.AccountDAOImpl;
 import org.jfox.petstore.entity.Account;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -48,7 +48,7 @@ public class AccountDAOTest {
     public void testGetAccountByUsername() throws Exception {
         Account account = accountDAO.getAccount("j2ee");
         System.out.println("Account: " + account);
-        System.out.println("bannerOptions:  " + Account.AccountHelper.isBannerOption(account));
+        System.out.println("bannerOptions:  " + account.isBannerOption());
     }
 
     @Test

@@ -6,13 +6,8 @@
  */
 package org.jfox.petstore.action;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.ejb.EJB;
-
-import org.jfox.entity.EntityFactory;
 import org.jfox.entity.dao.PKGenerator;
+import org.jfox.entity.mapping.EntityFactory;
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
@@ -27,6 +22,11 @@ import org.jfox.petstore.domain.CartItem;
 import org.jfox.petstore.entity.Account;
 import org.jfox.petstore.entity.LineItem;
 import org.jfox.petstore.entity.Order;
+
+import javax.ejb.EJB;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

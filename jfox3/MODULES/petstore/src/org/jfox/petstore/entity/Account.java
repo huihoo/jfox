@@ -6,68 +6,74 @@
  */
 package org.jfox.petstore.entity;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Entity
+@Table(name = "ACCOUNT")
 public class Account implements Serializable, Cloneable {
 
-    @Column(name="userid") // signon.username
+    @Column(name = "userid")
+    // signon.username
+    @Id
     String username;
 
-    @Column(name = "password") // signon.password
-    String password;
+    @Column(name = "password")
+    // signon.password
+            String password;
 
-    @Column(name="email")
+    @Column(name = "email")
     String email;
 
-    @Column(name="firstname")
+    @Column(name = "firstname")
     String firstName;
 
-    @Column(name="lastname")
+    @Column(name = "lastname")
     String lastName;
 
-    @Column(name="status")
+    @Column(name = "status")
     String status;
 
-    @Column(name="addr1")
+    @Column(name = "addr1")
     String address1;
 
-    @Column(name="addr2")
+    @Column(name = "addr2")
     String address2;
 
-    @Column(name="city")
+    @Column(name = "city")
     String city;
 
-    @Column(name="state")
+    @Column(name = "state")
     String state;
 
-    @Column(name="zip")
+    @Column(name = "zip")
     String zip;
 
-    @Column(name="country")
+    @Column(name = "country")
     String country;
 
-    @Column(name="phone")
+    @Column(name = "phone")
     String phone;
 
-    @Column(name="favcategory")
+    @Column(name = "favcategory")
     String favouriteCategoryId;
 
-    @Column(name="langpref")
+    @Column(name = "langpref")
     String languagePreference;
 
-    @Column(name="mylistopt")
+    @Column(name = "mylistopt")
     int listOption;
 
-    @Column(name="banneropt")
+    @Column(name = "banneropt")
     int bannerOption;
 
-    @Column(name="bannername")    
+    @Column(name = "bannername")
     String bannerName;
 
 
@@ -219,14 +225,11 @@ public class Account implements Serializable, Cloneable {
         return super.clone();
     }
 
-    public static class AccountHelper {
-        public static boolean isListOption(Account account) {
-            return account.getListOption() == 1 ? true : false;
-        }
-
-        public static boolean isBannerOption(Account account) {
-            return account.getBannerOption() == 1 ? true : false;
-        }
+    public boolean isListOption() {
+        return getListOption() == 1 ? true : false;
     }
 
+    public boolean isBannerOption() {
+        return getBannerOption() == 1 ? true : false;
+    }
 }
