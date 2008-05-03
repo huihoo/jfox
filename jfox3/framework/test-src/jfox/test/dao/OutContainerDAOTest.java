@@ -106,7 +106,14 @@ public class OutContainerDAOTest {
         query.setParameter("ACCOUNT", account);
         int r = query.executeUpdate();
         Assert.assertEquals(r, 1);
-
     }
 
+    @Test
+    public void testGeneratedSelectAccount() throws Exception {
+        Query  query = accountDAO.createAutoSelectByIdNativeQuery(Account.class);
+        query.setParameter("ACC_ID", 8);
+        Object o = query.getSingleResult();
+        System.out.println(o);
+        Assert.assertNotNull(o);
+    }
 }
