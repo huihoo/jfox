@@ -22,4 +22,42 @@ public interface DataAccessObject {
     QueryExt createNativeQuery(String sql);
 
     QueryExt createNativeQuery(String sql, Class<?> resultClass);
+
+    /**
+     * 自动增加记录的 Query
+     * @param entityClass entity class
+     * @return QueryExt
+     */
+    public QueryExt createAutoInsertNativeQuery(Class entityClass);
+
+    /**
+     * 自动生成 Delete Query
+     * @param entityClass
+     * @return QueryExt
+     */
+    public QueryExt createAutoDeleteByIdNativeQuery(Class entityClass);
+
+    public QueryExt createAutoDeleteByColumnNativeQuery(Class entityClass, String... columns);
+
+    /**
+     * 自动生成 Update Query
+     * @param entityClass
+     * @return QueryExt
+     */
+    public QueryExt createAutoUpdateNativeQuery(Class entityClass);
+
+    /**
+     * 自动生成 Select all Query by id
+     * @param entityClass
+     * @return QueryExt
+     */
+    public QueryExt createAutoSelectByIdNativeQuery(Class entityClass);
+
+    /**
+     * 自动生成 Select all Query by specic column
+     * @param entityClass
+     * @return QueryExt
+     */
+    public QueryExt createAutoSelectByColumnNativeQuery(Class entityClass, String... columns);
+
 }

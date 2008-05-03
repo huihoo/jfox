@@ -81,8 +81,8 @@ public abstract class DAOSupport implements DataAccessObject {
      * @param entityClass entity class
      * @return QueryExt
      */
-    public QueryExt buildDefaultCreateQuery(Class entityClass) {
-        return createNativeQuery(SQLGenerator.buildCreateSQL(entityClass), entityClass);
+    public QueryExt createAutoInsertNativeQuery(Class entityClass) {
+        return createNativeQuery(SQLGenerator.buildInsertSQL(entityClass), entityClass);
     }
 
     /**
@@ -90,8 +90,12 @@ public abstract class DAOSupport implements DataAccessObject {
      * @param entityClass
      * @return QueryExt
      */
-    public QueryExt buildDefaultDeleteQuery(Class entityClass) {
-        return createNativeQuery(SQLGenerator.buildDeleteSQL(entityClass), entityClass);
+    public QueryExt createAutoDeleteByIdNativeQuery(Class entityClass) {
+        return createNativeQuery(SQLGenerator.buildDeleteByIdSQL(entityClass), entityClass);
+    }
+
+    public QueryExt createAutoDeleteByColumnNativeQuery(Class entityClass, String... columns) {
+        return createNativeQuery(SQLGenerator.buildDeleteByColumnSQL(entityClass, columns), entityClass);
     }
 
     /**
@@ -99,7 +103,7 @@ public abstract class DAOSupport implements DataAccessObject {
      * @param entityClass
      * @return QueryExt
      */
-    public QueryExt buildDefaultUpdateQuery(Class entityClass) {
+    public QueryExt createAutoUpdateNativeQuery(Class entityClass) {
         return createNativeQuery(SQLGenerator.buildUpdateSQL(entityClass), entityClass);
     }
 
@@ -108,7 +112,7 @@ public abstract class DAOSupport implements DataAccessObject {
      * @param entityClass
      * @return QueryExt
      */
-    public QueryExt buildDefaultSelectByIdQuery(Class entityClass) {
+    public QueryExt createAutoSelectByIdNativeQuery(Class entityClass) {
         return createNativeQuery(SQLGenerator.buildSeleteSQLById(entityClass), entityClass);
     }
 
@@ -117,7 +121,7 @@ public abstract class DAOSupport implements DataAccessObject {
      * @param entityClass
      * @return QueryExt
      */
-    public QueryExt buildDefaultSelectByColumnQuery(Class entityClass, String... columns) {
+    public QueryExt createAutoSelectByColumnNativeQuery(Class entityClass, String... columns) {
         return createNativeQuery(SQLGenerator.buildSeleteSQLByColumn(entityClass, columns), entityClass);
     }
 

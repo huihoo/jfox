@@ -19,7 +19,7 @@ public class SQLGenerator {
      * @param entityClass
      * @return sql velocity template
      */
-    public static String buildCreateSQL(Class<?> entityClass){
+    public static String buildInsertSQL(Class<?> entityClass){
         EntityFactory.introspectResultClass(entityClass);
         String tableName = getTableName(entityClass);
         StringBuffer sql = new StringBuffer("INSERT INTO ").append(tableName).append(" (");
@@ -47,7 +47,7 @@ public class SQLGenerator {
      * @param entityClass
      * @return sql velocity template
      */
-    public static String buildDeleteSQL(Class<?> entityClass){
+    public static String buildDeleteByIdSQL(Class<?> entityClass){
         EntityFactory.introspectResultClass(entityClass);
         String tableName = getTableName(entityClass);
         StringBuffer sql = new StringBuffer("DELETE FROM ").append(tableName).append(" WHERE ");
@@ -58,6 +58,22 @@ public class SQLGenerator {
         }
         sql.append(pkColumnName).append(" = ").append("$").append(pkColumnName);
         return sql.toString();
+    }
+
+public static String buildDeleteByColumnSQL(Class entityClass, String... columns) {
+        EntityFactory.introspectResultClass(entityClass);
+        String tableName = getTableName(entityClass);
+        StringBuffer sql = new StringBuffer("DELETE FROM ").append(tableName).append(" WHERE ");
+        int colIndex = 0;
+        for(String column : columns) {
+            if(colIndex > 0) {
+                sql.append(" AND ");
+            }
+            sql.append(column.toUpperCase()).append(" = $").append(column.toUpperCase());
+            colIndex++;
+        }
+        return sql.toString();
+        
     }
 
     public static String buildUpdateSQL(Class<?> entityClass){
@@ -73,17 +89,19 @@ public class SQLGenerator {
                 if(colIndex > 0) {
                     sql.append(", ");
                 }
-                sql.append(colName.toUpperCase()).append( " = $").append(colName.toUpperCase());
+                sql.append(colName.toUpperCase()).append( " = $").append(tableName).append(".").append(entry.getField().getName());
                 colIndex++;
             }
         }
 
-        String pkColumnName = "ID"; // default use ID column as PK
+        String pkColumnName = "ID";
+        String pkColumnFieldName = "id"; // default use ID column as PK
         ColumnEntry pkColumnEntry = EntityFactory.getPKColumnEntry(entityClass);
         if(pkColumnEntry != null) {
-            pkColumnName = pkColumnEntry.getName().toUpperCase();
+            pkColumnName = pkColumnEntry.getName();
+            pkColumnFieldName = pkColumnEntry.getField().getName();
         }
-        sql.append(" WHERE ").append(pkColumnName).append(" = ").append("$").append(pkColumnName);
+        sql.append(" WHERE ").append(pkColumnName.toUpperCase()).append(" = ").append("$").append(tableName).append(".").append(pkColumnFieldName);
         return sql.toString();
     }
 

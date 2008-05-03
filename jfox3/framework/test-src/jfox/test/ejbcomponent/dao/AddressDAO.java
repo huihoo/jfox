@@ -6,15 +6,15 @@
  */
 package jfox.test.ejbcomponent.dao;
 
-import javax.ejb.Stateless;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.PersistenceContext;
-import javax.persistence.EntityManager;
-
-import org.jfox.entity.dao.DAOSupport;
-import org.jfox.entity.EntityManagerExt;
 import jfox.test.jpa.Address;
+import org.jfox.entity.EntityManagerExt;
+import org.jfox.entity.dao.DAOSupport;
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.PersistenceContext;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -37,7 +37,7 @@ public class AddressDAO extends DAOSupport {
 
     public static final String GET_ADDRESS_BY_ACCOUNT_ID = "AddressDAO.getAddressByAccountId";
 
-    @PersistenceContext(unitName = "JPetstoreMysqlDS")
+    @PersistenceContext(unitName = "DefaultMysqlDS")
     EntityManager em;
 
     protected EntityManager getEntityManager() {

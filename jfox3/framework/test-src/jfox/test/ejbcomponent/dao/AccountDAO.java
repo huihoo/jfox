@@ -6,16 +6,17 @@
  */
 package jfox.test.ejbcomponent.dao;
 
+import jfox.test.jpa.Account;
+import org.jfox.entity.MappedEntity;
+import org.jfox.entity.dao.DataAccessObject;
+
 import java.sql.SQLException;
 import java.util.List;
-
-import org.jfox.entity.MappedEntity;
-import jfox.test.jpa.Account;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public interface AccountDAO {
+public interface AccountDAO extends DataAccessObject {
 
     Account getAccountById(long id) throws SQLException;
 

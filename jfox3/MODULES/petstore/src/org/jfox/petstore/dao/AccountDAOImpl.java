@@ -8,7 +8,6 @@ package org.jfox.petstore.dao;
 
 import org.jfox.entity.EntityManagerExt;
 import org.jfox.entity.dao.DAOSupport;
-import org.jfox.entity.dao.SQLGenerator;
 import org.jfox.petstore.entity.Account;
 
 import javax.ejb.Local;
@@ -253,13 +252,4 @@ public class AccountDAOImpl extends DAOSupport implements AccountDAO {
         createNamedNativeQuery(UPDATE_PROFILE).setParameter("account", account).executeUpdate();
         createNamedNativeQuery(UPDATE_SIGNON).setParameter("username", account.getUsername()).setParameter("password",account.getPassword()).executeUpdate();
     }
-
-    public static void main(String[] args) {
-        System.out.println(SQLGenerator.buildCreateSQL(Account.class));
-        System.out.println(SQLGenerator.buildDeleteSQL(Account.class));
-        System.out.println(SQLGenerator.buildUpdateSQL(Account.class));
-        System.out.println(SQLGenerator.buildSeleteSQLById(Account.class));
-        System.out.println(SQLGenerator.buildSeleteSQLByColumn(Account.class, "ID", "NAME"));
-    }
-
 }

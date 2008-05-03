@@ -8,12 +8,13 @@ package jfox.test.jpa;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Entity
-public class Address {
+public class Address implements Serializable{
     
     @Column(name="ADR_ID")
     long id;
