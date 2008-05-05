@@ -6,14 +6,6 @@
  */
 package org.jfox.webservice.xfire;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import javax.jws.WebService;
-import javax.xml.namespace.QName;
-
 import org.apache.log4j.Logger;
 import org.codehaus.xfire.MessageContext;
 import org.codehaus.xfire.XFire;
@@ -42,7 +34,15 @@ import org.jfox.framework.component.ComponentUnregistration;
 import org.jfox.framework.event.ComponentEvent;
 import org.jfox.framework.event.ComponentListener;
 import org.jfox.mvc.SessionContext;
-import org.jfox.webservice.WSContainer;
+import org.jfox.webservice.WebServiceContainer;
+
+import javax.jws.WebService;
+import javax.xml.namespace.QName;
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 使用 XFire 实现 Web Service
@@ -50,9 +50,9 @@ import org.jfox.webservice.WSContainer;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(priority = Integer.MIN_VALUE)
-public class JFoxXFireDelegate  implements WSContainer, Invoker, ComponentInitialization, ActiveComponent, ComponentUnregistration, ComponentListener {
+public class JFoxXFireWebServiceContainer implements WebServiceContainer, Invoker, ComponentInitialization, ActiveComponent, ComponentUnregistration, ComponentListener {
 
-    private static final Logger logger = Logger.getLogger(JFoxXFireDelegate.class);
+    private static final Logger logger = Logger.getLogger(JFoxXFireWebServiceContainer.class);
 
     @Inject
     EJBContainer ejbContainer;
@@ -67,26 +67,20 @@ public class JFoxXFireDelegate  implements WSContainer, Invoker, ComponentInitia
      */
     private EJBServiceFactory factory;
 
-    public static JFoxXFireDelegate xFireDelegate = null;
-
     /**
      * EJB Endpoint interface => ejb name
      * 以便 webservice 调用 ejb 的时候，能够根据 interface 找到 ejb
      */
     private Map<String, String> endpointInterface2EJBNameMap = new HashMap<String, String>();
 
-    public static XFire getXFireInstance() {
-        if (xFireDelegate == null) {
-            throw new NullPointerException("XFire is not initialized!");
-        }
-        return xFireDelegate.xfire;
+    public Object getWebServiceEngine(){
+        return xfire;
     }
 
     public void postContruct(ComponentContext componentContext) {
         xfire = XFireFactory.newInstance().getXFire();
         //是否可以考虑直接使用 XFire 的 JAXAWSServiceFactory
         factory = new EJBServiceFactory(xfire.getTransportManager());
-        xFireDelegate = this;
     }
 
     public void postInject() {

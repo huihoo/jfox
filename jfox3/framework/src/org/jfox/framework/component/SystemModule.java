@@ -6,13 +6,13 @@
  */
 package org.jfox.framework.component;
 
-import java.net.URL;
-import java.net.URLClassLoader;
-
 import org.jfox.ejb3.EJBContainer;
 import org.jfox.entity.EntityManagerFactoryBuilder;
 import org.jfox.framework.Framework;
-import org.jfox.webservice.WSContainer;
+import org.jfox.webservice.WebServiceContainer;
+
+import java.net.URL;
+import java.net.URLClassLoader;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -71,7 +71,7 @@ public class SystemModule extends Module {
         // instantiate JPA container
         findComponentByInterface(EntityManagerFactoryBuilder.class);
         // instantiate Web Service container
-        findComponentByInterface(WSContainer.class);
+        findComponentByInterface(WebServiceContainer.class);
 
     }
 

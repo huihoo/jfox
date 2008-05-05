@@ -6,8 +6,8 @@
  */
 package org.jfox.webservice;
 
-import org.jfox.framework.component.Component;
 import org.jfox.framework.component.ActiveComponent;
+import org.jfox.framework.component.Component;
 import org.jfox.framework.component.SingletonComponent;
 
 /**
@@ -15,6 +15,11 @@ import org.jfox.framework.component.SingletonComponent;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public interface WSContainer extends Component, ActiveComponent, SingletonComponent {
+public interface WebServiceContainer extends Component, ActiveComponent, SingletonComponent {
+
+    /**
+     * 获得Web Server 实现
+     */
+    public Object getWebServiceEngine();
 
 }
