@@ -305,7 +305,7 @@
     2. MVC 支持 chain，可以通过增加 ChainInvoker 的方式来完善功能，比如：URL解析，文件上传处理
     3. 考虑支持JDK内置的JMX，方便进行管理
     4. 增加 Hessian 支持，以提供 EJB 的远程访问 (也可以支持Java Serializable 或者 JBoss remoting)
-    5. 考虑实现JMS远程访问，并以回调二次确认方式实现事务(可以先考虑以客户端拉的方式来实现，这样不需要添加新的Connector，类似于Web Gtalk)
+    5. 考虑实现JMS远程访问，并以回调二次确认方式实现事务(可以先考虑以客户端拉的方式来实现，这样不需要添加新的Connector，类似于Web Gtalk，以客户端new Thread后，PULL实现异步)
     6. 完善文档中的集群部分
     7. 改变思路，EJB容器已经不讨好，是不是改叫 EJB Application Platform 更合适呢？
     8. 以 maven 建立项目
