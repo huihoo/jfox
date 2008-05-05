@@ -8,7 +8,6 @@ package org.jfox.webservice.xfire;
 
 import org.apache.log4j.Logger;
 import org.codehaus.xfire.MessageContext;
-import org.codehaus.xfire.XFire;
 import org.codehaus.xfire.XFireFactory;
 import org.codehaus.xfire.annotations.AnnotationException;
 import org.codehaus.xfire.annotations.AnnotationServiceFactory;
@@ -24,6 +23,7 @@ import org.jfox.ejb3.EJBObjectId;
 import org.jfox.ejb3.StatelessBucket;
 import org.jfox.ejb3.event.EJBLoadedComponentEvent;
 import org.jfox.ejb3.event.EJBUnloadedComponentEvent;
+import org.jfox.ejb3.remote.ContainerInvoker;
 import org.jfox.ejb3.security.SecurityContext;
 import org.jfox.framework.annotation.Inject;
 import org.jfox.framework.annotation.Service;
@@ -31,10 +31,10 @@ import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.ComponentInitialization;
 import org.jfox.framework.component.ComponentUnregistration;
+import org.jfox.framework.component.SingletonComponent;
 import org.jfox.framework.event.ComponentEvent;
 import org.jfox.framework.event.ComponentListener;
 import org.jfox.mvc.SessionContext;
-import org.jfox.webservice.WebServiceContainer;
 
 import javax.jws.WebService;
 import javax.xml.namespace.QName;
@@ -50,17 +50,14 @@ import java.util.Map;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Service(priority = Integer.MIN_VALUE)
-public class JFoxXFireWebServiceContainer implements WebServiceContainer, Invoker, ComponentInitialization, ActiveComponent, ComponentUnregistration, ComponentListener {
+public class XFireContainerInvoker implements ContainerInvoker, Invoker, ComponentInitialization, ActiveComponent, SingletonComponent, ComponentUnregistration, ComponentListener {
 
-    private static final Logger logger = Logger.getLogger(JFoxXFireWebServiceContainer.class);
+    private static final Logger logger = Logger.getLogger(XFireContainerInvoker.class);
+
+    public final static XFireFactory xFireFactory = XFireFactory.newInstance();
 
     @Inject
     EJBContainer ejbContainer;
-
-    /**
-     * XFire instance
-     */
-    private XFire xfire;
 
     /**
      * EJB XFire Service Factory
@@ -73,14 +70,9 @@ public class JFoxXFireWebServiceContainer implements WebServiceContainer, Invoke
      */
     private Map<String, String> endpointInterface2EJBNameMap = new HashMap<String, String>();
 
-    public Object getWebServiceEngine(){
-        return xfire;
-    }
-
     public void postContruct(ComponentContext componentContext) {
-        xfire = XFireFactory.newInstance().getXFire();
         //是否可以考虑直接使用 XFire 的 JAXAWSServiceFactory
-        factory = new EJBServiceFactory(xfire.getTransportManager());
+        factory = new EJBServiceFactory(xFireFactory.getXFire().getTransportManager());
     }
 
     public void postInject() {
@@ -107,11 +99,11 @@ public class JFoxXFireWebServiceContainer implements WebServiceContainer, Invoke
                     // create xfire service by stateless bucket
                     org.codehaus.xfire.service.Service service = factory.create((StatelessBucket)ejbBucket);
                     service.setInvoker(this);
-                    if(xfire.getServiceRegistry().hasService(service.getSimpleName()) || xfire.getServiceRegistry().hasService(service.getName())) {
+                    if(xFireFactory.getXFire().getServiceRegistry().hasService(service.getSimpleName()) || xFireFactory.getXFire().getServiceRegistry().hasService(service.getName())) {
                         logger.warn("Web Service with QName " + service.getName() + " has already beean registered!");
                         return;
                     }
-                    xfire.getServiceRegistry().register(service);
+                    xFireFactory.getXFire().getServiceRegistry().register(service);
                     logger.info("Web Service with QName " + service.getName() + "  registered successfully!");
                 }
             }
@@ -146,7 +138,7 @@ public class JFoxXFireWebServiceContainer implements WebServiceContainer, Invoke
         String ejbName = getEJBNameByWebServiceEndpointInterface(messageContext.getService().getServiceInfo().getServiceClass());
         try {
             // stateless, 直接用 ejb name 做 ejb id
-            return ejbContainer.invokeEJB(new EJBObjectId(ejbName), method, params, sessionContext);
+            return invokeEJB(new EJBObjectId(ejbName), method, params, sessionContext);
         }
         catch (Exception e) {
             return new XFireFault(e);
@@ -157,6 +149,9 @@ public class JFoxXFireWebServiceContainer implements WebServiceContainer, Invoke
         return endpointInterface2EJBNameMap.get(endpointInterface.getName());
     }
 
+    public Object invokeEJB(EJBObjectId ejbObjectId, Method method, Object[] params, SessionContext sessionContext) throws Exception {
+        return ejbContainer.invokeEJB(ejbObjectId, method, params, sessionContext);
+    }
 
     /**
      * EJB Service Factory
