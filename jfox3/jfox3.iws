@@ -30,14 +30,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/TODO.txt" afterPath="$PROJECT_DIR$/framework/TODO.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/webservice/xfire/JFoxXFireServlet.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/webservice/xfire/JFoxXFireServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/SystemModule.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/SystemModule.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/ejb3/remote/ContainerInvoker.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/ejb3/remote/ContainerInvoker.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/webservice/hessian/HessianContainerInvoker.java" />
-      <change type="MOVED" beforePath="D:\workspace\jfox3\framework\src\org\jfox\webservice\xfire\JFoxXFireWebServiceContainer.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/webservice/xfire/XFireContainerInvoker.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/webservice/hessian/JFoxHessianServlet.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/webservice/hessian" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\org\jfox\webservice\WebServiceContainer.java" afterPath="" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -171,10 +166,28 @@
       <file leaf-file-name="XFireContainerInvoker.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/webservice/xfire/XFireContainerInvoker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="0" selection-start="1973" selection-end="1973" vertical-scroll-proportion="0.33275262">
+            <state line="159" column="0" selection-start="6570" selection-end="6570" vertical-scroll-proportion="2.9163764">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InterceptorsEJBInvocationHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/invocation/InterceptorsEJBInvocationHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="13" selection-start="723" selection-end="723" vertical-scroll-proportion="0.31881532">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TODO.txt" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/framework/TODO.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="321" column="22" selection-start="10651" selection-end="10651" vertical-scroll-proportion="0.9407666">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -188,30 +201,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EJBContainer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/EJBContainer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="0" selection-start="2471" selection-end="2471" vertical-scroll-proportion="0.77700347">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimpleEJB3Container.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/SimpleEJB3Container.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="312" column="24" selection-start="11809" selection-end="11809" vertical-scroll-proportion="0.33275262">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ContainerInvoker.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/remote/ContainerInvoker.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="19" column="68" selection-start="554" selection-end="554" vertical-scroll-proportion="0.5034843">
               <folding>
-                <element signature="imports" expanded="true" />
+                <marker date="1209999166000" expanded="true" signature="108:313" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -244,7 +239,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HessianContainerInvoker.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="HessianContainerInvoker.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/webservice/hessian/HessianContainerInvoker.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="12" column="29" selection-start="325" selection-end="325" vertical-scroll-proportion="0.3554007">
@@ -748,11 +743,11 @@
       <recent name="org.jfox.mvc.validate" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.jfox.ejb3" />
       <recent name="org.jfox.entity.mapping" />
       <recent name="jfox.platform.logging.dao" />
       <recent name="jfox.platform.logging.entity" />
       <recent name="org.jfox.webservice" />
-      <recent name="org.jfox.entity" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.jfox3-startup">
@@ -1577,7 +1572,7 @@
     <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善 XFire" />
+    <option name="LAST_COMMIT_MESSAGE" value="建立 HessianContainerInvoker，和XFire一起，统一实现 ContainerInvoker接口" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -1588,7 +1583,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="1. Session 存放了当前登录用户，一遍 setLastModified setCreator&#10;2. 判断 entity.isReferenced&#10;3. 处理 AJAX 异常" />
     <MESSAGE value="修正了 ID 不正确的问题" />
     <MESSAGE value="修正 ComponentInvocation" />
     <MESSAGE value="Validator" />
@@ -1613,6 +1607,7 @@
     <MESSAGE value=" SQLGenerator" />
     <MESSAGE value="SQLGenerator tested" />
     <MESSAGE value="完善 XFire" />
+    <MESSAGE value="建立 HessianContainerInvoker，和XFire一起，统一实现 ContainerInvoker接口" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -1671,20 +1666,6 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/common/HomeAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="5" selection-start="569" selection-end="569" vertical-scroll-proportion="0.29094076">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/ccmis/src/jfox/platform/infrastructure/SuperAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="14" selection-start="3742" selection-end="3742" vertical-scroll-proportion="0.15505226">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/webservice/WebServiceHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="13" selection-start="524" selection-end="524" vertical-scroll-proportion="0.2369338">
@@ -1715,14 +1696,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/EJBContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="0" selection-start="2471" selection-end="2471" vertical-scroll-proportion="0.77700347">
+        <state line="94" column="0" selection-start="2471" selection-end="2471" vertical-scroll-proportion="1.798387">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/SimpleEJB3Container.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="312" column="24" selection-start="11809" selection-end="11809" vertical-scroll-proportion="0.33275262">
+        <state line="312" column="24" selection-start="11809" selection-end="11809" vertical-scroll-proportion="0.7701613">
           <folding />
         </state>
       </provider>
@@ -1731,15 +1712,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="73" column="42" selection-start="2191" selection-end="2191" vertical-scroll-proportion="0.6149826">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/webservice/xfire/XFireContainerInvoker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="0" selection-start="1973" selection-end="1973" vertical-scroll-proportion="0.33275262">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1761,7 +1733,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="68" selection-start="554" selection-end="554" vertical-scroll-proportion="0.5034843">
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1209999166000" expanded="true" signature="108:313" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1788,6 +1760,29 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/webservice/xfire/XFireContainerInvoker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="159" column="0" selection-start="6570" selection-end="6570" vertical-scroll-proportion="2.9163764">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/invocation/InterceptorsEJBInvocationHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="13" selection-start="723" selection-end="723" vertical-scroll-proportion="0.31881532">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/TODO.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="321" column="22" selection-start="10651" selection-end="10651" vertical-scroll-proportion="0.9407666">
+          <folding />
         </state>
       </provider>
     </entry>
