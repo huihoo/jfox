@@ -553,6 +553,7 @@
         <root url="jar://$PROJECT_DIR$/framework/lib/velocity-dep-1.5.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/jtds-1.2.2.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib/mysql-connector-java-5.1.6-bin.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib/hessian-3.1.5.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
@@ -564,6 +565,7 @@
         <root url="jar://$PROJECT_DIR$/framework/lib-source/commons-pool-1.3-src.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib-source/xfire-distribution-1.2.6-sources.jar!/" />
         <root url="jar://$PROJECT_DIR$/framework/lib-source/velocity-1.5-src.jar!/" />
+        <root url="jar://$PROJECT_DIR$/framework/lib-source/hessian-3.1.5-src.jar!/" />
       </SOURCES>
     </library>
     <library name="jfox">
