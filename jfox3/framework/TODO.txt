@@ -322,4 +322,4 @@
     2.写一篇关于 EJB3.1 的博客
 
 2008-05-07
-    1.使用URL sessionId 让WebService保存状态，参考 HttpServletRequest.isRequestedSessionIdFromURL 
+    1.使用URL sessionId 让WebService保存状态，调用WebServer时自动加上_sessionId，参考 HttpServletRequest.isRequestedSessionIdFromURL 

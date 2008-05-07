@@ -32,8 +32,6 @@
     <list default="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/TODO.txt" afterPath="$PROJECT_DIR$/framework/TODO.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/webservice/xfire/JFoxXFireServlet.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/webservice/xfire/JFoxXFireServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/webservice/hessian/JFoxHessianServlet.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/webservice/hessian/JFoxHessianServlet.java" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -205,7 +203,7 @@
       <file leaf-file-name="TODO.txt" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/framework/TODO.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="324" column="87" selection-start="10776" selection-end="10776" vertical-scroll-proportion="0.89759034">
+            <state line="324" column="54" selection-start="10743" selection-end="10743" vertical-scroll-proportion="0.89759034">
               <folding />
             </state>
           </provider>
@@ -1600,7 +1598,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/TODO.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="324" column="87" selection-start="10776" selection-end="10776" vertical-scroll-proportion="0.89759034">
+        <state line="324" column="54" selection-start="10743" selection-end="10743" vertical-scroll-proportion="0.89759034">
           <folding />
         </state>
       </provider>
