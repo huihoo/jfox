@@ -320,3 +320,6 @@
 2008-05-05
     1.给 User Guide 增加 Q＆A
     2.写一篇关于 EJB3.1 的博客
+
+2008-05-07
+    1.使用URL sessionId 让WebService保存状态，参考 HttpServletRequest.isRequestedSessionIdFromURL 

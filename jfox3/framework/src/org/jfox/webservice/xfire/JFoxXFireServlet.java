@@ -18,6 +18,8 @@ import javax.servlet.ServletException;
  */
 public class JFoxXFireServlet extends XFireServlet {
 
+    //TODO: 获取 Session，并传递给 EJBContainer.invoke
+
     public XFire createXFire() throws ServletException {
         return XFireContainerInvoker.xFireFactory.getXFire();
     }
