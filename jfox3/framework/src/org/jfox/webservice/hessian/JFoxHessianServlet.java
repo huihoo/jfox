@@ -22,6 +22,11 @@ import java.io.OutputStream;
  */
 public class JFoxHessianServlet extends HttpServlet {
 
+    /**
+     * can init by web.xml init-param
+     */
+    private boolean compressed = false;
+
     public void init(ServletConfig config) throws ServletException {
         super.init(config);    //To change body of overridden methods use File | Settings | File Templates.
 
