@@ -324,3 +324,6 @@
 2008-05-07
     1.使用URL sessionId 让WebService保存状态，调用WebServer时自动加上_sessionId，参考 HttpServletRequest.isRequestedSessionIdFromURL
     2.完善 History
+
+2008-05-14
+    1.直接将下降文件放到 svn 中，并给出链接下载
