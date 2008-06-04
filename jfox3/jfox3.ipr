@@ -287,8 +287,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MODULES/Test/Test.iml" filepath="$PROJECT_DIR$/MODULES/Test/Test.iml" />
       <module fileurl="file://$PROJECT_DIR$/MODULES/Test2/Test2.iml" filepath="$PROJECT_DIR$/MODULES/Test2/Test2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MODULES/ccmis/ccmis.iml" filepath="$PROJECT_DIR$/MODULES/ccmis/ccmis.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework.iml" filepath="$PROJECT_DIR$/framework/framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" filepath="$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" />
       <module fileurl="file://$PROJECT_DIR$/MODULES/manager/manager.iml" filepath="$PROJECT_DIR$/MODULES/manager/manager.iml" />
       <module fileurl="file://$PROJECT_DIR$/MODULES/petstore/petstore.iml" filepath="$PROJECT_DIR$/MODULES/petstore/petstore.iml" />
     </modules>
