@@ -6,13 +6,13 @@
  */
 package org.jfox.mvc;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * 调用上下文，封装调用过程中的所有资源
@@ -58,7 +58,7 @@ public class ActionContext {
     /**
      * 使用 ThreadLocal 将 InvocationContext 和当前线程进行关联
      */
-    static transient ThreadLocal<ActionContext> threadInvocationContext = new ThreadLocal<ActionContext>();
+    static transient ThreadLocal<ActionContext> threadActionContext = new ThreadLocal<ActionContext>();
     
 
     public ActionContext(ServletConfig servletConfig, HttpServletRequest request, Map<String, String[]> parameterMap, Map<String, FileUploaded> fileUploadedMap, String actionName, String actionMethodName) {
@@ -74,17 +74,17 @@ public class ActionContext {
     /**
      * 得到当前线程绑定的 InvocationContext
      */
-    public static ActionContext getCurrentThreadInvocationContext(){
-        return threadInvocationContext.get();
+    public static ActionContext getCurrentThreadActionContext(){
+        return threadActionContext.get();
     }
 
-    public void initInvocationContext(){
+    void initThreadActionContext(){
         this.sessionContext = initSessionContext();
-        threadInvocationContext.set(this);
+        threadActionContext.set(this);
     }
 
-    public void disassociateThreadInvocationContext(){
-        threadInvocationContext.remove();
+    public void disassociateThreadActionContext(){
+        threadActionContext.remove();
     }
 
     /**
