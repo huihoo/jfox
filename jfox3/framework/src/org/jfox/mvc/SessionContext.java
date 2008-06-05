@@ -6,11 +6,11 @@
  */
 package org.jfox.mvc;
 
+import org.jfox.ejb3.security.SecurityContext;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.jfox.ejb3.security.SecurityContext;
 
 /**
  * Session 上下文，用来存放 Session 数据
@@ -32,7 +32,7 @@ public class SessionContext implements Serializable {
     }
 
     public static SessionContext getCurrentThreadSessionContext(){
-        ActionContext actionContext = ActionContext.getCurrentThreadInvocationContext();
+        ActionContext actionContext = ActionContext.getCurrentThreadActionContext();
         if(actionContext != null) {
             return actionContext.getSessionContext();
         }
