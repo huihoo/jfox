@@ -6,13 +6,15 @@
  */
 package org.jfox.ejb3.dependent;
 
+import org.jfox.ejb3.EJBBucket;
+import org.jfox.framework.dependent.Dependence;
+import org.jfox.framework.dependent.InjectionException;
+
 import javax.annotation.Resource;
 
-import org.jfox.ejb3.EJBBucket;
-import org.jfox.framework.dependent.InjectionException;
-import org.jfox.framework.dependent.Dependence;
-
 /**
+ * Class level Resource Dependence
+ *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class ResourceDependence implements Dependence {
@@ -24,7 +26,6 @@ public class ResourceDependence implements Dependence {
         this.bucket = bucket;
         this.resource = resource;
     }
-
 
     public EJBBucket getBucket() {
         return bucket;
