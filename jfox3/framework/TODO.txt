@@ -336,3 +336,6 @@
 
 2008-06-05
     1.Invocation改名为ParameterObject
+
+2008-06-09
+    1.解决 Petstore My Orders 的问题
