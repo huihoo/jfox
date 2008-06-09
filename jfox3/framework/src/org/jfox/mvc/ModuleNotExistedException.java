@@ -1,4 +1,8 @@
 /*
+ * Copyright (c) 2007, Your Corporation. All Rights Reserved.
+ */
+
+/*
  * JFox - The most lightweight Java EE Application Server!
  * more details please visit http://www.huihoo.org/jfox or http://www.jfox.org.cn.
  *
@@ -6,13 +10,15 @@
  */
 package org.jfox.mvc;
 
+import org.jfox.framework.BaseRuntimeException;
+
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class ActionNotFoundException extends ActionException {
+public class ModuleNotExistedException extends BaseRuntimeException {
 
-    public ActionNotFoundException(String moduleName, String actionName) {
-        super("Action name: " + actionName + ", Module name: " + moduleName);
+    public ModuleNotExistedException(String message) {
+        super(message);
     }
 
     public static void main(String[] args) {

@@ -6,21 +6,6 @@
  */
 package org.jfox.mvc.velocity;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
@@ -32,11 +17,25 @@ import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.io.VelocityWriter;
 import org.apache.velocity.runtime.RuntimeSingleton;
 import org.apache.velocity.util.SimplePool;
-import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.Render;
 import org.jfox.mvc.WebContextLoader;
 import org.jfox.mvc.servlet.ControllerServlet;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * Velocity Render
@@ -371,8 +370,7 @@ public class VelocityRender implements Render {
      * @param response http response
      */
     protected Context createVelocityContext(HttpServletRequest request, HttpServletResponse response) {
-        ActionContext actionContext = (ActionContext)request.getAttribute(ControllerServlet.INVOCATION_CONTEXT);
-        PageContext pageContext = actionContext.getPageContext();
+        PageContext pageContext = (PageContext)request.getAttribute(ControllerServlet.PAGE_CONTEXT);
         VelocityContext velocityContext = new VelocityContext(pageContext.getResultMap());
         // 使用相对路径
         ec.attachToContext(velocityContext);

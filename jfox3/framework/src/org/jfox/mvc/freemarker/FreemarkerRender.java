@@ -6,25 +6,24 @@
  */
 package org.jfox.mvc.freemarker;
 
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
+import org.apache.log4j.Logger;
+import org.jfox.mvc.PageContext;
+import org.jfox.mvc.Render;
+import org.jfox.mvc.WebContextLoader;
+import org.jfox.mvc.servlet.ControllerServlet;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import freemarker.template.Configuration;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
-import org.apache.log4j.Logger;
-import org.jfox.mvc.ActionContext;
-import org.jfox.mvc.PageContext;
-import org.jfox.mvc.Render;
-import org.jfox.mvc.WebContextLoader;
-import org.jfox.mvc.servlet.ControllerServlet;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -89,8 +88,7 @@ public class FreemarkerRender implements Render {
      * @param response http response
      */
     protected Map createFreemarkerContext(HttpServletRequest request, HttpServletResponse response) {
-        ActionContext actionContext = (ActionContext)request.getAttribute(ControllerServlet.INVOCATION_CONTEXT);
-        PageContext pageContext = actionContext.getPageContext();
+        PageContext pageContext = (PageContext)request.getAttribute(ControllerServlet.PAGE_CONTEXT);
         Map<String, Object> freemarkerMap = new HashMap<String, Object>(pageContext.getResultMap());
         return freemarkerMap;
     }

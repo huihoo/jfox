@@ -6,6 +6,8 @@
  */
 package org.jfox.mvc;
 
+import org.jfox.mvc.annotation.ActionMethod;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -21,17 +23,14 @@ import java.util.Map;
  */
 public class ActionContext {
 
+    private String moduleName;
+
     private String actionName;
 
     /**
      * ActionMethod名称
      */
     private String actionMethodName;
-
-    /**
-     * 执行的Action方法
-     */
-    private Method actionMethod = null;
 
     /**
      * 表单 和 QueryString 提交的数据
@@ -55,11 +54,26 @@ public class ActionContext {
 
     public static final String SESSION_KEY = "__SESSION_KEY__";
 
+    private ActionBucket actionBucket;
+
     /**
      * 使用 ThreadLocal 将 InvocationContext 和当前线程进行关联
      */
     static transient ThreadLocal<ActionContext> threadActionContext = new ThreadLocal<ActionContext>();
-    
+
+
+    public ActionContext(ServletConfig servletConfig, String moduleName, String actionName, String actionMethodName, HttpServletRequest request) {
+        this.servletConfig = servletConfig;
+        this.moduleName = moduleName;
+        this.actionName = actionName;
+        this.actionMethodName = actionMethodName;
+        this.request = request;
+        this.pageContext = new PageContext();
+    }
+
+    public String getModuleName() {
+        return moduleName;
+    }
 
     public ActionContext(ServletConfig servletConfig, HttpServletRequest request, Map<String, String[]> parameterMap, Map<String, FileUploaded> fileUploadedMap, String actionName, String actionMethodName) {
         this.servletConfig = servletConfig;
@@ -78,7 +92,7 @@ public class ActionContext {
         return threadActionContext.get();
     }
 
-    void initThreadActionContext(){
+    public void initThreadActionContext(){
         this.sessionContext = initSessionContext();
         threadActionContext.set(this);
     }
@@ -103,7 +117,7 @@ public class ActionContext {
         return sessionContext;
     }
 
-    HttpServletRequest getServletRequest() {
+    public HttpServletRequest getServletRequest() {
         return request;
     }
 
@@ -127,12 +141,24 @@ public class ActionContext {
         return servletConfig.getServletContext();
     }
 
-    void setActionMethod(Method actionMethod) {
-        this.actionMethod = actionMethod;
+    public Method getActionMethod() {
+        Method actionMethod = getActionBucket().getActionMethod(this);
+        if(actionMethod == null) {
+            throw new ActionMethodNotFoundException(getActionMethodName(), getActionName(), getModuleName());
+        }
+        return actionMethod;
     }
 
-    public Method getActionMethod() {
-        return actionMethod;
+    public ActionMethod getActionMethodAnnotation(){
+        return getActionMethod().getAnnotation(ActionMethod.class);
+    }
+
+    public String getSuccessView(){
+        return getActionMethodAnnotation().successView();
+    }
+
+    public String getErrorView(){
+        return getActionMethodAnnotation().errorView();
     }
 
     public String getActionMethodName() {
@@ -147,6 +173,7 @@ public class ActionContext {
         return actionName;
     }
 
+
     public boolean isPost(){
         return "POST".equals(getServletRequest().getMethod().toUpperCase());
     }
@@ -155,12 +182,16 @@ public class ActionContext {
         return sessionContext;
     }
 
-    void setInvocation(Invocation invocation) {
+    public void setInvocation(Invocation invocation) {
         this.invocation = invocation;
     }
 
     public Invocation getInvocation() {
         return invocation;
+    }
+
+    public Class<? extends Invocation> getInvocationClass(){
+        return getActionMethod().getAnnotation(ActionMethod.class).invocationClass();
     }
 
     public PageContext getPageContext(){
@@ -175,8 +206,18 @@ public class ActionContext {
         return parameterMap.get(key);
     }
 
+    public void setParameterMap(Map<String, String[]> parameterMap) {
+        this.parameterMap.clear();
+        this.parameterMap.putAll(parameterMap);
+    }
+
     public Map<String, String[]> getParameterMap() {
         return parameterMap;
+    }
+
+    public void setFileUploadedMap(Map<String, FileUploaded> fileUploadedMap) {
+        this.fileUploadedMap.clear();
+        this.fileUploadedMap.putAll(fileUploadedMap);
     }
 
     public Collection<FileUploaded> getFilesUploaded() {
@@ -205,6 +246,23 @@ public class ActionContext {
 
     public boolean removeAttribute(String key) {
         return attributes.remove(key) != null;
+    }
+
+
+    public boolean isMultipartContent() {
+        if (!"POST".equals(request.getMethod().toUpperCase())) {
+            return false;
+        }
+        String contentType = request.getContentType();
+        return contentType != null && contentType.toLowerCase().startsWith("multipart/");
+    }
+
+    public ActionBucket getActionBucket() {
+        return actionBucket;
+    }
+
+    public void setActionBucket(ActionBucket actionBucket) {
+        this.actionBucket = actionBucket;
     }
 
     public static void main(String[] args) {

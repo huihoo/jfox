@@ -10,6 +10,7 @@ import org.jfox.ejb3.EJBContainer;
 import org.jfox.ejb3.remote.ContainerInvoker;
 import org.jfox.entity.EntityManagerFactoryBuilder;
 import org.jfox.framework.Framework;
+import org.jfox.mvc.ActionContainer;
 
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -72,6 +73,9 @@ public class SystemModule extends Module {
         findComponentByInterface(EntityManagerFactoryBuilder.class);
         // instantiate Web Service container
         findComponentByInterface(ContainerInvoker.class);
+
+        // instantiate MVC Action Container
+        findComponentByInterface(ActionContainer.class);
     }
 
     public static void main(String[] args) {

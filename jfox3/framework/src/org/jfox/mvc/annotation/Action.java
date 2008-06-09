@@ -24,4 +24,7 @@ public @interface Action {
      * name，url访问时使用该名称
      */
     String name();
+    
+    //TODO: 支持 lazy
+    boolean lazy() default false;
 }

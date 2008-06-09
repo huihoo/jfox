@@ -6,18 +6,18 @@
  */
 package org.jfox.mvc;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-
 import org.apache.log4j.Logger;
 import org.jfox.framework.ComponentId;
 import org.jfox.framework.Framework;
 import org.jfox.framework.component.Component;
 import org.jfox.framework.component.Module;
 import org.jfox.util.FileFilterUtils;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Web Context Loader，initialize framework when jfox3 web application loaded
@@ -166,7 +166,7 @@ public class WebContextLoader implements ServletContextListener {
 
     public static File getModuleDirByModuleDirName(String moduleDirName) {
         if(!isModuleExists(moduleDirName)) {
-            throw new ModuleNotFoundException(moduleDirName);
+            throw new ModuleNotExistedException(moduleDirName);
         }
         Module module = framework.getModule(moduleDirName2ModuleName.get(moduleDirName));
         return module.getModuleDir();
@@ -175,26 +175,32 @@ public class WebContextLoader implements ServletContextListener {
 
     private static Action getAction(String moduleDirName, String actionName) throws Exception {
         if(!isModuleExists(moduleDirName)) {
-            throw new ModuleNotFoundException(moduleDirName);
+            throw new ModuleNotExistedException(moduleDirName);
         }
         Module module = framework.getModule(moduleDirName2ModuleName.get(moduleDirName));
         ComponentId actionComponentId = new ComponentId(actionName);
         if(!module.isComponentLoaded(actionComponentId)) {
-            throw new ActionNotFoundException("Can not found Action: " + actionName + " in Module: " + moduleDirName);
+            throw new ActionNotFoundException(moduleDirName, actionName);
         }
         Component component = module.getComponent(actionComponentId);
         if(component == null || !(component instanceof Action)) {
-            throw new ActionNotFoundException("Can not found Action: " + actionName + " in Module: " + moduleDirName);
+            throw new ActionNotFoundException(moduleDirName, actionName);
         }
         return (Action)component;
     }
 
     public static void invokeAction(String moduleDirName, String actionName, ActionContext actionContext) throws Exception {
+
         Action action = WebContextLoader.getAction(moduleDirName, actionName);
         if(action == null) {
-            throw new ActionNotFoundException("Can not found Action: " + actionName + " in Module: " + moduleDirName);
+            throw new ActionNotFoundException(moduleDirName, actionName);
         }
         action.execute(actionContext);
+    }
+
+    public static PageContext invokeAction(ActionContext actionContext) throws Exception {
+        ActionContainer actionContainer = framework.getSystemModule().findComponentByInterface(ActionContainer.class).iterator().next();
+        return actionContainer.invokeAction(actionContext);
     }
 
     public static void main(String[] args) {

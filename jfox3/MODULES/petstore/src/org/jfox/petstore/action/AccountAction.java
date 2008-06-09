@@ -11,12 +11,12 @@ import org.jfox.ejb3.security.JAASLoginResponseCallback;
 import org.jfox.ejb3.security.JAASLoginService;
 import org.jfox.entity.mapping.EntityFactory;
 import org.jfox.framework.annotation.Inject;
-import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.SessionContext;
+import org.jfox.mvc.annotation.Action;
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.mvc.validate.StringValidation;
 import org.jfox.mvc.validate.ValidateException;
@@ -36,7 +36,7 @@ import java.util.List;
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(id = "account")
+@Action(name = "account")
 public class AccountAction extends ActionSupport implements CallbackHandler {
 
     @Inject
@@ -215,7 +215,7 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
      *
      * @param actionContext invocationContext
      */
-    protected void doActionFailed(ActionContext actionContext) {
+    public void doActionFailed(ActionContext actionContext) {
         if (actionContext.getActionMethod().getName().equals("doPostEdit")) {
             SessionContext sessionContext = actionContext.getSessionContext();
             Account account = (Account)sessionContext.getAttribute(ACCOUNT_SESSION_KEY);

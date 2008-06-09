@@ -25,10 +25,6 @@
             <attribute name="method" value="0" />
             <attribute name="URI" value="&lt;N/A&gt;" />
           </containerElement>
-          <containerElement type="facet" facetId="framework/web/Web2">
-            <attribute name="method" value="0" />
-            <attribute name="URI" value="&lt;N/A&gt;" />
-          </containerElement>
           <containerElement type="module" name="framework">
             <attribute name="method" value="0" />
             <attribute name="URI" value="/WEB-INF/classes" />
@@ -38,6 +34,10 @@
             <attribute name="URI" value="/WEB-INF/classes" />
           </containerElement>
           <containerElement type="library" name="jfox-libs" level="project">
+            <attribute name="method" value="0" />
+            <attribute name="URI" value="&lt;N/A&gt;" />
+          </containerElement>
+          <containerElement type="facet" facetId="framework/web/Web2">
             <attribute name="method" value="0" />
             <attribute name="URI" value="&lt;N/A&gt;" />
           </containerElement>

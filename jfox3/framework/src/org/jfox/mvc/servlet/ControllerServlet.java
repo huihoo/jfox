@@ -6,14 +6,8 @@
  */
 package org.jfox.mvc.servlet;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.RequestContext;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.jfox.mvc.ActionContext;
-import org.jfox.mvc.FileUploaded;
+import org.jfox.mvc.PageContext;
 import org.jfox.mvc.WebContextLoader;
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.mvc.controller.ControllerInvocationHandler;
@@ -23,15 +17,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 控制器Servlet，所有的Servlet请求，均由该Servlet负责分发
@@ -45,20 +34,20 @@ import java.util.Map;
 public class ControllerServlet extends HttpServlet {
 
     public static final String PAGE_CONTEXT = "__PAGE_CONTEXT__";
-    public static final String INVOCATION_CONTEXT = "__INVOCATION_CONTEXT__";
+//    public static final String ACTION_CONTEXT = "__INVOCATION_CONTEXT__";
     public static final String MAX_UPLOAD_FILE_SIZE_KEY = "MAX_UPLOAD_FILE_SIZE";
     public static final String VIEW_DIR_KEY = "VIEW_DIR";
     public static final String ACTION_SUFFIX_KEY = "ACTION_SUFFIX";
     public static final String DEFAULT_ENCODING_KEY = "DEFAULT_ENCODING";
 
-    public static final String MULTIPART = "multipart/";
+//    public static final String MULTIPART = "multipart/";
 
     //主要用来控制request charactor encoding, File Upload, Velocity, Freemarker的编码
     public static String DEFAULT_ENCODING = "UTF-8";
 
     static String ACTION_SUFFIX = ".do";
     static String VIEW_DIR = "views";
-    static int MAX_UPLOAD_FILE_SIZE = 5 * 1000 * 1000;
+    public static int MAX_UPLOAD_FILE_SIZE = 5 * 1000 * 1000;
 
     // controller invocation chain
     //TODO: add invocationHandlerChain
@@ -142,8 +131,27 @@ public class ControllerServlet extends HttpServlet {
         String actionName = pathInfo.substring(lastSlashIndex + 1, actionMethodDotIndex);
         String actionMethodName = pathInfo.substring(actionMethodDotIndex + 1, dotDoIndex);
 
-//        InvocationContext invocationContext = new InvocationContext(getServletConfig(), request, actionMethodName);
-//        invocationContext.setPostMethod(request.getMethod().toUpperCase().equals("POST"));
+        // 调用 ActionContainer执行Action
+        ActionContext actionContext = new ActionContext(getServletConfig(),moduleDirName,actionName, actionMethodName, request);
+        try {
+            PageContext pageContext = WebContextLoader.invokeAction(actionContext);
+            request.setAttribute(PAGE_CONTEXT, pageContext);
+            // 根据 PageContext.getTargetMethod 要决定 forward 还是 redirect
+            if(pageContext.getTargetMethod().equals(ActionMethod.ForwardMethod.REDIRECT)) {
+                response.sendRedirect(pageContext.getTargeView());
+//                request.getRequestDispatcher(invocationContext.getPageContext().getTargeView()).(request, response);
+            }
+            else {
+                request.getRequestDispatcher(pageContext.getTargeView()).forward(request, response);
+            }
+        }
+        catch (ServletException e) {
+            throw e;
+        }
+        catch (Exception e) {
+            throw new ServletException(e);
+        }
+/*
 
         // 会导致取出的值为数组问题，所以只能使用下面的循环
         final Map<String,String[]> parameterMap = new HashMap<String, String[]>();
@@ -206,7 +214,7 @@ public class ControllerServlet extends HttpServlet {
         try {
             // 初始化 SessionContext，并绑定到线程
             ActionContext actionContext = new ActionContext(getServletConfig(), request, parameterMap, fileUploadedMap, actionName, actionMethodName);
-            request.setAttribute(INVOCATION_CONTEXT, actionContext);
+            request.setAttribute(ACTION_CONTEXT, actionContext);
             WebContextLoader.invokeAction(moduleDirName, actionName, actionContext);
             // 根据 PageContext.getTargetMethod 要决定 forward 还是 redirect
             if(actionContext.getPageContext().getTargetMethod().equals(ActionMethod.ForwardMethod.REDIRECT)) {
@@ -223,8 +231,11 @@ public class ControllerServlet extends HttpServlet {
         catch (Exception e) {
             throw new ServletException(e);
         }
+*/
+        
     }
 
+/*
     public static boolean isMultipartContent(HttpServletRequest req) {
         if (!"POST".equals(req.getMethod().toUpperCase())) {
             return false;
@@ -251,4 +262,5 @@ public class ControllerServlet extends HttpServlet {
             return new String[0];
         }
     }
+*/
 }

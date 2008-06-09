@@ -8,6 +8,9 @@ package org.jfox.mvc;
 
 import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.Component;
+import org.jfox.framework.component.ComponentInitialization;
+import org.jfox.framework.component.ComponentUnregistration;
+import org.jfox.framework.component.InterceptableComponent;
 import org.jfox.framework.component.SingletonComponent;
 
 /**
@@ -15,8 +18,8 @@ import org.jfox.framework.component.SingletonComponent;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public interface ActionContainer extends Component, ActiveComponent, SingletonComponent {
+public interface ActionContainer extends Component, ActiveComponent, SingletonComponent, InterceptableComponent, ComponentInitialization, ComponentUnregistration {
 
-    void invokeAction(ActionContext actionContext) throws Exception;
-
+    PageContext invokeAction(ActionContext actionContext) throws Exception;
+    
 }

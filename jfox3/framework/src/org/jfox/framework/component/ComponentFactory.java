@@ -6,13 +6,7 @@
  */
 package org.jfox.framework.component;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.Resource;
-import javax.ejb.EJB;
-
+import org.apache.log4j.Logger;
 import org.jfox.framework.annotation.Constant;
 import org.jfox.framework.annotation.Inject;
 import org.jfox.framework.dependent.ConstantDependence;
@@ -21,7 +15,13 @@ import org.jfox.framework.dependent.FieldResourceDependence;
 import org.jfox.framework.dependent.InjectDependence;
 import org.jfox.framework.dependent.InjectionException;
 import org.jfox.util.AnnotationUtils;
-import org.apache.log4j.Logger;
+
+import javax.annotation.Resource;
+import javax.ejb.EJB;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ComponentFactory 负责实例化 Component，并完成 Constructor/Properties 依赖注射
@@ -58,6 +58,8 @@ public class ComponentFactory {
             ConstantDependence constantDependence = new ConstantDependence(componentContext, filed);
             constantDependences.add(constantDependence);
         }
+
+        //TODO: Framework 不在检查 EJB 和 Resource，改由ActionContainer
 
         for (Field filed : AnnotationUtils.getAnnotatedFields(getImplementationClass(), EJB.class)) {
             FieldEJBDependence fieldEJBDependence = new FieldEJBDependence(componentContext, filed);

@@ -6,17 +6,16 @@
  */
 package jfox.test.ejbcomponent.bo;
 
+import jfox.test.ejbcomponent.dao.AccountDAO;
+
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-
-import jfox.test.ejbcomponent.dao.AccountDAO;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Stateless
+//@Stateless
 public class AccountBOImpl implements AccountBO {
 
     @EJB(name="AccountDAO")

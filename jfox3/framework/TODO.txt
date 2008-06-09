@@ -333,3 +333,6 @@
 2008-05-20
     1.增加 @Action，由 MVC 独立解析
     2.增加 Platform ClassLoader，用来管理ModuleClassLoader，舍弃ClassLoader隔离，以支持JSP，如何让WebAppClassLoader来调用PlatformClassLoader呢？？？
+
+2008-06-05
+    1.Invocation改名为ParameterObject

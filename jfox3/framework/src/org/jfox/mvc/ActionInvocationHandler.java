@@ -27,7 +27,7 @@ public abstract class ActionInvocationHandler {
      * @param chain invocation chain
      * @throws Exception any exception
      */
-    protected final Object next(final ActionContext invocation, final Iterator<ActionInvocationHandler> chain) throws Exception {
+    protected final PageContext next(final ActionContext invocation, final Iterator<ActionInvocationHandler> chain) throws Exception {
         if(chain.hasNext()){
             return chain.next().invoke(invocation,chain);
         }
@@ -42,7 +42,7 @@ public abstract class ActionInvocationHandler {
      * @param chain invocation chain
      * @throws Exception any exception
      */
-    public abstract Object invoke(final ActionContext invocation, final Iterator<ActionInvocationHandler> chain) throws Exception;
+    public abstract PageContext invoke(final ActionContext invocation, final Iterator<ActionInvocationHandler> chain) throws Exception;
 
     public static void main(String[] args) {
 

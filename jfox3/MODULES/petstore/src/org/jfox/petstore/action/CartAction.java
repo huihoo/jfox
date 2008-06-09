@@ -6,24 +6,24 @@
  */
 package org.jfox.petstore.action;
 
-import javax.ejb.EJB;
-
-import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.SessionContext;
+import org.jfox.mvc.annotation.Action;
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.petstore.bo.ItemBO;
 import org.jfox.petstore.domain.Cart;
 import org.jfox.petstore.domain.CartItem;
 import org.jfox.petstore.entity.Item;
 
+import javax.ejb.EJB;
+
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(id = "cart")
+@Action(name = "cart")
 public class CartAction extends ActionSupport {
 
     public static String CART_SESSION_KEY = "__CART__";

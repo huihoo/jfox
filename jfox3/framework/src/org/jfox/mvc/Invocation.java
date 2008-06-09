@@ -6,6 +6,12 @@
  */
 package org.jfox.mvc;
 
+import org.apache.log4j.Logger;
+import org.jfox.mvc.invocation.ParseParameterActionInvocationHandler;
+import org.jfox.mvc.validate.ValidateException;
+import org.jfox.mvc.validate.Validators;
+import org.jfox.util.ClassUtils;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
@@ -15,11 +21,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
-import org.apache.log4j.Logger;
-import org.jfox.mvc.validate.ValidateException;
-import org.jfox.mvc.validate.Validators;
-import org.jfox.util.ClassUtils;
 
 /**
  * MVC Invocation
@@ -53,19 +54,19 @@ public abstract class Invocation {
      * @throws ValidateException valiate
      * @throws InvocationException invocation
      */
-    final void init(Map<String, ActionSupport.FieldValidation> fieldValidationMap, Map<String, String[]> parameterMap, Collection<FileUploaded> fileUploadeds) throws ValidateException, InvocationException {
+    public final void init(Map<String, ParseParameterActionInvocationHandler.FieldValidation> fieldValidationMap, Map<String, String[]> parameterMap, Collection<FileUploaded> fileUploadeds) throws ValidateException, InvocationException {
 
         attributes.putAll(parameterMap);
         // verify & build form field from parameterMap
         ValidateException validateException = null;
 
         // 复制一份
-        fieldValidationMap = new HashMap<String, ActionSupport.FieldValidation>(fieldValidationMap);        
+        fieldValidationMap = new HashMap<String, ParseParameterActionInvocationHandler.FieldValidation>(fieldValidationMap);        
         for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
             String key = entry.getKey();
             String[] values = entry.getValue();
             try {
-                ActionSupport.FieldValidation fieldValidation = fieldValidationMap.remove(key);
+                ParseParameterActionInvocationHandler.FieldValidation fieldValidation = fieldValidationMap.remove(key);
                 if(fieldValidation == null) {
                     //仅仅发出一个信息
                     String msg = "Set invocation " + this.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed, No such filed!";
@@ -136,7 +137,7 @@ public abstract class Invocation {
         }
 
         // 检查是否有必须的field还没有设置
-        for(ActionSupport.FieldValidation fieldValidation : fieldValidationMap.values()){
+        for(ParseParameterActionInvocationHandler.FieldValidation fieldValidation : fieldValidationMap.values()){
             Annotation validationAnnotation = fieldValidation.getValidationAnnotation();
             if(validationAnnotation != null) {
                 if(!Validators.isValidationNullable(validationAnnotation)){

@@ -6,37 +6,6 @@
  */
 package org.jfox.ejb3;
 
-import java.io.Serializable;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import javax.ejb.EJBException;
-import javax.ejb.MessageDriven;
-import javax.ejb.Stateful;
-import javax.ejb.Stateless;
-import javax.ejb.Timer;
-import javax.ejb.TimerService;
-import javax.naming.Binding;
-import javax.naming.Context;
-import javax.naming.NameAlreadyBoundException;
-import javax.naming.NameClassPair;
-import javax.naming.NameNotFoundException;
-import javax.naming.NamingEnumeration;
-import javax.naming.NamingException;
-import javax.transaction.SystemException;
-import javax.transaction.TransactionManager;
-
 import org.apache.log4j.Logger;
 import org.jfox.ejb3.event.EJBLoadedComponentEvent;
 import org.jfox.ejb3.event.EJBUnloadedComponentEvent;
@@ -59,6 +28,37 @@ import org.jfox.framework.event.ModuleUnloadedEvent;
 import org.jfox.jms.JMSConnectionFactory;
 import org.jfox.jms.MessageService;
 import org.jfox.mvc.SessionContext;
+
+import javax.ejb.EJBException;
+import javax.ejb.MessageDriven;
+import javax.ejb.Stateful;
+import javax.ejb.Stateless;
+import javax.ejb.Timer;
+import javax.ejb.TimerService;
+import javax.naming.Binding;
+import javax.naming.Context;
+import javax.naming.NameAlreadyBoundException;
+import javax.naming.NameClassPair;
+import javax.naming.NameNotFoundException;
+import javax.naming.NamingEnumeration;
+import javax.naming.NamingException;
+import javax.transaction.SystemException;
+import javax.transaction.TransactionManager;
+import java.io.Serializable;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 只支持 Local/Stateless Session Bean, Local MDB
@@ -185,6 +185,8 @@ public class SimpleEJB3Container implements EJBContainer, ModuleListener {
             EJBBucket[] buckets = loadEJB(module);
             for (EJBBucket bucket : buckets) {
                 bucketMap.put(bucket.getEJBName(), bucket);
+                // will register MDBBucket as MessageListener
+                bucket.start();
             }
         }
         else if (moduleEvent instanceof ModuleUnloadedEvent) {
@@ -205,13 +207,13 @@ public class SimpleEJB3Container implements EJBContainer, ModuleListener {
             // bind to jndi
             try {
                 for (String mappedName : bucket.getMappedNames()) {
+                    //TODO: 使用 jfox.test.ejbcomponent.bo.AccountBOImpl 检查同名时是否会有提示或者异常
                     this.getNamingContext().bind(mappedName, bucket.createProxyStub());
                 }
             }
             catch (NamingException e) {
                 throw new EJBException("bind " + Arrays.toString(bucket.getMappedNames()) + " failed!", e);
             }
-            bucket.start();
             logger.info("Stateless EJB loaded, bean class: " + beanClass.getName());
         }
         // stateful
@@ -228,7 +230,6 @@ public class SimpleEJB3Container implements EJBContainer, ModuleListener {
             catch (NamingException e) {
                 throw new EJBException("Failed to bind EJB with name: " + Arrays.toString(bucket.getMappedNames()) + " !", e);
             }
-            bucket.start();
             logger.info("Stateful EJB loaded, bean class: " + beanClass.getName());
         }
 
@@ -246,8 +247,6 @@ public class SimpleEJB3Container implements EJBContainer, ModuleListener {
             catch (NamingException e) {
                 throw new EJBException("Failed to bind EJB with name: " + Arrays.toString(bucket.getMappedNames()) + " !", e);
             }
-            // will register MDBBucket as MessageListener
-            bucket.start();
             logger.info("Message Driven EJB loaded, bean class: " + beanClass.getName());
         }
 

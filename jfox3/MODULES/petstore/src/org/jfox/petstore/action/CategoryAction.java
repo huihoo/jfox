@@ -6,15 +6,12 @@
  */
 package org.jfox.petstore.action;
 
-import java.util.List;
-import javax.ejb.EJB;
-
-import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.SessionContext;
+import org.jfox.mvc.annotation.Action;
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.mvc.util.PagedList;
 import org.jfox.petstore.bo.AccountBO;
@@ -23,10 +20,13 @@ import org.jfox.petstore.bo.ProductBO;
 import org.jfox.petstore.entity.Category;
 import org.jfox.petstore.entity.Product;
 
+import javax.ejb.EJB;
+import java.util.List;
+
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(id = "category")
+@Action(name = "category")
 public class CategoryAction extends ActionSupport {
 
     @EJB
@@ -38,10 +38,6 @@ public class CategoryAction extends ActionSupport {
     @EJB
     ProductBO productBO;
     
-    public void postInject() {
-        super.postInject();
-    }
-
     /**
      * index page
      *

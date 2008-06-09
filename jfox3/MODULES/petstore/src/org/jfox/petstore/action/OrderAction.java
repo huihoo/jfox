@@ -8,12 +8,12 @@ package org.jfox.petstore.action;
 
 import org.jfox.entity.dao.PKGenerator;
 import org.jfox.entity.mapping.EntityFactory;
-import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.SessionContext;
+import org.jfox.mvc.annotation.Action;
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.mvc.validate.LongValidation;
 import org.jfox.petstore.bo.OrderBO;
@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(id = "order")
+@Action(name = "order")
 public class OrderAction extends ActionSupport {
     public static final String ORDER_SESSION_KEY = "__ORDER__";
     private static List<String> creditCardTypes = new ArrayList<String>();

@@ -6,14 +6,14 @@
  */
 package org.jfox.mvc;
 
+import org.jfox.mvc.annotation.ActionMethod;
+import org.jfox.mvc.validate.ValidateException;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.jfox.mvc.annotation.ActionMethod;
-import org.jfox.mvc.validate.ValidateException;
 
 /**
  * Page Context 存储了用来填充 template的 数据
@@ -39,7 +39,7 @@ public class PageContext {
 
     }
 
-    void setTargetMethod(ActionMethod.ForwardMethod forwardMethod) {
+    public void setTargetMethod(ActionMethod.ForwardMethod forwardMethod) {
         this.forwardMethod = forwardMethod;
     }
 

@@ -6,14 +6,6 @@
  */
 package org.jfox.manager.console;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import javax.naming.Binding;
-import javax.naming.NamingEnumeration;
-
 import org.jfox.ejb3.EJBBucket;
 import org.jfox.ejb3.EJBContainer;
 import org.jfox.entity.EntityManagerFactoryBuilder;
@@ -21,23 +13,31 @@ import org.jfox.entity.EntityManagerFactoryBuilderImpl;
 import org.jfox.entity.EntityManagerFactoryImpl;
 import org.jfox.framework.Constants;
 import org.jfox.framework.Framework;
-import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.Module;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.Invocation;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.WebContextLoader;
+import org.jfox.mvc.annotation.Action;
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.mvc.validate.StringValidation;
 import org.jfox.util.SystemUtils;
+
+import javax.naming.Binding;
+import javax.naming.NamingEnumeration;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  *
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(id = "console")
+@Action(name = "console")
 public class WebConsoleAction extends ActionSupport {
 
     @ActionMethod(name="sysinfo",successView = "console/sysinfo.vhtml")

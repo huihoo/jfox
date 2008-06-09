@@ -30,14 +30,159 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.ipr" afterPath="$PROJECT_DIR$/jfox3.ipr" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/invocation" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/invocation/CheckPermissionActionInvocationHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/SimpleActionContainer.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/SimpleActionContainer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionInvocationHandler.java" />
-      <change type="MOVED" beforePath="Y:\workspace\jfox3\MODULES\iservicedesk\ccmis.iml" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/bo/DepartmentBOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/bo/DepartmentBOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/common/HomeAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/common/HomeAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/dao/RoleDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/dao/RoleDAOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/function/entity/Node.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/function/entity/Node.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/dao/DictItemDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/dao/DictItemDAOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/function/action/NodeAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/function/action/NodeAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/bo/DictItemBOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/bo/DictItemBOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/bo/LendContractBO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/bo/LendContractBO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/bo/DictItemBO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/bo/DictItemBO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/LocalNamingEntityObject.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/LocalNamingEntityObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/jfox/test/ejbcomponent/bo/AccountBOImpl.java" afterPath="$PROJECT_DIR$/framework/test-src/jfox/test/ejbcomponent/bo/AccountBOImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/dependent" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/logging/action/LogAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/logging/action/LogAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/bo/InterestRateBOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/bo/InterestRateBOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/dao/CompanyDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/dao/CompanyDAOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/dao/PmvoucherDisassembleDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/dao/PmvoucherDisassembleDAOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/entity/DictCategory.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/entity/DictCategory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/account/dao/SubjectListDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/account/dao/SubjectListDAOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/entity/DictItem.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/entity/DictItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/bo/PmvoucherDisassembleBo.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/bo/PmvoucherDisassembleBo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/dao/DictCategoryDAO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/dao/DictCategoryDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/CartAction.java" afterPath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/CartAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/invocation/CheckPermissionActionInvocationHandler.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/invocation/CheckPermissionActionInvocationHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/action/DepartmentAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/action/DepartmentAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/dao/VoucherDAO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/dao/VoucherDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/entity/PmvoucherDisassemble.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/entity/PmvoucherDisassemble.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/common/JSONResponse.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/common/JSONResponse.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionContainer.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionContainer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/material/facility/action/ArrivedRecordAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/material/facility/action/ArrivedRecordAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/invocation/ParseParameterActionInvocationHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/freemarker/FreemarkerRender.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/freemarker/FreemarkerRender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/entity/Voucher.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/entity/Voucher.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/account/action/SubjectListAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/account/action/SubjectListAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/LoginAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/LoginAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionInstantiateException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/dao/LendContractDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/dao/LendContractDAOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/logging/bo/LogBOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/logging/bo/LogBOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/account/dao/SubjectListDAO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/account/dao/SubjectListDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/bo/DictCategoryBO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/bo/DictCategoryBO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/IEntityObject.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/IEntityObject.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/event" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/common/JSONUtils.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/common/JSONUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/dao/DictItemDAO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/dao/DictItemDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/common/SystemAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/common/SystemAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/invocation/InvokeActionInvocationHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/velocity/VelocityRender.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/velocity/VelocityRender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/manager/src/org/jfox/manager/console/WebConsoleAction.java" afterPath="$PROJECT_DIR$/MODULES/manager/src/org/jfox/manager/console/WebConsoleAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/entity/LendContract.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/entity/LendContract.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/dao/UserDAO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/dao/UserDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/sample/SampleAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/sample/SampleAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/dao/PmvoucherDisassembleDAO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/dao/PmvoucherDisassembleDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/bo/DictCategoryBOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/bo/DictCategoryBOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/action/IvvoucherDisassembleAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/action/IvvoucherDisassembleAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionInvocationHandler.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionInvocationHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/action/UserAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/action/UserAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/dao/DepartmentDAO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/dao/DepartmentDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/bo/DepartmentBO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/bo/DepartmentBO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/annotation/Action.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/entity/IvvoucherDisassemble.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/entity/IvvoucherDisassemble.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/entity/Role.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/entity/Role.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/entity/Department.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/entity/Department.java" />
+      <change type="MOVED" beforePath="Y:\workspace\jfox3\framework\src\org\jfox\mvc\ModuleNotFoundException.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ModuleNotExistedException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/TODO.txt" afterPath="$PROJECT_DIR$/framework/TODO.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/manager/manager.iml" afterPath="$PROJECT_DIR$/MODULES/manager/manager.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/WebContextLoader.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/WebContextLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/dao/DictCategoryDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/dao/DictCategoryDAOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/action/VoucherHeadAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/action/VoucherHeadAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/dao/IvvoucherDisassembleDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/dao/IvvoucherDisassembleDAOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/function/dao/NodeDAO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/function/dao/NodeDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/RefInspectableEntityObject.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/RefInspectableEntityObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/action/RoleAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/action/RoleAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/dependent/FieldInjectDependence.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/dao/LendContractDAO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/dao/LendContractDAO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/invocation/CheckSessionActionInvocationHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/event/ActionUnloadedComponentEvent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/SimpleActionContainer.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/SimpleActionContainer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/ProductAction.java" afterPath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/ProductAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/dao/IvvoucherDisassembleDAO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/dao/IvvoucherDisassembleDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/CategoryAction.java" afterPath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/CategoryAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/bo/InterestRateBO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/bo/InterestRateBO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/dao/VoucherHeadDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/dao/VoucherHeadDAOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionNotFoundException.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionNotFoundException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/bo/UserBOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/bo/UserBOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionContext.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionContext.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/Invocation.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/Invocation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/event/ActionLoadedComponentEvent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/bo/CompanyBOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/bo/CompanyBOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/entity/User.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/entity/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/account/bo/SubjectListBoBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/account/bo/SubjectListBoBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/dao/InterestRateDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/dao/InterestRateDAOBean.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionMethodNotFoundException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/action/DictMgmtAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/action/DictMgmtAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/bo/UserBO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/bo/UserBO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/ejb3/SimpleEJB3Container.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/ejb3/SimpleEJB3Container.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/conf/module.xml" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/conf/module.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/account/entity/SubjectList.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/account/entity/SubjectList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/function/bo/NodeBO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/function/bo/NodeBO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/dependent/FieldResourceDependence.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/LocalNamingAndRefInspectableEntityObject.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/LocalNamingAndRefInspectableEntityObject.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionBucket.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/SuperAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/SuperAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/bo/IvvoucherDisassembleBoBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/bo/IvvoucherDisassembleBoBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/bo/RoleBO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/bo/RoleBO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/material/facility/action/InventoryAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/material/facility/action/InventoryAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/dependent/FieldEJBDependence.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/annotation/Action.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/annotation/Action.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/bo/VoucherBoBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/bo/VoucherBoBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/logging/dao/LogDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/logging/dao/LogDAOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/ComponentFactory.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/ComponentFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/bo/LendContractBOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/bo/LendContractBOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/AccountAction.java" afterPath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/AccountAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/entity/VoucherHead.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/entity/VoucherHead.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/common/FinancialAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/common/FinancialAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/action/LendContractAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/action/LendContractAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/entity/InterestRate.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/entity/InterestRate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/bo/CompanyBO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/bo/CompanyBO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/bo/IvvoucherDisassembleBo.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/bo/IvvoucherDisassembleBo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/dao/UserDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/dao/UserDAOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/entity/Company.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/entity/Company.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/material/MaterialAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/material/MaterialAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/dao/RoleDAO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/dao/RoleDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/bo/PmvoucherDisassembleBoBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/bo/PmvoucherDisassembleBoBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/account/bo/SubjectListBo.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/account/bo/SubjectListBo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/bo/VoucherHeadBo.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/bo/VoucherHeadBo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/util/DataDicts.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/util/DataDicts.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/dao/VoucherDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/dao/VoucherDAOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/logging/entity/Log.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/logging/entity/Log.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/dao/VoucherHeadDAO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/dao/VoucherHeadDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/bo/VoucherHeadBoBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/bo/VoucherHeadBoBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/entity/Group.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/entity/Group.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/bo/RoleBOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/bo/RoleBOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/function/dao/NodeDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/function/dao/NodeDAOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/dao/DepartmentDAOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/dao/DepartmentDAOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/EntityObject.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/EntityObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/action/CompanyAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/action/CompanyAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/model/UserContext.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/aaa/model/UserContext.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/dao/InterestRateDAO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/dao/InterestRateDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/SuperBO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/SuperBO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/PageContext.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/PageContext.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/ItemAction.java" afterPath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/ItemAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/bo/VoucherBo.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/bo/VoucherBo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/entity/VoucherHeadMap.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/voucher/entity/VoucherHeadMap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/SystemModule.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/SystemModule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/common/JSONAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/common/JSONAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/action/InterestRateAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/finance/capital/action/InterestRateAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/dao/CompanyDAO.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/organization/dao/CompanyDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/OrderAction.java" afterPath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/OrderAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/material/facility/action/FacilityAction.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/material/facility/action/FacilityAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/ControllerServlet.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/ControllerServlet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/function/bo/NodeBOBean.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/function/bo/NodeBOBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/PageAction.java" afterPath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/PageAction.java" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -84,6 +229,97 @@
     </exception_breakpoints>
     <line_breakpoints>
       <breakpoint url="file://$PROJECT_DIR$/framework/test-src/jfox/test/dao/OutContainerDAOTest.java" line="85" class="jfox.test.dao.OutContainerDAOTest" package="jfox.test.dao">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/invocation/ParseParameterActionInvocationHandler.java" line="113" class="org.jfox.mvc.invocation.ParseParameterActionInvocationHandler" package="org.jfox.mvc.invocation">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/CategoryAction.java" line="48" class="org.jfox.petstore.action.CategoryAction" package="org.jfox.petstore.action">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/invocation/ParseParameterActionInvocationHandler.java" line="44" class="org.jfox.mvc.invocation.ParseParameterActionInvocationHandler" package="org.jfox.mvc.invocation">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/SimpleActionContainer.java" line="113" class="org.jfox.mvc.SimpleActionContainer" package="org.jfox.mvc">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/dependent/FieldEJBDependence.java" line="74" class="org.jfox.mvc.dependent.FieldEJBDependence" package="org.jfox.mvc.dependent">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/SimpleEJB3Container.java" line="293" class="org.jfox.ejb3.SimpleEJB3Container" package="org.jfox.ejb3">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/LoginAction.java" line="70" class="jfox.platform.LoginAction" package="jfox.platform">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -144,8 +380,8 @@
       <property name="field_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByClasses" value="true" />
       <property name="exception_breakpoints_viewId" value="TABLE" />
-      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="field_breakpoints_viewId" value="TABLE" />
+      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByMethods" value="false" />
     </ui_properties>
   </component>
@@ -168,29 +404,86 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="InterceptorsEJBInvocationHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/invocation/InterceptorsEJBInvocationHandler.java">
+      <file leaf-file-name="ActionSupport.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="64" selection-start="774" selection-end="774" vertical-scroll-proportion="0.029982364">
+            <state line="40" column="39" selection-start="1355" selection-end="1355" vertical-scroll-proportion="0.33208954">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArrivedRecordAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/material/facility/action/ArrivedRecordAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="13" selection-start="342" selection-end="342" vertical-scroll-proportion="0.3488806">
+              <folding>
+                <marker date="1213027014000" expanded="false" signature="48:208" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/LoginAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="51" column="22" selection-start="1472" selection-end="1472" vertical-scroll-proportion="0.33208954">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EJBInvocationHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/EJBInvocationHandler.java">
+      <file leaf-file-name="SuperAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/SuperAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="22" selection-start="450" selection-end="450" vertical-scroll-proportion="0.029982364">
+            <state line="205" column="16" selection-start="7262" selection-end="7262" vertical-scroll-proportion="0.33208954">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActionInvocationHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionInvocationHandler.java">
+      <file leaf-file-name="CheckPermissionActionInvocationHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/invocation/CheckPermissionActionInvocationHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="46" selection-start="1331" selection-end="1331" vertical-scroll-proportion="0.7195767">
-              <folding />
+            <state line="20" column="0" selection-start="689" selection-end="689" vertical-scroll-proportion="0.47574627">
+              <folding>
+                <marker date="1213027016000" expanded="false" signature="41:202" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleActionContainer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/SimpleActionContainer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="45" column="34" selection-start="1725" selection-end="1725" vertical-scroll-proportion="0.19029851">
+              <folding>
+                <marker date="1213027014000" expanded="false" signature="30:810" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InvokeActionInvocationHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/invocation/InvokeActionInvocationHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="66" selection-start="838" selection-end="838" vertical-scroll-proportion="0.22201492">
+              <folding>
+                <marker date="1213027014000" expanded="false" signature="41:236" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FieldEJBDependence.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/dependent/FieldEJBDependence.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="74" column="0" selection-start="2736" selection-end="2736" vertical-scroll-proportion="0.15858209">
+              <folding>
+                <marker date="1213027014000" expanded="false" signature="40:468" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -198,7 +491,7 @@
       <file leaf-file-name="ActionContext.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionContext.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="11" selection-start="1590" selection-end="1590" vertical-scroll-proportion="0.029982364">
+            <state line="146" column="0" selection-start="4237" selection-end="4237" vertical-scroll-proportion="0.08955224">
               <folding />
             </state>
           </provider>
@@ -207,55 +500,10 @@
       <file leaf-file-name="SimpleEJB3Container.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/SimpleEJB3Container.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="93" column="7" selection-start="3337" selection-end="3488" vertical-scroll-proportion="0.029982364">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimpleActionContainer.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/SimpleActionContainer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="3" selection-start="223" selection-end="223" vertical-scroll-proportion="0.29982364">
+            <state line="293" column="0" selection-start="11224" selection-end="11224" vertical-scroll-proportion="0.15858209">
               <folding>
-                <element signature="imports" expanded="true" />
+                <marker date="1213027016000" expanded="false" signature="240:2331" placeholder="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActionSupport.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="62" selection-start="1595" selection-end="1595" vertical-scroll-proportion="0.029982364">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ControllerServlet.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/ControllerServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="206" column="37" selection-start="9556" selection-end="9556" vertical-scroll-proportion="0.029982364">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TODO.txt" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/TODO.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="315" column="10" selection-start="10560" selection-end="10560" vertical-scroll-proportion="0.2680776">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebContextLoader.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/WebContextLoader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="192" column="45" selection-start="7653" selection-end="7653" vertical-scroll-proportion="0.50793654">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -328,7 +576,7 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="Test" />
+          <option name="myItemId" value="petstore" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -341,6 +589,10 @@
           <option name="myItemId" value="petstore" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\petstore" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
       </PATH>
       <PATH>
         <PATH_ELEMENT>
@@ -348,8 +600,314 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="manager" />
+          <option name="myItemId" value="petstore" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\petstore" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\petstore\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\petstore\src\org\jfox\petstore" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="petstore" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\petstore" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\petstore\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\petstore\src\org\jfox\petstore" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\petstore\src\org\jfox\petstore\bo" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="petstore" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\petstore" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\petstore\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\petstore\src\org\jfox\petstore" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\petstore\src\org\jfox\petstore\action" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\views" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\views" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\views\zh_CN" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\infrastructure" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src\ccmis" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\material" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src\ccmis" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\material" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\material\facility" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src\ccmis" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\material" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\material\facility" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\material\facility\action" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\src\ccmis" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\MODULES\iservicedesk\conf" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
@@ -398,6 +956,264 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox\mvc" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox\mvc" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox\mvc\invocation" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox\mvc" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox\mvc\dependent" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox\mvc" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox\mvc\annotation" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox\framework\invoker" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox\framework\dependent" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox\framework\component" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace\jfox3\framework\src\org\jfox\ejb3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
     </subPane>
   </component>
   <component name="ProjectReloadState">
@@ -413,14 +1229,14 @@
       <abbreviatePackageNames />
       <showStructure ProjectPane="false" Scope="false" PackagesPane="false" Favorites="false" />
       <autoscrollToSource />
-      <autoscrollFromSource ProjectPane="false" />
+      <autoscrollFromSource ProjectPane="true" />
       <sortByType ProjectPane="true" />
     </navigator>
   </component>
   <component name="PropertiesComponent">
     <property name="cvs_file_history_treeOrder2" value="2" />
-    <property name="cvs_file_history_treeOrder1" value="1" />
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_ejbtest" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir12492tmp" />
+    <property name="cvs_file_history_treeOrder1" value="1" />
     <property name="RunManagerConfig.showSettingsBeforeRunnig" value="false" />
     <property name="cvs_file_history_treeOrder3" value="3" />
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_forum" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir37833tmp" />
@@ -444,8 +1260,8 @@
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_manager" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir43248tmp" />
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_framework/web/framework" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir45731tmp" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="TEMP_MODULE_EXPLODED_DIR_FOR_framework" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir58149tmp" />
     <property name="RunManagerConfig.compileBeforeRunning" value="true" />
+    <property name="TEMP_MODULE_EXPLODED_DIR_FOR_framework" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir58149tmp" />
     <property name="cvs_file_history_flatOrder2" value="2" />
     <property name="cvs_file_history_flatOrder3" value="3" />
     <property name="cvs_file_history_flatOrder0" value="0" />
@@ -458,10 +1274,10 @@
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.jfox.mvc" />
+      <recent name="org.jfox.mvc.dependent" />
+      <recent name="org.jfox.mvc.invocation" />
+      <recent name="org.jfox.mvc.event" />
       <recent name="org.jfox.mvc.annotation" />
-      <recent name="org.jfox.webservice.hessian" />
-      <recent name="org.jfox.mvc.controller" />
-      <recent name="org.jfox.jms.connector" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.jfox.ejb3" />
@@ -472,18 +1288,50 @@
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.jfox3-startup">
-    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
       <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG" enabled="false" merge="false">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
+      <option name="ADDITIONAL_CLASS_PATH" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <option name="PROPERTIES_FILE" />
       <envs />
+      <properties />
+      <listeners />
       <method>
         <option name="Make" value="true" />
       </method>
@@ -520,50 +1368,18 @@
       <option name="BASE_DIRECTORY_NAME" value="" />
       <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
     </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
+    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
       <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-    </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG" enabled="false" merge="false">
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="ADDITIONAL_CLASS_PATH" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
-      <option name="PROPERTIES_FILE" />
+      <module name="" />
       <envs />
-      <properties />
-      <listeners />
       <method>
         <option name="Make" value="true" />
       </method>
@@ -693,6 +1509,24 @@
       </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <configuration default="false" name="WebServiceClient" type="Application" factoryName="Application" enabled="false" merge="false">
+      <option name="MAIN_CLASS_NAME" value="jfox.test.ejb3.webservice.WebServiceClient" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="framework" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method>
         <option name="Make" value="true" />
@@ -870,7 +1704,7 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
-    <configuration default="false" name="jfox3-startup" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local">
+    <configuration default="false" name="jfox3-startup" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 6">
       <option name="WORKING_DIRECTORY" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="8080" />
@@ -882,7 +1716,7 @@
         <option name="CONTEXT_PATH" value="/jfox" />
         <option name="DEPLOY" value="true" />
       </JAVAEE_FACET>
-      <JAVAEE_FACET FACET_ID="iservicedesk/ejb/EJB" DEPLOYMENT_SOURCE_NAME="exploded">
+      <JAVAEE_FACET FACET_ID="iservicedesk/ejb/EJB">
         <option name="CONTEXT_PATH" value="/" />
         <option name="DEPLOY" value="false" />
       </JAVAEE_FACET>
@@ -962,38 +1796,20 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
-    <configuration default="false" name="WebServiceClient" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" value="jfox.test.ejb3.webservice.WebServiceClient" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="framework" />
-      <envs />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method>
-        <option name="Make" value="true" />
-      </method>
-    </configuration>
     <list size="13">
       <item index="0" class="java.lang.String" itemvalue="Application.CalculatorTestMain" />
       <item index="1" class="java.lang.String" itemvalue="Application.Framework" />
       <item index="2" class="java.lang.String" itemvalue="Application.ComponentFactory" />
       <item index="3" class="java.lang.String" itemvalue="Application.TestComponentMain" />
       <item index="4" class="java.lang.String" itemvalue="Application.SimpleEJB3Container" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.JOTMTest" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.FrameworkTest" />
-      <item index="7" class="java.lang.String" itemvalue="JUnit.JTATransactionManagerTest" />
-      <item index="8" class="java.lang.String" itemvalue="JUnit.DAOTest" />
-      <item index="9" class="java.lang.String" itemvalue="JUnit.AccountDAOTest" />
-      <item index="10" class="java.lang.String" itemvalue="JUnit.TestClient" />
-      <item index="11" class="java.lang.String" itemvalue="Tomcat Server.jfox3-startup" />
-      <item index="12" class="java.lang.String" itemvalue="Application.WebServiceClient" />
+      <item index="5" class="java.lang.String" itemvalue="Application.WebServiceClient" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.JOTMTest" />
+      <item index="7" class="java.lang.String" itemvalue="JUnit.FrameworkTest" />
+      <item index="8" class="java.lang.String" itemvalue="JUnit.JTATransactionManagerTest" />
+      <item index="9" class="java.lang.String" itemvalue="JUnit.DAOTest" />
+      <item index="10" class="java.lang.String" itemvalue="JUnit.AccountDAOTest" />
+      <item index="11" class="java.lang.String" itemvalue="JUnit.TestClient" />
+      <item index="12" class="java.lang.String" itemvalue="Tomcat Server.jfox3-startup" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -1232,25 +2048,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1032" height="776" extended-state="6" />
+    <frame x="-4" y="-4" width="1032" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39356816" order="20" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="4" />
       <window_info id="Ant Build" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24724725" order="4" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5956417" order="4" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38931298" order="7" x="16" y="176" width="776" height="371" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4433657" order="4" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.605178" order="7" x="16" y="176" width="776" height="371" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="21" />
       <window_info id="IDEtalk" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" order="22" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43797857" order="0" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31603053" order="2" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.52427185" order="2" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32618684" order="10" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23988843" order="1" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25525525" order="1" />
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.731" order="3" />
       <window_info id="Maven projects" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932934" order="9" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="0" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2902903" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3133133" order="0" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7905138" order="16" />
       <window_info id="Hierarchy" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30712008" order="5" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42827442" order="9" />
@@ -1258,14 +2074,14 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4870229" order="5" x="100" y="162" width="634" height="300" />
       <window_info id="Code Logic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72783506" order="14" x="22" y="39" width="776" height="476" />
       <window_info id="Clover" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="6" />
-      <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45322245" order="13" />
       <window_info id="Aspects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="2" />
+      <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45322245" order="13" />
       <window_info id="SQL Schema" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.74408287" order="19" />
       <window_info id="simpleUML" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4992343" order="12" />
       <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4327217" order="23" />
       <window_info id="File View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="1" />
-      <window_info id="App Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="11" />
       <window_info id="Sequence" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="17" />
+      <window_info id="App Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="11" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="8" />
       <window_info id="SQL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7914201" order="15" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
@@ -1293,7 +2109,7 @@
     <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加 TODO.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished transfer from ActionSupport to ActionContainer" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -1304,9 +2120,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="增加 Q&amp;A" />
-    <MESSAGE value="ccmis_pdm rename ccmis_system" />
-    <MESSAGE value="修改 DictMgmtAction" />
     <MESSAGE value="实现了 Log，修正了 json_response.vhtml" />
     <MESSAGE value="修改日志记录" />
     <MESSAGE value="修改日志记录，完善 Invocation.toString" />
@@ -1329,6 +2142,9 @@
     <MESSAGE value="new TODO" />
     <MESSAGE value="增加 ActionContainer" />
     <MESSAGE value="增加 TODO.txt" />
+    <MESSAGE value="change index.vhtml title" />
+    <MESSAGE value="InvocationContext in ActionContext class changed to ActionContext" />
+    <MESSAGE value="finished transfer from ActionSupport to ActionContainer" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -1387,116 +2203,126 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/AccountAction.java">
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionNotFoundException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="11" selection-start="1470" selection-end="1470" vertical-scroll-proportion="0.27852997">
+        <state line="14" column="48" selection-start="491" selection-end="491" vertical-scroll-proportion="0.27767694">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/Action.java">
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionMethodNotFoundException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="17" selection-start="559" selection-end="559" vertical-scroll-proportion="0.46124032">
+        <state line="14" column="0" selection-start="480" selection-end="480" vertical-scroll-proportion="0.28544775">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/annotation/ActionMethod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="18" selection-start="705" selection-end="705" vertical-scroll-proportion="0.354">
+        <state line="26" column="18" selection-start="705" selection-end="705" vertical-scroll-proportion="-0.48094374">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionContainer.java">
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/PageContext.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="12" selection-start="570" selection-end="570" vertical-scroll-proportion="0.476">
+        <state line="40" column="0" selection-start="1046" selection-end="1046" vertical-scroll-proportion="0.68097013">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/invocation/CheckSessionActionInvocationHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="479" selection-end="479" vertical-scroll-proportion="0.6">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/LoginAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="22" selection-start="1472" selection-end="1472" vertical-scroll-proportion="0.33208954">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/ccmis/material/facility/action/ArrivedRecordAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="13" selection-start="342" selection-end="342" vertical-scroll-proportion="0.3488806">
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1213027014000" expanded="false" signature="48:208" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/annotation/Action.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/SuperAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="40" selection-start="283" selection-end="283" vertical-scroll-proportion="0.09883721">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/invocation/CheckPermissionActionInvocationHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="52" selection-start="193" selection-end="193" vertical-scroll-proportion="0.19767442">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/invocation/InterceptorsEJBInvocationHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="64" selection-start="774" selection-end="774" vertical-scroll-proportion="0.029982364">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/EJBInvocationHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="22" selection-start="450" selection-end="450" vertical-scroll-proportion="0.029982364">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionInvocationHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="46" selection-start="1331" selection-end="1331" vertical-scroll-proportion="0.7195767">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="11" selection-start="1590" selection-end="1590" vertical-scroll-proportion="0.029982364">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/SimpleEJB3Container.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="7" selection-start="3337" selection-end="3488" vertical-scroll-proportion="0.029982364">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="62" selection-start="1595" selection-end="1595" vertical-scroll-proportion="0.029982364">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/ControllerServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="206" column="37" selection-start="9556" selection-end="9556" vertical-scroll-proportion="0.029982364">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/WebContextLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="192" column="45" selection-start="7653" selection-end="7653" vertical-scroll-proportion="0.50793654">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/TODO.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="315" column="10" selection-start="10560" selection-end="10560" vertical-scroll-proportion="0.2680776">
+        <state line="205" column="16" selection-start="7262" selection-end="7262" vertical-scroll-proportion="0.33208954">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/SimpleActionContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="3" selection-start="223" selection-end="223" vertical-scroll-proportion="0.29982364">
+        <state line="45" column="34" selection-start="1725" selection-end="1725" vertical-scroll-proportion="0.19029851">
+          <folding>
+            <marker date="1213027014000" expanded="false" signature="30:810" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/invocation/CheckPermissionActionInvocationHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="689" selection-end="689" vertical-scroll-proportion="0.47574627">
+          <folding>
+            <marker date="1213027016000" expanded="false" signature="41:202" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/invocation/ParseParameterActionInvocationHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="129" column="29" selection-start="6278" selection-end="6278" vertical-scroll-proportion="1.8352941">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/invocation/InvokeActionInvocationHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="66" selection-start="838" selection-end="838" vertical-scroll-proportion="0.22201492">
+          <folding>
+            <marker date="1213027014000" expanded="false" signature="41:236" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/SimpleEJB3Container.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="293" column="0" selection-start="11224" selection-end="11224" vertical-scroll-proportion="0.15858209">
+          <folding>
+            <marker date="1213027016000" expanded="false" signature="240:2331" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/dependent/FieldEJBDependence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="0" selection-start="2736" selection-end="2736" vertical-scroll-proportion="0.15858209">
+          <folding>
+            <marker date="1213027014000" expanded="false" signature="40:468" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="146" column="0" selection-start="4237" selection-end="4237" vertical-scroll-proportion="0.08955224">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="39" selection-start="1355" selection-end="1355" vertical-scroll-proportion="0.33208954">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
