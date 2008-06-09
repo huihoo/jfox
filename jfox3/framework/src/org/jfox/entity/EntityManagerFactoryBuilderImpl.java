@@ -22,7 +22,7 @@ import org.jfox.framework.component.ComponentUnregistration;
 import org.jfox.framework.component.Module;
 import org.jfox.framework.event.ModuleEvent;
 import org.jfox.framework.event.ModuleListener;
-import org.jfox.framework.event.ModuleLoadingEvent;
+import org.jfox.framework.event.ModuleLoadedEvent;
 import org.jfox.framework.event.ModuleUnloadedEvent;
 import org.jfox.util.XMLUtils;
 import org.w3c.dom.Document;
@@ -200,7 +200,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
 
     public void moduleChanged(ModuleEvent moduleEvent) {
 
-        if (moduleEvent instanceof ModuleLoadingEvent) {
+        if (moduleEvent instanceof ModuleLoadedEvent) {
             Module module = moduleEvent.getModule();
             Class[] namedQueriesClasses = module.getModuleClassLoader().findClassAnnotatedWith(NamedNativeQueries.class);
             registerNamedQueriesByClasses(namedQueriesClasses);

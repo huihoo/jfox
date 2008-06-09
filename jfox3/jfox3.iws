@@ -30,12 +30,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/Module.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/Module.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/entity/EntityManagerFactoryBuilderImpl.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/entity/EntityManagerFactoryBuilderImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/EventManager.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/EventManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/SimpleActionContainer.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/SimpleActionContainer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/ejb3/SimpleEJB3Container.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/ejb3/SimpleEJB3Container.java" />
+      <change type="DELETED" beforePath="D:\workspace\jfox3\framework\src\org\jfox\framework\event\ModuleLoadingEvent.java" afterPath="" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -146,19 +144,6 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/framework/src/org/jfox/framework/EventManager.java" line="69" class="org.jfox.framework.EventManager" package="org.jfox.framework">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
     </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
@@ -207,8 +192,8 @@
       <property name="field_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByClasses" value="true" />
       <property name="exception_breakpoints_viewId" value="TABLE" />
-      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="field_breakpoints_viewId" value="TABLE" />
+      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByMethods" value="false" />
     </ui_properties>
   </component>
@@ -234,7 +219,7 @@
       <file leaf-file-name="SimpleActionContainer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/SimpleActionContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="45" selection-start="2042" selection-end="2042" vertical-scroll-proportion="0.2939481">
+            <state line="51" column="45" selection-start="2042" selection-end="2042" vertical-scroll-proportion="0.048991356">
               <folding>
                 <marker date="1212982830000" expanded="false" signature="30:809" placeholder="..." />
               </folding>
@@ -251,30 +236,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModuleLoadingEvent.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/event/ModuleLoadingEvent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="13" selection-start="374" selection-end="374" vertical-scroll-proportion="0.37465563">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="EntityManagerFactoryBuilderImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/EntityManagerFactoryBuilderImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="0" selection-start="2469" selection-end="2469" vertical-scroll-proportion="0.6599424">
+            <state line="208" column="57" selection-start="7908" selection-end="7908" vertical-scroll-proportion="0.52449566">
               <folding>
-                <marker date="1212982830000" expanded="false" signature="242:1841" placeholder="..." />
+                <marker date="1212985766000" expanded="false" signature="242:1840" placeholder="..." />
+                <marker date="1212985766000" expanded="false" signature="242:1840" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EventManager.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="EventManager.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/EventManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="48" selection-start="2307" selection-end="2307" vertical-scroll-proportion="0.22478387">
+            <state line="69" column="0" selection-start="2318" selection-end="2318" vertical-scroll-proportion="0.3314121">
               <folding>
                 <marker date="1212982830000" expanded="false" signature="245:580" placeholder="..." />
               </folding>
@@ -282,10 +259,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SQLQuery.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SQLQuery.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/SQLQuery.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="249" column="42" selection-start="7430" selection-end="7430" vertical-scroll-proportion="0.2334294">
+            <state line="249" column="42" selection-start="7430" selection-end="7430" vertical-scroll-proportion="10.239193">
               <folding />
             </state>
           </provider>
@@ -294,8 +271,10 @@
       <file leaf-file-name="Module.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/Module.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="323" column="41" selection-start="11173" selection-end="11173" vertical-scroll-proportion="0.28242075">
-              <folding />
+            <state line="322" column="0" selection-start="11080" selection-end="11080" vertical-scroll-proportion="0.28242075">
+              <folding>
+                <marker date="1212985766000" expanded="false" signature="255:1151" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -312,7 +291,7 @@
       <file leaf-file-name="FieldEJBDependence.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/dependent/FieldEJBDependence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="0" selection-start="2874" selection-end="2874" vertical-scroll-proportion="0.26801154">
+            <state line="76" column="0" selection-start="2874" selection-end="2874" vertical-scroll-proportion="0.06051873">
               <folding />
             </state>
           </provider>
@@ -321,7 +300,7 @@
       <file leaf-file-name="SimpleEJB3Container.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/SimpleEJB3Container.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="183" column="0" selection-start="6377" selection-end="6377" vertical-scroll-proportion="0.14697406">
+            <state line="183" column="0" selection-start="6377" selection-end="6377" vertical-scroll-proportion="0.048991356">
               <folding>
                 <marker date="1212982830000" expanded="false" signature="240:2330" placeholder="..." />
               </folding>
@@ -501,72 +480,6 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\infrastructure" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
           <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\MODULES\iservicedesk\conf" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
@@ -579,106 +492,6 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="framework" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Libraries" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Libraries" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="&lt; 1.6 &gt;" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Libraries" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="&lt; 1.6 &gt;" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:C:\jdk1.6.0_06\jre\lib\rt.jar" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Libraries" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="&lt; 1.6 &gt;" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:C:\jdk1.6.0_06\jre\lib\rt.jar" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:C:\jdk1.6.0_06\jre\lib\rt.jar!\java" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Libraries" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="&lt; 1.6 &gt;" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:C:\jdk1.6.0_06\jre\lib\rt.jar" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:C:\jdk1.6.0_06\jre\lib\rt.jar!\java" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:C:\jdk1.6.0_06\jre\lib\rt.jar!\java\net" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
@@ -855,36 +668,10 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework\src\org\jfox" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\workspace\jfox3\framework\src\org\jfox\ejb3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
     </subPane>
   </component>
   <component name="ProjectReloadState">
-    <option name="STATE" value="0" />
+    <option name="STATE" value="2" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="0.5" version="1" splitterProportion="0.5">
@@ -894,7 +681,7 @@
       <showLibraryContents PackagesPane="true" />
       <hideEmptyPackages PackagesPane="true" ProjectPane="true" />
       <abbreviatePackageNames />
-      <showStructure Favorites="false" Scope="false" PackagesPane="false" ProjectPane="false" />
+      <showStructure PackagesPane="false" Scope="false" Favorites="false" ProjectPane="false" />
       <autoscrollToSource />
       <autoscrollFromSource ProjectPane="true" />
       <sortByType ProjectPane="true" />
@@ -902,8 +689,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="cvs_file_history_treeOrder2" value="2" />
-    <property name="cvs_file_history_treeOrder1" value="1" />
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_ejbtest" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir12492tmp" />
+    <property name="cvs_file_history_treeOrder1" value="1" />
     <property name="RunManagerConfig.showSettingsBeforeRunnig" value="false" />
     <property name="cvs_file_history_treeOrder3" value="3" />
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_forum" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir37833tmp" />
@@ -927,8 +714,8 @@
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_manager" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir43248tmp" />
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_framework/web/framework" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir45731tmp" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="TEMP_MODULE_EXPLODED_DIR_FOR_framework" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir58149tmp" />
     <property name="RunManagerConfig.compileBeforeRunning" value="true" />
+    <property name="TEMP_MODULE_EXPLODED_DIR_FOR_framework" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir58149tmp" />
     <property name="cvs_file_history_flatOrder2" value="2" />
     <property name="cvs_file_history_flatOrder3" value="3" />
     <property name="cvs_file_history_flatOrder0" value="0" />
@@ -953,204 +740,6 @@
       <recent name="jfox.platform.logging.entity" />
       <recent name="org.jfox.webservice" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree">
-    <UpdateInfo date="6/9/08 11:30 AM" ActionInfo="_Update">
-      <UpdatedFiles>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated from server" />
-          <option name="myStatusName" value="Changed on server" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CHANGED_ON_SERVER" />
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Updated" />
-            <option name="myStatusName" value="Changed" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="UPDATED" />
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\infrastructure\LocalNamingAndRefInspectableEntityObject.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\infrastructure\EntityObject.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\infrastructure\LocalNamingEntityObject.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\infrastructure\RefInspectableEntityObject.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\infrastructure\IEntityObject.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\infrastructure\SuperBO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\sample\SampleAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\bo\UserBO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\bo\RoleBO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\bo\UserBOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\bo\RoleBOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\model\UserContext.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\dao\UserDAO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\dao\RoleDAO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\dao\UserDAOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\dao\RoleDAOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\entity\Role.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\entity\Group.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\entity\User.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\action\RoleAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\action\UserAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\organization\bo\DepartmentBO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\organization\bo\CompanyBO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\organization\bo\DepartmentBOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\organization\bo\CompanyBOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\organization\dao\CompanyDAOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\organization\dao\DepartmentDAO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\organization\dao\CompanyDAO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\organization\dao\DepartmentDAOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\organization\entity\Department.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\organization\entity\Company.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\organization\action\DepartmentAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\organization\action\CompanyAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\function\bo\NodeBO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\function\bo\NodeBOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\function\dao\NodeDAOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\function\dao\NodeDAO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\function\entity\Node.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\function\action\NodeAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\LoginAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\logging\bo\LogBOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\logging\dao\LogDAOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\logging\entity\Log.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\logging\action\LogAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\common\FinancialAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\common\SystemAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\common\HomeAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\common\JSONAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\common\JSONResponse.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\common\JSONUtils.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\datadict\bo\DictCategoryBO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\datadict\bo\DictItemBO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\datadict\bo\DictCategoryBOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\datadict\bo\DictItemBOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\datadict\dao\DictCategoryDAO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\datadict\dao\DictItemDAO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\datadict\dao\DictCategoryDAOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\datadict\dao\DictItemDAOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\datadict\entity\DictCategory.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\datadict\entity\DictItem.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\datadict\action\DictMgmtAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\datadict\util\DataDicts.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\bo\VoucherBoBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\bo\VoucherHeadBoBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\bo\PmvoucherDisassembleBo.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\bo\IvvoucherDisassembleBo.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\bo\PmvoucherDisassembleBoBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\bo\VoucherBo.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\bo\IvvoucherDisassembleBoBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\bo\VoucherHeadBo.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\dao\VoucherDAO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\dao\IvvoucherDisassembleDAOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\dao\VoucherHeadDAO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\dao\VoucherDAOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\dao\VoucherHeadDAOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\dao\PmvoucherDisassembleDAO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\dao\IvvoucherDisassembleDAO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\dao\PmvoucherDisassembleDAOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\entity\PmvoucherDisassemble.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\entity\IvvoucherDisassemble.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\entity\Voucher.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\entity\VoucherHeadMap.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\entity\VoucherHead.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\action\IvvoucherDisassembleAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\voucher\action\VoucherHeadAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\account\bo\SubjectListBoBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\account\bo\SubjectListBo.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\account\dao\SubjectListDAO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\account\dao\SubjectListDAOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\account\entity\SubjectList.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\account\action\SubjectListAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\capital\bo\InterestRateBOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\capital\bo\LendContractBO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\capital\bo\LendContractBOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\capital\bo\InterestRateBO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\capital\dao\InterestRateDAOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\capital\dao\LendContractDAO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\capital\dao\LendContractDAOBean.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\capital\dao\InterestRateDAO.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\capital\entity\LendContract.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\capital\entity\InterestRate.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\capital\action\InterestRateAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\finance\capital\action\LendContractAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\material\facility\action\FacilityAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\material\facility\action\ArrivedRecordAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\material\facility\action\InventoryAction.java</PATH>
-            <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\ccmis\material\MaterialAction.java</PATH>
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Created" />
-            <option name="myStatusName" value="Created" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="CREATED" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Deleted" />
-            <option name="myStatusName" value="Deleted" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="true" />
-            <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Restored" />
-            <option name="myStatusName" value="Will be restored" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="RESTORED" />
-          </FILE-GROUP>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Modified" />
-          <option name="myStatusName" value="Modified" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MODIFIED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Skipped" />
-          <option name="myStatusName" value="Skipped" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="SKIPPED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged with conflicts" />
-          <option name="myStatusName" value="Will be merged with conflicts" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED_WITH_CONFLICTS" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged" />
-          <option name="myStatusName" value="Will be merged" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED" />
-          <PATH vcs="svn" revision="8">D:\workspace\jfox3\MODULES\iservicedesk\src\jfox\platform\infrastructure\SuperAction.java</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Not in repository" />
-          <option name="myStatusName" value="Not in repository" />
-          <option name="mySupportsDeletion" value="true" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UNKNOWN" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Locally added" />
-          <option name="myStatusName" value="Locally added" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="LOCALLY_ADDED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Locally removed" />
-          <option name="myStatusName" value="Locally removed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="LOCALLY_REMOVED" />
-        </FILE-GROUP>
-      </UpdatedFiles>
-    </UpdateInfo>
   </component>
   <component name="RunManager" selected="Tomcat Server.jfox3-startup">
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -1914,24 +1503,24 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1032" height="776" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39356816" order="20" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="4" />
       <window_info id="Ant Build" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24724725" order="4" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4427481" order="4" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36183205" order="7" x="16" y="176" width="776" height="371" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36183205" order="7" x="16" y="176" width="776" height="371" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="21" />
       <window_info id="IDEtalk" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" order="22" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43664122" order="0" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5236641" order="2" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32618684" order="10" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25525525" order="1" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25525525" order="1" />
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.731" order="3" />
       <window_info id="Maven projects" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932934" order="9" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="0" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25525525" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25525525" order="0" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7905138" order="16" />
       <window_info id="Hierarchy" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30712008" order="5" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42827442" order="9" />
@@ -1939,14 +1528,14 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48396948" order="5" x="100" y="162" width="634" height="300" />
       <window_info id="Code Logic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72783506" order="14" x="22" y="39" width="776" height="476" />
       <window_info id="Clover" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="6" />
-      <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45322245" order="13" />
       <window_info id="Aspects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="2" />
+      <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45322245" order="13" />
       <window_info id="SQL Schema" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.74408287" order="19" />
       <window_info id="simpleUML" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4992343" order="12" />
       <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4327217" order="23" />
       <window_info id="File View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="1" />
-      <window_info id="App Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="11" />
       <window_info id="Sequence" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="17" />
+      <window_info id="App Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="11" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="8" />
       <window_info id="SQL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7914201" order="15" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
@@ -2103,9 +1692,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/dependent/FieldEJBDependence.java">
+    <entry file="jar://$TEMPLATE$/jdk1.6.0_06/src.zip!/java/net/PlainSocketImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="0" selection-start="2874" selection-end="2874" vertical-scroll-proportion="0.26801154">
+        <state line="667" column="0" selection-start="17981" selection-end="17981" vertical-scroll-proportion="0.35231316">
           <folding />
         </state>
       </provider>
@@ -2117,32 +1706,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$TEMPLATE$/jdk1.6.0_06/src.zip!/java/net/PlainSocketImpl.java">
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/dependent/FieldEJBDependence.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="667" column="0" selection-start="17981" selection-end="17981" vertical-scroll-proportion="0.35231316">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/Module.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="323" column="41" selection-start="11173" selection-end="11173" vertical-scroll-proportion="0.28242075">
+        <state line="76" column="0" selection-start="2874" selection-end="2874" vertical-scroll-proportion="0.06051873">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/SimpleEJB3Container.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="183" column="0" selection-start="6377" selection-end="6377" vertical-scroll-proportion="0.14697406">
+        <state line="183" column="0" selection-start="6377" selection-end="6377" vertical-scroll-proportion="0.048991356">
           <folding>
             <marker date="1212982830000" expanded="false" signature="240:2330" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/SQLQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="249" column="42" selection-start="7430" selection-end="7430" vertical-scroll-proportion="10.239193">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/SimpleActionContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="45" selection-start="2042" selection-end="2042" vertical-scroll-proportion="0.2939481">
+        <state line="51" column="45" selection-start="2042" selection-end="2042" vertical-scroll-proportion="0.048991356">
           <folding>
             <marker date="1212982830000" expanded="false" signature="30:809" placeholder="..." />
           </folding>
@@ -2156,35 +1745,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/event/ModuleLoadingEvent.java">
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/Module.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="13" selection-start="374" selection-end="374" vertical-scroll-proportion="0.37465563">
-          <folding />
+        <state line="322" column="0" selection-start="11080" selection-end="11080" vertical-scroll-proportion="0.28242075">
+          <folding>
+            <marker date="1212985766000" expanded="false" signature="255:1151" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/EntityManagerFactoryBuilderImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="0" selection-start="2469" selection-end="2469" vertical-scroll-proportion="0.6599424">
+        <state line="208" column="57" selection-start="7908" selection-end="7908" vertical-scroll-proportion="0.52449566">
           <folding>
-            <marker date="1212982830000" expanded="false" signature="242:1841" placeholder="..." />
+            <marker date="1212985766000" expanded="false" signature="242:1840" placeholder="..." />
+            <marker date="1212985766000" expanded="false" signature="242:1840" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/EventManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="48" selection-start="2307" selection-end="2307" vertical-scroll-proportion="0.22478387">
+        <state line="69" column="0" selection-start="2318" selection-end="2318" vertical-scroll-proportion="0.3314121">
           <folding>
             <marker date="1212982830000" expanded="false" signature="245:580" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/SQLQuery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="249" column="42" selection-start="7430" selection-end="7430" vertical-scroll-proportion="0.2334294">
-          <folding />
         </state>
       </provider>
     </entry>
