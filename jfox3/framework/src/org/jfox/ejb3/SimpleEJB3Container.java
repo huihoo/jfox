@@ -23,7 +23,7 @@ import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.Module;
 import org.jfox.framework.event.ModuleEvent;
 import org.jfox.framework.event.ModuleListener;
-import org.jfox.framework.event.ModuleLoadingEvent;
+import org.jfox.framework.event.ModuleLoadedEvent;
 import org.jfox.framework.event.ModuleUnloadedEvent;
 import org.jfox.jms.JMSConnectionFactory;
 import org.jfox.jms.MessageService;
@@ -68,7 +68,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(id = "EJB3Container", singleton = true, active = true)
+@Service(id = "EJB3Container", singleton = true, active = true, priority = -2) // 在 ActionContainer 之前加载
 public class SimpleEJB3Container implements EJBContainer, ModuleListener {
 
     protected Logger logger = Logger.getLogger(SimpleEJB3Container.class);
@@ -179,9 +179,8 @@ public class SimpleEJB3Container implements EJBContainer, ModuleListener {
      */
     public void moduleChanged(ModuleEvent moduleEvent) {
         Module module = moduleEvent.getModule();
-        if (moduleEvent instanceof ModuleLoadingEvent) {
-            // 监听 ModuleLoadingEvent，以保证能够在Action之前完成 EJB 装载，从而在 Action 实例化的时候，注入
-            // 对于 SYSTEM_MODULE，见 SystemModule.start，做了特殊处理
+        if (moduleEvent instanceof ModuleLoadedEvent) {
+            // 监听 ModuleLoadedEvent，加载 EJB
             EJBBucket[] buckets = loadEJB(module);
             for (EJBBucket bucket : buckets) {
                 bucketMap.put(bucket.getEJBName(), bucket);

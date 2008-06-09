@@ -6,7 +6,7 @@ import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.Module;
 import org.jfox.framework.event.ModuleEvent;
 import org.jfox.framework.event.ModuleListener;
-import org.jfox.framework.event.ModuleLoadingEvent;
+import org.jfox.framework.event.ModuleLoadedEvent;
 import org.jfox.framework.event.ModuleUnloadedEvent;
 import org.jfox.mvc.event.ActionLoadedComponentEvent;
 import org.jfox.mvc.invocation.CheckSessionActionInvocationHandler;
@@ -26,7 +26,7 @@ import java.util.Map;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  * @create May 22, 2008 11:15:34 AM
  */
-@Service(id = "ActionContainer", singleton = true, active = true)
+@Service(id = "ActionContainer", singleton = true, active = true, priority = -1) // 需要在 EJBContainer 之后加载，否则 Action 无法注入 EJB
 public class SimpleActionContainer implements ActionContainer, ModuleListener {
 
     protected final Logger logger = Logger.getLogger(this.getClass());
@@ -49,7 +49,7 @@ public class SimpleActionContainer implements ActionContainer, ModuleListener {
 
     public void moduleChanged(ModuleEvent moduleEvent) {
         Module module = moduleEvent.getModule();
-        if (moduleEvent instanceof ModuleLoadingEvent) {
+        if (moduleEvent instanceof ModuleLoadedEvent) {
             ActionBucket[] buckets = loadAction(module);
             Map<String, ActionBucket> moduleActionMap = new HashMap<String, ActionBucket>(buckets.length);
             for (ActionBucket bucket : buckets) {

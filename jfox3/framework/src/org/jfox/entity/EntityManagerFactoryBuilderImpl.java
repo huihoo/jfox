@@ -6,26 +6,6 @@
  */
 package org.jfox.entity;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.PersistenceException;
-import javax.persistence.QueryHint;
-import javax.sql.DataSource;
-import javax.transaction.TransactionManager;
-
 import org.apache.log4j.Logger;
 import org.enhydra.jdbc.pool.StandardXAPoolDataSource;
 import org.enhydra.jdbc.standard.StandardXADataSource;
@@ -48,6 +28,26 @@ import org.jfox.util.XMLUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.PersistenceException;
+import javax.persistence.QueryHint;
+import javax.sql.DataSource;
+import javax.transaction.TransactionManager;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
@@ -60,7 +60,6 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
 
     //TransactionManager
     private TransactionManager transactionManager = null;
-
 
     /**
      * Entity Manager Factory Map

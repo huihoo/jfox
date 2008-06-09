@@ -6,15 +6,15 @@
  */
 package org.jfox.framework;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.jfox.framework.event.ComponentEvent;
 import org.jfox.framework.event.ComponentListener;
-import org.jfox.framework.event.ModuleEvent;
-import org.jfox.framework.event.ModuleListener;
 import org.jfox.framework.event.FrameworkEvent;
 import org.jfox.framework.event.FrameworkListener;
+import org.jfox.framework.event.ModuleEvent;
+import org.jfox.framework.event.ModuleListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 事件管理器。注册/分发所有的事件
@@ -23,18 +23,18 @@ import org.jfox.framework.event.FrameworkListener;
  */
 public class EventManager {
 
-    private Set<FrameworkListener> frameworkListeners = new HashSet<FrameworkListener>();
+    private List<FrameworkListener> frameworkListeners = new ArrayList<FrameworkListener>();
 
-    private Set<ModuleListener> moduleListeners = new HashSet<ModuleListener>();
+    private List<ModuleListener> moduleListeners = new ArrayList<ModuleListener>();
 
-    private Set<ComponentListener> componentListeners = new HashSet<ComponentListener>();
+    private List<ComponentListener> componentListeners = new ArrayList<ComponentListener>();
 
     public EventManager() {
 
     }
 
     public synchronized void registerFrameworkListener(FrameworkListener frameworkListener) {
-        frameworkListeners.add(frameworkListener);
+        frameworkListeners.add(frameworkListener); // 
     }
 
     public synchronized void unregisterFrameworkListener(FrameworkListener frameworkListener) {
