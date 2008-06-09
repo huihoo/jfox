@@ -42,7 +42,6 @@ public class SimpleActionContainer implements ActionContainer, ModuleListener {
     private final Map<String, Map<String, ActionBucket>> actionBuckets = new HashMap<String, Map<String, ActionBucket>>();
 
     public SimpleActionContainer() {
-//        invocationChain.add(new CheckPermissionActionInvocationHandler());
         invocationChain.add(new ParseParameterActionInvocationHandler());
         invocationChain.add(new CheckSessionActionInvocationHandler());
         invocationChain.add(new InvokeActionInvocationHandler());
