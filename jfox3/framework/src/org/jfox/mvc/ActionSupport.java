@@ -13,10 +13,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * Action super class
+ * Action 超类
  * <p/>
- * 子类实现 doGetXXX doPostXXX 方法，如 public void doGetIndex(InvocationContext invocationContext) throws Exception
- * XXX 是不区分大小写，所以不能有同名的 XXX 方法
+ * 一个Action类可以有多个Action方法来响应HTTP请求，子类的方法用 @ActionMethod 标注为一个Action方法
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
