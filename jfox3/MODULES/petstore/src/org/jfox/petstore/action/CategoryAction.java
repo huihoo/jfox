@@ -8,8 +8,8 @@ package org.jfox.petstore.action;
 
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
-import org.jfox.mvc.Invocation;
 import org.jfox.mvc.PageContext;
+import org.jfox.mvc.ParameterObject;
 import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.Action;
 import org.jfox.mvc.annotation.ActionMethod;
@@ -44,9 +44,9 @@ public class CategoryAction extends ActionSupport {
      * @param actionContext invocationContext
      * @throws Exception exception
      */
-    @ActionMethod(name="view", successView = "Category.vhtml", invocationClass = CategoryInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
+    @ActionMethod(name="view", successView = "Category.vhtml", parameterClass = CategoryParameterObject.class, httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetView(ActionContext actionContext) throws Exception {
-        CategoryInvocation invocation = (CategoryInvocation)actionContext.getInvocation();
+        CategoryParameterObject invocation = (CategoryParameterObject)actionContext.getParameterObject();
         Category category = categoryBO.getCategory(invocation.getCategoryId());
 
         PageContext pageContext = actionContext.getPageContext();
@@ -99,7 +99,7 @@ public class CategoryAction extends ActionSupport {
 
     }
 
-    public static class CategoryInvocation extends Invocation {
+    public static class CategoryParameterObject extends ParameterObject {
 
         private String categoryId = "BIRDS";
 

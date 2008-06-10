@@ -8,8 +8,8 @@ package org.jfox.petstore.action;
 
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
-import org.jfox.mvc.Invocation;
 import org.jfox.mvc.PageContext;
+import org.jfox.mvc.ParameterObject;
 import org.jfox.mvc.annotation.Action;
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.petstore.bo.ItemBO;
@@ -26,9 +26,9 @@ public class ItemAction extends ActionSupport {
     @EJB
     ItemBO itemBO;
 
-    @ActionMethod(name="view", successView = "Item.vhtml", invocationClass = ItemInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
+    @ActionMethod(name="view", successView = "Item.vhtml", parameterClass = ItemParameterObject.class, httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetView(ActionContext actionContext) throws Exception {
-        ItemInvocation invocation = (ItemInvocation)actionContext.getInvocation();
+        ItemParameterObject invocation = (ItemParameterObject)actionContext.getParameterObject();
         Item item = itemBO.getItem(invocation.getItemId());
 
         PageContext pageContext = actionContext.getPageContext();
@@ -37,7 +37,7 @@ public class ItemAction extends ActionSupport {
         
     }
 
-    public static class ItemInvocation extends Invocation {
+    public static class ItemParameterObject extends ParameterObject {
         private String itemId;
 
         public String getItemId() {

@@ -6,12 +6,12 @@
  */
 package org.jfox.mvc.annotation;
 
+import org.jfox.mvc.ParameterObject;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
-import org.jfox.mvc.Invocation;
 
 /**
  * 表示一个 Action 方法
@@ -67,5 +67,5 @@ public @interface ActionMethod {
      *
      * 支持 file upload，文件上传的Field类型必须为 FileUploaded
      */
-    Class<? extends Invocation> invocationClass() default Invocation.class;
+    Class<? extends ParameterObject> parameterClass() default ParameterObject.class;
 }

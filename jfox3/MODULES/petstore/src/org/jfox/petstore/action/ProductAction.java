@@ -8,8 +8,8 @@ package org.jfox.petstore.action;
 
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
-import org.jfox.mvc.Invocation;
 import org.jfox.mvc.PageContext;
+import org.jfox.mvc.ParameterObject;
 import org.jfox.mvc.annotation.Action;
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.mvc.util.PagedList;
@@ -33,9 +33,9 @@ public class ProductAction extends ActionSupport {
     @EJB
     ProductBO productBO;
 
-    @ActionMethod(name="view", successView = "Product.vhtml", invocationClass = ProductInvoation.class, httpMethod = ActionMethod.HttpMethod.GET)
+    @ActionMethod(name="view", successView = "Product.vhtml", parameterClass = ProductInvoation.class, httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetView(ActionContext actionContext) {
-        ProductInvoation invocation = (ProductInvoation)actionContext.getInvocation();
+        ProductInvoation invocation = (ProductInvoation)actionContext.getParameterObject();
 
         Product product = productBO.getProduct(invocation.getProductId());
 
@@ -64,9 +64,9 @@ public class ProductAction extends ActionSupport {
 
     }
 
-    @ActionMethod(name="search", successView = "SearchProducts.vhtml", invocationClass = SearchProductInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
+    @ActionMethod(name="search", successView = "SearchProducts.vhtml", parameterClass = SearchProductParameterObject.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostSearch(ActionContext actionContext) {
-        SearchProductInvocation invocation = (SearchProductInvocation)actionContext.getInvocation();
+        SearchProductParameterObject invocation = (SearchProductParameterObject)actionContext.getParameterObject();
         String keyword = invocation.getKeyword();
         String[] keywords = keyword.split(" ");
         List<Product> products = productBO.searchProductList(keywords);
@@ -92,12 +92,12 @@ public class ProductAction extends ActionSupport {
         pageContext.setAttribute("nextPage", nextPage);
     }
 
-    @ActionMethod(name="search", successView = "SearchProducts.vhtml", invocationClass = SearchProductInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
+    @ActionMethod(name="search", successView = "SearchProducts.vhtml", parameterClass = SearchProductParameterObject.class, httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetSearch(ActionContext actionContext) {
         doPostSearch(actionContext);
     }
 
-    public static class ProductInvoation extends Invocation {
+    public static class ProductInvoation extends ParameterObject {
         private String productId;
 
         private int page = 0;
@@ -119,7 +119,7 @@ public class ProductAction extends ActionSupport {
         }
     }
 
-    public static class SearchProductInvocation extends Invocation {
+    public static class SearchProductParameterObject extends ParameterObject {
 
         private String keyword = "";
 

@@ -9,9 +9,9 @@ import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionInvocationHandler;
 import org.jfox.mvc.FileUploaded;
-import org.jfox.mvc.Invocation;
 import org.jfox.mvc.InvocationException;
 import org.jfox.mvc.PageContext;
+import org.jfox.mvc.ParameterObject;
 import org.jfox.mvc.servlet.ControllerServlet;
 import org.jfox.mvc.validate.ValidateException;
 import org.jfox.mvc.validate.Validators;
@@ -38,7 +38,7 @@ public class ParseParameterActionInvocationHandler extends ActionInvocationHandl
     /**
      * 保存 invocationClass 到其 Filed/Annotation的映射
      */
-    private Map<Class<? extends Invocation>, Map<String, FieldValidation>> invocationMap = new HashMap<Class<? extends Invocation>, Map<String, FieldValidation>>();
+    private Map<Class<? extends ParameterObject>, Map<String, FieldValidation>> invocationMap = new HashMap<Class<? extends ParameterObject>, Map<String, FieldValidation>>();
 
     public PageContext invoke(ActionContext actionContext, Iterator<ActionInvocationHandler> chain) throws Exception {
         // 会导致取出的值为数组问题，所以只能使用下面的循环
@@ -49,7 +49,7 @@ public class ParseParameterActionInvocationHandler extends ActionInvocationHandl
         actionContext.getPageContext().setTargetMethod(actionContext.getActionMethodAnnotation().forwardMethod());
 
         // invocation class
-        Class<? extends Invocation> invocationClass = actionContext.getInvocationClass();
+        Class<? extends ParameterObject> invocationClass = actionContext.getParameterClass();
 
         String queryString = actionContext.getServletRequest().getQueryString();
         if (!actionContext.isMultipartContent()) {
@@ -111,8 +111,8 @@ public class ParseParameterActionInvocationHandler extends ActionInvocationHandl
         actionContext.setFileUploadedMap(fileUploadedMap);
 
         try {
-            Invocation invocation = initInvocation(invocationClass, actionContext);
-            actionContext.setInvocation(invocation);
+            ParameterObject parameterObject = initInvocation(invocationClass, actionContext);
+            actionContext.setInvocation(parameterObject);
             return super.next(actionContext, chain);
         }
         catch (InvocationException e) {
@@ -159,32 +159,32 @@ public class ParseParameterActionInvocationHandler extends ActionInvocationHandl
      * @throws org.jfox.mvc.InvocationException throw when contruct invocation failed
      * @throws org.jfox.mvc.validate.ValidateException   throw when invocation attribute validate failed
      */
-    protected Invocation initInvocation(Class<? extends Invocation> invocationClass, ActionContext actionContext) throws InvocationException, ValidateException {
-        Invocation invocation;
-        if (invocationClass.equals(Invocation.class)) {
-            invocation = new Invocation() {
+    protected ParameterObject initInvocation(Class<? extends ParameterObject> invocationClass, ActionContext actionContext) throws InvocationException, ValidateException {
+        ParameterObject parameterObject;
+        if (invocationClass.equals(ParameterObject.class)) {
+            parameterObject = new ParameterObject() {
             };
-            invocation.init(Collections.EMPTY_MAP, actionContext.getParameterMap(), actionContext.getFilesUploaded());
+            parameterObject.init(Collections.EMPTY_MAP, actionContext.getParameterMap(), actionContext.getFilesUploaded());
         }
         else {
             try {
-                invocation = invocationClass.newInstance();
+                parameterObject = invocationClass.newInstance();
                 // verify input then build fields
             }
             catch (Exception e) {
                 throw new InvocationException("Construct invocation exception.", e);
             }
         }
-        invocation.init(getInvocationFieldValidationMap(invocationClass), actionContext.getParameterMap(), actionContext.getFilesUploaded());
+        parameterObject.init(getInvocationFieldValidationMap(invocationClass), actionContext.getParameterMap(), actionContext.getFilesUploaded());
         /**
          * 有些需要关联验证的，比如：校验两次输入的密码是否正确，
          * 因为不能保证校验密码在初试密码之后得到校验，所以必须放到 validateAll 中进行校验
          */
-        invocation.validateAll();
-        return invocation;
+        parameterObject.validateAll();
+        return parameterObject;
     }
 
-    private Map<String, FieldValidation> getInvocationFieldValidationMap(Class<? extends Invocation> invocationClass) {
+    private Map<String, FieldValidation> getInvocationFieldValidationMap(Class<? extends ParameterObject> invocationClass) {
         if (invocationMap.containsKey(invocationClass)) {
             return Collections.unmodifiableMap(invocationMap.get(invocationClass));
         }
@@ -193,7 +193,7 @@ public class ParseParameterActionInvocationHandler extends ActionInvocationHandl
         Map<String, FieldValidation> fieldValidationMap = new HashMap<String, FieldValidation>(allFields.length);
 
         for (Field field : allFields) {
-            if (!field.getDeclaringClass().equals(Invocation.class)) { //过滤掉Invocation自身的Field
+            if (!field.getDeclaringClass().equals(ParameterObject.class)) { //过滤掉Invocation自身的Field
                 if (fieldValidationMap.containsKey(field.getName())) {
                     logger.warn("Reduplicate filed name: " + field.getName() + " in invocation: " + invocationClass.getName());
                     continue;

@@ -13,8 +13,8 @@ import org.jfox.entity.mapping.EntityFactory;
 import org.jfox.framework.annotation.Inject;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
-import org.jfox.mvc.Invocation;
 import org.jfox.mvc.PageContext;
+import org.jfox.mvc.ParameterObject;
 import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.Action;
 import org.jfox.mvc.annotation.ActionMethod;
@@ -69,9 +69,9 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         pageContext.setAttribute("categories", categories);
     }
 
-    @ActionMethod(name="create", successView = "index.vhtml", errorView = "NewAccountForm.vhtml", invocationClass = NewAccountInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
+    @ActionMethod(name="create", successView = "index.vhtml", errorView = "NewAccountForm.vhtml", parameterClass = NewAccountParameterObject.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostCreate(ActionContext actionContext) throws Exception{
-        NewAccountInvocation invocation = (NewAccountInvocation)actionContext.getInvocation();
+        NewAccountParameterObject invocation = (NewAccountParameterObject)actionContext.getParameterObject();
         Account newAccount = EntityFactory.newEntityObject(Account.class);
         newAccount.setUsername(invocation.getUsername());
         newAccount.setStatus("OK");
@@ -107,9 +107,9 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         // don't need do anything, just forward to successView
     }
 
-    @ActionMethod(name="signon", successView = "index.vhtml", errorView = "signon.vhtml", invocationClass = SignonInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
+    @ActionMethod(name="signon", successView = "index.vhtml", errorView = "signon.vhtml", parameterClass = SignonParameterObject.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostSignon(ActionContext actionContext) throws Exception {
-        SignonInvocation invocation = (SignonInvocation)actionContext.getInvocation();
+        SignonParameterObject invocation = (SignonParameterObject)actionContext.getParameterObject();
 
         Account account = (Account)loginService.login(actionContext.getSessionContext(), this, invocation.getUsername(),invocation.getPassword());
         if (account == null) {
@@ -170,9 +170,9 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         pageContext.setAttribute("categories", categories);
     }
 
-    @ActionMethod(name="edit", successView = "index.vhtml", errorView = "EditAccount.vhtml", invocationClass = EditAccountInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
+    @ActionMethod(name="edit", successView = "index.vhtml", errorView = "EditAccount.vhtml", parameterClass = EditAccountParameterObject.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostEdit(ActionContext actionContext) throws Exception {
-        EditAccountInvocation invocation = (EditAccountInvocation)actionContext.getInvocation();
+        EditAccountParameterObject invocation = (EditAccountParameterObject)actionContext.getParameterObject();
 
         SessionContext sessionContext = actionContext.getSessionContext();
         Account account = (Account)sessionContext.getAttribute(ACCOUNT_SESSION_KEY);
@@ -228,7 +228,7 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
             pageContext.setAttribute("categories", categories);
         }
         else if(actionContext.getActionMethod().getName().equals("doPostCreate")){
-            NewAccountInvocation invocation = (NewAccountInvocation)actionContext.getInvocation();
+            NewAccountParameterObject invocation = (NewAccountParameterObject)actionContext.getParameterObject();
             Account newAccount = EntityFactory.newEntityObject(Account.class);
             newAccount.setUsername(invocation.getUsername());
             newAccount.setStatus("OK");
@@ -259,7 +259,7 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         }
     }
 
-    public static class SignonInvocation extends Invocation {
+    public static class SignonParameterObject extends ParameterObject {
         @StringValidation(minLength = 4, nullable = false)
         private String username;
         
@@ -283,7 +283,7 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
         }
     }
 
-    public static class EditAccountInvocation extends Invocation {
+    public static class EditAccountParameterObject extends ParameterObject {
 
         @StringValidation(minLength = 4, nullable = false)
         private String password;
@@ -455,7 +455,7 @@ public class AccountAction extends ActionSupport implements CallbackHandler {
 
     }
 
-    public static class NewAccountInvocation extends EditAccountInvocation {
+    public static class NewAccountParameterObject extends EditAccountParameterObject {
         private String username;
 
         public String getUsername() {

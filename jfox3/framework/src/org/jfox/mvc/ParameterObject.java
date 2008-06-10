@@ -27,7 +27,7 @@ import java.util.Set;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public abstract class Invocation {
+public abstract class ParameterObject {
 
     /**
      * 存的原始数据，从 HttpRequest.parameterMap 复制过来，比如：对于 upload field，这里存的只是 filedname
@@ -42,7 +42,7 @@ public abstract class Invocation {
 
     private Logger logger = Logger.getLogger(this.getClass());
 
-    public Invocation() {
+    public ParameterObject() {
 //        initValidationMap();
     }
 

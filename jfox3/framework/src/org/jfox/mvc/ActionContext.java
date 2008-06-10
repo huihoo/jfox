@@ -44,7 +44,7 @@ public class ActionContext {
 
     private PageContext pageContext;
     private SessionContext sessionContext;
-    private Invocation invocation;
+    private ParameterObject parameterObject;
 
     private ServletConfig servletConfig;
 
@@ -182,16 +182,16 @@ public class ActionContext {
         return sessionContext;
     }
 
-    public void setInvocation(Invocation invocation) {
-        this.invocation = invocation;
+    public void setInvocation(ParameterObject parameterObject) {
+        this.parameterObject = parameterObject;
     }
 
-    public Invocation getInvocation() {
-        return invocation;
+    public ParameterObject getParameterObject() {
+        return parameterObject;
     }
 
-    public Class<? extends Invocation> getInvocationClass(){
-        return getActionMethod().getAnnotation(ActionMethod.class).invocationClass();
+    public Class<? extends ParameterObject> getParameterClass(){
+        return getActionMethod().getAnnotation(ActionMethod.class).parameterClass();
     }
 
     public PageContext getPageContext(){

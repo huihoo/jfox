@@ -6,16 +6,16 @@
  */
 package org.jfox.manager.demo;
 
-import java.util.ArrayList;
-import javax.ejb.EJB;
-
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
-import org.jfox.mvc.Invocation;
 import org.jfox.mvc.PageContext;
+import org.jfox.mvc.ParameterObject;
 import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.ActionMethod;
+
+import javax.ejb.EJB;
+import java.util.ArrayList;
 
 /**
  * carts actions
@@ -33,9 +33,9 @@ public class CartsAction extends ActionSupport {
         // do nothing, just forward to successView
     }
 
-    @ActionMethod(name="submit", successView = "demo/carts.fhtml", invocationClass = CartInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
+    @ActionMethod(name="submit", successView = "demo/carts.fhtml", parameterClass = CartParameterObject.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostSubmit(ActionContext actionContext) throws Exception {
-        CartInvocation invocation = (CartInvocation)actionContext.getInvocation();
+        CartParameterObject invocation = (CartParameterObject)actionContext.getParameterObject();
         SessionContext sessionContext = actionContext.getSessionContext();
         ArrayList<String> carts = (ArrayList<String>)sessionContext.getAttribute("carts");
         if(carts == null) {
@@ -53,7 +53,7 @@ public class CartsAction extends ActionSupport {
         pageContext.setAttribute("carts", carts);
     }
 
-    public static class CartInvocation extends Invocation {
+    public static class CartParameterObject extends ParameterObject {
         private String item;
         private String submit;
 

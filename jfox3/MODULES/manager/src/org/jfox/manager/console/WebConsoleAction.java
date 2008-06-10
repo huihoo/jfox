@@ -16,8 +16,8 @@ import org.jfox.framework.Framework;
 import org.jfox.framework.component.Module;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
-import org.jfox.mvc.Invocation;
 import org.jfox.mvc.PageContext;
+import org.jfox.mvc.ParameterObject;
 import org.jfox.mvc.WebContextLoader;
 import org.jfox.mvc.annotation.Action;
 import org.jfox.mvc.annotation.ActionMethod;
@@ -129,23 +129,23 @@ public class WebConsoleAction extends ActionSupport {
         pageContext.setAttribute("modules", modules);
     }
 
-    @ActionMethod(name="testconnection",successView = "console/testconnectionresult.vhtml", errorView = "console/testconnectionresult.vhtml",invocationClass = TestConnectionInvocation.class)
+    @ActionMethod(name="testconnection",successView = "console/testconnectionresult.vhtml", errorView = "console/testconnectionresult.vhtml", parameterClass = TestConnectionParameterObject.class)
     public void doGetTestConnection(ActionContext actionContext) throws Exception {
-        TestConnectionInvocation invocation = (TestConnectionInvocation)actionContext.getInvocation();
+        TestConnectionParameterObject invocation = (TestConnectionParameterObject)actionContext.getParameterObject();
         String unitName = invocation.getUnitName();
         PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute("unitName", unitName);
         EntityManagerFactoryBuilderImpl.getEntityManagerFactoryByName(unitName).checkConnection();
     }
 
-    @ActionMethod(name="clearcacheconfig",successView = "console.jpa.do", forwardMethod = ActionMethod.ForwardMethod.REDIRECT, invocationClass = TestConnectionInvocation.class)
+    @ActionMethod(name="clearcacheconfig",successView = "console.jpa.do", forwardMethod = ActionMethod.ForwardMethod.REDIRECT, parameterClass = TestConnectionParameterObject.class)
     public void doGetClearCacheConfig(ActionContext actionContext) throws Exception {
-        TestConnectionInvocation invocation = (TestConnectionInvocation)actionContext.getInvocation();
+        TestConnectionParameterObject invocation = (TestConnectionParameterObject)actionContext.getParameterObject();
         String unitName = invocation.getUnitName();
         EntityManagerFactoryBuilderImpl.getEntityManagerFactoryByName(unitName).clearCache();
     }
 
-    @ActionMethod(name="clearcache",successView = "console/jpa.vhtml",invocationClass = TestConnectionInvocation.class)
+    @ActionMethod(name="clearcache",successView = "console/jpa.vhtml", parameterClass = TestConnectionParameterObject.class)
     public void doGetClearCache(ActionContext actionContext) throws Exception {
 /*
         TestConnectionInvocation invocation = (TestConnectionInvocation)invocationContext.getInvocation();
@@ -168,7 +168,7 @@ public class WebConsoleAction extends ActionSupport {
         return entityManagerFactoryBuilders.iterator().next();
     }
 
-    public static class TestConnectionInvocation extends Invocation {
+    public static class TestConnectionParameterObject extends ParameterObject {
         @StringValidation(nullable = false)
         private String unitName;
 

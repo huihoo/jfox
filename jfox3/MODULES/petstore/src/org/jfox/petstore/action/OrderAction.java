@@ -10,8 +10,8 @@ import org.jfox.entity.dao.PKGenerator;
 import org.jfox.entity.mapping.EntityFactory;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
-import org.jfox.mvc.Invocation;
 import org.jfox.mvc.PageContext;
+import org.jfox.mvc.ParameterObject;
 import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.Action;
 import org.jfox.mvc.annotation.ActionMethod;
@@ -114,9 +114,9 @@ public class OrderAction extends ActionSupport {
         pageContext.setAttribute("order", order);
     }
 
-    @ActionMethod(name="new", successView = "ConfirmOrder.vhtml", invocationClass = NewOrderInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
+    @ActionMethod(name="new", successView = "ConfirmOrder.vhtml", parameterClass = NewOrderParameterObject.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostNew(ActionContext actionContext) throws Exception {
-        NewOrderInvocation invocation = (NewOrderInvocation)actionContext.getInvocation();
+        NewOrderParameterObject invocation = (NewOrderParameterObject)actionContext.getParameterObject();
         SessionContext sessionContext = actionContext.getSessionContext();
 //        Account account = (Account)sessionContext.getAttribute(AccountAction.ACCOUNT_SESSION_KEY);
         Order order = (Order)sessionContext.getAttribute(ORDER_SESSION_KEY);
@@ -151,9 +151,9 @@ public class OrderAction extends ActionSupport {
         pageContext.setAttribute("order", order);
     }
 
-    @ActionMethod(name="confirmshipping", successView = "ConfirmOrder.vhtml", invocationClass = ShippingOrderInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
+    @ActionMethod(name="confirmshipping", successView = "ConfirmOrder.vhtml", parameterClass = ShippingOrderParameterObject.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostConfirmShipping(ActionContext actionContext) throws Exception {
-        ShippingOrderInvocation invocation = (ShippingOrderInvocation)actionContext.getInvocation();
+        ShippingOrderParameterObject invocation = (ShippingOrderParameterObject)actionContext.getParameterObject();
         SessionContext sessionContext = actionContext.getSessionContext();
         Order order = (Order)sessionContext.getAttribute(ORDER_SESSION_KEY);
 
@@ -204,9 +204,9 @@ public class OrderAction extends ActionSupport {
         pageContext.setAttribute("orders",orders);
     }
 
-    @ActionMethod(name="view", successView = "ViewOrder.vhtml", invocationClass = ViewOrderInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
+    @ActionMethod(name="view", successView = "ViewOrder.vhtml", parameterClass = ViewOrderParameterObject.class, httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetView(ActionContext actionContext) throws Exception {
-        ViewOrderInvocation invocation = (ViewOrderInvocation)actionContext.getInvocation();
+        ViewOrderParameterObject invocation = (ViewOrderParameterObject)actionContext.getParameterObject();
         long orderId = invocation.getOrderId();
         Order order = orderBO.getOrder(orderId);
         PageContext pageContext = actionContext.getPageContext();
@@ -228,7 +228,7 @@ public class OrderAction extends ActionSupport {
         }
     }
 
-    public static class ViewOrderInvocation extends Invocation {
+    public static class ViewOrderParameterObject extends ParameterObject {
 
         @LongValidation
         private long orderId;
@@ -242,7 +242,7 @@ public class OrderAction extends ActionSupport {
         }
     }
 
-    public static class NewOrderInvocation extends Invocation {
+    public static class NewOrderParameterObject extends ParameterObject {
         private String cardType;
         private String creditCard;
         private String expiryDate;
@@ -353,7 +353,7 @@ public class OrderAction extends ActionSupport {
         }
     }
 
-    public static class ShippingOrderInvocation extends Invocation {
+    public static class ShippingOrderParameterObject extends ParameterObject {
         private String shipToFirstName;
         private String shipToLastName;
         private String shipAddress1;

@@ -3,8 +3,8 @@ package org.jfox.mvc.invocation;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionInvocationHandler;
 import org.jfox.mvc.ActionResubmitException;
-import org.jfox.mvc.Invocation;
 import org.jfox.mvc.PageContext;
+import org.jfox.mvc.ParameterObject;
 import org.jfox.mvc.SessionContext;
 
 import java.util.Iterator;
@@ -28,13 +28,13 @@ public class CheckSessionActionInvocationHandler extends ActionInvocationHandler
     }
 
     protected void checkSessionToken(ActionContext actionContext) {
-        Invocation invocation = actionContext.getInvocation();
-        if (invocation.getRequestToken() != null) {
+        ParameterObject parameterObject = actionContext.getParameterObject();
+        if (parameterObject.getRequestToken() != null) {
             SessionContext sessionContext = actionContext.getSessionContext();
-            String key = SessionContext.TOKEN_SESSION_KEY + invocation.getRequestToken();
+            String key = SessionContext.TOKEN_SESSION_KEY + parameterObject.getRequestToken();
             if (sessionContext.containsAttribute(key)) {
                 // token 已经存在，是重复提交
-                throw new ActionResubmitException("Detected re-submit, action: " + actionContext.getFullActionMethodName() + ", token: " + invocation.getRequestToken());
+                throw new ActionResubmitException("Detected re-submit, action: " + actionContext.getFullActionMethodName() + ", token: " + parameterObject.getRequestToken());
             }
             else {
                 sessionContext.setAttribute(key, "1");
@@ -43,10 +43,10 @@ public class CheckSessionActionInvocationHandler extends ActionInvocationHandler
     }
 
     protected void releaseSessionToken(ActionContext actionContext) {
-        Invocation invocation = actionContext.getInvocation();
-        if (invocation != null && invocation.getRequestToken() != null) {
+        ParameterObject parameterObject = actionContext.getParameterObject();
+        if (parameterObject != null && parameterObject.getRequestToken() != null) {
             SessionContext sessionContext = actionContext.getSessionContext();
-            String key = SessionContext.TOKEN_SESSION_KEY + invocation.getRequestToken();
+            String key = SessionContext.TOKEN_SESSION_KEY + parameterObject.getRequestToken();
             sessionContext.removeAttribute(key);
         }
     }

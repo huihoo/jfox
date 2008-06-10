@@ -8,8 +8,8 @@ package org.jfox.petstore.action;
 
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
-import org.jfox.mvc.Invocation;
 import org.jfox.mvc.PageContext;
+import org.jfox.mvc.ParameterObject;
 import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.Action;
 import org.jfox.mvc.annotation.ActionMethod;
@@ -44,9 +44,9 @@ public class CartAction extends ActionSupport {
         pageContext.setAttribute("cart", cart);
     }
 
-    @ActionMethod(name="additem", successView = "Cart.vhtml", invocationClass = CartInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
+    @ActionMethod(name="additem", successView = "Cart.vhtml", parameterClass = CartParameterObject.class, httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetAddItem(ActionContext actionContext) throws Exception {
-        CartInvocation invocation = (CartInvocation)actionContext.getInvocation();
+        CartParameterObject invocation = (CartParameterObject)actionContext.getParameterObject();
 
         SessionContext sessionContext = actionContext.getSessionContext();
         Cart cart = (Cart)sessionContext.getAttribute(CART_SESSION_KEY);
@@ -66,9 +66,9 @@ public class CartAction extends ActionSupport {
         pageContext.setAttribute("cart", cart);
     }
 
-    @ActionMethod(name="removeitem", successView = "Cart.vhtml", invocationClass = CartInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
+    @ActionMethod(name="removeitem", successView = "Cart.vhtml", parameterClass = CartParameterObject.class, httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetRemoveItem(ActionContext actionContext) throws Exception {
-        CartInvocation invocation = (CartInvocation)actionContext.getInvocation();
+        CartParameterObject invocation = (CartParameterObject)actionContext.getParameterObject();
         SessionContext sessionContext = actionContext.getSessionContext();
         Cart cart = (Cart)sessionContext.getAttribute(CART_SESSION_KEY);
         if (cart == null) {
@@ -84,20 +84,20 @@ public class CartAction extends ActionSupport {
 
     }
 
-    @ActionMethod(name="update", successView = "Cart.vhtml", invocationClass = Invocation.class, httpMethod = ActionMethod.HttpMethod.POST)
+    @ActionMethod(name="update", successView = "Cart.vhtml", parameterClass = ParameterObject.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostUpdate(ActionContext actionContext) throws Exception {
-        Invocation invocation = actionContext.getInvocation();
+        ParameterObject parameterObject = actionContext.getParameterObject();
         SessionContext sessionContext = actionContext.getSessionContext();
         Cart cart = (Cart)sessionContext.getAttribute(CART_SESSION_KEY);
         if (cart == null) {
             cart = new Cart();
             sessionContext.setAttribute(CART_SESSION_KEY, cart);
         }
-        for (String key : invocation.attributeKeys()) {
+        for (String key : parameterObject.attributeKeys()) {
             CartItem cartItem = cart.getCartItem(key);
             if (cartItem != null) {
                 try {
-                    int quantity = Integer.parseInt((String)invocation.getAttribute(key));
+                    int quantity = Integer.parseInt((String) parameterObject.getAttribute(key));
                     cartItem.setQuantity(quantity);
                 }
                 catch (NumberFormatException e) {
@@ -119,7 +119,7 @@ public class CartAction extends ActionSupport {
         pageContext.setAttribute("cart", cart);
     }
 
-    public static class CartInvocation extends Invocation {
+    public static class CartParameterObject extends ParameterObject {
         private String workingItemId;
 
         public String getWorkingItemId() {

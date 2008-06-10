@@ -6,15 +6,15 @@
  */
 package org.jfox.manager.demo;
 
-import java.util.Random;
-
 import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
-import org.jfox.mvc.Invocation;
 import org.jfox.mvc.PageContext;
+import org.jfox.mvc.ParameterObject;
 import org.jfox.mvc.SessionContext;
 import org.jfox.mvc.annotation.ActionMethod;
+
+import java.util.Random;
 
 /**
  * number guess action
@@ -24,9 +24,9 @@ import org.jfox.mvc.annotation.ActionMethod;
 @Service(id = "numberguess")
 public class NumberGuessAction extends ActionSupport {
 
-    @ActionMethod(name="view", successView = "demo/numberguess.vhtml", invocationClass = NumberGuessInvocation.class, httpMethod = ActionMethod.HttpMethod.GET)
+    @ActionMethod(name="view", successView = "demo/numberguess.vhtml", parameterClass = NumberGuessParameterObject.class, httpMethod = ActionMethod.HttpMethod.GET)
     public void doGetView(ActionContext actionContext) throws Exception {
-        NumberGuessInvocation invocation = (NumberGuessInvocation)actionContext.getInvocation();
+        NumberGuessParameterObject invocation = (NumberGuessParameterObject)actionContext.getParameterObject();
 
         int count = 0;
         boolean success = false;
@@ -67,12 +67,12 @@ public class NumberGuessAction extends ActionSupport {
 
     }
 
-    @ActionMethod(name="view", successView = "demo/numberguess.vhtml", invocationClass = NumberGuessInvocation.class, httpMethod = ActionMethod.HttpMethod.POST)
+    @ActionMethod(name="view", successView = "demo/numberguess.vhtml", parameterClass = NumberGuessParameterObject.class, httpMethod = ActionMethod.HttpMethod.POST)
     public void doPostView(ActionContext actionContext) throws Exception {
         doGetView(actionContext);
     }
 
-    public static class NumberGuessInvocation extends Invocation {
+    public static class NumberGuessParameterObject extends ParameterObject {
         private int guessNO = 0;
 
         public int getGuessNO() {

@@ -30,7 +30,7 @@ public abstract class ActionSupport implements Action {
     /**
      * 保存 invocationClass 到其 Filed/Annotation的映射
      */
-    private Map<Class<? extends Invocation>, Map<String, ParseParameterActionInvocationHandler.FieldValidation>> invocationMap = new HashMap<Class<? extends Invocation>, Map<String, ParseParameterActionInvocationHandler.FieldValidation>>();
+    private Map<Class<? extends ParameterObject>, Map<String, ParseParameterActionInvocationHandler.FieldValidation>> invocationMap = new HashMap<Class<? extends ParameterObject>, Map<String, ParseParameterActionInvocationHandler.FieldValidation>>();
 
     protected Logger logger = Logger.getLogger(this.getClass());
 
@@ -164,7 +164,7 @@ public abstract class ActionSupport implements Action {
         PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute(PAGE_VIEW_PATH, pageContext.getTargeView());
         pageContext.setAttribute("J_EXCEPTION", pageContext.getBusinessException());
-        pageContext.setAttribute("J_INVOCATION", actionContext.getInvocation());
+        pageContext.setAttribute("J_INVOCATION", actionContext.getParameterObject());
     }
 
     /**
