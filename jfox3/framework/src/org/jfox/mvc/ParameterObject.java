@@ -69,7 +69,7 @@ public abstract class ParameterObject {
                 ParseParameterActionInvocationHandler.FieldValidation fieldValidation = fieldValidationMap.remove(key);
                 if(fieldValidation == null) {
                     //仅仅发出一个信息
-                    String msg = "Set invocation " + this.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed, No such filed!";
+                    String msg = "Set request parameter to " + this.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed, No such filed!";
                     logger.warn(msg);
                     continue;
                 }
@@ -125,12 +125,12 @@ public abstract class ParameterObject {
             }
             catch (InvocationTargetException e) {
                 Throwable t = e.getTargetException();
-                String msg = "Set invocation + " + this.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed!";
+                String msg = "Set request parameter to + " + this.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed!";
                 logger.error(msg, t);
                 throw new InvocationException(msg, t);
             }
             catch (Throwable t) {
-                String msg = "Set invocation + " + this.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed!";
+                String msg = "Set request parameter to + " + this.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed!";
                 logger.error(msg, t);
                 throw new InvocationException(msg, t);
             }
@@ -148,7 +148,7 @@ public abstract class ParameterObject {
         }
 
         if (validateException != null) {
-            String msg = "Set invocation + " + this.getClass().getName() + "'s field \"" + validateException.getInputField() + "\" with value \"" + validateException.getInputValue() + "\" failed, " + validateException.getMessage();
+            String msg = "Set request parameter to + " + this.getClass().getName() + "'s field \"" + validateException.getInputField() + "\" with value \"" + validateException.getInputValue() + "\" failed, " + validateException.getMessage();
             logger.error(msg);
             throw validateException; // throw exception to execute()
         }
@@ -170,12 +170,12 @@ public abstract class ParameterObject {
                 }
             }
             catch (NoSuchFieldException e) {
-                String msg = "Set invocation " + this.getClass().getName() + "'s FileUploaded field " + fieldName + " with value " + fileUploaded + " failed!";
+                String msg = "Set request parameter to " + this.getClass().getName() + "'s FileUploaded field " + fieldName + " with value " + fileUploaded + " failed!";
                 logger.warn(msg, e);
                 throw new InvocationException(msg, e);
             }
             catch (IllegalAccessException e) {
-                String msg = "Set invocation " + this.getClass().getName() + "'s FileUploaded field " + fieldName + " with value " + fileUploaded + " failed!";
+                String msg = "Set request parameter to " + this.getClass().getName() + "'s FileUploaded field " + fieldName + " with value " + fileUploaded + " failed!";
                 logger.warn(msg, e);
                 throw new InvocationException(msg, e);
             }
