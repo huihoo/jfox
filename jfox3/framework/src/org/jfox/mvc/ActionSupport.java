@@ -7,13 +7,10 @@
 package org.jfox.mvc;
 
 import org.apache.log4j.Logger;
-import org.jfox.mvc.invocation.ParseParameterActionInvocationHandler;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Action super class
@@ -26,11 +23,6 @@ import java.util.Map;
 public abstract class ActionSupport implements Action {
 
     public static final String PAGE_VIEW_PATH = "J_PAGE_VIEW";
-
-    /**
-     * 保存 invocationClass 到其 Filed/Annotation的映射
-     */
-    private Map<Class<? extends ParameterObject>, Map<String, ParseParameterActionInvocationHandler.FieldValidation>> invocationMap = new HashMap<Class<? extends ParameterObject>, Map<String, ParseParameterActionInvocationHandler.FieldValidation>>();
 
     protected Logger logger = Logger.getLogger(this.getClass());
 
@@ -116,7 +108,7 @@ public abstract class ActionSupport implements Action {
     /**
      * 判断当前用户是否有权限操作该Action
      *
-     * @param actionContext
+     * @param actionContext actionContext
      * @return true/false
      * @throws PermissionNotAllowedException 如果不具备权限，抛出异常，如果不抛出异常，直接返回 false, ActionSupport统一抛出异常
      */
