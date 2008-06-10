@@ -6,15 +6,15 @@
  */
 package org.jfox.ejb3.transaction;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Iterator;
-import javax.transaction.Transaction;
+import org.apache.log4j.Logger;
+
 import javax.transaction.Status;
 import javax.transaction.SystemException;
-
-import org.apache.log4j.Logger;
+import javax.transaction.Transaction;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * 通过 ThreadLocal 关联 Transaction，以及 Transaction 使用的 Connection，
@@ -92,6 +92,7 @@ public class TxConnectionsThreadLocal {
 
         public void addConnection(Connection connection){
             // 当前事务即为活动事务
+            //TODO: 如果 connection 还为加入过，才add
             txconns.add(new TransactionConnectionPair(transactionChain.get(transactionChain.size()-1),connection));
         }
 

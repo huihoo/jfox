@@ -50,6 +50,7 @@ public class SQLQuery extends QueryExt {
     protected static Logger logger = Logger.getLogger(SQLQuery.class);
 
     private EntityManagerImpl em;
+    private Connection connection;
     private SQLTemplate sqlTemplate = null;
 
     //保存使用 setParameter 设置参数，用于 VelocityContext 的数据
@@ -67,6 +68,11 @@ public class SQLQuery extends QueryExt {
         if (sqlTemplate instanceof NamedSQLTemplate) {
             isNamedQuery = true;
         }
+    }
+
+    SQLQuery(EntityManagerImpl em, SQLTemplate sqlTemplate, Connection connection) {
+        this(em,sqlTemplate);
+        this.connection = connection;
     }
 
     public boolean isNamedQuery() {
@@ -242,7 +248,7 @@ public class SQLQuery extends QueryExt {
 
         logger.info("Building PreparedStatemenet use SQL: " + nativeSQL);
 
-        Connection connection = em.getConnection();
+        Connection connection = getConnection();
         PreparedStatement pst = connection.prepareStatement(nativeSQL);
 
         for (int i = 0; i < expressions.size(); i++) {
@@ -347,7 +353,8 @@ public class SQLQuery extends QueryExt {
 
         //注意： 有可能只查部分字段，不能使用 sqlTemplate.getColumnsByResultClass()
         for (int i = 1; i <= rsetMeta.getColumnCount(); i++) {
-            String columnName = rsetMeta.getColumnName(i);
+//            String columnName = rsetMeta.getColumnName(i); // Name 取的原始名
+            String columnName = rsetMeta.getColumnLabel(i); // Label 取别名
 
             if (resultClass.equals(MappedEntity.class)) {
                 // 是 MappedEntity，无法获得Column Class信息，统一取 String
@@ -402,7 +409,9 @@ public class SQLQuery extends QueryExt {
             // MappedColumn 需要的参数都已经赋值，没有赋值的话说明该次查询也不需要 MappedColumn 的值
             if (mappedColumnSetFlag.get(EVALUATE_KEY)) {
                 isMappingColumnSet = true;
-                QueryExt mappedColumnQuery = em.createNamedQuery(mappingColEntry.getNamedQuery());
+
+                // 子 Query 应该和 父Query 使用同一个 connection
+                QueryExt mappedColumnQuery = em.createNamedQuery(mappingColEntry.getNamedQuery(), getConnection());
                 for (int i = 0; i < params.length; i++) {
                     mappedColumnQuery.setParameter(params[i].name(), parameterResult.get(i));
                 }
@@ -555,6 +564,18 @@ public class SQLQuery extends QueryExt {
                 cache.clear();
             }
         }
+    }
+
+    /**
+     * 一个 SQLQuery使用一个 Connection， MappedColumn 重用 Connection
+     * @return
+     * @throws SQLException
+     */
+    protected Connection getConnection() throws SQLException{
+        if(connection == null) {
+            connection = em.getConnection();
+        }
+        return connection;
     }
 }
 

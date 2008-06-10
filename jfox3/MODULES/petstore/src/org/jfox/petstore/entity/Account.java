@@ -19,9 +19,9 @@ import java.io.Serializable;
 @Table(name = "ACCOUNT")
 public class Account implements Serializable, Cloneable {
 
-    @Column(name = "userid")
     // signon.username
     @Id
+    @Column(name = "userid")
     String username;
 
     @Column(name = "password")
