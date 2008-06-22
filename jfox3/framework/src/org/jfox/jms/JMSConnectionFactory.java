@@ -13,37 +13,48 @@
 
 package org.jfox.jms;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import org.jfox.jms.destination.JMSDestination;
+import org.jfox.jms.destination.JMSQueue;
+import org.jfox.jms.destination.JMSTopic;
+import org.jfox.jms.message.JMSMessage;
+
 import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.Queue;
 import javax.jms.QueueConnection;
+import javax.jms.QueueConnectionFactory;
 import javax.jms.QueueReceiver;
 import javax.jms.QueueSender;
 import javax.jms.QueueSession;
 import javax.jms.Session;
 import javax.jms.TopicConnection;
+import javax.jms.TopicConnectionFactory;
 import javax.jms.XAConnection;
+import javax.jms.XAConnectionFactory;
 import javax.jms.XAQueueConnection;
+import javax.jms.XAQueueConnectionFactory;
 import javax.jms.XATopicConnection;
-
-import org.jfox.jms.destination.JMSDestination;
-import org.jfox.jms.destination.JMSQueue;
-import org.jfox.jms.destination.JMSTopic;
-import org.jfox.jms.message.JMSMessage;
+import javax.jms.XATopicConnectionFactory;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 
 /**
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
  */
 
-public class JMSConnectionFactory implements MessageService{
+public class JMSConnectionFactory implements MessageService, ConnectionFactory, QueueConnectionFactory, TopicConnectionFactory, XAConnectionFactory, XAQueueConnectionFactory, XATopicConnectionFactory, Serializable {
 
     private Map<String, JMSDestination> destinationMap = new HashMap<String, JMSDestination>();
+
+    public JMSConnectionFactory() {
+
+    }
 
     public Connection createConnection() throws JMSException {
         return createConnection(null, null);

@@ -13,6 +13,7 @@ import org.jfox.entity.annotation.ParameterMap;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
@@ -20,7 +21,10 @@ import java.io.Serializable;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Entity
+@Table(name = "ACCOUNT")
 public class Account implements Serializable {
+
+    public static final String DB_COLUMN_ID = "ACC_ID";
 
     @Column(name="ACC_ID")
     @Id

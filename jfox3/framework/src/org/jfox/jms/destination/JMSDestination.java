@@ -13,23 +13,23 @@
 
 package org.jfox.jms.destination;
 
+import org.apache.log4j.Logger;
+
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageListener;
 import java.io.Serializable;
-import java.util.Comparator;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.concurrent.PriorityBlockingQueue;
+import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.locks.Condition;
-import javax.jms.Destination;
-import javax.jms.Message;
-import javax.jms.MessageListener;
-import javax.jms.JMSException;
-
-import org.apache.log4j.Logger;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author <a href="mailto:young_yy@hotmail.com">Young Yang</a>
@@ -58,8 +58,11 @@ public abstract class JMSDestination implements Destination, Serializable, Runna
     private ExecutorService threadExecutor = Executors.newCachedThreadPool();
 
     protected final ReentrantLock lock = new ReentrantLock();
-    protected final Condition notEmptyMessage = lock.newCondition();
-    protected final Condition notEmptyListener = lock.newCondition();
+
+    // 等待非空消息的条件
+    protected final Condition notEmptyMessageCondition = lock.newCondition();
+    // 等待非空MessageListener的条件
+    protected final Condition notEmptyListenerCondition = lock.newCondition();
 
     private volatile boolean started = false;
 
@@ -102,7 +105,7 @@ public abstract class JMSDestination implements Destination, Serializable, Runna
         try {
             queue.offer(msg);
             // 交给线程池执行消息分发工作
-            notEmptyMessage.signalAll();
+            notEmptyMessageCondition.signalAll();
         }
         finally {
             lock.unlock();
@@ -120,7 +123,7 @@ public abstract class JMSDestination implements Destination, Serializable, Runna
         lock.lock();
         try {
             listeners.add(listener);
-            notEmptyListener.signalAll();
+            notEmptyListenerCondition.signalAll();
         }
         finally {
             lock.unlock();
@@ -144,12 +147,28 @@ public abstract class JMSDestination implements Destination, Serializable, Runna
     public void start() {
         started = true;
         threadExecutor.submit(this);
+        logger.info("Destination started, name="+getName());
     }
 
     public void stop() {
         started = false;
-        // 使用 shutdownNow 可以强行中止线程
-        threadExecutor.shutdownNow();
+        lock.lock();
+        try {
+            // 唤醒等待消息的线程
+            notEmptyMessageCondition.signalAll();
+            Thread.sleep(250);
+            notEmptyListenerCondition.signalAll();
+            Thread.sleep(250);
+            // 使用 shutdownNow 可以强行中止线程
+            threadExecutor.shutdownNow();
+            logger.info("Destination stopped, name="+getName());
+        }
+        catch (Exception e) {
+            logger.warn("Stop destination failed.", e);
+        }
+        finally {
+            lock.unlock();
+        }
     }
 
     public void run() {
@@ -158,21 +177,23 @@ public abstract class JMSDestination implements Destination, Serializable, Runna
             try {
                 // 分发消息
                 if (queue.isEmpty()) {
-                    notEmptyMessage.await();
+                    notEmptyMessageCondition.await();
                 }
                 if (listeners.isEmpty()) {
-                    notEmptyListener.await();
+                    notEmptyListenerCondition.await();
                 }
-                final Message message = queue.take();
-                // 有可能是stop调用，所以需要判断 message == null
-                if (message != null) {
-                    // 使用新线程发送消息
-                    threadExecutor.execute(new Runnable(){
-                        public void run() {
-                            sendMessage(message);
-                        }
-                    });
-                    messageSend++;
+                if(started) {
+                    final Message message = queue.take();
+                    // 有可能是stop调用，所以需要判断 message == null
+                    if (message != null) {
+                        // 使用新线程发送消息
+                        threadExecutor.execute(new Runnable(){
+                            public void run() {
+                                sendMessage(message);
+                            }
+                        });
+                        messageSend++;
+                    }
                 }
             }
             catch (InterruptedException e) {

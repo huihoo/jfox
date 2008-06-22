@@ -35,6 +35,7 @@ import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
+import javax.jms.JMSException;
 import javax.naming.Binding;
 import javax.naming.Context;
 import javax.naming.NameAlreadyBoundException;
@@ -125,11 +126,12 @@ public class SimpleEJB3Container implements EJBContainer, ModuleListener {
         tm = JTATransactionManager.getIntsance();
         tm.setDefaultTransactionTimeout(getTransactionTimeout());
         timerService = new ContainerTimerService();
+
         messageService = new JMSConnectionFactory();
 
-        // 将 TransactionManager 注册 java:/TransactionManager
         try {
             tm.setTransactionTimeout(getTransactionTimeout());
+            // 将 TransactionManager 注册 java:/TransactionManager
             getNamingContext().bind("java:/TransactionManager", tm);
             getNamingContext().bind("java:/UserTransaction", tm);
             getNamingContext().bind("defaultcf", messageService);
@@ -142,16 +144,23 @@ public class SimpleEJB3Container implements EJBContainer, ModuleListener {
             logger.fatal("Failed to setTransactionTimeout!", e);
             System.exit(1);
         }
+
     }
 
     public boolean preUnregister(ComponentContext context) {
         tm.stop();
+
         timerService.stop();
         try {
+            // stop message servier, so can stop jfox gracefully
+            messageService.close();
             namingContext.close();
         }
         catch (NamingException e) {
             logger.warn("EJBContainer NamingContext close exception.", e);
+        }
+        catch (JMSException e) {
+            logger.warn("Stop JMS message service failed.", e);
         }
         jndiMap.clear();
         return true;

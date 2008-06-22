@@ -6,17 +6,17 @@
  */
 package org.jfox.framework;
 
-import java.io.File;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.net.MalformedURLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.jfox.util.FileFilterUtils;
 import org.jfox.util.FileUtils;
+
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Class Loader Repository
@@ -144,6 +144,7 @@ public class ClassLoaderRepository extends URLClassLoader {
      */
     protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
         try {
+//            logger.info("loading " + name);
             return super.loadClass(name, resolve);
         }
         catch (ClassNotFoundException e) {

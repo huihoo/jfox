@@ -84,7 +84,7 @@ public class OutContainerDAOTest {
         account.setLastName("YONG");
         account.setMail("jfox.young@gmail.com");
         Query  query = accountDAO.createAutoInsertNativeQuery(Account.class);
-        query.setParameter("ACCOUNT", account);
+        query.setParameter(Account.class.getSimpleName().toUpperCase(), account);
         int r = query.executeUpdate();
         Assert.assertEquals(r, 1);
 
