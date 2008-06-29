@@ -114,14 +114,17 @@ public static String buildDeleteByColumnSQL(Class entityClass, String... columns
     public static String buildSeleteSQLByColumn(Class<?> entityClass, String... columns){
         EntityFactory.introspectResultClass(entityClass);
         String tableName = getTableName(entityClass);
-        StringBuffer sql = new StringBuffer("SELECT * FROM ").append(tableName).append(" WHERE ");
-        int colIndex = 0;
-        for(String column : columns) {
-            if(colIndex > 0) {
-                sql.append(" AND ");
+        StringBuffer sql = new StringBuffer("SELECT * FROM ").append(tableName);
+        if(columns.length > 0) {
+            sql.append(" WHERE ");
+            int colIndex = 0;
+            for(String column : columns) {
+                if(colIndex > 0) {
+                    sql.append(" AND ");
+                }
+                sql.append(column.toUpperCase()).append(" = $").append(column.toUpperCase());
+                colIndex++;
             }
-            sql.append(column.toUpperCase()).append(" = $").append(column.toUpperCase());
-            colIndex++;
         }
         return sql.toString();
     }
