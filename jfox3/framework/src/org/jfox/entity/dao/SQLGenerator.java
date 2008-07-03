@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import java.util.Collection;
 
 /**
- * TODO: SQL 生成器， 生成默认增删改查语句
+ * SQL 生成器， 生成默认增删改查语句
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  * @create Apr 27, 2008 10:58:31 AM
