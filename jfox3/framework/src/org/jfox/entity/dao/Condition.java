@@ -18,7 +18,7 @@ public interface Condition {
         EQUAL("="),
         LESS("<"),
         LESS_EQUAL("<="),
-        IN("IN");
+        LIKE("LIKE");
 
         private String operator;
         OPERATOR(String operator) {
