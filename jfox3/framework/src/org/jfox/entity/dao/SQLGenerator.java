@@ -4,6 +4,7 @@ import org.jfox.entity.mapping.ColumnEntry;
 import org.jfox.entity.mapping.EntityFactory;
 
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -77,7 +78,7 @@ public static String buildDeleteByColumnSQL(Class entityClass, String... columns
         
     }
 
-    public static String buildUpdateSQL(Class<?> entityClass){
+    public static String buildUpdateSQL(Class<?> entityClass) {
         EntityFactory.introspectResultClass(entityClass);
         String tableName = getTableName(entityClass);
         StringBuffer sql = new StringBuffer("UPDATE ").append(tableName).append(" SET ");
@@ -124,7 +125,6 @@ public static String buildDeleteByColumnSQL(Class entityClass, String... columns
                     sql.append(" AND ");
                 }
                 sql.append(column.toUpperCase()).append(" = $").append(column.toUpperCase());
-                colIndex++;
             }
         }
         return sql.toString();
@@ -136,26 +136,60 @@ public static String buildDeleteByColumnSQL(Class entityClass, String... columns
      * @return
      */
     public static String buildSelectSQLById(Class<?> entityClass){
-        EntityFactory.introspectResultClass(entityClass);
-        String tableName = getTableName(entityClass);
-        StringBuffer sql = new StringBuffer("SELECT * FROM ").append(tableName).append(" WHERE ");
         String pkColumnName = "ID"; // default use ID column as PK
         ColumnEntry pkColumnEntry = EntityFactory.getPKColumnEntry(entityClass);
         if(pkColumnEntry != null) {
             pkColumnName = pkColumnEntry.getName().toUpperCase();
         }
-        sql.append(pkColumnName.toUpperCase()).append(" = $").append(pkColumnName.toUpperCase());
+        return buildSelectSQLByColumn(entityClass, pkColumnName);
+    }
+
+    public static String buildSelectInSQLById(Class<?> entityClass, List<Long> idList){
+        EntityFactory.introspectResultClass(entityClass);
+        String pkColumnName = "ID";
+        ColumnEntry pkColumnEntry = EntityFactory.getPKColumnEntry(entityClass);
+        if(pkColumnEntry != null) {
+            pkColumnName = pkColumnEntry.getName();
+        }
+        List<String> colValueList = new ArrayList<String>(idList.size());
+        for(Long idValue : idList){
+            colValueList.add(idValue.toString());
+        }
+        return buildSelectInSQLByColumn(entityClass, pkColumnName, colValueList);
+    }
+
+    public static String buildSelectInSQLByColumn(Class<?> entityClass, String columnName, List<String> colValueList){
+        EntityFactory.introspectResultClass(entityClass);
+        String tableName = getTableName(entityClass);
+        StringBuffer sql = new StringBuffer("SELECT * FROM ").append(tableName);
+        if(!colValueList.isEmpty()) {
+            sql.append(" WHERE ").append(columnName).append(" IN (");
+            int colIndex = 0;
+            for(String colValue : colValueList) {
+                if(colIndex > 0) {
+                    sql.append(" , ");
+                }
+                sql.append(colValue);
+            }
+            sql.append(" )");
+        }
         return sql.toString();
     }
 
-    //TODO: buildSelectInById
-    public static String buildSelectInSQLById(Class<?> entityClass, List<Long> idList) {
-        return "";
-    }
-
-    //TODO: buildSelectInByColumn
-    public static String buildSelectInSQLByColumn(Class<?> entityClass, String columnName, List<?> columnValueList) {
-        return "";
+    /**
+     * 构造条件 Select 语句
+     * @param entityClass
+     * @param condition
+     * @return
+     */
+    public static String buildSelectSQLByConditoin(Class<?> entityClass, Condition condition) {
+        EntityFactory.introspectResultClass(entityClass);
+        String tableName = getTableName(entityClass);
+        StringBuffer sql = new StringBuffer("SELECT * FROM ").append(tableName);
+        if(condition != null) {
+            sql.append(" WHERE ").append(condition.getSQLTemplateString());
+        }
+        return sql.toString();
     }
 
     /**
