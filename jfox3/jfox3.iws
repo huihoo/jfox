@@ -30,6 +30,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/entity/dao/DAOSupport.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/entity/dao/DAOSupport.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/doc/TODO.txt" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
@@ -231,13 +233,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SQLGenerator.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SQLGenerator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/SQLGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="164" column="37" selection-start="6451" selection-end="6451" vertical-scroll-proportion="-0.0074074073">
+            <state line="160" column="25" selection-start="6127" selection-end="6127" vertical-scroll-proportion="0.33333334">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SuperDAO.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/SuperDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="112" column="22" selection-start="3548" selection-end="3548" vertical-scroll-proportion="0.41234568">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DAOSupport.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/DAOSupport.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="134" column="5" selection-start="4338" selection-end="4338" vertical-scroll-proportion="0.55925924">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -282,27 +302,6 @@
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/test/OutContainerDAOTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="102" column="32" selection-start="3562" selection-end="3562" vertical-scroll-proportion="0.85333335">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FieldMethodizer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/framework/lib-source/velocity-1.5-src.jar!/org/apache/velocity/app/FieldMethodizer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="127" column="12" selection-start="4012" selection-end="4012" vertical-scroll-proportion="0.020606061">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ext_panel.vhtml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/sample/ext_panel.vhtml">
-          <provider editor-type-id="HtmlPreview">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="38" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.3200514">
               <folding />
             </state>
           </provider>
@@ -853,7 +852,7 @@
       <showLibraryContents PackagesPane="true" />
       <hideEmptyPackages PackagesPane="true" ProjectPane="true" />
       <abbreviatePackageNames />
-      <showStructure PackagesPane="false" Scope="false" Favorites="false" ProjectPane="true" />
+      <showStructure PackagesPane="false" Scope="false" Favorites="false" ProjectPane="false" />
       <autoscrollToSource />
       <autoscrollFromSource ProjectPane="true" />
       <sortByType ProjectPane="true" />
@@ -1740,13 +1739,13 @@
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="21" />
       <window_info id="IDEtalk" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" order="22" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36613274" order="0" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5217391" order="2" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35926774" order="2" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32615384" order="10" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3003984" order="1" />
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7307307" order="3" />
       <window_info id="Maven projects" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932934" order="9" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="0" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23984064" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25896415" order="0" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7905138" order="16" />
       <window_info id="Hierarchy" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30712008" order="5" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42827442" order="9" />
@@ -1758,7 +1757,7 @@
       <window_info id="Aspects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="2" />
       <window_info id="SQL Schema" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.74408287" order="19" />
       <window_info id="simpleUML" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4992343" order="12" />
-      <window_info id="SVN Repositories" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.432" order="23" />
+      <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.432" order="23" />
       <window_info id="File View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="1" />
       <window_info id="App Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="11" />
       <window_info id="Sequence" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="17" />
@@ -1892,23 +1891,6 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/sample/ext_basic_grid.vhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="1204" selection-end="1204" vertical-scroll-proportion="0.1261498">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/doc/TODO.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="15" selection-start="82" selection-end="82" vertical-scroll-proportion="0.061818182">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/sample/ExtSampleAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="126" column="8" selection-start="4940" selection-end="4940" vertical-scroll-proportion="0.5030303">
@@ -1939,14 +1921,14 @@
     </entry>
     <entry file="jar://$PROJECT_DIR$/framework/lib-source/velocity-1.5-src.jar!/org/apache/velocity/app/FieldMethodizer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="12" selection-start="4012" selection-end="4012" vertical-scroll-proportion="0.020606061">
+        <state line="127" column="12" selection-start="4012" selection-end="4012" vertical-scroll-proportion="0.038548753">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/sample/ext_panel.vhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="38" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.3200514">
+        <state line="39" column="38" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.6319797">
           <folding />
         </state>
       </provider>
@@ -2003,12 +1985,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/SuperDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="112" column="22" selection-start="3548" selection-end="3548" vertical-scroll-proportion="0.41234568">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/SQLGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="164" column="37" selection-start="6451" selection-end="6451" vertical-scroll-proportion="-0.0074074073">
+        <state line="160" column="25" selection-start="6127" selection-end="6127" vertical-scroll-proportion="0.33333334">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/DAOSupport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="134" column="5" selection-start="4338" selection-end="4338" vertical-scroll-proportion="0.55925924">
+          <folding />
         </state>
       </provider>
     </entry>

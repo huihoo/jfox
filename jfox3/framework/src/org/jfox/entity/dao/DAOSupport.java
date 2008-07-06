@@ -12,6 +12,7 @@ import org.jfox.entity.mapping.EntityFactory;
 
 import javax.persistence.EntityManager;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -123,6 +124,18 @@ public abstract class DAOSupport implements DataAccessObject {
      */
     public QueryExt createAutoSelectByColumnNativeQuery(Class entityClass, String... columns) {
         return createNativeQuery(SQLGenerator.buildSelectSQLByColumn(entityClass, columns), entityClass);
+    }
+
+    public QueryExt createAutoSelectInByIdNativeQuery(Class entityClass, List<Long> idList) {
+        return createNativeQuery(SQLGenerator.buildSelectInSQLById(entityClass, idList), entityClass);
+    }
+
+    public QueryExt createAutoSelectInByColumnNativeQuery(Class entityClass, String columnName, List<String> columnValueList) {
+        return createNativeQuery(SQLGenerator.buildSelectInSQLByColumn(entityClass, columnName, columnValueList), entityClass);
+    }
+
+    public QueryExt createAutoSelectbyCondition(Class entityClass, Condition condition){
+        return createNativeQuery(SQLGenerator.buildSelectSQLByConditoin(entityClass, condition), entityClass);
     }
 
     /**
