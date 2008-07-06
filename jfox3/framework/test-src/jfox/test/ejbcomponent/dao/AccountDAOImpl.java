@@ -91,8 +91,8 @@ public class AccountDAOImpl extends DAOSupport implements AccountDAO {
         System.out.println(SQLGenerator.buildInsertSQL(Account.class));
         System.out.println(SQLGenerator.buildDeleteByIdSQL(Account.class));
         System.out.println(SQLGenerator.buildUpdateSQL(Account.class));
-        System.out.println(SQLGenerator.buildSeleteSQLById(Account.class));
-        System.out.println(SQLGenerator.buildSeleteSQLByColumn(Account.class, "ID", "NAME"));
+        System.out.println(SQLGenerator.buildSelectSQLById(Account.class));
+        System.out.println(SQLGenerator.buildSelectSQLByColumn(Account.class, "ID", "NAME"));
     }
 
 }

@@ -5,6 +5,7 @@ import org.jfox.entity.mapping.EntityFactory;
 
 import javax.persistence.Table;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * SQL 生成器， 生成默认增删改查语句
@@ -111,7 +112,7 @@ public static String buildDeleteByColumnSQL(Class entityClass, String... columns
      * @param columns
      * @return
      */
-    public static String buildSeleteSQLByColumn(Class<?> entityClass, String... columns){
+    public static String buildSelectSQLByColumn(Class<?> entityClass, String... columns){
         EntityFactory.introspectResultClass(entityClass);
         String tableName = getTableName(entityClass);
         StringBuffer sql = new StringBuffer("SELECT * FROM ").append(tableName);
@@ -134,7 +135,7 @@ public static String buildDeleteByColumnSQL(Class entityClass, String... columns
      * @param entityClass
      * @return
      */
-    public static String buildSeleteSQLById(Class<?> entityClass){
+    public static String buildSelectSQLById(Class<?> entityClass){
         EntityFactory.introspectResultClass(entityClass);
         String tableName = getTableName(entityClass);
         StringBuffer sql = new StringBuffer("SELECT * FROM ").append(tableName).append(" WHERE ");
@@ -145,6 +146,16 @@ public static String buildDeleteByColumnSQL(Class entityClass, String... columns
         }
         sql.append(pkColumnName.toUpperCase()).append(" = $").append(pkColumnName.toUpperCase());
         return sql.toString();
+    }
+
+    //TODO: buildSelectInById
+    public static String buildSelectInSQLById(Class<?> entityClass, List<Long> idList) {
+        return "";
+    }
+
+    //TODO: buildSelectInByColumn
+    public static String buildSelectInSQLByColumn(Class<?> entityClass, String columnName, List<?> columnValueList) {
+        return "";
     }
 
     /**

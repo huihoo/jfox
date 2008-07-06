@@ -113,7 +113,7 @@ public abstract class DAOSupport implements DataAccessObject {
      * @return QueryExt
      */
     public QueryExt createAutoSelectByIdNativeQuery(Class entityClass) {
-        return createNativeQuery(SQLGenerator.buildSeleteSQLById(entityClass), entityClass);
+        return createNativeQuery(SQLGenerator.buildSelectSQLById(entityClass), entityClass);
     }
 
     /**
@@ -122,7 +122,7 @@ public abstract class DAOSupport implements DataAccessObject {
      * @return QueryExt
      */
     public QueryExt createAutoSelectByColumnNativeQuery(Class entityClass, String... columns) {
-        return createNativeQuery(SQLGenerator.buildSeleteSQLByColumn(entityClass, columns), entityClass);
+        return createNativeQuery(SQLGenerator.buildSelectSQLByColumn(entityClass, columns), entityClass);
     }
 
     /**
