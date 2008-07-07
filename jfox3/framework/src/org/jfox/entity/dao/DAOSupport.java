@@ -134,7 +134,7 @@ public abstract class DAOSupport implements DataAccessObject {
         return createNativeQuery(SQLGenerator.buildSelectInSQLByColumn(entityClass, columnName, columnValueList), entityClass);
     }
 
-    public QueryExt createAutoSelectbyCondition(Class entityClass, Condition condition){
+    public QueryExt createAutoSelectbyConditionNamedNativeQuery(Class entityClass, Condition condition){
         return createNativeQuery(SQLGenerator.buildSelectSQLByConditoin(entityClass, condition), entityClass);
     }
 

@@ -32,7 +32,6 @@
     <list default="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/entity/dao/DAOSupport.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/entity/dao/DAOSupport.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/doc/TODO.txt" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -191,8 +190,8 @@
       <property name="field_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByClasses" value="true" />
       <property name="exception_breakpoints_viewId" value="TABLE" />
-      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="field_breakpoints_viewId" value="TABLE" />
+      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByMethods" value="false" />
     </ui_properties>
   </component>
@@ -218,7 +217,7 @@
       <file leaf-file-name="ext-utils.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/include/platform/ext-utils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="543" column="5" selection-start="18210" selection-end="18210" vertical-scroll-proportion="-1.2691358">
+            <state line="543" column="5" selection-start="18210" selection-end="18210" vertical-scroll-proportion="0.020987654">
               <folding />
             </state>
           </provider>
@@ -236,10 +235,8 @@
       <file leaf-file-name="SQLGenerator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/SQLGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="160" column="25" selection-start="6127" selection-end="6127" vertical-scroll-proportion="0.33333334">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="160" column="25" selection-start="6127" selection-end="6127" vertical-scroll-proportion="0.020987654">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -247,7 +244,7 @@
       <file leaf-file-name="SuperDAO.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/SuperDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="112" column="22" selection-start="3548" selection-end="3548" vertical-scroll-proportion="0.41234568">
+            <state line="112" column="22" selection-start="3548" selection-end="3548" vertical-scroll-proportion="0.4617284">
               <folding />
             </state>
           </provider>
@@ -256,7 +253,7 @@
       <file leaf-file-name="DAOSupport.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/DAOSupport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="134" column="5" selection-start="4338" selection-end="4338" vertical-scroll-proportion="0.55925924">
+            <state line="136" column="63" selection-start="4360" selection-end="4403" vertical-scroll-proportion="0.6506173">
               <folding />
             </state>
           </provider>
@@ -265,7 +262,7 @@
       <file leaf-file-name="UnitCondition.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/UnitCondition.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="49" selection-start="214" selection-end="214" vertical-scroll-proportion="0.16790123">
+            <state line="8" column="49" selection-start="214" selection-end="214" vertical-scroll-proportion="0.12592593">
               <folding />
             </state>
           </provider>
@@ -274,7 +271,7 @@
       <file leaf-file-name="Condition.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/Condition.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="0" selection-start="166" selection-end="166" vertical-scroll-proportion="0.14424242">
+            <state line="12" column="44" selection-start="295" selection-end="295" vertical-scroll-proportion="0.24727273">
               <folding />
             </state>
           </provider>
@@ -283,7 +280,7 @@
       <file leaf-file-name="JointCondition.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/JointCondition.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="4" selection-start="302" selection-end="302" vertical-scroll-proportion="0.24727273">
+            <state line="12" column="4" selection-start="302" selection-end="302" vertical-scroll-proportion="0.123636365">
               <folding />
             </state>
           </provider>
@@ -292,7 +289,7 @@
       <file leaf-file-name="FileFilterUtils.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/util/FileFilterUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="13" selection-start="400" selection-end="400" vertical-scroll-proportion="-1.930909">
+            <state line="16" column="13" selection-start="400" selection-end="400" vertical-scroll-proportion="0.020606061">
               <folding />
             </state>
           </provider>
@@ -301,7 +298,7 @@
       <file leaf-file-name="OutContainerDAOTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/test/OutContainerDAOTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="102" column="32" selection-start="3562" selection-end="3562" vertical-scroll-proportion="0.85333335">
+            <state line="102" column="32" selection-start="3562" selection-end="3562" vertical-scroll-proportion="0.8448485">
               <folding />
             </state>
           </provider>
@@ -583,45 +580,15 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
+          <option name="myItemId" value="iservicedesk" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="Libraries" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox-libs" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Libraries" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox-libs" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\lib\velocity-dep-1.5.jar" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\lib\velocity-dep-1.5.jar!\org\apache" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\lib\velocity-dep-1.5.jar!\org\apache\velocity" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\doc" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -633,92 +600,6 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="framework" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Libraries" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox-libs" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\lib\velocity-dep-1.5.jar" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\lib\velocity-dep-1.5.jar!\org\apache" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\lib\velocity-dep-1.5.jar!\org\apache\velocity" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\lib\velocity-dep-1.5.jar!\org\apache\velocity\app" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Libraries" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox-libs" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\lib\velocity-dep-1.5.jar" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\lib\velocity-dep-1.5.jar!\org\apache" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Libraries" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox-libs" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\lib\velocity-dep-1.5.jar" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Libraries" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
@@ -872,8 +753,8 @@
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth3" value="114" />
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_framework/web/Web" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir51761tmp" />
     <property name="cvs_file_history_flatWidth2" value="240" />
-    <property name="cvs_file_history_flatWidth3" value="240" />
     <property name="cvs_file_history_treeOrder0" value="0" />
+    <property name="cvs_file_history_flatWidth3" value="240" />
     <property name="cvs_file_history_flatWidth0" value="240" />
     <property name="cvs_file_history_flatWidth1" value="240" />
     <property name="GoToClass.includeLibraries" value="false" />
@@ -907,12 +788,12 @@
     <property name="cvs_file_history_flatOrder2" value="2" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder4" value="4" />
     <property name="cvs_file_history_flatOrder3" value="3" />
-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder1" value="1" />
     <property name="cvs_file_history_flatOrder0" value="0" />
-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder1" value="1" />
     <property name="cvs_file_history_flatOrder1" value="1" />
-    <property name="Web Module Deployment Descriptor Default Version" value="2.4" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder2" value="2" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder0" value="0" />
+    <property name="Web Module Deployment Descriptor Default Version" value="2.4" />
     <property name="EJB Module Deployment Descriptor Default Version" value="3.0" />
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_framework/web/Web2" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir51772tmp" />
   </component>
@@ -983,6 +864,41 @@
       <option name="BASE_DIRECTORY_NAME" value="" />
       <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG" enabled="false" merge="false">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -1029,41 +945,6 @@
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="wholeProject" />
       </option>
-      <envs />
-      <method>
-        <option name="Make" value="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
       <envs />
       <method>
         <option name="Make" value="true" />
@@ -1459,36 +1340,21 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
-    <configuration default="false" name="UnitCondition" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" value="org.jfox.entity.dao.UnitCondition" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="framework" />
-      <envs />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-    </configuration>
     <list size="14">
-      <item index="0" class="java.lang.String" itemvalue="Application.CalculatorTestMain" />
-      <item index="1" class="java.lang.String" itemvalue="Application.Framework" />
-      <item index="2" class="java.lang.String" itemvalue="Application.ComponentFactory" />
-      <item index="3" class="java.lang.String" itemvalue="Application.TestComponentMain" />
-      <item index="4" class="java.lang.String" itemvalue="Application.SimpleEJB3Container" />
-      <item index="5" class="java.lang.String" itemvalue="Application.WebServiceClient" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.JOTMTest" />
-      <item index="7" class="java.lang.String" itemvalue="JUnit.FrameworkTest" />
-      <item index="8" class="java.lang.String" itemvalue="JUnit.JTATransactionManagerTest" />
-      <item index="9" class="java.lang.String" itemvalue="JUnit.DAOTest" />
-      <item index="10" class="java.lang.String" itemvalue="JUnit.AccountDAOTest" />
-      <item index="11" class="java.lang.String" itemvalue="JUnit.TestClient" />
-      <item index="12" class="java.lang.String" itemvalue="Tomcat Server.jfox3-startup" />
-      <item index="13" class="java.lang.String" itemvalue="Application.Condition" />
+      <item index="0" class="java.lang.String" itemvalue="Application.UnitCondition" />
+      <item index="1" class="java.lang.String" itemvalue="Application.CalculatorTestMain" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Framework" />
+      <item index="3" class="java.lang.String" itemvalue="Application.ComponentFactory" />
+      <item index="4" class="java.lang.String" itemvalue="Application.TestComponentMain" />
+      <item index="5" class="java.lang.String" itemvalue="Application.SimpleEJB3Container" />
+      <item index="6" class="java.lang.String" itemvalue="Application.WebServiceClient" />
+      <item index="7" class="java.lang.String" itemvalue="JUnit.JOTMTest" />
+      <item index="8" class="java.lang.String" itemvalue="JUnit.FrameworkTest" />
+      <item index="9" class="java.lang.String" itemvalue="JUnit.JTATransactionManagerTest" />
+      <item index="10" class="java.lang.String" itemvalue="JUnit.DAOTest" />
+      <item index="11" class="java.lang.String" itemvalue="JUnit.AccountDAOTest" />
+      <item index="12" class="java.lang.String" itemvalue="JUnit.TestClient" />
+      <item index="13" class="java.lang.String" itemvalue="Tomcat Server.jfox3-startup" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -1753,14 +1619,14 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32608697" order="5" x="100" y="162" width="634" height="300" />
       <window_info id="Code Logic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72783506" order="14" x="22" y="39" width="776" height="476" />
       <window_info id="Clover" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="6" />
-      <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45322245" order="13" />
       <window_info id="Aspects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="2" />
+      <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45322245" order="13" />
       <window_info id="SQL Schema" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.74408287" order="19" />
       <window_info id="simpleUML" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4992343" order="12" />
-      <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.432" order="23" />
+      <window_info id="SVN Repositories" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.432" order="23" />
       <window_info id="File View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="1" />
-      <window_info id="App Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="11" />
       <window_info id="Sequence" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="17" />
+      <window_info id="App Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="11" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="8" />
       <window_info id="SQL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7914201" order="15" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
@@ -1938,14 +1804,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/include/platform/ext-utils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="543" column="5" selection-start="18210" selection-end="18210" vertical-scroll-proportion="-1.2691358">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/test/OutContainerDAOTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="32" selection-start="3562" selection-end="3562" vertical-scroll-proportion="0.85333335">
+        <state line="543" column="5" selection-start="18210" selection-end="18210" vertical-scroll-proportion="0.020987654">
           <folding />
         </state>
       </provider>
@@ -1957,53 +1816,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/util/FileFilterUtils.java">
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/SQLGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="13" selection-start="400" selection-end="400" vertical-scroll-proportion="-1.930909">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/JointCondition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="4" selection-start="302" selection-end="302" vertical-scroll-proportion="0.24727273">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/Condition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="166" selection-end="166" vertical-scroll-proportion="0.14424242">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/UnitCondition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="49" selection-start="214" selection-end="214" vertical-scroll-proportion="0.16790123">
+        <state line="160" column="25" selection-start="6127" selection-end="6127" vertical-scroll-proportion="0.020987654">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/SuperDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="22" selection-start="3548" selection-end="3548" vertical-scroll-proportion="0.41234568">
+        <state line="112" column="22" selection-start="3548" selection-end="3548" vertical-scroll-proportion="0.4617284">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/SQLGenerator.java">
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/UnitCondition.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="25" selection-start="6127" selection-end="6127" vertical-scroll-proportion="0.33333334">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="8" column="49" selection-start="214" selection-end="214" vertical-scroll-proportion="0.12592593">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/JointCondition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="4" selection-start="302" selection-end="302" vertical-scroll-proportion="0.123636365">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/util/FileFilterUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="13" selection-start="400" selection-end="400" vertical-scroll-proportion="0.020606061">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/test/OutContainerDAOTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="102" column="32" selection-start="3562" selection-end="3562" vertical-scroll-proportion="0.8448485">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/Condition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="44" selection-start="295" selection-end="295" vertical-scroll-proportion="0.24727273">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/DAOSupport.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="134" column="5" selection-start="4338" selection-end="4338" vertical-scroll-proportion="0.55925924">
+        <state line="136" column="63" selection-start="4360" selection-end="4403" vertical-scroll-proportion="0.6506173">
           <folding />
         </state>
       </provider>
