@@ -8,6 +8,8 @@ package org.jfox.entity.dao;
 
 import org.jfox.entity.QueryExt;
 
+import java.util.List;
+
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
@@ -28,36 +30,43 @@ public interface DataAccessObject {
      * @param entityClass entity class
      * @return QueryExt
      */
-    public QueryExt createAutoInsertNativeQuery(Class entityClass);
+    QueryExt createAutoInsertNativeQuery(Class entityClass);
 
     /**
      * 自动生成 Delete Query
      * @param entityClass
      * @return QueryExt
      */
-    public QueryExt createAutoDeleteByIdNativeQuery(Class entityClass);
+    QueryExt createAutoDeleteByIdNativeQuery(Class entityClass);
 
-    public QueryExt createAutoDeleteByColumnNativeQuery(Class entityClass, String... columns);
+    QueryExt createAutoDeleteByColumnNativeQuery(Class entityClass, String... columns);
 
     /**
      * 自动生成 Update Query
      * @param entityClass
      * @return QueryExt
      */
-    public QueryExt createAutoUpdateNativeQuery(Class entityClass);
+    QueryExt createAutoUpdateNativeQuery(Class entityClass);
 
     /**
      * 自动生成 Select all Query by id
      * @param entityClass
      * @return QueryExt
      */
-    public QueryExt createAutoSelectByIdNativeQuery(Class entityClass);
+    QueryExt createAutoSelectByIdNativeQuery(Class entityClass);
 
     /**
      * 自动生成 Select all Query by specic column
      * @param entityClass
      * @return QueryExt
      */
-    public QueryExt createAutoSelectByColumnNativeQuery(Class entityClass, String... columns);
+    QueryExt createAutoSelectByColumnNativeQuery(Class entityClass, String... columns);
+
+
+    QueryExt createAutoSelectInByIdNativeQuery(Class entityClass, List<Long> idList);
+
+    QueryExt createAutoSelectInByColumnNativeQuery(Class entityClass, String columnName, List<String> columnValueList);
+
+    QueryExt createAutoSelectbyConditionNamedNativeQuery(Class entityClass, Condition condition);
 
 }
