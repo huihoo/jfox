@@ -67,6 +67,6 @@ public interface DataAccessObject {
 
     QueryExt createAutoSelectInByColumnNativeQuery(Class entityClass, String columnName, List<String> columnValueList);
 
-    QueryExt createAutoSelectbyConditionNativeQuery(Class entityClass, Condition condition);
+    QueryExt createAutoSelectByConditionNativeQuery(Class entityClass, Condition condition);
 
 }
