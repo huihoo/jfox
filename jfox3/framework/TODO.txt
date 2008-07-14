@@ -339,3 +339,7 @@
 
 2008-06-09
     1.解决 Petstore My Orders 的问题
+
+2008-07-14
+    1.文档补充 SQLGenerator 内容
+    2.补充在 ParameterObject 中可以直接使用 long[] String[] 数组的内容
