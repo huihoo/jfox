@@ -6,17 +6,17 @@
  */
 package org.jfox.manager.demo;
 
-import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.ParameterObject;
+import org.jfox.mvc.annotation.Action;
 import org.jfox.mvc.annotation.ActionMethod;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(id="checkbox")
+@Action(name="checkbox")
 public class CheckboxAction extends ActionSupport {
 
     @ActionMethod(name="view", successView = "demo/checkbox.vhtml", httpMethod = ActionMethod.HttpMethod.GET)

@@ -6,12 +6,12 @@
  */
 package org.jfox.manager.demo;
 
-import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.ParameterObject;
 import org.jfox.mvc.SessionContext;
+import org.jfox.mvc.annotation.Action;
 import org.jfox.mvc.annotation.ActionMethod;
 
 import java.util.Random;
@@ -21,7 +21,7 @@ import java.util.Random;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(id = "numberguess")
+@Action(name = "numberguess")
 public class NumberGuessAction extends ActionSupport {
 
     @ActionMethod(name="view", successView = "demo/numberguess.vhtml", parameterClass = NumberGuessParameterObject.class, httpMethod = ActionMethod.HttpMethod.GET)

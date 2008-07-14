@@ -6,18 +6,18 @@
  */
 package org.jfox.manager.demo;
 
-import org.jfox.framework.annotation.Service;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.FileUploaded;
 import org.jfox.mvc.PageContext;
 import org.jfox.mvc.ParameterObject;
+import org.jfox.mvc.annotation.Action;
 import org.jfox.mvc.annotation.ActionMethod;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(id = "demoupload")
+@Action(name = "demoupload")
 public class DemoUploadAction extends ActionSupport {
 
     @ActionMethod(name="view", successView = "demo/upload.vhtml", httpMethod = ActionMethod.HttpMethod.GET)

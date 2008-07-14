@@ -125,6 +125,7 @@ public static String buildDeleteByColumnSQL(Class entityClass, String... columns
                     sql.append(" AND ");
                 }
                 sql.append(column.toUpperCase()).append(" = $").append(column.toUpperCase());
+                colIndex++;
             }
         }
         return sql.toString();
