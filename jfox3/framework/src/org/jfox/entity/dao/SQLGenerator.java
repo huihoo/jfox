@@ -171,6 +171,7 @@ public static String buildDeleteByColumnSQL(Class entityClass, String... columns
                     sql.append(" , ");
                 }
                 sql.append(colValue);
+                colIndex++;
             }
             sql.append(" )");
         }
