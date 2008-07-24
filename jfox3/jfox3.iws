@@ -30,8 +30,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/config/ConditionElement.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/config/ConditionElement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/WorkflowContext.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/WorkflowContext.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/doc/开发Q&amp;A.txt" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/doc/开发Q&amp;A.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/WorkflowPersistence.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/WorkflowPersistence.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/WorkflowEntity.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/WorkflowEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/Workflow.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/Workflow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/MemoryWorkflowPersistence.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/MemoryWorkflowPersistence.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/config/StepElement.java" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/config/StepElement.java" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -181,6 +187,32 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/MemoryWorkflowPersistence.java" line="68" class="jfox.platform.workflow.persistence.MemoryWorkflowPersistence" package="jfox.platform.workflow.persistence">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/MemoryWorkflowPersistence.java" line="75" class="jfox.platform.workflow.persistence.MemoryWorkflowPersistence" package="jfox.platform.workflow.persistence">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
     </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
@@ -253,95 +285,100 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SuperAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/SuperAction.java">
+      <file leaf-file-name="example.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/test/example.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="225" column="15" selection-start="8081" selection-end="8081" vertical-scroll-proportion="0.11845387">
+            <state line="97" column="41" selection-start="3860" selection-end="3860" vertical-scroll-proportion="0.4455067">
+              <folding>
+                <element signature="tag#step#0;tag#steps#0;tag#workflow#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StepElement.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/config/StepElement.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="72" column="57" selection-start="2587" selection-end="2587" vertical-scroll-proportion="0.42490843">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="开发Q&amp;A.txt" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/doc/开发Q&amp;A.txt">
+      <file leaf-file-name="ConditionElement.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/config/ConditionElement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="161" column="79" selection-start="6817" selection-end="6817" vertical-scroll-proportion="0.88154614">
+            <state line="53" column="50" selection-start="1897" selection-end="1897" vertical-scroll-proportion="0.61538464">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DAOSupport.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/DAOSupport.java">
+      <file leaf-file-name="MemoryWorkflowPersistence.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/MemoryWorkflowPersistence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="136" column="83" selection-start="4423" selection-end="4423" vertical-scroll-proportion="0.617207">
+            <state line="99" column="88" selection-start="3837" selection-end="3837" vertical-scroll-proportion="-2.2326007">
+              <folding>
+                <marker date="1216942810000" expanded="false" signature="52:637" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Enum.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$TEMPLATE$/jdk1.5.0_15/src.zip!/java/lang/Enum.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="98" column="18" selection-start="3350" selection-end="3350" vertical-scroll-proportion="0.33333334">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Condition.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/Condition.java">
+      <file leaf-file-name="WorkflowStatus.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/WorkflowStatus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="0" selection-start="137" selection-end="137" vertical-scroll-proportion="0.13953489">
+            <state line="6" column="65" selection-start="204" selection-end="211" vertical-scroll-proportion="0.20320855">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UnitCondition.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/UnitCondition.java">
+      <file leaf-file-name="StepStatus.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/StepStatus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="5" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.8104738">
+            <state line="6" column="21" selection-start="154" selection-end="163" vertical-scroll-proportion="0.20320855">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ext_tab.vhtml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/sample/ext_tab.vhtml">
+      <file leaf-file-name="WorkflowContext.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/WorkflowContext.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="110" selection-start="4658" selection-end="4764" vertical-scroll-proportion="0.7019608">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="HtmlPreview">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ext-utils.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/include/platform/ext-utils.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="615" column="5" selection-start="20510" selection-end="20510" vertical-scroll-proportion="-1.2281796">
+            <state line="19" column="0" selection-start="465" selection-end="465" vertical-scroll-proportion="0.4741533">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/LoginAction.java">
+      <file leaf-file-name="WorkflowEntity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/WorkflowEntity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="0" selection-start="1761" selection-end="1761" vertical-scroll-proportion="0.23441397">
-              <folding />
+            <state line="114" column="5" selection-start="2911" selection-end="2911" vertical-scroll-proportion="0.7802198">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JointCondition.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/JointCondition.java">
+      <file leaf-file-name="Workflow.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/Workflow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="13" selection-start="150" selection-end="150" vertical-scroll-proportion="0.13953489">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Constants.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/common/Constants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="0" selection-start="513" selection-end="513" vertical-scroll-proportion="0.39534885">
-              <folding />
+            <state line="314" column="0" selection-start="11343" selection-end="11343" vertical-scroll-proportion="0.5824176">
+              <folding>
+                <marker date="1216943134000" expanded="false" signature="40:669" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -414,118 +451,6 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager\views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager\views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager\views\demo" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager\src\org\jfox\manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager\src\org\jfox\manager\demo" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager\src\org\jfox\manager" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
           <option name="myItemId" value="iservicedesk" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
@@ -541,116 +466,6 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\views\zh_CN" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\views\sample" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\views\include" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\views\include" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\views\include\platform" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -716,7 +531,7 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\test" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\workflow" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -742,7 +557,11 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\logging" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\workflow" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\workflow\test" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -768,37 +587,11 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\logging" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\workflow" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\logging\bo" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\infrastructure" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\workflow\persistence" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -824,37 +617,11 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\datadict" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\workflow" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\datadict\util" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\datadict" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\workflow\interceptor" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -880,7 +647,41 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\common" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\workflow" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\workflow\config" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\workflow" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\workflow\condition" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -911,6 +712,248 @@
           <option name="myItemId" value="framework" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox-libs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox-libs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\lib\jotm\xapool-1.6.0.jar" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\lib\jotm\xapool-1.6.0.jar!\org\enhydra\jdbc" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox-libs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\lib\jotm\xapool-1.6.0.jar" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\lib\jotm\xapool-1.6.0.jar!\org\enhydra\jdbc" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\lib\jotm\xapool-1.6.0.jar!\org\enhydra\jdbc\pool" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox-libs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\lib\jotm\xapool-1.6.0.jar" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="&lt; 1.5 &gt;" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="&lt; 1.5 &gt;" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\jdk1.5.0_15\jre\lib\rt.jar" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="&lt; 1.5 &gt;" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\jdk1.5.0_15\jre\lib\rt.jar" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\jdk1.5.0_15\jre\lib\rt.jar!\java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\jdk1.5.0_15\jre\lib\rt.jar!\java\util" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="&lt; 1.5 &gt;" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\jdk1.5.0_15\jre\lib\rt.jar" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\jdk1.5.0_15\jre\lib\rt.jar!\java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="&lt; 1.5 &gt;" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\jdk1.5.0_15\jre\lib\rt.jar" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\jdk1.5.0_15\jre\lib\rt.jar!\java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\jdk1.5.0_15\jre\lib\rt.jar!\java\lang" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="&lt; 1.5 &gt;" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\jdk1.5.0_15\jre\lib\rt.jar" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\jdk1.5.0_15\jre\lib\rt.jar!\java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\jdk1.5.0_15\jre\lib\rt.jar!\java\io" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
       </PATH>
       <PATH>
         <PATH_ELEMENT>
@@ -923,6 +966,54 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\test-src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\test-src\jfox\test" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\test-src\jfox\test\transaction" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\test-src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\test-src\jfox\test" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -945,6 +1036,62 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox\mvc" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox\mvc" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox\mvc\servlet" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -1004,20 +1151,60 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\conf" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\conf" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\conf\META-INF" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
     </subPane>
   </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="0.5545685" version="1" splitterProportion="0.5">
+    <navigator currentView="ProjectPane" proportions="0.6497462" version="1" splitterProportion="0.5">
       <flattenPackages ProjectPane="false" />
       <showMembers Scope="false" ProjectPane="false" />
       <showModules PackagesPane="true" />
       <showLibraryContents PackagesPane="true" />
       <hideEmptyPackages PackagesPane="true" ProjectPane="true" />
       <abbreviatePackageNames />
-      <showStructure ProjectPane="false" Scope="false" PackagesPane="false" Favorites="false" />
+      <showStructure PackagesPane="false" Scope="false" Favorites="false" ProjectPane="true" />
       <autoscrollToSource />
       <autoscrollFromSource ProjectPane="true" />
       <sortByType ProjectPane="true" />
@@ -1083,25 +1270,25 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="jfox.platform.workflow.persistence" />
       <recent name="org.jfox.mvc" />
       <recent name="org.jfox.mvc.dependent" />
       <recent name="org.jfox.mvc.invocation" />
       <recent name="org.jfox.mvc.event" />
-      <recent name="org.jfox.mvc.annotation" />
     </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="org.jfox.entity.dao.Condition" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="jfox.platform.workflow.persistence" />
+      <recent name="jfox.platform.workflow.interceptor" />
+      <recent name="jfox.platform.workflow.condition" />
       <recent name="jfox.platform" />
       <recent name="org.jfox.ejb3" />
-      <recent name="org.jfox.entity.mapping" />
-      <recent name="jfox.platform.logging.dao" />
-      <recent name="jfox.platform.logging.entity" />
     </key>
   </component>
   <component name="RestoreUpdateTree">
-    <UpdateInfo date="08-7-13 下午12:06" ActionInfo="_Update">
+    <UpdateInfo date="08-7-21 下午3:32" ActionInfo="_Update">
       <UpdatedFiles>
         <FILE-GROUP>
           <option name="myUpdateName" value="Updated from server" />
@@ -1115,7 +1302,13 @@
             <option name="mySupportsDeletion" value="false" />
             <option name="myCanBeAbsent" value="false" />
             <option name="myId" value="UPDATED" />
-            <PATH vcs="svn" revision="95">Y:\workspace.idea\jfox3\MODULES\iservicedesk\views\zh_CN\sort\serviceCat\service_cat_edit.vhtml</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\action\UserAction.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\sort\serviceCat\bo\ServiceCatBoBean.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\sort\serviceCat\bo\ServiceCatBo.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\sort\serviceCat\dao\ServiceCatDAOBean.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\sort\serviceCat\dao\ServiceCatDAO.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\sort\serviceCat\entity\ServiceCat.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\sort\serviceCat\action\ServiceCatAction.java</PATH>
           </FILE-GROUP>
           <FILE-GROUP>
             <option name="myUpdateName" value="Created" />
@@ -1123,6 +1316,40 @@
             <option name="mySupportsDeletion" value="false" />
             <option name="myCanBeAbsent" value="false" />
             <option name="myId" value="CREATED" />
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\bo\WorkgroupBO.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\bo\RelationshipBO.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\bo\WorkgroupBOBean.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\bo\RelationshipBOBean.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\dao\WorkgroupDAO.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\dao\RelationshipDAO.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\dao\WorkgroupDAOBean.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\dao\RelationshipDAOBean.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\entity\Workgroup.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\entity\Relationship.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\aaa\action\WorkgroupAction.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\location</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\location\bo</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\location\bo\LocationBO.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\location\bo\LocationBOImpl.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\location\dao</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\location\dao\LocationDAO.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\location\dao\LocationDAOImpl.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\location\entity</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\location\entity\Location.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\location\action</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\jfox\platform\location\action\LocationMgmtAction.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\resource\knowledgeBase</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\resource\knowledgeBase\bo</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\resource\knowledgeBase\bo\KnowledgeBaseBoBean.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\resource\knowledgeBase\bo\KnowledgeBaseBo.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\resource\knowledgeBase\dao</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\resource\knowledgeBase\dao\KnowledgeBaseDAOBean.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\resource\knowledgeBase\dao\KnowledgeBaseDAO.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\resource\knowledgeBase\entity</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\resource\knowledgeBase\entity\KnowledgeBase.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\resource\knowledgeBase\action</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\resource\knowledgeBase\action\KnowledgeBaseAction.java</PATH>
+            <PATH vcs="svn" revision="115">Y:\workspace.idea\jfox3\MODULES\iservicedesk\src\resource\ServiceOneself</PATH>
           </FILE-GROUP>
           <FILE-GROUP>
             <option name="myUpdateName" value="Deleted" />
@@ -1191,22 +1418,32 @@
       </UpdatedFiles>
     </UpdateInfo>
   </component>
-  <component name="RunManager" selected="Application.UnitCondition">
-    <tempConfiguration default="false" name="UnitCondition" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" value="org.jfox.entity.dao.UnitCondition" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+  <component name="RunManager" selected="Application.MemoryWorkflowPersistence">
+    <tempConfiguration default="false" name="MemoryWorkflowPersistence" type="Application" factoryName="Application" enabled="false" merge="false">
+      <option name="MAIN_CLASS_NAME" value="jfox.platform.workflow.persistence.MemoryWorkflowPersistence" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="framework" />
+      <module name="iservicedesk" />
       <envs />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" value="false" />
+      </method>
     </tempConfiguration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local">
       <option name="WORKING_DIRECTORY" />
       <option name="HOST" value="localhost" />
@@ -1238,35 +1475,6 @@
       <option name="DEPLOY_TOMCAT_MANAGER" value="false" />
       <option name="BASE_DIRECTORY_NAME" value="" />
       <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="ADDITIONAL_CLASS_PATH" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
-      <envs />
-      <method>
-        <option name="Make" value="true" />
-      </method>
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG" enabled="false" merge="false">
       <module name="" />
@@ -1308,6 +1516,28 @@
       <option name="VM_PARAMETERS" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="ADDITIONAL_CLASS_PATH" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <envs />
+      <method>
+        <option name="Make" value="true" />
+      </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
       <option name="MAIN_CLASS_NAME" />
@@ -1716,13 +1946,13 @@
       </method>
     </configuration>
     <list size="14">
-      <item index="0" class="java.lang.String" itemvalue="Application.UnitCondition" />
-      <item index="1" class="java.lang.String" itemvalue="Application.CalculatorTestMain" />
-      <item index="2" class="java.lang.String" itemvalue="Application.Framework" />
-      <item index="3" class="java.lang.String" itemvalue="Application.ComponentFactory" />
-      <item index="4" class="java.lang.String" itemvalue="Application.TestComponentMain" />
-      <item index="5" class="java.lang.String" itemvalue="Application.SimpleEJB3Container" />
-      <item index="6" class="java.lang.String" itemvalue="Application.WebServiceClient" />
+      <item index="0" class="java.lang.String" itemvalue="Application.CalculatorTestMain" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Framework" />
+      <item index="2" class="java.lang.String" itemvalue="Application.ComponentFactory" />
+      <item index="3" class="java.lang.String" itemvalue="Application.TestComponentMain" />
+      <item index="4" class="java.lang.String" itemvalue="Application.SimpleEJB3Container" />
+      <item index="5" class="java.lang.String" itemvalue="Application.WebServiceClient" />
+      <item index="6" class="java.lang.String" itemvalue="Application.MemoryWorkflowPersistence" />
       <item index="7" class="java.lang.String" itemvalue="JUnit.JOTMTest" />
       <item index="8" class="java.lang.String" itemvalue="JUnit.FrameworkTest" />
       <item index="9" class="java.lang.String" itemvalue="JUnit.JTATransactionManagerTest" />
@@ -1968,30 +2198,30 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1288" height="1000" extended-state="6" />
+    <frame x="-4" y="-4" width="1032" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39356816" order="20" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="4" />
       <window_info id="Ant Build" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24701196" order="4" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.51954395" order="4" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29153094" order="7" x="16" y="176" width="776" height="371" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35016286" order="4" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29885057" order="7" x="16" y="176" width="776" height="371" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="21" />
       <window_info id="IDEtalk" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" order="22" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36482084" order="0" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3583062" order="2" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3643678" order="0" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35667753" order="2" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32615384" order="10" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3003984" order="1" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26980942" order="1" />
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7307307" order="3" />
       <window_info id="Maven projects" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932934" order="9" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="0" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20670392" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22567703" order="0" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7905138" order="16" />
       <window_info id="Hierarchy" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30712008" order="5" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42827442" order="9" />
       <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27931035" order="5" x="100" y="162" width="634" height="300" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30130294" order="5" x="100" y="162" width="634" height="300" />
       <window_info id="Code Logic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72783506" order="14" x="22" y="39" width="776" height="476" />
       <window_info id="Clover" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="6" />
       <window_info id="Aspects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="2" />
@@ -2029,7 +2259,7 @@
     <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="解决 tab page url 问题，支持 script" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -2040,12 +2270,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="finished transfer from ActionSupport to ActionContainer" />
-    <MESSAGE value="correct MappedColumn child SQLQuery always create new sql connection problem" />
-    <MESSAGE value="Invocation -&gt; ParameterObject" />
-    <MESSAGE value="js Ext-&gt;YUI" />
-    <MESSAGE value="add YUI 2.5.2" />
-    <MESSAGE value=" finished upgrade ext 2.1" />
     <MESSAGE value="Resolve the problem of can not stop gracefully" />
     <MESSAGE value="modify" />
     <MESSAGE value="modify @NamedNativeQuery AnnounceDAOBean.GET_NO_FILLUSER_TITLE_CONTENT" />
@@ -2065,6 +2289,12 @@
     <MESSAGE value="解决 version 问题" />
     <MESSAGE value="解决日志问题" />
     <MESSAGE value="解决 tab page url 问题，支持 script" />
+    <MESSAGE value="解决 manager @Service 的问题&#10;解决 SQLGenerator buildSelectByColumn问题" />
+    <MESSAGE value="增加在提交数组的 QA" />
+    <MESSAGE value="XAPool checkObjectLevel 默认设置为2" />
+    <MESSAGE value="workflow worked" />
+    <MESSAGE value="增加 workflow persistence" />
+    <MESSAGE value="废弃 initial-action，改为 inital step" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -2132,123 +2362,124 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/logging/bo/LogBOBean.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/test/ExampleWorkflow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="16" selection-start="646" selection-end="646" vertical-scroll-proportion="0.26558605">
+        <state line="35" column="8" selection-start="1155" selection-end="1155" vertical-scroll-proportion="0.51652384">
+          <folding>
+            <marker date="1216872110000" expanded="false" signature="45:288" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/config/WorkflowElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="63" selection-start="1023" selection-end="1023" vertical-scroll-proportion="0.8269962">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/IVersionableEntityObject.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/config/InitialElement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="41" selection-start="128" selection-end="152" vertical-scroll-proportion="0.3275862">
+        <state line="14" column="0" selection-start="385" selection-end="385" vertical-scroll-proportion="0.4741533">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/manager/views/demo/upload.vhtml">
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/StepEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="32" selection-start="181" selection-end="181" vertical-scroll-proportion="0.6007905">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/ActionSupport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="0" selection-start="2939" selection-end="2939" vertical-scroll-proportion="0.7178131">
+        <state line="28" column="18" selection-start="787" selection-end="787" vertical-scroll-proportion="0.5027726">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/util/DataDicts.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/WorkflowPersistence.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="5" selection-start="2244" selection-end="2244" vertical-scroll-proportion="0.6551724">
+        <state line="34" column="0" selection-start="834" selection-end="834" vertical-scroll-proportion="1.0076046">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/zh_CN/sort/serviceCat/service_cat_new.vhtml">
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/condition/JoinCondition.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="77" selection-start="2191" selection-end="2191" vertical-scroll-proportion="0.15384616">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/infrastructure/SuperAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="225" column="15" selection-start="8081" selection-end="8081" vertical-scroll-proportion="0.11845387">
+        <state line="15" column="40" selection-start="454" selection-end="454" vertical-scroll-proportion="0.10836502">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/common/Constants.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/config/StepElement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="513" selection-end="513" vertical-scroll-proportion="0.39534885">
+        <state line="72" column="57" selection-start="2587" selection-end="2587" vertical-scroll-proportion="0.42490843">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/JointCondition.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/test/example.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="150" selection-end="150" vertical-scroll-proportion="0.13953489">
+        <state line="97" column="41" selection-start="3860" selection-end="3860" vertical-scroll-proportion="0.4455067">
+          <folding>
+            <element signature="tag#step#0;tag#steps#0;tag#workflow#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/StepStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="21" selection-start="154" selection-end="163" vertical-scroll-proportion="0.20320855">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/DAOSupport.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/WorkflowStatus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="83" selection-start="4423" selection-end="4423" vertical-scroll-proportion="0.617207">
+        <state line="6" column="65" selection-start="204" selection-end="211" vertical-scroll-proportion="0.20320855">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/Condition.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/WorkflowEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="137" selection-end="137" vertical-scroll-proportion="0.13953489">
+        <state line="114" column="5" selection-start="2911" selection-end="2911" vertical-scroll-proportion="0.7802198">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/config/ConditionElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="50" selection-start="1897" selection-end="1897" vertical-scroll-proportion="0.61538464">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/dao/UnitCondition.java">
+    <entry file="jar://$TEMPLATE$/jdk1.5.0_15/src.zip!/java/lang/Enum.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="5" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.8104738">
+        <state line="98" column="18" selection-start="3350" selection-end="3350" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/LoginAction.java">
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/MemoryWorkflowPersistence.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="0" selection-start="1761" selection-end="1761" vertical-scroll-proportion="0.23441397">
-          <folding />
+        <state line="99" column="88" selection-start="3837" selection-end="3837" vertical-scroll-proportion="-2.2326007">
+          <folding>
+            <marker date="1216942810000" expanded="false" signature="52:637" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/include/platform/ext-utils.js">
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/Workflow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="615" column="5" selection-start="20510" selection-end="20510" vertical-scroll-proportion="-1.2281796">
-          <folding />
+        <state line="314" column="0" selection-start="11343" selection-end="11343" vertical-scroll-proportion="0.5824176">
+          <folding>
+            <marker date="1216943134000" expanded="false" signature="40:669" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/views/sample/ext_tab.vhtml">
+    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/WorkflowContext.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="110" selection-start="4658" selection-end="4764" vertical-scroll-proportion="0.7019608">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/iservicedesk/doc/开发Q&amp;A.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="161" column="79" selection-start="6817" selection-end="6817" vertical-scroll-proportion="0.88154614">
+        <state line="19" column="0" selection-start="465" selection-end="465" vertical-scroll-proportion="0.4741533">
           <folding />
         </state>
       </provider>
