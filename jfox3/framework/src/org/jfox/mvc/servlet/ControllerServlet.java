@@ -88,6 +88,8 @@ public class ControllerServlet extends HttpServlet {
     }
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //TODO: 以 /m/root 访问 webroot
+
         request.setCharacterEncoding(DEFAULT_ENCODING);
         String pathInfo = request.getPathInfo();
         if (pathInfo.endsWith(ACTION_SUFFIX)) {

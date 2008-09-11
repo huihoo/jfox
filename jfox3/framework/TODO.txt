@@ -343,3 +343,28 @@
 2008-07-14
     1.文档补充 SQLGenerator 内容
     2.补充在 ParameterObject 中可以直接使用 long[] String[] 数组的内容
+
+2008-07-27
+    1.文档补充动态 successView 内容
+
+2008-09-11
+    1.以 /m/root 访问 webroot
+    2.弱化 module 支持，改为支持传统 web application 部署，Module仅为分目录部署不同的功能，不再要模块的隔离
+    3.使用反射调用 URLClassLoader.addURL 在 loadModule 的时候动态网 WebApplicationClassLoader 中增加 URL
+            URLClassLoader testUrlClassLoader = new URLClassLoader(new URL[]{new File("Y:\\workspace.idea\\jfox3\\framework\\lib\\ejb-3_0-api.jar").toURL()},null);
+            System.out.println(testUrlClassLoader.loadClass("javax.ejb.EJB"));
+            try {
+                System.out.println(testUrlClassLoader.loadClass("javax.persistence.Entity"));
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
+
+            Method addURL = testUrlClassLoader.getClass().getDeclaredMethod("addURL", URL.class);
+            addURL.setAccessible(true);
+            addURL.invoke(testUrlClassLoader, new File("Y:\\workspace.idea\\jfox3\\framework\\lib\\ejb3-persistence.jar").toURL());
+            System.out.println(Arrays.toString(testUrlClassLoader.getURLs()));
+
+            System.out.println(testUrlClassLoader.loadClass("javax.persistence.Entity"));
+
+

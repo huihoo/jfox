@@ -6,25 +6,6 @@
  */
 package org.jfox.ejb3;
 
-import java.io.Serializable;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import javax.ejb.EJBException;
-import javax.ejb.EJBObject;
-import javax.ejb.RemoveException;
-import javax.ejb.Stateless;
-import javax.ejb.TimedObject;
-import javax.ejb.Timeout;
-import javax.ejb.Timer;
-import javax.ejb.TimerService;
-import javax.jws.WebService;
-
 import org.apache.commons.pool.PoolableObjectFactory;
 import org.apache.commons.pool.impl.GenericObjectPool;
 import org.jfox.ejb3.dependent.FieldEJBDependence;
@@ -37,6 +18,25 @@ import org.jfox.framework.component.Module;
 import org.jfox.util.AnnotationUtils;
 import org.jfox.util.ClassUtils;
 import org.jfox.util.MethodUtils;
+
+import javax.ejb.EJBException;
+import javax.ejb.EJBObject;
+import javax.ejb.RemoveException;
+import javax.ejb.Stateless;
+import javax.ejb.TimedObject;
+import javax.ejb.Timeout;
+import javax.ejb.Timer;
+import javax.ejb.TimerService;
+import javax.jws.WebService;
+import java.io.Serializable;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Container of Statless EJB，store all Meta data, and as EJB Factory
@@ -258,7 +258,8 @@ public class StatelessBucket extends SessionBucket implements PoolableObjectFact
         logger.debug("Destroy EJB: " + getEJBName() + ", Module: " + getModule().getName());
         try {
             pool.clear();
-            pool.close();
+            // don't close pool, because of Bucket reusing
+//            pool.close();
         }
         catch(Exception e){
             e.printStackTrace();
