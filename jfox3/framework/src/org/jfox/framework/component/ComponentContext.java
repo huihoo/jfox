@@ -6,17 +6,17 @@
  */
 package org.jfox.framework.component;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Collection;
-
 import org.jfox.framework.BaseException;
 import org.jfox.framework.BaseRuntimeException;
 import org.jfox.framework.ComponentId;
 import org.jfox.framework.Framework;
 import org.jfox.framework.event.ComponentEvent;
+
+import java.io.File;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Component 上下文
@@ -119,11 +119,11 @@ public class ComponentContext {
      * @param interfaceClass interface class
      */
     public <T extends Component> Collection<T> getComponentsByInterface(Class<T> interfaceClass) {
-        return getModule().findComponentByInterface(interfaceClass);
+        return getModule().findComponentsByInterface(interfaceClass);
     }
 
     public <T extends Component> Collection<T> getComponentsByInterface(Class<T> interfaceClass, String moduleName) {
-        return getModule().findComponentByInterface(interfaceClass, moduleName);
+        return getModule().findComponentsByInterface(interfaceClass, moduleName);
     }
 
     public void fireComponentEvent(ComponentEvent componentEvent){

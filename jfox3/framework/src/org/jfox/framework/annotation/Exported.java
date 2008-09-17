@@ -6,10 +6,10 @@
  */
 package org.jfox.framework.annotation;
 
-import java.lang.annotation.Target;
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
 
 /**
  * Exported用来标注一个Component 接口，
@@ -23,6 +23,7 @@ import java.lang.annotation.ElementType;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
+@Deprecated
 public @interface Exported {
 
 }

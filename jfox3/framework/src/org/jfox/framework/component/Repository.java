@@ -6,13 +6,13 @@
  */
 package org.jfox.framework.component;
 
+import org.jfox.framework.ComponentId;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import org.jfox.framework.ComponentId;
 
 /**
  * 用来存储所有的 ComponentMeta
@@ -26,64 +26,32 @@ public class Repository {
 
     private final static Map<ComponentId, ComponentMeta> componentMetas = new ConcurrentHashMap<ComponentId, ComponentMeta>();
 
-    private Module module;
+    private final static Repository instance = new Repository();
 
-    private Repository(Module module) {
-        this.module = module;
+    private Repository() {
+
     }
 
-    static synchronized Repository getModuleComponentRepo(Module module){
-        return new Repository(module);
+    public static Repository getInstance(){
+        return instance;
     }
 
     void addComponentMeta(ComponentMeta meta) {
         componentMetas.put(meta.getComponentId(),meta);
     }
 
-    ComponentMeta getComponentMeta(ComponentId id) throws ComponentNotFoundException, ComponentNotExportedException {
-        id.setModuleName(module.getName());
+    public void removeComponentMeta(ComponentId id) throws ComponentNotFoundException {
         if(!componentMetas.containsKey(id)){
             throw new ComponentNotFoundException(id.toString());
         }
-        ComponentMeta meta = componentMetas.get(id);
-        if(meta.getModule() != module && !meta.isExported()){
-            throw new ComponentNotExportedException(id.toString());
-        }
-        return meta;
+        componentMetas.remove(id);
     }
 
-    void removeComponentMeta(ComponentId id) throws ComponentNotFoundException {
-        id.setModuleName(module.getName());
-        if(!componentMetas.containsKey(id)){
-            throw new ComponentNotFoundException(id.toString());
-        }
-        ComponentMeta meta = componentMetas.get(id);
-        if(meta.getModule() == module && !meta.isExported()){
-            componentMetas.remove(id);
-        }
-    }
-
-    boolean hasComponentMeta(ComponentId id){
-        id.setModuleName(module.getName());
+    public boolean hasComponentMeta(ComponentId id){
         return componentMetas.containsKey(id);
     }
 
-    /**
-     * 返回该模块所有的 ComponentMeta
-     * 返回的List已经按 Priority 排序
-     */
-    List<ComponentMeta> getModuleComponentMetas(){
-        List<ComponentMeta> metas = new ArrayList<ComponentMeta>();
-        for(ComponentMeta meta : componentMetas.values()){
-            if(meta.getModule() == this.module) {
-                metas.add(meta);
-            }
-        }
-        Collections.sort(metas);
-        return metas;
-    }
-
-    List<ComponentMeta> getModuleComponentMetas(String moduleName){
+    public List<ComponentMeta> getComponentMetas(String moduleName){
         List<ComponentMeta> metas = new ArrayList<ComponentMeta>();
         for(ComponentMeta meta : componentMetas.values()){
             if(meta.getModule().getName().equals(moduleName)) {
@@ -94,9 +62,51 @@ public class Repository {
         return metas;
     }
 
-    List<ComponentMeta> getAllComponentMetas(){
+    public List<ComponentMeta> getComponentMetas(){
         return Collections.unmodifiableList(new ArrayList<ComponentMeta>(componentMetas.values()));
     }
+
+    public ComponentMeta getComponentMeta(ComponentId id) throws ComponentNotFoundException {
+        if(!componentMetas.containsKey(id)){
+            throw new ComponentNotFoundException(id.toString());
+        }
+        ComponentMeta meta = componentMetas.get(id);
+        return meta;
+    }
+
+    /**
+     * 获得该模块内的 Component 实例
+     *
+     * @param componentId componentId
+     * @throws ComponentNotFoundException    if not found the component or component instantiate failed
+     * @throws ComponentNotExportedException if found component in other module, but it is not exported
+     */
+    public Component getComponent(ComponentId componentId) throws ComponentNotFoundException, ComponentInstantiateException {
+            ComponentMeta componentMeta = componentMetas.get(componentId);
+            return componentMeta.getComponentInstance();
+    }
+
+    public Component getComponent(String componentId) throws ComponentNotFoundException, ComponentInstantiateException {
+        return getComponent(new ComponentId(componentId));
+    }
+
+    public boolean isComponentLoaded(ComponentId id) {
+        return this.hasComponentMeta(id);
+    }
+
+/*
+    public Component getComponent(ComponentId componentId, String module) throws ComponentNotFoundException, ComponentNotExportedException {
+
+    }
+
+    public Component getComponent(String componentId, String module) throws ComponentNotFoundException, ComponentNotExportedException {
+        
+    }
+
+    public boolean isComponentLoaded(ComponentId id, String module) {
+        
+    }
+*/
 
     public static void main(String[] args) {
 

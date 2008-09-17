@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import org.jfox.framework.ComponentId;
 import org.jfox.framework.Constants;
 import org.jfox.framework.Framework;
-import org.jfox.framework.annotation.Exported;
+import org.jfox.framework.FrameworkClassLoader;
 import org.jfox.framework.annotation.Service;
 import org.jfox.framework.event.ComponentLoadedEvent;
 import org.jfox.framework.event.ComponentUnloadedEvent;
@@ -18,13 +18,8 @@ import org.jfox.framework.event.ModuleLoadedEvent;
 import org.jfox.framework.event.ModuleUnloadedEvent;
 import org.jfox.util.FileFilterUtils;
 import org.jfox.util.FileUtils;
-import org.jfox.util.PlaceholderUtils;
-import org.jfox.util.XMLUtils;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -36,7 +31,13 @@ import java.util.List;
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class Module implements Comparable<Module> {
+public class Module {
+
+    public final static String CLASS_DIR = "classes";
+    public final static String WEB_CLASS_DIR ="WEB-INF/classes";
+    public final static String LIB_DIR = "lib";
+    public final static String WEB_LIB_DIR ="WEB-INF/lib";
+    public final static String VIEWS_DIR ="views";
 
     protected final Logger logger = Logger.getLogger(this.getClass());
 
@@ -47,38 +48,20 @@ public class Module implements Comparable<Module> {
      */
     protected File moduleDir;
 
-    private URL descriptorURL;
-
     /**
      * 模块名称
      */
     private String name;
 
-    private String description;
-
-    private int priority = 50;
-    /**
-     * 该模块需要引用的模块
-     */
-    private String[] refModules;
-
-    protected ModuleClassLoader classLoader;
-
-    private Repository repo = Repository.getModuleComponentRepo(this);
+    private final Repository repo = Repository.getInstance();
 
     public static enum STATUS {
-        RESOLVED, STARTED, STOPPED
+        RESOLVED, LOADED, UNLOADED
     }
 
     public Module(Framework framework, File file) throws ModuleResolvedFailedException {
         this.framework = framework;
         this.moduleDir = file;
-        this.classLoader = initModuleClassLoader();
-        this.resolve(); // 仅仅解析 xml，并不load相关的类和component
-    }
-
-    protected ModuleClassLoader initModuleClassLoader() {
-        return new ModuleClassLoader(this);
     }
 
     public Framework getFramework() {
@@ -89,8 +72,8 @@ public class Module implements Comparable<Module> {
         return moduleDir;
     }
 
-    public ModuleClassLoader getModuleClassLoader() {
-        return classLoader;
+    public FrameworkClassLoader getModuleClassLoader() {
+        return (FrameworkClassLoader)framework.getClassLoader();
     }
 
     public ComponentMeta loadComponent(Class<? extends Component> implementataionClass) throws ComponentResolvedFailedException {
@@ -110,16 +93,11 @@ public class Module implements Comparable<Module> {
         logger.info("Unload component: " + id + ", Module: " + getName());
         boolean unloadSuccess = false;
         if (isComponentLoaded(id)) {
-            try {
-                ComponentMeta meta = repo.getComponentMeta(id);
-                // 会从 Module 中删除，并回调 preUnregister postUnregister
-                unloadSuccess = meta.unload();
-                getFramework().getEventManager().fireComponentEvent(new ComponentUnloadedEvent(id));
-                return unloadSuccess;
-            }
-            catch (ComponentNotExportedException e) {
-                throw new ComponentNotFoundException("Failed to unload other module's component.", e);
-            }
+            ComponentMeta meta = repo.getComponentMeta(id);
+            // 会从 Module 中删除，并回调 preUnregister postUnregister
+            unloadSuccess = meta.unload();
+            getFramework().getEventManager().fireComponentEvent(new ComponentUnloadedEvent(id));
+            return unloadSuccess;
         }
         else {
             throw new ComponentNotFoundException(id.toString());
@@ -137,7 +115,6 @@ public class Module implements Comparable<Module> {
 
     private void registerComponent(ComponentMeta meta) {
 //        componentMetas.put(meta.getComponentId(), meta);
-        meta.getComponentId().setModuleName(getName());
         if(repo.hasComponentMeta(meta.getComponentId())) {
             throw new ComponentExistedException(meta.toString());
         }
@@ -153,28 +130,6 @@ public class Module implements Comparable<Module> {
     void unregisterComponent(ComponentId id) throws ComponentNotFoundException {
 //        componentMetas.remove(id);
         repo.removeComponentMeta(id);
-    }
-
-    /**
-     * 获得模块配置文件
-     *
-     * @return xml descriptor URL
-     */
-    public URL getDescriptorURL() {
-        if (descriptorURL == null) {
-            try {
-                File moduleDescriptorFile = new File(getModuleDir(), Constants.MODULE_CONFIG_DIR + "/" + Constants.MODULE_CONFIG_FILENAME);
-                if(moduleDescriptorFile.exists()) {
-                    descriptorURL = moduleDescriptorFile.toURI().toURL();
-                }
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-            // 不用 ClassLoader.getResource，会造成无法释放资源，而是 Web Application undeploy 失败
-//            descriptorURL = getModuleClassLoader().getResource(Constants.MODULE_CONFIG_FILENAME);
-        }
-        return descriptorURL;
     }
 
     /**
@@ -230,79 +185,16 @@ public class Module implements Comparable<Module> {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    protected void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    protected void setPriority(int priority) {
-        this.priority = priority;
-    }
-
-    public String[] getRefModules() {
-        return refModules;
-    }
-
-    /**
-     * 初始化，only 装载配置文件，不解析
-     *
-     * @throws ModuleResolvedFailedException 解析失败，比如，XML不符合规范，抛出该异常
-     */
-    protected void resolve() throws ModuleResolvedFailedException {
-        URL descriptorURL = getDescriptorURL();
-        if (descriptorURL == null) {
-            logger.warn("Could not find module XML configuration for Module " + getModuleDir().toString() + ", will use default config.");
-            setName(getModuleDir().getName());
-            setDescription(getModuleDir().toString());
-        }
-        else {
-            logger.info("Resolving XML descriptor: " + descriptorURL);
-            Document doc;
-            try {
-                // 替换占位符
-                String xmlContent = PlaceholderUtils.getInstance().evaluate(descriptorURL);
-                doc = XMLUtils.loadDocument(xmlContent);
-            }
-            catch (Exception e) {
-                logger.error("Error to get XML Document of Module descriptor.", e);
-                throw new ModuleResolvedFailedException("Error to get XML Document of Module descriptor.", e);
-            }
-
-            Element rootElement = doc.getDocumentElement();
-            String name = XMLUtils.getChildElementValueByTagName(rootElement, "name");
-            if(name != null) {
-                setName(name);
-            }
-            else {
-                // 使用模块的目录名
-                setName(getModuleDir().getName());
-            }
-            setDescription(XMLUtils.getChildElementValueByTagName(rootElement, "description"));
-            setPriority(Integer.parseInt(XMLUtils.getChildElementValueByTagName(rootElement, "priority")));
-            String _refModules = XMLUtils.getChildElementValueByTagName(rootElement, "ref-modules");
-            if (_refModules != null) {
-                this.refModules = _refModules.split(",");
-            }
-            else {
-                this.refModules = new String[0];
-            }
-        }
-    }
-
     /**
      * 解析模块，export class, 装载组件
      *
      * @throws Exception any exception
      */
-    public void start() throws Exception {
+    public void init() throws Exception {
         logger.info("Starting module: " + getName());
+        if(!isSystemModule()) {
+            getModuleClassLoader().addURLs(getClasspathURLs());
+        }
         Class[] deployComponents = getModuleClassLoader().findClassAnnotatedWith(Service.class);
         for (Class<?> componentClass : deployComponents) {
             if (componentClass.isInterface()
@@ -325,12 +217,16 @@ public class Module implements Comparable<Module> {
         getFramework().getEventManager().fireModuleEvent(new ModuleLoadedEvent(this));
     }
 
+    protected boolean isSystemModule(){
+        return false;
+    }
+
     protected void preActiveComponent(){
 
     }
 
     protected void instantiateActiveComponent() throws ComponentInstantiateException {
-        Collection<ComponentMeta> metas = repo.getModuleComponentMetas();
+        Collection<ComponentMeta> metas = repo.getComponentMetas();
 //        Collections.sort(metas);
         for (ComponentMeta meta : metas) {
             // 立即实例化
@@ -340,19 +236,8 @@ public class Module implements Comparable<Module> {
         }
     }
 
-    public void stop() throws Exception {
-//
-    }
-
     public void destroy() throws Exception {
-
-    }
-
-    /**
-     * 销毁整个模块, unload all components
-     */
-    public void unload() {
-        List<ComponentMeta> metas = repo.getModuleComponentMetas();
+        List<ComponentMeta> metas = repo.getComponentMetas(this.getName());
 //        Collections.sort(metas);
         Collections.reverse(metas);
         for (ComponentMeta meta : metas) {
@@ -399,8 +284,8 @@ public class Module implements Comparable<Module> {
     /**
      * 组件是否对外发布，使用了 @Expose 描述的组件是可发布组件，以其接口发布出来
      *
-     * @param id component id
      */
+/*
     public boolean isComponentExported(ComponentId id) {
         if (!isComponentLoaded(id)) {
             return false;
@@ -418,21 +303,30 @@ public class Module implements Comparable<Module> {
             }
         }
     }
+*/
 
     public Collection<ComponentMeta> getAllComponentMetas() {
-        return repo.getModuleComponentMetas();
+        return repo.getComponentMetas(this.getName());
     }
 
-    public <T extends Component> Collection<T> findComponentByInterface(Class<T> interfaceClass) {
+    public <T extends Component> Collection<T> findComponentsByInterface(Class<T> interfaceClass) {
+        List<T> matchedComponents = new ArrayList<T>();
+        for (ComponentMeta meta : repo.getComponentMetas()) {
+            if (meta.isImplemented(interfaceClass)) {
+                try {
+                    matchedComponents.add((T)meta.getComponentInstance());
+                }
+                catch (ComponentInstantiateException e) {
+                    logger.warn("Component instantiate failed, id=" + meta.getComponentId(), e);
+                }
+            }
+        }
+        return Collections.unmodifiableCollection(matchedComponents);
+    }
+
+    public <T extends Component> Collection<T> findComponentsByInterface(Class<T> interfaceClass, String moduleName) {
         List<T> components = new ArrayList<T>();
-        List<ComponentMeta> searchScope = new ArrayList<ComponentMeta>();
-        if (!interfaceClass.isAnnotationPresent(Exported.class)) {
-            searchScope.addAll(repo.getModuleComponentMetas());
-        }
-        else {
-            searchScope.addAll(repo.getAllComponentMetas());
-        }
-        for (ComponentMeta meta : searchScope) {
+        for (ComponentMeta meta : repo.getComponentMetas(moduleName)) {
             if (meta.isImplemented(interfaceClass)) {
                 try {
                     components.add((T)meta.getComponentInstance());
@@ -444,29 +338,6 @@ public class Module implements Comparable<Module> {
         }
         return Collections.unmodifiableCollection(components);
     }
-
-    public <T extends Component> Collection<T> findComponentByInterface(Class<T> interfaceClass, String moduleName) {
-        List<T> components = new ArrayList<T>();
-        for (ComponentMeta meta : repo.getModuleComponentMetas(moduleName)) {
-            if (meta.isImplemented(interfaceClass)) {
-                try {
-                    components.add((T)meta.getComponentInstance());
-                }
-                catch (ComponentInstantiateException e) {
-                    logger.warn("Component instantiate failed, id=" + meta.getComponentId(), e);
-                }
-            }
-        }
-        return Collections.unmodifiableCollection(components);
-    }
-
-
-    public int compareTo(Module o) {
-        int thisVal = this.getPriority();
-        int anotherVal = o.getPriority();
-        return (thisVal < anotherVal ? -1 : (thisVal == anotherVal ? 0 : 1));
-    }
-
 
     public String toString() {
         return "Module: " + getName();

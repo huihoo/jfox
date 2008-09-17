@@ -19,8 +19,6 @@ public class ComponentId {
      */
     private String name = "";
 
-    private String moduleName = "";
-
     public ComponentId(String name) {
         this.name = name;
     }
@@ -28,20 +26,6 @@ public class ComponentId {
     public String getName() {
         return name;
     }
-
-    public String getModuleName() {
-        return moduleName;
-    }
-
-    public void setModuleName(String moduleName) {
-        this.moduleName = moduleName;
-    }
-
-/*
-    public String getModule() {
-        return module;
-    }
-*/
 
     public String toString() {
         return "ComponentId {" + getName() + "}";
@@ -54,11 +38,11 @@ public class ComponentId {
 
         ComponentId that = (ComponentId)o;
 
-        return name.equals(that.name) && moduleName.equals(that.moduleName);
+        return name.equals(that.name);
     }
 
     public int hashCode() {
-        return name.hashCode() + moduleName.hashCode();
+        return name.hashCode();
     }
 
     public static void main(String[] args) {

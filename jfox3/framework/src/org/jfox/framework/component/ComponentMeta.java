@@ -6,22 +6,22 @@
  */
 package org.jfox.framework.component;
 
+import org.apache.log4j.Logger;
+import org.jfox.framework.ComponentId;
+import org.jfox.framework.annotation.Exported;
+import org.jfox.framework.annotation.Service;
+import org.jfox.framework.event.ComponentListener;
+import org.jfox.framework.event.FrameworkListener;
+import org.jfox.framework.event.ModuleListener;
+import org.jfox.framework.invoker.ComponentInvokerFactory;
+import org.jfox.util.ClassUtils;
+
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.jfox.framework.ComponentId;
-import org.jfox.framework.event.FrameworkListener;
-import org.jfox.framework.event.ComponentListener;
-import org.jfox.framework.event.ModuleListener;
-import org.jfox.framework.annotation.Service;
-import org.jfox.framework.annotation.Exported;
-import org.jfox.framework.invoker.ComponentInvokerFactory;
-import org.jfox.util.ClassUtils;
-import org.apache.log4j.Logger;
 
 /**
  * ComponentMeta 是组件的元数据对象，保留了组件所有的信息
@@ -70,7 +70,7 @@ public class ComponentMeta implements Comparable<ComponentMeta>{
     private List<Class> interfaceClasses = new ArrayList<Class>();
     private Class<? extends Component> implementationClass;
 
-    private boolean exported = false;
+//    private boolean exported = false;
 
     /**
      * 布署之后的 ComponentId
@@ -162,7 +162,7 @@ public class ComponentMeta implements Comparable<ComponentMeta>{
         this.singleton = singleton;
     }
 
-
+/*
     public boolean isExported() {
         return exported;
     }
@@ -170,6 +170,8 @@ public class ComponentMeta implements Comparable<ComponentMeta>{
     protected void setExported(boolean exported) {
         this.exported = exported;
     }
+
+*/
 
     public Class[] getInterfaceClass() {
         return interfaceClasses.toArray(new Class[interfaceClasses.size()]);
@@ -280,9 +282,9 @@ public class ComponentMeta implements Comparable<ComponentMeta>{
                  * Exported interface 即使Module重新load，也不会重新装载
                  * 因为其他模块可能已经有了该interface class引用
                  */
-                getModule().getFramework().getClassLoaderRepository().addExportedClass(getModule().getName(), intf);
+//                getModule().getFramework().getClassLoader().addExportedClass(getModule().getName(), intf);
                 // 是否可以对其它模块服务
-                setExported(true);
+//                setExported(true);
             }
         }
         this.componentId = new ComponentId(getId());
@@ -384,6 +386,10 @@ public class ComponentMeta implements Comparable<ComponentMeta>{
         int thisVal = this.getPriority();
         int anotherVal = o.getPriority();
         return (thisVal<anotherVal ? -1 : (thisVal==anotherVal ? 0 : 1));
+    }
+
+    public String toString() {
+        return "ComponentMeta{ID=" + getComponentId() + ", MODULE=" + getModule() + "}";
     }
 
     public static void main(String[] args) throws Exception {

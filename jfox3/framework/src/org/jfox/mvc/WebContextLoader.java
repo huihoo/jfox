@@ -199,7 +199,7 @@ public class WebContextLoader implements ServletContextListener {
     }
 
     public static PageContext invokeAction(ActionContext actionContext) throws Exception {
-        ActionContainer actionContainer = framework.getSystemModule().findComponentByInterface(ActionContainer.class).iterator().next();
+        ActionContainer actionContainer = framework.getSystemModule().findComponentsByInterface(ActionContainer.class).iterator().next();
         return actionContainer.invokeAction(actionContext);
     }
 

@@ -4,7 +4,7 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.framework.component;
+package org.jfox.framework;
 
 import org.apache.log4j.Logger;
 import org.jfox.framework.annotation.Service;
@@ -17,20 +17,30 @@ import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.MethodVisitor;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.security.CodeSource;
+import java.security.PermissionCollection;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.jar.Manifest;
 
 /**
+ * 作为整个框架的 ClassLoader，该 Classloader 并不具备类加载功能，所有的功能都委派给其 parent ClassLoader，一般即WebAppClassloader
+ * 该类做两件事：
+ * 1. 使用 asm 分析类路径中的类的 Annotation
+ * 2. public addURL 
+ *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class ASMClassLoader extends URLClassLoader {
+public class FrameworkClassLoader extends URLClassLoader {
 
     protected Logger logger = Logger.getLogger(this.getClass());
 
@@ -40,17 +50,35 @@ public class ASMClassLoader extends URLClassLoader {
     private final Map<String, List<ClassInfo>> annotated = new HashMap<String, List<ClassInfo>>();
 
 
-    public ASMClassLoader(ClassLoader parent) {
+    public FrameworkClassLoader(URLClassLoader parent) {
         super(new URL[0], parent);
-        initASM();
+        parseByASM(parent.getURLs());
     }
 
-    protected ASMClassLoader(URL[] urls, ClassLoader parent) {
-        super(urls, parent);
+    /**
+     * 查找被 Annotation 标注的Class列表
+     *
+     * @param annotation annotation
+     */
+    public Class[] findClassAnnotatedWith(Class<? extends Annotation> annotation) {
+        List<Class> classes = new ArrayList<Class>();
+        List<ClassInfo> infos = getAnnotationInfos(annotation.getName());
+        for (ClassInfo classInfo : infos) {
+            try {
+                Class clazz = classInfo.get();
+// double check via proper reflection
+                if (clazz.isAnnotationPresent(annotation)) {
+                    classes.add(clazz);
+                }
+            }
+            catch (ClassNotFoundException e) {
+                logger.warn("Exception occupied while findClassAnnotatedWith " + annotation, e);
+            }
+        }
+        return classes.toArray(new Class[classes.size()]);
     }
 
-    protected void initASM() {
-        URL[] urls = getASMClasspathURLs();
+    protected void parseByASM(URL[] urls) {
         // 有效 URL
         List<URL> appURLs = new ArrayList<URL>();
         for (URL url : urls) {
@@ -81,40 +109,95 @@ public class ASMClassLoader extends URLClassLoader {
 //        System.out.println("");
     }
 
-    /**
-     * 返回ClasspathURLs，用来供 ASM 搜索
-     */
-    protected URL[] getASMClasspathURLs() {
-        // 从 parent URLClassLoader 中 getURLs
-        if (getParent() != null && (getParent() instanceof URLClassLoader)) {
-            return ((URLClassLoader)getParent()).getURLs();
-        }
-        else {
-            return new URL[]{this.getClass().getProtectionDomain().getCodeSource().getLocation()};
+    public void addURL(URL url) {
+        super.addURL(url);
+        parseByASM(new URL[]{url});
+    }
+
+    public void addURLs(URL[] urls) {
+        if(urls != null && urls.length > 0) {
+            for(URL url : urls){
+                super.addURL(url);
+            }
+            parseByASM(urls);
         }
     }
 
-    /**
-     * 查找被 Annotation 标注的Class列表
-     *
-     * @param annotation annotation
-     */
-    public Class[] findClassAnnotatedWith(Class<? extends Annotation> annotation) {
-        List<Class> classes = new ArrayList<Class>();
-        List<ClassInfo> infos = getAnnotationInfos(annotation.getName());
-        for (ClassInfo classInfo : infos) {
-            try {
-                Class clazz = classInfo.get();
-// double check via proper reflection
-                if (clazz.isAnnotationPresent(annotation)) {
-                    classes.add(clazz);
-                }
-            }
-            catch (ClassNotFoundException e) {
-                logger.warn("Caught exception while executing findClassAnnotatedWith " + annotation, e);
-            }
-        }
-        return classes.toArray(new Class[classes.size()]);
+    // -------- override parent's methods
+    public URL[] getURLs() {
+        return super.getURLs();
+    }
+
+    public URL findResource(String name) {
+        return super.findResource(name);
+    }
+
+    public synchronized void clearAssertionStatus() {
+        super.clearAssertionStatus();
+    }
+
+    protected Class<?> findClass(String name) throws ClassNotFoundException {
+        return super.findClass(name);
+    }
+
+    protected Package definePackage(String name, Manifest man, URL url) throws IllegalArgumentException {
+        return super.definePackage(name, man, url);
+    }
+
+    public Enumeration<URL> findResources(String name) throws IOException {
+        return super.findResources(name);
+    }
+
+    protected PermissionCollection getPermissions(CodeSource codesource) {
+        return super.getPermissions(codesource);
+    }
+
+    public Class<?> loadClass(String name) throws ClassNotFoundException {
+        return super.loadClass(name);
+    }
+
+    protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
+        return super.loadClass(name, resolve);
+    }
+
+    public URL getResource(String name) {
+        return super.getResource(name);
+    }
+
+    public Enumeration<URL> getResources(String name) throws IOException {
+        return super.getResources(name);
+    }
+
+    public InputStream getResourceAsStream(String name) {
+        return super.getResourceAsStream(name);
+    }
+
+    protected Package definePackage(String name, String specTitle, String specVersion, String specVendor, String implTitle, String implVersion, String implVendor, URL sealBase) throws IllegalArgumentException {
+        return super.definePackage(name, specTitle, specVersion, specVendor, implTitle, implVersion, implVendor, sealBase);
+    }
+
+    protected Package getPackage(String name) {
+        return super.getPackage(name);
+    }
+
+    protected Package[] getPackages() {
+        return super.getPackages();
+    }
+
+    protected String findLibrary(String libname) {
+        return super.findLibrary(libname);
+    }
+
+    public synchronized void setDefaultAssertionStatus(boolean enabled) {
+        super.setDefaultAssertionStatus(enabled);
+    }
+
+    public synchronized void setPackageAssertionStatus(String packageName, boolean enabled) {
+        super.setPackageAssertionStatus(packageName, enabled);
+    }
+
+    public synchronized void setClassAssertionStatus(String className, boolean enabled) {
+        super.setClassAssertionStatus(className, enabled);
     }
 
 // ----------- ASM bytecode reader ------------
@@ -313,7 +396,7 @@ public class ASMClassLoader extends URLClassLoader {
 
 
     public static void main(String[] args) {
-        ASMClassLoader asmClassLoader = new ASMClassLoader(ASMClassLoader.class.getClassLoader());
+        FrameworkClassLoader asmClassLoader = new FrameworkClassLoader((URLClassLoader) FrameworkClassLoader.class.getClassLoader());
         Class[] deploiesComponent = asmClassLoader.findClassAnnotatedWith(Service.class);
         System.out.println(Arrays.toString(deploiesComponent));
     }

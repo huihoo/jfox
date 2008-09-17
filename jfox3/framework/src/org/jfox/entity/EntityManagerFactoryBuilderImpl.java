@@ -12,8 +12,8 @@ import org.enhydra.jdbc.standard.StandardXADataSource;
 import org.jfox.ejb3.naming.JNDIContextHelper;
 import org.jfox.ejb3.transaction.JTATransactionManager;
 import org.jfox.entity.cache.CacheConfig;
+import org.jfox.framework.FrameworkClassLoader;
 import org.jfox.framework.annotation.Service;
-import org.jfox.framework.component.ASMClassLoader;
 import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.Component;
 import org.jfox.framework.component.ComponentContext;
@@ -37,6 +37,7 @@ import javax.persistence.QueryHint;
 import javax.sql.DataSource;
 import javax.transaction.TransactionManager;
 import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -98,7 +99,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
             entityManagerFactoryBuilder.containerManaged = false;
             // 初始化所有的 EntityManagerFactory
             entityManagerFactoryBuilder.initEntityManagerFactories();
-            ASMClassLoader asmClassLoader = new ASMClassLoader(entityManagerFactoryBuilder.getClass().getClassLoader());
+            FrameworkClassLoader asmClassLoader = new FrameworkClassLoader((URLClassLoader)entityManagerFactoryBuilder.getClass().getClassLoader());
             Set<Class> namedQueryClasses = new HashSet<Class>();
             namedQueryClasses.addAll(Arrays.asList(asmClassLoader.findClassAnnotatedWith(NamedNativeQueries.class)));
             namedQueryClasses.addAll(Arrays.asList(asmClassLoader.findClassAnnotatedWith(NamedNativeQuery.class)));

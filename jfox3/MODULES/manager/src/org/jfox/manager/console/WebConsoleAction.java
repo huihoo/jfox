@@ -158,13 +158,13 @@ public class WebConsoleAction extends ActionSupport {
 
     private EJBContainer getEJBContainer(){
         Framework framework = WebContextLoader.getManagedFramework();
-        Collection<EJBContainer> containers = framework.getSystemModule().findComponentByInterface(EJBContainer.class);
+        Collection<EJBContainer> containers = framework.getSystemModule().findComponentsByInterface(EJBContainer.class);
         return containers.iterator().next();
     }
 
     private EntityManagerFactoryBuilder getEntityManagerFactoryBuilder(){
         Framework framework = WebContextLoader.getManagedFramework();
-        Collection<EntityManagerFactoryBuilder> entityManagerFactoryBuilders = framework.getSystemModule().findComponentByInterface(EntityManagerFactoryBuilder.class);
+        Collection<EntityManagerFactoryBuilder> entityManagerFactoryBuilders = framework.getSystemModule().findComponentsByInterface(EntityManagerFactoryBuilder.class);
         return entityManagerFactoryBuilders.iterator().next();
     }
 

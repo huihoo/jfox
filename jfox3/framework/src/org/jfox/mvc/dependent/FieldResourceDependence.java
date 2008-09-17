@@ -36,7 +36,7 @@ public class FieldResourceDependence implements Dependence {
 
         EJBObject targetResourceObject = null; // resolve dependence
 
-        Collection<EJBContainer> ejbContainers = actionBucket.getModule().findComponentByInterface(EJBContainer.class);
+        Collection<EJBContainer> ejbContainers = actionBucket.getModule().findComponentsByInterface(EJBContainer.class);
 
         if (ejbContainers.isEmpty()) {
             logger.warn("@Resource will not be injected, no EJBCotaner deployed! " + resource);

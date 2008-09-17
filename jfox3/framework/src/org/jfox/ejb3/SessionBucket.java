@@ -6,21 +6,25 @@
  */
 package org.jfox.ejb3;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.Proxy;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import org.apache.log4j.Logger;
+import org.jfox.ejb3.dependent.EJBDependence;
+import org.jfox.ejb3.dependent.FieldEJBDependence;
+import org.jfox.ejb3.dependent.FieldResourceDependence;
+import org.jfox.ejb3.dependent.ResourceDependence;
+import org.jfox.ejb3.interceptor.ExternalInterceptorMethod;
+import org.jfox.ejb3.interceptor.InterceptorMethod;
+import org.jfox.ejb3.interceptor.InternalInterceptorMethod;
+import org.jfox.ejb3.naming.ContextAdapter;
+import org.jfox.entity.dependent.FieldPersistenceContextDependence;
+import org.jfox.entity.dependent.FieldPersistenceUnitDependence;
+import org.jfox.framework.FrameworkClassLoader;
+import org.jfox.framework.component.Module;
+import org.jfox.framework.dependent.InjectionException;
+import org.jfox.mvc.SessionContext;
+import org.jfox.util.AnnotationUtils;
+import org.jfox.util.ClassUtils;
+import org.jfox.util.MethodUtils;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
@@ -45,25 +49,21 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 import javax.transaction.Status;
 import javax.transaction.SystemException;
-
-import org.apache.log4j.Logger;
-import org.jfox.ejb3.dependent.EJBDependence;
-import org.jfox.ejb3.dependent.FieldEJBDependence;
-import org.jfox.ejb3.dependent.FieldResourceDependence;
-import org.jfox.ejb3.dependent.ResourceDependence;
-import org.jfox.ejb3.interceptor.ExternalInterceptorMethod;
-import org.jfox.ejb3.interceptor.InterceptorMethod;
-import org.jfox.ejb3.interceptor.InternalInterceptorMethod;
-import org.jfox.ejb3.naming.ContextAdapter;
-import org.jfox.entity.dependent.FieldPersistenceContextDependence;
-import org.jfox.entity.dependent.FieldPersistenceUnitDependence;
-import org.jfox.framework.component.Module;
-import org.jfox.framework.component.ModuleClassLoader;
-import org.jfox.framework.dependent.InjectionException;
-import org.jfox.mvc.SessionContext;
-import org.jfox.util.AnnotationUtils;
-import org.jfox.util.ClassUtils;
-import org.jfox.util.MethodUtils;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.Proxy;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -425,7 +425,7 @@ public abstract class SessionBucket implements EJBBucket {
 
     }
 
-    public ModuleClassLoader getBucketClassLoader() {
+    public FrameworkClassLoader getBucketClassLoader() {
         return this.module.getModuleClassLoader();
     }
 

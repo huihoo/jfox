@@ -6,6 +6,11 @@
  */
 package org.jfox.framework.component;
 
+import org.jfox.framework.ComponentId;
+import org.jfox.framework.Framework;
+import org.jfox.framework.FrameworkClassLoader;
+import org.jfox.framework.invoker.ComponentInvoker;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
@@ -15,11 +20,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.net.URL;
 import java.util.Enumeration;
-
-import org.jfox.framework.ClassLoaderRepository;
-import org.jfox.framework.ComponentId;
-import org.jfox.framework.Framework;
-import org.jfox.framework.invoker.ComponentInvoker;
 
 /**
  * 为 Component 生成基于动态代理的弱引用
@@ -110,7 +110,7 @@ class ProxyReferenceFactory {
             this.module = module;
         }
 
-        private ModuleClassLoader getModuleClassLoader(){
+        private FrameworkClassLoader getModuleClassLoader(){
             return framework.getModule(module).getModuleClassLoader();
         }
 
@@ -132,6 +132,7 @@ class ProxyReferenceFactory {
             return getModuleClassLoader().findResources(name);
         }
 
+/*
         public ClassLoaderRepository getClassLoaderRepository() {
             return getModuleClassLoader().getClassLoaderRepository();
         }
@@ -139,6 +140,7 @@ class ProxyReferenceFactory {
         public Module getModule() {
             return getModuleClassLoader().getModule();
         }
+*/
 
         public URL getResource(String name) {
             return getModuleClassLoader().getResource(name);

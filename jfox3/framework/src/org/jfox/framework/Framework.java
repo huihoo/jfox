@@ -6,23 +6,30 @@
  */
 package org.jfox.framework;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import org.apache.log4j.Logger;
+import org.jfox.framework.component.Component;
+import org.jfox.framework.component.ComponentInstantiateException;
+import org.jfox.framework.component.ComponentMeta;
+import org.jfox.framework.component.ComponentNotExportedException;
+import org.jfox.framework.component.ComponentNotFoundException;
 import org.jfox.framework.component.Module;
 import org.jfox.framework.component.ModuleResolvedFailedException;
+import org.jfox.framework.component.Repository;
 import org.jfox.framework.component.SystemModule;
 import org.jfox.framework.event.FrameworkStartedEvent;
 import org.jfox.framework.event.FrameworkStoppedEvent;
 import org.jfox.util.FileUtils;
 import org.jfox.util.PlaceholderUtils;
-import org.apache.log4j.Logger;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * JFoxNG framework.
@@ -33,11 +40,8 @@ public class Framework {
 
     private static final Logger logger = Logger.getLogger(Framework.class);
 
-    /**
-     * ClassLoader Repository，作为Thread ContextClassLoader
-     * 缓存已加载的 export class
-     */
-    private ClassLoaderRepository clRepo = new ClassLoaderRepository(new URL[0], Framework.class.getClassLoader());
+
+    private URLClassLoader frameworkClassLoader;
 
     /**
      * 事件监听器
@@ -58,8 +62,12 @@ public class Framework {
 
     public static final String MODULE_ARCHIVE_SUFFIX = ".zip";
 
+    public final static Repository repository = Repository.getInstance();
+
     public Framework() {
-        Thread.currentThread().setContextClassLoader(clRepo);
+        frameworkClassLoader = new FrameworkClassLoader((URLClassLoader)Framework.class.getClassLoader());
+        Thread.currentThread().setContextClassLoader(frameworkClassLoader);
+
         logger.debug("Set thread context classloader to Framework ClassLoaderRepository.");
 
         try {
@@ -89,8 +97,8 @@ public class Framework {
         return started;
     }
 
-    public ClassLoaderRepository getClassLoaderRepository() {
-        return clRepo;
+    public URLClassLoader getClassLoader() {
+        return frameworkClassLoader;
     }
 
     public EventManager getEventManager() {
@@ -140,7 +148,7 @@ public class Framework {
             logger.info("Module: " + module.getName() + " loaded, from " + dir.getAbsolutePath());
 
             if (isStarted()) {// 如果 Framework 已经启动，则后续装载的 Module 立即启动
-                module.start();
+                module.init();
             }
             return module;
         }
@@ -155,10 +163,10 @@ public class Framework {
      *
      * @param name 模块名
      */
-    public void unloadModule(String name) {
+    public void unloadModule(String name) throws Exception{
         Module module = modules.remove(name);
         if (module != null) {
-            module.unload();
+            module.destroy();
         }
     }
 
@@ -167,7 +175,7 @@ public class Framework {
      *
      * @param name module name
      */
-    public Module reloadModule(String name) {
+    public Module reloadModule(String name) throws Exception {
         logger.info("Reload module: " + name);
         Module module = modules.get(name);
         if (module != null) {
@@ -189,7 +197,7 @@ public class Framework {
             return;
         }
         try {
-            systemModule.start();
+            systemModule.init();
         }
         catch (Exception e) {
             logger.fatal("Failed to start SystemModule!", e);
@@ -197,22 +205,26 @@ public class Framework {
         }
 
         List<Module> allModules = new ArrayList<Module>(modules.values());
-        Collections.sort(allModules);
+        Collections.sort(allModules, new Comparator<Module>(){
+            public int compare(Module m1, Module m2) {
+                return m1.getName().compareTo(m2.getName());
+            }
+        });
         for (Module module : allModules) {
-            module.start();
+            module.init();
         }
         started = true;
         getEventManager().fireFrameworkEvent(new FrameworkStartedEvent(this));
         logger.info("Framework started!");
     }
 
-    public void stop() {
+    public void stop() throws Exception{
         List<Module> allModules = new ArrayList<Module>(getAllModules());
         Collections.reverse(allModules);
         for (Module module : allModules) {
-            module.unload();
+            module.destroy();
         }
-        systemModule.unload();
+        systemModule.destroy();
         started = false;
         getEventManager().fireFrameworkEvent(new FrameworkStoppedEvent(this));
         logger.info("Framework stopped!");
@@ -220,10 +232,42 @@ public class Framework {
 
     public List<Module> getAllModules(){
         List<Module> allModules = new ArrayList<Module>(modules.values());
-        Collections.sort(allModules);
+        Collections.sort(allModules, new Comparator<Module>(){
+            public int compare(Module m1, Module m2) {
+                return m1.getName().compareTo(m2.getName());
+            }
+        });
         Collections.reverse(allModules);
         return Collections.unmodifiableList(allModules);
     }
+
+    public List<ComponentMeta> getComponentMetas(){
+        return repository.getComponentMetas();
+    }
+
+    public ComponentMeta getComponentMeta(ComponentId id) throws ComponentNotFoundException {
+        return repository.getComponentMeta(id);
+    }
+
+    /**
+     * 获得该模块内的 Component 实例
+     *
+     * @param componentId componentId
+     * @throws ComponentNotFoundException    if not found the component or component instantiate failed
+     * @throws ComponentNotExportedException if found component in other module, but it is not exported
+     */
+    public Component getComponent(ComponentId componentId) throws ComponentNotFoundException, ComponentInstantiateException {
+        return getComponentMeta(componentId).getComponentInstance();
+    }
+
+    public Component getComponent(String componentId) throws ComponentNotFoundException, ComponentInstantiateException {
+        return getComponent(new ComponentId(componentId));
+    }
+
+    public boolean isComponentLoaded(ComponentId id) {
+        return repository.hasComponentMeta(id);
+    }
+
 
     public static void main(String[] args) throws Exception {
         Framework framework = new Framework();

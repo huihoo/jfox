@@ -6,10 +6,10 @@
  */
 package org.jfox.framework.component;
 
+import org.jfox.framework.ClassLoaderRepository;
+
 import java.net.URL;
 import java.util.Arrays;
-
-import org.jfox.framework.ClassLoaderRepository;
 
 /**
  * Module ClassLoader 用来加载整个 Module 的类和资源
@@ -36,9 +36,9 @@ public class ModuleClassLoader extends ASMClassLoader {
      * @param module module
      */
     public ModuleClassLoader(Module module) {
-        super(module.getClasspathURLs(), module.getFramework().getClassLoaderRepository());
+        super(module.getClasspathURLs(), module.getFramework().getClassLoader());
         this.module = module;
-        this.repo = module.getFramework().getClassLoaderRepository();
+//        this.repo = module.getFramework().getClassLoader();
         initASM();
     }
 
@@ -68,6 +68,7 @@ public class ModuleClassLoader extends ASMClassLoader {
         if (clz.getClassLoader() instanceof ModuleClassLoader) {
             ModuleClassLoader mcl = (ModuleClassLoader)clz.getClassLoader();
             // 只有自己export 或者 ref-moudles 中 export 的class，才能返回
+/*
             if ((mcl == getModule().getModuleClassLoader()) || Arrays.asList(module.getRefModules()).contains(mcl.getModule().getName())) {
                 return clz;
             }
@@ -76,6 +77,8 @@ public class ModuleClassLoader extends ASMClassLoader {
                 logger.info(errorMsg);
                 throw new ClassNotFoundException(errorMsg);
             }
+*/
+            return null;
         }
         else {
             return clz;

@@ -21,61 +21,41 @@ import java.net.URLClassLoader;
 public class SystemModule extends Module {
 
     public static final String name = "__SYSTEM_MODULE__";
+    URL[] classpathURLs = null;
 
     public SystemModule(Framework framework) throws ModuleResolvedFailedException {
         super(framework, null);
-    }
-
-    protected ModuleClassLoader initModuleClassLoader() {
-        // 覆盖 getResource，以便能够正确检索到 resource
-        return new ModuleClassLoader(this) {
-            public URL getResource(String name) {
-                // parent 是 ClassLoaderRepository
-                return getParent().getResource(name);
-            }
-
-            protected URL[] getASMClasspathURLs() {
-                return super.getASMClasspathURLs();
-            }
-        };
-    }
-
-    protected void resolve() throws ModuleResolvedFailedException {
-        setName(name);
-        setDescription("System Module");
-        setPriority(Integer.MIN_VALUE);
+        // 新的模块加入时，当前ClassLoader的 getURLs会变化，所以一加载的时候就保存下来
+        classpathURLs = ((URLClassLoader)SystemModule.class.getClassLoader()).getURLs();
     }
 
     public String getName() {
         return name;
     }
 
-    public String getDescription() {
-        return super.getDescription();
-    }
-
     /**
      * SystemModule的 classpath 已经指定在启动 classpath中
      */
     public URL[] getClasspathURLs() {
-        return ((URLClassLoader)SystemModule.class.getClassLoader()).getURLs();
+        // System Module have same classpath with FrameworkClassLoader
+        return classpathURLs;
     }
 
-    public URL getDescriptorURL() {
-        return null;
+    protected boolean isSystemModule(){
+        return true;
     }
 
     // 在 fire ModuleLoadingEvent之前加载以下组件，以便能监听ModuleLoadingEvent
     protected void preActiveComponent() {
         // instantiate EJB container
-        findComponentByInterface(EJBContainer.class);
+        findComponentsByInterface(EJBContainer.class);
         // instantiate JPA container
-        findComponentByInterface(EntityManagerFactoryBuilder.class);
+        findComponentsByInterface(EntityManagerFactoryBuilder.class);
         // instantiate Web Service container
-        findComponentByInterface(ContainerInvoker.class);
+        findComponentsByInterface(ContainerInvoker.class);
 
         // instantiate MVC Action Container
-        findComponentByInterface(ActionContainer.class);
+        findComponentsByInterface(ActionContainer.class);
     }
 
     public static void main(String[] args) {
