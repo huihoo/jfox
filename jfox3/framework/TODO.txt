@@ -368,3 +368,5 @@
             System.out.println(testUrlClassLoader.loadClass("javax.persistence.Entity"));
 
 
+2008-09-17
+    1.使用 module.action.actionmethod.do 来访问 aciton

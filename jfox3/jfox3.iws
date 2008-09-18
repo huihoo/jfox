@@ -30,27 +30,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/manager/src/org/jfox/manager/console/WebConsoleAction.java" afterPath="$PROJECT_DIR$/MODULES/manager/src/org/jfox/manager/console/WebConsoleAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/classloader" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/Framework.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/Framework.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/SystemModule.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/SystemModule.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/annotation/Exported.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/annotation/Exported.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" afterPath="$PROJECT_DIR$/MODULES/iservicedesk/iservicedesk.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/ModuleClassLoader2.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/ModuleClassLoader2.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/ejb3/SessionBucket.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/ejb3/SessionBucket.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/dependent/FieldEJBDependence.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/dependent/FieldEJBDependence.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/dependent/FieldResourceDependence.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/dependent/FieldResourceDependence.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/jfox/test/kernel/FrameworkTest.java" afterPath="$PROJECT_DIR$/framework/test-src/jfox/test/kernel/FrameworkTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/ComponentMeta.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/ComponentMeta.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/ASMClassLoader.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/ASMClassLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/ModuleClassLoader.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/ModuleClassLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/ComponentContext.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/ComponentContext.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/classloader/ModuleClassLoader.java" />
+      <change type="MOVED" beforePath="Y:\workspace.idea\jfox3\framework\src\org\jfox\framework\FrameworkClassLoader.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/classloader/FrameworkClassLoader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/classloader/ASMClassLoader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/Module.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/Module.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/dependent/FieldInjectDependence.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/dependent/FieldInjectDependence.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/TODO.txt" afterPath="$PROJECT_DIR$/framework/TODO.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/ProxyReferenceFactory.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/ProxyReferenceFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/ComponentId.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/ComponentId.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/FrameworkClassLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/jfox/test/kernel/component/TestComponentImpl.java" afterPath="$PROJECT_DIR$/framework/test-src/jfox/test/kernel/component/TestComponentImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/entity/EntityManagerFactoryBuilderImpl.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/entity/EntityManagerFactoryBuilderImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/Repository.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/framework/component/Repository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/mvc/WebContextLoader.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/WebContextLoader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/ActionServlet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/jfox/test/kernel/component/TestComponentMain.java" afterPath="$PROJECT_DIR$/framework/test-src/jfox/test/kernel/component/TestComponentMain.java" />
     </list>
     <list name="Failed commit: Default" comment="package change to org.jfox!" />
     <list name="Failed commit: Default (2)" comment="调整 test-src" />
@@ -161,97 +156,6 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/util/DataDicts.java" line="70" class="jfox.platform.datadict.util.DataDicts" package="jfox.platform.datadict.util">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/util/DataDicts.java" line="66" class="jfox.platform.datadict.util.DataDicts" package="jfox.platform.datadict.util">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/datadict/util/DataDicts.java" line="74" class="jfox.platform.datadict.util.DataDicts" package="jfox.platform.datadict.util">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/MemoryWorkflowPersistence.java" line="71" class="jfox.platform.workflow.persistence.MemoryWorkflowPersistence" package="jfox.platform.workflow.persistence">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/Workflow.java" line="259" class="jfox.platform.workflow.Workflow" package="jfox.platform.workflow">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/condition/JoinCondition.java" line="17" class="jfox.platform.workflow.condition.JoinCondition" package="jfox.platform.workflow.condition">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/MODULES/iservicedesk/src/jfox/platform/workflow/persistence/MemoryWorkflowPersistence.java" line="97" class="jfox.platform.workflow.persistence.MemoryWorkflowPersistence" package="jfox.platform.workflow.persistence">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
       <breakpoint url="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/ControllerServlet.java" line="92" class="org.jfox.mvc.servlet.ControllerServlet" package="org.jfox.mvc.servlet">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
@@ -265,33 +169,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/Module.java" line="117" class="org.jfox.framework.component.Module" package="org.jfox.framework.component">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/framework/src/org/jfox/framework/FrameworkClassLoader.java" line="398" class="org.jfox.framework.FrameworkClassLoader" package="org.jfox.framework">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/framework/src/org/jfox/framework/FrameworkClassLoader.java" line="63" class="org.jfox.framework.FrameworkClassLoader" package="org.jfox.framework">
+      <breakpoint url="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/Module.java" line="145" class="org.jfox.framework.component.Module" package="org.jfox.framework.component">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -376,10 +254,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FrameworkClassLoader.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/FrameworkClassLoader.java">
+      <file leaf-file-name="ASMClassLoader.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/classloader/ASMClassLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="60" selection-start="3464" selection-end="3464" vertical-scroll-proportion="0.5436409">
+            <state line="78" column="0" selection-start="2478" selection-end="2478" vertical-scroll-proportion="0.21446384">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -387,12 +265,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ComponentMeta.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/ComponentMeta.java">
+      <file leaf-file-name="ModuleClassLoader.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/classloader/ModuleClassLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="391" column="88" selection-start="12254" selection-end="12254" vertical-scroll-proportion="0.69201994">
+            <state line="22" column="0" selection-start="719" selection-end="719" vertical-scroll-proportion="0.39534885">
               <folding>
-                <marker date="1221714186000" expanded="false" signature="255:816" placeholder="..." />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Module.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/Module.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="122" column="0" selection-start="3804" selection-end="3804" vertical-scroll-proportion="0.17206983">
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -401,36 +290,56 @@
       <file leaf-file-name="EntityManagerFactoryBuilderImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/EntityManagerFactoryBuilderImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="101" column="90" selection-start="4050" selection-end="4050" vertical-scroll-proportion="0.20074813">
+            <state line="223" column="0" selection-start="8914" selection-end="8914" vertical-scroll-proportion="0.49875313">
               <folding>
-                <marker date="1221714186000" expanded="false" signature="242:1868" placeholder="..." />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CalculatorBean.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/stateless/CalculatorBean.java">
+      <file leaf-file-name="web.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/WEB-INF/web.xml">
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
+            <state />
+          </provider>
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="13" selection-start="427" selection-end="427" vertical-scroll-proportion="0.25581396">
+            <state line="51" column="53" selection-start="1711" selection-end="1711" vertical-scroll-proportion="0.32941177">
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ControllerServlet.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/ControllerServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="13" selection-start="1071" selection-end="1071" vertical-scroll-proportion="-0.09476309">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CalculatorTestMain.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/stateless/CalculatorTestMain.java">
+      <file leaf-file-name="ActionServlet.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/ActionServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="729" selection-end="729" vertical-scroll-proportion="0.30232558">
-              <folding />
+            <state line="14" column="44" selection-start="397" selection-end="397" vertical-scroll-proportion="0.33167082">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Module.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/Module.java">
+      <file leaf-file-name="SimpleEJB3Container.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/SimpleEJB3Container.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="117" column="0" selection-start="3668" selection-end="3668" vertical-scroll-proportion="0.20573565">
+            <state line="200" column="18" selection-start="6980" selection-end="6980" vertical-scroll-proportion="0.40399003">
               <folding />
             </state>
           </provider>
@@ -439,38 +348,16 @@
       <file leaf-file-name="SystemModule.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/SystemModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="19" selection-start="1318" selection-end="1318" vertical-scroll-proportion="0.55569154">
+            <state line="26" column="0" selection-start="802" selection-end="802" vertical-scroll-proportion="0.1750306">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Framework.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/Framework.java">
+      <file leaf-file-name="CalculatorTestMain.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/stateless/CalculatorTestMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="199" column="0" selection-start="5839" selection-end="5839" vertical-scroll-proportion="0.20573565">
-              <folding>
-                <marker date="1221714186000" expanded="false" signature="245:1195" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Repository.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/Repository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="13" selection-start="642" selection-end="642" vertical-scroll-proportion="0.1820449">
-              <folding>
-                <marker date="1221714186000" expanded="false" signature="255:437" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="XFireContainerInvoker.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/webservice/xfire/XFireContainerInvoker.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="24" selection-start="1997" selection-end="1997" vertical-scroll-proportion="0.1820449">
+            <state line="19" column="13" selection-start="571" selection-end="571" vertical-scroll-proportion="0.18604651">
               <folding />
             </state>
           </provider>
@@ -544,7 +431,7 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="Test" />
+          <option name="myItemId" value="manager" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -554,11 +441,11 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="Test" />
+          <option name="myItemId" value="manager" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\Test" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -568,19 +455,49 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="Test" />
+          <option name="myItemId" value="manager" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\Test" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\Test\src" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager\src" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\Test\src\jfox\test" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager\src\org\jfox\manager" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager\src\org\jfox\manager\demo" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="jfox3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="manager" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager\src\org\jfox\manager" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\MODULES\manager\src\org\jfox\manager\console" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -592,42 +509,6 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="framework" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\test-src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\test-src\jfox\test" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
@@ -641,18 +522,6 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\test-src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\test-src\jfox\test" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\test-src\jfox\test\ejb3" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -670,75 +539,7 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\test-src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\test-src\jfox\test" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\test-src\jfox\test\ejb3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\test-src\jfox\test\ejb3\stateless" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox\webservice" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="jfox3" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox\webservice" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox\webservice\xfire" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\WEB-INF" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -786,7 +587,7 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox\framework" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox\mvc" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -812,11 +613,11 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox\framework" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox\mvc" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox\framework\component" />
+          <option name="myItemId" value="PsiDirectory:Y:\workspace.idea\jfox3\framework\src\org\jfox\mvc\servlet" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -899,26 +700,26 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.jfox.framework.classloader" />
       <recent name="org.jfox.framework.component" />
       <recent name="jfox.platform.workflow.persistence" />
       <recent name="org.jfox.mvc" />
       <recent name="org.jfox.mvc.dependent" />
-      <recent name="org.jfox.mvc.invocation" />
     </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="org.jfox.entity.dao.Condition" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.jfox.framework.classloader" />
       <recent name="org.jfox.framework" />
       <recent name="jfox.platform.workflow.persistence" />
       <recent name="jfox.platform.workflow.interceptor" />
       <recent name="jfox.platform.workflow.condition" />
-      <recent name="jfox.platform" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CalculatorTestMain">
+  <component name="RunManager" selected="Tomcat Server.jfox3-startup">
     <tempConfiguration default="false" name="FrameworkClassLoader" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" value="org.jfox.framework.FrameworkClassLoader" />
+      <option name="MAIN_CLASS_NAME" value="org.jfox.framework.classloader.FrameworkClassLoader" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -1715,12 +1516,12 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39356816" order="20" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="4" />
       <window_info id="Ant Build" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24701196" order="4" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17586207" order="4" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45747125" order="7" x="16" y="176" width="776" height="371" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46666667" order="4" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5827586" order="7" x="16" y="176" width="776" height="371" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="21" />
       <window_info id="IDEtalk" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" order="22" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36319217" order="0" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4402299" order="2" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40344828" order="2" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32615384" order="10" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23623304" order="1" />
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7307307" order="3" />
@@ -1872,125 +1673,138 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/ModuleClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="13" selection-start="591" selection-end="591" vertical-scroll-proportion="0.023690773">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/annotation/Exported.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="11" selection-start="751" selection-end="751" vertical-scroll-proportion="0.39534885">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/ProxyReferenceFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="0" selection-start="5544" selection-end="5544" vertical-scroll-proportion="0.023690773">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/SessionBucket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="428" column="50" selection-start="19000" selection-end="19000" vertical-scroll-proportion="0.023255814">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/ComponentContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="47" selection-start="3593" selection-end="3593" vertical-scroll-proportion="0.5813953">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/ASMClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="18" selection-start="974" selection-end="974" vertical-scroll-proportion="0.30645162">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/EntityManagerFactoryBuilderImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="90" selection-start="4050" selection-end="4050" vertical-scroll-proportion="0.20074813">
-          <folding>
-            <marker date="1221714186000" expanded="false" signature="242:1868" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/stateless/CalculatorBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="427" selection-end="427" vertical-scroll-proportion="0.25581396">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/ComponentMeta.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="391" column="88" selection-start="12254" selection-end="12254" vertical-scroll-proportion="0.69201994">
+        <state line="105" column="18" selection-start="2747" selection-end="2747" vertical-scroll-proportion="0.31585678">
           <folding>
             <marker date="1221714186000" expanded="false" signature="255:816" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/webservice/xfire/XFireContainerInvoker.java">
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/ASMClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="24" selection-start="1997" selection-end="1997" vertical-scroll-proportion="0.1820449">
+        <state line="51" column="19" selection-start="1455" selection-end="1455" vertical-scroll-proportion="0.3241895">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/Repository.java">
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/ModuleClassLoader2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="13" selection-start="642" selection-end="642" vertical-scroll-proportion="0.1820449">
-          <folding>
-            <marker date="1221714186000" expanded="false" signature="255:437" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/stateless/CalculatorTestMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="729" selection-end="729" vertical-scroll-proportion="0.30232558">
+        <state line="20" column="13" selection-start="591" selection-end="591" vertical-scroll-proportion="0.7916667">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/Framework.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="199" column="0" selection-start="5839" selection-end="5839" vertical-scroll-proportion="0.20573565">
+        <state line="44" column="32" selection-start="1489" selection-end="1489" vertical-scroll-proportion="0.28239846">
           <folding>
-            <marker date="1221714186000" expanded="false" signature="245:1195" placeholder="..." />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/ProxyReferenceFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="113" column="22" selection-start="4673" selection-end="4673" vertical-scroll-proportion="0.23597679">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/SessionBucket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="427" column="0" selection-start="18961" selection-end="18961" vertical-scroll-proportion="0.17581047">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/stateless/CalculatorTestMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="13" selection-start="571" selection-end="571" vertical-scroll-proportion="0.18604651">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/classloader/ASMClassLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="78" column="0" selection-start="2478" selection-end="2478" vertical-scroll-proportion="0.21446384">
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/SystemModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="19" selection-start="1318" selection-end="1318" vertical-scroll-proportion="0.55569154">
+        <state line="26" column="0" selection-start="802" selection-end="802" vertical-scroll-proportion="0.1750306">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/classloader/ModuleClassLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="719" selection-end="719" vertical-scroll-proportion="0.39534885">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/component/Module.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="0" selection-start="3668" selection-end="3668" vertical-scroll-proportion="0.20573565">
+        <state line="122" column="0" selection-start="3804" selection-end="3804" vertical-scroll-proportion="0.17206983">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/SimpleEJB3Container.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="200" column="18" selection-start="6980" selection-end="6980" vertical-scroll-proportion="0.40399003">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/framework/FrameworkClassLoader.java">
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/EntityManagerFactoryBuilderImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="60" selection-start="3464" selection-end="3464" vertical-scroll-proportion="0.5436409">
+        <state line="223" column="0" selection-start="8914" selection-end="8914" vertical-scroll-proportion="0.49875313">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/ActionServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="44" selection-start="397" selection-end="397" vertical-scroll-proportion="0.33167082">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/WEB-INF/web.xml">
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="53" selection-start="1711" selection-end="1711" vertical-scroll-proportion="0.32941177">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/mvc/servlet/ControllerServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="13" selection-start="1071" selection-end="1071" vertical-scroll-proportion="-0.09476309">
+          <folding />
         </state>
       </provider>
     </entry>

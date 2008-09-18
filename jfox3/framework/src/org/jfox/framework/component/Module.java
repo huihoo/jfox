@@ -10,8 +10,8 @@ import org.apache.log4j.Logger;
 import org.jfox.framework.ComponentId;
 import org.jfox.framework.Constants;
 import org.jfox.framework.Framework;
-import org.jfox.framework.FrameworkClassLoader;
 import org.jfox.framework.annotation.Service;
+import org.jfox.framework.classloader.ModuleClassLoader;
 import org.jfox.framework.event.ComponentLoadedEvent;
 import org.jfox.framework.event.ComponentUnloadedEvent;
 import org.jfox.framework.event.ModuleLoadedEvent;
@@ -55,6 +55,8 @@ public class Module {
 
     private final Repository repo = Repository.getInstance();
 
+    private ModuleClassLoader moduleClassLoader;
+
     public static enum STATUS {
         RESOLVED, LOADED, UNLOADED
     }
@@ -62,6 +64,9 @@ public class Module {
     public Module(Framework framework, File file) throws ModuleResolvedFailedException {
         this.framework = framework;
         this.moduleDir = file;
+        if(file != null) { // for SystemModule, file is null
+            setName(file.getName());
+        }
     }
 
     public Framework getFramework() {
@@ -72,11 +77,11 @@ public class Module {
         return moduleDir;
     }
 
-    public FrameworkClassLoader getModuleClassLoader() {
-        return (FrameworkClassLoader)framework.getClassLoader();
+    public ModuleClassLoader getModuleClassLoader() {
+        return moduleClassLoader;
     }
 
-    public ComponentMeta loadComponent(Class<? extends Component> implementataionClass) throws ComponentResolvedFailedException {
+    protected ComponentMeta loadComponent(Class<? extends Component> implementataionClass) throws ComponentResolvedFailedException {
         ComponentMeta meta = new ComponentMeta(this, implementataionClass);
         registerComponent(meta);
         getFramework().getEventManager().fireComponentEvent(new ComponentLoadedEvent(meta.getComponentId()));
@@ -192,9 +197,12 @@ public class Module {
      */
     public void init() throws Exception {
         logger.info("Starting module: " + getName());
+        moduleClassLoader = new ModuleClassLoader(getClasspathURLs(), framework.getClassLoader());
+/*
         if(!isSystemModule()) {
             getModuleClassLoader().addURLs(getClasspathURLs());
         }
+*/
         Class[] deployComponents = getModuleClassLoader().findClassAnnotatedWith(Service.class);
         for (Class<?> componentClass : deployComponents) {
             if (componentClass.isInterface()
@@ -215,10 +223,6 @@ public class Module {
         // 实例化 not lazy components
         instantiateActiveComponent();
         getFramework().getEventManager().fireModuleEvent(new ModuleLoadedEvent(this));
-    }
-
-    protected boolean isSystemModule(){
-        return false;
     }
 
     protected void preActiveComponent(){

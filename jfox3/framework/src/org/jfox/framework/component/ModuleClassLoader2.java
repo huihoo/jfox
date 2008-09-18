@@ -18,7 +18,7 @@ import java.util.Arrays;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
-public class ModuleClassLoader extends ASMClassLoader {
+public class ModuleClassLoader2 extends ASMClassLoader {
 
     /**
      * 该 ModuleClass 负责的模块
@@ -35,7 +35,7 @@ public class ModuleClassLoader extends ASMClassLoader {
      *
      * @param module module
      */
-    public ModuleClassLoader(Module module) {
+    public ModuleClassLoader2(Module module) {
         super(module.getClasspathURLs(), module.getFramework().getClassLoader());
         this.module = module;
 //        this.repo = module.getFramework().getClassLoader();
@@ -65,8 +65,8 @@ public class ModuleClassLoader extends ASMClassLoader {
     public Class<?> loadClass(String className) throws ClassNotFoundException {
         // 如果是本模块的类，将在 findLoadedClass 中直接返回，不需要经过 ClassLoaderRepository
         Class clz = super.loadClass(className);
-        if (clz.getClassLoader() instanceof ModuleClassLoader) {
-            ModuleClassLoader mcl = (ModuleClassLoader)clz.getClassLoader();
+        if (clz.getClassLoader() instanceof ModuleClassLoader2) {
+            ModuleClassLoader2 mcl = (ModuleClassLoader2)clz.getClassLoader();
             // 只有自己export 或者 ref-moudles 中 export 的class，才能返回
 /*
             if ((mcl == getModule().getModuleClassLoader()) || Arrays.asList(module.getRefModules()).contains(mcl.getModule().getName())) {

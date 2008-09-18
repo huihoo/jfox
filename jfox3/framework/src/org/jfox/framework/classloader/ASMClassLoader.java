@@ -4,10 +4,9 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.framework;
+package org.jfox.framework.classloader;
 
 import org.apache.log4j.Logger;
-import org.jfox.framework.annotation.Service;
 import org.jfox.util.FileUtils;
 import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.Attribute;
@@ -25,7 +24,6 @@ import java.net.URLClassLoader;
 import java.security.CodeSource;
 import java.security.PermissionCollection;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -33,14 +31,9 @@ import java.util.Map;
 import java.util.jar.Manifest;
 
 /**
- * 作为整个框架的 ClassLoader，该 Classloader 并不具备类加载功能，所有的功能都委派给其 parent ClassLoader，一般即WebAppClassloader
- * 该类做两件事：
- * 1. 使用 asm 分析类路径中的类的 Annotation
- * 2. public addURL 
- *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class FrameworkClassLoader extends URLClassLoader {
+public class ASMClassLoader extends URLClassLoader {
 
     protected Logger logger = Logger.getLogger(this.getClass());
 
@@ -50,9 +43,8 @@ public class FrameworkClassLoader extends URLClassLoader {
     private final Map<String, List<ClassInfo>> annotated = new HashMap<String, List<ClassInfo>>();
 
 
-    public FrameworkClassLoader(URLClassLoader parent) {
+    public ASMClassLoader(URLClassLoader parent) {
         super(new URL[0], parent);
-        parseByASM(parent.getURLs());
     }
 
     /**
@@ -78,7 +70,8 @@ public class FrameworkClassLoader extends URLClassLoader {
         return classes.toArray(new Class[classes.size()]);
     }
 
-    protected void parseByASM(URL[] urls) {
+    public void parseModuleClasses(URL[] urls) {
+        addURLs(urls); // add to parent classpath urls
         // 有效 URL
         List<URL> appURLs = new ArrayList<URL>();
         for (URL url : urls) {
@@ -109,17 +102,11 @@ public class FrameworkClassLoader extends URLClassLoader {
 //        System.out.println("");
     }
 
-    public void addURL(URL url) {
-        super.addURL(url);
-        parseByASM(new URL[]{url});
-    }
-
-    public void addURLs(URL[] urls) {
+    private void addURLs(URL[] urls) {
         if(urls != null && urls.length > 0) {
             for(URL url : urls){
                 super.addURL(url);
             }
-            parseByASM(urls);
         }
     }
 
@@ -394,10 +381,4 @@ public class FrameworkClassLoader extends URLClassLoader {
         }
     }
 
-
-    public static void main(String[] args) {
-        FrameworkClassLoader asmClassLoader = new FrameworkClassLoader((URLClassLoader) FrameworkClassLoader.class.getClassLoader());
-        Class[] deploiesComponent = asmClassLoader.findClassAnnotatedWith(Service.class);
-        System.out.println(Arrays.toString(deploiesComponent));
-    }
 }

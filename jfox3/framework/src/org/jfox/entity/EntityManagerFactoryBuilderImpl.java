@@ -12,8 +12,8 @@ import org.enhydra.jdbc.standard.StandardXADataSource;
 import org.jfox.ejb3.naming.JNDIContextHelper;
 import org.jfox.ejb3.transaction.JTATransactionManager;
 import org.jfox.entity.cache.CacheConfig;
-import org.jfox.framework.FrameworkClassLoader;
 import org.jfox.framework.annotation.Service;
+import org.jfox.framework.classloader.ASMClassLoader;
 import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.Component;
 import org.jfox.framework.component.ComponentContext;
@@ -99,7 +99,8 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
             entityManagerFactoryBuilder.containerManaged = false;
             // 初始化所有的 EntityManagerFactory
             entityManagerFactoryBuilder.initEntityManagerFactories();
-            FrameworkClassLoader asmClassLoader = new FrameworkClassLoader((URLClassLoader)entityManagerFactoryBuilder.getClass().getClassLoader());
+            ASMClassLoader asmClassLoader = new ASMClassLoader((URLClassLoader)entityManagerFactoryBuilder.getClass().getClassLoader());
+            asmClassLoader.parseModuleClasses(((URLClassLoader)entityManagerFactoryBuilder.getClass().getClassLoader()).getURLs());
             Set<Class> namedQueryClasses = new HashSet<Class>();
             namedQueryClasses.addAll(Arrays.asList(asmClassLoader.findClassAnnotatedWith(NamedNativeQueries.class)));
             namedQueryClasses.addAll(Arrays.asList(asmClassLoader.findClassAnnotatedWith(NamedNativeQuery.class)));
@@ -214,10 +215,11 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
                 Map.Entry<String, NamedSQLTemplate> entry = it.next();
                 NamedSQLTemplate sqlTemplate = entry.getValue();
                 // 注销所在模块的 NamedSQLTemplate
-                if (sqlTemplate.getDefinedClass().getClassLoader() == module.getModuleClassLoader()) {
+                //TODO: 改变策略之后，classLoader 都是 SysClassloader
+//                if (sqlTemplate.getDefinedClass().getClassLoader() == module.getModuleClassLoader()) {
                     logger.info("Unregister Named Query defined in class: " + sqlTemplate.getDefinedClass().getName() + ", template SQL: " + sqlTemplate.getTemplateSQL());
                     it.remove();
-                }
+//                }
             }
         }
 

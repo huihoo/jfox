@@ -7,6 +7,7 @@
 package org.jfox.framework;
 
 import org.apache.log4j.Logger;
+import org.jfox.framework.classloader.FrameworkClassLoader;
 import org.jfox.framework.component.Component;
 import org.jfox.framework.component.ComponentInstantiateException;
 import org.jfox.framework.component.ComponentMeta;
@@ -41,7 +42,7 @@ public class Framework {
     private static final Logger logger = Logger.getLogger(Framework.class);
 
 
-    private URLClassLoader frameworkClassLoader;
+    private FrameworkClassLoader frameworkClassLoader;
 
     /**
      * 事件监听器
@@ -97,7 +98,7 @@ public class Framework {
         return started;
     }
 
-    public URLClassLoader getClassLoader() {
+    public FrameworkClassLoader getClassLoader() {
         return frameworkClassLoader;
     }
 

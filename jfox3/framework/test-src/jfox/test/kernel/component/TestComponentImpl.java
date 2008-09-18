@@ -6,13 +6,12 @@
  */
 package jfox.test.kernel.component;
 
-import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ComponentContext;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(id="TestComponent")
+//@Service(id="TestComponent")
 public class TestComponentImpl implements TestComponent {
 
     public void sayHello() {

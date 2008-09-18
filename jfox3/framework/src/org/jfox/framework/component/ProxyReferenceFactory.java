@@ -8,7 +8,7 @@ package org.jfox.framework.component;
 
 import org.jfox.framework.ComponentId;
 import org.jfox.framework.Framework;
-import org.jfox.framework.FrameworkClassLoader;
+import org.jfox.framework.classloader.ModuleClassLoader;
 import org.jfox.framework.invoker.ComponentInvoker;
 
 import java.io.IOException;
@@ -110,7 +110,7 @@ class ProxyReferenceFactory {
             this.module = module;
         }
 
-        private FrameworkClassLoader getModuleClassLoader(){
+        private ModuleClassLoader getModuleClassLoader(){
             return framework.getModule(module).getModuleClassLoader();
         }
 

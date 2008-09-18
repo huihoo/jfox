@@ -17,7 +17,7 @@ import org.jfox.ejb3.interceptor.InternalInterceptorMethod;
 import org.jfox.ejb3.naming.ContextAdapter;
 import org.jfox.entity.dependent.FieldPersistenceContextDependence;
 import org.jfox.entity.dependent.FieldPersistenceUnitDependence;
-import org.jfox.framework.FrameworkClassLoader;
+import org.jfox.framework.classloader.ModuleClassLoader;
 import org.jfox.framework.component.Module;
 import org.jfox.framework.dependent.InjectionException;
 import org.jfox.mvc.SessionContext;
@@ -425,7 +425,7 @@ public abstract class SessionBucket implements EJBBucket {
 
     }
 
-    public FrameworkClassLoader getBucketClassLoader() {
+    public ModuleClassLoader getBucketClassLoader() {
         return this.module.getModuleClassLoader();
     }
 
