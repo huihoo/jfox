@@ -11,22 +11,26 @@
     <listener>
         <listener-class>org.jfox.mvc.WebContextLoader</listener-class>
     </listener>
-
-    <servlet>
-        <servlet-name>xfire_servlet</servlet-name>
-        <servlet-class>org.jfox.webservice.xfire.JFoxXFireServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>xfire_servlet</servlet-name>
-        <url-pattern>/webservice/*</url-pattern>
-    </servlet-mapping>
+    <filter>
+       <filter-name>UrlRewriteFilter</filter-name>
+       <filter-class>org.jfox.mvc.servlet.UrlRewriteFilter</filter-class>
+    </filter>
+    <filter-mapping>
+       <filter-name>UrlRewriteFilter</filter-name>
+       <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <!-- if you don't want to use JFox MVC, comment below content -->
     <context-param>
         <!--encoding used by request & velocity -->
         <param-name>DEFAULT_ENCODING</param-name>
         <param-value>UTF-8</param-value>
+    </context-param>
+
+    <context-param>
+        <!-- url patter for module access, same with controller_servlet url_pattern -->
+        <param-name>MODULE_ACCESS_PREFIX</param-name>
+        <param-value>m</param-value>
     </context-param>
 
     <context-param>
@@ -46,20 +50,30 @@
         <param-name>ACTION_SUFFIX</param-name>
         <param-value>.do</param-value>
     </context-param>
+    <context-param>
+        <param-name>MAX_UPLOAD_FILE_SIZE</param-name>
+        <param-value>5000000</param-value>
+        <!-- 5Mbytes -->
+    </context-param>
 
     <servlet>
         <servlet-name>controller_servlet</servlet-name>
         <servlet-class>org.jfox.mvc.servlet.ControllerServlet</servlet-class>
-        <init-param>
-            <param-name>MAX_UPLOAD_FILE_SIZE</param-name>
-            <param-value>5000000</param-value>
-            <!-- 5Mbytes -->
-        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>controller_servlet</servlet-name>
         <url-pattern>/m/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>xfire_servlet</servlet-name>
+        <servlet-class>org.jfox.webservice.xfire.JFoxXFireServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>xfire_servlet</servlet-name>
+        <url-pattern>/webservice/*</url-pattern>
     </servlet-mapping>
 
     <servlet>

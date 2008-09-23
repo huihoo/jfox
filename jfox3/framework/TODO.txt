@@ -370,3 +370,9 @@
 
 2008-09-17
     1.使用 module.action.actionmethod.do 来访问 aciton
+
+2008-09-18
+    1. 只使用一个 VelocityRender实例，TargetView自动加上Module view dir 前缀 (不行，这样没法支持 #include 相对路径)
+
+2008-09-22
+    1.采用 URLRewriteFileter 解决 url 格式问题

@@ -31,7 +31,7 @@ import java.util.List;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class ControllerServlet extends HttpServlet {
+public class ActionServlet extends HttpServlet {
 
     public static final String PAGE_CONTEXT = "__PAGE_CONTEXT__";
 //    public static final String ACTION_CONTEXT = "__INVOCATION_CONTEXT__";
@@ -55,18 +55,18 @@ public class ControllerServlet extends HttpServlet {
 
     public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
-        String actionSuffix = servletConfig.getServletContext().getInitParameter(ACTION_SUFFIX_KEY);
+        String actionSuffix = servletConfig.getInitParameter(ACTION_SUFFIX_KEY);
         if (actionSuffix != null && actionSuffix.trim().length() != 0) {
             ACTION_SUFFIX = actionSuffix;
         }
         //default encoding
-        String defaultEncoding = servletConfig.getServletContext().getInitParameter(DEFAULT_ENCODING_KEY);
+        String defaultEncoding = servletConfig.getInitParameter(DEFAULT_ENCODING_KEY);
         if (defaultEncoding != null && defaultEncoding.trim().length() != 0) {
             DEFAULT_ENCODING = defaultEncoding;
         }
 
         //view dir
-        String viewDir = servletConfig.getServletContext().getInitParameter(VIEW_DIR_KEY);
+        String viewDir = servletConfig.getInitParameter(VIEW_DIR_KEY);
         if (viewDir != null && viewDir.trim().length() != 0) {
             VIEW_DIR = viewDir;
         }
@@ -88,11 +88,23 @@ public class ControllerServlet extends HttpServlet {
     }
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO: 以 /m/root 访问 webroot
-
         request.setCharacterEncoding(DEFAULT_ENCODING);
-        String pathInfo = request.getPathInfo();
-        if (pathInfo.endsWith(ACTION_SUFFIX)) {
+        String servletPath = request.getServletPath();
+        if (servletPath.endsWith(ACTION_SUFFIX)) {
+            // action
+            executeAction(request, response);
+            Iterator<ControllerInvocationHandler> chain = controllerInvocationHandlerChain.iterator();
+//            chain.next().invoke(actionContext, chain);
+//            controllerInvocationHandlerChain.iterator().next().invoke(actionContext, controllerInvocationHandlerChain);
+        }
+        else {
+            // static page or template
+            staticView(request, response);
+        }
+
+
+/*
+        if (servletPath.endsWith(ACTION_SUFFIX)) {
             // action
             forwardAction(request, response);
             Iterator<ControllerInvocationHandler> chain = controllerInvocationHandlerChain.iterator();
@@ -103,48 +115,61 @@ public class ControllerServlet extends HttpServlet {
             // static page or template
             forwardView(request, response);
         }
+*/
     }
 
-    protected void forwardView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String pathInfo = request.getPathInfo();
-        int slashIndex = pathInfo.indexOf("/", 2);
-        String moduleDirName = pathInfo.substring(1, slashIndex);
-        if(!WebContextLoader.isModuleExists(moduleDirName)) {
-            throw new ServletException("Invalid request url: " + request.getRequestURL());
+    protected void executeAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //url format: 1) /actionname.actionmethod.do  2) /module/actionname.actionmethod.do
+        String servletPath = request.getServletPath();
+        if(servletPath.startsWith("/")) {
+            servletPath = servletPath.substring(1);
         }
+        String[] servletPathSplits = servletPath.split("/");
 
-        String filePath = pathInfo.substring(slashIndex);
-        String realPath = WebContextLoader.getModulePathByModuleDirName(moduleDirName) + "/" + VIEW_DIR + filePath;
-        request.getRequestDispatcher(realPath).forward(request, response);
-    }
+        String moduleDirName = "";
+        String actionName;
+        String actionMethodName;
 
-    protected void forwardAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String pathInfo = request.getPathInfo();
-        String queryString = request.getQueryString();
-        int slashIndex = pathInfo.indexOf("/", 2);
-        String moduleDirName = pathInfo.substring(1, slashIndex);
-        if(!WebContextLoader.isModuleExists(moduleDirName)) {
-            throw new ServletException("Invalid request url: " + request.getRequestURL());
+        if(servletPathSplits.length == 1) { // action.actionmethod.do
+            int firstDotIndex = servletPathSplits[0].indexOf(".");
+            int secondDotIndex = servletPathSplits[0].lastIndexOf(".");
+            actionName = servletPathSplits[0].substring(0, firstDotIndex);
+            actionMethodName = servletPathSplits[0].substring(firstDotIndex+1, secondDotIndex);
         }
-
-        int dotDoIndex = pathInfo.lastIndexOf(ACTION_SUFFIX);
-        int lastSlashIndex = pathInfo.lastIndexOf("/");
-        int actionMethodDotIndex = pathInfo.indexOf(".", lastSlashIndex);
-        String actionName = pathInfo.substring(lastSlashIndex + 1, actionMethodDotIndex);
-        String actionMethodName = pathInfo.substring(actionMethodDotIndex + 1, dotDoIndex);
+        else if(servletPathSplits.length == 2) { // moduleDirName/action.actionmethod.do
+            moduleDirName = servletPathSplits[0];
+            int firstDotIndex = servletPathSplits[1].indexOf(".");
+            int secondDotIndex = servletPathSplits[1].lastIndexOf(".");
+            actionName = servletPathSplits[1].substring(0, firstDotIndex);
+            actionMethodName = servletPathSplits[1].substring(firstDotIndex+1, secondDotIndex);
+        }
+        else {
+            //不合法的 .do URL
+            throw new ServletException(new IllegalArgumentException("URL: " + request.getRequestURI()));
+        }
+        if(!moduleDirName.equals("")) {
+            if(!WebContextLoader.isModuleExists(moduleDirName)) {
+                throw new ServletException("Invalid request url: " + request.getRequestURL());
+            }
+        }
 
         // 调用 ActionContainer执行Action
         ActionContext actionContext = new ActionContext(getServletConfig(),moduleDirName,actionName, actionMethodName, request);
         try {
             PageContext pageContext = WebContextLoader.invokeAction(actionContext);
             request.setAttribute(PAGE_CONTEXT, pageContext);
+
+            if(!WebContextLoader.isModuleExists(moduleDirName)) {
+                throw new ServletException("Invalid request url: " + request.getRequestURL());
+            }
+            String realPath = WebContextLoader.getModulePathByModuleDirName(moduleDirName) + "/" + VIEW_DIR + pageContext.getTargeView();
             // 根据 PageContext.getTargetMethod 要决定 forward 还是 redirect
             if(pageContext.getTargetMethod().equals(ActionMethod.ForwardMethod.REDIRECT)) {
-                response.sendRedirect(pageContext.getTargeView());
+                response.sendRedirect(realPath);
 //                request.getRequestDispatcher(invocationContext.getPageContext().getTargeView()).(request, response);
             }
             else {
-                request.getRequestDispatcher(pageContext.getTargeView()).forward(request, response);
+                request.getRequestDispatcher(realPath).forward(request, response);
             }
         }
         catch (ServletException e) {
@@ -154,7 +179,6 @@ public class ControllerServlet extends HttpServlet {
             throw new ServletException(e);
         }
 /*
-
         // 会导致取出的值为数组问题，所以只能使用下面的循环
         final Map<String,String[]> parameterMap = new HashMap<String, String[]>();
         final Map<String, FileUploaded> fileUploadedMap = new HashMap<String, FileUploaded>();
@@ -234,7 +258,36 @@ public class ControllerServlet extends HttpServlet {
             throw new ServletException(e);
         }
 */
-        
+
+    }
+
+    protected void staticView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //url format: 1) /xxx.vhtml  2) /module/xxx.vhtml 3) /directory/xxx.vhtml
+        String servletPath = request.getServletPath();
+        if(servletPath.startsWith("/")) {
+            servletPath = servletPath.substring(1);
+        }
+        String moduleDirName = "";
+        String filePath = "";
+        if(servletPath.indexOf("/") < 0){
+            filePath = servletPath;
+        }
+        else {
+            int firstSlashIndex = servletPath.indexOf("/");
+            String _moduleDirName = servletPath.substring(0, firstSlashIndex);
+            if(WebContextLoader.isModuleExists(moduleDirName)) { // 该 module 存在
+                moduleDirName = _moduleDirName;
+                filePath = servletPath.substring(firstSlashIndex + 1);
+            }
+            else { // Module 不存在，则视为普通目录
+                filePath = servletPath;
+            }
+        }
+        String realPath = filePath;
+        if(!moduleDirName.equals("")) {
+            realPath = WebContextLoader.getModulePathByModuleDirName(moduleDirName) + "/" + VIEW_DIR + filePath;
+        }
+        request.getRequestDispatcher(realPath).forward(request, response);
     }
 
 /*
