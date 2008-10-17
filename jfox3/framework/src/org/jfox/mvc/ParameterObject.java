@@ -78,7 +78,10 @@ public abstract class ParameterObject {
                 Annotation validationAnnotation = fieldValidation.getValidationAnnotation();
 
                 Class<?> fieldType = field.getType();
-                if (fieldType.isArray()) {
+                if(fieldType.equals(FileUploaded.class)) {
+                    logger.warn("ignore FileUploaded field: " + field);
+                }
+                else if (fieldType.isArray()) {
                     Class<?> arrayType = fieldType.getComponentType();
                     Object paramArray = Array.newInstance(arrayType, values.length);
                     for (int i = 0; i < Array.getLength(paramArray); i++) {

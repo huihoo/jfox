@@ -7,7 +7,6 @@
 package org.jfox.entity;
 
 import javax.persistence.NamedNativeQuery;
-import javax.persistence.QueryHint;
 
 /**
  * 用来保存 NamedQuery
@@ -30,8 +29,11 @@ public class NamedSQLTemplate extends SQLTemplate {
      */
     protected String cachePartition = "";
 
+    protected String name = "";
+
     public static final String CACHE_PARTITION_NAME = "cache.partition";
 
+/*
     public NamedSQLTemplate(NamedNativeQuery namedNativeQuery, Class<?> definedClass) {
         super(namedNativeQuery.query(), namedNativeQuery.resultClass());
         this.namedNativeQuery = namedNativeQuery;
@@ -46,6 +48,17 @@ public class NamedSQLTemplate extends SQLTemplate {
 
         this.definedClass = definedClass;
     }
+*/
+
+    public NamedSQLTemplate(String name, String sqlTemplate, Class resultClass, Class<?> defineClass, String partition) {
+        super(sqlTemplate, resultClass);
+        this.cachePartition = partition;
+        if(name == null || name.trim().equals("")) {
+            throw new IllegalArgumentException("name is null");
+        }
+        this.name = name;
+        this.definedClass = defineClass;
+    }
 
     public Class<?> getDefinedClass() {
         return definedClass;
@@ -55,7 +68,7 @@ public class NamedSQLTemplate extends SQLTemplate {
      * the name of NamedQuery
      */
     public String getName() {
-        return namedNativeQuery.name();
+        return name;
     }
 
     public String getCachePartition() {

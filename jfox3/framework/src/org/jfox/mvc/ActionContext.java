@@ -7,6 +7,7 @@
 package org.jfox.mvc;
 
 import org.jfox.mvc.annotation.ActionMethod;
+import org.jfox.mvc.servlet.ControllerServlet;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -69,6 +70,13 @@ public class ActionContext {
         this.actionMethodName = actionMethodName;
         this.request = request;
         this.pageContext = new PageContext();
+        // 如果上一次 Action 已经设置 PageContext.resultMap, 需要copy 过来
+        PageContext forwardPageContext = ((PageContext)request.getAttribute(ControllerServlet.PAGE_CONTEXT));
+        if(forwardPageContext != null ) {
+            for(Map.Entry<String, Object> entry : forwardPageContext.getResultMap().entrySet()) {
+                pageContext.setAttribute(entry.getKey(), entry.getValue());
+            }
+        }
     }
 
     public String getModuleName() {
@@ -144,7 +152,7 @@ public class ActionContext {
     public Method getActionMethod() {
         Method actionMethod = getActionBucket().getActionMethod(this);
         if(actionMethod == null) {
-            throw new ActionMethodNotFoundException(getActionMethodName(), getActionName(), getModuleName());
+            throw new ActionMethodNotFoundException(getModuleName(), getActionName(), getActionMethodName());
         }
         return actionMethod;
     }

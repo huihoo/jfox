@@ -82,6 +82,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
     public static final String DEFAULT_UNITNAME = "default";
     public static final String QUERY_HINT_KEY_FORM_CAHCE_PREFIX = "cache.";
     public static final String QUERY_HINT_KEY_FOR_JDBC_COMPATIBLE = "jdbc.compatible";
+    public static final String QUERY_HINT_KEY_FOR_CACHE_PARTITION_NAME = "cache.partition";
 
     public EntityManagerFactoryBuilderImpl() {
 
@@ -217,7 +218,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
                 // 注销所在模块的 NamedSQLTemplate
                 //TODO: 改变策略之后，classLoader 都是 SysClassloader
 //                if (sqlTemplate.getDefinedClass().getClassLoader() == module.getModuleClassLoader()) {
-                    logger.info("Unregister Named Query defined in class: " + sqlTemplate.getDefinedClass().getName() + ", template SQL: " + sqlTemplate.getTemplateSQL());
+                    logger.info("Unregister Named Query defined in " + sqlTemplate.getDefinedClass() + ", template SQL: " + sqlTemplate.getTemplateSQL());
                     it.remove();
 //                }
             }
@@ -231,7 +232,7 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
             logger.warn("Can not found persistence config file: " + PERSISTENCE_CONFIG_FILE);
             return;
         }
-        logger.info("Initializing EntityManagers use: " + PERSISTENCE_CONFIG_FILE);
+        logger.info("Initializing EntityManagers use: " + url.toString());
         transactionManager = JTATransactionManager.getIntsance();
         // 初始化 EntityTransaction
         entityTransaction = new EntityTransactionImpl(transactionManager);
@@ -389,8 +390,16 @@ public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuil
             logger.warn("NamedQuery " + namedNativeQuery.name() + " has registered by " + namedSQLTemplates.get(namedNativeQuery.name()).getDefinedClass() + ".");
         }
         else {
-            NamedSQLTemplate sqlTemplate = new NamedSQLTemplate(namedNativeQuery, definedClass);
+//            NamedSQLTemplate sqlTemplate = new NamedSQLTemplate(namedNativeQuery, definedClass);
+            String cachePartition = null;
             QueryHint[] hints = namedNativeQuery.hints();
+            for(QueryHint hint : namedNativeQuery.hints()){
+                String name = hint.name();
+                if(name.equals(QUERY_HINT_KEY_FOR_CACHE_PARTITION_NAME)) {
+                    cachePartition = hint.value();
+                }
+            }
+            NamedSQLTemplate sqlTemplate = new NamedSQLTemplate(namedNativeQuery.name(), namedNativeQuery.query(), namedNativeQuery.resultClass(), definedClass, cachePartition);
             if (hints.length > 0) {
                 // 检查 jdbc.compatible
                 for (QueryHint hint : hints) {

@@ -6,11 +6,13 @@
  */
 package org.jfox.entity.dao;
 
-import org.jfox.entity.MappedEntity;
+import org.jfox.entity.EntityManagerExt;
+import org.jfox.entity.EntityManagerFactoryBuilderImpl;
 import org.jfox.entity.QueryExt;
 import org.jfox.entity.mapping.EntityFactory;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +30,8 @@ import java.util.Map;
  */
 public abstract class DAOSupport implements DataAccessObject {
 
+    public static final String HINT_CACHE_PARTITION = EntityManagerFactoryBuilderImpl.QUERY_HINT_KEY_FOR_CACHE_PARTITION_NAME;
+    public static final String HINT_JDBC_COMPATIBLE = EntityManagerFactoryBuilderImpl.QUERY_HINT_KEY_FOR_JDBC_COMPATIBLE;
     /**
      * 返回 EntityManager，由子类使用 @PersistenceContext 注入
      */
@@ -64,17 +68,25 @@ public abstract class DAOSupport implements DataAccessObject {
      * 给定 sql 构造 Qeury，Result类型为MappedEntity
      * @param sql native sql template
      */
+/*
     public QueryExt createNativeQuery(String sql) {
         return createNativeQuery(sql, MappedEntity.class);
     }
+*/
 
     /**
      * 给定 sql 构造 Qeury，Result类型为resultClass
      * @param sql native sql template
      * @param resultClass 返回的结果对象类型
      */
+/*
     public QueryExt createNativeQuery(String sql, Class<?> resultClass) {
         return (QueryExt)getEntityManager().createNativeQuery(sql, resultClass);
+    }
+*/
+
+    public QueryExt createTempNamedNativeQuery(String name, String sql, Class<?> resultClass, String partitionName){
+        return (QueryExt)((EntityManagerExt)getEntityManager()).createTempNamedNativeQuery(name, sql, resultClass, partitionName);
     }
 
     /**
@@ -82,8 +94,8 @@ public abstract class DAOSupport implements DataAccessObject {
      * @param entityClass entity class
      * @return QueryExt
      */
-    public QueryExt createAutoInsertNativeQuery(Class entityClass) {
-        return createNativeQuery(SQLGenerator.buildInsertSQL(entityClass), entityClass);
+    public QueryExt createAutoInsertNativeQuery(Class entityClass, String partitionName) {
+        return createTempNamedNativeQuery("AUTO_SQL_INSERT_" + entityClass.getName(), SQLGenerator.buildInsertSQL(entityClass), entityClass, partitionName);
     }
 
     /**
@@ -91,12 +103,12 @@ public abstract class DAOSupport implements DataAccessObject {
      * @param entityClass
      * @return QueryExt
      */
-    public QueryExt createAutoDeleteByIdNativeQuery(Class entityClass) {
-        return createNativeQuery(SQLGenerator.buildDeleteByIdSQL(entityClass), entityClass);
+    public QueryExt createAutoDeleteByIdNativeQuery(Class entityClass, String partitionName) {
+        return createTempNamedNativeQuery("AUTO_SQL_DELETE_" + entityClass.getName(), SQLGenerator.buildDeleteByIdSQL(entityClass), entityClass, partitionName);
     }
 
-    public QueryExt createAutoDeleteByColumnNativeQuery(Class entityClass, String... columns) {
-        return createNativeQuery(SQLGenerator.buildDeleteByColumnSQL(entityClass, columns), entityClass);
+    public QueryExt createAutoDeleteByColumnNativeQuery(Class entityClass, String partitionName, String... columns) {
+        return createTempNamedNativeQuery("AUTO_SQL_DELETE_" + entityClass.getName(), SQLGenerator.buildDeleteByColumnSQL(entityClass, columns), entityClass, partitionName);
     }
 
     /**
@@ -104,8 +116,8 @@ public abstract class DAOSupport implements DataAccessObject {
      * @param entityClass
      * @return QueryExt
      */
-    public QueryExt createAutoUpdateNativeQuery(Class entityClass) {
-        return createNativeQuery(SQLGenerator.buildUpdateSQL(entityClass), entityClass);
+    public QueryExt createAutoUpdateNativeQuery(Class entityClass, String partitionName) {
+        return createTempNamedNativeQuery("AUTO_SQL_UPDATE_" + entityClass.getName(), SQLGenerator.buildUpdateSQL(entityClass), entityClass, partitionName);
     }
 
     /**
@@ -113,8 +125,8 @@ public abstract class DAOSupport implements DataAccessObject {
      * @param entityClass
      * @return QueryExt
      */
-    public QueryExt createAutoSelectByIdNativeQuery(Class entityClass) {
-        return createNativeQuery(SQLGenerator.buildSelectSQLById(entityClass), entityClass);
+    public QueryExt createAutoSelectByIdNativeQuery(Class entityClass, String partitionName) {
+        return createTempNamedNativeQuery("AUTO_SQL_SELECT_" + entityClass.getName(),SQLGenerator.buildSelectSQLById(entityClass), entityClass, partitionName);
     }
 
     /**
@@ -122,22 +134,141 @@ public abstract class DAOSupport implements DataAccessObject {
      * @param entityClass
      * @return QueryExt
      */
-    public QueryExt createAutoSelectByColumnNativeQuery(Class entityClass, String... columns) {
-        return createNativeQuery(SQLGenerator.buildSelectSQLByColumn(entityClass, columns), entityClass);
+    public QueryExt createAutoSelectByColumnNativeQuery(Class entityClass, String partitionName, String... columns) {
+        return createTempNamedNativeQuery("AUTO_SQL_SELECT_" + entityClass.getName(),SQLGenerator.buildSelectSQLByColumn(entityClass, columns), entityClass, partitionName);
     }
 
-    public QueryExt createAutoSelectInByIdNativeQuery(Class entityClass, List<Long> idList) {
-        return createNativeQuery(SQLGenerator.buildSelectInSQLById(entityClass, idList), entityClass);
+    public QueryExt createAutoSelectInByIdNativeQuery(Class entityClass, List<Long> idList, String partitionName) {
+        return createTempNamedNativeQuery("AUTO_SQL_SELECT_" + entityClass.getName(),SQLGenerator.buildSelectInSQLById(entityClass, idList), entityClass, partitionName);
     }
 
-    public QueryExt createAutoSelectInByColumnNativeQuery(Class entityClass, String columnName, List<String> columnValueList) {
-        return createNativeQuery(SQLGenerator.buildSelectInSQLByColumn(entityClass, columnName, columnValueList), entityClass);
+    public QueryExt createAutoSelectInByColumnNativeQuery(Class entityClass, String columnName, List<String> columnValueList, String partitionName) {
+        return createTempNamedNativeQuery("AUTO_SQL_SELECT_" + entityClass.getName(),SQLGenerator.buildSelectInSQLByColumn(entityClass, columnName, columnValueList), entityClass, partitionName);
     }
 
-    public QueryExt createAutoSelectByConditionNativeQuery(Class entityClass, Condition condition){
-        return createNativeQuery(SQLGenerator.buildSelectSQLByConditoin(entityClass, condition), entityClass);
+    public QueryExt createAutoSelectByConditionNativeQuery(Class entityClass, Condition condition, String partitionName){
+        return createTempNamedNativeQuery("AUTO_SQL_SELECT_" + entityClass.getName(),SQLGenerator.buildSelectSQLByConditoin(entityClass, condition), entityClass, partitionName);
     }
 
+
+    /**
+     * 根据 id 找到 Entity 对象
+     *
+     * @param namedQuery  named native sql
+     * @param placeHolderName sql template column place holder name
+     * @param id id
+     * @return entity instance
+     */
+    public Object getEntityObjectByColumn(String namedQuery, String placeHolderName, Object id) {
+        Map<String, Object> paramMap = new HashMap<String, Object>(1);
+        paramMap.put(placeHolderName,id);
+        List<?> entities = processNamedNativeQuery(namedQuery,paramMap);
+        if(!entities.isEmpty()) {
+            return entities.get(0);
+        }
+        else {
+            return null;
+        }
+    }
+
+    public int deleteEntityObjectByColumn(String namedQuery, String placeHolderName, Object id) {
+        Map<String, Object> paramMap = new HashMap<String, Object>(1);
+        paramMap.put(placeHolderName,id);
+        return executeNamedNativeUpdate(namedQuery, paramMap);
+    }
+
+    public int executeNamedNativeUpdate(String namedQuery, Map<String, ?> paramMap) {
+        Query query = createNamedNativeQuery(namedQuery);
+        if (paramMap != null) {
+            for (Map.Entry<String, ?> entry : paramMap.entrySet()) {
+                query.setParameter(entry.getKey(), entry.getValue());
+            }
+        }
+        return query.executeUpdate();
+    }
+
+    /**
+     * 使用一个预定义的 query 语句进行查询，返回 entity list
+     *
+     * @param namedQuery   named query
+     */
+    public List<?> processNamedNativeQuery(String namedQuery, Map<String, ?> paramMap) {
+        return processNamedNativeQuery(namedQuery, paramMap, 0, Integer.MAX_VALUE);
+    }
+
+    /**
+     * 使用一个预定义的 query 语句进行查询，返回 entity list
+     *
+     * @param namedQuery   named query
+     * @param paramMap parameter map
+     * @param firstResult 第一个值的位置
+     * @param maxResult 取值范围
+     * @return 返回符合需要的 entity list
+     */
+    public List<?> processNamedNativeQuery(String namedQuery, Map<String, ?> paramMap, int firstResult, int maxResult) {
+        Query query = createNamedNativeQuery(namedQuery);
+        if (paramMap != null) {
+            for (Map.Entry<String, ?> entry : paramMap.entrySet()) {
+                query.setParameter(entry.getKey(), entry.getValue());
+            }
+        }
+        query.setFirstResult(firstResult);
+        query.setMaxResults(maxResult);
+        return (List<?>)query.getResultList();
+    }
+
+    public Object processNamedNativeQuerySingle(String namedQuery, Map<String, ?> paramMap){
+        return processNamedNativeQuerySingle(namedQuery, paramMap, 0, Integer.MAX_VALUE);
+    }
+
+       /**
+     * 使用一个预定义的 query 语句进行查询，返回 entity
+     *
+     * @param namedQuery   named query
+     * @param paramMap parameter map
+     * @param firstResult 第一个值的位置
+     * @param maxResult 取值范围
+     * @return 返回符合需要的 entity list
+     */
+    public Object processNamedNativeQuerySingle(String namedQuery, Map<String, ?> paramMap, int firstResult, int maxResult) {
+        Query query = createNamedNativeQuery(namedQuery);
+        if (paramMap != null) {
+            for (Map.Entry<String, ?> entry : paramMap.entrySet()) {
+                query.setParameter(entry.getKey(), entry.getValue());
+            }
+        }
+        query.setFirstResult(firstResult);
+        query.setMaxResults(maxResult);
+        return query.getSingleResult();
+    }
+
+    public Object processNativeQuerySingle(Query query, Map<String, ?> paramMap){
+        if (paramMap != null) {
+            for (Map.Entry<String, ?> entry : paramMap.entrySet()) {
+                query.setParameter(entry.getKey(), entry.getValue());
+            }
+        }
+        return query.getSingleResult();
+    }
+
+    public int executeNativeUpdate(Query query, Map<String, ?> paramMap) {
+        if (paramMap != null) {
+            for (Map.Entry<String, ?> entry : paramMap.entrySet()) {
+                query.setParameter(entry.getKey(), entry.getValue());
+            }
+        }
+        return query.executeUpdate();
+    }
+
+    public List<?> processeNativeQuery(Query query, Map<String, ?> paramMap) {
+        if (paramMap != null) {
+            for (Map.Entry<String, ?> entry : paramMap.entrySet()) {
+                query.setParameter(entry.getKey(), entry.getValue());
+            }
+        }
+        return query.getResultList();
+    }
+    
     /**
      * 生成19的PK，比如：2006080816404856650
      * PK 只保证唯一，不包含任何业务意义，比如：对于 ID 连续性的要求

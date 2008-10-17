@@ -6,13 +6,13 @@
  */
 package org.jfox.entity;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.FlushModeType;
 import javax.persistence.LockModeType;
 import javax.persistence.Query;
-import javax.persistence.EntityTransaction;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -28,6 +28,11 @@ public abstract class EntityManagerExt implements EntityManager {
     public abstract Query createNativeQuery(String sqlString, Class resultClass);
 
     public abstract Query createNativeQuery(String sqlString);
+
+    /**
+     * 用于创建自动生成SQL的Query时调用，指定 partitionName 为了Cache的互操作
+     */
+    public abstract Query createTempNamedNativeQuery(String name, String sqlString, Class resultClass, String partitionName);
 
     public abstract void close();
 

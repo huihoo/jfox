@@ -6,6 +6,8 @@
  */
 package org.jfox.mvc;
 
+import java.io.File;
+
 /**
  * 用来装上传的文件
  * 
@@ -37,6 +39,14 @@ public class FileUploaded {
 
     public String toString() {
         return "Uploaded file, name=" + getFilename();
+    }
+
+    /**
+     * TODO:
+     * @param file
+     */
+    public void saveTO(File file){
+
     }
 
     public static void main(String[] args) {

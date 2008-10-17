@@ -96,6 +96,11 @@ public class EntityManagerImpl extends EntityManagerExt {
         return new SQLQuery(this,sqlTemplate);
     }
 
+    public Query createTempNamedNativeQuery(String name, String sqlString, Class resultClass, String partitionName){
+        NamedSQLTemplate namedSQLTemplate = new NamedSQLTemplate(name, sqlString, resultClass, null, partitionName);
+        return new SQLQuery(this, namedSQLTemplate);
+    }
+
     public EntityTransaction getTransaction() {
         return emFactory.getEntityManagerFactoryBuilder().getEntityTransaction();
     }
