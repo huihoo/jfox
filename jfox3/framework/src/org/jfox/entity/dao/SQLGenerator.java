@@ -131,6 +131,13 @@ public static String buildDeleteByColumnSQL(Class entityClass, String... columns
         return sql.toString();
     }
 
+    public static String buildSelectLikeSQLByColumn(Class<?> entityClass, String column){
+        EntityFactory.introspectResultClass(entityClass);
+        String tableName = getTableName(entityClass);
+        StringBuffer sql = new StringBuffer("SELECT * FROM ").append(tableName).append(" WHERE ").append(column).append(" LIKE ").append("$").append(column.toUpperCase());
+        return sql.toString();
+    }
+    
     /**
      * build select sql by id column
      * @param entityClass

@@ -138,6 +138,10 @@ public abstract class DAOSupport implements DataAccessObject {
         return createTempNamedNativeQuery("AUTO_SQL_SELECT_" + entityClass.getName(),SQLGenerator.buildSelectSQLByColumn(entityClass, columns), entityClass, partitionName);
     }
 
+    public QueryExt createAutoSelectLikeByColumnNativeQuery(Class entityClass, String column, String partitionName) {
+        return createTempNamedNativeQuery("AUTO_SQL_SELECT_" + entityClass.getName(),SQLGenerator.buildSelectLikeSQLByColumn(entityClass, column), entityClass, partitionName);
+    }
+
     public QueryExt createAutoSelectInByIdNativeQuery(Class entityClass, List<Long> idList, String partitionName) {
         return createTempNamedNativeQuery("AUTO_SQL_SELECT_" + entityClass.getName(),SQLGenerator.buildSelectInSQLById(entityClass, idList), entityClass, partitionName);
     }
