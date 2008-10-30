@@ -230,18 +230,18 @@ public abstract class DAOSupport implements DataAccessObject {
      *
      * @param namedQuery   named query
      * @param paramMap parameter map
-     * @param firstResult 第一个值的位置
+     * @param startPostion 第一个值的位置
      * @param maxResult 取值范围
      * @return 返回符合需要的 entity list
      */
-    public Object processNamedNativeQuerySingle(String namedQuery, Map<String, ?> paramMap, int firstResult, int maxResult) {
+    public Object processNamedNativeQuerySingle(String namedQuery, Map<String, ?> paramMap, int startPostion, int maxResult) {
         Query query = createNamedNativeQuery(namedQuery);
         if (paramMap != null) {
             for (Map.Entry<String, ?> entry : paramMap.entrySet()) {
                 query.setParameter(entry.getKey(), entry.getValue());
             }
         }
-        query.setFirstResult(firstResult);
+        query.setFirstResult(startPostion);
         query.setMaxResults(maxResult);
         return query.getSingleResult();
     }
@@ -265,14 +265,20 @@ public abstract class DAOSupport implements DataAccessObject {
     }
 
     public List<?> processeNativeQuery(Query query, Map<String, ?> paramMap) {
+        return processeNativeQuery(query, paramMap, 0 ,Integer.MAX_VALUE);
+    }
+
+    public List<?> processeNativeQuery(Query query, Map<String, ?> paramMap, int startPosition, int maxResult) {
         if (paramMap != null) {
             for (Map.Entry<String, ?> entry : paramMap.entrySet()) {
                 query.setParameter(entry.getKey(), entry.getValue());
             }
         }
+        query.setFirstResult(startPosition);
+        query.setMaxResults(maxResult);
         return query.getResultList();
     }
-    
+
     /**
      * 生成19的PK，比如：2006080816404856650
      * PK 只保证唯一，不包含任何业务意义，比如：对于 ID 连续性的要求

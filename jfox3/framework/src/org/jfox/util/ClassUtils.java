@@ -151,6 +151,9 @@ public class ClassUtils {
             if(clz.equals(String.class)){
                 obj = value;
             }
+            else if(clz.equals(Character.class)) {
+                obj = new Character(value.charAt(0));
+            }
             else {
                 // 使用 String 构造器
                 obj = clz.getConstructor(String.class).newInstance(value);

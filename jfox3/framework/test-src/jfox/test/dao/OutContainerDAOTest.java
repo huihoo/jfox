@@ -83,7 +83,7 @@ public class OutContainerDAOTest {
         account.setFirstName("YANG");
         account.setLastName("YONG");
         account.setMail("jfox.young@gmail.com");
-        Query  query = accountDAO.createAutoInsertNativeQuery(Account.class);
+        Query  query = accountDAO.createAutoInsertNativeQuery(Account.class,null);
         query.setParameter(Account.class.getSimpleName().toUpperCase(), account);
         int r = query.executeUpdate();
         Assert.assertEquals(r, 1);
@@ -102,7 +102,7 @@ public class OutContainerDAOTest {
         account.setFirstName("YANG");
         account.setLastName("YONG");
         account.setMail("jfox.young@gmail.com");
-        Query  query = accountDAO.createAutoUpdateNativeQuery(Account.class);
+        Query  query = accountDAO.createAutoUpdateNativeQuery(Account.class, null);
         query.setParameter("ACCOUNT", account);
         int r = query.executeUpdate();
         Assert.assertEquals(r, 1);
@@ -110,7 +110,7 @@ public class OutContainerDAOTest {
 
     @Test
     public void testGeneratedSelectAccount() throws Exception {
-        Query  query = accountDAO.createAutoSelectByIdNativeQuery(Account.class);
+        Query  query = accountDAO.createAutoSelectByIdNativeQuery(Account.class, null);
         query.setParameter("ACC_ID", 8);
         Object o = query.getSingleResult();
         System.out.println(o);

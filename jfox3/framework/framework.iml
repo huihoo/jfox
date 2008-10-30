@@ -9,6 +9,7 @@
           <factory-entry name="CCMIS" />
           <factory-entry name="DefaultHsqlDS" />
           <factory-entry name="JPetstoreMysqlDS" />
+          <factory-entry name="chinabrands" />
           <factory-entry name="default" />
           <factory-entry name="iServiceDesk_DS" />
         </datasource-mapping>

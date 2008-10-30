@@ -17,7 +17,11 @@ public class IntegerValidator implements Validator<Integer> {
 
     public Integer validate(String inputValue, Annotation validation) throws ValidateException {
         IntegerValidation integerValidation = (IntegerValidation)validation;
-        
+        if (inputValue == null || inputValue.trim().length() == 0) {
+            if (!integerValidation.nullable()) {
+                throw new ValidateException("input can not be null!", inputValue);
+            }
+        }
         // 整型数据
         int minValue = integerValidation.minValue();
         int maxValue = integerValidation.maxValue();

@@ -123,10 +123,21 @@ public class SimpleActionContainer implements ActionContainer, ModuleListener {
         }
         ActionBucket actionBucket = moduleActionBuckets.get(actionName);
         actionContext.setActionBucket(actionBucket);
-        // 构造 ActionContext，然后交给 chain 执行
-        Iterator<ActionInvocationHandler> chain = invocationChain.iterator();
-        PageContext pageContext = chain.next().invoke(actionContext, chain);
-        logger.info("Request done, URI: " + actionContext.getRequestURI() + ", consumed " + (System.currentTimeMillis() - now) + "ms.");
+        PageContext pageContext = null;
+        try {
+            // 构造 ActionContext，然后交给 chain 执行
+            Iterator<ActionInvocationHandler> chain = invocationChain.iterator();
+            pageContext = chain.next().invoke(actionContext, chain);
+        }
+        finally {
+            if(pageContext != null && (pageContext.hasBusinessException() || pageContext.hasValidateException())) {
+                Object action = actionContext.getActionBucket().getActionObject();
+                if(action instanceof ActionSupport) {
+                    ((ActionSupport)action).doActionFailed(actionContext);
+                }
+            }
+            logger.info("Request done, URI: " + actionContext.getRequestURI() + ", consumed " + (System.currentTimeMillis() - now) + "ms.");
+        }
         return pageContext;
     }
 

@@ -69,6 +69,7 @@ public class ActionContext {
         this.actionName = actionName;
         this.actionMethodName = actionMethodName;
         this.request = request;
+        this.sessionContext = initSessionContext();
         this.pageContext = new PageContext();
         // 如果上一次 Action 已经设置 PageContext.resultMap, 需要copy 过来
         PageContext forwardPageContext = ((PageContext)request.getAttribute(ControllerServlet.PAGE_CONTEXT));
@@ -77,6 +78,7 @@ public class ActionContext {
                 pageContext.setAttribute(entry.getKey(), entry.getValue());
             }
         }
+        initPageContext();
     }
 
     public String getModuleName() {
@@ -90,7 +92,19 @@ public class ActionContext {
         this.fileUploadedMap.putAll(fileUploadedMap);
         this.actionName = actionName;
         this.actionMethodName = actionMethodName;
+        this.sessionContext = initSessionContext();
         this.pageContext = new PageContext();
+        initPageContext();
+    }
+
+    private void initPageContext(){
+        pageContext.setAttribute("J_SESSION_CONTEXT", this.getSessionContext());
+        pageContext.setAttribute("J_PAGE_CONTEXT", pageContext);
+        pageContext.setAttribute("J_REQUEST", request);
+        //用于在页面上显示 vm 文件全路径，便于调试
+        pageContext.setAttribute("J_WEBAPP_CONTEXT_PATH", request.getContextPath());
+        pageContext.setAttribute("J_REQUEST_URI", request.getRequestURI());
+
     }
 
     /**
@@ -101,7 +115,6 @@ public class ActionContext {
     }
 
     public void initThreadActionContext(){
-        this.sessionContext = initSessionContext();
         threadActionContext.set(this);
     }
 

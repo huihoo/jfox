@@ -112,6 +112,7 @@ public abstract class ParameterObject {
                     if (validationAnnotation != null) {
                         try {
                             v = Validators.validate(field, value, validationAnnotation);
+                            field.set(this, v);
                         }
                         catch (ValidateException e) {
                             // 只记录第一个 ValidateException
@@ -122,8 +123,8 @@ public abstract class ParameterObject {
                     }
                     else {
                         v = ClassUtils.newObject(fieldType, value);
-                    }
-                    field.set(this, v);
+                        field.set(this, v);
+                    }                   
                 }
             }
             catch (InvocationTargetException e) {
@@ -144,7 +145,7 @@ public abstract class ParameterObject {
             Annotation validationAnnotation = fieldValidation.getValidationAnnotation();
             if(validationAnnotation != null) {
                 if(!Validators.isValidationNullable(validationAnnotation)){
-                    validateException = new ValidateException("input can not be null!", this.getClass().getName() + "." + fieldValidation.getField().getName(), null);
+                    validateException = new ValidateException("Mandatory field has not value!", fieldValidation.getField().getName(), null);
                     break;
                 }
             }

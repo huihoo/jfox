@@ -376,3 +376,6 @@
 
 2008-09-22
     1.采用 URLRewriteFileter 解决 url 格式问题
+
+2008-10-15
+    1. 将 AUTO SQL 注册成 Temp NamedNativeSQL，从而解决 Cache put/get 不对应的问题

@@ -290,6 +290,9 @@ public class SQLQuery extends QueryExt {
         else if (Byte.class.equals(clazz) || byte.class.equals(clazz)) {
             pst.setByte(index, (Byte)value);
         }
+        else if(Character.class.equals(clazz) || char.class.equals(clazz)){ // 使用 Byte 设置 Char
+            pst.setString(index, (((Character)value).charValue()) + "");
+        }
         else if (Short.class.equals(clazz) || short.class.equals(clazz)) {
             pst.setShort(index, (Short)value);
         }
@@ -440,6 +443,9 @@ public class SQLQuery extends QueryExt {
         }
         else if (Byte.class == columnClass || byte.class == columnClass) {
             value = rset.getByte(columnIndex);
+        }
+         else if(Character.class.equals(columnClass) || char.class.equals(columnClass)){ // 使用 Byte 设置 Char
+            value = rset.getString(columnIndex).charAt(0);
         }
         else if (Short.class == columnClass || short.class == columnClass) {
             value = rset.getShort(columnIndex);

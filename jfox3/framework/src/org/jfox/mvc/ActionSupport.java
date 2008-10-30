@@ -59,26 +59,30 @@ public abstract class ActionSupport implements Action {
             logger.warn("Execute Action Method " + actionMethod.getName() + " throws exception.", t);
             actionContext.getPageContext().setTargetView(errorView);
             actionContext.getPageContext().setBusinessException(t);
-            doActionFailed(actionContext);
+//            doActionFailed(actionContext);
             exception = t;
         }
         catch (Exception e) { // exception throwed, forward to error view
             logger.warn("Execute Action Method " + actionMethod.getName() + " throws exception.", e);
             actionContext.getPageContext().setTargetView(errorView);
             actionContext.getPageContext().setBusinessException(e);
-            doActionFailed(actionContext);
+//            doActionFailed(actionContext);
             exception = e;
         }
         finally {
+/*
             try {
                 if (exception != null) {
                     doActionFailed(actionContext);
                 }
             }
             finally {
+*/
                 postAction(actionContext);
             }
+/*
         }
+*/
 
         // 没有设置 errorView, 抛出异常
         if (exception != null && (errorView == null || errorView.trim().length() == 0)) {
@@ -135,12 +139,6 @@ public abstract class ActionSupport implements Action {
         PageContext pageContext = actionContext.getPageContext();
 
         HttpServletRequest request = actionContext.getServletRequest();
-        pageContext.setAttribute("J_SESSION_CONTEXT", actionContext.getSessionContext());
-        pageContext.setAttribute("J_PAGE_CONTEXT", pageContext);
-        pageContext.setAttribute("J_REQUEST", request);
-        //用于在页面上显示 vm 文件全路径，便于调试
-        pageContext.setAttribute("J_WEBAPP_CONTEXT_PATH", request.getContextPath());
-        pageContext.setAttribute("J_REQUEST_URI", request.getRequestURI());
 
         // request token，用来防止重复提交
         pageContext.setAttribute("J_REQUEST_TOKEN", System.currentTimeMillis() + "");

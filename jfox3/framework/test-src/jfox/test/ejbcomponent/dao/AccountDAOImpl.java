@@ -61,12 +61,12 @@ public class AccountDAOImpl extends DAOSupport implements AccountDAO {
     }
 
     public Account getAccountByIdSQL(long id) throws SQLException {
-        Query query = createNativeQuery("select * from ACCOUNT where ACC_ID=$id", Account.class).setParameter("id", id);
+        Query query = createTempNamedNativeQuery("TEST_SELECT", "select * from ACCOUNT where ACC_ID=$id", Account.class, null).setParameter("id", id);
         return (Account)query.getSingleResult();
     }
 
     public MappedEntity getAccountMappedEntityById(long id) throws SQLException {
-        Query query = createNativeQuery("select * from ACCOUNT where ACC_ID=$id", MappedEntity.class)
+        Query query = createTempNamedNativeQuery("TEST_SELECT","select * from ACCOUNT where ACC_ID=$id", MappedEntity.class, null)
                 .setParameter("id", id);
         return (MappedEntity)query.getSingleResult();
     }
@@ -86,7 +86,9 @@ public class AccountDAOImpl extends DAOSupport implements AccountDAO {
         int result = query.executeUpdate();
         return account;
     }
-    
+
+
+
     public static void main(String[] args) {
         System.out.println(SQLGenerator.buildInsertSQL(Account.class));
         System.out.println(SQLGenerator.buildDeleteByIdSQL(Account.class));

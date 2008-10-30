@@ -19,7 +19,6 @@ public class LongValidator implements Validator<Long> {
             if (!longValidation.nullable()) {
                 throw new ValidateException("input can not be null!", inputValue);
             }
-
         }
         // 整型数据
         long minValue =  longValidation.minValue();
