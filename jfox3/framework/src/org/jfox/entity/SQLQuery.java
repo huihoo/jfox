@@ -99,7 +99,7 @@ public class SQLQuery extends QueryExt {
 
     private synchronized QueryCacheKey getCacheKey() {
         if (cacheKey == null) {
-            cacheKey = new QueryCacheKey(getName(), parameterMap, getFirstResult(), getMaxResult());
+            cacheKey = new QueryCacheKey(sqlTemplate.getTemplateSQL(), parameterMap, getFirstResult(), getMaxResult());
         }
         return cacheKey;
     }
@@ -592,6 +592,13 @@ class QueryCacheKey implements Serializable {
     private int startPosition = 0;
     private int maxResult = Integer.MAX_VALUE;
 
+    /**
+     *
+     * @param templateName 用 templateSQL 做key，保证 AUTOSQL的安全
+     * @param parameterMap
+     * @param startPosition
+     * @param maxResult
+     */
     public QueryCacheKey(String templateName, Map<String, Object> parameterMap, int startPosition, int maxResult) {
         this.templateName = templateName;
         this.parameterMap.putAll(parameterMap);
