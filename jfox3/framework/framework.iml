@@ -25,7 +25,7 @@
           <root url="file://$MODULE_DIR$/wwwroot" relative="/" />
         </webroots>
         <building>
-          <setting name="EXPLODED_URL" value="file://D:/jfox3-webapp" />
+          <setting name="EXPLODED_URL" value="file://$MODULE_DIR$/../../../jfox3-webapp" />
           <setting name="EXPLODED_ENABLED" value="true" />
           <setting name="JAR_URL" value="file://$MODULE_DIR$/framework.war" />
           <setting name="JAR_ENABLED" value="false" />
