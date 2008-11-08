@@ -164,7 +164,7 @@ public class ActionServlet extends HttpServlet {
             }
             String realPath = WebContextLoader.getModulePathByModuleDirName(moduleDirName) + "/" + VIEW_DIR + pageContext.getTargeView();
             // 根据 PageContext.getTargetMethod 要决定 forward 还是 redirect
-            if(pageContext.getTargetMethod().equals(ActionMethod.ForwardMethod.REDIRECT)) {
+            if(pageContext.getForwardMethod().equals(ActionMethod.ForwardMethod.REDIRECT)) {
                 response.sendRedirect(realPath);
 //                request.getRequestDispatcher(invocationContext.getPageContext().getTargeView()).(request, response);
             }

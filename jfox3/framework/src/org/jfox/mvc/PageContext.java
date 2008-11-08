@@ -8,6 +8,7 @@ package org.jfox.mvc;
 
 import org.jfox.mvc.annotation.ActionMethod;
 import org.jfox.mvc.validate.ValidateException;
+import org.jfox.util.VelocityUtils;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -39,11 +40,11 @@ public class PageContext {
         
     }
 
-    public void setTargetMethod(ActionMethod.ForwardMethod forwardMethod) {
+    public void setForwardMethod(ActionMethod.ForwardMethod forwardMethod) {
         this.forwardMethod = forwardMethod;
     }
 
-    public ActionMethod.ForwardMethod getTargetMethod() {
+    public ActionMethod.ForwardMethod getForwardMethod() {
         return forwardMethod;
     }
 
@@ -57,7 +58,9 @@ public class PageContext {
     }
 
     public String getTargeView(){
-        return targetView;
+        // 进行模板替换
+        return VelocityUtils.evaluate(targetView, getResultMap());
+//        return targetView;
     }
 
     public void setAttribute(String key, Object value) {

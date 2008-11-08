@@ -46,7 +46,7 @@ public class ParseParameterActionInvocationHandler extends ActionInvocationHandl
         final Map<String, FileUploaded> fileUploadedMap = new HashMap<String, FileUploaded>();
 
         //设置跳转方式
-        actionContext.getPageContext().setTargetMethod(actionContext.getActionMethodAnnotation().forwardMethod());
+        actionContext.getPageContext().setForwardMethod(actionContext.getActionMethodAnnotation().forwardMethod());
 
         // invocation class
         Class<? extends ParameterObject> invocationClass = actionContext.getParameterClass();
