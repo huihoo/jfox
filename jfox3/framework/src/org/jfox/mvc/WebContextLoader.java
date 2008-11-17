@@ -113,7 +113,7 @@ public class WebContextLoader implements ServletContextListener {
                 moduleDirName2ModuleName.clear();
                 framework = null;
                 System.gc();
-                Thread.sleep(2000);
+                Thread.sleep(1000);
                 logger.info("JFox stopped in " + ((System.currentTimeMillis() - now) / 1000) + " seconds!");
             }
         }
