@@ -23,7 +23,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-@Deprecated
+@Deprecated // 不再支持Module隔离，采用同一个 ClassLoaderRepository
 public @interface Exported {
 
 }

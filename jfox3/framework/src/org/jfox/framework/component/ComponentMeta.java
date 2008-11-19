@@ -275,6 +275,9 @@ public class ComponentMeta implements Comparable<ComponentMeta>{
         if(interfaceClasses.isEmpty()) {
             throw new ComponentResolvedFailedException("Component: " + getId() + " has no interface, refused!");
         }
+        else if(interfaceClasses.size() == 1 && interfaceClasses.get(0).equals(Component.class)){
+            logger.warn("Component " + implementationClass + " has no business interface.");
+        }
 
         for (Class intf : interfaceClasses) {
             if (intf.isAnnotationPresent(Exported.class) && intf.getClassLoader() == this.getModule().getModuleClassLoader()) {
