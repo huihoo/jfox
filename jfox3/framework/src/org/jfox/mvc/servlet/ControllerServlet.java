@@ -136,8 +136,9 @@ public class ControllerServlet extends HttpServlet {
         // 调用 ActionContainer执行Action
         ActionContext actionContext = new ActionContext(getServletConfig(),moduleDirName,actionName, actionMethodName, request);
         try {
-            PageContext pageContext = WebContextLoader.invokeAction(actionContext);
+            PageContext pageContext = actionContext.getPageContext();
             request.setAttribute(PAGE_CONTEXT, pageContext);
+            WebContextLoader.invokeAction(actionContext);
             // 根据 PageContext.getTargetMethod 要决定 forward 还是 redirect
             if(pageContext.getForwardMethod().equals(ActionMethod.ForwardMethod.REDIRECT)) {
                 response.sendRedirect(pageContext.getTargeView());
