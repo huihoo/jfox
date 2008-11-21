@@ -121,12 +121,17 @@ public class ParseParameterActionInvocationHandler extends ActionInvocationHandl
         }
         catch (ValidateException e) {
             //invocation validate exception
-            actionContext.getPageContext().setTargetView(actionContext.getErrorView());
             actionContext.getPageContext().addValidateException(e);
             // 设置 J_VALIDATE_EXCEPTIONS 变量
             actionContext.getPageContext().setAttribute("J_VALIDATE_EXCEPTIONS", actionContext.getPageContext().getValidateExceptions());
             // 直接返回，不再执行下面的操作
-            return actionContext.getPageContext();
+            if(actionContext.getErrorView() != null && actionContext.getErrorView().trim().length() > 0) {
+                actionContext.getPageContext().setTargetView(actionContext.getErrorView());
+                return actionContext.getPageContext();
+            }
+            else { // 没有设置 error_view，抛出异常
+                throw e;
+            }
         }
     }
     private String[] decodeQueryStringParameterValues(String[] values) {
