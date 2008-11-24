@@ -109,13 +109,18 @@ public class ControllerServlet extends HttpServlet {
         String pathInfo = request.getPathInfo();
         int slashIndex = pathInfo.indexOf("/", 2);
         String moduleDirName = pathInfo.substring(1, slashIndex);
-        if(!WebContextLoader.isModuleExists(moduleDirName)) {
-            throw new ServletException("Invalid request url: " + request.getRequestURL());
+        if(moduleDirName.equals(UrlRewriteFilter.MAIN_MODULE)) {
+            String realPath = pathInfo.substring(slashIndex);
+            request.getRequestDispatcher(realPath).forward(request, response);
         }
-
-        String filePath = pathInfo.substring(slashIndex);
-        String realPath = WebContextLoader.getModulePathByModuleDirName(moduleDirName) + "/" + VIEW_DIR + filePath;
-        request.getRequestDispatcher(realPath).forward(request, response);
+        else {
+            if(!WebContextLoader.isModuleExists(moduleDirName)) {
+                throw new ServletException("Invalid request url: " + request.getRequestURL());
+            }
+            String filePath = pathInfo.substring(slashIndex);
+            String realPath = WebContextLoader.getModulePathByModuleDirName(moduleDirName) + "/" + VIEW_DIR + filePath;
+            request.getRequestDispatcher(realPath).forward(request, response);
+        }
     }
 
     protected void forwardAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -47,7 +47,7 @@ public class UrlRewriteFilter implements Filter {
                     rewrittenUrl = "/" + moduleAccessPrefix + servletPath;
                 }
                 else { //不存在该模块，认为是访问的主模块中的目录
-                    rewrittenUrl = "/" + moduleAccessPrefix + MAIN_MODULE + servletPath;
+                    rewrittenUrl = "/" + moduleAccessPrefix + "/" + MAIN_MODULE + servletPath;
                 }
             }
         }
