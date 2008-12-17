@@ -1,7 +1,7 @@
 package org.jfox.mvc;
 
 import org.apache.log4j.Logger;
-import org.jfox.framework.annotation.Service;
+import org.jfox.framework.annotation.ComponentBean;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.Module;
 import org.jfox.framework.event.ModuleEvent;
@@ -26,7 +26,7 @@ import java.util.Map;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  * @create May 22, 2008 11:15:34 AM
  */
-@Service(id = "ActionContainer", singleton = true, active = true, priority = -1) // 需要在 EJBContainer 之后加载，否则 Action 无法注入 EJB
+@ComponentBean(id = "ActionContainer", singleton = true, active = true, priority = -1) // 需要在 EJBContainer 之后加载，否则 Action 无法注入 EJB
 public class SimpleActionContainer implements ActionContainer, ModuleListener {
 
     protected final Logger logger = Logger.getLogger(this.getClass());

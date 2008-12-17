@@ -12,7 +12,7 @@ import org.enhydra.jdbc.standard.StandardXADataSource;
 import org.jfox.ejb3.naming.JNDIContextHelper;
 import org.jfox.ejb3.transaction.JTATransactionManager;
 import org.jfox.entity.cache.CacheConfig;
-import org.jfox.framework.annotation.Service;
+import org.jfox.framework.annotation.ComponentBean;
 import org.jfox.framework.classloader.ASMClassLoader;
 import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.Component;
@@ -52,7 +52,7 @@ import java.util.Set;
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(id = "EntityManagerFactoryBuilder", active = true, singleton = true, priority = Integer.MIN_VALUE)
+@ComponentBean(id = "EntityManagerFactoryBuilder", active = true, singleton = true, priority = Integer.MIN_VALUE)
 public class EntityManagerFactoryBuilderImpl implements EntityManagerFactoryBuilder, Component, ComponentInitialization, ComponentUnregistration, ModuleListener, ActiveComponent {
 
     protected static Logger logger = Logger.getLogger(EntityManagerFactoryBuilderImpl.class);

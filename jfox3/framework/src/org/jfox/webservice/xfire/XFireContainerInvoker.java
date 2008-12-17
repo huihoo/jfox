@@ -25,8 +25,8 @@ import org.jfox.ejb3.event.EJBLoadedComponentEvent;
 import org.jfox.ejb3.event.EJBUnloadedComponentEvent;
 import org.jfox.ejb3.remote.ContainerInvoker;
 import org.jfox.ejb3.security.SecurityContext;
+import org.jfox.framework.annotation.ComponentBean;
 import org.jfox.framework.annotation.Inject;
-import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.ComponentInitialization;
@@ -49,7 +49,7 @@ import java.util.Map;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(priority = Integer.MIN_VALUE)
+@ComponentBean(priority = Integer.MIN_VALUE)
 public class XFireContainerInvoker implements ContainerInvoker, Invoker, ComponentInitialization, ActiveComponent, SingletonComponent, ComponentUnregistration, ComponentListener {
 
     private static final Logger logger = Logger.getLogger(XFireContainerInvoker.class);

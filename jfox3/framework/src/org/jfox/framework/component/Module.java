@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import org.jfox.framework.ComponentId;
 import org.jfox.framework.Constants;
 import org.jfox.framework.Framework;
-import org.jfox.framework.annotation.Service;
+import org.jfox.framework.annotation.ComponentBean;
 import org.jfox.framework.classloader.ModuleClassLoader;
 import org.jfox.framework.event.ComponentLoadedEvent;
 import org.jfox.framework.event.ComponentUnloadedEvent;
@@ -203,16 +203,16 @@ public class Module {
             getModuleClassLoader().addURLs(getClasspathURLs());
         }
 */
-        Class[] deployComponents = getModuleClassLoader().findClassAnnotatedWith(Service.class);
+        Class[] deployComponents = getModuleClassLoader().findClassAnnotatedWith(ComponentBean.class);
         for (Class<?> componentClass : deployComponents) {
             if (componentClass.isInterface()
                     || !Modifier.isPublic(componentClass.getModifiers())
                     || Modifier.isAbstract(componentClass.getModifiers())) {
-                logger.warn("Class " + componentClass.getName() + " is annotated with @" + Service.class.getSimpleName() + ", but not is not a public concrete class, ignored!");
+                logger.warn("Class " + componentClass.getName() + " is annotated with @" + ComponentBean.class.getSimpleName() + ", but not is not a public concrete class, ignored!");
                 continue;
             }
             if (!Component.class.isAssignableFrom(componentClass)) {
-                logger.warn("Class " + componentClass.getName() + " is annotated with @" + Service.class.getSimpleName() + ", but not implements interface " + Component.class.getName() + ", ignored!");
+                logger.warn("Class " + componentClass.getName() + " is annotated with @" + ComponentBean.class.getSimpleName() + ", but not implements interface " + Component.class.getName() + ", ignored!");
                 continue;
             }
             ComponentMeta meta = loadComponent(componentClass.asSubclass(Component.class));

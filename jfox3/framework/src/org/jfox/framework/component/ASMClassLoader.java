@@ -7,7 +7,7 @@
 package org.jfox.framework.component;
 
 import org.apache.log4j.Logger;
-import org.jfox.framework.annotation.Service;
+import org.jfox.framework.annotation.ComponentBean;
 import org.jfox.util.FileUtils;
 import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.Attribute;
@@ -314,7 +314,7 @@ public class ASMClassLoader extends URLClassLoader {
 
     public static void main(String[] args) {
         ASMClassLoader asmClassLoader = new ASMClassLoader(ASMClassLoader.class.getClassLoader());
-        Class[] deploiesComponent = asmClassLoader.findClassAnnotatedWith(Service.class);
+        Class[] deploiesComponent = asmClassLoader.findClassAnnotatedWith(ComponentBean.class);
         System.out.println(Arrays.toString(deploiesComponent));
     }
 }

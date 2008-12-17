@@ -6,10 +6,10 @@
  */
 package org.jfox.framework.annotation;
 
-import java.lang.annotation.Target;
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
 
 /**
  * 描述在 Component 上以便将该 Component 发布至IoC容器中
@@ -18,7 +18,7 @@ import java.lang.annotation.ElementType;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-public @interface Service {
+public @interface ComponentBean {
     /**
      * 该组件实现的接口，组件只能通过指定的接口来访问，
      * 如果没有指定接口呢，则为所有接口

@@ -6,20 +6,20 @@
  */
 package org.jfox.ejb3.security;
 
-import java.util.Properties;
-import javax.security.auth.Subject;
-import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.login.Configuration;
-import javax.security.auth.login.LoginContext;
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.log4j.Logger;
-import org.jfox.framework.annotation.Service;
+import org.jfox.framework.annotation.ComponentBean;
 import org.jfox.framework.component.ActiveComponent;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.ComponentInitialization;
 import org.jfox.framework.component.SingletonComponent;
 import org.jfox.mvc.SessionContext;
+
+import javax.security.auth.Subject;
+import javax.security.auth.callback.CallbackHandler;
+import javax.security.auth.login.Configuration;
+import javax.security.auth.login.LoginContext;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Properties;
 
 /**
  * 通过 HttpSession 来传播 Subject
@@ -27,7 +27,7 @@ import org.jfox.mvc.SessionContext;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service
+@ComponentBean
 public class JAASLoginServiceImpl implements JAASLoginService, ActiveComponent, ComponentInitialization, SingletonComponent {
 
     static Logger logger = Logger.getLogger(JAASLoginServiceImpl.class); 

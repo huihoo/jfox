@@ -8,8 +8,8 @@ package org.jfox.framework.component;
 
 import org.apache.log4j.Logger;
 import org.jfox.framework.ComponentId;
+import org.jfox.framework.annotation.ComponentBean;
 import org.jfox.framework.annotation.Exported;
-import org.jfox.framework.annotation.Service;
 import org.jfox.framework.event.ComponentListener;
 import org.jfox.framework.event.FrameworkListener;
 import org.jfox.framework.event.ModuleListener;
@@ -232,33 +232,33 @@ public class ComponentMeta implements Comparable<ComponentMeta>{
      *          if failed to resolve Component Descriptor
      */
     private void resolve() throws ComponentResolvedFailedException {
-        Service serviceAnnotation = implementationClass.getAnnotation(Service.class);
-        if (serviceAnnotation == null) {
-            throw new ComponentResolvedFailedException("Component " + implementationClass.getName() + " not annotated with " + Service.class.getName());
+        ComponentBean componentAnnotation = implementationClass.getAnnotation(ComponentBean.class);
+        if (componentAnnotation == null) {
+            throw new ComponentResolvedFailedException("Component " + implementationClass.getName() + " not annotated with " + ComponentBean.class.getName());
         }
-        String id = serviceAnnotation.id();
+        String id = componentAnnotation.id();
         if (id != null && id.trim().length() > 0) {
-            setId(serviceAnnotation.id());
+            setId(componentAnnotation.id());
         }
         else {
             setId(implementationClass.getSimpleName());
         }
-        setActive(serviceAnnotation.active());
+        setActive(componentAnnotation.active());
         if(ActiveComponent.class.isAssignableFrom(implementationClass)) {
             setActive(true);
         }
-        setSingleton(serviceAnnotation.singleton());
+        setSingleton(componentAnnotation.singleton());
         if(SingletonComponent.class.isAssignableFrom(implementationClass)) {
             setSingleton(true);
         }
 
-        setDescription(serviceAnnotation.description());
-        setPriority(serviceAnnotation.priority());
+        setDescription(componentAnnotation.description());
+        setPriority(componentAnnotation.priority());
 
 
         // 设置服务接口
-        if (serviceAnnotation.interfaces().length > 0) { // Deployment annotation 指定了接口
-            for (Class interfaceClass : serviceAnnotation.interfaces()) {
+        if (componentAnnotation.interfaces().length > 0) { // Deployment annotation 指定了接口
+            for (Class interfaceClass : componentAnnotation.interfaces()) {
                 // check 指定的 interface 是否合法
                 if (!interfaceClass.isAssignableFrom(implementationClass)) {
                     throw new ComponentResolvedFailedException("Invalid interface class annotated to Component: " + implementationClass.getName());

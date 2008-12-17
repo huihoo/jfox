@@ -17,8 +17,8 @@ import org.jfox.ejb3.naming.ContextAdapter;
 import org.jfox.ejb3.naming.InitialContextFactoryImpl;
 import org.jfox.ejb3.timer.EJBTimerTask;
 import org.jfox.ejb3.transaction.JTATransactionManager;
+import org.jfox.framework.annotation.ComponentBean;
 import org.jfox.framework.annotation.Constant;
-import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.Module;
 import org.jfox.framework.event.ModuleEvent;
@@ -69,7 +69,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(id = "EJB3Container", singleton = true, active = true, priority = -2) // 在 ActionContainer 之前加载
+@ComponentBean(id = "EJB3Container", singleton = true, active = true, priority = -2) // 在 ActionContainer 之前加载
 public class SimpleEJB3Container implements EJBContainer, ModuleListener {
 
     protected Logger logger = Logger.getLogger(SimpleEJB3Container.class);
