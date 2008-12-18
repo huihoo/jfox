@@ -6,7 +6,7 @@
  */
 package org.jfox.manager.demo;
 
-import org.jfox.framework.annotation.Service;
+import org.jfox.framework.annotation.ComponentBean;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.PageContext;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
  *  
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service(id="carts")
+@ComponentBean(id="carts")
 public class CartsAction extends ActionSupport {
 
     @EJB
