@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 @Entity
-@Table(name = "ACCOUNT")
+@Table(name = "account")
 public class Account implements Serializable, Cloneable {
 
     // signon.username

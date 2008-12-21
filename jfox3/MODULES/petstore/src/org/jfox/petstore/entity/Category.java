@@ -6,11 +6,13 @@
  */
 package org.jfox.petstore.entity;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
+@Table(name = "category")
 public class Category implements Serializable {
 
     @Column(name = "catid")

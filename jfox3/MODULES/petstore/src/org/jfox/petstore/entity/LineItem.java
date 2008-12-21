@@ -6,18 +6,20 @@
  */
 package org.jfox.petstore.entity;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-
 import org.jfox.entity.annotation.MappingColumn;
 import org.jfox.entity.annotation.ParameterMap;
 import org.jfox.petstore.dao.ItemDAOImpl;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * IineItem is a order line item.
  */
 @Entity
+@Table(name = "lineitem")
 public class LineItem implements Serializable {
 
     @Column(name = "orderid")

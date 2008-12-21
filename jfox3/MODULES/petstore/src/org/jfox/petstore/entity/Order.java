@@ -6,17 +6,19 @@
  */
 package org.jfox.petstore.entity;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.Column;
-
 import org.jfox.entity.annotation.MappingColumn;
 import org.jfox.entity.annotation.ParameterMap;
 import org.jfox.petstore.dao.OrderDAOImpl;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
 @Entity
+@Table(name = "order")
 public class Order implements Serializable {
 
     @Column(name = "orderid")

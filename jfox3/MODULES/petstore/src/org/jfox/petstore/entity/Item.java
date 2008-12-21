@@ -6,18 +6,20 @@
  */
 package org.jfox.petstore.entity;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.Column;
-
 import org.jfox.entity.annotation.MappingColumn;
 import org.jfox.entity.annotation.ParameterMap;
 import org.jfox.petstore.dao.ProductDAOImpl;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Item means a item of a product
  */
 @Entity
+@Table(name = "item")
 public class Item implements Serializable {
 
     @Column(name="itemid")
