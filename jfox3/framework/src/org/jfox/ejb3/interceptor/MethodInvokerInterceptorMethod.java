@@ -6,20 +6,20 @@
  */
 package org.jfox.ejb3.interceptor;
 
+import javax.interceptor.InvocationContext;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import javax.interceptor.InvocationContext;
 
 /**
- * Business Method to invoke
+ * invoke Business Method, this must be last interceptor Method
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class BusinessInterceptorMethod implements InterceptorMethod {
+public class MethodInvokerInterceptorMethod implements InterceptorMethod {
 
     private Method businessMethod;
 
-    public BusinessInterceptorMethod(Method businessMethod) {
+    public MethodInvokerInterceptorMethod(Method businessMethod) {
         this.businessMethod = businessMethod;
     }
 

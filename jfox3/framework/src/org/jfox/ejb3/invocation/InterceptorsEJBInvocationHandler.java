@@ -6,15 +6,15 @@
  */
 package org.jfox.ejb3.invocation;
 
+import org.jfox.ejb3.EJBInvocation;
+import org.jfox.ejb3.EJBInvocationHandler;
+import org.jfox.ejb3.interceptor.InterceptorMethod;
+
+import javax.interceptor.InvocationContext;
 import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
-import javax.interceptor.InvocationContext;
-
-import org.jfox.ejb3.EJBInvocation;
-import org.jfox.ejb3.EJBInvocationHandler;
-import org.jfox.ejb3.interceptor.InterceptorMethod;
 
 /**
  * 有 AroundInvoke method 和 bean method 构成 interceptor chain
@@ -59,6 +59,7 @@ public class InterceptorsEJBInvocationHandler extends EJBInvocationHandler {
                 invocation.setArgs(objects);
             }
 
+            // 如果有用户定义的Interceptor，会要求最后执行 proceed 方法，以执行下一个Interceptor
             public Object proceed() throws Exception {
                 return interceptorMethods.next().invoke(this);
             }

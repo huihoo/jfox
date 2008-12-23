@@ -11,9 +11,9 @@ import org.jfox.ejb3.dependent.EJBDependence;
 import org.jfox.ejb3.dependent.FieldEJBDependence;
 import org.jfox.ejb3.dependent.FieldResourceDependence;
 import org.jfox.ejb3.dependent.ResourceDependence;
-import org.jfox.ejb3.interceptor.ExternalInterceptorMethod;
+import org.jfox.ejb3.interceptor.AroundInvokeInterceptorMethod;
 import org.jfox.ejb3.interceptor.InterceptorMethod;
-import org.jfox.ejb3.interceptor.InternalInterceptorMethod;
+import org.jfox.ejb3.interceptor.InterceptorsInterceptorMethod;
 import org.jfox.ejb3.naming.ContextAdapter;
 import org.jfox.entity.dependent.FieldPersistenceContextDependence;
 import org.jfox.entity.dependent.FieldPersistenceUnitDependence;
@@ -220,7 +220,7 @@ public abstract class SessionBucket implements EJBBucket {
                 // 还没有在classInterceptorMethods中，子类如果覆盖了父类的方法，父类的方法将不再执行
                 long methodHash = MethodUtils.getMethodHash(aroundInvokeMethod);
                 if (!aroundInvokeMethodHashes.contains(methodHash)) {
-                    beanInterceptorMethods.add(0, new InternalInterceptorMethod(aroundInvokeMethod));
+                    beanInterceptorMethods.add(0, new AroundInvokeInterceptorMethod(aroundInvokeMethod));
                     aroundInvokeMethodHashes.add(methodHash);
                 }
             }
@@ -239,7 +239,7 @@ public abstract class SessionBucket implements EJBBucket {
                             List<InterceptorMethod> validAroundInvokeMethods = new ArrayList<InterceptorMethod>();
                             for (Method aroundInvokeMethod : interceptorsAroundInvokeMethods) {
                                 if (checkInterceptorMethod(superClass, aroundInvokeMethod)) {
-                                    validAroundInvokeMethods.add(0, new ExternalInterceptorMethod(interceptorClass, aroundInvokeMethod));
+                                    validAroundInvokeMethods.add(0, new InterceptorsInterceptorMethod(interceptorClass, aroundInvokeMethod));
                                 }
                             }
                             methodInterceptorMethods.put(interceptedBeanMethod, validAroundInvokeMethods);
@@ -257,7 +257,7 @@ public abstract class SessionBucket implements EJBBucket {
                         for (Method aroundInvokeMethod : interceptorsAroundInvokeMethods) {
                             if (checkInterceptorMethod(interceptorClass, aroundInvokeMethod)) {
                                 aroundInvokeMethod.setAccessible(true);
-                                classInterceptorMethods.add(0, new ExternalInterceptorMethod(interceptorClass, aroundInvokeMethod));
+                                classInterceptorMethods.add(0, new InterceptorsInterceptorMethod(interceptorClass, aroundInvokeMethod));
                             }
                         }
                     }

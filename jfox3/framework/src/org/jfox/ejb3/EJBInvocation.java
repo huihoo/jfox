@@ -6,6 +6,14 @@
  */
 package org.jfox.ejb3;
 
+import org.jfox.ejb3.interceptor.InterceptorMethod;
+import org.jfox.ejb3.interceptor.MethodInvokerInterceptorMethod;
+import org.jfox.ejb3.security.SecurityContext;
+import org.jfox.mvc.SessionContext;
+
+import javax.annotation.security.RunAs;
+import javax.security.auth.Subject;
+import javax.transaction.TransactionManager;
 import java.lang.reflect.Method;
 import java.security.Principal;
 import java.security.acl.Group;
@@ -13,14 +21,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import javax.annotation.security.RunAs;
-import javax.security.auth.Subject;
-import javax.transaction.TransactionManager;
-
-import org.jfox.ejb3.interceptor.BusinessInterceptorMethod;
-import org.jfox.ejb3.interceptor.InterceptorMethod;
-import org.jfox.ejb3.security.SecurityContext;
-import org.jfox.mvc.SessionContext;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -86,7 +86,7 @@ public class EJBInvocation {
         // @AroundInvoke in Bean class
         interceptorMethods.addAll(getBucket().getBeanInterceptorMethods());
         // create BusinessInterceptorMethod for invoke method
-        interceptorMethods.add(new BusinessInterceptorMethod(getConcreteMethod()));
+        interceptorMethods.add(new MethodInvokerInterceptorMethod(getConcreteMethod()));
         return Collections.unmodifiableList(interceptorMethods);
     }
 
