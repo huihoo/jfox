@@ -20,7 +20,10 @@ import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -179,5 +182,42 @@ public class EJBInvocation {
 
     public String toString() {
         return "EJBInvocation{EJB=" + getBucket().getBeanClass().getName() + ", method=" + getInterfaceMethod().getName() + "}";
+    }
+
+    // ------------
+    private Iterator<EJBInvocationHandler> chain = null;
+
+    void invokeByChain(Iterator<EJBInvocationHandler> chain) throws Exception{
+        this.chain = chain;
+        chainNext();
+    }
+
+    void chainNext() throws Exception{
+        if(chain.hasNext()) {
+            chain.next().process(this);
+        }
+    }
+
+    private Object resultObject;
+
+    public Object getResultObject() {
+        return resultObject;
+    }
+
+    public void setResultObject(Object resultObject) {
+        //将 Method result 放到 Invocation 中
+        this.resultObject = resultObject;
+    }
+
+    /**
+     * 存储与 EJBInvocation 相关的属性，可以用于在EJBInvocationHandler invoke onCaughtException onChainReturn 之间传递数据
+     */
+    private Map<String, Object> attribute = new HashMap<String, Object>();
+    public void setAttribute(String key, Object value){
+        attribute.put(key,value);
+    }
+
+    public Object getAttribute(String key) {
+        return attribute.get(key);
     }
 }

@@ -24,7 +24,7 @@ import java.util.Map;
  */
 public class InterceptorsEJBInvocationHandler extends EJBInvocationHandler {
 
-    public Object invoke(final EJBInvocation invocation, final Iterator<EJBInvocationHandler> chain) throws Exception {
+    public void invoke(final EJBInvocation invocation) throws Exception {
         final Iterator<InterceptorMethod> interceptorMethods = invocation.getInterceptorMethods().iterator();
         final InvocationContext invocationContext = new InvocationContext() {
             
@@ -65,7 +65,8 @@ public class InterceptorsEJBInvocationHandler extends EJBInvocationHandler {
             }
         };
         // 开始执行Invocation Method chain
-        return invocationContext.proceed();
+        Object resultObject = invocationContext.proceed();
+        invocation.setResultObject(resultObject);
     }
 
 

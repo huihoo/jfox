@@ -6,20 +6,19 @@
  */
 package org.jfox.ejb3.invocation;
 
+import org.jfox.ejb3.EJBInvocation;
+import org.jfox.ejb3.EJBInvocationHandler;
+
+import javax.annotation.security.DenyAll;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
+import javax.ejb.EJBAccessException;
 import java.lang.reflect.Method;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
-import javax.annotation.security.DenyAll;
-import javax.annotation.security.RolesAllowed;
-import javax.annotation.security.PermitAll;
-import javax.ejb.EJBAccessException;
-
-import org.jfox.ejb3.EJBInvocation;
-import org.jfox.ejb3.EJBInvocationHandler;
 
 /**
  * SecurityEJBInvocationHandler
@@ -28,14 +27,10 @@ import org.jfox.ejb3.EJBInvocationHandler;
  */
 public class SecurityEJBInvocationHandler extends EJBInvocationHandler {
 
-    public Object invoke(final EJBInvocation invocation, final Iterator<EJBInvocationHandler> chain) throws Exception {
+    public void invoke(final EJBInvocation invocation) throws Exception {
         Method method = invocation.getConcreteMethod();
 
-        if(method.isAnnotationPresent(PermitAll.class)){
-            return next(invocation, chain);
-        }
-
-        if(method.isAnnotationPresent(DenyAll.class)) {
+        if(!method.isAnnotationPresent(PermitAll.class) && method.isAnnotationPresent(DenyAll.class)) {
             throw new EJBAccessException("DenyAll Roles to invoke EJB method: "+ invocation);
         }
 
@@ -49,10 +44,7 @@ public class SecurityEJBInvocationHandler extends EJBInvocationHandler {
             if(Collections.disjoint(Arrays.asList(allowedRoles), callerRoles)){
                 throw new EJBAccessException("Deny roles" + callerRoles + " to invoke : "+ invocation);
             }
-            return next(invocation, chain);
         }
-
-        return next(invocation, chain);
     }
 
     public static void main(String[] args) {

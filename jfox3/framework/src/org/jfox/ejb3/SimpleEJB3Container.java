@@ -367,8 +367,8 @@ public class SimpleEJB3Container implements EJBContainer, ModuleListener {
 
     protected Object invokeEJBInvocation(EJBInvocation invocation) throws Exception {
         invocation.setTransactionManager(getTransactionManager());
-        Iterator<EJBInvocationHandler> chain = invocationChain.iterator();
-        return chain.next().invoke(invocation, chain);
+        invocation.invokeByChain(invocationChain.iterator());
+        return invocation.getResultObject();
     }
 
     public TransactionManager getTransactionManager() {

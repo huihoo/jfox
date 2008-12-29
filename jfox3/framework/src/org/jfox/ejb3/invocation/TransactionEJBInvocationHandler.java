@@ -6,31 +6,32 @@
  */
 package org.jfox.ejb3.invocation;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.sql.SQLException;
-import java.util.Iterator;
-import javax.ejb.EJBException;
+import org.jfox.ejb3.EJBInvocation;
+import org.jfox.ejb3.EJBInvocationHandler;
+import org.jfox.ejb3.transaction.EJBSynchronization;
+
 import javax.ejb.SessionSynchronization;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import javax.persistence.PersistenceException;
 import javax.transaction.NotSupportedException;
 import javax.transaction.Status;
 import javax.transaction.Transaction;
 import javax.transaction.TransactionManager;
 import javax.transaction.TransactionRequiredException;
-
-import org.jfox.ejb3.EJBInvocation;
-import org.jfox.ejb3.EJBInvocationHandler;
-import org.jfox.ejb3.transaction.EJBSynchronization;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class TransactionEJBInvocationHandler extends EJBInvocationHandler {
 
-    public Object invoke(final EJBInvocation invocation, final Iterator<EJBInvocationHandler> chain) throws Exception {
+    private static final String CREATED_TRANDACTION = "__CREATED_TRANSACTION__";
+    private static final String COMMIT_TRANSACTION_OK = "__COMMIT_TRANSACTION_OK__";
+    private static final String HAS_SUSPEND_TRANSACTION = "__HAS_SUSPEND_TRANSACTION__";
+    private static final String EXCEPTION_THROWED = "__HAS_EXCEPTION__";
+
+    public void invoke(final EJBInvocation invocation) throws Exception {
         logger.debug("invoke ejb invocation " + invocation);
 
         // 得到 JOTM TransactionManager
@@ -65,7 +66,7 @@ public class TransactionEJBInvocationHandler extends EJBInvocationHandler {
         // 是否需要提交事务
         boolean toCommit = true;
 
-        Exception exception = null;
+//        Exception exception = null;
         try {
             switch (type) {
                 case NOT_SUPPORTED: {
@@ -117,73 +118,62 @@ public class TransactionEJBInvocationHandler extends EJBInvocationHandler {
                     break;
                 }
             }
-            return next(invocation, chain);
-        }
-        catch (EJBException e) {
-            // only catch EJBException, rollback the transaction
-            // Application Exception maybe right logic
-            toCommit = false;
-            exception = e;
-//            logger.error("EJB method invocation " + method + " failed.", e);
-            throw e;
-        }
-        catch (SQLException e) {
-            // only catch EJBException, rollback the transaction
-            // Application Exception maybe right logic
-            toCommit = false;
-            exception = e;
-//            logger.error("EJB method invocation " + method + " failed.", e);
-            throw e;
-        }
-        catch (PersistenceException e) {
-            // only catch EJBException, rollback the transaction
-            // Application Exception maybe right logic
-            toCommit = false;
-            exception = e;
-//            logger.error("EJB method invocation " + method + " failed.", e);
-            throw e;
-        }
-        catch (InvocationTargetException e) {
-            toCommit = false;
-            exception = (Exception)e.getTargetException();
-//                logger.error("EJB method invocation " + method + " failed.", e);
-            throw exception;
-        }
-        catch (Exception e) {
-            toCommit = false;
-            exception = e;
-//            logger.error("EJB method invocation " + method + " failed.", e);
-            throw e;
         }
         finally {
-            if (created) {
-                if (toCommit) {
-                    if (tm.getStatus() == Status.STATUS_MARKED_ROLLBACK) {
-                        // 如果直接 commit 会抛出 RollbackException
-                        if(exception != null) {
-                            logger.info("Rollback transaction because exception caught for EJB invcation: " + invocation, exception);
-                        }
-                        tm.rollback();
-                    }
-                    else {
-                        tm.commit();
-                    }
-                }
-                else {
+            invocation.setAttribute(CREATED_TRANDACTION, created);
+            invocation.setAttribute(COMMIT_TRANSACTION_OK, true);
+//            invocation.setAttribute("EXCEPTION", exception);
+            invocation.setAttribute(HAS_SUSPEND_TRANSACTION, suspendedTrans);
+        }
+    }
+
+    @Override
+    protected void onCaughtException(EJBInvocation invocation, Exception e) throws Exception {
+        invocation.setAttribute(COMMIT_TRANSACTION_OK, false);
+        invocation.setAttribute(EXCEPTION_THROWED, e);
+        if( e instanceof InvocationTargetException) {
+            throw (Exception)((InvocationTargetException)e).getTargetException();
+        }
+        else {
+            throw e;
+        }
+    }
+
+    @Override
+    protected void onChainReturn(EJBInvocation invocation) throws Exception {
+        TransactionManager tm = invocation.getTransactionManager();
+        boolean created = (Boolean)invocation.getAttribute(CREATED_TRANDACTION);
+        boolean toCommit = (Boolean)invocation.getAttribute(COMMIT_TRANSACTION_OK);
+        Exception exception = (Exception)invocation.getAttribute(EXCEPTION_THROWED);
+        Transaction suspendedTrans = (Transaction)invocation.getAttribute(HAS_SUSPEND_TRANSACTION);
+
+        if (created) {
+            if (toCommit) {
+                if (tm.getStatus() == Status.STATUS_MARKED_ROLLBACK) {
+                    // 如果直接 commit 会抛出 RollbackException
                     if(exception != null) {
                         logger.info("Rollback transaction because exception caught for EJB invcation: " + invocation, exception);
                     }
                     tm.rollback();
                 }
-            }
-            else { // 如果没有新建事务，但是继承了事务并且当前线程抛出了异常，要标记当前事务为 rollback only
-                if (!toCommit && tm.getStatus() != Status.STATUS_NO_TRANSACTION) {
-                    tm.getTransaction().setRollbackOnly();
+                else {
+                    tm.commit();
                 }
             }
-            if (suspendedTrans != null) {
-                tm.resume(suspendedTrans);
+            else {
+                if(exception != null) {
+                    logger.info("Rollback transaction because exception caught for EJB invcation: " + invocation, exception);
+                }
+                tm.rollback();
             }
+        }
+        else { // 如果没有新建事务，但是继承了事务并且当前线程抛出了异常，要标记当前事务为 rollback only
+            if (!toCommit && tm.getStatus() != Status.STATUS_NO_TRANSACTION) {
+                tm.getTransaction().setRollbackOnly();
+            }
+        }
+        if (suspendedTrans != null) {
+            tm.resume(suspendedTrans);
         }
     }
 

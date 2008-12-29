@@ -8,9 +8,6 @@ package org.jfox.ejb3;
 
 import org.apache.log4j.Logger;
 
-import javax.ejb.EJBException;
-import java.util.Iterator;
-
 /**
  * Chain Invocation Handler
  *
@@ -24,27 +21,47 @@ public abstract class EJBInvocationHandler {
      * 交给 chain 的下一个 handler 处理
      *
      * @param invocation ejb invocation
-     * @param chain invocation chain
      * @throws Exception any exception
      */
-    protected final Object next(final EJBInvocation invocation, final Iterator<EJBInvocationHandler> chain) throws Exception {
-        if(chain.hasNext()){
-            return chain.next().invoke(invocation,chain);
+    protected final void process(final EJBInvocation invocation) throws Exception {
+/*
+        boolean canNext = true;
+*/
+        try {
+            invoke(invocation); // 执行操作，如果有异常，将会执行 finally，并抛出异常
+            invocation.chainNext(); // 执行下一个 invocationHandler，如果有异常，将会执行 finally，并抛出异常
         }
-        else {
-            throw new EJBException("no EJBInvocationHandler!");
+        catch (Exception e) {
+            onCaughtException(invocation, e);
         }
+/*
+        catch (Exception e) {
+            // 抛出异常，无法继续, chain无法继续
+            throw e;
+        }
+*/
+        finally {
+            onChainReturn(invocation);
+        }
+    }
+
+    protected void onCaughtException(EJBInvocation invocation, Exception e) throws Exception{
+        throw e; // default throw all exception
+    }
+
+    /**
+     * Chain 执行完成，返回时，需要进行的操作，总是会在 throw exception 或者 return 之前运行
+     * @param invocation invocation
+     * @throws Exception e
+     */
+    protected void onChainReturn(final EJBInvocation invocation) throws Exception {
+
     }
 
     /**
      * 对 ejb invocation 进行处理
      * @param invocation ejb invocation
-     * @param chain invocation chain
      * @throws Exception any exception
      */
-    public abstract Object invoke(final EJBInvocation invocation, final Iterator<EJBInvocationHandler> chain) throws Exception;
-
-    public static void main(String[] args) {
-
-    }
+    public abstract void invoke(final EJBInvocation invocation) throws Exception;
 }

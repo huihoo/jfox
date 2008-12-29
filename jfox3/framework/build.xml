@@ -1,6 +1,7 @@
 <project basedir="." default="all" name="jfox">
 
-    <property name="appname" value="jfox"/>
+    <property name="appname" value="${ant.project.name}"/>
+    <property name="version" value="3.0.1"/>
     <property name="src" value="${basedir}/src"/>
     <property name="conf" value="${basedir}/conf"/>
     <property name="demo-src" value="${basedir}/test-src"/>
@@ -13,19 +14,19 @@
     <property name="webapp-classes" value="${webapp-webinfo}/classes"/>
     <property name="webapp-lib" value="${webapp-webinfo}/lib"/>
 
-    <property name="jarname" value="${appname}-3.0.0.jar"/>
-    <property name="testjarname" value="${appname}-3.0.0-test.jar"/>
+    <property name="jarname" value="${appname}-${version}.jar"/>
+    <property name="testjarname" value="${appname}-${version}-test.jar"/>
     <property name="warname" value="${appname}.war"/>
+
+    <patternset id="ignored.files">
+        <exclude name="**/.svn/**"/>
+    </patternset>
 
     <path id="classpath">
         <fileset dir="${lib}">
             <include name="**/*.jar"/>
         </fileset>
     </path>
-
-    <patternset id="ignored.files">
-        <exclude name="**/.svn/**"/>
-    </patternset>
 
     <target name="init" depends="clean">
         <mkdir dir="${webapp-classes}"/>
@@ -34,10 +35,6 @@
     <target name="compile" depends="init">
         <javac encoding="UTF-8" source="1.5" target="1.5" destdir="${webapp-classes}" debug="on" deprecation="off" optimize="off">
             <src path="${src}"/>
-            <classpath refid="classpath"/>
-            <patternset refid="ignored.files"/>
-        </javac>
-        <javac encoding="UTF-8" source="1.5" target="1.5" destdir="${webapp-classes}" debug="on" deprecation="off" optimize="off">
             <src path="${demo-src}"/>
             <classpath refid="classpath"/>
             <patternset refid="ignored.files"/>
@@ -48,7 +45,9 @@
             </fileset>
         </copy>
         <copy todir="${webapp-webinfo}" description="copy web.xml">
-            <fileset file="${webxml}"/>
+            <fileset file="${webxml}">
+                <patternset refid="ignored.files"/>
+            </fileset>
         </copy>
         <copy todir="${webapp-output}" description="copy web resource">
             <fileset dir="${wwwroot}">
@@ -64,14 +63,14 @@
         </copy>
     </target>
 
-    <target name="jar_framework" depends="compile">
+    <target name="jar" depends="compile">
         <jar destfile="${webapp-lib}/${jarname}">
             <fileset dir="${webapp-classes}">
-                <exclude name="jfox/**"/>
+                <exclude name="jfox/test/**"/> <!-- excluse test classes -->
             </fileset>
         </jar>
         <jar destfile="${webapp-lib}/${testjarname}">
-            <fileset dir="${demo-src}">
+            <fileset dir="${demo-src}"> <!-- include test sources -->
                 <patternset refid="ignored.files"/>
             </fileset>
             <fileset dir="${webapp-classes}">
@@ -87,13 +86,13 @@
         <delete dir="${webapp-classes}/jfox"/>
     </target>
 
-    <target name="war_framework" depends="manager">
+    <target name="war" depends="zip_manager">
         <war destfile="${dist}/${warname}">
             <fileset dir="${webapp-output}"/>
         </war>
     </target>
 
-    <target name="all" depends="war_framework">
+    <target name="all" depends="war">
 
     </target>
 
@@ -101,13 +100,14 @@
         <delete dir="${dist}"/>
     </target>
 
-    <target name="manager" depends="jar_framework">
+    <target name="zip_manager" depends="jar">
         <mkdir dir="${webapp-webinfo}/MODULES/manager/classes"/>
         <javac encoding="UTF-8" source="1.5" target="1.5" destdir="${webapp-webinfo}/MODULES/manager/classes" debug="on" deprecation="off" optimize="off">
             <src path="${basedir}/../MODULES/manager/src"/>
-            <classpath refid="classpath"/>
-            <classpath path="${webapp-lib}/${appname}-3.0.0.jar"/>
-            <patternset refid="ignored.files"/>
+            <classpath>
+                <path refid="classpath"/>
+                <path path="${webapp-lib}/${jarname}"/>
+            </classpath>
         </javac>
         <copy todir="${webapp-webinfo}/MODULES/manager" flatten="false" description="copy manager files">
             <fileset dir="${basedir}/../MODULES/manager">
@@ -123,24 +123,66 @@
     </target>
 
     <target name="petstore">
+        <delete dir="${webapp-webinfo}/MODULES/petstore"/>
+        <delete file="${webapp-webinfo}/MODULES/petstore.zip"/>
         <mkdir dir="${webapp-webinfo}/MODULES/petstore/classes"/>
+        <mkdir dir="${webapp-webinfo}/MODULES/petstore/lib"/>
         <javac encoding="UTF-8" source="1.5" target="1.5" destdir="${webapp-webinfo}/MODULES/petstore/classes" debug="on" deprecation="off" optimize="off">
             <src path="${basedir}/../MODULES/petstore/src"/>
-            <classpath refid="classpath"/>
-            <classpath path="${webapp-lib}/${appname}-3.0.0.jar"/>
-            <patternset refid="ignored.files"/>
+            <classpath>
+                <path refid="classpath"/>
+                <path path="${webapp-lib}/${jarname}"/>
+            </classpath>
         </javac>
+        <jar  destfile="${webapp-webinfo}/MODULES/petstore/lib/chinabrands.jar">
+            <fileset dir="${webapp-webinfo}/MODULES/petstore/classes"/>
+        </jar>
+        <delete dir="${webapp-webinfo}/MODULES/petstore/classes"/>
+        <delete dir="${webapp-webinfo}/MODULES/petstore/test-classes"/>
         <copy todir="${webapp-webinfo}/MODULES/petstore" flatten="false" description="copy petstore files">
             <fileset dir="${basedir}/../MODULES/petstore">
                 <patternset refid="ignored.files"/>
                 <exclude name="WEB-INF/**"/>
+                <exclude name="*classes/**"/>
+                <exclude name="src/**"/>
                 <exclude name="*.iml"/>
             </fileset>
         </copy>
         <zip destfile="${webapp-webinfo}/MODULES/petstore.zip">
             <fileset dir="${webapp-webinfo}/MODULES/petstore"/>
         </zip>
-        <delete dir="${webapp-webinfo}/MODULES/petstore"/>
+    </target>
+
+    <target name="chinabrands">
+        <delete dir="${webapp-webinfo}/MODULES/chinabrands"/>
+        <delete file="${webapp-webinfo}/MODULES/chinabrands.zip"/>
+        <mkdir dir="${webapp-webinfo}/MODULES/chinabrands/classes"/>
+        <mkdir dir="${webapp-webinfo}/MODULES/chinabrands/lib"/>
+        <javac encoding="UTF-8" source="1.5" target="1.5" destdir="${webapp-webinfo}/MODULES/chinabrands/classes" debug="on" deprecation="off" optimize="off">
+            <src path="${basedir}/../MODULES/chinabrands/src"/>
+            <classpath>
+                <path refid="classpath"/>
+                <path path="${webapp-lib}/${jarname}"/>
+            </classpath>
+        </javac>
+        <jar  destfile="${webapp-webinfo}/MODULES/chinabrands/lib/chinabrands.jar">
+            <fileset dir="${webapp-webinfo}/MODULES/chinabrands/classes"/>
+        </jar>
+        <delete dir="${webapp-webinfo}/MODULES/chinabrands/classes"/>
+        <copy todir="${webapp-webinfo}/MODULES/chinabrands" flatten="false" description="copy chinabrands files">
+            <fileset dir="${basedir}/../MODULES/chinabrands">
+                <patternset refid="ignored.files"/>
+                <exclude name="WEB-INF/**"/>
+                <exclude name="classes/**"/>
+                <exclude name="*.iml"/>
+                <exclude name="src/**"/>
+                <exclude name="db/*dump*"/>
+            </fileset>
+        </copy>
+        <zip destfile="${webapp-webinfo}/MODULES/chinabrands.zip">
+            <fileset dir="${webapp-webinfo}/MODULES/chinabrands"/>
+        </zip>
+        <!--<delete dir="${webapp-webinfo}/MODULES/chinabrands"/>-->
     </target>
 
 </project>
