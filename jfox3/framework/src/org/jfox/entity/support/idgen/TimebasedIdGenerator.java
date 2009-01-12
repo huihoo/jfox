@@ -4,14 +4,14 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.entity.dao;
+package org.jfox.entity.support.idgen;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.Date;
-import java.util.Map;
-import java.util.HashMap;
 
 /**
  * 用来生成唯一的PK
@@ -25,7 +25,7 @@ import java.util.HashMap;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class PKGenerator {
+public class TimebasedIdGenerator implements IdGenerator{
     /**
      * PK生成锁，用来限定同一时刻只有一个线程进入PK生成计算
      */
@@ -55,14 +55,14 @@ public class PKGenerator {
      */
     private int suffix = 0;
 
-    private static final Map<Integer, PKGenerator> instanceMap = new HashMap<Integer, PKGenerator>();
+    private static final Map<Integer, TimebasedIdGenerator> instanceMap = new HashMap<Integer, TimebasedIdGenerator>();
 
     //必须提供正确的参数，以保证 suffix 在机群环境的唯一性
-    private PKGenerator(int suffix) {
+    private TimebasedIdGenerator(int suffix) {
         this.suffix = suffix;
     }
 
-    public synchronized static PKGenerator getInstance(){
+    public synchronized static TimebasedIdGenerator getInstance(){
         return getInstance(0);
     }
 
@@ -73,10 +73,10 @@ public class PKGenerator {
      *
      * @param suffix 唯一标识好
      */
-    public synchronized static PKGenerator getInstance(int suffix){
-        PKGenerator pkgen;
+    public synchronized static TimebasedIdGenerator getInstance(int suffix){
+        TimebasedIdGenerator pkgen;
         if(!instanceMap.containsKey(suffix)){
-            pkgen = new PKGenerator(suffix);
+            pkgen = new TimebasedIdGenerator(suffix);
             instanceMap.put(suffix,pkgen);
         }
         else {
@@ -91,7 +91,7 @@ public class PKGenerator {
      *
      * @return long PK
      */
-    public long nextPK() {
+    public long nextLongId() {
         LOCK.lock();
         try {
             long newPK;
@@ -111,12 +111,16 @@ public class PKGenerator {
         }
     }
 
+    public String nextId() {
+        return Long.toString(nextLongId());
+    }
+
     public static void main(String[] args) throws Exception {
-        PKGenerator pkg = getInstance(0);
+        TimebasedIdGenerator pkg = getInstance(0);
         int i = 0;
         long now = System.currentTimeMillis();
         while (i++ < 1000) {
-            System.out.println(pkg.nextPK());
+            System.out.println(pkg.nextLongId());
         }
         System.out.println("Time: " + (System.currentTimeMillis() - now));
     }

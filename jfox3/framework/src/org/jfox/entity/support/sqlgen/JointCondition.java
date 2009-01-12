@@ -1,4 +1,4 @@
-package org.jfox.entity.dao;
+package org.jfox.entity.support.sqlgen;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

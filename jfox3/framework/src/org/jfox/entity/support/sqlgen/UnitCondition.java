@@ -1,4 +1,4 @@
-package org.jfox.entity.dao;
+package org.jfox.entity.support.sqlgen;
 
 /**
  * 表示一个SQL条件，用来构造 SQL 语句

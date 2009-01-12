@@ -4,12 +4,15 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.entity.dao;
+package org.jfox.entity.support.dao;
 
 import org.jfox.entity.EntityManagerExt;
 import org.jfox.entity.EntityManagerFactoryBuilderImpl;
 import org.jfox.entity.QueryExt;
 import org.jfox.entity.mapping.EntityFactory;
+import org.jfox.entity.support.idgen.TimebasedIdGenerator;
+import org.jfox.entity.support.sqlgen.Condition;
+import org.jfox.entity.support.sqlgen.SQLGenerator;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -284,7 +287,7 @@ public abstract class DAOSupport implements DataAccessObject {
      * PK 只保证唯一，不包含任何业务意义，比如：对于 ID 连续性的要求
      */
     public long nextPK() {
-        return PKGenerator.getInstance().nextPK();
+        return TimebasedIdGenerator.getInstance().nextLongId();
     }
 
 }

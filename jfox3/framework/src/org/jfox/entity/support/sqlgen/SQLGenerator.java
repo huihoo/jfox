@@ -1,4 +1,4 @@
-package org.jfox.entity.dao;
+package org.jfox.entity.support.sqlgen;
 
 import org.jfox.entity.mapping.ColumnEntry;
 import org.jfox.entity.mapping.EntityFactory;

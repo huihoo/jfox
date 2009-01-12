@@ -4,9 +4,10 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.entity.dao;
+package org.jfox.entity.support.dao;
 
 import org.jfox.entity.QueryExt;
+import org.jfox.entity.support.sqlgen.Condition;
 
 import java.util.List;
 
