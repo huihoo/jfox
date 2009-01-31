@@ -70,19 +70,15 @@ public class EntityManagerImpl extends EntityManagerExt {
     }
 
 
-    QueryExt createNamedQuery(String name, Connection connection) {
-        NamedSQLTemplate sqlTemplate = emFactory.getNamedQuery(name);
-        // 没有对应的 SQLTemplate
-        if(sqlTemplate == null) {
-            throw new NamedQueryNotFoundException(name);
-        }
+    QueryExt createTempNativeQuery(String name, String querySQL, Class resultClass, Connection connection) {
         // 提供的参数不够，不能这么简单，传递的传输可能是个对象
 /*
         if(sqlTemplate.getExpressions().length != args.length) {
             throw new NamedQueryArgumentException("Need " + sqlTemplate.getExpressions().length + " arguments for NamedQuery " + name + ", you supplied " + args.length);
         }
 */
-        return new SQLQuery(this, sqlTemplate, connection);
+        NamedSQLTemplate namedSQLTemplate = new NamedSQLTemplate(name, querySQL, resultClass, null, null);
+        return new SQLQuery(this, namedSQLTemplate, connection);
     }
 
     // javax.persistence.EntityManager

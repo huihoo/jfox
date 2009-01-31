@@ -7,12 +7,16 @@
 package org.jfox.entity.mapping;
 
 import org.jfox.entity.MappedEntity;
-import org.jfox.entity.annotation.MappingColumn;
 import org.jfox.util.AnnotationUtils;
 import org.jfox.util.ClassUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PersistenceException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -22,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Factory for create Entity Object according to Entity Class and Entity data
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class EntityFactory {
@@ -68,14 +73,35 @@ public class EntityFactory {
             columnMap.put(column.name(), columnEntry);
         }
 
-        Field[] mappingColumnFields = AnnotationUtils.getAnnotatedFields(resultClass, MappingColumn.class);
+        Field[] mappingColumnFields = AnnotationUtils.getAnnotatedFields(resultClass, JoinColumn.class);
         for (Field mappingColumnField : mappingColumnFields) {
-            MappingColumn mappingColumn = mappingColumnField.getAnnotation(MappingColumn.class);
+            JoinColumn joinColumn = mappingColumnField.getAnnotation(JoinColumn.class);
             MappingColumnEntry mcEntry = new MappingColumnEntry();
             mcEntry.setName(mappingColumnField.getName().toUpperCase());
-            mcEntry.setNamedQuery(mappingColumn.namedQuery());
             mcEntry.setField(mappingColumnField);
-            mcEntry.setParams(mappingColumn.params());
+            //TODO: should be specified
+            mcEntry.setColumnDefinition(joinColumn.columnDefinition());
+            //TODO: should be specified
+            mcEntry.setReferencedColumnName(joinColumn.referencedColumnName());
+
+            //Mapping Column 可能 OneToMany, Field 为 List<>
+            if(mappingColumnField.isAnnotationPresent(OneToOne.class) || mappingColumnField.isAnnotationPresent(ManyToOne.class)) {
+                mcEntry.setTargetEntity(mcEntry.getField().getType());
+            }
+            else if(mappingColumnField.isAnnotationPresent(OneToMany.class)){
+                mcEntry.setToMany(true);
+                OneToMany oneToMany = mappingColumnField.getAnnotation(OneToMany.class);
+                if(!oneToMany.targetEntity().equals(void.class) && oneToMany.targetEntity() != null){
+                    mcEntry.setTargetEntity(oneToMany.targetEntity());
+                }
+            }
+            else if(mappingColumnField.isAnnotationPresent(ManyToMany.class)){
+                mcEntry.setToMany(true);
+                ManyToMany manyToMany = mappingColumnField.getAnnotation(ManyToMany.class);
+                if(!manyToMany.targetEntity().equals(void.class) && manyToMany.targetEntity() != null){
+                    mcEntry.setTargetEntity(manyToMany.targetEntity());
+                }
+            }
             columnMap.put(mcEntry.getName(), mcEntry);
         }
 
@@ -137,6 +163,10 @@ public class EntityFactory {
         }
     }
 
+    public static Collection<ColumnEntry> getColumnEntries(Class<?> resultClass) {
+        return resultClass2ColumnsMap.get(resultClass).values();
+    }
+
     public static Collection<MappingColumnEntry> getMappingColumnEntries(Class<?> resultClass) {
         List<MappingColumnEntry> mappingColumnEntries = new ArrayList<MappingColumnEntry>();
         Map<String, ColumnEntry> entries = resultClass2ColumnsMap.get(resultClass);
@@ -177,4 +207,5 @@ public class EntityFactory {
         }
         return null;
     }
+
 }

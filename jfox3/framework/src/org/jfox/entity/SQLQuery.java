@@ -7,9 +7,7 @@
 package org.jfox.entity;
 
 import org.apache.log4j.Logger;
-import org.apache.velocity.app.event.EventHandler;
 import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
-import org.jfox.entity.annotation.ParameterMap;
 import org.jfox.entity.cache.Cache;
 import org.jfox.entity.cache.CacheConfig;
 import org.jfox.entity.mapping.EntityFactory;
@@ -383,7 +381,9 @@ public class SQLQuery extends QueryExt {
         final Map<String, Object> mappedColumnResultMap = new HashMap<String, Object>();
         boolean isMappingColumnSet = false;
         for (MappingColumnEntry mappingColEntry : sqlTemplate.getMappedColumnEntries()) {
-            ParameterMap[] params = mappingColEntry.getParams();
+            //TODO: mappingColEntry.getParams()
+/*
+            ParameterMap[] params = null; //mappingColEntry.getParams();
             final List<Object> parameterResult = new ArrayList<Object>();
 
             final Map<String, Object> velocityMap = new HashMap<String, Object>();
@@ -411,13 +411,23 @@ public class SQLQuery extends QueryExt {
 
             // MappedColumn 需要的参数都已经赋值，没有赋值的话说明该次查询也不需要 MappedColumn 的值
             if (mappedColumnSetFlag.get(EVALUATE_KEY)) {
+
+*/
                 isMappingColumnSet = true;
 
                 // 子 Query 应该和 父Query 使用同一个 connection
-                QueryExt mappedColumnQuery = em.createNamedQuery(mappingColEntry.getNamedQuery(), getConnection());
+                QueryExt mappedColumnQuery = em.createTempNativeQuery("AUTO_JOINCOLUMN_" + mappingColEntry.getName(),  mappingColEntry.getColumnDefinition(), mappingColEntry.getTargetEntity(), getConnection());
+/*
                 for (int i = 0; i < params.length; i++) {
                     mappedColumnQuery.setParameter(params[i].name(), parameterResult.get(i));
                 }
+*/
+
+                for(Map.Entry<String, Object> entry : resultMap.entrySet()){
+                    // 将 resultMap 作为 Parameter
+                    mappedColumnQuery.setParameter(entry.getKey(), entry.getValue());
+                }
+
 
                 if (mappingColEntry.getField().getType().isArray()) { // array
                     mappedColumnResultMap.put(mappingColEntry.getName(), mappedColumnQuery.getResultList().toArray());
@@ -428,7 +438,7 @@ public class SQLQuery extends QueryExt {
                 else { // single
                     mappedColumnResultMap.put(mappingColEntry.getName(), mappedColumnQuery.getSingleResult());
                 }
-            }
+//            }
         }
         if (isMappingColumnSet) {
             EntityFactory.appendMappingColumn(dataObject, mappedColumnResultMap);

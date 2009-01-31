@@ -15,7 +15,7 @@ import java.util.List;
  * @create Apr 27, 2008 10:58:31 AM
  */
 public class SQLGenerator {
-
+    //TODO: 缓存已生成的SQL AUTO_%TABLE_NAME%_JOINCOLUMN_ID_ORDERID
     /**
      * build create sql
      * @param entityClass

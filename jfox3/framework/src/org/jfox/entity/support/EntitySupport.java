@@ -1,13 +1,17 @@
 package org.jfox.entity.support;
 
+import org.jfox.entity.mapping.ColumnEntry;
+import org.jfox.entity.mapping.EntityFactory;
 import org.jfox.entity.support.idgen.TimebasedIdGenerator;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -60,7 +64,7 @@ public abstract class EntitySupport implements Serializable, Comparable<EntitySu
         if (this.getClass().isAnnotationPresent(Table.class)) {
             Table table = this.getClass().getAnnotation(Table.class);
             if(table.name().trim().length() > 0) {
-            tableName = table.name();
+                tableName = table.name();
             }
         }
         return tableName;
@@ -132,5 +136,33 @@ public abstract class EntitySupport implements Serializable, Comparable<EntitySu
 
     protected long nextId() {
         return TimebasedIdGenerator.getInstance().nextLongId();
+    }
+
+    public static String toString(Object entity){
+        if(entity.getClass().isAnnotationPresent(Entity.class)) {
+            StringBuffer sb = new StringBuffer();
+            sb.append(entity.getClass().getSimpleName());
+            sb.append("{");
+            EntityFactory.introspectResultClass(entity.getClass());
+            Collection<ColumnEntry> columnEntries = EntityFactory.getColumnEntries( entity.getClass());
+            int i=0;
+            for(ColumnEntry columnEntry : columnEntries){
+                if(i>0) {
+                    sb.append(", ");
+                }
+                try {
+                    sb.append(columnEntry.getName()).append("=").append(columnEntry.getField().get(entity));
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+                i++;
+            }
+            sb.append("}");
+            return sb.toString();
+        }
+        else {
+            return entity.toString();
+        }
     }
 }
