@@ -9,6 +9,7 @@ package org.jfox.petstore.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
@@ -98,9 +99,9 @@ public class Order implements Serializable {
     @Column(name = "status")
     String status;
 
+    @OneToMany
     @JoinColumn(columnDefinition = "select orderid, linenum, itemid, quantity, unitprice from lineitem where orderid = $orderid")
     List<LineItem> lineItems;
-
 
     public long getOrderId() {
         return orderId;
