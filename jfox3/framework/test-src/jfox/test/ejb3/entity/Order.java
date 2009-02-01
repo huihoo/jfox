@@ -6,12 +6,11 @@
  */
 package jfox.test.ejb3.entity;
 
-import java.util.List;
-import javax.persistence.Entity;
 import javax.persistence.Column;
-
-import org.jfox.entity.annotation.MappingColumn;
-import org.jfox.entity.annotation.ParameterMap;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
@@ -25,7 +24,8 @@ public class Order {
     @Column(name = "createtime")
     String createTime;
 
-    @MappingColumn(namedQuery = OrderDAOImpl.GET_LINEITEMS_BY_ORDER_ID, params = {@ParameterMap(name = "orderid", value="$this.getId()")})
+    @OneToMany(targetEntity = LineItem.class)
+    @JoinColumn(columnDefinition = "select * from lineitem where orderid=$id")
     List<LineItem> lineItems;
 
     public Integer getId() {
@@ -51,4 +51,5 @@ public class Order {
     public void setLineItems(List<LineItem> lineItems) {
         this.lineItems = lineItems;
     }
+
 }

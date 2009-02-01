@@ -6,9 +6,9 @@
  */
 package jfox.test.ejb3.entity;
 
-import java.util.List;
+import org.jfox.entity.support.dao.DataAccessObject;
 
-import org.jfox.entity.dao.DataAccessObject;
+import java.util.List;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

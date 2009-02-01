@@ -6,22 +6,22 @@
  */
 package jfox.test;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import org.jfox.framework.annotation.Service;
-import org.jfox.framework.component.ComponentInitialization;
-import org.jfox.framework.event.ModuleListener;
+import org.jfox.framework.annotation.ComponentBean;
 import org.jfox.framework.component.ComponentContext;
-import org.jfox.framework.event.ModuleEvent;
+import org.jfox.framework.component.ComponentInitialization;
 import org.jfox.framework.event.ComponentEvent;
 import org.jfox.framework.event.ComponentListener;
+import org.jfox.framework.event.ModuleEvent;
+import org.jfox.framework.event.ModuleListener;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-@Service
+@ComponentBean
 public class UserManager implements IUserManager, ComponentInitialization, ModuleListener, ComponentListener {
 
     private List<IUser> users = new ArrayList<IUser>();

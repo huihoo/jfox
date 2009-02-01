@@ -7,7 +7,7 @@
 package org.jfox.petstore.dao.test;
 
 import org.jfox.entity.EntityManagerExt;
-import org.jfox.entity.dao.DAOSupport;
+import org.jfox.entity.support.dao.DAOSupport;
 import org.jfox.petstore.dao.AccountDAO;
 import org.jfox.petstore.dao.AccountDAOImpl;
 import org.jfox.petstore.entity.Account;

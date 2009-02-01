@@ -7,10 +7,12 @@
 package jfox.test.ejb3.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
+@Entity
 public class LineItem {
     @Column(name="id")
     Integer id;

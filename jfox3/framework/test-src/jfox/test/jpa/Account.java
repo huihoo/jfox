@@ -6,13 +6,11 @@
  */
 package jfox.test.jpa;
 
-import jfox.test.ejbcomponent.dao.AddressDAO;
-import org.jfox.entity.annotation.MappingColumn;
-import org.jfox.entity.annotation.ParameterMap;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -39,8 +37,8 @@ public class Account implements Serializable {
     @Column(name="ACC_EMAIL")
     String mail;
 
-    @MappingColumn(namedQuery = AddressDAO.GET_ADDRESS_BY_ACCOUNT_ID,
-            params = {@ParameterMap(name = "accountId",value="$this.getId()")})
+    @OneToOne
+    @JoinColumn(columnDefinition = "select * from address where ADR_ACC_ID = $ACC_ID")
     Address address;
 
     public long getId() {

@@ -6,8 +6,8 @@
  */
 package jfox.test;
 
+import org.jfox.framework.annotation.ComponentBean;
 import org.jfox.framework.annotation.Constant;
-import org.jfox.framework.annotation.Service;
 import org.jfox.framework.annotation.Inject;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.ComponentInitialization;
@@ -15,7 +15,7 @@ import org.jfox.framework.component.ComponentInitialization;
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
-@Service(
+@ComponentBean(
         id = "User1")
 public class User1 implements IUser, ComponentInitialization {
 

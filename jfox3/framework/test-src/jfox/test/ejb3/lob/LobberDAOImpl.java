@@ -6,13 +6,13 @@
  */
 package jfox.test.ejb3.lob;
 
+import org.jfox.entity.support.dao.DAOSupport;
+
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.PersistenceContext;
-import javax.persistence.EntityManager;
-
-import org.jfox.entity.dao.DAOSupport;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

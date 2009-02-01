@@ -6,17 +6,17 @@
  */
 package org.jfox.petstore.dao;
 
-import java.sql.SQLException;
-import java.util.List;
+import org.jfox.entity.support.dao.DAOSupport;
+import org.jfox.petstore.entity.Category;
+
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.PersistenceContext;
-
-import org.jfox.entity.dao.DAOSupport;
-import org.jfox.petstore.entity.Category;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

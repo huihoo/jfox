@@ -11,7 +11,7 @@ import jfox.test.ejbcomponent.dao.AccountDAOImpl;
 import jfox.test.jpa.Account;
 import org.jfox.entity.EntityManagerExt;
 import org.jfox.entity.MappedEntity;
-import org.jfox.entity.dao.DAOSupport;
+import org.jfox.entity.support.dao.DAOSupport;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -116,4 +116,5 @@ public class OutContainerDAOTest {
         System.out.println(o);
         Assert.assertNotNull(o);
     }
+
 }

@@ -6,19 +6,19 @@
  */
 package jfox.test;
 
+import org.jfox.framework.annotation.ComponentBean;
 import org.jfox.framework.annotation.Constant;
 import org.jfox.framework.annotation.Inject;
-import org.jfox.framework.annotation.Service;
 import org.jfox.framework.component.ComponentContext;
 import org.jfox.framework.component.ComponentUnregistration;
-import org.jfox.framework.event.ModuleListener;
 import org.jfox.framework.event.ModuleEvent;
+import org.jfox.framework.event.ModuleListener;
 
 /**
  *
  * @author <a href="mailto:jfox.young@gmail.com">Yang Yong</a>
  */
-@Service(id="User2")
+@ComponentBean(id="User2")
 public class User2 implements IUser2, ComponentUnregistration, ModuleListener {
 
     @Inject(id = "UserManager")

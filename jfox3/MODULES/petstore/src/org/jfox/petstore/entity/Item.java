@@ -6,12 +6,9 @@
  */
 package org.jfox.petstore.entity;
 
-import org.jfox.entity.annotation.MappingColumn;
-import org.jfox.entity.annotation.ParameterMap;
-import org.jfox.petstore.dao.ProductDAOImpl;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -28,8 +25,7 @@ public class Item implements Serializable {
     @Column(name="qty")
     int quantity;
 
-    @MappingColumn(namedQuery = ProductDAOImpl.GET_PRODUCT,
-            params = {@ParameterMap(name="id",value = "$this.getProductId()")})
+    @JoinColumn(columnDefinition = "select productid, name, descn, category from product where productid = $id")
     Product product;
 
     @Column(name="productid")

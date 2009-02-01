@@ -8,7 +8,7 @@ package jfox.test.ejbcomponent.dao;
 
 import jfox.test.jpa.Account;
 import org.jfox.entity.MappedEntity;
-import org.jfox.entity.dao.DataAccessObject;
+import org.jfox.entity.support.dao.DataAccessObject;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -6,8 +6,8 @@
  */
 package org.jfox.petstore.action;
 
-import org.jfox.entity.dao.PKGenerator;
 import org.jfox.entity.mapping.EntityFactory;
+import org.jfox.entity.support.idgen.TimebasedIdGenerator;
 import org.jfox.mvc.ActionContext;
 import org.jfox.mvc.ActionSupport;
 import org.jfox.mvc.PageContext;
@@ -61,7 +61,7 @@ public class OrderAction extends ActionSupport {
         Account account = (Account)sessionContext.getAttribute(AccountAction.ACCOUNT_SESSION_KEY);
 
         Order order = EntityFactory.newEntityObject(Order.class);
-        order.setOrderId(PKGenerator.getInstance().nextPK());
+        order.setOrderId(TimebasedIdGenerator.getInstance().nextLongId());
         order.setUsername(account.getUsername());
         order.setOrderDate(new Date());
 

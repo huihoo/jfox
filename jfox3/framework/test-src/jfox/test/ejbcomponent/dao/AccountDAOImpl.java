@@ -10,8 +10,8 @@ import jfox.test.jpa.Account;
 import org.jfox.entity.EntityManagerExt;
 import org.jfox.entity.MappedEntity;
 import org.jfox.entity.QueryExt;
-import org.jfox.entity.dao.DAOSupport;
-import org.jfox.entity.dao.SQLGenerator;
+import org.jfox.entity.support.dao.DAOSupport;
+import org.jfox.entity.support.sqlgen.SQLGenerator;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

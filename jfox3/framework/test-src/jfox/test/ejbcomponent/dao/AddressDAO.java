@@ -8,7 +8,7 @@ package jfox.test.ejbcomponent.dao;
 
 import jfox.test.jpa.Address;
 import org.jfox.entity.EntityManagerExt;
-import org.jfox.entity.dao.DAOSupport;
+import org.jfox.entity.support.dao.DAOSupport;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
