@@ -6,8 +6,6 @@
  */
 package org.jfox.entity;
 
-import javax.persistence.NamedNativeQuery;
-
 /**
  * 用来保存 NamedQuery
  * 然后根据参数，使用 velocity 构造 SQL
@@ -16,12 +14,14 @@ import javax.persistence.NamedNativeQuery;
  */
 public class NamedSQLTemplate extends SQLTemplate {
 
+    public static final String DEFAULT_CACHE_PARTITION = "__DEFAULT__";
+
     /**
      * 定义 NamedQuery 的 DAO class
      */
     private Class<?> definedClass = null;
 
-    private NamedNativeQuery namedNativeQuery = null;
+//    private NamedNativeQuery namedNativeQuery = null;
 
     /**
      * 使用的 cache partition，如果没有，则不使用缓存
@@ -52,7 +52,12 @@ public class NamedSQLTemplate extends SQLTemplate {
 
     public NamedSQLTemplate(String name, String sqlTemplate, Class resultClass, Class<?> defineClass, String partition) {
         super(sqlTemplate, resultClass);
-        this.cachePartition = partition;
+        if(partition == null) {
+            this.cachePartition = DEFAULT_CACHE_PARTITION; 
+        }
+        else {
+            this.cachePartition = partition;
+        }
         if(name == null || name.trim().equals("")) {
             throw new IllegalArgumentException("name is null");
         }

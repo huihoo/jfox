@@ -108,7 +108,7 @@ public class SQLQuery extends QueryExt {
             int rows = pst.executeUpdate();
             // close PreparedStatement
             pst.close();
-            tryFlushCache(); // update successfully, clear cache
+            tryClearCache(); // update successfully, clear cache
             return rows;
         }
         catch (SQLException e) {
@@ -571,13 +571,17 @@ public class SQLQuery extends QueryExt {
         }
     }
 
-    void tryFlushCache() {
+    void tryClearCache() {
         if (isNamedQuery()) {
             String cachePartition = ((NamedSQLTemplate)getSQLTemplate()).getCachePartition();
             CacheConfig cacheConfig = EntityManagerFactoryBuilderImpl.getCacheConfig(em.getUnitName());
             if (cacheConfig != null) {
                 Cache cache = cacheConfig.buildCache(cachePartition);
                 cache.clear();
+
+                // clear default cache, 因为 JoinColumn 以及所有未归类到 Query 都放在 Default Cache 中
+                Cache defaultCache = cacheConfig.buildCache(NamedSQLTemplate.DEFAULT_CACHE_PARTITION);
+                defaultCache.clear();
             }
         }
     }
