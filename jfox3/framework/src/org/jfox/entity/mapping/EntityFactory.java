@@ -13,12 +13,9 @@ import org.jfox.util.ClassUtils;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.PersistenceException;
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -84,24 +81,22 @@ public class EntityFactory {
             //TODO: should be specified
             mcEntry.setReferencedColumnName(joinColumn.referencedColumnName());
 
-            //Mapping Column 可能 OneToMany, Field 为 List<>
-            if(mappingColumnField.isAnnotationPresent(OneToOne.class) || mappingColumnField.isAnnotationPresent(ManyToOne.class)) {
+            if(mappingColumnField.getType().isArray()) {
+                mcEntry.setTargetEntity(mappingColumnField.getType().getComponentType());
+            }
+            else if(Collection.class.isAssignableFrom(mappingColumnField.getType())) {
+                if(mappingColumnField.getGenericType() instanceof ParameterizedType){ // Generic Type collection
+                    mcEntry.setTargetEntity((Class<?>)((ParameterizedType)mappingColumnField.getGenericType()).getActualTypeArguments()[0]);
+                }
+                else {
+                    // 没有指定泛型
+                    mcEntry.setTargetEntity(MappedEntity.class);
+                }
+            }
+            else {
                 mcEntry.setTargetEntity(mcEntry.getField().getType());
             }
-            else if(mappingColumnField.isAnnotationPresent(OneToMany.class)){
-                mcEntry.setToMany(true);
-                OneToMany oneToMany = mappingColumnField.getAnnotation(OneToMany.class);
-                if(!oneToMany.targetEntity().equals(void.class) && oneToMany.targetEntity() != null){
-                    mcEntry.setTargetEntity(oneToMany.targetEntity());
-                }
-            }
-            else if(mappingColumnField.isAnnotationPresent(ManyToMany.class)){
-                mcEntry.setToMany(true);
-                ManyToMany manyToMany = mappingColumnField.getAnnotation(ManyToMany.class);
-                if(!manyToMany.targetEntity().equals(void.class) && manyToMany.targetEntity() != null){
-                    mcEntry.setTargetEntity(manyToMany.targetEntity());
-                }
-            }
+
             columnMap.put(mcEntry.getName(), mcEntry);
         }
 

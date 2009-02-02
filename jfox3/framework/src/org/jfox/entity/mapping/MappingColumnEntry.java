@@ -1,10 +1,5 @@
 package org.jfox.entity.mapping;
 
-import org.jfox.entity.MappedEntity;
-
-import java.lang.reflect.ParameterizedType;
-import java.util.Collection;
-
 /**
  * \@MappingColumn field
  * 
@@ -43,28 +38,6 @@ public class MappingColumnEntry extends ColumnEntry{
     }
 
     public Class<?> getTargetEntity() {
-        if(!toMany) {
-            if(targetEntity == null) {
-                targetEntity = getField().getType();
-            }
-        }
-        else {
-            if (targetEntity == null) {
-                if(getField().getType().isArray()) { // array
-                    targetEntity = getField().getType().getComponentType();
-                }
-                else if(Collection.class.isAssignableFrom(getField().getType())){ // collection
-                    if(getField().getGenericType() instanceof ParameterizedType){
-                        targetEntity = (Class<?>)((ParameterizedType)getField().getGenericType()).getActualTypeArguments()[0];
-                    }
-                    else {
-                        // 没有指定泛型
-                        targetEntity = MappedEntity.class;
-                    }
-
-                }
-            }
-        }
         return targetEntity;
     }
 

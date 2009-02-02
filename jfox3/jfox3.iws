@@ -32,9 +32,13 @@
     <list default="true" readonly="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jfox3.iws" afterPath="$PROJECT_DIR$/jfox3.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/Item.java" afterPath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/Item.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/EntityFactory.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/EntityFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/entity/SQLQuery.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/entity/SQLQuery.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/LineItem.java" afterPath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/LineItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/framework.iml" afterPath="$PROJECT_DIR$/framework/framework.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/MappingColumnEntry.java" afterPath="$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/MappingColumnEntry.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/jfox/test/jpa/Account.java" afterPath="$PROJECT_DIR$/framework/test-src/jfox/test/jpa/Account.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/Order.java" afterPath="$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/Order.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/entity/Order.java" afterPath="$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/entity/Order.java" />
     </list>
     <list name="Failed commit: Default (8)" comment="" />
     <list name="Failed commit: Default (3)" comment="实现 Query setStartPosition setMaxResult" />
@@ -200,19 +204,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="OrderAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/OrderAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="201" column="0" selection-start="8946" selection-end="8946" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="JoinColumn.java" pinned="false" current="false" current-in-tab="false">
         <entry file="jar://$PROJECT_DIR$/framework/lib-source/ejb3-persistence-api-src.jar!/javax/persistence/JoinColumn.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="21" selection-start="1508" selection-end="1508" vertical-scroll-proportion="0.0">
+            <state line="46" column="22" selection-start="1509" selection-end="1509" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -221,8 +216,10 @@
       <file leaf-file-name="Order.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/entity/Order.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="5" selection-start="654" selection-end="654" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="24" column="0" selection-start="566" selection-end="566" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -230,8 +227,10 @@
       <file leaf-file-name="Account.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/test-src/jfox/test/jpa/Account.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="5" selection-start="905" selection-end="905" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="38" column="0" selection-start="851" selection-end="851" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -239,7 +238,7 @@
       <file leaf-file-name="MappingColumnEntry.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/MappingColumnEntry.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="0" selection-start="1354" selection-end="1354" vertical-scroll-proportion="0.0">
+            <state line="55" column="0" selection-start="1401" selection-end="1401" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -257,7 +256,7 @@
       <file leaf-file-name="Order.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/Order.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="107" column="5" selection-start="2286" selection-end="2286" vertical-scroll-proportion="0.7125506">
+            <state line="100" column="0" selection-start="2014" selection-end="2014" vertical-scroll-proportion="0.4138614">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -268,9 +267,9 @@
       <file leaf-file-name="LineItem.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/LineItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="14" selection-start="1135" selection-end="1135" vertical-scroll-proportion="0.0">
+            <state line="36" column="0" selection-start="788" selection-end="788" vertical-scroll-proportion="0.0">
               <folding>
-                <marker date="1233501604000" expanded="true" signature="251:442" placeholder="..." />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -279,9 +278,9 @@
       <file leaf-file-name="Item.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="5" selection-start="670" selection-end="670" vertical-scroll-proportion="0.0">
+            <state line="27" column="0" selection-start="616" selection-end="616" vertical-scroll-proportion="0.0">
               <folding>
-                <marker date="1233501604000" expanded="true" signature="251:442" placeholder="..." />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -290,7 +289,16 @@
       <file leaf-file-name="SQLQuery.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/SQLQuery.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="427" column="0" selection-start="14845" selection-end="14845" vertical-scroll-proportion="0.0">
+            <state line="430" column="82" selection-start="15032" selection-end="15032" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EntityFactory.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/EntityFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="0" selection-start="451" selection-end="451" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -1107,7 +1115,7 @@
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_framework/web/framework" value="C:\Documents and Settings\Administrator\Local Settings\Temp\webExplodedDir45731tmp" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="RunManagerConfig.compileBeforeRunning" value="true" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.lastSelected" value="preferences.pluginManager" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth1" value="153" />
@@ -1167,7 +1175,7 @@
       <recent name="org.jfox.framework.classloader" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.jfox3-startup">
+  <component name="RunManager" selected="JUnit.OrderDAOTest">
     <tempConfiguration default="false" name="OrderDAOTest" type="JUnit" factoryName="JUnit" enabled="false" merge="false" runner="emma">
       <pattern>
         <option name="PATTERN" value="jfox.test.ejb3.entity.*" />
@@ -2014,29 +2022,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1032" height="746" extended-state="1" />
+    <frame x="-4" y="-4" width="1288" height="698" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39310345" sideWeight="0.5" order="21" side_tool="false" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" />
       <window_info id="Database" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.6333333" order="11" side_tool="false" />
       <window_info id="Ant Build" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24660814" sideWeight="0.59310347" order="4" side_tool="false" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4006462" sideWeight="0.5" order="4" side_tool="false" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.44911146" sideWeight="0.5" order="7" side_tool="false" x="16" y="176" width="776" height="371" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39929947" sideWeight="0.5" order="4" side_tool="false" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48686516" sideWeight="0.5" order="7" side_tool="false" x="16" y="176" width="776" height="371" />
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="22" side_tool="false" />
       <window_info id="IDEtalk" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.5" order="23" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36319217" sideWeight="0.5" order="0" side_tool="false" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33441034" sideWeight="0.5" order="2" side_tool="false" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33274958" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32615384" sideWeight="0.5" order="11" side_tool="false" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22426178" sideWeight="0.56042033" order="1" side_tool="false" />
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7307307" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Maven Projects" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28284854" sideWeight="0.53958" order="0" side_tool="false" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22505985" sideWeight="0.5884413" order="0" side_tool="false" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7905138" sideWeight="0.5" order="17" side_tool="false" />
       <window_info id="Web Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42827442" sideWeight="0.5" order="10" side_tool="false" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42649436" sideWeight="0.5" order="5" side_tool="false" x="100" y="162" width="634" height="300" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42556918" sideWeight="0.5" order="5" side_tool="false" x="100" y="162" width="634" height="300" />
       <window_info id="Code Logic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72783506" sideWeight="0.5" order="15" side_tool="false" x="22" y="39" width="776" height="476" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" />
       <window_info id="Clover" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" />
@@ -2190,13 +2198,6 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/cache/CacheConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="30" selection-start="3250" selection-end="3250" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/framework/WEB-INF/web.xml">
       <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
         <state />
@@ -2241,6 +2242,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/OrderAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="201" column="0" selection-start="8946" selection-end="8946" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/ejb3/invocation/TransactionEJBInvocationHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="143" column="0" selection-start="5635" selection-end="5635" vertical-scroll-proportion="0.0">
@@ -2250,67 +2258,71 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/MappingColumnEntry.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="0" selection-start="1354" selection-end="1354" vertical-scroll-proportion="0.0">
+        <state line="55" column="0" selection-start="1401" selection-end="1401" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/SQLQuery.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="427" column="0" selection-start="14845" selection-end="14845" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/action/OrderAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="201" column="0" selection-start="8946" selection-end="8946" vertical-scroll-proportion="0.0">
+        <state line="430" column="82" selection-start="15032" selection-end="15032" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/framework/lib-source/ejb3-persistence-api-src.jar!/javax/persistence/JoinColumn.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="21" selection-start="1508" selection-end="1508" vertical-scroll-proportion="0.0">
+        <state line="46" column="22" selection-start="1509" selection-end="1509" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/test-src/jfox/test/ejb3/entity/Order.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="5" selection-start="654" selection-end="654" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="24" column="0" selection-start="566" selection-end="566" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/test-src/jfox/test/jpa/Account.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="5" selection-start="905" selection-end="905" vertical-scroll-proportion="0.0">
+        <state line="38" column="0" selection-start="851" selection-end="851" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/org/jfox/entity/mapping/EntityFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="451" selection-end="451" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/Item.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="5" selection-start="670" selection-end="670" vertical-scroll-proportion="0.0">
+        <state line="27" column="0" selection-start="616" selection-end="616" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1233501604000" expanded="true" signature="251:442" placeholder="..." />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/LineItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="14" selection-start="1135" selection-end="1135" vertical-scroll-proportion="0.0">
+        <state line="36" column="0" selection-start="788" selection-end="788" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1233501604000" expanded="true" signature="251:442" placeholder="..." />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MODULES/petstore/src/org/jfox/petstore/entity/Order.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="5" selection-start="2286" selection-end="2286" vertical-scroll-proportion="0.7125506">
+        <state line="100" column="0" selection-start="2014" selection-end="2014" vertical-scroll-proportion="0.4138614">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

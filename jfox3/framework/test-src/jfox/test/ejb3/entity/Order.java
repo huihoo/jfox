@@ -9,7 +9,6 @@ package jfox.test.ejb3.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import java.util.List;
 
 /**
@@ -24,7 +23,6 @@ public class Order {
     @Column(name = "createtime")
     String createTime;
 
-    @OneToMany(targetEntity = LineItem.class)
     @JoinColumn(columnDefinition = "select * from lineitem where orderid=$id")
     List<LineItem> lineItems;
 

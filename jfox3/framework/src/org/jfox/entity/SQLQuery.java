@@ -428,7 +428,7 @@ public class SQLQuery extends QueryExt {
                     mappedColumnQuery.setParameter(entry.getKey(), entry.getValue());
                 }
 
-
+                // TODO: 直接使用 @OneToMany @OneToOne 判断, MappingColumnEntry.toMany()
                 if (mappingColEntry.getField().getType().isArray()) { // array
                     mappedColumnResultMap.put(mappingColEntry.getName(), mappedColumnQuery.getResultList().toArray());
                 }

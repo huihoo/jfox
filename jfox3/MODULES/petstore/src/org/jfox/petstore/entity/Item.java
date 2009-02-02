@@ -9,7 +9,6 @@ package org.jfox.petstore.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -26,7 +25,6 @@ public class Item implements Serializable {
     @Column(name="qty")
     int quantity;
 
-    @OneToOne
     @JoinColumn(columnDefinition = "select productid, name, descn, category from product where productid = $productid")
     Product product;
 
