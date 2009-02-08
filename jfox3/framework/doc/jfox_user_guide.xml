@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:m="http://www.w3.org/1998/Math/MathML"
+         xmlns:html="http://www.w3.org/1999/xhtml"
+         xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <title>JFox 参考指南</title>
+
+    <author>
+      <personname><firstname>Yang</firstname><surname>Yong</surname></personname>
+
+      <affiliation>
+        <orgname>jfox.young@gmail.com</orgname>
+      </affiliation>
+    </author>
+
+    <pubdate>2009-03-01</pubdate>
+  </info>
+
+  <para>本文档是JFox 3.0 开放源码应用服务器参考手册，全面介绍JFox 3.0应用服务器的安装、开发、部署、结构。</para>
+
+  <para>本文档面向的主要对象是JFox应用服务器的用户、Java EE开发人员、技术专家、广大师生、Java
+  EE技术爱好者。如果你有任何疑问，可以访问JFox网站(http://www.jfox.org.cn)获得帮助，或者发邮件至support@jfox.org.cn。</para>
+
+  <para>Copyright © 2007 JFox Team。 JFox 遵循
+  LGPL(http://www.gnu.org/licenses/lgpl.txt) 协议进行分发，复制和修改。 JFox trademarks are
+  trademarks or registered trademarks of JFox Team.</para>
+
+  <para></para>
+
+  <para><revhistory>
+      <revision>
+        <date>2007-5-7 文档结构初始化 Peter Cheng, Young Yang</date>
+      </revision>
+    </revhistory></para>
+
+  <para><revhistory>
+      <revision>
+        <date>2007-5-19 完成主要章节 Young Yang,Peter Cheng</date>
+      </revision>
+    </revhistory></para>
+
+  <para><revhistory>
+      <revision>
+        <date>2007-5-20 全文Review, 错误修订 Peter Cheng</date>
+      </revision>
+    </revhistory></para>
+
+  <para><revhistory>
+      <revision>
+        <date>2007-5-23 再次Review，错误修订 Young Yang</date>
+      </revision>
+    </revhistory></para>
+
+  <para><revhistory>
+      <revision>
+        <date>2009-02-01重新修订，升级到 3.0.1 版本</date>
+      </revision>
+    </revhistory></para>
+
+  <section>
+    <title>JFox 概述</title>
+
+    <para>JFox应用被设计为轻量的、稳定的、高性能的Java
+    EE应用服务器，从3.0开始，JFox提供了支持模块化的MVC框架，以简化EJB以及Web应用的开发，以满足企业对快速化统一开发平台的迫切要求。</para>
+
+    <para>JFox 3支持以下标准：</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>支持EJB 规范 3.0</para>
+      </listitem>
+
+      <listitem>
+        <para>支持 JPA 规范 1.0</para>
+      </listitem>
+
+      <listitem>
+        <para>支持JMS 规范1.1</para>
+      </listitem>
+
+      <listitem>
+        <para>支持JNDI 规范1.2</para>
+      </listitem>
+
+      <listitem>
+        <para>支持JDBC规范3.0</para>
+      </listitem>
+
+      <listitem>
+        <para>支持JTA规范1.1</para>
+      </listitem>
+
+      <listitem>
+        <para>支持Servlet规范2.5</para>
+      </listitem>
+
+      <listitem>
+        <para>支持JSP规范2.1</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>可以从以下网站获得关于JFox的更多信息。</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>JFox官方网站：http://www.jfoxsource.org</para>
+      </listitem>
+
+      <listitem>
+        <para>JFox社区网站：http://www.huihoo.org/jfox</para>
+      </listitem>
+
+      <listitem>
+        <para>JFox项目网站：http://code.google.com/p/jfox</para>
+
+        <para></para>
+      </listitem>
+    </itemizedlist>
+
+    <section>
+      <title>功能特性</title>
+
+      <para>JFox 3.0在以前版本的基础上进行较大的重构和改进，在尽可能兼容EJB
+      3规范的同时，保持JFox一直以来坚持轻量、简单、高效、实用的目标。</para>
+
+      <orderedlist>
+        <listitem>
+          <para>重新设计的 IoC 微内核，使用Annotation，融入 OSGi 模块化思想</para>
+        </listitem>
+
+        <listitem>
+          <para>设计成嵌入式架构，能够和任何 Java Web Server集成部署</para>
+        </listitem>
+
+        <listitem>
+          <para>支持 EJB3，JPA规范，支持容器内和容器外两种方式运行EJB和JPA组件</para>
+        </listitem>
+
+        <listitem>
+          <para>支持EJB发布成Web Service</para>
+        </listitem>
+
+        <listitem>
+          <para>采用JOTM(http://jotm.objectweb.org/)提供事务处理，支持两阶段提交(2PC)</para>
+        </listitem>
+
+        <listitem>
+          <para>采用 XAPool(http://forge.objectweb.org/projects/xapool/) 提供 XA
+          DataSource，支持智能连接池管理</para>
+        </listitem>
+
+        <listitem>
+          <para>内置 MVC 框架，实现自动Form Mapping,
+          Validator等功能，支持JSP/Velocity/Freemarker页面引擎，并支持直接在Action中注入EJB</para>
+        </listitem>
+
+        <listitem>
+          <para>支持多应用模块部署，让中大型应用充分享受模块化开发的带来的优势</para>
+        </listitem>
+
+        <listitem>
+          <para>提供 Manager 管理模块，可以查看和管理各种运行时参数</para>
+        </listitem>
+
+        <listitem>
+          <para>提供根据 JFox 特色重写的 Petstore 应用模块</para>
+        </listitem>
+      </orderedlist>
+    </section>
+
+    <section>
+      <title>JFox在企业应用中的角色 --- 需要修改！！！</title>
+
+      <para>经济的高速发展，信息系统间的孤立成了最大的绊脚石，对于任何一家企业，信息间缺少关联和通讯都在不时地阻碍企业的发展。解决这一难题的最佳方案就是中间件。</para>
+
+      <para>JFox是实现Java EE 5.0规范的轻量级应用服务器，作为企业信息化的中间件平台，
+      它的应用范围非常广泛，包括电子政务、电子商务、电信、金融、环保、教育、ERP、 CRM、
+      人力资源管理等等与互联网相关的所有行业。JFox作为企业信息化的核心基础平台，将在信息化进程中扮演重要的角色。如下图:</para>
+    </section>
+  </section>
+
+  <section>
+    <title>JFox安装和结构</title>
+
+    <para>运行JFox 3.0需要JDK1.5以上。</para>
+
+    <para>下载JDK，http://java.sun.com</para>
+
+    <para>下载Tomcat，http://tomcat.apache.org</para>
+
+    <para>下载JFox3，http://code.google.com/p/jfox/downloads/list</para>
+
+    <para>如果要运行JFox Petstore应用，请下载Mysql，http://www.mysql.com</para>
+
+    <section>
+      <title>安装</title>
+
+      <para>安装JFox很简单。</para>
+
+      <orderedlist>
+        <listitem>
+          <para>安装Tomcat</para>
+
+          <para>详细过程请参考 Tomat 安装指南，http://tomcat.apache.org 。 实际上，JFox
+          3可以部署在任何Java EE Web服务器上，但是没有特殊情况，我们仍然推荐采用Tomcat作为Web服务器。</para>
+        </listitem>
+
+        <listitem>
+          <para>安装JFox</para>
+
+          <para>假设下载的是JFox
+          standalone版本，即jfox.war（如果下载的是jfox.war.20070520这样的文件，请更名，去掉日期后缀）文件，请将下载的
+          jfox.war 拷贝到 %TOMCAT_HOME%/webapps 下，以便在Tomcat启动时加载。JFox
+          3应用服务器是设计成嵌入式的，作为一个标准的Web Application部署在Tomcat中。
+          启动Tomcat，默认配置下，使用浏览器访问
+          http://localhost:8080/jfox，如果看到JFox欢迎页面，那么恭喜你，JFox安装成功了。</para>
+
+          <para></para>
+
+          <para></para>
+        </listitem>
+      </orderedlist>
+
+      <para>也可以安装集成版，也可以下载已经集成了Tomat的版本，如：”jfox-3.0-with-apache-tomcat-6.0.10.zip”（如果下载的是jfox.war.20070520这样的文件，请更名，去掉日期后缀），</para>
+
+      <para>那么已经包含了Tomcat和JFox，解压之后，直接启动Tomcat即可。实际上，这与手动将JFox作为war部署到Tomcat中没有任何区别，JFox并不需要对Tomcat做特殊的配置，集成的版本只是让你的安装过程更简单而已。</para>
+    </section>
+
+    <section>
+      <title>通过源码安装</title>
+
+      <para></para>
+    </section>
+
+    <section>
+      <title>JFox目录结构</title>
+
+      <para>JFox作为Web Application部署之后，和一般的Web
+      Application目录结构并没有太大的区别，目录结构如下图：</para>
+
+      <figure>
+        <title>JFox 目录结构图</title>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="docimg/directory_structure.png"></imagedata>
+          </imageobject>
+        </mediaobject>
+
+        <para>JFox的目录分为两部分：</para>
+
+        <para></para>
+
+        <orderedlist>
+          <listitem>
+            <para>JFox主程序，包含JFox Java EE容器和MVC框架；</para>
+          </listitem>
+
+          <listitem>
+            <para>应用模块，包含可以部署在JFox 3的各个模块，如：manager, petstore等。 下面分别介绍。</para>
+
+            <para></para>
+          </listitem>
+        </orderedlist>
+
+        <para>上图中，除jfox/WEB-INF/MODULES目录之外，所有内容都属于JFox的主程序。 JFox主程序结构和标准的Web
+        Application没有任何的区别，WEB-INF外的部分存放了可通过Web访问的内容，JFox的重要文件放在WEB-INF目录中。WEB-INF/web.xml配置了用来启动JFox的重要参数，下一节将专门讲解；WEB-INF/lib下存放了所有JFox的jar包；WEB-INF/classes下存放了JFox需要的配置文件：</para>
+
+        <para></para>
+
+        <table>
+          <title>WEB/classes下的配置文件</title>
+
+          <tgroup cols="3">
+            <thead>
+              <row>
+                <entry align="center"> 文件名</entry>
+
+                <entry align="center">用途 </entry>
+
+                <entry align="center"> 备注</entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry>META-INF/persistence.xml JPA配置文件</entry>
+
+                <entry>用来配置数据源、以及Cache</entry>
+
+                <entry>详情参见：JFox配置章节</entry>
+              </row>
+
+              <row>
+                <entry>jndi.properties</entry>
+
+                <entry>配置JNDI属性</entry>
+
+                <entry>一般无需修改配置。 注：JFox只支持local JNDI</entry>
+              </row>
+
+              <row>
+                <entry>global.properties</entry>
+
+                <entry>用来配置全局占位符，以用于在@Constat注入外部变量</entry>
+
+                <entry>当前仅用来配置了Transaction Timeout。 如下：
+                jta_transaction_timeout=60 详情可以参见：JFox内核-全局占位符章节</entry>
+              </row>
+
+              <row>
+                <entry>roles.properties</entry>
+
+                <entry>使用EJB Security时，用来配置Application Role到EJB
+                Role的映射关系</entry>
+
+                <entry>如果没有对应的映射，则会直接映射</entry>
+              </row>
+
+              <row>
+                <entry>log4j.properties</entry>
+
+                <entry>Log4J配置文件</entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>jotm.properties</entry>
+
+                <entry>JOTM配置文件</entry>
+
+                <entry>JOTM是JTA实现，用做分布式事务管理器。该配置文件一般无需修改。</entry>
+              </row>
+
+              <row>
+                <entry>carol.properties</entry>
+
+                <entry>carol配置文件</entry>
+
+                <entry>carol是JOTM使用的第三方模块。该配置文件一般无需修改。</entry>
+              </row>
+
+              <row>
+                <entry>velocity.properties</entry>
+
+                <entry>Velocity模板引擎配置文件</entry>
+
+                <entry>注意：默认采用的是UTF-8编码</entry>
+              </row>
+
+              <row>
+                <entry>jaas.conf</entry>
+
+                <entry>JAAS配置文件</entry>
+
+                <entry>一般无需修改</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+      </figure>
+    </section>
+
+    <section>
+      <title>JFox模块结构</title>
+
+      <para>WEB-INF/MODULES是JFox的一个重要目录，用来部署基于JFox模块化规范开发的应用模块，这也是和一般的Web
+      Application的不同之处。默认可以看到MODULES下有一个manager目录或manager.zip文件，这是JFox内置的manager模块，用来展示各种基于JFox开发的样例程序，并提供管理控制台，通过manager模块，现在就可以了解一下部署在JFox之上的应用模块的结构</para>
+
+      <para></para>
+
+      <para>JFox对部署之上的模块有一定的结构要求，就如同Web服务器对war包的结构有要求一样，只有提供了正确的结构，运行时JFox才能正确加载。先提示一下，JFox为每个模块提供独立的类加载器。</para>
+
+      <para></para>
+
+      <para>关于JFox应用模块的更多的介绍将在后面做详细讲解。</para>
+    </section>
+  </section>
+
+  <section>
+    <title>JFox配置</title>
+
+    <para>主要需要配置web.xml和persistence.xml文件。</para>
+
+    <section>
+      <title>Web应用配置 - web.xml</title>
+
+      <para>JFox 3 Web application 的配置文件，一般情况下，无需做修改。</para>
+
+      <para>下面的XML片段配置了用于启动JFox内核的Listener：</para>
+
+      <para><programlisting>&lt;web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+         version="2.4"&gt;
+
+    &lt;distributable/&gt; 
+
+    &lt;display-name&gt;ejb3 enabled webapp&lt;/display-name&gt;
+
+    &lt;listener&gt;
+        &lt;listener-class&gt;org.jfox.mvc.WebContextLoader&lt;/listener-class&gt; <co
+            xml:base="" xml:id="listener" />
+    &lt;/listener&gt;
+    &lt;filter&gt;
+       &lt;filter-name&gt;UrlRewriteFilter&lt;/filter-name&gt;<co
+            xml:id="urlrewriter" />
+       &lt;filter-class&gt;org.jfox.mvc.servlet.UrlRewriteFilter&lt;/filter-class&gt;
+    &lt;/filter&gt;
+    &lt;filter-mapping&gt;
+       &lt;filter-name&gt;UrlRewriteFilter&lt;/filter-name&gt;
+       &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+
+    &lt;!-- if you don't want to use JFox MVC, comment below content --&gt;
+    &lt;context-param&gt;
+        &lt;!--encoding used by request &amp; velocity --&gt;
+        &lt;param-name&gt;DEFAULT_ENCODING&lt;/param-name&gt; <co
+            xml:id="velocity-param" />
+        &lt;param-value&gt;UTF-8&lt;/param-value&gt;
+    &lt;/context-param&gt;
+
+    &lt;context-param&gt;
+        &lt;!-- url patter for module access, same with controller_servlet url_pattern --&gt;
+        &lt;param-name&gt;MODULE_ACCESS_PREFIX&lt;/param-name&gt; <co
+            xml:id="module_access_prefix" />
+        &lt;param-value&gt;m&lt;/param-value&gt;
+    &lt;/context-param&gt;
+
+    &lt;context-param&gt;
+        &lt;!-- modules deployment dir --&gt;
+        &lt;param-name&gt;MODULES_DIR&lt;/param-name&gt;<co
+            xml:id="module_dir" />
+        &lt;param-value&gt;WEB-INF/MODULES&lt;/param-value&gt;
+    &lt;/context-param&gt;
+
+    &lt;context-param&gt;
+        &lt;!-- module's view template dir --&gt;
+        &lt;param-name&gt;VIEW_DIR&lt;/param-name&gt;<co xml:id="view_dir" />
+        &lt;param-value&gt;views&lt;/param-value&gt;
+    &lt;/context-param&gt;
+
+    &lt;context-param&gt;
+        &lt;!-- action url suffix --&gt;
+        &lt;param-name&gt;ACTION_SUFFIX&lt;/param-name&gt;<co
+            xml:id="action_suffix" />
+        &lt;param-value&gt;.do&lt;/param-value&gt;
+    &lt;/context-param&gt;
+    &lt;context-param&gt;
+        &lt;param-name&gt;MAX_UPLOAD_FILE_SIZE&lt;/param-name&gt;<co
+            xml:id="max_upload_file_size" />
+        &lt;param-value&gt;5000000&lt;/param-value&gt;
+        &lt;!-- 5Mbytes --&gt;
+    &lt;/context-param&gt;
+
+    &lt;servlet&gt;
+        &lt;servlet-name&gt;controller_servlet&lt;/servlet-name&gt;<co
+            xml:id="controller_servlet" />
+        &lt;servlet-class&gt;org.jfox.mvc.servlet.ControllerServlet&lt;/servlet-class&gt;
+        &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+    &lt;/servlet&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;controller_servlet&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;/m/*&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+
+    &lt;servlet&gt;
+        &lt;servlet-name&gt;xfire_servlet&lt;/servlet-name&gt; <co
+            xml:id="xfire_servlet" />
+        &lt;servlet-class&gt;org.jfox.webservice.xfire.JFoxXFireServlet&lt;/servlet-class&gt;
+        &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+    &lt;/servlet&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;xfire_servlet&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;/webservice/*&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+
+    &lt;servlet&gt;
+        &lt;servlet-name&gt;template_servlet&lt;/servlet-name&gt; <co
+            xml:base="" xml:id="template_servlet" />
+        &lt;servlet-class&gt;org.jfox.mvc.servlet.TemplateServlet&lt;/servlet-class&gt;
+        &lt;init-param&gt;
+            &lt;description&gt;velocity render&lt;/description&gt;
+            &lt;param-name&gt;org.jfox.mvc.velocity.VelocityRender&lt;/param-name&gt;
+            &lt;param-value&gt;*.vm,*.tmpl,*.vhtm,*.vhtml&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;init-param&gt;
+            &lt;description&gt;freemarker render&lt;/description&gt;
+            &lt;param-name&gt;org.jfox.mvc.freemarker.FreemarkerRender&lt;/param-name&gt;
+            &lt;param-value&gt;*.ftl,*.fhtm,*.fhtml&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+    &lt;/servlet&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;template_servlet&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;*.vm&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;template_servlet&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;*.tmpl&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;template_servlet&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;*.vhtm&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;template_servlet&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;*.vhtml&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;template_servlet&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;*.ftl&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;template_servlet&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;*.fhtm&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;template_servlet&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;*.fhtml&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+
+&lt;/web-app&gt;
+</programlisting></para>
+
+      <para><calloutlist>
+          <callout arearefs="listener">
+            <para>配置启动JFox内核的Listener</para>
+          </callout>
+
+          <callout arearefs="urlrewriter">
+            <para>配置访问JFox Web应用的URL重写Filter</para>
+          </callout>
+
+          <callout arearefs="velocity-param">
+            <para>Velocity默认编码</para>
+          </callout>
+
+          <callout arearefs="module_access_prefix">
+            <para>访问JFox应用模块应用的url前缀，默认为m</para>
+          </callout>
+
+          <callout arearefs="module_dir">
+            <para>JFox应用模块所在的目录</para>
+          </callout>
+
+          <callout arearefs="view_dir">
+            <para>JFox应用模块view模板所在的目录（相对应用模块）</para>
+          </callout>
+
+          <callout arearefs="action_suffix">
+            <para>访问JFox Action的URL后缀</para>
+          </callout>
+
+          <callout arearefs="max_upload_file_size">
+            <para>最大上传文件尺寸，JFox MVC框架自动处理文件上传</para>
+          </callout>
+
+          <callout arearefs="controller_servlet">
+            <para>JFox MVC使用的 Servlet 控制器</para>
+
+            <para>JFox Servlet 控制器使用url-pattern,应该和 4中定义的param-value一致</para>
+          </callout>
+
+          <callout arearefs="xfire_servlet">
+            <para>JFox Web Service服务Servlet，以及 url-pattern</para>
+          </callout>
+
+          <callout arearefs="template_servlet">
+            <para>定义JFox MVC 模板引擎Servlet，以及url-pattern</para>
+
+            <para>配置了Velocity和Freemarker两个模板渲染引擎，org.jfox.mvc.velocity.VelocityRender，org.jfox.mvc.freemarker.FreemarkerRender。</para>
+          </callout>
+        </calloutlist></para>
+
+      <para></para>
+
+      <para>大多数的web.xml都不需要修改，这些是JFox约定的配置。</para>
+
+      <para></para>
+    </section>
+
+    <section>
+      <title>数据源配置 - persistence.xml</title>
+
+      <para>JFox数据源的配置遵循JPA标准，所有的配置都保存在WEB-INF/classes/META-INF/persistence.xml文件中，配置内容包括：JPA存储单元、数据源、Cache。</para>
+
+      <para><programlisting>&lt;persistence&gt;
+
+    &lt;persistence-unit name="default"&gt;<co xml:id="persistence-unit" />
+        &lt;jta-data-source&gt;java:/DefaultMySqlDS&lt;/jta-data-source&gt;<co
+            xml:id="jta-data-source" />
+        &lt;properties&gt;<co xml:id="properties" />
+            &lt;property name="driver" value="com.mysql.jdbc.Driver"/&gt;
+            &lt;property name="url" value="jdbc:mysql://localhost:3306/petstore"/&gt;
+            &lt;property name="username" value="root"/&gt;
+            &lt;property name="password" value="jfox"/&gt;
+            &lt;property name="minSize" value="1"/&gt;
+            &lt;!-- min pool size --&gt;
+            &lt;property name="maxSize" value="200"/&gt;
+            &lt;!-- max pool size --&gt;
+            &lt;property name="lifeTime" value="1800000"/&gt;
+            &lt;!-- 3h, connection max idle time, in ms --&gt;
+            &lt;property name="sleepTime" value="600000"/&gt;
+            &lt;!--PoolKeeper sleep time, in ms --&gt;
+            &lt;property name="deadLockRetryWait" value="2000"/&gt;
+            &lt;!-- retry time if no free connection, in ms --&gt;
+            &lt;property name="deadLockMaxWait" value="60000"/&gt;
+            &lt;!-- max wait time if no free connection, in ms --&gt;
+            &lt;property name="checkLevelObject" value="2"/&gt;
+            &lt;!-- check connection closed --&gt;
+            &lt;property name="cache.algorithm" value="LRU"/&gt;
+            &lt;!-- algorithm for "default" cache category, LRU, LFU, FIFO--&gt;
+            &lt;property name="cache.ttl" value="600000"/&gt;
+            &lt;!-- ttl for "default", in ms--&gt;
+            &lt;property name="cache.maxIdleTime" value="300000"/&gt;
+            &lt;!-- maxidletime for "default", in ms--&gt;
+            &lt;property name="cache.maxSize" value="1000"/&gt;
+            &lt;!-- max size for "default" --&gt;
+            &lt;property name="cache.maxMemorySize" value="100000000"/&gt;
+            &lt;!-- max memory size for "default", in bytes--&gt;
+        &lt;/properties&gt;
+    &lt;/persistence-unit&gt;
+ 
+&lt;/persistence&gt;</programlisting><calloutlist>
+          <callout arearefs="persistence-unit">
+            <para>指明了persistence
+            unit名称，unit是JPA的概念，表示一个存储单元，JPA的EntityManager都关于在存储单元上。使用
+            @PersistenceContext 注入EntityManager时，可以通过 unitName 指定使用的
+            unit，如果不指明，则会使用默认的persistence unit，前提是只有一个unit。</para>
+          </callout>
+
+          <callout arearefs="jta-data-source">
+            <para>指明绑定的数据源JNDI的名称，JFox JPA创建了数据源之后，将使用该名称将其绑定到JNDI上。</para>
+          </callout>
+
+          <callout arearefs="properties">
+            <para>通过properties可以指定各种参数，这些参数是与特定的应用服务器相关的，JFox 使用的property
+            说明如下表格：</para>
+          </callout>
+        </calloutlist></para>
+
+      <para><table>
+          <title>JFox persistence.xml property说明</title>
+
+          <tgroup cols="3">
+            <thead>
+              <row>
+                <entry align="center">名称 </entry>
+
+                <entry align="center">意义 </entry>
+
+                <entry align="center">备注 </entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry>driver</entry>
+
+                <entry>数据库驱动</entry>
+
+                <entry>需要将数据库驱动程序拷贝到WEB-INF/lib目录中或者Web Server的lib中</entry>
+              </row>
+
+              <row>
+                <entry>url</entry>
+
+                <entry>数据库连接的url</entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>username</entry>
+
+                <entry>用户名</entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>password</entry>
+
+                <entry>密码</entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>minSize</entry>
+
+                <entry>最小连接数</entry>
+
+                <entry>连接池维持的最小的数据库连接数目，即使空闲也不会被释放</entry>
+              </row>
+
+              <row>
+                <entry>maxSize</entry>
+
+                <entry>最大连接数</entry>
+
+                <entry>如果实际连接数达到maxSize，发生新的连接时，将尝试等待有连接释放，直至超时</entry>
+              </row>
+
+              <row>
+                <entry>lifeTime</entry>
+
+                <entry>连接保持时间</entry>
+
+                <entry>如果一个连接已经从创建到当前已经超过lifeTime时间，将会被断开以便重连</entry>
+              </row>
+
+              <row>
+                <entry>sleepTime</entry>
+
+                <entry>连接空闲时间</entry>
+
+                <entry>如果一个连接处于空闲，超过sleepTime时间之后，将会被释放</entry>
+              </row>
+
+              <row>
+                <entry>deadLockRetryTime</entry>
+
+                <entry>重连的等待时间</entry>
+
+                <entry>如果连接已满，重连之前的等待时间</entry>
+              </row>
+
+              <row>
+                <entry>deadLockMaxWait</entry>
+
+                <entry>最大重试时间</entry>
+
+                <entry>如果连接已满，在重试超过该时间之后，如果仍未连接成功，将抛出连接失败异常</entry>
+              </row>
+
+              <row>
+                <entry>checkObjectLevel</entry>
+
+                <entry>是否检查连接有效</entry>
+
+                <entry>设置是否每次获得连接之后，是否对连接进行有效性检查。如果数据库会出现重启现象，则必须设置有效值，否则只有重启应用服务器才能重新获得有效连接。
+                4为总是检查。 </entry>
+              </row>
+
+              <row>
+                <entry>cache.algorithm</entry>
+
+                <entry>cache.algorithm</entry>
+
+                <entry>LRU为最近最少使用； LFU为最近最常使用； FIFO为先进先出； 一般配置为LRU。 </entry>
+              </row>
+
+              <row>
+                <entry>cache.ttl</entry>
+
+                <entry>cache数据的最大生存时间 </entry>
+
+                <entry>从创建到当前时间，超过最大生存时间的数据，将会被清除 </entry>
+              </row>
+
+              <row>
+                <entry>cache.maxIdleTime</entry>
+
+                <entry>最大空闲时间</entry>
+
+                <entry>空闲超过该时间的cache数据将被清除</entry>
+              </row>
+
+              <row>
+                <entry>cache.maxSize</entry>
+
+                <entry>cache的最大数据</entry>
+
+                <entry>如果cache中的数据的条目已经达到该值，且均有效时，新的数据将不被缓存</entry>
+              </row>
+
+              <row>
+                <entry>cache.maxMemory</entry>
+
+                <entry>Cache使用的最大空间</entry>
+
+                <entry>如果cache的数据的体积已经达到最大可用内存数且均有效时，新的数据将不会被缓存</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>请保证
+      url、username、password 的设置是正确的，否则将无法成功连接数据库，关于cache的更多内容可以参考后面“JPA
+      Container”章节。</para>
+
+      <para><tip>
+          <para>可以配置多个persistence-unit，通过@persistence-context(name="XX_DataSource")来指定使用的persistence-unit.</para>
+        </tip></para>
+    </section>
+  </section>
+
+  <section>
+    <title>搭建Eclipse开发环境</title>
+
+    <para></para>
+  </section>
+
+  <section>
+    <title>开发一个应用</title>
+
+    <para></para>
+
+    <section>
+      <title>第一个EJB应用</title>
+
+      <para></para>
+    </section>
+
+    <section>
+      <title>第一个JPA应用</title>
+
+      <para></para>
+    </section>
+
+    <section>
+      <title>第一个Web应用</title>
+
+      <para></para>
+    </section>
+  </section>
+
+  <section>
+    <title>JFox体系结构</title>
+
+    <para></para>
+  </section>
+
+  <section>
+    <title>管理控制台</title>
+
+    <para></para>
+  </section>
+
+  <section>
+    <title>安装Petstore应用</title>
+
+    <para></para>
+
+    <para>现在开始使用JFox进行软件开发吧。</para>
+  </section>
+</article>
