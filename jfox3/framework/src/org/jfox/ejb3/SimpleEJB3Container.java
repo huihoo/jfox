@@ -16,7 +16,6 @@ import org.jfox.ejb3.invocation.TransactionEJBInvocationHandler;
 import org.jfox.ejb3.naming.ContextAdapter;
 import org.jfox.ejb3.naming.InitialContextFactoryImpl;
 import org.jfox.ejb3.timer.EJBTimerTask;
-import org.jfox.ejb3.transaction.JTATransactionManager;
 import org.jfox.framework.annotation.ComponentBean;
 import org.jfox.framework.annotation.Constant;
 import org.jfox.framework.component.ComponentContext;
@@ -28,6 +27,7 @@ import org.jfox.framework.event.ModuleUnloadedEvent;
 import org.jfox.jms.JMSConnectionFactory;
 import org.jfox.jms.MessageService;
 import org.jfox.mvc.SessionContext;
+import org.jfox.tx.JTATransactionManager;
 
 import javax.ejb.EJBException;
 import javax.ejb.MessageDriven;

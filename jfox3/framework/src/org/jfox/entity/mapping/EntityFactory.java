@@ -67,7 +67,7 @@ public class EntityFactory {
             if(columnField.isAnnotationPresent(Id.class)) {
                 columnEntry.setPK(true);
             }
-            columnMap.put(column.name(), columnEntry);
+            columnMap.put(column.name().toUpperCase(), columnEntry);
         }
 
         Field[] mappingColumnFields = AnnotationUtils.getAnnotatedFields(resultClass, JoinColumn.class);
@@ -97,7 +97,7 @@ public class EntityFactory {
                 mcEntry.setTargetEntity(mcEntry.getField().getType());
             }
 
-            columnMap.put(mcEntry.getName(), mcEntry);
+            columnMap.put(mcEntry.getName().toUpperCase(), mcEntry);
         }
 
         resultClass2ColumnsMap.put(resultClass, columnMap);
@@ -189,7 +189,7 @@ public class EntityFactory {
     }
 
     public static ColumnEntry getColumnEntry(Class<?> resultClass, String columnName) {
-        return resultClass2ColumnsMap.get(resultClass).get(columnName);
+        return resultClass2ColumnsMap.get(resultClass).get(columnName.toUpperCase());
     }
 
     public static ColumnEntry getPKColumnEntry(Class<?> resultClass){

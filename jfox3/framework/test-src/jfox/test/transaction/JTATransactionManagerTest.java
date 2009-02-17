@@ -6,20 +6,20 @@
  */
 package jfox.test.transaction;
 
-import java.sql.Connection;
-import java.sql.Statement;
-import java.util.Random;
+import org.enhydra.jdbc.pool.StandardXAPoolDataSource;
+import org.enhydra.jdbc.standard.StandardXADataSource;
+import org.jfox.entity.EntityManagerExt;
+import org.jfox.entity.EntityManagerImpl;
+import org.jfox.tx.JTATransactionManager;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import javax.sql.DataSource;
 import javax.transaction.RollbackException;
 import javax.transaction.Transaction;
-
-import org.jfox.ejb3.transaction.JTATransactionManager;
-import org.jfox.entity.EntityManagerExt;
-import org.jfox.entity.EntityManagerImpl;
-import org.enhydra.jdbc.pool.StandardXAPoolDataSource;
-import org.enhydra.jdbc.standard.StandardXADataSource;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.util.Random;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>

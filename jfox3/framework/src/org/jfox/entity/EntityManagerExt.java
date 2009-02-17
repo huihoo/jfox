@@ -29,6 +29,10 @@ public abstract class EntityManagerExt implements EntityManager {
 
     public abstract Query createNativeQuery(String sqlString);
 
+    public Query createNamedNativeQuery(String name) {
+        return createNamedQuery(name);
+    }
+
     /**
      * 用于创建自动生成SQL的Query时调用，指定 partitionName 为了Cache的互操作
      */
@@ -76,6 +80,7 @@ public abstract class EntityManagerExt implements EntityManager {
         throw new UnsupportedOperationException("EntityManager.isOpen().");
     }
 
+    //TODO: use joinTransaction to Join JTA Transaction
     public void joinTransaction() {
         throw new UnsupportedOperationException("EntityManager.joinTransaction().");
     }

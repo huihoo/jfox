@@ -6,7 +6,7 @@
  */
 package org.jfox.entity;
 
-import org.jfox.ejb3.transaction.TxConnectionsThreadLocal;
+import org.jfox.tx.TxConnectionsThreadLocal;
 
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;

@@ -4,7 +4,12 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.ejb3.transaction;
+package org.jfox.tx;
+
+import org.apache.log4j.Logger;
+import org.jfox.ejb3.EJBContainerException;
+import org.objectweb.jotm.Jotm;
+import org.objectweb.jotm.TimerManager;
 
 import javax.naming.Context;
 import javax.naming.NamingException;
@@ -17,11 +22,6 @@ import javax.transaction.Synchronization;
 import javax.transaction.SystemException;
 import javax.transaction.Transaction;
 import javax.transaction.TransactionManager;
-
-import org.apache.log4j.Logger;
-import org.jfox.ejb3.EJBContainerException;
-import org.objectweb.jotm.Jotm;
-import org.objectweb.jotm.TimerManager;
 
 /**
  * 使用 JOTM 构造的 JTA TransactionManager

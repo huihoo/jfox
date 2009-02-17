@@ -4,7 +4,7 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.ejb3.transaction;
+package org.jfox.tx;
 
 import org.apache.log4j.Logger;
 

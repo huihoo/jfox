@@ -1,4 +1,4 @@
-﻿2006-10-25
+2006-10-25
     1.增强ClassLoader能力，支持热部署，整个Module Hot deploy
     2.增加ComponentListener，可以监听Component的变化
     3.增加 ObservableComponent，可以被监听
@@ -379,3 +379,10 @@
 
 2008-10-15
     1. 将 AUTO SQL 注册成 Temp NamedNativeSQL，从而解决 Cache put/get 不对应的问题
+
+2009-02-03
+    1. 去掉 JNDI 注册中的  /remote /local，直接用 classname
+
+2009-02-17
+    1. 增加一个 MemcachedCache 的实现，使用 memecached 进行缓存
+    

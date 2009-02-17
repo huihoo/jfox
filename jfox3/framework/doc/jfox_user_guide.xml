@@ -803,22 +803,22 @@
   <section>
     <title>搭建Eclipse开发环境</title>
 
-    <para></para>
+    <para>假设JFox安装在 D:\apache-tomcat-6.0.16\webapps\jfox</para>
   </section>
 
   <section>
     <title>开发一个应用</title>
 
-    <para></para>
+    <para>下面以FirstAPP应用模块为例讲解讲解基于JFox开发JPA、EJB和Web应用。</para>
 
     <section>
-      <title>第一个EJB应用</title>
+      <title>第一个JPA应用</title>
 
       <para></para>
     </section>
 
     <section>
-      <title>第一个JPA应用</title>
+      <title>第一个EJB应用</title>
 
       <para></para>
     </section>
