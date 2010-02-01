@@ -2,9 +2,11 @@
 <HTML>
 <HEAD>
     <TITLE>JSP invoke ejb</TITLE>
+<%--
     <%@ page import="javax.naming.Context" %>
     <%@ page import="org.jfox.ejb3.naming.JNDIContextHelper" %>
     <%@ page import="jfox.test.ejb3.stateless.Calculator" %>
+--%>
 </HEAD>
 <BODY>
 
@@ -12,6 +14,7 @@
 <p>
 
 <%
+/*
     try {
         int p1 = Integer.parseInt(request.getParameter("p1"));
         int p2 = Integer.parseInt(request.getParameter("p2"));
@@ -26,6 +29,7 @@
     catch (Exception e) {
         out.println(e.getMessage());
     }
+*/
 %>
 </BODY>
 </HTML>
