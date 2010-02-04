@@ -4,11 +4,11 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc;
+package code.google.webactioncontainer;
 
-import org.jfox.mvc.annotation.ActionMethod;
-import org.jfox.mvc.validate.ValidateException;
-import org.jfox.util.VelocityUtils;
+import code.google.webactioncontainer.annotation.ActionMethod;
+import code.google.webactioncontainer.validate.ValidateException;
+import code.google.webactioncontainer.velocity.VelocityUtils;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

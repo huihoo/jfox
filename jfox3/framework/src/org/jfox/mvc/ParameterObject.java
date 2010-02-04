@@ -4,13 +4,13 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc;
+package code.google.webactioncontainer;
 
+import code.google.jcontainer.util.ClassUtils;
 import org.apache.log4j.Logger;
-import org.jfox.mvc.invocation.ParseParameterActionInvocationHandler;
-import org.jfox.mvc.validate.ValidateException;
-import org.jfox.mvc.validate.Validators;
-import org.jfox.util.ClassUtils;
+import code.google.webactioncontainer.invocation.ParseParameterActionInvocationHandler;
+import code.google.webactioncontainer.validate.ValidateException;
+import code.google.webactioncontainer.validate.Validators;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Array;
@@ -161,7 +161,7 @@ public abstract class ParameterObject {
         for (FileUploaded fileUploaded : fileUploadeds) {
             String fieldName = fileUploaded.getFieldname();
             try {
-                Field field = ClassUtils.getDecaredField(this.getClass(), fieldName);
+                Field field = ClassUtils.getDeclaredField(this.getClass(), fieldName);
                 field.setAccessible(true);
                 Class<?> fieldType = field.getType();
                 if (FileUploaded.class.isAssignableFrom(fieldType)) {

@@ -4,9 +4,7 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc;
-
-import org.jfox.ejb3.security.SecurityContext;
+package code.google.webactioncontainer;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -39,24 +37,6 @@ public class SessionContext implements Serializable {
         else {
             return null;
         }
-    }
-    /**
-     * 在Session中绑定SecurityContext
-     * @param securityContext 认证完成之后生成的SecurityContext
-     */
-    public void bindSecurityContext(SecurityContext securityContext){
-        this.setAttribute(SECURITY_CONTEXT_SESSION_KEY, securityContext);
-    }
-
-    /**
-     * 取得当前Session关联的SecurityContext
-     */
-    public SecurityContext getSecurityContext(){
-        if(!this.containsAttribute(SECURITY_CONTEXT_SESSION_KEY)) {
-            this.setAttribute(SECURITY_CONTEXT_SESSION_KEY, new SecurityContext());
-        }
-
-        return (SecurityContext)this.getAttribute(SECURITY_CONTEXT_SESSION_KEY);
     }
 
     public void setAttribute(String key, Serializable value) {

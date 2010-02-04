@@ -4,10 +4,9 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc;
+package code.google.webactioncontainer;
 
-import org.jfox.mvc.annotation.ActionMethod;
-import org.jfox.mvc.servlet.ControllerServlet;
+import code.google.webactioncontainer.annotation.ActionMethod;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -23,8 +22,6 @@ import java.util.Map;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class ActionContext {
-
-    private String moduleName;
 
     private String actionName;
 
@@ -55,34 +52,31 @@ public class ActionContext {
 
     public static final String SESSION_KEY = "__SESSION_KEY__";
 
-    private ActionBucket actionBucket;
+    public Method actionMethod;
 
     /**
      * 使用 ThreadLocal 将 InvocationContext 和当前线程进行关联
      */
     static transient ThreadLocal<ActionContext> threadActionContext = new ThreadLocal<ActionContext>();
 
-
-    public ActionContext(ServletConfig servletConfig, String moduleName, String actionName, String actionMethodName, HttpServletRequest request) {
+    public ActionContext(ServletConfig servletConfig, String actionName, String actionMethodName, HttpServletRequest request) {
         this.servletConfig = servletConfig;
-        this.moduleName = moduleName;
         this.actionName = actionName;
         this.actionMethodName = actionMethodName;
         this.request = request;
         this.sessionContext = initSessionContext();
         this.pageContext = new PageContext();
-        // 如果上一次 Action 已经设置 PageContext.resultMap, 需要copy 过来
+        // 如果上一次 WebAction 已经设置 PageContext.resultMap, 需要copy 过来
+/*
         PageContext forwardPageContext = ((PageContext)request.getAttribute(ControllerServlet.PAGE_CONTEXT));
         if(forwardPageContext != null ) {
             for(Map.Entry<String, Object> entry : forwardPageContext.getResultMap().entrySet()) {
                 pageContext.setAttribute(entry.getKey(), entry.getValue());
             }
         }
-        initPageContext();
-    }
 
-    public String getModuleName() {
-        return moduleName;
+        initPageContext();
+*/
     }
 
     public ActionContext(ServletConfig servletConfig, HttpServletRequest request, Map<String, String[]> parameterMap, Map<String, FileUploaded> fileUploadedMap, String actionName, String actionMethodName) {
@@ -162,11 +156,11 @@ public class ActionContext {
         return servletConfig.getServletContext();
     }
 
+    public void setActionMethod(Method actionMethod){
+        this.actionMethod = actionMethod;
+    }
+
     public Method getActionMethod() {
-        Method actionMethod = getActionBucket().getActionMethod(this);
-        if(actionMethod == null) {
-            throw new ActionMethodNotFoundException(getModuleName(), getActionName(), getActionMethodName());
-        }
         return actionMethod;
     }
 
@@ -278,15 +272,4 @@ public class ActionContext {
         return contentType != null && contentType.toLowerCase().startsWith("multipart/");
     }
 
-    public ActionBucket getActionBucket() {
-        return actionBucket;
-    }
-
-    public void setActionBucket(ActionBucket actionBucket) {
-        this.actionBucket = actionBucket;
-    }
-
-    public static void main(String[] args) {
-
-    }
 }

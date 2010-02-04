@@ -1,11 +1,9 @@
-package org.jfox.mvc;
-
-import org.jfox.framework.BaseRuntimeException;
+package code.google.webactioncontainer;
 
 /**
  * @author <a href="mailto:yang_y@sysnet.com.cn">Young Yang</a>
  */
-public class PermissionNotAllowedException extends BaseRuntimeException{
+public class PermissionNotAllowedException extends Exception{
 
     private String actionName;
 

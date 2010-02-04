@@ -4,11 +4,12 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc;
+package code.google.webactioncontainer;
 
+import code.google.jcontainer.invoke.Invocation;
+import code.google.jcontainer.invoke.InvocationHandler;
 import org.apache.log4j.Logger;
 
-import javax.ejb.EJBException;
 import java.util.Iterator;
 
 /**
@@ -16,9 +17,21 @@ import java.util.Iterator;
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public abstract class ActionInvocationHandler {
+public abstract class ActionInvocationHandler implements InvocationHandler {
 
     protected final Logger logger = Logger.getLogger(this.getClass());
+
+    public void chainInvoke(Invocation invocation) throws Exception {
+
+    }
+
+    public void chainReturn(Invocation invocation) throws Exception {
+
+    }
+
+    public void onCaughtException(Invocation invocation, Exception e) {
+
+    }
 
     /**
      * 交给 chain 的下一个 handler 处理
@@ -32,7 +45,7 @@ public abstract class ActionInvocationHandler {
             return chain.next().invoke(invocation,chain);
         }
         else {
-            throw new EJBException("no EJBInvocationHandler!");
+            throw new ActionException("no InvocationHandler!");
         }
     }
 

@@ -4,16 +4,14 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc;
-
-import org.jfox.framework.BaseException;
+package code.google.webactioncontainer;
 
 /**
  * throw invocation exception when failed to build Invocation.
  *
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class InvocationException extends BaseException {
+public class InvocationException extends Exception {
 
     public InvocationException() {
 

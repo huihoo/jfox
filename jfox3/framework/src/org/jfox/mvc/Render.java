@@ -4,7 +4,7 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc;
+package code.google.webactioncontainer;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

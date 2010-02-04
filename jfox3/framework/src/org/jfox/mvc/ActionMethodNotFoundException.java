@@ -4,15 +4,15 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc;
+package code.google.webactioncontainer;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class ActionMethodNotFoundException extends ActionException {
 
-    public ActionMethodNotFoundException(String moduleName, String actionName, String actionMethodName) {
-        super("ActionMethod name: " + actionMethodName  + ", Action name: " + actionName + ", Module name: " + moduleName);
+    public ActionMethodNotFoundException(String actionName, String actionMethodName) {
+        super("ActionMethod name: " + actionMethodName  + ", WebAction name: " + actionName );
     }
 
     public static void main(String[] args) {

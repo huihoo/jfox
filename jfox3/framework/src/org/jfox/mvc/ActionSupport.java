@@ -4,7 +4,7 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc;
+package code.google.webactioncontainer;
 
 import org.apache.log4j.Logger;
 
@@ -13,7 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * Action 超类
+ * WebAction 超类
  * <p/>
  * 一个Action类可以有多个Action方法来响应HTTP请求，子类的方法用 @ActionMethod 标注为一个Action方法
  *
@@ -56,33 +56,22 @@ public abstract class ActionSupport implements Action {
         }
         catch (InvocationTargetException e) { // exception throwed, forward to error view
             Exception t = (Exception) e.getTargetException();
-            logger.warn("Execute Action Method " + actionMethod.getName() + " throws exception.", t);
+            logger.warn("Execute WebAction Method " + actionMethod.getName() + " throws exception.", t);
             actionContext.getPageContext().setTargetView(errorView);
             actionContext.getPageContext().setBusinessException(t);
 //            doActionFailed(actionContext);
             exception = t;
         }
         catch (Exception e) { // exception throwed, forward to error view
-            logger.warn("Execute Action Method " + actionMethod.getName() + " throws exception.", e);
+            logger.warn("Execute WebAction Method " + actionMethod.getName() + " throws exception.", e);
             actionContext.getPageContext().setTargetView(errorView);
             actionContext.getPageContext().setBusinessException(e);
 //            doActionFailed(actionContext);
             exception = e;
         }
         finally {
-/*
-            try {
-                if (exception != null) {
-                    doActionFailed(actionContext);
-                }
-            }
-            finally {
-*/
                 postAction(actionContext);
             }
-/*
-        }
-*/
 
         // 没有设置 errorView, 抛出异常
         if (exception != null && (errorView == null || errorView.trim().length() == 0)) {
@@ -90,23 +79,6 @@ public abstract class ActionSupport implements Action {
         }
     }
 
-    /**
-     * do something before Execute
-     *
-     * @param actionContext invcation context
-     */
-/*
-    protected void preExecute(ActionContext actionContext) {
-        HttpServletRequest request = actionContext.getServletRequest();
-        PageContext pageContext = actionContext.getPageContext();
-        pageContext.setAttribute("J_SESSION_CONTEXT", actionContext.getSessionContext());
-        pageContext.setAttribute("J_PAGE_CONTEXT", pageContext);
-        pageContext.setAttribute("J_REQUEST", request);
-        //用于在页面上显示 vm 文件全路径，便于调试
-        pageContext.setAttribute("J_WEBAPP_CONTEXT_PATH", request.getContextPath());
-        pageContext.setAttribute("J_REQUEST_URI", request.getRequestURI());
-    }
-*/
 
     /**
      * 判断当前用户是否有权限操作该Action
@@ -118,17 +90,6 @@ public abstract class ActionSupport implements Action {
     protected boolean hasPermission(ActionContext actionContext) throws PermissionNotAllowedException {
         return true;
     }
-
-    /**
-     * do something after Execute
-     *
-     * @param actionContext invocation context
-     */
-/*
-    protected void postExecute(ActionContext actionContext) {
-
-    }
-*/
 
     /**
      * do something before invoke action method

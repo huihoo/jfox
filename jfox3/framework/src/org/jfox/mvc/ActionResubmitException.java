@@ -4,14 +4,12 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc;
-
-import org.jfox.framework.BaseRuntimeException;
+package code.google.webactioncontainer;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class ActionResubmitException extends BaseRuntimeException {
+public class ActionResubmitException extends RuntimeException {
 
     public ActionResubmitException(String message) {
         super(message);
