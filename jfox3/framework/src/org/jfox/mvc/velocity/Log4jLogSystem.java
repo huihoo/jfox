@@ -4,7 +4,7 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc.velocity;
+package code.google.webactioncontainer.velocity;
 
 import org.apache.log4j.Logger;
 import org.apache.velocity.runtime.log.LogSystem;

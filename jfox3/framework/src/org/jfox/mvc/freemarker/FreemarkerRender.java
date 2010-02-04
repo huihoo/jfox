@@ -4,16 +4,15 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc.freemarker;
+package code.google.webactioncontainer.freemarker;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.log4j.Logger;
-import org.jfox.mvc.PageContext;
-import org.jfox.mvc.Render;
-import org.jfox.mvc.WebContextLoader;
-import org.jfox.mvc.servlet.ControllerServlet;
+import code.google.webactioncontainer.PageContext;
+import code.google.webactioncontainer.Render;
+import code.google.webactioncontainer.servlet.ControllerServlet;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -29,7 +28,7 @@ import java.util.Map;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
 public class FreemarkerRender implements Render {
-    static Logger logger = Logger.getLogger(FreemarkerRender.class); 
+    static Logger logger = Logger.getLogger(FreemarkerRender.class);
     /**
      * Encoding for the output stream
      */
@@ -47,6 +46,8 @@ public class FreemarkerRender implements Render {
      */
     private static Map<String, Configuration> baseDir2ConfigurationMap = new HashMap<String, Configuration>();
 
+    private Configuration engine;
+
     public String getContentType() {
         return DEFAULT_CONTENT_TYPE;
     }
@@ -54,19 +55,13 @@ public class FreemarkerRender implements Render {
     public void init(ServletConfig config) throws ServletException {
         logger.info("Initializaing Freemarker...");
         try {
-            for (String moduleDirName : WebContextLoader.getModuleDirNames()) {
-                String modulePath = WebContextLoader.getModulePathByModuleDirName(moduleDirName);
-                File moduleDir = WebContextLoader.getModuleDirByModuleDirName(moduleDirName);
-                String templateBaseDir = moduleDir.getCanonicalFile().getAbsoluteFile().getPath() + "/" + ControllerServlet.getViewDir();
+            String templateBaseDir = config.getServletContext().getRealPath(".");
 
-                Configuration configuration = new Configuration();
-                configuration.setDefaultEncoding(ControllerServlet.DEFAULT_ENCODING);
-                configuration.setOutputEncoding(ControllerServlet.DEFAULT_ENCODING);
-                configuration.setDirectoryForTemplateLoading(new File(templateBaseDir));
-
-                // 注册相对 module template base dir，以便根据访问的 URL，来判断访问的Module，获得 VelocityEngine
-                baseDir2ConfigurationMap.put(modulePath + "/" + ControllerServlet.getViewDir(), configuration);
-            }
+            Configuration configuration = new Configuration();
+            configuration.setDefaultEncoding(ControllerServlet.DEFAULT_ENCODING);
+            configuration.setOutputEncoding(ControllerServlet.DEFAULT_ENCODING);
+            configuration.setDirectoryForTemplateLoading(new File(templateBaseDir));
+            engine = configuration;
             logger.info("Freemarker engine initialized!");
         }
         catch (Exception e) {
@@ -88,29 +83,13 @@ public class FreemarkerRender implements Render {
      * @param response http response
      */
     protected Map createFreemarkerContext(HttpServletRequest request, HttpServletResponse response) {
-        PageContext pageContext = (PageContext)request.getAttribute(ControllerServlet.PAGE_CONTEXT);
+        PageContext pageContext = (PageContext) request.getAttribute(ControllerServlet.PAGE_CONTEXT);
         Map<String, Object> freemarkerMap = new HashMap<String, Object>(pageContext.getResultMap());
         return freemarkerMap;
     }
 
     protected Template getTemplate(String servletPath, Locale locale) throws IOException {
-        // 首先要根据 servletPath 获得所访问的 Module，进而得到 Module 的 VelocityEngine，用 startsWith 判断？
-        String templateName = null;
-        Configuration engine = null;
-        for (Map.Entry<String, Configuration> entry : baseDir2ConfigurationMap.entrySet()) {
-            String baseDir = entry.getKey();
-            Configuration configuration = entry.getValue();
-            int index = servletPath.indexOf(baseDir);
-            if (index >= 0) {
-                engine = configuration;
-                templateName = servletPath.substring(index + baseDir.length());
-            }
-        }
-        if (engine == null) {
-            throw new IOException("Can not found Framemarker engine for servlet path: " + servletPath);
-        }
-
-        return engine.getTemplate(templateName, locale);
+        return engine.getTemplate(servletPath, locale);
     }
 
     /**

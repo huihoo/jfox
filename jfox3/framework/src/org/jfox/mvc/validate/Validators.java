@@ -4,7 +4,7 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc.validate;
+package code.google.webactioncontainer.validate;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.jfox.mvc.InvocationException;
+import code.google.webactioncontainer.InvocationException;
 
 
 /**

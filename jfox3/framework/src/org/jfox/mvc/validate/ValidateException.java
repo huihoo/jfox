@@ -4,14 +4,12 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc.validate;
-
-import org.jfox.framework.BaseException;
+package code.google.webactioncontainer.validate;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class ValidateException extends BaseException {
+public class ValidateException extends Exception {
 
     // 输入框名称
     private String inputField;

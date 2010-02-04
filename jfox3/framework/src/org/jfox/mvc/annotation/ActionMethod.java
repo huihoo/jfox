@@ -4,9 +4,10 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc.annotation;
+package code.google.webactioncontainer.annotation;
 
-import org.jfox.mvc.ParameterObject;
+import code.google.jcontainer.annotation.Resolve;
+import code.google.webactioncontainer.ParameterObject;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -14,9 +15,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 表示一个 Action 方法
+ * 表示一个 WebAction 方法
  * 用该 Annotation 描述的方法，需要满足以下条件
- * 1.只有一个参数 Invotation
+ * 1.只有一个参数 ActionContext
  * 2.返回 Void 类型
  * 3.抛出Exception异常
  *
@@ -24,6 +25,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})
+@Resolve(resolverClass = ActionMethodAnnotationResolver.class, when=Resolve.WHEN.BEFORE_CONSTRUCT)
 public @interface ActionMethod {
 
     public static enum ForwardMethod {

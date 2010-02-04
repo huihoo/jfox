@@ -4,7 +4,7 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc.velocity;
+package code.google.webactioncontainer.velocity;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -13,28 +13,23 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.app.event.EventCartridge;
 import org.apache.velocity.app.event.implement.IncludeRelativePath;
 import org.apache.velocity.context.Context;
-import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.io.VelocityWriter;
 import org.apache.velocity.runtime.RuntimeSingleton;
 import org.apache.velocity.util.SimplePool;
-import org.jfox.mvc.PageContext;
-import org.jfox.mvc.Render;
-import org.jfox.mvc.WebContextLoader;
-import org.jfox.mvc.servlet.ControllerServlet;
+import code.google.webactioncontainer.PageContext;
+import code.google.webactioncontainer.Render;
+import code.google.webactioncontainer.servlet.ControllerServlet;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -49,13 +44,6 @@ public class VelocityRender implements Render {
     public final static String VELOCITY_PROPERTIES = "velocity.properties";
     private String inputEncoding = "UTF-8";
     private String outputEncoding = "UTF-8";
-
-    /**
-     * 每个 Module 对应的 VelocityEngine
-     * module view base dir => module's velocity engine
-     */
-    private static Map<String, VelocityEngine> baseDir2VelocityEngineMap = new HashMap<String, VelocityEngine>();
-
 
     /**
      * The HTTP content type context key.
@@ -84,7 +72,10 @@ public class VelocityRender implements Render {
      */
     private final static SimplePool writerPool = new SimplePool(40);
 
-    public static final EventCartridge ec = new EventCartridge();
+    private static final EventCartridge ec = new EventCartridge();
+
+    private VelocityEngine velocityEngine = null;
+
     static {
         //#include #parse 支持相对路径
         ec.addEventHandler(new IncludeRelativePath());
@@ -112,28 +103,21 @@ public class VelocityRender implements Render {
 
     protected void initVelocity(ServletConfig servletConfig) throws ServletException {
         try {
-            for (String moduleDirName : WebContextLoader.getModuleDirNames()) {
-                String modulePath = WebContextLoader.getModulePathByModuleDirName(moduleDirName);
-                File moduleDir = WebContextLoader.getModuleDirByModuleDirName(moduleDirName);
-                String templateBaseDir = moduleDir.getCanonicalFile().getAbsoluteFile().getPath() + "/" + ControllerServlet.getViewDir();
-                Properties p = loadConfiguration(servletConfig);
-                // use loader path by module
-                p.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, templateBaseDir);
-                // overwrite velocity default avalog log system
-                p.setProperty(Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, Log4jLogSystem.class.getName());
+            String templateBaseDir = servletConfig.getServletContext().getRealPath(".");
+            Properties p = loadConfiguration(servletConfig);
+            // use loader path by module
+            p.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, templateBaseDir);
+            // overwrite velocity default avalog log system
+            p.setProperty(Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, Log4jLogSystem.class.getName());
 
-                //overwrite encoding by ControllerServet
-                p.setProperty(Velocity.INPUT_ENCODING, ControllerServlet.DEFAULT_ENCODING);
-                p.setProperty(Velocity.OUTPUT_ENCODING, ControllerServlet.DEFAULT_ENCODING);
-                inputEncoding = p.getProperty(Velocity.INPUT_ENCODING);
-                outputEncoding = p.getProperty(Velocity.OUTPUT_ENCODING);
+            //overwrite encoding by ControllerServet
+            p.setProperty(Velocity.INPUT_ENCODING, ControllerServlet.DEFAULT_ENCODING);
+            p.setProperty(Velocity.OUTPUT_ENCODING, ControllerServlet.DEFAULT_ENCODING);
+            inputEncoding = p.getProperty(Velocity.INPUT_ENCODING);
+            outputEncoding = p.getProperty(Velocity.OUTPUT_ENCODING);
 
-                VelocityEngine ve = new VelocityEngine();
-//                EventCartridge ec = new EventCartridge();
-                ve.init(p);
-                // 注册相对 module template base dir，以便根据访问的 URL，来判断访问的Module，获得 VelocityEngine
-                baseDir2VelocityEngineMap.put(modulePath + "/" + ControllerServlet.getViewDir(), ve);
-            }
+            velocityEngine = new VelocityEngine();
+            velocityEngine.init(p);
         }
         catch (Exception e) {
             throw new ServletException("Error initializing Velocity: " + e, e);
@@ -219,35 +203,7 @@ public class VelocityRender implements Render {
      */
     protected Template createTemplate(HttpServletRequest request, HttpServletResponse response, Context velocityContext) throws Exception {
         String servletPath = request.getServletPath();
-        return getTemplate(servletPath, inputEncoding);
-    }
-
-
-    /**
-     * 返回该 url 创建的 Template
-     *
-     * @param servletPath servlet url
-     * @param encoding    encoding
-     * @throws Exception exception
-     */
-    protected Template getTemplate(String servletPath, String encoding) throws Exception {
-        // 首先要根据 servletPath 获得所访问的 Module，进而得到 Module 的 VelocityEngine，用 startsWith 判断？
-        String templateName = null;
-        VelocityEngine engine = null;
-        for (Map.Entry<String, VelocityEngine> entry : baseDir2VelocityEngineMap.entrySet()) {
-            String baseDir = entry.getKey();
-            VelocityEngine ve = entry.getValue();
-            int index = servletPath.indexOf(baseDir);
-            if (index >= 0) {
-                engine = ve;
-                templateName = servletPath.substring(index + baseDir.length());
-            }
-        }
-        if (engine == null) {
-            throw new ParseErrorException("Can not found velocity engine for servlet path: " + servletPath);
-        }
-
-        return engine.getTemplate(templateName, encoding);
+        return velocityEngine.getTemplate(servletPath, inputEncoding);
     }
 
     /**

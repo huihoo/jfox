@@ -4,7 +4,7 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc.util;
+package code.google.webactioncontainer.util;
 
 import java.util.ArrayList;
 import java.util.List;

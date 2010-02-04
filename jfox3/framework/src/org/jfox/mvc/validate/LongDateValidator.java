@@ -8,7 +8,7 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc.validate;
+package code.google.webactioncontainer.validate;
 
 import java.lang.annotation.Annotation;
 import java.text.DateFormat;

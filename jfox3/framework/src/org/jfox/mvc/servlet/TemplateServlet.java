@@ -4,7 +4,7 @@
  *
  * JFox is licenced and re-distributable under GNU LGPL.
  */
-package org.jfox.mvc.servlet;
+package code.google.webactioncontainer.servlet;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.jfox.mvc.Render;
+import code.google.webactioncontainer.Render;
 
 /**
  * 每个模块都拥有独立的 VelocityEngine，便于使用相对路径 #parse

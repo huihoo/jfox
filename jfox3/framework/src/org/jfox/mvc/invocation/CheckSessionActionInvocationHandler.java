@@ -1,30 +1,32 @@
-package org.jfox.mvc.invocation;
+package code.google.webactioncontainer.invocation;
 
-import org.jfox.mvc.ActionContext;
-import org.jfox.mvc.ActionInvocationHandler;
-import org.jfox.mvc.ActionResubmitException;
-import org.jfox.mvc.PageContext;
-import org.jfox.mvc.ParameterObject;
-import org.jfox.mvc.SessionContext;
-
-import java.util.Iterator;
+import code.google.jcontainer.invoke.Invocation;
+import code.google.jcontainer.invoke.InvocationHandler;
+import code.google.webactioncontainer.ActionContext;
+import code.google.webactioncontainer.ActionResubmitException;
+import code.google.webactioncontainer.ParameterObject;
+import code.google.webactioncontainer.SessionContext;
 
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  * @create May 22, 2008 1:19:39 PM
  */
-public class CheckSessionActionInvocationHandler extends ActionInvocationHandler {
+public class CheckSessionActionInvocationHandler implements InvocationHandler {
 
-    public PageContext invoke(ActionContext actionContext, Iterator<ActionInvocationHandler> chain) throws Exception {
-        try {
-            actionContext.initThreadActionContext();
-            checkSessionToken(actionContext);
-            return super.next(actionContext, chain);
-        }
-        finally {
-            releaseSessionToken(actionContext);
-            actionContext.disassociateThreadActionContext();
-        }
+    public void chainInvoke(Invocation invocation) throws Exception {
+        ActionContext actionContext = (ActionContext)invocation.getParameters()[0];
+        actionContext.initThreadActionContext();
+        checkSessionToken(actionContext);
+    }
+
+    public void chainReturn(Invocation invocation) throws Exception {
+        ActionContext actionContext = (ActionContext)invocation.getParameters()[0];
+        releaseSessionToken(actionContext);
+        actionContext.disassociateThreadActionContext();
+    }
+
+    public void onCaughtException(Invocation invocation, Exception e) {
+        invocation.onCaughtException(e);
     }
 
     protected void checkSessionToken(ActionContext actionContext) {

@@ -1,21 +1,25 @@
-package org.jfox.mvc.invocation;
+package code.google.webactioncontainer.invocation;
 
+import code.google.jcontainer.invoke.Invocation;
+import code.google.jcontainer.invoke.InvocationHandler;
+import code.google.jcontainer.util.ClassUtils;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.RequestContext;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
-import org.jfox.mvc.ActionContext;
-import org.jfox.mvc.ActionInvocationHandler;
-import org.jfox.mvc.FileUploaded;
-import org.jfox.mvc.InvocationException;
-import org.jfox.mvc.PageContext;
-import org.jfox.mvc.ParameterObject;
-import org.jfox.mvc.servlet.ControllerServlet;
-import org.jfox.mvc.validate.ValidateException;
-import org.jfox.mvc.validate.Validators;
-import org.jfox.util.ClassUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import code.google.webactioncontainer.ActionContext;
+import code.google.webactioncontainer.ActionInvocationHandler;
+import code.google.webactioncontainer.FileUploaded;
+import code.google.webactioncontainer.InvocationException;
+import code.google.webactioncontainer.PageContext;
+import code.google.webactioncontainer.ParameterObject;
+import code.google.webactioncontainer.servlet.ControllerServlet;
+import code.google.webactioncontainer.validate.ValidateException;
+import code.google.webactioncontainer.validate.Validators;
 
 import javax.servlet.ServletException;
 import java.io.File;
@@ -33,7 +37,21 @@ import java.util.Map;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  * @create May 22, 2008 1:19:39 PM
  */
-public class ParseParameterActionInvocationHandler extends ActionInvocationHandler{
+public class ParseParameterActionInvocationHandler implements InvocationHandler {
+
+    static Log logger = LogFactory.getLog(ParseParameterActionInvocationHandler.class);
+
+    public void chainInvoke(Invocation invocation) throws Exception {
+
+    }
+
+    public void chainReturn(Invocation invocation) throws Exception {
+
+    }
+
+    public void onCaughtException(Invocation invocation, Exception e) {
+
+    }
 
     /**
      * 保存 invocationClass 到其 Filed/Annotation的映射
@@ -161,8 +179,8 @@ public class ParseParameterActionInvocationHandler extends ActionInvocationHandl
      *
      * @param invocationClass   incation class
      * @param actionContext invcation context
-     * @throws org.jfox.mvc.InvocationException throw when contruct invocation failed
-     * @throws org.jfox.mvc.validate.ValidateException   throw when invocation attribute validate failed
+     * @throws code.google.webactioncontainer.InvocationException throw when contruct invocation failed
+     * @throws code.google.webactioncontainer.validate.ValidateException   throw when invocation attribute validate failed
      */
     protected ParameterObject initInvocation(Class<? extends ParameterObject> invocationClass, ActionContext actionContext) throws InvocationException, ValidateException {
         ParameterObject parameterObject;
@@ -194,7 +212,7 @@ public class ParseParameterActionInvocationHandler extends ActionInvocationHandl
             return Collections.unmodifiableMap(invocationMap.get(invocationClass));
         }
         //构造 fieldMap & validationMap
-        Field[] allFields = ClassUtils.getAllDecaredFields(invocationClass);
+        Field[] allFields = ClassUtils.getAllDeclaredFields(invocationClass);
         Map<String, FieldValidation> fieldValidationMap = new HashMap<String, FieldValidation>(allFields.length);
 
         for (Field field : allFields) {
