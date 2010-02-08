@@ -29,14 +29,14 @@ public class WebContextLoader implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         //记录启动消耗时间
         long now = System.currentTimeMillis();
-        webActionContainer = (WebActionContainer)ContainerFactory.scanPaths(new File(servletContextEvent.getServletContext().getRealPath("."))).getContainer("actioncontainer");
+        webActionContainer = (WebActionContainer)ContainerFactory.scanPaths(new File(servletContextEvent.getServletContext().getRealPath("WEB-INF/classes")), new File(servletContextEvent.getServletContext().getRealPath("WEB-INF/lib"))).getContainer("WebActionContainer");
 
         try {
 
-            logger.info("JFox started in " + ((System.currentTimeMillis() - now) / 1000) + " seconds!");
+            logger.info("WebActionContainer started in " + ((System.currentTimeMillis() - now) / 1000) + " seconds!");
         }
         catch (Exception e) {
-            logger.error("Start framework failed!", e);
+            logger.error("WebActionContainer start failed!", e);
         }
     }
 
@@ -46,10 +46,10 @@ public class WebContextLoader implements ServletContextListener {
         try {
                 System.gc();
                 Thread.sleep(1000);
-                logger.info("JFox stopped in " + ((System.currentTimeMillis() - now) / 1000) + " seconds!");
+                logger.info("WebActionContainer stopped in " + ((System.currentTimeMillis() - now) / 1000) + " seconds!");
         }
         catch (Exception e) {
-            servletContextEvent.getServletContext().log("Stop framework failed!", e);
+            servletContextEvent.getServletContext().log("Stop WebActionContainer failed!", e);
         }
     }
 
