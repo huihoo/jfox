@@ -24,7 +24,8 @@ import java.util.Map;
         name = "WebActionContainer",
         componentType= WebAction.class,
         supportAnnotations = {ActionMethod.class},
-        invocationHandlers = {ParseParameterActionInvocationHandler.class, 
+        invocationHandlers = {
+                ParseParameterActionInvocationHandler.class, 
                 CheckSessionActionInvocationHandler.class,
                 AnnotationResolverInvocationHandler.class,
                 MethodInvocationHandler.class}

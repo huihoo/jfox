@@ -103,7 +103,7 @@ public class PageContext {
         return sw.getBuffer().toString();
     }
 
-    //TOOO: 目前，JFox MVC只记录了一个失败的ValidateException，
+    //TODO: 目前，JFox MVC只记录了一个失败的ValidateException，
     // 但是考虑要显示在input的旁边，所以使用了Map，有没有改进的办法？
     public Map<String, ValidateException> getValidateExceptions(){
         return Collections.unmodifiableMap(validateExceptions);

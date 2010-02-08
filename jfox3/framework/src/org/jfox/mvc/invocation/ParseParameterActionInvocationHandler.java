@@ -12,7 +12,6 @@ import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import code.google.webactioncontainer.ActionContext;
-import code.google.webactioncontainer.ActionInvocationHandler;
 import code.google.webactioncontainer.FileUploaded;
 import code.google.webactioncontainer.InvocationException;
 import code.google.webactioncontainer.PageContext;
@@ -41,24 +40,14 @@ public class ParseParameterActionInvocationHandler implements InvocationHandler 
 
     static Log logger = LogFactory.getLog(ParseParameterActionInvocationHandler.class);
 
-    public void chainInvoke(Invocation invocation) throws Exception {
-
-    }
-
-    public void chainReturn(Invocation invocation) throws Exception {
-
-    }
-
-    public void onCaughtException(Invocation invocation, Exception e) {
-
-    }
-
     /**
      * 保存 invocationClass 到其 Filed/Annotation的映射
      */
     private Map<Class<? extends ParameterObject>, Map<String, FieldValidation>> invocationMap = new HashMap<Class<? extends ParameterObject>, Map<String, FieldValidation>>();
 
-    public PageContext invoke(ActionContext actionContext, Iterator<ActionInvocationHandler> chain) throws Exception {
+    public void chainInvoke(Invocation invocation) throws Exception {
+        ActionContext actionContext = (ActionContext)invocation.getParameters()[0];
+
         // 会导致取出的值为数组问题，所以只能使用下面的循环
         final Map<String,String[]> parameterMap = new HashMap<String, String[]>();
         final Map<String, FileUploaded> fileUploadedMap = new HashMap<String, FileUploaded>();
@@ -131,7 +120,6 @@ public class ParseParameterActionInvocationHandler implements InvocationHandler 
         try {
             ParameterObject parameterObject = initInvocation(invocationClass, actionContext);
             actionContext.setInvocation(parameterObject);
-            return super.next(actionContext, chain);
         }
         catch (InvocationException e) {
             //invocation exception, throw out
@@ -140,18 +128,28 @@ public class ParseParameterActionInvocationHandler implements InvocationHandler 
         catch (ValidateException e) {
             //invocation validate exception
             actionContext.getPageContext().addValidateException(e);
-            // 设置 J_VALIDATE_EXCEPTIONS 变量
-            actionContext.getPageContext().setAttribute("J_VALIDATE_EXCEPTIONS", actionContext.getPageContext().getValidateExceptions());
-            // 直接返回，不再执行下面的操作
+            // 设置 J_VALIDATE_EXCEPTION_Field 变量
+            for(Map.Entry<String,ValidateException> entry : actionContext.getPageContext().getValidateExceptions().entrySet()){
+                actionContext.getPageContext().setAttribute("J_VALIDATE_EXCEPTION_" + entry.getKey(), entry.getValue().getMessage());
+            }
+
             if(actionContext.getErrorView() != null && actionContext.getErrorView().trim().length() > 0) {
                 actionContext.getPageContext().setTargetView(actionContext.getErrorView());
-                return actionContext.getPageContext();
             }
             else { // 没有设置 error_view，抛出异常
                 throw e;
             }
         }
     }
+
+    public void chainReturn(Invocation invocation) throws Exception {
+
+    }
+
+    public void onCaughtException(Invocation invocation, Exception e) {
+        invocation.onCaughtException(e);
+    }
+
     private String[] decodeQueryStringParameterValues(String[] values) {
         if(values != null && values.length > 0) {
             String[] decodedValues = new String[values.length];

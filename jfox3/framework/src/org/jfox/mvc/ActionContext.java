@@ -7,6 +7,7 @@
 package code.google.webactioncontainer;
 
 import code.google.webactioncontainer.annotation.ActionMethod;
+import code.google.webactioncontainer.servlet.ControllerServlet;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -66,8 +67,8 @@ public class ActionContext {
         this.request = request;
         this.sessionContext = initSessionContext();
         this.pageContext = new PageContext();
+
         // 如果上一次 WebAction 已经设置 PageContext.resultMap, 需要copy 过来
-/*
         PageContext forwardPageContext = ((PageContext)request.getAttribute(ControllerServlet.PAGE_CONTEXT));
         if(forwardPageContext != null ) {
             for(Map.Entry<String, Object> entry : forwardPageContext.getResultMap().entrySet()) {
@@ -76,7 +77,7 @@ public class ActionContext {
         }
 
         initPageContext();
-*/
+
     }
 
     public ActionContext(ServletConfig servletConfig, HttpServletRequest request, Map<String, String[]> parameterMap, Map<String, FileUploaded> fileUploadedMap, String actionName, String actionMethodName) {
@@ -255,7 +256,7 @@ public class ActionContext {
         return attributes.get(key);
     }
 
-    public boolean constainsKey(String key){
+    public boolean containsKey(String key){
         return attributes.containsKey(key);
     }
 
