@@ -11,7 +11,7 @@ import code.google.webactioncontainer.SessionContext;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  * @create May 22, 2008 1:19:39 PM
  */
-public class CheckSessionActionInvocationHandler implements InvocationHandler {
+public class CheckSessionInvocationHandler implements InvocationHandler {
 
     public void chainInvoke(Invocation invocation) throws Exception {
         ActionContext actionContext = (ActionContext)invocation.getParameters()[0];

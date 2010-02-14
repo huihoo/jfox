@@ -7,8 +7,8 @@ import code.google.jcontainer.invoke.MethodInvocationHandler;
 import org.apache.log4j.Logger;
 import code.google.webactioncontainer.annotation.ActionMethod;
 import code.google.webactioncontainer.annotation.WebAction;
-import code.google.webactioncontainer.invocation.CheckSessionActionInvocationHandler;
-import code.google.webactioncontainer.invocation.ParseParameterActionInvocationHandler;
+import code.google.webactioncontainer.invocation.CheckSessionInvocationHandler;
+import code.google.webactioncontainer.invocation.ParseParameterInvocationHandler;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -25,8 +25,8 @@ import java.util.Map;
         componentType= WebAction.class,
         supportAnnotations = {ActionMethod.class},
         invocationHandlers = {
-                ParseParameterActionInvocationHandler.class, 
-                CheckSessionActionInvocationHandler.class,
+                ParseParameterInvocationHandler.class,
+                CheckSessionInvocationHandler.class,
                 AnnotationResolverInvocationHandler.class,
                 MethodInvocationHandler.class}
 )

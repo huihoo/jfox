@@ -38,9 +38,9 @@ import java.util.Map;
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  * @create May 22, 2008 1:19:39 PM
  */
-public class ParseParameterActionInvocationHandler implements InvocationHandler {
+public class ParseParameterInvocationHandler implements InvocationHandler {
 
-    static Log logger = LogFactory.getLog(ParseParameterActionInvocationHandler.class);
+    static Log logger = LogFactory.getLog(ParseParameterInvocationHandler.class);
 
     /**
      * 保存 invocationClass 到其 Filed/Annotation的映射
@@ -148,17 +148,17 @@ public class ParseParameterActionInvocationHandler implements InvocationHandler 
      * @throws ValidateException valiate
      * @throws InvocationException invocation
      */
-    protected static void initParameterObject(ParameterObject parameterObject, Map<String, ParseParameterActionInvocationHandler.FieldValidation> fieldValidationMap, Map<String, String[]> parameterMap, Collection<FileUploaded> fileUploadeds) throws ActionException{
+    protected static void initParameterObject(ParameterObject parameterObject, Map<String, ParseParameterInvocationHandler.FieldValidation> fieldValidationMap, Map<String, String[]> parameterMap, Collection<FileUploaded> fileUploadeds) throws ActionException{
         parameterObject.addAttributes(parameterMap);
         // verify & build form field from parameterMap
         // 复制一份
-        fieldValidationMap = new HashMap<String, ParseParameterActionInvocationHandler.FieldValidation>(fieldValidationMap);
+        fieldValidationMap = new HashMap<String, ParseParameterInvocationHandler.FieldValidation>(fieldValidationMap);
         // loop parameterMap
         for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
             String key = entry.getKey();
             String[] values = entry.getValue();
             try {
-                ParseParameterActionInvocationHandler.FieldValidation fieldValidation = fieldValidationMap.remove(key);
+                ParseParameterInvocationHandler.FieldValidation fieldValidation = fieldValidationMap.remove(key);
                 if(fieldValidation == null) {
                     //仅仅发出一个信息
                     String msg = "Set request parameter to " + parameterObject.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed, No such filed!";
@@ -225,7 +225,7 @@ public class ParseParameterActionInvocationHandler implements InvocationHandler 
         }
 
         // 检查是否有必须的field还没有设置
-        for(ParseParameterActionInvocationHandler.FieldValidation fieldValidation : fieldValidationMap.values()){
+        for(ParseParameterInvocationHandler.FieldValidation fieldValidation : fieldValidationMap.values()){
             Annotation validationAnnotation = fieldValidation.getValidationAnnotation();
             if(validationAnnotation != null) {
                 ValidateResult validateResult = Validators.validateNullable(parameterObject, fieldValidation.getField(), validationAnnotation);
