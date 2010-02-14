@@ -120,7 +120,7 @@ public class WebActionContainer extends AbstractContainer {
         long now = System.currentTimeMillis();
         String actionName = actionContext.getActionName();
         if(!hasComponent(actionName)) {
-            throw new ActionNotFoundException(actionName);
+            throw new ActionNotFoundRuntimeException(actionName);
         }
         Method method = getActionMethod(actionContext);
         actionContext.setActionMethod(method);

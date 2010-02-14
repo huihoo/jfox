@@ -11,17 +11,20 @@ package code.google.webactioncontainer.validate;
  */
 public class ValidateException extends Exception {
 
-    // 输入框名称
     private String inputField;
-    private Object inputValue;
+    private String inputValue;
+    private String errorId;
 
-    public ValidateException(String message, Object inputValue) {
+    // throw by annotation Validator
+    public ValidateException(String inputValue, String message) {
         super(message);
         this.inputValue = inputValue;
     }
 
-    public ValidateException(String message, String inputFieldName, Object inputValue) {
+    // throw by validate all
+    public ValidateException(String errorId, String inputFieldName, String inputValue,String message) {
         super(message);
+        this.errorId = errorId;
         this.inputValue = inputValue;
         this.inputField = inputFieldName;
     }
@@ -34,8 +37,12 @@ public class ValidateException extends Exception {
         return inputField;
     }
 
-    public Object getInputValue() {
+    public String getInputValue() {
         return inputValue;
+    }
+
+    public String getErrorId() {
+        return errorId;
     }
 
     public String getMessage() {

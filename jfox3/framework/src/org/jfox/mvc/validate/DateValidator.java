@@ -33,7 +33,7 @@ public class DateValidator implements Validator<Date>{
             return date;
         }
         catch(ParseException e) {
-            throw new ValidateException("input date error, format: " + dateValidation.format(), e);
+            throw new ValidateException(inputValue, "input date error, format: " + dateValidation.format());
         }
     }
 

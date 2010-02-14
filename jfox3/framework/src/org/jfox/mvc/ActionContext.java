@@ -198,7 +198,7 @@ public class ActionContext {
         return sessionContext;
     }
 
-    public void setInvocation(ParameterObject parameterObject) {
+    public void setParameterObject(ParameterObject parameterObject) {
         this.parameterObject = parameterObject;
     }
 

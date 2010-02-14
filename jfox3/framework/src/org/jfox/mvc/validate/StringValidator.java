@@ -19,13 +19,12 @@ public class StringValidator implements Validator<String> {
         StringValidation stringValidation = (StringValidation)validation;
         if (inputValue == null || inputValue.trim().length() == 0) {
             if (!stringValidation.nullable()) {
-                throw new ValidateException("input can not be null!", inputValue);
+                throw new ValidateException(inputValue, "input can not be null!");
             }
-
         }
         else {
             if(inputValue.length() > stringValidation.maxLength() || inputValue.length() < stringValidation.minLength()) {
-                throw new ValidateException("input length must between [" + stringValidation.minLength() + "," + stringValidation.maxLength() + "] !", inputValue);
+                throw new ValidateException(inputValue, "input length must between [" + stringValidation.minLength() + "," + stringValidation.maxLength() + "] !");
             }
         }
         return inputValue;

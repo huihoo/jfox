@@ -32,7 +32,7 @@ public class StringDateValidator implements Validator<String>{
             return inputValue;
         }
         catch(ParseException e) {
-            throw new ValidateException("input date error, format: " + dateValidation.format(), e);
+            throw new ValidateException(inputValue, "input date error, format: " + dateValidation.format());
         }
     }
 

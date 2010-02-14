@@ -20,6 +20,11 @@ import java.lang.annotation.Target;
 public @interface StringValidation {
 
     /**
+     * validate error msgId, defined in validate_msg.properties
+     */
+    String errorId();
+
+    /**
      * default String validator class 
      */
     Class<? extends Validator> validatorClass() default StringValidator.class;

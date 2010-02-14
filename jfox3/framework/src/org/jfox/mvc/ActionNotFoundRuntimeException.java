@@ -9,10 +9,10 @@ package code.google.webactioncontainer;
 /**
  * @author <a href="mailto:jfox.young@gmail.com">Young Yang</a>
  */
-public class ActionMethodNotFoundException extends ActionException {
+public class ActionNotFoundRuntimeException extends ActionRuntimeException {
 
-    public ActionMethodNotFoundException(String actionName, String actionMethodName) {
-        super("ActionMethod name: " + actionMethodName  + ", WebAction name: " + actionName );
+    public ActionNotFoundRuntimeException(String actionName) {
+        super("WebAction name: " + actionName);
     }
 
     public static void main(String[] args) {
