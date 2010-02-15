@@ -15,7 +15,9 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import code.google.webactioncontainer.ActionResubmitException;
 import code.google.webactioncontainer.ParameterObject;
+import code.google.webactioncontainer.velocity.VelocityUtils;
 import org.apache.log4j.Logger;
 import code.google.webactioncontainer.InvocationException;
 
@@ -49,9 +51,6 @@ public class Validators {
             logger.warn("Failed to load validate error message properties: " + VALIDATE_ERROR_MESSAGE_PROPERTIES);
         }
     }
-
-    final static Pattern FIELD_PATTERN = Pattern.compile("%FIELD%");
-    final static Pattern INPUT_PATTERN = Pattern.compile("%INPUT%");
 
     public static ValidateResult validate(Field field, String input, Annotation validationAnnotation) {
         ValidateResult validateResult = new ValidateResult(field, input, validationAnnotation);
@@ -125,6 +124,7 @@ public class Validators {
     public static ValidateResult validateNullable(ParameterObject parameterObject, Field field, Annotation validationAnnotation){
         ValidateResult validateResult = new ValidateResult(field, null, validationAnnotation);
         try {
+            field.setAccessible(true);
             Object value = field.get(parameterObject);
             Method method = validationAnnotation.getClass().getMethod("nullable");
             Boolean isNullable = (Boolean)method.invoke(validationAnnotation);
@@ -133,6 +133,9 @@ public class Validators {
                 validateResult.setErrorMessage(getErrorMessage(field, "", validationAnnotation));
             }
             return validateResult;
+        }
+        catch (IllegalAccessException e) {
+            throw new ActionResubmitException("Validate nullable field.", e);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -160,9 +163,16 @@ public class Validators {
     }
 
     public static String getErrorMessage(String inputField, String inputValue, String errorId) {
+        if(inputValue == null) {
+            inputValue = "";
+        }
+        if(!validateErrorMessages.containsKey(errorId)) {
+            throw new ValidateErrorIdNotFoundRuntimeException("errorId=" + errorId);
+        }
         String errorMessage = validateErrorMessages.getProperty(errorId);
-        errorMessage = FIELD_PATTERN.matcher(errorMessage).replaceAll(Matcher.quoteReplacement(inputField));
-        errorMessage = INPUT_PATTERN.matcher(errorMessage).replaceAll(Matcher.quoteReplacement(inputValue));
+        Map<String, Object> velocityContext = new HashMap<String, Object>();
+        velocityContext.put(inputField, inputValue);
+        errorMessage = VelocityUtils.evaluate(errorMessage, velocityContext);
         return errorMessage;
     }
 

@@ -11,6 +11,14 @@ package code.google.webactioncontainer;
  */
 public class ActionResubmitException extends RuntimeException {
 
+    public ActionResubmitException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public ActionResubmitException(Throwable cause) {
+        super(cause);
+    }
+
     public ActionResubmitException(String message) {
         super(message);
     }

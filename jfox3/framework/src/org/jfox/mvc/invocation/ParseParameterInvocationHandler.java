@@ -59,7 +59,7 @@ public class ParseParameterInvocationHandler implements InvocationHandler {
         if(parameterObject.hasValidateError()) {
             List<ValidateResult> errorValidates = parameterObject.getErrorValidates();
             for(ValidateResult entry : errorValidates){
-                actionContext.getPageContext().setAttribute("J_ERROR_VALIDATE_" + entry.getInputField(),entry.getErrorMessage());
+                actionContext.getPageContext().setAttribute("J_VALIDATE_ERROR_" + entry.getInputField(),entry.getErrorMessage());
             }
 
             if(actionContext.getErrorView() != null && actionContext.getErrorView().trim().length() > 0) {

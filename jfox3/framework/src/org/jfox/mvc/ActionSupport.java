@@ -114,7 +114,7 @@ public abstract class ActionSupport implements Action {
         PageContext pageContext = actionContext.getPageContext();
         pageContext.setAttribute(PAGE_VIEW_PATH, pageContext.getTargeView());
         pageContext.setAttribute("J_EXCEPTION", pageContext.getBusinessException());
-        pageContext.setAttribute("J_INVOCATION", actionContext.getParameterObject());
+        pageContext.setAttribute("J_PARAMETER_OBJECT", actionContext.getParameterObject());
     }
 
     /**

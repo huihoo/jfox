@@ -97,7 +97,11 @@ public class ActionContext {
         pageContext.setAttribute("J_PAGE_CONTEXT", pageContext);
         pageContext.setAttribute("J_REQUEST", request);
         //用于在页面上显示 vm 文件全路径，便于调试
-        pageContext.setAttribute("J_WEBAPP_CONTEXT_PATH", request.getContextPath());
+        String webappContextPath = request.getContextPath();
+        if(webappContextPath.startsWith("/")) {
+            webappContextPath = webappContextPath.substring(1);
+        }
+        pageContext.setAttribute("J_WEBAPP_CONTEXT_PATH", webappContextPath);
         pageContext.setAttribute("J_REQUEST_URI", request.getRequestURI());
 
     }

@@ -17,6 +17,9 @@ import java.lang.annotation.ElementType;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface IntegerValidation {
+
+    String errorId();
+
     /**
      * default integer validator class
      */
