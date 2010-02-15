@@ -132,7 +132,7 @@ public class WebActionContainer extends AbstractContainer {
             pageContext = actionContext.getPageContext();
         }
         finally {
-            if(pageContext != null && (pageContext.hasBusinessException() || pageContext.hasValidateException())) {
+            if(pageContext != null && pageContext.hasBusinessException()) {
                 Object action = getComponent(actionName);
                 if(action instanceof ActionSupport) {
                     ((ActionSupport)action).doActionFailed(actionContext);

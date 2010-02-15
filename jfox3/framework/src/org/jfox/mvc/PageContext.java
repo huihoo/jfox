@@ -29,9 +29,6 @@ public class PageContext {
     // success or error view
     private String targetView;
 
-    // input field => validate exception
-    private Map<String, ValidateException> validateExceptions = new HashMap<String, ValidateException>();
-
     private Map<String,Object> resultMap = new HashMap<String, Object>();
 
     private Exception businessException = null;
@@ -71,14 +68,6 @@ public class PageContext {
         return resultMap.get(key);
     }
 
-    public void addValidateException(ValidateException ve){
-        validateExceptions.put(ve.getInputField(),ve);
-    }
-
-    public boolean hasValidateException(){
-        return !validateExceptions.isEmpty();
-    }
-
     public void setBusinessException(Exception exception){
         this.businessException = exception;
     }
@@ -101,12 +90,6 @@ public class PageContext {
             // ignore
         }
         return sw.getBuffer().toString();
-    }
-
-    //TODO: 目前，JFox MVC只记录了一个失败的ValidateException，
-    // 但是考虑要显示在input的旁边，所以使用了Map，有没有改进的办法？
-    public Map<String, ValidateException> getValidateExceptions(){
-        return Collections.unmodifiableMap(validateExceptions);
     }
 
     public static void main(String[] args) {
