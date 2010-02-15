@@ -40,7 +40,7 @@ import java.util.Map;
  */
 public class ParseParameterInvocationHandler implements InvocationHandler {
 
-    static Log logger = LogFactory.getLog(ParseParameterInvocationHandler.class);
+    private static Log logger = LogFactory.getLog(ParseParameterInvocationHandler.class);
 
     /**
      * 保存 invocationClass 到其 Filed/Annotation的映射
@@ -52,7 +52,7 @@ public class ParseParameterInvocationHandler implements InvocationHandler {
         Class<? extends ParameterObject> invocationClass = actionContext.getParameterClass();
 
         // invocation class
-        initParemterMap(actionContext);
+        initParameterMap(actionContext);
 
         ParameterObject parameterObject = createParameterObject(invocationClass, actionContext);
         actionContext.setParameterObject(parameterObject);
@@ -148,17 +148,17 @@ public class ParseParameterInvocationHandler implements InvocationHandler {
      * @throws ValidateException valiate
      * @throws InvocationException invocation
      */
-    protected static void initParameterObject(ParameterObject parameterObject, Map<String, ParseParameterInvocationHandler.FieldValidation> fieldValidationMap, Map<String, String[]> parameterMap, Collection<FileUploaded> fileUploadeds) throws ActionException{
+    protected static void initParameterObject(ParameterObject parameterObject, Map<String, FieldValidation> fieldValidationMap, Map<String, String[]> parameterMap, Collection<FileUploaded> fileUploadeds) throws ActionException{
         parameterObject.addAttributes(parameterMap);
         // verify & build form field from parameterMap
         // 复制一份
-        fieldValidationMap = new HashMap<String, ParseParameterInvocationHandler.FieldValidation>(fieldValidationMap);
+        fieldValidationMap = new HashMap<String, FieldValidation>(fieldValidationMap);
         // loop parameterMap
         for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
             String key = entry.getKey();
             String[] values = entry.getValue();
             try {
-                ParseParameterInvocationHandler.FieldValidation fieldValidation = fieldValidationMap.remove(key);
+                FieldValidation fieldValidation = fieldValidationMap.remove(key);
                 if(fieldValidation == null) {
                     //仅仅发出一个信息
                     String msg = "Set request parameter to " + parameterObject.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed, No such filed!";
@@ -225,7 +225,7 @@ public class ParseParameterInvocationHandler implements InvocationHandler {
         }
 
         // 检查是否有必须的field还没有设置
-        for(ParseParameterInvocationHandler.FieldValidation fieldValidation : fieldValidationMap.values()){
+        for(FieldValidation fieldValidation : fieldValidationMap.values()){
             Annotation validationAnnotation = fieldValidation.getValidationAnnotation();
             if(validationAnnotation != null) {
                 ValidateResult validateResult = Validators.validateNullable(parameterObject, fieldValidation.getField(), validationAnnotation);
@@ -312,7 +312,7 @@ public class ParseParameterInvocationHandler implements InvocationHandler {
         }
     }
 
-    private void initParemterMap(ActionContext actionContext) throws ActionException {
+    private void initParameterMap(ActionContext actionContext) throws ActionException {
         // 会导致取出的值为数组问题，所以只能使用下面的循环
         final Map<String,String[]> parameterMap = new HashMap<String, String[]>();
         final Map<String, FileUploaded> fileUploadedMap = new HashMap<String, FileUploaded>();
@@ -398,9 +398,5 @@ public class ParseParameterInvocationHandler implements InvocationHandler {
         public Annotation getValidationAnnotation() {
             return validationAnnotation;
         }
-    }
-
-    public static void main(String[] args) {
-
     }
 }

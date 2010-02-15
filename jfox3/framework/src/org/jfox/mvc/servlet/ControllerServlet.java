@@ -81,7 +81,7 @@ public class ControllerServlet extends HttpServlet {
             throw new ServletException(e);
         }
         catch (Throwable throwable) {
-            throw new ServletException((Exception)throwable);
+            throw new ServletException(throwable);
         }
 
     }
