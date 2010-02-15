@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import code.google.webactioncontainer.PageContext;
 import code.google.webactioncontainer.Render;
 
 /**
@@ -58,7 +59,23 @@ public class TemplateServlet extends HttpServlet {
         }
     }
 
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void service(final HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PageContext pageContext = (PageContext)request.getAttribute(ControllerServlet.PAGE_CONTEXT);
+        if(pageContext == null){ // access template file directly, set page
+            pageContext = new PageContext() {
+                @Override
+                public Map<String, Object> getResultMap() {
+                    Map<String, Object> paramMap= new HashMap<String, Object>(request.getParameterMap().size());
+                    Enumeration enu = request.getParameterNames();
+                    while(enu.hasMoreElements()) {
+                        String paramName = (String)enu.nextElement();
+                        paramMap.put(paramName, request.getParameter(paramName));
+                    }
+                    return paramMap;
+                }
+            };
+            request.setAttribute(ControllerServlet.PAGE_CONTEXT, pageContext);
+        }
         String servletPath = request.getServletPath();
         int lastDotIndex = servletPath.lastIndexOf(".");
         String suffix = servletPath.substring(lastDotIndex);

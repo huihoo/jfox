@@ -36,7 +36,7 @@ public class PageContext {
 
     private Exception businessException = null;
 
-    PageContext() {
+    protected PageContext() {
         
     }
 
