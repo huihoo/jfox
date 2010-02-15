@@ -18,6 +18,8 @@ import java.lang.annotation.ElementType;
 @Target(ElementType.FIELD)
 public @interface FloatValidation {
 
+    String errorId();
+    
     /**
      * default float validator class
      */

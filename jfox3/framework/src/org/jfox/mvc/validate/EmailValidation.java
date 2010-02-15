@@ -18,6 +18,8 @@ import java.lang.annotation.ElementType;
 @Target(ElementType.FIELD)
 public @interface EmailValidation {
 
+    String errorId();
+    
     /**
      * default email validator class
      */

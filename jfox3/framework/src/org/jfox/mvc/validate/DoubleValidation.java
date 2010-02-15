@@ -18,6 +18,8 @@ import java.lang.annotation.ElementType;
 @Target(ElementType.FIELD)
 public @interface DoubleValidation {
 
+    String errorId();
+    
     /**
      * default double validator class
      */
