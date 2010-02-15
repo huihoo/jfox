@@ -52,13 +52,15 @@ public class ControllerServlet extends HttpServlet {
     }
 
     protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String pathInfo = request.getPathInfo();
+        String servletPath = request.getServletPath();
         String queryString = request.getQueryString();
-        int dotDoIndex = pathInfo.lastIndexOf("ACTION_SUFFIX"); //TODO:
-        int lastSlashIndex = pathInfo.lastIndexOf("/");
-        int actionMethodDotIndex = pathInfo.indexOf(".", lastSlashIndex);
-        String actionName = pathInfo.substring(lastSlashIndex + 1, actionMethodDotIndex);
-        String actionMethodName = pathInfo.substring(actionMethodDotIndex + 1, dotDoIndex);
+        if(servletPath.startsWith("/")) {
+            servletPath = servletPath.substring(1);
+        }
+        String actionNameAndMethod = servletPath.substring(0, servletPath.lastIndexOf("."));
+        int actionNameDotIndex = actionNameAndMethod.indexOf(".");
+        String actionName = actionNameAndMethod.substring(0, actionNameDotIndex);
+        String actionMethodName = actionNameAndMethod.substring(actionNameDotIndex + 1);
 
         // 调用 ActionContainer执行Action
         ActionContext actionContext = new ActionContext(getServletConfig(), actionName, actionMethodName, request);
