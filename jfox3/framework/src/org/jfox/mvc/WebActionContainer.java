@@ -52,7 +52,7 @@ public class WebActionContainer extends AbstractContainer {
         }
     }
 
-    public void addActionMethod(Method actionMethod, ActionMethod actionMethodAnnotation){
+    public void addActionMethod(String actionName, Method actionMethod, ActionMethod actionMethodAnnotation){
         //TODO: Key GET_%ACTION_NAME%_%ACTION_METHOD%
         if (actionMethod.getReturnType().equals(void.class)
                 && actionMethod.getParameterTypes().length == 1
@@ -65,7 +65,7 @@ public class WebActionContainer extends AbstractContainer {
             }
 
             if (actionMethodAnnotation.httpMethod().equals(ActionMethod.HttpMethod.GET)) {
-                String key = (GET_METHOD_PREFIX + actionMethodName).toUpperCase();
+                String key = (GET_METHOD_PREFIX + actionName + "_" + actionMethodName).toUpperCase();
                 //判断 action key 是否已经存在，如果存在，日志并忽略
                 if (actionMap.containsKey(key)) {
                     logger.warn("ActionMethod with name " + actionMethodName + " in WebAction's Method " + this.getClass().getName() + "." + actionMethod.getName() + " has been registed, ignored.");
@@ -75,7 +75,7 @@ public class WebActionContainer extends AbstractContainer {
                 }
             }
             else if (actionMethodAnnotation.httpMethod().equals(ActionMethod.HttpMethod.POST)) {
-                String key = (POST_METHOD_PREFIX + actionMethodName).toUpperCase();
+                String key = (POST_METHOD_PREFIX + actionName + "_" + actionMethodName).toUpperCase();
                 if (actionMap.containsKey(key)) {
                     logger.warn("ActionMethod with name " + actionMethodName + " in WebAction's Method " + this.getClass().getName() + "." + actionMethod.getName() + " has been registed, ignored.");
                 }
@@ -84,15 +84,15 @@ public class WebActionContainer extends AbstractContainer {
                 }
             }
             else {
-                String key1 = (GET_METHOD_PREFIX + actionMethodName).toUpperCase();
-                String key2 = (POST_METHOD_PREFIX + actionMethodName).toUpperCase();
+                String key1 = (GET_METHOD_PREFIX + actionName + "_"+ actionMethodName).toUpperCase();
+                String key2 = (POST_METHOD_PREFIX + actionName + "_" + actionMethodName).toUpperCase();
 
                 if (actionMap.containsKey(key1) || actionMap.containsKey(key2)) {
                     logger.warn("ActionMethod with name " + actionMethodName + " in WebAction's Method " + this.getClass().getName() + "." + actionMethod.getName() + " has been registed, ignored.");
                 }
                 else {
-                    actionMap.put((GET_METHOD_PREFIX + actionMethodName).toUpperCase(), actionMethod);
-                    actionMap.put((POST_METHOD_PREFIX + actionMethodName).toUpperCase(), actionMethod);
+                    actionMap.put(key1, actionMethod);
+                    actionMap.put(key2, actionMethod);
                 }
             }
         }
@@ -104,12 +104,13 @@ public class WebActionContainer extends AbstractContainer {
     public Method getActionMethod(ActionContext actionContext) {
         //决定调用 doGetXXX or doPostXXX
         Method actionMethod;
+        String actionName = actionContext.getActionName();
         String name = actionContext.getActionMethodName();
         if (actionContext.isPost()) {
-            actionMethod = actionMap.get((POST_METHOD_PREFIX + name).toUpperCase());
+            actionMethod = actionMap.get((POST_METHOD_PREFIX + actionName + "_" + name).toUpperCase());
         }
         else {
-            actionMethod = actionMap.get((GET_METHOD_PREFIX + name).toUpperCase());
+            actionMethod = actionMap.get((GET_METHOD_PREFIX + actionName + "_" + name).toUpperCase());
         }
         return actionMethod;
     }

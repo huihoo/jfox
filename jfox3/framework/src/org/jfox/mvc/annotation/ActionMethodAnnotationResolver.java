@@ -12,7 +12,7 @@ public class ActionMethodAnnotationResolver implements MethodAnnotationResolver 
 
     public void resolveMethodAnnotationBeforeConstruct(MethodResolveContext methodResolveContext) throws ResolverException {
         // add action method to WebActionContainer
-        ((WebActionContainer)methodResolveContext.getContainer()).addActionMethod(methodResolveContext.getMethod(), (ActionMethod)methodResolveContext.getAnnotation());
+        ((WebActionContainer)methodResolveContext.getContainer()).addActionMethod(methodResolveContext.getComponentName(), methodResolveContext.getMethod(), (ActionMethod)methodResolveContext.getAnnotation());
     }
 
     public void resolveMethodAnnotationAfterConstruct(MethodResolveContext methodResolveContext) throws ResolverException {
