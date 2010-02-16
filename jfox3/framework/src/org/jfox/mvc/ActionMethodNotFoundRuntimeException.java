@@ -11,11 +11,8 @@ package code.google.webactioncontainer;
  */
 public class ActionMethodNotFoundRuntimeException extends ActionRuntimeException {
 
-    public ActionMethodNotFoundRuntimeException(String actionName, String actionMethodName) {
-        super("ActionMethod name: " + actionMethodName  + ", WebAction name: " + actionName );
+    public ActionMethodNotFoundRuntimeException(String actionName, String actionMethodName, String httpMethod) {
+        super("WebAction name: " + actionName + ", action method name: " + actionMethodName + ", http method: " + httpMethod);
     }
 
-    public static void main(String[] args) {
-
-    }
 }

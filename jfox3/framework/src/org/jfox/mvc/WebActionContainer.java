@@ -53,7 +53,7 @@ public class WebActionContainer extends AbstractContainer {
     }
 
     public void addActionMethod(String actionName, Method actionMethod, ActionMethod actionMethodAnnotation){
-        //TODO: Key GET_%ACTION_NAME%_%ACTION_METHOD%
+        // Key GET_%ACTION_NAME%_%ACTION_METHOD% or POST_%ACTION_NAME%_%ACTION_METHOD%
         if (actionMethod.getReturnType().equals(void.class)
                 && actionMethod.getParameterTypes().length == 1
                 && actionMethod.getParameterTypes()[0].equals(ActionContext.class)) {
@@ -102,7 +102,6 @@ public class WebActionContainer extends AbstractContainer {
     }
 
     public Method getActionMethod(ActionContext actionContext) {
-        //决定调用 doGetXXX or doPostXXX
         Method actionMethod;
         String actionName = actionContext.getActionName();
         String name = actionContext.getActionMethodName();
@@ -115,7 +114,6 @@ public class WebActionContainer extends AbstractContainer {
         return actionMethod;
     }
 
-
     public PageContext invokeAction(ActionContext actionContext) throws Throwable {
         logger.info("Request accepted, URI: " + actionContext.getRequestURI());
         long now = System.currentTimeMillis();
@@ -124,6 +122,9 @@ public class WebActionContainer extends AbstractContainer {
             throw new ActionNotFoundRuntimeException(actionName);
         }
         Method method = getActionMethod(actionContext);
+        if(method == null) {
+            throw new ActionMethodNotFoundRuntimeException(actionName, actionContext.getActionMethodName(), actionContext.isPost() ? "POST" : "GET");
+        }
         actionContext.setActionMethod(method);
         PageContext pageContext = null;
         try {
@@ -132,6 +133,7 @@ public class WebActionContainer extends AbstractContainer {
             pageContext = actionContext.getPageContext();
         }
         finally {
+            // invoke doActionFailed if caught business exception
             if(pageContext != null && pageContext.hasBusinessException()) {
                 Object action = getComponent(actionName);
                 if(action instanceof ActionSupport) {
