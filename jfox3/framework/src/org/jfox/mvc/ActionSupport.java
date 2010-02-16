@@ -6,11 +6,14 @@
  */
 package code.google.webactioncontainer;
 
+import code.google.webactioncontainer.validate.ValidateResult;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * WebAction 超类
@@ -29,16 +32,52 @@ public abstract class ActionSupport implements Action {
         return logger;
     }
 
-    public final void execute(ActionContext actionContext) throws Exception {
+    private void setBackPageContext(ActionContext actionContext){
+        PageContext pageContext = actionContext.getPageContext();
+        for(String key : actionContext.getParameterMap().keySet()) {
+            pageContext.setAttribute(key, actionContext.getParameterValue(key));
+        }
 
+/* file input can not be set by value
+        for(FileUploaded fileUploaded : actionContext.getFilesUploaded()) {
+            pageContext.setAttribute(fileUploaded.getFieldname(), fileUploaded.getFilename());
+        }
+*/
+
+    }
+
+    public final void execute(ActionContext actionContext) throws Exception {
+        PageContext pageContext = actionContext.getPageContext();
         Method actionMethod = actionContext.getActionMethod();
 
         String successView = actionContext.getSuccessView();
-        //设置目标模板页面
+        // default set targetView to successView
         actionContext.getPageContext().setTargetView(successView);
 
         // 没有设置 errorView，将会直接抛出异常
         String errorView = actionContext.getErrorView();
+        boolean hasErrorView = (errorView != null && errorView.trim().length() != 0);
+
+        // check validate error
+        ParameterObject parameterObject = actionContext.getParameterObject();
+        if(parameterObject.hasValidateError()) {
+            List<ValidateResult> errorValidates = parameterObject.getErrorValidates();
+            for(ValidateResult entry : errorValidates){
+                String attrKey = "J_VALIDATE_ERROR_" + entry.getInputField();
+                // ActionSupport.validateAll may overwrite the existed key, so use the first error message
+                if(!pageContext.hasAttribute(attrKey)) {
+                    pageContext.setAttribute(attrKey,entry.getErrorMessage());
+                }
+            }
+            if(hasErrorView) {
+                pageContext.setTargetView(actionContext.getErrorView());
+            }
+            else {
+                throw new ActionException("Failed to validate input." + Arrays.toString(errorValidates.toArray(new ValidateResult[errorValidates.size()])));
+            }
+            setBackPageContext(actionContext);
+            return;
+        }
 
         Exception exception = null;
         try {
@@ -57,24 +96,25 @@ public abstract class ActionSupport implements Action {
         catch (InvocationTargetException e) { // exception throwed, forward to error view
             Exception t = (Exception) e.getTargetException();
             logger.warn("Execute WebAction Method " + actionMethod.getName() + " throws exception.", t);
-            actionContext.getPageContext().setTargetView(errorView);
-            actionContext.getPageContext().setBusinessException(t);
+            pageContext.setTargetView(errorView);
+            pageContext.setBusinessException(t);
 //            doActionFailed(actionContext);
             exception = t;
         }
         catch (Exception e) { // exception throwed, forward to error view
             logger.warn("Execute WebAction Method " + actionMethod.getName() + " throws exception.", e);
-            actionContext.getPageContext().setTargetView(errorView);
-            actionContext.getPageContext().setBusinessException(e);
+            pageContext.setTargetView(errorView);
+            pageContext.setBusinessException(e);
 //            doActionFailed(actionContext);
             exception = e;
         }
         finally {
-                postAction(actionContext);
-            }
+            setBackPageContext(actionContext);
+            postAction(actionContext);
+        }
 
-        // 没有设置 errorView, 抛出异常
-        if (exception != null && (errorView == null || errorView.trim().length() == 0)) {
+        // throw exception to web container
+        if (exception != null && !hasErrorView) {
             throw exception;
         }
     }

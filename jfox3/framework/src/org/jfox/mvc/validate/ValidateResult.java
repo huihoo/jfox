@@ -75,4 +75,9 @@ public class ValidateResult {
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
+
+    @Override
+    public String toString() {
+        return "ValidateError{field=" + inputField + ", input=" + inputValue + "}";
+    }
 }

@@ -60,6 +60,10 @@ public class PageContext {
 //        return targetView;
     }
 
+    public boolean hasAttribute(String key) {
+        return resultMap.containsKey(key);
+    }
+
     public void setAttribute(String key, Object value) {
         resultMap.put(key,value);
     }

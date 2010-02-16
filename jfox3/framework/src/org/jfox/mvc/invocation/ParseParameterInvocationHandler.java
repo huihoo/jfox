@@ -4,6 +4,7 @@ import code.google.jcontainer.invoke.Invocation;
 import code.google.jcontainer.invoke.InvocationHandler;
 import code.google.jcontainer.util.ClassUtils;
 import code.google.webactioncontainer.ActionException;
+import code.google.webactioncontainer.ActionRuntimeException;
 import code.google.webactioncontainer.validate.ValidateResult;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.RequestContext;
@@ -45,27 +46,18 @@ public class ParseParameterInvocationHandler implements InvocationHandler {
     /**
      * 保存 invocationClass 到其 Filed/Annotation的映射
      */
-    private static Map<Class<? extends ParameterObject>, Map<String, FieldValidation>> invocationMap = new HashMap<Class<? extends ParameterObject>, Map<String, FieldValidation>>();
+    private static Map<Class<? extends ParameterObject>, Map<String, FieldValidation>> parameterClassMap = new HashMap<Class<? extends ParameterObject>, Map<String, FieldValidation>>();
 
     public void chainInvoke(Invocation invocation) throws Exception {
         ActionContext actionContext = (ActionContext)invocation.getParameters()[0];
         Class<? extends ParameterObject> invocationClass = actionContext.getParameterClass();
 
-        // invocation class
+        // parameter class
         initParameterMap(actionContext);
 
         ParameterObject parameterObject = createParameterObject(invocationClass, actionContext);
         actionContext.setParameterObject(parameterObject);
-        if(parameterObject.hasValidateError()) {
-            List<ValidateResult> errorValidates = parameterObject.getErrorValidates();
-            for(ValidateResult entry : errorValidates){
-                actionContext.getPageContext().setAttribute("J_VALIDATE_ERROR_" + entry.getInputField(),entry.getErrorMessage());
-            }
 
-            if(actionContext.getErrorView() != null && actionContext.getErrorView().trim().length() > 0) {
-                actionContext.getPageContext().setTargetView(actionContext.getErrorView());
-            }
-        }
     }
 
     public void chainReturn(Invocation invocation) throws Exception {
@@ -95,222 +87,6 @@ public class ParseParameterInvocationHandler implements InvocationHandler {
         }
     }
 
-
-    /**
-     * build Invocation
-     * validator input
-     * set invocation field value
-     *
-     * @param parameterObjectClass   incation class
-     * @param actionContext invcation context
-     * @throws code.google.webactioncontainer.InvocationException throw when contruct invocation failed
-     * @throws code.google.webactioncontainer.validate.ValidateException   throw when invocation attribute validate failed
-     */
-    protected static ParameterObject createParameterObject(Class<? extends ParameterObject> parameterObjectClass, ActionContext actionContext) throws ActionException {
-        ParameterObject parameterObject;
-        if (parameterObjectClass.equals(ParameterObject.class)) {
-            parameterObject = new ParameterObject() {
-            };
-            initParameterObject(parameterObject, Collections.EMPTY_MAP, actionContext.getParameterMap(), actionContext.getFilesUploaded());
-        }
-        else {
-            try {
-                parameterObject = parameterObjectClass.newInstance();
-                // verify input then build fields
-            }
-            catch (Exception e) {
-                throw new RuntimeException("Construct invocation exception.", e);
-            }
-        }
-        initParameterObject(parameterObject, getParameterClassFieldValidationMap(parameterObjectClass), actionContext.getParameterMap(), actionContext.getFilesUploaded());
-        /**
-         * 有些需要关联验证的，比如：校验两次输入的密码是否正确，
-         * 因为不能保证校验密码在初试密码之后得到校验，所以必须放到 validateAll 中进行校验
-         */
-
-        try {
-            parameterObject.validateAll();
-        }
-        catch (ValidateException ve) {
-            ValidateResult validateResult = new ValidateResult(ve.getInputField(), ve.getInputValue(), null);
-            validateResult.setSuccess(false);
-            validateResult.setErrorMessage(Validators.getErrorMessage(ve.getInputField(), ve.getInputValue(),ve.getErrorId()));
-            parameterObject.addErrorValidates(validateResult);
-        }
-        return parameterObject;
-    }
-
-    /**
-     * 设置所有数据，并进行校验
-     * @param fieldValidationMap fieldValidationMap
-     * @param parameterMap 提交的 http request parameterMap
-     * @param fileUploadeds 上传的文件
-     * @throws ValidateException valiate
-     * @throws InvocationException invocation
-     */
-    protected static void initParameterObject(ParameterObject parameterObject, Map<String, FieldValidation> fieldValidationMap, Map<String, String[]> parameterMap, Collection<FileUploaded> fileUploadeds) throws ActionException{
-        parameterObject.addAttributes(parameterMap);
-        // verify & build form field from parameterMap
-        // 复制一份
-        fieldValidationMap = new HashMap<String, FieldValidation>(fieldValidationMap);
-        // loop parameterMap
-        for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
-            String key = entry.getKey();
-            String[] values = entry.getValue();
-            try {
-                FieldValidation fieldValidation = fieldValidationMap.remove(key);
-                if(fieldValidation == null) {
-                    //仅仅发出一个信息
-                    String msg = "Set request parameter to " + parameterObject.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed, No such filed!";
-                    logger.warn(msg);
-                    continue;
-                }
-                Field field = fieldValidation.getField();
-                field.setAccessible(true);
-                Annotation validationAnnotation = fieldValidation.getValidationAnnotation();
-
-                Class<?> fieldType = field.getType();
-                if(fieldType.equals(FileUploaded.class)) {
-                    logger.warn("ignore FileUploaded field: " + field);
-                }
-                else if (fieldType.isArray()) {
-                    Class<?> arrayType = fieldType.getComponentType();
-                    Object paramArray = Array.newInstance(arrayType, values.length);
-                    for (int i = 0; i < Array.getLength(paramArray); i++) {
-                        if (validationAnnotation != null) {
-                            ValidateResult validateResult = Validators.validate(field, values[i], validationAnnotation);
-                            if(!validateResult.isSuccess()) {
-                                parameterObject.addErrorValidates(validateResult);
-                            }
-                            else {
-                                Array.set(paramArray,i, validateResult.getReturnObject());
-                            }
-                        }
-                        else {
-                            //no validator, try to use ClassUtils construct object
-                            Array.set(paramArray,i, ClassUtils.newObject(arrayType, values[i]));
-                        }
-                    }
-                    field.set(parameterObject, paramArray);
-                }
-                else {
-                    String value = values[0];
-                    Object v = null;
-                    if (validationAnnotation != null) {
-                        ValidateResult validateResult = Validators.validate(field, value, validationAnnotation);
-                        if(!validateResult.isSuccess()) {
-                            parameterObject.addErrorValidates(validateResult);
-                        }
-                        else {
-                            field.set(parameterObject, validateResult.getReturnObject());
-                        }
-                    }
-                    else {
-                        v = ClassUtils.newObject(fieldType, value);
-                        field.set(parameterObject, v);
-                    }
-                }
-            }
-            catch (InvocationTargetException e) {
-                Throwable t = e.getTargetException();
-                String msg = "Set request parameter to + " + parameterObject.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed!";
-                logger.error(msg, t);
-                throw new ActionException(msg, t);
-            }
-            catch (Throwable t) {
-                String msg = "Set request parameter to + " + parameterObject.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed!";
-                logger.error(msg, t);
-                throw new ActionException(msg, t);
-            }
-        }
-
-        // 检查是否有必须的field还没有设置
-        for(FieldValidation fieldValidation : fieldValidationMap.values()){
-            Annotation validationAnnotation = fieldValidation.getValidationAnnotation();
-            if(validationAnnotation != null) {
-                ValidateResult validateResult = Validators.validateNullable(parameterObject, fieldValidation.getField(), validationAnnotation);
-                if(!validateResult.isSuccess()) {
-                    parameterObject.addErrorValidates(validateResult);
-                }
-            }
-        }
-
-        if(parameterObject.hasValidateError()) {
-            // skip parse uploadings
-            return;
-        }
-
-        // build upload file field
-        for (FileUploaded fileUploaded : fileUploadeds) {
-            String fieldName = fileUploaded.getFieldname();
-            try {
-                Field field = ClassUtils.getDeclaredField(parameterObject.getClass(), fieldName);
-                field.setAccessible(true);
-                Class<?> fieldType = field.getType();
-                if (FileUploaded.class.isAssignableFrom(fieldType)) {
-                    field.set(parameterObject, fileUploaded);
-                }
-                else {
-                    String msg = "Invocation " + parameterObject.getClass().getName() + " 's field " + field.getName() + " is not a type " + FileUploaded.class.getName();
-                    logger.warn(msg);
-                    throw new ActionException(msg);
-                }
-            }
-            catch(ActionException e) {
-                throw e;
-            }
-            catch (Exception e) {
-                String msg = "Set request parameter to " + parameterObject.getClass().getName() + "'s FileUploaded field " + fieldName + " with value " + fileUploaded + " failed!";
-                logger.warn(msg, e);
-                throw new ActionException(msg, e);
-            }
-        }
-    }
-    
-    private static Map<String, FieldValidation> getParameterClassFieldValidationMap(Class<? extends ParameterObject> invocationClass) {
-        if (invocationMap.containsKey(invocationClass)) {
-            return Collections.unmodifiableMap(invocationMap.get(invocationClass));
-        }
-        //构造 fieldMap & validationMap
-        Field[] allFields = ClassUtils.getAllDeclaredFields(invocationClass);
-        Map<String, FieldValidation> fieldValidationMap = new HashMap<String, FieldValidation>(allFields.length);
-
-        for (Field field : allFields) {
-            if (!field.getDeclaringClass().equals(ParameterObject.class)) { //过滤掉ParameterObject超类自身的Field
-                if (fieldValidationMap.containsKey(field.getName())) {
-                    logger.warn("Reduplicate filed name: " + field.getName() + " in invocation: " + invocationClass.getName());
-                    continue;
-                }
-                Annotation validationAnnotation = getValidationAnnotation(field);
-                FieldValidation fieldValidation = new FieldValidation(field, validationAnnotation);
-                fieldValidationMap.put(field.getName(), fieldValidation);
-            }
-        }
-        invocationMap.put(invocationClass, fieldValidationMap);
-        return Collections.unmodifiableMap(fieldValidationMap);
-    }
-
-    private static Annotation getValidationAnnotation(Field field) {
-        int count = 0;
-        Annotation validAnnotation = null;
-        Annotation[] fieldAnnotations = field.getAnnotations();
-        for (Annotation annotation : fieldAnnotations) {
-            if (Validators.isValidationAnnotation(annotation)) {
-                validAnnotation = annotation;
-                count++;
-            }
-        }
-        if (count == 0) {
-            return null;
-        }
-        else if (count > 1) {
-            logger.warn("More than one Validation Annotation on " + field + ", will use last one.");
-            return validAnnotation;
-        }
-        else {
-            return validAnnotation;
-        }
-    }
 
     private void initParameterMap(ActionContext actionContext) throws ActionException {
         // 会导致取出的值为数组问题，所以只能使用下面的循环
@@ -379,7 +155,228 @@ public class ParseParameterInvocationHandler implements InvocationHandler {
 
         actionContext.setParameterMap(parameterMap);
         actionContext.setFileUploadedMap(fileUploadedMap);
+    }
 
+    /**
+     * build Invocation
+     * validator input
+     * set invocation field value
+     *
+     * @param parameterObjectClass   incation class
+     * @param actionContext invcation context
+     * @throws code.google.webactioncontainer.InvocationException throw when contruct invocation failed
+     * @throws code.google.webactioncontainer.validate.ValidateException   throw when invocation attribute validate failed
+     */
+    protected static ParameterObject createParameterObject(Class<? extends ParameterObject> parameterObjectClass, ActionContext actionContext) throws ActionException {
+        ParameterObject parameterObject;
+        if (parameterObjectClass.equals(ParameterObject.class)) {
+            parameterObject = new ParameterObject() {
+            };
+            initParameterObject(parameterObject, Collections.EMPTY_MAP, actionContext.getParameterMap(), actionContext.getFilesUploaded());
+        }
+        else {
+            try {
+                parameterObject = parameterObjectClass.newInstance();
+                // verify input then build fields
+            }
+            catch (Exception e) {
+                throw new RuntimeException("Construct invocation exception.", e);
+            }
+        }
+        initParameterObject(parameterObject, getParameterClassFieldValidationMap(parameterObjectClass), actionContext.getParameterMap(), actionContext.getFilesUploaded());
+        /**
+         * 有些需要关联验证的，比如：校验两次输入的密码是否正确，
+         * 因为不能保证校验密码在初试密码之后得到校验，所以必须放到 validateAll 中进行校验
+         */
+
+        try {
+            parameterObject.validateAll();
+        }
+        catch (ValidateException ve) {
+            ValidateResult validateResult = new ValidateResult(ve.getInputField(), ve.getInputValue(), null);
+            validateResult.setSuccess(false);
+            validateResult.setErrorMessage(Validators.getErrorMessage(ve.getInputField(), ve.getInputValue(),ve.getErrorId()));
+            parameterObject.addErrorValidates(validateResult);
+        }
+        return parameterObject;
+    }
+
+    /**
+     * 设置所有数据，并进行校验
+     * @param fieldValidationMap fieldValidationMap
+     * @param parameterMap 提交的 http request parameterMap
+     * @param fileUploadeds 上传的文件
+     * @throws ValidateException valiate
+     * @throws InvocationException invocation
+     */
+    protected static void initParameterObject(ParameterObject parameterObject, Map<String, FieldValidation> fieldValidationMap, Map<String, String[]> parameterMap, Collection<FileUploaded> fileUploadeds) throws ActionException{
+        parameterObject.addAttributes(parameterMap);
+        // verify & build form field from parameterMap
+        // 复制一份
+        fieldValidationMap = new HashMap<String, FieldValidation>(fieldValidationMap);
+        // loop parameterMap
+        for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
+            String key = entry.getKey();
+            String[] values = entry.getValue();
+            try {
+                FieldValidation fieldValidation = fieldValidationMap.remove(key);
+                if(fieldValidation == null) {
+                    // if a servlet Parameter don't have a corresponding FieldValidation
+                    // every field should has FieldValidation, although the ValidationAnnotation may be null                    
+                    String msg = "Set request parameter to " + parameterObject.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed, No such filed!";
+                    //just a log message
+                    logger.warn(msg);
+                    continue;
+                }
+                Field field = fieldValidation.getField();
+                field.setAccessible(true);
+                Annotation validationAnnotation = fieldValidation.getValidationAnnotation();
+
+                Class<?> fieldType = field.getType();
+                if(fieldType.equals(FileUploaded.class)) {
+                    logger.warn("ignore FileUploaded field: " + field);
+                }
+                else if (fieldType.isArray()) {
+                    Class<?> arrayType = fieldType.getComponentType();
+                    Object paramArray = Array.newInstance(arrayType, values.length);
+                    for (int i = 0; i < Array.getLength(paramArray); i++) {
+                        if (validationAnnotation != null) {
+                            ValidateResult validateResult = Validators.validate(field, values[i], validationAnnotation);
+                            if(!validateResult.isSuccess()) {
+                                parameterObject.addErrorValidates(validateResult);
+                            }
+                            else {
+                                Array.set(paramArray,i, validateResult.getReturnObject());
+                            }
+                        }
+                        else {
+                            //no validator, try to use ClassUtils construct object
+                            Array.set(paramArray,i, ClassUtils.newObject(arrayType, values[i]));
+                        }
+                    }
+                    field.set(parameterObject, paramArray);
+                }
+                else {
+                    String value = values[0];
+                    Object v = null;
+                    if (validationAnnotation != null) {
+                        ValidateResult validateResult = Validators.validate(field, value, validationAnnotation);
+                        if(!validateResult.isSuccess()) {
+                            parameterObject.addErrorValidates(validateResult);
+                        }
+                        else {
+                            field.set(parameterObject, validateResult.getReturnObject());
+                        }
+                    }
+                    else {
+                        v = ClassUtils.newObject(fieldType, value);
+                        field.set(parameterObject, v);
+                    }
+                }
+            }
+            catch (InvocationTargetException e) {
+                Throwable t = e.getTargetException();
+                String msg = "Set request parameter to + " + parameterObject.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed!";
+                logger.error(msg, t);
+                throw new ActionException(msg, t);
+            }
+            catch (Throwable t) {
+                String msg = "Set request parameter to + " + parameterObject.getClass().getName() + "'s field \"" + key + "\" with value " + Arrays.toString(values) + " failed!";
+                logger.error(msg, t);
+                throw new ActionException(msg, t);
+            }
+        }
+
+        for (FileUploaded fileUploaded : fileUploadeds) {
+            String fieldName = fileUploaded.getFieldname();
+
+            FieldValidation fieldValidation = fieldValidationMap.remove(fieldName);
+            Annotation validationAnnotation = fieldValidation.getValidationAnnotation();
+
+            try {
+                Field field = ClassUtils.getDeclaredField(parameterObject.getClass(), fieldName);
+                if (validationAnnotation != null) {
+                    ValidateResult validateResult = Validators.validate(field, fileUploaded.getFilename(), validationAnnotation);
+                    if(!validateResult.isSuccess()) {
+                        parameterObject.addErrorValidates(validateResult);
+                    }
+                }
+                field.setAccessible(true);
+                Class<?> fieldType = field.getType();
+                if (FileUploaded.class.isAssignableFrom(fieldType)) {
+                    field.set(parameterObject, fileUploaded);
+                }
+                else {
+                    String msg = "Invocation " + parameterObject.getClass().getName() + " 's field " + field.getName() + " is not a type " + FileUploaded.class.getName();
+                    logger.warn(msg);
+                    throw new ActionException(msg);
+                }
+            }
+            catch(ActionException e) {
+                throw e;
+            }
+            catch (Exception e) {
+                String msg = "Set request parameter to " + parameterObject.getClass().getName() + "'s FileUploaded field " + fieldName + " with value " + fileUploaded + " failed!";
+                logger.warn(msg, e);
+                throw new ActionException(msg, e);
+            }
+        }
+
+        // 检查是否有必须的field还没有设置
+        for(FieldValidation fieldValidation : fieldValidationMap.values()){
+            Annotation validationAnnotation = fieldValidation.getValidationAnnotation();
+            if(validationAnnotation != null) {
+                ValidateResult validateResult = Validators.validateNullable(parameterObject, fieldValidation.getField(), validationAnnotation);
+                if(!validateResult.isSuccess()) {
+                    parameterObject.addErrorValidates(validateResult);
+                }
+            }
+        }
+    }
+
+    private static Map<String, FieldValidation> getParameterClassFieldValidationMap(Class<? extends ParameterObject> parameterClass) {
+        if (parameterClassMap.containsKey(parameterClass)) {
+            return Collections.unmodifiableMap(parameterClassMap.get(parameterClass));
+        }
+        //构造 fieldMap & validationMap
+        Field[] allFields = ClassUtils.getAllDeclaredFields(parameterClass);
+        Map<String, FieldValidation> fieldValidationMap = new HashMap<String, FieldValidation>(allFields.length);
+
+        for (Field field : allFields) {
+            if (!field.getDeclaringClass().equals(ParameterObject.class)) { //过滤掉ParameterObject超类自身的Field
+                if (fieldValidationMap.containsKey(field.getName())) {
+                    logger.warn("Reduplicate filed name: " + field.getName() + " in invocation: " + parameterClass.getName());
+                    continue;
+                }
+                Annotation validationAnnotation = getValidationAnnotation(field);
+                FieldValidation fieldValidation = new FieldValidation(field, validationAnnotation);
+                fieldValidationMap.put(field.getName(), fieldValidation);
+            }
+        }
+        parameterClassMap.put(parameterClass, fieldValidationMap);
+        return Collections.unmodifiableMap(fieldValidationMap);
+    }
+
+    private static Annotation getValidationAnnotation(Field field) {
+        int count = 0;
+        Annotation validAnnotation = null;
+        Annotation[] fieldAnnotations = field.getAnnotations();
+        for (Annotation annotation : fieldAnnotations) {
+            if (Validators.isValidationAnnotation(annotation)) {
+                validAnnotation = annotation;
+                count++;
+            }
+        }
+        if (count == 0) {
+            return null;
+        }
+        else if (count > 1) {
+            logger.warn("More than one Validation Annotation on " + field + ", will use last one.");
+            return validAnnotation;
+        }
+        else {
+            return validAnnotation;
+        }
     }
 
     public static class FieldValidation {
