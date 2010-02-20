@@ -4,6 +4,7 @@ import code.google.jcontainer.AbstractContainer;
 import code.google.jcontainer.annotation.Container;
 import code.google.jcontainer.invoke.AnnotationResolverInvocationHandler;
 import code.google.jcontainer.invoke.MethodInvocationHandler;
+import code.google.webactioncontainer.dao.DAO;
 import org.apache.log4j.Logger;
 import code.google.webactioncontainer.annotation.ActionMethod;
 import code.google.webactioncontainer.annotation.WebAction;
@@ -23,7 +24,7 @@ import java.util.Map;
 @Container(
         name = "WebActionContainer",
         componentType= WebAction.class,
-        supportAnnotations = {ActionMethod.class},
+        supportAnnotations = {ActionMethod.class, DAO.class},
         invocationHandlers = {
                 ParseParameterInvocationHandler.class,
                 CheckSessionInvocationHandler.class,

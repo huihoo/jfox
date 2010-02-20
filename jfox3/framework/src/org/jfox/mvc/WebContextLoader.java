@@ -24,12 +24,15 @@ public class WebContextLoader implements ServletContextListener {
 
     private static Log logger = LogFactory.getLog(WebContextLoader.class);
 
+    private static ContainerFactory containerFactory;
+
     private static WebActionContainer webActionContainer= null;
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         //记录启动消耗时间
         long now = System.currentTimeMillis();
-        webActionContainer = (WebActionContainer)ContainerFactory.scanPaths(new File(servletContextEvent.getServletContext().getRealPath("WEB-INF/classes")), new File(servletContextEvent.getServletContext().getRealPath("WEB-INF/lib"))).getContainer("WebActionContainer");
+        containerFactory = ContainerFactory.scanPaths(new File(servletContextEvent.getServletContext().getRealPath("WEB-INF/classes")), new File(servletContextEvent.getServletContext().getRealPath("WEB-INF/lib")));
+        webActionContainer = (WebActionContainer)containerFactory.getContainer("WebActionContainer");
 
         try {
 
@@ -54,7 +57,10 @@ public class WebContextLoader implements ServletContextListener {
     }
 
     public static void invokeAction(ActionContext actionContext) throws Throwable {
-
         webActionContainer.invokeAction(actionContext);
+    }
+
+    public static ContainerFactory getContainerFactory() {
+        return containerFactory;
     }
 }
