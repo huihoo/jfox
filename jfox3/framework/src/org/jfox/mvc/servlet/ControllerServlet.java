@@ -30,24 +30,9 @@ import java.io.IOException;
 public class ControllerServlet extends HttpServlet {
 
     public static final String PAGE_CONTEXT = "__PAGE_CONTEXT__";
-    public static final String MAX_UPLOAD_FILE_SIZE_KEY = "MAX_UPLOAD_FILE_SIZE";
-    public static int MAX_UPLOAD_FILE_SIZE = 5 * 1000 * 1000;
-
-    //主要用来控制request charactor encoding, File Upload, Velocity, Freemarker的编码
-    public static String DEFAULT_ENCODING = "UTF-8";
-
-    public void init(ServletConfig servletConfig) throws ServletException {
-        super.init(servletConfig);
-        // max upload limit
-        String maxUploadFileSize = servletConfig.getServletContext().getInitParameter(MAX_UPLOAD_FILE_SIZE_KEY);
-        if (maxUploadFileSize != null && maxUploadFileSize.trim().length() != 0) {
-            MAX_UPLOAD_FILE_SIZE = Integer.parseInt(maxUploadFileSize);
-        }
-
-    }
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding(DEFAULT_ENCODING);
+        request.setCharacterEncoding(WebContextLoader.getEncoding());
         doAction(request, response);
     }
 

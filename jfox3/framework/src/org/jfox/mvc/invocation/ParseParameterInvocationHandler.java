@@ -5,6 +5,7 @@ import code.google.jcontainer.invoke.InvocationHandler;
 import code.google.jcontainer.util.ClassUtils;
 import code.google.webactioncontainer.ActionException;
 import code.google.webactioncontainer.ActionRuntimeException;
+import code.google.webactioncontainer.WebContextLoader;
 import code.google.webactioncontainer.validate.ValidateResult;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.RequestContext;
@@ -117,12 +118,12 @@ public class ParseParameterInvocationHandler implements InvocationHandler {
                 //  创建基于磁盘的文件工厂
                 DiskFileItemFactory factory = new DiskFileItemFactory();
                 //  设置直接存储文件的极限大小，一旦超过则写入临时文件以节约内存。默认为 1024 字节
-                factory.setSizeThreshold(ControllerServlet.MAX_UPLOAD_FILE_SIZE);
+                factory.setSizeThreshold(WebContextLoader.getMaxUploadFileSize());
                 //  创建上传处理器，可以处理从单个 HTML 上传的多个上传文件。
                 ServletFileUpload upload = new ServletFileUpload(factory);
                 //  最大允许上传的文件大小 5M
-                upload.setSizeMax(ControllerServlet.MAX_UPLOAD_FILE_SIZE);
-                upload.setHeaderEncoding(ControllerServlet.DEFAULT_ENCODING);
+                upload.setSizeMax(WebContextLoader.getMaxUploadFileSize());
+                upload.setHeaderEncoding(WebContextLoader.getEncoding());
                 try {
                     //  处理上传
                     List items = upload.parseRequest(requestContext);
@@ -132,7 +133,7 @@ public class ParseParameterInvocationHandler implements InvocationHandler {
                         if (fileItem.isFormField()) {
                             // 表单内容
 //                            invocationContext.addParameter(fileItem.getFieldName(), new String[]{fileItem.getString(DEFAULT_ENCODING)});
-                            parameterMap.put(fileItem.getFieldName(), new String[]{fileItem.getString(ControllerServlet.DEFAULT_ENCODING)});
+                            parameterMap.put(fileItem.getFieldName(), new String[]{fileItem.getString(WebContextLoader.getEncoding())});
                         }
                         else {
                             //  如果不是表单内容，取出 multipart。

@@ -6,6 +6,7 @@
  */
 package code.google.webactioncontainer.freemarker;
 
+import code.google.webactioncontainer.WebContextLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -58,8 +59,8 @@ public class FreemarkerRender implements Render {
             String templateBaseDir = config.getServletContext().getRealPath(".");
 
             Configuration configuration = new Configuration();
-            configuration.setDefaultEncoding(ControllerServlet.DEFAULT_ENCODING);
-            configuration.setOutputEncoding(ControllerServlet.DEFAULT_ENCODING);
+            configuration.setDefaultEncoding(WebContextLoader.getEncoding());
+            configuration.setOutputEncoding(WebContextLoader.getEncoding());
             configuration.setDirectoryForTemplateLoading(new File(templateBaseDir));
             engine = configuration;
             logger.info("Freemarker engine initialized!");
@@ -120,7 +121,7 @@ public class FreemarkerRender implements Render {
         if (index <= 0 || (index < contentType.length() &&
                 contentType.indexOf("charset", index) == -1)) {
             // Append the character encoding which we'd like to use.
-            String encoding = ControllerServlet.DEFAULT_ENCODING;
+            String encoding = WebContextLoader.getEncoding();
             //System.out.println("Chose output encoding of '" +
             //                   encoding + '\'');
             if (!DEFAULT_OUTPUT_ENCODING.equalsIgnoreCase(encoding)) {

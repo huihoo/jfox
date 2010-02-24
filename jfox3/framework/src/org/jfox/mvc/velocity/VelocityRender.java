@@ -6,6 +6,7 @@
  */
 package code.google.webactioncontainer.velocity;
 
+import code.google.webactioncontainer.WebContextLoader;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
@@ -111,8 +112,8 @@ public class VelocityRender implements Render {
             p.setProperty(Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, Log4jLogSystem.class.getName());
 
             //overwrite encoding by ControllerServet
-            p.setProperty(Velocity.INPUT_ENCODING, ControllerServlet.DEFAULT_ENCODING);
-            p.setProperty(Velocity.OUTPUT_ENCODING, ControllerServlet.DEFAULT_ENCODING);
+            p.setProperty(Velocity.INPUT_ENCODING, WebContextLoader.getEncoding());
+            p.setProperty(Velocity.OUTPUT_ENCODING, WebContextLoader.getEncoding());
             inputEncoding = p.getProperty(Velocity.INPUT_ENCODING);
             outputEncoding = p.getProperty(Velocity.OUTPUT_ENCODING);
 

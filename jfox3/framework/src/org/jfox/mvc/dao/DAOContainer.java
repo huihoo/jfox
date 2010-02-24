@@ -1,6 +1,7 @@
 package code.google.webactioncontainer.dao;
 
 import code.google.jcontainer.AbstractContainer;
+import code.google.jcontainer.AnnotationRepository;
 import code.google.jcontainer.annotation.Container;
 
 /**
@@ -13,4 +14,9 @@ import code.google.jcontainer.annotation.Container;
 )
 public class DAOContainer extends AbstractContainer{
 
+    @Override
+    protected void init(AnnotationRepository annotationRepository) {
+        super.init(annotationRepository);
+    }
+ 
 }
